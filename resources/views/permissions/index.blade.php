@@ -8,10 +8,10 @@
           {{-- <div class="card-icon">
             <i class="material-icons"></i>
           </div> --}}
-          <h4 class="card-title">Roles
-            @can('create_roles')
-            <a href="/roles/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
-                <i class="material-icons">add</i> <span class="mx-1">Add Role</span>
+          <h4 class="card-title">Permissions
+            @can('create_permissions')
+            <a href="/permissions/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
+                <i class="material-icons">add</i> <span class="mx-1">Add Permission</span>
                 </a>
             @endcan
           </h4>
@@ -23,21 +23,27 @@
               <div class="table-responsive">
                 <table class="table">
                     <thead>
-                        <th>Role Name</th>
+                        <th>Permission </th>
+                        <th>Roles with this Permission</th>
                         <th class="text-right">Actions</th>
                     </thead>
                   <tbody>
-                      @foreach ($roles as $role)
+                      @foreach ($permissions as $perm)
                       <tr>
-                        <th> {{$role->name}} </th>
+                        <th> {{$perm->name}} </th>
+                        <th> |
+                            @foreach ($perm->roles as $role)
+                                 {{$role->name}}  |
+                            @endforeach
+                        </th>
                         <td class="td-actions text-right">
-                        @can('update_roles')
-                            <a href="/roles/edit/{{$role->id}}" rel="tooltip" class="btn btn-success btn-round">
+                        @can('update_permissions')
+                            <a href="/permissions/edit/{{$perm->id}}" rel="tooltip" class="btn btn-success btn-round">
                             <i class="material-icons">edit</i> <span class="mx-1">Edit</span>
                             </a>
                         @endcan
-                        @can('delete_roles')
-                            <a href="/roles/delete/{{$role->id}}" rel="tooltip" class="btn btn-danger btn-round">
+                        @can('delete_permissions')
+                            <a href="/permissions/delete/{{$perm->id}}" rel="tooltip" class="btn btn-danger btn-round">
                               <i class="material-icons">close</i> <span class="mx-1">Delete</span>
                             </a>
                           </td>

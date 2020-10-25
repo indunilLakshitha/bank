@@ -32,8 +32,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', 'DashboardController@index');
 
-    //roles/index
-    Route::group(['middleware' => ['permission:view_roles|delete_roles']], function () {
+    //perm for roles
+    Route::group(['middleware' => ['permission:view_roles']], function () {
+
+        //roles/index
         Route::get('/roles/index', 'RoleController@index');
 
         //roles/add
@@ -52,8 +54,24 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/roles/edit/{id}', 'RoleController@edit');
             Route::post('/roles/update/{id}', 'RoleController@update');
         });
+    });
 
+    //perm for perms
+    Route::group(['middleware' => ['permission:view_permissions']], function () {
+        //perms/index
+        Route::get('/permissions/index', 'PermissionController@index');
 
+        //permissions/add
+        Route::group(['middleware' => ['permission:create_permissions']], function () {
+            Route::get('/permissions/add', 'PermissionController@create');
+            Route::post('/permissions/store', 'PermissionController@store');
+        });
+
+         //permissions/edit
+         Route::group(['middleware' => ['permission:update_permissions']], function () {
+            Route::get('/permissions/edit/{id}', 'PermissionController@edit');
+            Route::post('/permissions/update/{id}', 'PermissionController@update');
+        });
     });
 });
 Route::get('form/view', 'CustomerController@formView');

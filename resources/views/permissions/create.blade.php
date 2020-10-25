@@ -8,7 +8,7 @@
                 {{-- <div class="card-icon">
             <i class="material-icons"></i>
           </div> --}}
-                <h4 class="card-title">Create Role
+                <h4 class="card-title">Create Permission
 
                 </h4>
 
@@ -17,28 +17,28 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
-                            <form action="/roles/store" method="POST">
+                            <form action="/permissions/store" method="POST">
                                 @csrf
                                 <div class="from-group">
-                                    <label for="">Role Name</label>
-                                    <input type="text" name="role_name" class="form-control">
+                                    <label for="">Permission Name</label>
+                                    <input type="text" name="permission_name" class="form-control">
                                 </div>
                                 <table class="table">
                                     <tbody>
-                                        @foreach ($permissions as $p)
+                                        {{-- @foreach ($roles as $r)
                                 <tr>
-                                    <th> {{$p->name}} </th>
+                                    <th> {{$r->name}} </th>
                                         <td class="td-actions text-right">
-                                            @can('create_roles')
-                                            <input type="checkbox" value=" {{$p->name}} " name="permissions[]" id="">
+                                            @can('create_permissions')
+                                            <input type="checkbox" value=" {{$r->name}} " name="roles[]" id="">
                                             @endcan
                                         </td>
                                 </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                                     <tr >
-                                        <button class="btn btn-danger" type="submit">Create Role</button>
+                                        <button class="btn btn-danger" type="submit">Create Permission</button>
                                     </tr>
                             </form>
                         </div>
