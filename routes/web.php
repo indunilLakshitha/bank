@@ -72,6 +72,11 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/permissions/edit/{id}', 'PermissionController@edit');
             Route::post('/permissions/update/{id}', 'PermissionController@update');
         });
+
+        //permissions/delete
+        Route::group(['middleware' => ['permission:delete_permissions']], function () {
+            Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
+        });
     });
 });
 Route::get('form/view', 'CustomerController@formView');

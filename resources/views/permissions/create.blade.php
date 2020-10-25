@@ -25,16 +25,16 @@
                                 </div>
                                 <table class="table">
                                     <tbody>
-                                        {{-- @foreach ($roles as $r)
+                                        @foreach ($roles as $r)
                                 <tr>
                                     <th> {{$r->name}} </th>
                                         <td class="td-actions text-right">
-                                            @can('create_permissions')
+                                            @can('create_roles')
                                             <input type="checkbox" value=" {{$r->name}} " name="roles[]" id="">
                                             @endcan
                                         </td>
                                 </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                                     <tr >

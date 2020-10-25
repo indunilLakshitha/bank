@@ -76,10 +76,10 @@ class PermissionController extends Controller
      */
     public function edit( $id)
     {
-        // $perm = Permission::where('id',$id)->with('roles')->first();
-        $perm = Role::
-        return $perm;
-        return view('permissions.edit', compact('perm'));
+        $perm = Permission::find($id);
+        $roles = Role::all();
+        $roles_with_this_perm = Permission::where('id',$id)->first()->roles->pluck('name');
+        return view('permissions.edit', compact('perm', 'roles_with_this_perm', 'roles'));
     }
 
     /**
@@ -89,9 +89,20 @@ class PermissionController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, $id)
     {
-        //
+        try{
+            $permission = Permission::find($id)->syncRoles($request->roles);
+
+            // foreach($request->roles as $role_name){
+            //     $role = Role::findByName($role_name);
+            //     $role->givePermissionTo($request->permission_name);
+            // }
+            return redirect('/permissions/index')->with('success', 'Permission updated successfully');
+
+        } catch(Exception $e){
+            return redirect()->back()->with('error', 'A Permission with this name already exists');
+        }
     }
 
     /**
@@ -100,8 +111,10 @@ class PermissionController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy( $id)
     {
-        //
+        Permission::find($id)->delete();
+
+        return redirect()->back()->with('success', 'Permission removed successfully');
     }
 }

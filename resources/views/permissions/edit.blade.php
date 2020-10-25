@@ -22,18 +22,19 @@
                                 </div>
                                 <table class="table">
                                     <tbody>
-                                        @foreach ($perm->roles as $r)
+                                        @foreach ($roles as $r)
+                                        {{-- $prem->roles worked too..... no need of roles_with_this_perm with it--}}
                                 <tr>
                                     <th> {{$r->name}} </th>
                                         <td class="td-actions text-right">
-                                            @can('update_roles')
-                                            {{-- <input type="checkbox" value=" {{$p->name}} " name="roles[]" id="" --}}
+                                            @can('update_permissions')
+                                            <input type="checkbox" value=" {{$r->name}} " name="roles[]" id=""
 
-                                            {{-- @foreach($this_role_permissions as $trp)
-                                                @if($p->name == $trp->name)
+                                            @foreach($roles_with_this_perm as $rwtp)
+                                                @if($r->name == $rwtp)
                                                     checked
                                                 @endif
-                                            @endforeach --}}
+                                            @endforeach
                                             >
                                             @endcan
                                         </td>
@@ -42,7 +43,7 @@
                                     </tbody>
                                 </table>
                                     <tr >
-                                        <button class="btn btn-danger" type="submit">Update Role</button>
+                                        <button class="btn btn-danger" type="submit">Update Permission</button>
                                     </tr>
                             </form>
                         </div>
