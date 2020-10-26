@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -92,5 +94,31 @@ class UserController extends Controller
         }
 
         return response()->json(compact('user'));
+    }
+
+    public function index(){
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+
+    public function create(){
+
+        $roles = Role::with('permissions')->get();
+        // return $roles;
+        $permissions = Permission::all();
+        return view('users.create', compact('permissions', 'roles'));
+    }
+
+    public function store(Request $request){
+
+        // return $request;
+        $user = User::create($request->all());
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $user->syncRoles($request->roles);
+        $user->syncPermissions($request->permissions);
+
+        return redirect('/users/index')->with('success', 'User created successfully');
     }
 }

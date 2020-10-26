@@ -78,6 +78,22 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
         });
     });
+
+    #view all users
+    Route::get('/users/index', 'UserController@index');
+
+    //users/add
+    Route::group(['middleware' => ['permission:create_users']], function () {
+        Route::get('/users/add', 'UserController@create');
+        Route::post('/users/store', 'UserController@store');
+    });
+
+    //permissions/edit
+    Route::group(['middleware' => ['permission:update_permissions']], function () {
+        Route::get('/permissions/edit/{id}', 'PermissionController@edit');
+        Route::post('/permissions/update/{id}', 'PermissionController@update');
+    });
+    
 });
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');

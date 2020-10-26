@@ -93,6 +93,8 @@ class PermissionController extends Controller
     {
         try{
             $permission = Permission::find($id)->syncRoles($request->roles);
+            $permission->name = $request->permission_name;
+            $permission->save();
 
             // foreach($request->roles as $role_name){
             //     $role = Role::findByName($role_name);

@@ -64,9 +64,9 @@
           <div class="collapse" id="pagesExamples">
             <ul class="nav">
               <li class="nav-item ">
-                <a class="nav-link" href=>
+                <a class="nav-link" href="/users/index">
                   <span class="sidebar-mini"> <i class="material-icons">supervised_user_circle</i> </span>
-                  <span class="sidebar-normal"> List </span>
+                  <span class="sidebar-normal"> All Users </span>
                 </a>
               </li>
               <li class="nav-item ">

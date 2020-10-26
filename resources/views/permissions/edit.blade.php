@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="from-group">
                                     <label for="">Permission Name</label>
-                                    <input type="text" name="role_name" class="form-control" value="{{$perm->name}}">
+                                    <input type="text" name="permission_name" class="form-control" value="{{$perm->name}}">
                                 </div>
                                 <table class="table">
                                     <tbody>
