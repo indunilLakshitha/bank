@@ -205,8 +205,13 @@
                                                             <i class="material-icons">face</i>
                                                         </span>
                                                     </div>
-                                                    <input type="text" name="name" value="{{ old('name') }}" required class="form-control"
-                                                        placeholder="First Name...">
+                                                    <input type="text" name="name" value="{{ old('name') }}" required
+                                                        class="form-control" placeholder="First Name...">
+                                                    @error('name')
+                                                    <div class="alert alert-danger">
+                                                        {{$message}}
+                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="form-group has-default">
@@ -216,14 +221,15 @@
                                                             <i class="material-icons">mail</i>
                                                         </span>
                                                     </div>
-                                                    <input type="text" name="email" value="{{ old('email') }}" required class="form-control"
-                                                        placeholder="Email...">
-                                                        @error('email')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                        @enderror
+                                                    <input type="text" name="email" value="{{ old('email') }}" required
+                                                        class="form-control" placeholder="Email...">
+
                                                 </div>
+                                                @error('email')
+                                                <div class="alert alert-danger">
+                                                    {{$message}}
+                                                </div>
+                                                @endif
                                             </div>
                                             <div class="form-group has-default">
                                                 <div class="input-group">
@@ -232,8 +238,13 @@
                                                             <i class="material-icons">lock_outline</i>
                                                         </span>
                                                     </div>
-                                                    <input type="password" id="password"  name="password" required
+                                                    <input type="password" id="password" name="password" required
                                                         placeholder="Password..." class="form-control">
+                                                    @error('password')
+                                                    <div class="alert alert-danger">
+                                                        {{$message}}
+                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="form-group has-default">

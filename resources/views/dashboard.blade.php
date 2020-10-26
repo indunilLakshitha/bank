@@ -67,7 +67,10 @@
                                     <tr>
                                         <td>
                                             <div class="flag">
-                                                <img src="{{asset('mat_ui/img/flags/RO.png')}}" </div> </td> <td>Romania
+                                                <img src="{{asset('mat_ui/img/flags/RO.png')}}"
+                                            </div>
+                                        </td>
+                                        <td>Romania
                                         </td>
                                         <td class="text-right">
                                             600
