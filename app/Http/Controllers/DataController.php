@@ -19,3 +19,4 @@ class DataController extends Controller
         return response()->json(compact('data'),200);
     }
 }
+
