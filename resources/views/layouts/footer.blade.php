@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <nav class="float-left">
         <ul>
-          <li>
+          {{-- <li>
             <a href="https://www.creative-tim.com/">
               Creative Tim
             </a>
@@ -21,7 +21,7 @@
             <a href="https://www.creative-tim.com/license">
               Licenses
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <div class="copyright float-right">
@@ -67,7 +67,7 @@
 <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 <!-- Library for adding dinamically elements -->
-<script src="../assets/js/plugins/arrive.min.js"></script>
+<script src="{{asset('mat_ui/js/plugins/arrive.min.js')}}"></script>
 <!--  Google Maps Plugin    -->
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Chartist JS -->
