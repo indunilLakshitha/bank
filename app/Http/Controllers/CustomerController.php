@@ -14,7 +14,7 @@ class CustomerController extends Controller
         $this->customerRepository = $customerRepository;
     }
 
-    
+
     public function getAllCustomer(Request $request)
     {
         $input_data = $request->input();

@@ -9,11 +9,7 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+       //--------------------------------RETURN TO ROLES INDEX VIEW---------------------
     public function index()
     {
         // return 123;
@@ -21,23 +17,14 @@ class RoleController extends Controller
         return view('roles.index', compact('roles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+       //--------------------------------RETURN TO ROLES CREATE VIEW---------------------
     public function create()
     {
         $permissions = Permission::all();
         return view('roles.create', compact('permissions'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+       //--------------------------------ROLES CREATE ---------------------
     public function store(Request $request)
     {
         // return $request->permissions;
@@ -55,23 +42,13 @@ class RoleController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+       //--------------------------------RETURN TO ROLES EDIT VIEW---------------------
     public function edit($id)
     {
         $role = Role::find($id);
@@ -82,13 +59,7 @@ class RoleController extends Controller
         return view('roles.edit', compact('all_permissions', 'this_role_permissions', 'role'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+       //--------------------------------RETURN TO ROLES UPDATE VIEW---------------------
     public function update(Request $request, $id)
     {
         try{
@@ -104,12 +75,7 @@ class RoleController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+       //--------------------------------RETURN TO ROLES DELETE VIEW---------------------
     public function destroy($id)
     {
 

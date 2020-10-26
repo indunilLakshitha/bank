@@ -18,7 +18,7 @@ use Spatie\Permission\Models\Permission;
 Route::get('/', function () {
     // factory(\App\User::class, 3)->create();
     // return auth()->user()->roles;
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 // Route::get('/assignrole', function () {
