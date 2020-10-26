@@ -9,11 +9,7 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //--------------------------------RETURN TO PERMISSION INDEX VIEW---------------------
     public function index()
     {
         $permissions = Permission::with('roles')->get();
@@ -22,23 +18,14 @@ class PermissionController extends Controller
         return view('permissions.index', compact('permissions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //--------------------------------RETURN TO PERMISSION CREATE VIEW---------------------
     public function create()
     {
         $roles = Role::all();
         return view('permissions.create', compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //--------------------------------RETURN TO PERMISSION CREATE VIEW---------------------
     public function store(Request $request)
     {
         // return $request;
@@ -57,23 +44,13 @@ class PermissionController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Permission $permission)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
+    //--------------------------------RETURN TO PERMISSION EDIT VIEW---------------------
     public function edit( $id)
     {
         $perm = Permission::find($id);
@@ -82,13 +59,7 @@ class PermissionController extends Controller
         return view('permissions.edit', compact('perm', 'roles_with_this_perm', 'roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
+    //--------------------------------RETURN TO PERMISSION UPDATE VIEW---------------------
     public function update(Request $request, $id)
     {
         try{
@@ -105,12 +76,7 @@ class PermissionController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
+    //--------------------------------RETURN TO PERMISSION DELETE VIEW---------------------
     public function destroy( $id)
     {
         Permission::find($id)->delete();
