@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -120,5 +122,33 @@ class UserController extends Controller
         $user->syncPermissions($request->permissions);
 
         return redirect('/users/index')->with('success', 'User created successfully');
+    }
+
+    public function destroy($id){
+        User::find($id)->delete();
+
+        return Redirect::back()->with('success', 'User removed successfully');
+    }
+
+    public function edit($id){
+
+        $all_roles = Role::all();
+        $all_permissions = Permission::all();
+        $user = User::find($id);
+
+        // return $user->getRoleNames();
+
+        return view('users.edit', compact('user', 'all_roles', 'all_permissions'));
+    }
+
+    public function update(Request $request, $id){
+        // return $id;
+
+        $user = User::find($id);
+        $user->syncRoles($request->roles);
+        $user->syncPermissions($request->permissions);
+
+        return redirect('/users/index')->with('success', 'User updated successfully');
+
     }
 }

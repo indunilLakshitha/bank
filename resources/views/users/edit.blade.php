@@ -13,64 +13,29 @@
                 </h4>
 
             </div>
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <form action="/users/store" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="from-group col-6">
-                                        <label for="">Userame</label>
-                                        <input type="text" name="name" class="form-control" required>
-                                    </div>
-                                    <div class="from-group col-6">
-                                        <label for="">Email</label>
-                                        <input type="email" name="email" class="form-control" required>
-                                    </div>
-
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="from-group col-6">
-                                        <label for="">Mobile Number</label>
-                                        <input type="text" name="mobile_number" class="form-control">
-                                    </div>
-                                    <div class="from-group col-6">
-                                        <label for="">Password</label>
-                                        <input type="text" name="password" class="form-control" required>
-                                    </div>
-                                </div>
-                                <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<form action="/users/update/{{$user->id}}" method="POST">
+    @csrf
         <div class="card">
             <div class="card-header">
-                <h5>User Roles</h5>
+                <h5>User Role</h5>
             </div>
 
             <div class="card-body">
                 <table class="table">
-                    {{-- <tr> --}}
-                    {{-- @foreach ($roles as $r)
-                                         {{$r->permissions}}
-                    @endforeach --}}
-                    @foreach ($roles as $r)
+
+                    {{-- {{$user->getRoleNames()->first()}} --}}
                     <tr>
-                    {{-- {{$r->permissions}} --}}
-                        <th>{{$r->name}}</th>
+                        @foreach ($all_roles as $r)
                         <th> <input class="role_checkboxes" type="radio" value="{{$r->name}}" name="roles[]"
-                                id="checkbox_{{$r->name}}" onclick="get_role_perms(this, {{$r->permissions}})"></th>
-                        <th>
-                            @foreach ($r->permissions as $perm)
-                            <span class="badge badge-pill badge-rose"> {{$perm->name}} </span>
-                            @endforeach
+                                id="checkbox_{{$r->name}}" onclick="get_role_perms(this, {{$r->permissions}})"
+                                @if($user->getRoleNames()->first() == $r->name)
+                                    checked
+                                @endif
+                                >
+                            {{$r->name}}
                         </th>
+                        @endforeach
                     </tr>
-                    @endforeach
                     {{-- </tr> --}}
                 </table>
             </div>
@@ -82,21 +47,20 @@
             </div>
             <div class="card-body">
                 <table class="table">
-                    {{-- <tr> --}}
-                    @foreach ($permissions as $p)
-                    <tr>
-                        <th>{{$p->name}}</th>
-                        <th> <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes" name="permissions[]"
-                                id="{{$p->name}}"></th>
-                    </tr>
+                    @foreach ($all_permissions as $p)
+                        <tr>
+                    <th> <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes " name="permissions[]"
+                            id="{{$p->name}}">
+                            {{$p->name}}
+                    </th>
+                </tr>
                     @endforeach
-                    {{-- </tr> --}}
                 </table>
             </div>
         </div>
 
         <tr>
-            <button class="btn btn-danger" type="submit">Create User</button>
+            <button class="btn btn-danger" type="submit">Update User</button>
         </tr>
     </div>
 </form>

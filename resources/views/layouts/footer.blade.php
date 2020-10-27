@@ -21,7 +21,7 @@
             <a href="https://www.creative-tim.com/license">
               Licenses
             </a>
-          </li> --}}
+          </li> 
         </ul>
       </nav> --}}
       <div class="copyright float-right">

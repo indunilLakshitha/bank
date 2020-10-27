@@ -27,6 +27,7 @@
                         <th>Username </th>
                         <th>Email</th>
                         <th>Mobile Number</th>
+                        <th>User Role</th>
                         <th class="text-right">Actions</th>
                     </thead>
                   <tbody>
@@ -36,6 +37,11 @@
                         <th> {{$u->name}} </th>
                         <th> {{$u->email}} </th>
                         <th> {{$u->mobile_number}} </th>
+                        <th >
+                            @foreach ($u->roles as $r)
+                                <span class="badge badge-pill badge-info">{{$r->name}}</span>
+                            @endforeach
+                        </th>
                         <td class="td-actions text-right">
                         @can('update_users')
                             <a href="/users/edit/{{$u->id}}" rel="tooltip" class="btn btn-success btn-round">

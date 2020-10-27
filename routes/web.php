@@ -88,12 +88,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/users/store', 'UserController@store');
     });
 
-    //permissions/edit
-    Route::group(['middleware' => ['permission:update_permissions']], function () {
-        Route::get('/permissions/edit/{id}', 'PermissionController@edit');
-        Route::post('/permissions/update/{id}', 'PermissionController@update');
+    //users/edit
+    Route::group(['middleware' => ['permission:update_users']], function () {
+        Route::get('/users/edit/{id}', 'UserController@edit');
+        Route::post('/users/update/{id}', 'UserController@update');
     });
-    
+
+    //users/delete
+    Route::group(['middleware' => ['permission:delete_users']], function () {
+        Route::get('/users/delete/{id}', 'UserController@destroy');
+    });
+
 });
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');
