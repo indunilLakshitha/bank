@@ -5,7 +5,7 @@
     <div class="card ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
-                <h4 class="card-title">Members</h4>
+                <h4 class="card-title">Member Types</h4>
             </div>
         </div>
         <div class="card-body ">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label">Name</label>
+                    <label class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
                         <div class="form-group">
                             <input type="text" class="form-control">
@@ -37,46 +37,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Relegion</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Gender</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Civil Status</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Expiry</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Status</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">
@@ -87,29 +48,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Type</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="card-footer ">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button type="" class="btn btn-fill btn-rose">SEARCH</button>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="/members/add" type="" class="btn btn-fill btn-rose">ADD</a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="/members/type" type="" class="btn btn-fill btn-rose">TYPE</a>
-                        </div>
-                    </div>
-                </div>
+
+
             </form>
         </div>
     </div>
@@ -123,11 +63,19 @@
             <i class="material-icons"></i>
           </div> --}}
                 <h4 class="card-title">
-                    @can('create_permissions')
+                    @can('add_member_type')
                     <a href="/permissions/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
-                        <i class="material-icons">add</i> <span class="mx-1">Add Member</span>
+                        <i class="material-icons">add</i> <span class="mx-1">Add</span>
                     </a>
                     @endcan
+                    @can('modify_member_type')
+                    <a href="/permissions/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
+                        <i class="material-icons">update</i> <span class="mx-1">Modify</span>
+                    </a>
+                    @endcan
+                    <a href="/members" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
+                        <i class="material-icons">close</i> <span class="mx-1">Exit</span>
+                    </a>
                 </h4>
 
             </div>
@@ -138,11 +86,9 @@
                             <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
-                                    <th>ID </th>
+                                    <th>No </th>
                                     <th>CODE</th>
-                                    <th>NAME</th>
-                                    <th>STATUS</th>
-                                    <th>ACTION</th>
+                                    <th>DESCRIPTION</th>
                                 </thead>
                                 <tbody>
                                     {{-- @foreach ($permissions as $perm)

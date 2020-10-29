@@ -112,6 +112,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/members/add', function(){
             return view('members.add');
         });
+        //members typr index
+        Route::get('/members/type', function(){
+            return view('members.type');
+        });
 
     // });
 
