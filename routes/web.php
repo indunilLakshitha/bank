@@ -101,23 +101,26 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         //perm for member
-    // Route::group(['middleware' => ['permission:view_roles']], function () {
+        Route::group(['middleware' => ['permission:view_members']], function () {
 
         //members index
         Route::get('/members', function(){
             return view('members.index');
         });
-
+    });
+        Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
         Route::get('/members/add', function(){
             return view('members.add');
         });
+    });
+        Route::group(['middleware' => ['permission:view_member_type']], function () {
         //members typr index
         Route::get('/members/type', function(){
             return view('members.type');
         });
 
-    // });
+    });
 
 });
 Route::get('form/view', 'CustomerController@formView');

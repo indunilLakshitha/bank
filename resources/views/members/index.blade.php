@@ -102,11 +102,11 @@
                         <div class="col-md-6">
                             <button type="" class="btn btn-fill btn-rose">SEARCH</button>
                         </div>
+
                         <div class="col-md-6">
-                            <a href="/members/add" type="" class="btn btn-fill btn-rose">ADD</a>
-                        </div>
-                        <div class="col-md-6">
+                            @can('view_member_type')
                             <a href="/members/type" type="" class="btn btn-fill btn-rose">TYPE</a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -123,8 +123,8 @@
             <i class="material-icons"></i>
           </div> --}}
                 <h4 class="card-title">
-                    @can('create_permissions')
-                    <a href="/permissions/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
+                    @can('member_add')
+                    <a href="/members/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
                         <i class="material-icons">add</i> <span class="mx-1">Add Member</span>
                     </a>
                     @endcan
