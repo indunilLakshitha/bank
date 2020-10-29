@@ -78,6 +78,16 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
         });
     });
+
+    //perm for member
+    // Route::group(['middleware' => ['permission:view_roles']], function () {
+
+        //roles/index
+        Route::get('/members', function(){
+            return view('');
+        });
+
+    // });
 });
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');
