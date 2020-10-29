@@ -20,8 +20,8 @@
         <div class="card-body ">
           <div class="row">
             <div class="col-md-12">
-              <div class="table-responsive">
-                <table class="table">
+                <div class="material-datatables">
+                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                     <thead>
                         <th>Role Name</th>
                         <th class="text-right">Actions</th>

@@ -79,15 +79,42 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
-    //perm for member
+    #view all users
+    Route::get('/users/index', 'UserController@index');
+
+    //users/add
+    Route::group(['middleware' => ['permission:create_users']], function () {
+        Route::get('/users/add', 'UserController@create');
+        Route::post('/users/store', 'UserController@store');
+    });
+
+    //users/edit
+    Route::group(['middleware' => ['permission:update_users']], function () {
+        Route::get('/users/edit/{id}', 'UserController@edit');
+        Route::post('/users/update/{id}', 'UserController@update');
+    });
+
+    //users/delete
+    Route::group(['middleware' => ['permission:delete_users']], function () {
+        Route::get('/users/delete/{id}', 'UserController@destroy');
+    });
+
+
+        //perm for member
     // Route::group(['middleware' => ['permission:view_roles']], function () {
 
-        //roles/index
+        //members index
         Route::get('/members', function(){
-            return view('');
+            return view('members.index');
+        });
+
+        //members add
+        Route::get('/members/add', function(){
+            return view('members.add');
         });
 
     // });
+
 });
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');
