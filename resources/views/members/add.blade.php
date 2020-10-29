@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 
 <div class="content">
@@ -188,4 +189,14 @@
       </div>
     </div>
   </div>
+
+  <script>
+    $(document).ready(function() {
+      // Initialise the wizard
+      demo.initMaterialWizard();
+      setTimeout(function() {
+        $('.card.card-wizard').addClass('active');
+      }, 600);
+    });
+  </script>
 @endsection
