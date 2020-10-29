@@ -87,7 +87,7 @@
         </li>
         <li class="nav-item  ">
           <a class="nav-link" href="/members">
-            <i class="material-icons">dashboard</i>
+            <i class="material-icons">account_box</i>
             <p> Members </p>
           </a>
         </li>
