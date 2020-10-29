@@ -21,7 +21,7 @@
             <a href="https://www.creative-tim.com/license">
               Licenses
             </a>
-          </li> 
+          </li>
         </ul>
       </nav> --}}
       <div class="copyright float-right">
@@ -34,6 +34,8 @@
   </footer>
 </div>
 </div>
+
+
 
 <!--   Core JS Files   -->
 <script src={{asset("mat_ui/js/core/jquery.min.js")}}></script>
@@ -76,6 +78,7 @@
 <script src={{asset("mat_ui/js/plugins/bootstrap-notify.js")}}></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src={{asset("mat_ui/js/material-dashboard.js?v=2.1.2")}} type="text/javascript"></script>
+<script src={{asset("mat_ui/demo/demo.js")}}></script>
 
 <script>
 $(document).ready(function() {

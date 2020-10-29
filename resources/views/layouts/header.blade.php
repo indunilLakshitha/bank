@@ -16,6 +16,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href={{asset("mat_ui/css/material-dashboard.css?v=2.1.2")}} rel="stylesheet" />
+  <link href={{asset("mat_ui/demo/demo.css")}} rel="stylesheet" />
+
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
 
 </head>
 
