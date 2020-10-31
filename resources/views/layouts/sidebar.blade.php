@@ -92,7 +92,7 @@
             </li>
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#savings">
-                    <i class="material-icons">account_circle</i>
+                    <i class="material-icons">request_quote</i>
                     <p> Savings
                         <b class="caret"></b>
                     </p>
@@ -101,7 +101,7 @@
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/savings/verification">
-                                <span class="sidebar-mini"> <i class="material-icons">supervised_user_circle</i> </span>
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal"> Account Verification</span>
                             </a>
                         </li>
