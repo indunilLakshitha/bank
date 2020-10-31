@@ -5,7 +5,7 @@
 
 <div class="content">
     <div class="container-fluid">
-        <div class="col-md-8 col-12 mr-auto ml-auto">
+        <div class="col-md-12 col-12 mr-auto ml-auto">
             <!--      Wizard container        -->
             <div class="wizard-container">
                 <div class="card card-wizard" data-color="rose" id="wizardProfile">
@@ -463,7 +463,7 @@
                                         <label class="col-sm-2 col-form-label">Other Memberships</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <textarea name="" id="" cols="70" rows="8"></textarea>
+                                                <textarea class="form-control" name="" id="" cols="70" rows="8"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -479,7 +479,7 @@
                                         <label class="col-sm-2 col-form-label">Previous Designation</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <textarea name="" id="" cols="70" rows="8"></textarea>
+                                                <textarea class="form-control" name="" id="" cols="70" rows="8"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -642,7 +642,7 @@
                                         <label class="col-sm-2 col-form-label">Special Information</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <textarea name="" id="" cols="70" rows="10"></textarea>
+                                                <textarea class="form-control" name="" id="" cols="70" rows="10"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -693,7 +693,7 @@
                                         <label class="col-sm-2 col-form-label">Land MArks to Residence</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <textarea name="" id="" cols="70" rows="10"></textarea>
+                                                <textarea class="form-control" name="" id="" cols="70" rows="10"></textarea>
                                             </div>
                                         </div>
                                     </div>
