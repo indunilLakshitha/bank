@@ -61,27 +61,19 @@
                                 <div class="tab-pane active" id="private_1">
                                     {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
                                     <div class="row justify-content-center">
-                                        <div class="col-4">
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="">Code</label>
-                                                    <input class="form-control" type="text">
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <div class="row">
-                                                    <button class="btn btn-primary btn-sm">Select</button>
-                                                    <button class="btn btn-primary btn-sm">Cat</button>
-                                                    <button class="btn btn-primary btn-sm">==></button>
+                                                    <label for="">Code</label>
+                                                    {{-- <input class="form-control" type="text"> --}}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="row">
                                                 <div class="form-group">
-                                                    <label for="">Active ? </label>
+                                                    <label for="">Active </label>
                                                     <input type="text" class="form-control">
                                                 </div>
                                             </div>
@@ -133,11 +125,11 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label class="col-sm-2 col-form-label">Main Type</label>
+                                        <label class="col-sm-2 col-form-label">Branch</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">1</option>
+                                                    <option value="">Select Branch</option>
                                                     <option value="">2</option>
                                                 </select>
                                             </div>
@@ -207,42 +199,40 @@
                                     </div>
 
                                     <div class="row">
-                                        <label class="col-sm-2 col-form-label">Category</label>
+                                        <label class="col-sm-2 col-form-label">Account Category</label>
                                         <div class="col-sm-8">
                                             <div class="form-group">
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">1</option>
+                                                    <option value="">Select</option>
                                                     <option value="">2</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">New</button>
-                                        </div>
+
                                     </div>
 
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
-                                            </div>
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">Select</option>
+                                                    <option value="">2</option>
+                                                </select>                                            </div>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
+
                                     </div>
 
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
-                                            </div>
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">Select</option>
+                                                    <option value="">2</option>
+                                                </select>                                            </div>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">==></button>
-                                        </div>
+
                                     </div>
 
                                     <div class="row">
@@ -252,9 +242,7 @@
                                                 <input type="text" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
+
                                     </div>
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">ID No</label>
@@ -265,13 +253,13 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label class="col-sm-2 col-form-label">Address</label>
+                                        <label class="col-sm-2 col-form-label">Address Type</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
-                                                <input type="text" class="form-control">
-                                                <input type="text" class="form-control">
-                                                <input type="text" class="form-control">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">Select</option>
+                                                    <option value="">2</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -281,8 +269,10 @@
                                         <div class="col-sm-5">
                                             <div class="form-group">
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control">
-                                                    <input type="text" class="form-control">
+                                                    <select name="" id="" class="form-control">
+                                                        <option value="">Select Type</option>
+                                                        <option value="">2</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -290,7 +280,7 @@
                                             <div class="form-group">
                                                 <div class="col-sm-5">
                                                     <input type="text" class="form-control">
-                                                    <input type="text" class="form-control">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -301,16 +291,12 @@
                                             <div class="form-group">
                                                 <div class="col-sm-5">
                                                     <input type="text" class="form-control">
-                                                    <input type="text" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
                                             <div class="form-group">
-                                                <div class="col-sm-5">
-                                                    <input type="text" class="form-control">
-                                                    <input type="text" class="form-control">
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -326,7 +312,6 @@
                                         <div class="col-sm-5">
                                             <div class="form-group">
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -369,7 +354,7 @@
                                         <label class="col-sm-2 col-form-label">Date Became Member</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <input type="date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -377,7 +362,7 @@
                                         <label class="col-sm-2 col-form-label">Joined Date</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <input type="date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -385,7 +370,7 @@
                                         <label class="col-sm-2 col-form-label">Expired Date</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <input type="date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -393,7 +378,7 @@
                                         <label class="col-sm-2 col-form-label">Exit Date</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <input type="date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -401,7 +386,7 @@
                                         <label class="col-sm-2 col-form-label">Death Date</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <input type="date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -409,7 +394,7 @@
                                         <label class="col-sm-2 col-form-label">Neglection Starting Date</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <input type="date" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -489,22 +474,12 @@
                                 <div class="tab-pane" id="bene_gurad">
                                     <h5 class="text-center">Beneficiaries</h5>
                                     <div class="row">
-                                        <label class="col-sm-1 col-form-label">1st</label>
+                                        <label class="col-sm-1 col-form-label">Add</label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">2st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
+                                            <select name="" id="" class="form-control">
+                                                <option value="">Select</option>
+                                                <option value="">2</option>
+                                            </select>                                        </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-sm btn-primary">Select</button>
                                         </div>
@@ -512,61 +487,16 @@
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">3st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">4st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">5st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">6st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
+
                                     <br>
                                     <h5 class="text-center">Guardians</h5>
                                     <div class="row">
                                         <label class="col-sm-1 col-form-label">1st</label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
+                                            <select name="" id="" class="form-control">
+                                                <option value="">Select</option>
+                                                <option value="">2</option>
+                                            </select>                                           </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-sm btn-primary">Select</button>
                                         </div>
@@ -574,66 +504,7 @@
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">2st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">3st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">4st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">5st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-1 col-form-label">6st</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-sm btn-primary">Select</button>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
+
                                 </div>
                                 {{-- bene_gurad ends --}}
 
@@ -717,11 +588,11 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <h5 class="text-center">Other</h5>
+                                    {{-- <h5 class="text-center">Other</h5> --}}
                                     <div class="row">
                                         <div class="col">
                                             <div class="row">
-                                                <h5 class="text-center">If a Society</h5>
+                                                {{-- <h5 class="text-center">If a Society</h5> --}}
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-2 col-form-label">Secret No.</label>
@@ -743,19 +614,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="row">
-                                                <h5 class="text-center">If a Field Officer</h5>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-2 col-form-label">Opening Cash in Hand</label>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 {{-- resi_and_other ends --}}
