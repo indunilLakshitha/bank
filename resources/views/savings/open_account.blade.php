@@ -390,7 +390,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                         <div class="row">
                             <label class=" col-form-label"> Number of Holders</label>
                             <div class="col-sm-10">
