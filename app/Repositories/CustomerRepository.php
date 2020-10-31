@@ -36,7 +36,7 @@ class CustomerRepository implements CustomerRepositoryInterface
         return $delete_customer_data;
     }
 
-  
+
     public function manageCustomer($customer_data)
     {
         if (isset($customer_data['customer_id'])) {

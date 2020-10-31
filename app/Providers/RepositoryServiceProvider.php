@@ -14,8 +14,10 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\Repositories\RepositoryInterfaces\CustomerRepositoryInterface','App\Repositories\CustomerRepository'
+            'App\Repositories\RepositoryInterfaces\CustomerRepositoryInterface','App\Repositories\CustomerRepository',
+            'App\Repositories\RepositoryInterfaces\CustomerBasicDataReporitaryInterface','App\Repositories\CustomerBasicDataReporitary',
         );
+
     }
 
     /**

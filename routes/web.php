@@ -107,12 +107,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/members', function(){
             return view('members.index');
         });
+        Route::get('/test', function(){
+            return view('members.addX');
+        });
     });
         Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
-        Route::get('/members/add', function(){
-            return view('members.add');
-        });
+        Route::get('/members/add','CustomerBasicDataController@add');
     });
         Route::group(['middleware' => ['permission:view_member_type']], function () {
         //members typr index
@@ -132,5 +133,11 @@ Route::get('/savings/approve', function(){
 
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');
+
+Route::post('cutomerbasicdata/insert', 'CustomerBasicDataController@insert');
+Route::post('/member/add/private', 'CustomerBasicDataController@insert');
+Route::post('/member/add/status', 'CustomerBasicDataController@insertStatus');
+Route::post('/member/add/occupation', 'CustomerBasicDataController@insertOccupation');
+Route::post('/member/add/othersociety', 'CustomerBasicDataController@insertOthersociety');
 
 Auth::routes();
