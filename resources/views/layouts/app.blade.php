@@ -5,10 +5,10 @@
         @include('layouts.navbar')
       <div class="content">
           @include('layouts.messages')
-        <div class="content">
           <div class="container-fluid">
             @yield('content')
           </div>
         </div>
       </div>
+  </div>
 @include('layouts.footer')

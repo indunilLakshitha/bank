@@ -19,7 +19,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                             <label for="">Code</label>
-                                            <input class="form-control" name="customer_id" type="text" required>
+                                            <input class="form-control" name="customer_id" type="text" readonly value={{$cus_id}}>
                                             </div>
                                         </div>
                                     </div>
@@ -271,21 +271,6 @@
                                 </div>
                             </div>
 
-<<<<<<< HEAD
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Telephone No</label>
-                                <div class="col-sm-5">
-                                    <div class="form-group">
-                                        <div class="col-sm-5">
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Select Type</option>
-                                                @isset($contacttypes)
-                                                @foreach ($contacttypes as $contacttype)
-                                                <option value="{{$contacttype->id}}">
-                                                            {{$contacttype->contact_type}}
-                                                @endforeach
-                                                @endisset                                            </select>
-=======
                                 <div class="tab-pane" id="other_societies">
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Other Memberships</label>
@@ -309,7 +294,6 @@
                                             <div class="form-group">
                                                 <textarea class="form-control" name="" id="" cols="70" rows="8"></textarea>
                                             </div>
->>>>>>> a5d95474415555e898ff2d8624d8f1dfd540335e
                                         </div>
                                     </div>
                                 </div>
@@ -321,14 +305,6 @@
                                         </div>
                                     </div>
                                 </div>
-<<<<<<< HEAD
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Fax</label>
-                                <div class="col-sm-5">
-                                    <div class="form-group">
-                                        <div class="col-sm-5">
-=======
                                 {{-- bene_gurad ends --}}
 
                                 <div class="tab-pane" id="special">
@@ -364,7 +340,6 @@
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Value</label>
                                         <div class="col-sm-3">
->>>>>>> a5d95474415555e898ff2d8624d8f1dfd540335e
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
@@ -372,11 +347,9 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
 
-<<<<<<< HEAD
-=======
                                 <div class="tab-pane" id="resi_and_other">
                                     <div class="row">
-                                        <label class="col-sm-2 col-form-label">Land MArks to Residence</label>
+                                        <label class="col-sm-2 col-form-label">Land Marks to Residence</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
                                                 <textarea class="form-control" name="" id="" cols="70" rows="10"></textarea>
@@ -393,7 +366,6 @@
                                                 </select>
                                             </div>
                                         </div>
->>>>>>> a5d95474415555e898ff2d8624d8f1dfd540335e
                                     </div>
                                 </div>
                             </div>
