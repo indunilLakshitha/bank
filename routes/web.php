@@ -123,6 +123,13 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 });
+Route::get('/savings/verification', function(){
+    return view('savings.verification');
+});
+Route::get('/savings/approve', function(){
+    return view('savings.approval');
+});
+
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');
 
