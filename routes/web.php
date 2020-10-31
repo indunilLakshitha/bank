@@ -129,6 +129,9 @@ Route::get('/savings/verification', function(){
 Route::get('/savings/approve', function(){
     return view('savings.approval');
 });
+Route::get('/savings/open', function(){
+    return view('savings.open_account');
+});
 
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');

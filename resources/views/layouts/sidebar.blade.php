@@ -77,9 +77,9 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="/permissions/index">
-                                <span class="sidebar-mini"> <i class="material-icons">verified_user</i> </span>
-                                <span class="sidebar-normal"> Permissions </span>
+                            <a class="nav-link" href="/savings/open">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal"> Savings Account Opening</span>
                             </a>
                         </li>
                     </ul>
