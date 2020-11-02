@@ -3,25 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Repositories\RepositoryInterfaces\CustomerBasicDataReporitaryInterface;
 use App\Models\Branch;
 use App\Models\AccountCategory;
 use App\Models\SmallGroup;
 use App\Models\SubAccountOffice;
 use App\Models\IedentificationType;
 use App\Models\ContactType;
+use App\Models\CustomerBasicData;
+
 class CustomerBasicDataController extends Controller
 {
-    // private $customerBasicDataRepository;
 
-    // public function __construct(CustomerBasicDataReporitaryInterface $customerBasicDataRepository)
-    // {
-    //     $this->customerBasicDataRepository = $customerBasicDataRepository;
-    // }
-    public function insert(Request $request){
-        return $request;
+    public function insertPrivate(){
+        // return $request;
+        // CustomerBasicData::create($request->all());
+
+        // return $request;
         // $input_data = $request->input();
         // $this->$customerBasicDataRepository->insert($input_data);
+        $this->customerBasicDataRepository->insert();
 
     }
 

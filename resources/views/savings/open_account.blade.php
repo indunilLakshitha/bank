@@ -66,8 +66,7 @@
                             </div>
                         </div>
 
-                        <br>
-                        <h5>Client Details</h5>
+                        
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Full Name</label>
                             <div class="col-sm-8">
@@ -283,7 +282,14 @@
                         </div>
 
 
-                        <h5>Product Details</h5>
+                    </div></div>
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="card-header card-header-rose card-header-text">
+                                <div class="card-text">
+                                    <h4 class="card-title">Product Details</h4>
+                                </div>
+                            </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Sub Product Type</label>
                             <div class="col-sm-8">
@@ -515,14 +521,15 @@
                             </div>
                         </div>
 
-                    </div></div>
-                    <div class="card ">
-                        <div class="card-body ">
-                            <div class="card-header card-header-rose card-header-text">
-                                <div class="card-text">
-                                    <h4 class="card-title">Operating Instrictions</h4>
-                                </div>
+                    </div>
+                </div>
+                <div class="card ">
+                    <div class="card-body ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Operating Instrictions</h4>
                             </div>
+                        </div>
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Minimum Authorization Required for a

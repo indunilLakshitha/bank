@@ -137,7 +137,7 @@ Route::get('/savings/open', function(){
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');
 
-Route::post('cutomerbasicdata/insert', 'CustomerBasicDataController@insert');
+Route::post('cutomerbasicdata/insert', 'CustomerBasicDataController@insertPrivate');
 Route::post('/member/add/private', 'CustomerBasicDataController@insert');
 Route::post('/member/add/status', 'CustomerBasicDataController@insertStatus');
 Route::post('/member/add/occupation', 'CustomerBasicDataController@insertOccupation');
