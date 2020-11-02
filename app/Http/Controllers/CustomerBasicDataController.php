@@ -12,9 +12,12 @@ use App\Models\IedentificationType;
 use App\Models\ContactType;
 use App\Models\CustomerBasicData;
 use App\Models\CustomerStatusDates;
+use App\Models\GuardianData;
 use App\Models\OccupationData;
 use App\Models\OtherSocietyData;
+use App\Models\SpecialData;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CustomerBasicDataController extends Controller
 {
@@ -26,8 +29,9 @@ class CustomerBasicDataController extends Controller
     public function insert(Request $request){
 
 
+        $cus_id = $request->customer_id;
         CustomerBasicData::create($request->all());
-        return view('members.2_statusanddated')->with('success', 'Details submitted');
+        return view('members.2_statusanddated',compact('cus_id'))->with('success', 'Details submitted');
 
 
     }
@@ -36,30 +40,41 @@ class CustomerBasicDataController extends Controller
         // return $request;
 
         CustomerStatusDates::create($request->all());
+        $cus_id = $request->customer_id;
 
-        return view('members.3_occupation')->with('success', 'Details submitted');
+        return view('members.3_occupation',compact('cus_id'))->with('success', 'Details submitted');
 
 
     }
     public function insertOccupation(Request $request){
         // return $request;
         OccupationData::create($request->all());
-        return view('members.4_othersocieties')->with('success', 'Details submitted');
+        $cus_id = $request->customer_id;
+        return view('members.4_othersocieties',compact('cus_id'))->with('success', 'Details submitted');
 
 
     }
     public function insertOthersociety(Request $request){
         OtherSocietyData::create($request->all());
+        $cus_id = $request->customer_id;
+        $all_customers = CustomerBasicData::all();
 
-        return view('members.5_benificiaries')->with('success', 'Details submitted');
+        return view('members.5_benificiaries',compact('cus_id', 'all_customers'))->with('success', 'Details submitted');
 
     }
 
     public function insertBeneficiaries(Request $request){
         // BeneficiaryData::create($request->all());
 
-        return view('members.6_special_and_assets')->with('success', 'Details submitted');
+        $cus_id = $request->customer_id;
+        return view('members.6_special_and_assets',compact('cus_id'))->with('success', 'Details submitted');
 
+    }
+
+    public function insertSpecialAndAssets(Request $request){
+        SpecialData::create($request->all());
+
+        return redirect('/');
     }
 
     public function add(){
@@ -83,4 +98,32 @@ class CustomerBasicDataController extends Controller
                     'cus_id'
         ]));
     }
+
+    public function beneficiariesAjax(Request $request){
+
+        $row = BeneficiaryData::create($request->all());
+        $row->beneficiary_id = $request->id;
+        $row->save();
+
+        $data = DB::table('beneficiary_data')
+        ->where('beneficiary_data.customer_id', $request->customer_id)
+        ->leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'beneficiary_data.beneficiary_id')
+        ->get();
+
+        return response()->json(['bene',$data]);
+    }
+
+    public function guardianAjax(Request $request){
+        // return $request;
+        $row = GuardianData::create($request->all());
+        $row->guardian_id = $request->id;
+        $row->save();
+
+        $data = DB::table('guardian_data')
+        ->where('guardian_data.customer_id', $request->customer_id)
+        ->leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'guardian_data.guardian_id')
+        ->get();
+        return response()->json(['guard',$data]);
+    }
+
 }

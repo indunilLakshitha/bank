@@ -1,4 +1,4 @@
-@if($errors->any() )
+{{-- @if($errors->any() )
 @foreach ($errors->all() as $error)
 <div class="alert alert-danger">
     {{$error}}
@@ -22,4 +22,25 @@
     </button>
     <span> {{session('error')}} </span>
 </div>
+@endif --}}
+
+@if($errors->any() )
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+            {{$error}}
+        </div>
+    @endforeach
 @endif
+
+@if(isset($success))
+    <script>
+        Swal.fire("{{$success}}")
+    </script>
+@endif
+
+@if (isset($error))
+    <script>
+        Swal.fire("{{$error}}")
+    </script>
+@endif
+

@@ -12,5 +12,7 @@ class OtherSocietyData extends Model
         'is_enable',
         'created_by',
         'updated_by',
+        'other_memberships',
+        'current_designation'
     ];
 }
