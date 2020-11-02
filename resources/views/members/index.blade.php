@@ -102,7 +102,7 @@
                         <div class="col-md-6">
                             <button type="" class="btn btn-fill btn-rose">SEARCH</button>
                         </div>
-                        
+
                         <div class="col-md-6">
                             <a href="/members/type" type="" class="btn btn-fill btn-rose">TYPE</a>
                         </div>

@@ -19,7 +19,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                             <label for="">Code</label>
-                                            <input class="form-control" name="customer_id" type="text" required>
+                                            <input class="form-control" name="customer_id" type="text" readonly value={{$cus_id}}>
                                             </div>
                                         </div>
                                     </div>

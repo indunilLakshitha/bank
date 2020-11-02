@@ -142,5 +142,6 @@ Route::post('/member/add/private', 'CustomerBasicDataController@insert');
 Route::post('/member/add/status', 'CustomerBasicDataController@insertStatus');
 Route::post('/member/add/occupation', 'CustomerBasicDataController@insertOccupation');
 Route::post('/member/add/othersociety', 'CustomerBasicDataController@insertOthersociety');
+Route::post('/member/add/benificiaris', 'CustomerBasicDataController@insertBeneficiaries');
 
 Auth::routes();
