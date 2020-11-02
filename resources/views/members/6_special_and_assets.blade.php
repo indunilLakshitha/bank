@@ -8,8 +8,9 @@
         <div class="col-md-10 col-12 mr-auto ml-auto">
             <div class="card">
                 <div class="card-body">
-                    <form id="private_1" action="/member/add/benificiaris" method="POST">
+                    <form id="private_1" action="/member/add/special-and-assets" method="POST">
                         @csrf
+                        <input type="hidden" name="customer_id" value={{$cus_id}}>
                         <div class="tab-pane" id="special">
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Special Information</label>

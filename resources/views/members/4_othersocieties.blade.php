@@ -10,13 +10,14 @@
                 <div class="card-body">
                     <form id="private_1" action="/member/add/othersociety" method="POST">
                         @csrf
+                        <input type="hidden" name="customer_id" value={{$cus_id}}>
                         <div class="tab-pane active" id="status">
                             <div class="tab-pane" id="other_societies">
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Other Memberships</label>
                                     <div class="col-sm-10">
                                         <div class="form-group">
-                                            <textarea name="" id="" cols="70" rows="8"></textarea>
+                                            <textarea name="other_memberships" id="" cols="70" rows="8"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -24,7 +25,7 @@
                                     <label class="col-sm-2 col-form-label">Curr. Designation</label>
                                     <div class="col-sm-10">
                                         <div class="form-group">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="current_designation">
                                         </div>
                                     </div>
                                 </div>

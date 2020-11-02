@@ -10,6 +10,7 @@
                 <div class="card-body">
                     <form id="private_1" action="/member/add/status" method="POST">
                         @csrf
+                        <input type="hidden" name="customer_id" value={{$cus_id}}>
                         <div class="tab-pane active" id="status">
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Birth Date / Nic Date</label>

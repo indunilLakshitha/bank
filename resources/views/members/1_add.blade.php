@@ -241,7 +241,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <select name="identification_type_id" id="" class="form-control">
+                                                <select name="identification_type_id" id="id_type" class="form-control">
                                                     <option value="">Select</option>
                                                     @isset($idtypes)
                                                     @foreach ($idtypes as $idtype)
@@ -257,6 +257,11 @@
                                                 <input type="text" name="identification_number" class="form-control">
                                             </div>
                                         </div>
+                                        {{-- <div class="col">
+                                            <div class="form-group">
+                                                <a onclick="submit_id(id_type.value, )"  class="btn btn-sm btn-primary">Add</a>
+                                            </div>
+                                        </div> --}}
                                     </div>
 
 

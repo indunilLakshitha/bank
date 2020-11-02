@@ -25,12 +25,17 @@
   crossorigin="anonymous"></script>
 
   <script>
-      v$.ajaxSetup({
+      $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 })
   </script>
+
+  {{-- swal --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {{-- <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet"> --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 </head>
 
 <body class="">

@@ -11,6 +11,7 @@
 |
 */
 
+
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -143,5 +144,11 @@ Route::post('/member/add/status', 'CustomerBasicDataController@insertStatus');
 Route::post('/member/add/occupation', 'CustomerBasicDataController@insertOccupation');
 Route::post('/member/add/othersociety', 'CustomerBasicDataController@insertOthersociety');
 Route::post('/member/add/benificiaris', 'CustomerBasicDataController@insertBeneficiaries');
+Route::post('/member/add/special-and-assets', 'CustomerBasicDataController@insertSpecialAndAssets');
+
+//bebeficiary and guardians
+Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
+Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
+
 
 Auth::routes();
