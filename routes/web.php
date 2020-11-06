@@ -150,5 +150,9 @@ Route::post('/member/add/special-and-assets', 'CustomerBasicDataController@inser
 Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
 Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
 
+// KTA
+Route::get('/users/find', function(){
+    return view('users.find');
+});
 
 Auth::routes();
