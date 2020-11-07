@@ -9,7 +9,8 @@
             </div>
         </div>
         <div class="card-body ">
-            <form method="get" action="/" class="form-horizontal">
+            <form method="get" class="form-horizontal" id="form">
+                @csrf
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Code</label>
                     <div class="col-sm-10">
@@ -32,18 +33,23 @@
                     <div class="col-lg-5 col-md-6 col-sm-3">
                         <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
                             data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
+                            <option > type 1</option>
+                            <option > type 2</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Relegion</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
+                        @php
+                           $religions = Illuminate\Support\Facades\DB::table('relegion_data')->get();
+                        @endphp
+                        <select class="selectpicker" data-style="select-with-transition"  title="Select"
+                            name="religion_id"
+                        >
+                            @foreach ($religions as $r)
+                                <option value="{{$r->id}}">{{$r->religion_data}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -80,10 +86,14 @@
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Status</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
+                        @php
+                           $marital_status = Illuminate\Support\Facades\DB::table('married_statuses')->get();
+                        @endphp
+                        <select name="marital_status_id" class="selectpicker" data-style="select-with-transition" title="Select"
+                            >
+                            @foreach ($marital_status as $ms)
+                                <option value="{{$ms->id}}">{{$ms->married_status}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -97,10 +107,11 @@
                         </select>
                     </div>
                 </div>
+            </form>
                 <div class="card-footer ">
                     <div class="row">
                         <div class="col-md-6">
-                            <button type="" class="btn btn-fill btn-rose">SEARCH</button>
+                            <button onclick="search()" class="btn btn-fill btn-rose">SEARCH</button>
                         </div>
 
                         <div class="col-md-6">
@@ -108,7 +119,6 @@
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 </div>
@@ -179,6 +189,20 @@
     </div>
 </div>
 
-
+<script>
+    function search(){
+    $.ajax({
+        type: 'POST',
+        url: '{{('/members/search')}}',
+        data: new FormData(form) ,
+        processData: false,
+        contentType: false,
+        success: function(data){
+            console.log(data);
+            // return show_data(data)
+        }
+    })
+    }
+</script>
 
 @endsection
