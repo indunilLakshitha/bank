@@ -35,6 +35,13 @@
                             </a>
                         </li>
                         <li class="nav-item ">
+                            <a class="nav-link" href="/users/find">
+                                <span class="sidebar-mini"> <i class="material-icons">supervised_user_circle</i> </span>
+                                <span class="sidebar-normal"> Find Users </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
                             <a class="nav-link" href="/roles/index">
                                 <span class="sidebar-mini"> <i class="material-icons">supervisor_account</i> </span>
                                 <span class="sidebar-normal"> Roles </span>
@@ -82,6 +89,7 @@
                                 <span class="sidebar-normal"> Savings Account Opening</span>
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </li>
