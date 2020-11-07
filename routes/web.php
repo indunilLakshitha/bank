@@ -138,7 +138,7 @@ Route::get('/savings/open', function(){
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');
 
-Route::post('cutomerbasicdata/insert', 'CustomerBasicDataController@insert');
+Route::post('cutomerbasicdata/insert', 'CustomerBasicDataController@insertPrivate');
 Route::post('/member/add/private', 'CustomerBasicDataController@insert');
 Route::post('/member/add/status', 'CustomerBasicDataController@insertStatus');
 Route::post('/member/add/occupation', 'CustomerBasicDataController@insertOccupation');
@@ -152,7 +152,22 @@ Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
 
 // KTA
 Route::get('/users/find', function(){
-    return view('users.find');
+    return view('users.1_client_details');
 });
+Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
+Route::get('/savings/generalinformation', 'SavingsController@generalInformation');
+Route::get('/savings/productdetails', 'SavingsController@productDetails');
+Route::get('/savings/jointacoount', 'SavingsController@jointAcoount');
+Route::get('/savings/operatinginstrictions', 'SavingsController@operatingInstrictions');
+Route::get('/savings/guardianinformation', 'SavingsController@guardianInformation');
+Route::get('/savings/documents', 'SavingsController@documents');
+Route::get('/savings/taxdetails', 'SavingsController@taxDetails');
+Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction');
+Route::get('/savings/correspondance', 'SavingsController@correspondance');
+Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
+
+
+
+
 
 Auth::routes();

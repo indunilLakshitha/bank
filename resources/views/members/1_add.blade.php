@@ -276,29 +276,19 @@
                                 </div>
                             </div>
 
-                                <div class="tab-pane" id="other_societies">
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Other Memberships</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="" id="" cols="70" rows="8"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Curr. Designation</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Previous Designation</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="" id="" cols="70" rows="8"></textarea>
-                                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Telephone No</label>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <div class="col-sm-5">
+                                            <select name="" id="" class="form-control">
+                                                <option value="">Select Type</option>
+                                                @isset($contacttypes)
+                                                @foreach ($contacttypes as $contacttype)
+                                                <option value="{{$contacttype->id}}">
+                                                            {{$contacttype->contact_type}}
+                                                @endforeach
+                                                @endisset                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -310,41 +300,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- bene_gurad ends --}}
-
-                                <div class="tab-pane" id="special">
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Special Information</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="" id="" cols="70" rows="10"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Real Member</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">1</option>
-                                                    <option value="">2</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <h5 class="text-center">Assets</h5>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Item</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Value</label>
-                                        <div class="col-sm-3">
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Fax</label>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <div class="col-sm-5">
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
@@ -352,25 +313,6 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
 
-                                <div class="tab-pane" id="resi_and_other">
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Land Marks to Residence</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="" id="" cols="70" rows="10"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Sector</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">1</option>
-                                                    <option value="">2</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

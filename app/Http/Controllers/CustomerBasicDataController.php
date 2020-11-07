@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Repositories\RepositoryInterfaces\CustomerBasicDataReporitaryInterface;
 use App\Models\Branch;
 use App\Models\AccountCategory;
 use App\Models\BeneficiaryData;
@@ -22,7 +21,6 @@ use Illuminate\Support\Facades\DB;
 
 class CustomerBasicDataController extends Controller
 {
-    // private $customerBasicDataRepository;
 
     // public function __construct(CustomerBasicDataReporitaryInterface $customerBasicDataRepository)
     // {
