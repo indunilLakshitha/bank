@@ -15,6 +15,13 @@ class CreateAuthorizedOfficersTable extends Migration
     {
         Schema::create('authorized_officers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('authorized_level');
+            $table->double('withdrawal_limit');
+
+            $table->tinyInteger('is_enable')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

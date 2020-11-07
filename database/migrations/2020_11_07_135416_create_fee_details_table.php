@@ -15,6 +15,16 @@ class CreateFeeDetailsTable extends Migration
     {
         Schema::create('fee_details', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('fee_data');
+            $table->string('default_amount');
+            $table->unsignedBigInteger('default_fee_type_id');
+
+
+            $table->tinyInteger('is_mandatory')->nullable();
+            $table->tinyInteger('is_tax_applicable')->nullable();
+            $table->tinyInteger('is_enable')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

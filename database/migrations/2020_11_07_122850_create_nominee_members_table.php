@@ -15,6 +15,14 @@ class CreateNomineeMembersTable extends Migration
     {
         Schema::create('nominee_members', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('account_id');
+            $table->unsignedBigInteger('product_data_id');
+            $table->unsignedBigInteger('customer_id');
+            $table->string('nominee_percentage');
+
+            $table->tinyInteger('is_enable')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

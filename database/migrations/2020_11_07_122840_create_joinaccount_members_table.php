@@ -15,6 +15,14 @@ class CreateJoinaccountMembersTable extends Migration
     {
         Schema::create('joinaccount_members', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('join_account_id');
+            $table->unsignedBigInteger('customer_id');
+            $table->string('ownership_percentage');
+
+            $table->tinyInteger('is_main_holder')->nullable();
+            $table->tinyInteger('is_enable')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

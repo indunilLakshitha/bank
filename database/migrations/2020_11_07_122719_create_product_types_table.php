@@ -15,6 +15,14 @@ class CreateProductTypesTable extends Migration
     {
         Schema::create('product_types', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('product_type');
+            $table->string('req_authorized_level');
+            $table->double('max_interest');
+            $table->double('default_interest');
+            $table->double('minimum_balance');
+            $table->tinyInteger('is_enable')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

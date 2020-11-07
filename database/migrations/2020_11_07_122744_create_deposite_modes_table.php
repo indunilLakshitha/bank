@@ -15,6 +15,11 @@ class CreateDepositeModesTable extends Migration
     {
         Schema::create('deposite_modes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('deposite_mode');
+
+            $table->tinyInteger('is_enable')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

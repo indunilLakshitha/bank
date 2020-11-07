@@ -15,6 +15,10 @@ class CreateLeadSourcesTable extends Migration
     {
         Schema::create('lead_sources', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('lead_source_category')->nullable();
+            $table->tinyInteger('is_enable')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

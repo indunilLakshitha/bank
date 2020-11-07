@@ -15,6 +15,20 @@ class CreateProductFeeDataTable extends Migration
     {
         Schema::create('product_fee_data', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('account_id');
+            $table->unsignedBigInteger('product_data_id');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('fee_type_id');
+            $table->unsignedBigInteger('fee_details_id');
+
+            $table->tinyInteger('is_enable')->nullable();
+            $table->tinyInteger('is_tax_applicable')->nullable();
+            $table->tinyInteger('is_mandatory')->nullable();
+            $table->tinyInteger('is_enable')->nullable();
+            $table->long('amount');
+            $table->long('fee_payble_text');
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

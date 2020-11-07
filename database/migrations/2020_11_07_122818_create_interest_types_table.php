@@ -15,6 +15,11 @@ class CreateInterestTypesTable extends Migration
     {
         Schema::create('interest_types', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('interest_type');
+
+            $table->tinyInteger('is_enable')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

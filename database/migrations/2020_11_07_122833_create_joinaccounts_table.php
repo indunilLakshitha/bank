@@ -13,8 +13,18 @@ class CreateJoinaccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('joinaccounts', function (Blueprint $table) {
+        Schema::create('join_accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('product_data_id');
+            $table->unsignedBigInteger('account_id');
+            $table->string('holders_count');
+            $table->string('withdrawal_limit_holder');
+            $table->string('minimum_auth_count');
+
+            $table->tinyInteger('is_enable')->nullable();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }
