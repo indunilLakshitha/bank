@@ -58,6 +58,7 @@
                                     <div class="col-5">
                                         <div class="form-group">
                                             <input type="text" name="identification_number" class="form-control">
+                                            <button class="btn btn-primary">SEARCH</button>
                                         </div>
                                     </div>
                                 </div>
@@ -210,6 +211,32 @@
                             </div>
                         </div>
                         <div class="row">
+                            <label class="col-sm-2 col-form-label">Lead source Identification</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Account Description</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <label class="col-sm-2 col-form-label">Account Category</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -284,7 +311,7 @@
                 </div>
 
 
-                   
+
                     <div class="card ">
                         <div class="card-body ">
                             <div class="card-header card-header-rose card-header-text">
@@ -314,6 +341,26 @@
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Interest Type</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <select name="identification_type_id" id="" class="form-control">
+                                                <option value="">Select </option>
+                                                @isset($idtypes)
+                                                @foreach ($idtypes as $idtype)
+                                                <option value="{{$idtype->id}}">
+                                                    {{$idtype->identification_type}}
+                                                    @endforeach
+                                                    @endisset
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Interest Rate</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
@@ -468,6 +515,15 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label"> Other Holder Name</label>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control">
+                                    <button class="btn btn-primary">SEARCH</button>
                                 </div>
                             </div>
                         </div>
