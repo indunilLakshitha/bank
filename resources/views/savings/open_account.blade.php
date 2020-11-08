@@ -44,7 +44,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <select name="identification_type_id" id="" class="form-control">
+                                            <select name="identification_type_id" id="identification_type_id" class="form-control">
                                                 <option value="">Select</option>
                                                 @isset($idtypes)
                                                 @foreach ($idtypes as $idtype)
@@ -57,8 +57,10 @@
                                     </div>
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number" class="form-control">
-                                            <button class="btn btn-primary">SEARCH</button>
+                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <a
+                                            onclick="get_cus_details(identification_type_id.value, identification_number.value)"
+                                            class="btn btn-primary text-white" >SEARCH</a>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +76,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number" class="form-control">
+                                            <input type="text" name="full_name" class="form-control" id="full_name">
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -108,7 +110,7 @@
                             <label class="col-sm-2 col-form-label">DOB</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="date" class="form-control">
+                                    <input type="date" id="dob" name="dob" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -159,7 +161,7 @@
                             <label class="col-sm-2 col-form-label">Branch Code</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="branch_code" name="branch_code">
                                 </div>
                             </div>
                         </div>
@@ -633,7 +635,7 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <div class="form-group">
-                                                    <select name="gaurdian_identification_type_id" id="" class="form-control">
+                                                    <select name="gaurdian_identification_type_id" id="gaurdian_identification_type_id" class="form-control">
                                                         <option value="">Select</option>
                                                         @isset($idtypes)
                                                         @foreach ($idtypes as $idtype)
@@ -646,7 +648,7 @@
                                             </div>
                                             <div class="col-5">
                                                 <div class="form-group">
-                                                    <input type="text" name="gaurdian_identification_type_id"
+                                                    <input type="text" id="gaurdian_identification_id" name="gaurdian_identification_id"
                                                         placeholder="Iditification No" class="form-control">
                                                 </div>
                                             </div>
@@ -661,7 +663,9 @@
                                                 <input type="text" name="client_name" class="form-control">
                                             </div>
                                         </div>
-                                         <a href="" class="btn btn-primary">Search</a>
+                                         <a
+                                         onclick="get_guardian(gaurdian_identification_type_id.value, gaurdian_identification_id.value)"
+                                          class="btn btn-primary text-white">Search</a>
                                 </div>
                                 <div class="card" style="border: solid">
                                     <div class="row">
@@ -685,10 +689,10 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label class="col-sm-2 col-form-label">First NAme</label>
+                                        <label class="col-sm-2 col-form-label">First Name</label>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" >
+                                                <input type="text" class="form-control" id="g_first_name">
                                             </div>
                                         </div>
                                     </div>
@@ -712,7 +716,7 @@
                                         <label class="col-sm-2 col-form-label">Last Name</label>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" id="g_last_name">
                                             </div>
                                         </div>
                                     </div>
@@ -737,7 +741,7 @@
                                         <label class="col-sm-2 col-form-label"> Idintification No</label>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" id="g_id_no">
                                             </div>
                                         </div>
                                     </div>
@@ -770,13 +774,13 @@
 
                                                 <div class="col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Address Line1">
+                                                        <input type="text" class="form-control" placeholder="Address Line 1" id="g_a_l_2">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Address Line1">
+                                                        <input type="text" class="form-control" placeholder="Address Line 2" id="g_a_l_1">
                                                     </div>
                                                 </div>
 
@@ -787,7 +791,7 @@
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Postal COde">
+                                                        <input type="text" class="form-control" placeholder="Postal Code">
                                                     </div>
                                                 </div>
 
@@ -1765,5 +1769,53 @@
     </div>
 </div>
 
+<script>
+
+    function get_cus_details(identification_type_id, identification_number){
+        $.ajax({
+            type: 'GET',
+            url: '{{('/get_cus_details')}}',
+            data: {identification_type_id, identification_number},
+            success: function(data){
+                console.log(data)
+                return set_cus_details(data)
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+        })
+    }
+
+    function set_cus_details(data){
+        full_name.value = data.full_name
+        branch_code.value = data.branch_code
+        dob.value = data.date_of_birth
+    }
+
+    function get_guardian(identification_type_id, identification_number){
+        $.ajax({
+            type: 'GET',
+            url: '{{('/get_guardian')}}',
+            data: {identification_type_id, identification_number},
+            success: function(data){
+                console.log(data)
+                return set_guardian(data)
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+        })
+    }
+
+    function set_guardian(data){
+        g_first_name.value = data.name_in_use
+        g_last_name.value = data.surname
+        g_id_no.value = data.identification_number
+        g_a_l_1.value = data.address_line_1
+        g_a_l_2.value = data.address_line_2
+    }
+</script>
 
 @endsection

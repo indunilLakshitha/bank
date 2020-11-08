@@ -36,6 +36,6 @@ class CreateJoinaccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('joinaccounts');
+        Schema::dropIfExists('join_accounts');
     }
 }

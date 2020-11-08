@@ -13,6 +13,7 @@
 
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -20,6 +21,18 @@ Route::get('/', function () {
     // factory(\App\User::class, 3)->create();
     // return auth()->user()->roles;
     return redirect()->route('login');
+
+    // SELECT * FROM customer_basic_data
+    //     WHERE  name_in_use IS NULL OR name_in_use LIKE '%$name_in_use%'
+    //     or customer_id IS NULL OR customer_id LIKE '%$customer_id%'
+
+    $name_in_use = null;
+    $customer_id = 'U1CBD3';
+    return $results = DB::select("
+        SELECT * FROM customer_basic_data
+        WHERE  name_in_use LIKE '%$name_in_use%'
+        or customer_id LIKE '%$customer_id%'
+    ");
 });
 
 // Route::get('/assignrole', function () {
@@ -111,6 +124,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/test', function(){
             return view('members.addX');
         });
+        Route::post('/members/search', 'MemberController@search');
     });
         Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
@@ -132,8 +146,13 @@ Route::get('/savings/approve', function(){
     return view('savings.approval');
 });
 Route::get('/savings/open', function(){
-    return view('savings.open_account');
+    $idtypes = DB::table('iedentification_types')->get();
+    return view('savings.open_account', compact('idtypes'));
 });
+
+//open savings account form ajax
+Route::get('/get_cus_details', 'OpenSavingsAccountController@get_cus_details');
+Route::get('/get_guardian', 'OpenSavingsAccountController@get_guardian');
 
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');
