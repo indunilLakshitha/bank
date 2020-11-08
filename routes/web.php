@@ -147,12 +147,15 @@ Route::get('/savings/approve', function(){
 });
 Route::get('/savings/open', function(){
     $idtypes = DB::table('iedentification_types')->get();
-    return view('savings.open_account', compact('idtypes'));
+    $CIF = count(DB::table('account_general_information')->get())+1;
+    $acc_no = 'ACC'.$CIF;
+    return view('savings.open_account', compact('idtypes', 'CIF', 'acc_no'));
 });
 
 //open savings account form ajax
 Route::get('/get_cus_details', 'OpenSavingsAccountController@get_cus_details');
 Route::get('/get_guardian', 'OpenSavingsAccountController@get_guardian');
+Route::post('/submit_all', 'OpenSavingsAccountController@submitAll');
 
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');

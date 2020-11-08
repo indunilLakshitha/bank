@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AccountGeneralInformation;
+use App\Models\ProductData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -35,5 +37,23 @@ class OpenSavingsAccountController extends Controller
 
 
         return response()->json($data);
+    }
+
+    public function submitAll(Request $request){
+
+        // return $request;
+        $rec = AccountGeneralInformation::create($request->all());
+
+        if($request->file('cus_sign_img')){
+            $image = $request->file('cus_sign_img');
+            $path = '/images/';
+            $rec->cus_sign_img = time().rand().'.'.$image->extension();
+            $image->move(public_path($path), $rec->cus_sign_img);
+        }
+        $rec->save();
+
+        ProductData::create($request->all());
+
+        return 123;
     }
 }
