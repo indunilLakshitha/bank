@@ -26,10 +26,9 @@ class CreateAccountGeneralInformationTable extends Migration
             $table->tinyInteger('has_passbook');
             $table->tinyInteger('has_internet_banking');
             $table->tinyInteger('has_mobile_banking');
-            $table->tinyInteger('has_internet_banking');
             $table->tinyInteger('has_sms');
             $table->tinyInteger('has_atm');
-            
+
             $table->tinyInteger('is_enable')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
