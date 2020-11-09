@@ -172,9 +172,18 @@ Route::post('/member/add/special-and-assets', 'CustomerBasicDataController@inser
 Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
 Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
 
-// KTA
-Route::get('/users/find', function(){
-    return view('users.1_client_details');
+// KTA Start
+Route::get('/diposits/1_diposit', function(){
+    return view('diposit.1_diposit');
+});
+Route::get('/diposits/2_diposit', function(){
+    return view('diposit.2_diposit');
+});
+Route::get('/diposits/3_diposit', function(){
+    return view('diposit.3_diposit');
+});
+Route::get('/diposits/4_diposit', function(){
+    return view('diposit.4_diposit');
 });
 Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
 Route::get('/savings/generalinformation', 'SavingsController@generalInformation');
@@ -188,6 +197,7 @@ Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction'
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
 
+// KTA End
 
 
 
