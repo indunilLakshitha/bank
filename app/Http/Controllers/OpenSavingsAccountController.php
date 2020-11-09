@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AccountGeneralInformation;
+use App\Models\Joinaccount;
 use App\Models\ProductData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -77,5 +78,39 @@ class OpenSavingsAccountController extends Controller
         OR surname LIKE '%$request->other_holder_name%'
         ");
         return response()->json($data);
+    }
+
+    public function client_details(Request $request){
+        $acc = AccountGeneralInformation::create($request->all());
+
+        if($request->file('cus_sign_img')){
+            $image = $request->file('cus_sign_img');
+            $path = '/images/';
+            $acc->cus_sign_img = time().rand().'.'.$image->extension();
+            $image->move(public_path($path), $acc->cus_sign_img);
+        }
+        $acc->save();
+
+        $account_id = $acc->id;
+
+        return view('savings.3_product_details', compact('account_id') );
+    }
+
+    public function product_details(Request $request){
+        // return $request;
+        $prod_data = ProductData::create($request->all());
+
+        $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
+        $prod_id = $prod_data->id;
+        $account_id = $request->account_id;
+
+        return view('savings.4_joint_acoount', compact('customer_id', 'prod_id', 'account_id'));
+    }
+
+    public function create_join_account(Request $request){
+
+        $j_acc = Joinaccount::create($request->all());
+
+        return response()->json($$j_acc);
     }
 }

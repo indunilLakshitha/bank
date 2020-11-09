@@ -149,8 +149,16 @@ Route::get('/savings/open', function(){
     $idtypes = DB::table('iedentification_types')->get();
     $CIF = count(DB::table('account_general_information')->get())+1;
     $acc_no = 'ACC'.$CIF;
-    return view('savings.open_account', compact('idtypes', 'CIF', 'acc_no'));
+    return view('savings.1_client_details', compact('idtypes', 'CIF', 'acc_no'));
 });
+
+Route::post('/savings/open', 'OpenSavingsAccountController@client_details');
+Route::post('/product_details', 'OpenSavingsAccountController@product_details');
+Route::post('/create_join_account', 'OpenSavingsAccountController@create_join_account');
+
+// Route::get('/open-savings/client_details', function(){
+//     return view('savings.1_client_details');
+// });
 
 //open savings account form ajax
 Route::get('/get_cus_details', 'OpenSavingsAccountController@get_cus_details');

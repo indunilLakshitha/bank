@@ -299,6 +299,153 @@ $(document).ready(function() {
       });
     });
   </script>
+
+{{-- auto cap --}}
+<script>
+
+ function toCap(text, eleId){
+
+    let textArr = text.toLowerCase().split(' ')
+    let capsArr = []
+
+    textArr.forEach(word => {
+        capsArr.push(word[0].toUpperCase() + word.slice(1))
+    })
+
+    return document.querySelector(`#${eleId}`).value = capsArr.join(' ')
+
+  }
+</script>
+
+
+{{-- open savings js --}}
+<script>
+
+    function get_other_holder(identification_type_id, identification_number, other_holder_name){
+        // console.log(other_holder_name);
+        if(other_holder_name === ''){
+            search_by_name_results.classList.add('d-none')
+            $.ajax({
+            type: 'GET',
+            url: '{{('/get_cus_details')}}',
+            data: {identification_type_id, identification_number},
+            success: function(data){
+                console.log(data)
+                return selected_oh.value = data.customer_id
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+            })
+        } else{
+            return get_other_holder_by_name(other_holder_name)
+        }
+    }
+
+    function get_other_holder_by_name(other_holder_name){
+        // console.log(other_holder_name);
+        $.ajax({
+            type: 'GET',
+            url: '{{('/search_by_name')}}',
+            data: {other_holder_name},
+            success: function(data){
+                console.log(data)
+                return set_search_by_name_results(data)
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+        })
+    }
+
+    function set_search_by_name_results(data){
+        search_by_name_results.classList.remove('d-none')
+        search_by_name_results.innerHTML = ''
+        data.forEach(i => {
+            html = `
+            <tr>
+                <th>${i.full_name}</th>
+                <th>${i.customer_id}</th>
+                <th><a class="btn btn-primary text-white"
+                    onclick="selected_oh.value = '${i.customer_id}'"
+                    >Select</a></th>
+            </tr>
+            `
+            search_by_name_results.innerHTML += html
+        })
+    }
+
+    function get_cus_details(identification_type_id, identification_number, full_name){
+        if(full_name === ''){
+            $.ajax({
+            type: 'GET',
+            url: '{{('/get_cus_details')}}',
+            data: {identification_type_id, identification_number},
+            success: function(data){
+                console.log(data)
+                return set_cus_details(data)
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+            })
+        } else {
+            return get_cus_details_by_name(full_name)
+        }
+    }
+
+    function get_cus_details_by_name(full_name){
+        $.ajax({
+            type: 'GET',
+            url: '{{('/get_cus_details_by_name')}}',
+            data: {full_name},
+            success: function(data){
+                console.log(data)
+                return set_cus_details(data)
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+        })
+    }
+
+    function set_cus_details(data){
+        full_name.value = data.full_name
+        branch_code.value = data.branch_code
+        branch_id.value = data.branch_id
+        customer_id.value = data.customer_id
+        dob.value = data.date_of_birth
+        // join_acc_main_holder.value = data.customer_id
+    }
+
+    function get_guardian(identification_type_id, identification_number){
+        $.ajax({
+            type: 'GET',
+            url: '{{('/get_guardian')}}',
+            data: {identification_type_id, identification_number},
+            success: function(data){
+                console.log(data)
+                return set_guardian(data)
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+        })
+    }
+
+    function set_guardian(data){
+        g_first_name.value = data.name_in_use
+        g_last_name.value = data.surname
+        g_id_no.value = data.identification_number
+        g_a_l_1.value = data.address_line_1
+        g_a_l_2.value = data.address_line_2
+    }
+</script>
 </body>
 
 </html>

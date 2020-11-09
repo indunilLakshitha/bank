@@ -664,7 +664,8 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                
+                                {{-- <div class="row">
                                     <label class="col-sm-2 col-form-label"> Client Name</label>
                                         <div class="col-sm-6">
                                             <div class="form-group">
@@ -674,8 +675,8 @@
                                          <a
                                          onclick="get_guardian(gaurdian_identification_type_id.value, gaurdian_identification_id.value)"
                                           class="btn btn-primary text-white">Search</a>
-                                </div>
-                                <div class="card" style="border: solid">
+                                </div> --}}
+                                {{-- <div class="card" style="border: solid">
                                     <div class="row">
                                     <label class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-8">
@@ -854,7 +855,7 @@
                                                         </div>
                                                 </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
 
