@@ -20,6 +20,15 @@ class OpenSavingsAccountController extends Controller
         return response()->json($data);
     }
 
+    public function get_cus_details_by_name(Request $request){
+        $data = DB::table('customer_basic_data')
+        ->where('customer_basic_data.full_name', $request->full_name)
+        ->leftJoin('branches', 'branches.id', 'customer_basic_data.branch_id')
+        ->leftJoin('customer_status_dates', 'customer_status_dates.customer_id', 'customer_basic_data.customer_id')
+        ->first();
+        return response()->json($data);
+    }
+
     public function get_guardian(Request $request){
         $customer_id = DB::table('customer_basic_data')
         ->where('customer_basic_data.identification_type_id', $request->identification_type_id)

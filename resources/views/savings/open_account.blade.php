@@ -33,7 +33,7 @@
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="client_full_name">
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                         <div class="form-group">
                                             <input type="text" name="identification_number"  id="identification_number" class="form-control">
                                             <a
-                                            onclick="get_cus_details(identification_type_id.value, identification_number.value)"
+                                            onclick="get_cus_details(identification_type_id.value, identification_number.value, client_full_name.value)"
                                             class="btn btn-primary text-white" >SEARCH</a>
                                         </div>
                                     </div>
@@ -1821,11 +1821,31 @@
         })
     }
 
-    function get_cus_details(identification_type_id, identification_number){
-        $.ajax({
+    function get_cus_details(identification_type_id, identification_number, full_name){
+        if(full_name === ''){
+            $.ajax({
             type: 'GET',
             url: '{{('/get_cus_details')}}',
             data: {identification_type_id, identification_number},
+            success: function(data){
+                console.log(data)
+                return set_cus_details(data)
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+            })
+        } else {
+            return get_cus_details_by_name(full_name)
+        }
+    }
+
+    function get_cus_details_by_name(full_name){
+        $.ajax({
+            type: 'GET',
+            url: '{{('/get_cus_details_by_name')}}',
+            data: {full_name},
             success: function(data){
                 console.log(data)
                 return set_cus_details(data)
