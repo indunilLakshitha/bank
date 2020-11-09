@@ -156,6 +156,7 @@ Route::get('/savings/open', function(){
 Route::get('/get_cus_details', 'OpenSavingsAccountController@get_cus_details');
 Route::get('/get_guardian', 'OpenSavingsAccountController@get_guardian');
 Route::post('/submit_all', 'OpenSavingsAccountController@submitAll');
+Route::get('/search_by_name', 'OpenSavingsAccountController@search_by_name');
 
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');

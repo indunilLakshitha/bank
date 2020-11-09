@@ -497,51 +497,67 @@
                             <label class="col-sm-2 col-form-label"> Main Holder</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="join_acc_main_holder">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">ID Type</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <select name="oh_identification_type_id"  id="oh_identification_type_id" class="form-control">
+                                                <option value="">Select</option>
+                                                @isset($idtypes)
+                                                @foreach ($idtypes as $idtype)
+                                                <option value="{{$idtype->id}}">
+                                                    {{$idtype->identification_type}}
+                                                    @endforeach
+                                                    @endisset
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <input type="text" id="oh_identification_number"
+                                                placeholder="Identoty No" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label"> Other Holder Name</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control">
-                                    <button class="btn btn-primary">SEARCH</button>
+                                    <input type="text" class="form-control" id="oh_name">
+                                    <a
+                                    onclick="get_other_holder(oh_identification_type_id.value,oh_identification_number.value,  oh_name.value)"
+
+                                     class="btn btn-primary text-white">SEARCH</a>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="row">
+                            <table class="table " id="search_by_name_results">
+
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <label for="">Selected Other Holder : </label>
+                            <label id="selected_oh" ></label>
+                        </div>
+
+
                         <div class="card" style="border: solid">
                             <div class="card-header">Other Holders</div>
                             <div class="card-body">
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label">ID Type</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <div class="form-group">
-                                                    <select name="identification_type_id"   class="form-control">
-                                                        <option value="">Select</option>
-                                                        @isset($idtypes)
-                                                        @foreach ($idtypes as $idtype)
-                                                        <option value="{{$idtype->id}}">
-                                                            {{$idtype->identification_type}}
-                                                            @endforeach
-                                                            @endisset
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-5">
-                                                <div class="form-group">
-                                                    <input type="text" name="identification_number"
-                                                        placeholder="Identoty No" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
 
-
-                                    </div>
-                                </div>
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label"> Ownership Percentage</label>
@@ -1746,7 +1762,64 @@
     </div>
 </div>
 
+<a  class="btn btn-primary text-white" onclick="">Select</a>
+
 <script>
+
+    function get_other_holder(identification_type_id, identification_number, other_holder_name){
+        // console.log(other_holder_name);
+        if(other_holder_name === ''){
+            $.ajax({
+            type: 'GET',
+            url: '{{('/get_cus_details')}}',
+            data: {identification_type_id, identification_number},
+            success: function(data){
+                console.log(data)
+                return selected_oh.textContent = data.customer_id
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+            })
+        } else{
+            return get_other_holder_by_name(other_holder_name)
+        }
+    }
+
+    function get_other_holder_by_name(other_holder_name){
+        // console.log(other_holder_name);
+        $.ajax({
+            type: 'GET',
+            url: '{{('/search_by_name')}}',
+            data: {other_holder_name},
+            success: function(data){
+                console.log(data)
+                return set_search_by_name_results(data)
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+        })
+    }
+
+    function set_search_by_name_results(data){
+
+        search_by_name_results.innerHTML = ''
+        data.forEach(i => {
+            html = `
+            <tr>
+                <th>${i.full_name}</th>
+                <th>${i.customer_id}</th>
+                <th><a class="btn btn-primary text-white"
+                    onclick="selected_oh.textContent = '${i.customer_id}'"
+                    >Select</a></th>
+            </tr>
+            `
+            search_by_name_results.innerHTML += html
+        })
+    }
 
     function get_cus_details(identification_type_id, identification_number){
         $.ajax({
@@ -1770,6 +1843,7 @@
         branch_id.value = data.branch_id
         customer_id.value = data.customer_id
         dob.value = data.date_of_birth
+        join_acc_main_holder.value = data.customer_id
     }
 
     function get_guardian(identification_type_id, identification_number){

@@ -56,4 +56,17 @@ class OpenSavingsAccountController extends Controller
 
         return 123;
     }
+
+    public function search_by_name(Request $request){
+        // $data = DB::table('customer_basic_data')
+        // ->where('full_name', 'LIKE', '%$request->other_holder_name%')
+        // ->get();
+        $data = DB::select("
+        SELECT * FROM customer_basic_data
+        WHERE full_name LIKE '%$request->other_holder_name%'
+        OR name_in_use LIKE '%$request->other_holder_name%'
+        OR surname LIKE '%$request->other_holder_name%'
+        ");
+        return response()->json($data);
+    }
 }
