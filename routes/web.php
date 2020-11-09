@@ -147,12 +147,17 @@ Route::get('/savings/approve', function(){
 });
 Route::get('/savings/open', function(){
     $idtypes = DB::table('iedentification_types')->get();
-    return view('savings.open_account', compact('idtypes'));
+    $CIF = count(DB::table('account_general_information')->get())+1;
+    $acc_no = 'ACC'.$CIF;
+    return view('savings.open_account', compact('idtypes', 'CIF', 'acc_no'));
 });
 
 //open savings account form ajax
 Route::get('/get_cus_details', 'OpenSavingsAccountController@get_cus_details');
+Route::get('/get_cus_details_by_name', 'OpenSavingsAccountController@get_cus_details_by_name');
 Route::get('/get_guardian', 'OpenSavingsAccountController@get_guardian');
+Route::post('/submit_all', 'OpenSavingsAccountController@submitAll');
+Route::get('/search_by_name', 'OpenSavingsAccountController@search_by_name');
 
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');
@@ -169,9 +174,18 @@ Route::post('/member/add/special-and-assets', 'CustomerBasicDataController@inser
 Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
 Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
 
-// KTA
-Route::get('/users/find', function(){
-    return view('users.1_client_details');
+// KTA Start
+Route::get('/diposits/1_diposit', function(){
+    return view('diposit.1_diposit');
+});
+Route::get('/diposits/2_diposit', function(){
+    return view('diposit.2_diposit');
+});
+Route::get('/diposits/3_diposit', function(){
+    return view('diposit.3_diposit');
+});
+Route::get('/diposits/4_diposit', function(){
+    return view('diposit.4_diposit');
 });
 Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
 Route::get('/savings/generalinformation', 'SavingsController@generalInformation');
@@ -185,6 +199,7 @@ Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction'
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
 
+// KTA End
 
 
 

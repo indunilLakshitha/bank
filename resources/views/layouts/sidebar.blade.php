@@ -93,6 +93,43 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#diposits">
+                    <i class="material-icons">request_quote</i>
+                    <p> Diposits
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="diposits">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/diposits/1_diposit">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal">1 Diposit</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/diposits/2_diposit">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal">2 Diposit </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/diposits/3_diposit">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal">3 Diposit</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/diposits/4_diposit">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal">4 Diposit</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
 
         </ul>
     </div>
