@@ -549,8 +549,12 @@
                         </div>
 
                         <div class="row">
-                            <label for="">Selected Other Holder : </label>
-                            <label id="selected_oh" ></label>
+                            <label for="" class="col-sm-2 col-form-label" >Selected Other Holder : </label>
+                            <div class="col-sm-6">
+                                <div class="form-control">
+                            <input type="text" id="selected_oh" name="selected_oh" class="form-control" readonly>
+                            </div>
+                            </div>
                         </div>
 
 
@@ -563,7 +567,7 @@
                                     <label class="col-sm-2 col-form-label"> Ownership Percentage</label>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="ownership_percentage">
                                         </div>
                                     </div>
                                 </div>
@@ -571,8 +575,16 @@
                                     <label class="col-sm-2 col-form-label"> Other Holder Signature</label>
                                     <div class="col-sm-10">
                                         <div class="form-group">
-                                            <input type="file" class="form-control">
+                                            <span class="btn btn-round btn-rose btn-file ">
+                                                <span class="fileinput-new">Choose File</span>
+                                                <input type="file" name="other_holder_sign_img" />
+                                            </span>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a  class="btn btn-primary text-white float-right  btn-sm">Add</a>
                                     </div>
                                 </div>
                             </div>
@@ -584,7 +596,7 @@
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
-                                <h4 class="card-title">Operating Instrictions</h4>
+                                <h4 class="card-title">Operating Instructions</h4>
                             </div>
                         </div>
 
@@ -1769,13 +1781,14 @@
     function get_other_holder(identification_type_id, identification_number, other_holder_name){
         // console.log(other_holder_name);
         if(other_holder_name === ''){
+            search_by_name_results.classList.add('d-none')
             $.ajax({
             type: 'GET',
             url: '{{('/get_cus_details')}}',
             data: {identification_type_id, identification_number},
             success: function(data){
                 console.log(data)
-                return selected_oh.textContent = data.customer_id
+                return selected_oh.value = data.customer_id
             },
             error: function(data){
                 console.log(data)
@@ -1813,7 +1826,7 @@
                 <th>${i.full_name}</th>
                 <th>${i.customer_id}</th>
                 <th><a class="btn btn-primary text-white"
-                    onclick="selected_oh.textContent = '${i.customer_id}'"
+                    onclick="selected_oh.value = '${i.customer_id}'"
                     >Select</a></th>
             </tr>
             `

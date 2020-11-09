@@ -51,17 +51,17 @@ class OpenSavingsAccountController extends Controller
     public function submitAll(Request $request){
 
         // return $request;
-        $rec = AccountGeneralInformation::create($request->all());
+        $acc = AccountGeneralInformation::create($request->all());
 
         if($request->file('cus_sign_img')){
             $image = $request->file('cus_sign_img');
             $path = '/images/';
-            $rec->cus_sign_img = time().rand().'.'.$image->extension();
-            $image->move(public_path($path), $rec->cus_sign_img);
+            $acc->cus_sign_img = time().rand().'.'.$image->extension();
+            $image->move(public_path($path), $acc->cus_sign_img);
         }
-        $rec->save();
+        $acc->save();
 
-        ProductData::create($request->all());
+        $prod_data = ProductData::create($request->all());
 
         return 123;
     }
