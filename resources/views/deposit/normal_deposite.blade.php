@@ -7,7 +7,7 @@
                             <div class="card-body ">
                                     <div class="card-header card-header-rose card-header-text">
                                         <div class="card-text">
-                                            <h4 class="card-title">Nominee Instruction</h4>
+                                            <h4 class="card-title">Normal Deposites</h4>
                                         </div>
                                     </div>
 

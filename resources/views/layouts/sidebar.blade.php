@@ -93,43 +93,53 @@
                     </ul>
                 </div>
             </li>
+            @can('withdrawal_deposites')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#diposits">
                     <i class="material-icons">request_quote</i>
-                    <p> Diposits
+                    <p> Withdrawals & Deposites
                         <b class="caret"></b>
                     </p>
                 </a>
                 <div class="collapse" id="diposits">
                     <ul class="nav">
+                        @can('normal_withdrawal')
                         <li class="nav-item ">
-                            <a class="nav-link" href="/diposits/1_diposit">
+                            <a class="nav-link" href="/deposits/n-with">
                                 <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
-                                <span class="sidebar-normal">1 Diposit</span>
+                                <span class="sidebar-normal">Normal Withdrawal</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('normal_deposite')
                         <li class="nav-item ">
-                            <a class="nav-link" href="/diposits/2_diposit">
+                            <a class="nav-link" href="/deposits/n-dep">
                                 <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
-                                <span class="sidebar-normal">2 Diposit </span>
+                                <span class="sidebar-normal">Normal Deposit </span>
                             </a>
                         </li>
+                        @endcan
+                        @can('fd_withdrawal')
                         <li class="nav-item ">
-                            <a class="nav-link" href="/diposits/3_diposit">
+                            <a class="nav-link" href="/deposits/fd-with">
                                 <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
-                                <span class="sidebar-normal">3 Diposit</span>
+                                <span class="sidebar-normal">FD Withdrawal</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('fd_deposite')
                         <li class="nav-item ">
-                            <a class="nav-link" href="/diposits/4_diposit">
+                            <a class="nav-link" href="/deposits/fd-dep">
                                 <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
-                                <span class="sidebar-normal">4 Diposit</span>
+                                <span class="sidebar-normal">FD Deposit</span>
                             </a>
                         </li>
+                        @endcan
 
                     </ul>
                 </div>
             </li>
+            @endcan
 
         </ul>
     </div>

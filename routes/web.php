@@ -175,17 +175,17 @@ Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
 Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
 
 // KTA Start
-Route::get('/diposits/1_diposit', function(){
-    return view('diposit.1_diposit');
+Route::get('/deposits/n-with', function(){
+    return view('deposit.normal_withdrawal');
 });
-Route::get('/diposits/2_diposit', function(){
-    return view('diposit.2_diposit');
+Route::get('/deposits/n-dep', function(){
+    return view('deposit.normal_deposite');
 });
-Route::get('/diposits/3_diposit', function(){
-    return view('diposit.3_diposit');
+Route::get('/deposits/fd-with', function(){
+    return view('deposit.fd_withdrawal');
 });
-Route::get('/diposits/4_diposit', function(){
-    return view('diposit.4_diposit');
+Route::get('/deposits/fd-dep', function(){
+    return view('deposit.fd_deposite');
 });
 Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
 Route::get('/savings/generalinformation', 'SavingsController@generalInformation');

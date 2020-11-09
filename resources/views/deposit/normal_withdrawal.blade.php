@@ -7,7 +7,7 @@
                             <div class="card-body ">
                                     <div class="card-header card-header-rose card-header-text">
                                         <div class="card-text">
-                                            <h4 class="card-title">Nominee Instruction</h4>
+                                            <h4 class="card-title">Normal Withdrawal</h4>
                                         </div>
                                     </div>
 
@@ -97,7 +97,7 @@
                                                 <div class="row">
 
                                                     <div class="col-6 text-right">
-                                                        <button type="submit" class="btn btn-rose col-4">Receive</button>
+                                                        <button type="submit" class="btn btn-rose col-4">WITHDRAW</button>
                                                     </div>
                                                     <div class="col-1 text-right">
                                                         <button type="submit" class="btn ">Clear</button>

@@ -131,7 +131,7 @@
             <i class="material-icons"></i>
           </div> --}}
                 <h4 class="card-title">
-                    @can('create_permissions')
+                    @can('add_member')
                     <a href="/members/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
                         <i class="material-icons">add</i> <span class="mx-1">Add Member</span>
                     </a>
