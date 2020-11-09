@@ -80,7 +80,38 @@
 
                             </table>
                         </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Minimum Authorization Required for a
+                                Withdrawal</label>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="minimum_auth_count">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label"> Withdrawal Limit for Holder</label>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="withdrawal_limit_holder">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label"> Number of Holders</label>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="holders_count">
+                                </div>
+                            </div>
+                        </div>
                     </form>
+
+                    <div class="col-6 text-right">
+                        <a
+                        onclick="create_joint_account(this)"
+                         class="btn btn-primary text-white">Create Join Account</a>
+                        </div>
 
                     <form id="add_j_mem_form">
                         @csrf
@@ -95,11 +126,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6 text-right">
-                            <a
-                            onclick="create_joint_account(this)"
-                             class="btn btn-primary text-white">Create Join Account</a>
-                            </div>
+
 
                         <div class="card d-none" style="border: solid" id="oh_card">
                             <div class="card-header">Other Holders</div>
@@ -135,12 +162,20 @@
                             </div>
                         </div>
                         <br>
-                        <div class="col-6 text-right">
-                        <button type="submit" class="btn btn-primary">SUBMIT</button>
-                        </div>
+
                     </div>
                 </div>
             </form>
+
+            <div class="col-6 text-right">
+                <form action="/guradian-information" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_data_id" value={{$prod_id}}>
+                    <input type="hidden" name="account_id" value={{$account_id}}>
+                    <input type="hidden" name="customer_id" value={{$customer_id}}>
+                    <button type="submit" class="btn btn-primary">SUBMIT</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

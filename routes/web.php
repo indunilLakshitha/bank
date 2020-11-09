@@ -11,7 +11,7 @@
 |
 */
 
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -145,6 +145,14 @@ Route::get('/savings/verification', function(){
 Route::get('/savings/approve', function(){
     return view('savings.approval');
 });
+
+
+Route::get('/late', function(){
+    $idtypes = DB::table('iedentification_types')->get();
+    $CIF = count(DB::table('account_general_information')->get())+1;
+    $acc_no = 'ACC'.$CIF;
+    return view('savings.open_account', compact('idtypes', 'CIF', 'acc_no'));
+});
 Route::get('/savings/open', function(){
     $idtypes = DB::table('iedentification_types')->get();
     $CIF = count(DB::table('account_general_information')->get())+1;
@@ -156,6 +164,12 @@ Route::post('/savings/open', 'OpenSavingsAccountController@client_details');
 Route::post('/product_details', 'OpenSavingsAccountController@product_details');
 Route::post('/create_join_account', 'OpenSavingsAccountController@create_join_account');
 Route::post('/add_mem_join_account', 'OpenSavingsAccountController@add_mem_join_account');
+Route::post('/guradian-information', 'OpenSavingsAccountController@guradian_information');
+Route::post('/documents', 'OpenSavingsAccountController@getDocs');
+Route::post('/save_documents', 'OpenSavingsAccountController@save_documents');
+Route::post('/tax_details', 'OpenSavingsAccountController@tax_details');
+Route::post('/add_tax', 'OpenSavingsAccountController@add_tax');
+Route::post('/nominee', 'OpenSavingsAccountController@nominee');
 
 // Route::get('/open-savings/client_details', function(){
 //     return view('savings.1_client_details');
