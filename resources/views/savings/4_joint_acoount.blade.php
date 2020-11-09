@@ -12,8 +12,10 @@
                     </div>
                 </div>
             </div>
-            <form id="form" class="form-horizontal">
+            <form id="form" class="form-horizontal" >
                 @csrf
+                <input type="hidden" name="product_data_id" value={{$prod_id}}>
+                <input type="hidden" name="account_id" value={{$account_id}}>
                 <div class="card ">
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
@@ -25,7 +27,7 @@
                             <label class="col-sm-2 col-form-label"> Main Holder</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value={{$customer_id}} readonly id="join_acc_main_holder">
+                                    <input type="text" class="form-control" value={{$customer_id}} readonly id="join_acc_main_holder" name="customer_id">
                                 </div>
                             </div>
                         </div>
@@ -78,24 +80,28 @@
 
                             </table>
                         </div>
+                    </form>
 
+                    <form id="add_j_mem_form">
+                        @csrf
+                        {{-- <input type="hidden" name="customer_id" id="mem_cus_id"> --}}
+                        <input type="hidden" name="join_account_id" id="mem_j_acc_id">
                         <div class="row">
                             <label for="" class="col-sm-2 col-form-label" >Selected Other Holder : </label>
                             <div class="col-sm-6">
                                 <div class="form-control">
-                            <input type="text" id="selected_oh" name="selected_oh" class="form-control" readonly>
+                            <input type="text" id="selected_oh" name="customer_id" class="form-control" readonly>
                             </div>
                             </div>
                         </div>
-                    </form>
 
                         <div class="col-6 text-right">
-                            <button
-                            onclick="create_joint_account()"
-                             class="btn btn-primary">Create Join Account</button>
+                            <a
+                            onclick="create_joint_account(this)"
+                             class="btn btn-primary text-white">Create Join Account</a>
                             </div>
 
-                        <div class="card d-none" style="border: solid">
+                        <div class="card d-none" style="border: solid" id="oh_card">
                             <div class="card-header">Other Holders</div>
                             <div class="card-body">
 
@@ -122,7 +128,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <a
-                                        onclick="add_to_join_accpunt()"
+                                        onclick="add_to_join_account()"
                                          class="btn btn-primary text-white float-right  btn-sm">Add</a>
                                     </div>
                                 </div>
@@ -134,13 +140,14 @@
                         </div>
                     </div>
                 </div>
-            {{-- </form> --}}
+            </form>
         </div>
     </div>
 </div>
 
 <script>
-    function create_joint_account(){
+    function create_joint_account(btn){
+        // return console.log(1);
         $.ajax({
             type: 'POST',
             url: '{{('/create_join_account')}}',
@@ -149,7 +156,28 @@
             contentType: false,
             success: function(data){
                 console.log(data)
-                // return set_cus_details(data)
+                btn.classList.add('d-none')
+                oh_card.classList.remove('d-none')
+                mem_j_acc_id.value = data.id
+                // mem_cus_id.value = data.customer_id
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+        })
+    }
+
+    function add_to_join_account(){
+        $.ajax({
+            type: 'POST',
+            url: '{{('/add_mem_join_account')}}',
+            data: new FormData(add_j_mem_form),
+            processData: false,
+            contentType: false,
+            success: function(data){
+                console.log(data)
+
             },
             error: function(data){
                 console.log(data)

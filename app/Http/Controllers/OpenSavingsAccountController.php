@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AccountGeneralInformation;
 use App\Models\Joinaccount;
+use App\Models\JoinaccountMember;
 use App\Models\ProductData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -111,6 +112,23 @@ class OpenSavingsAccountController extends Controller
 
         $j_acc = Joinaccount::create($request->all());
 
-        return response()->json($$j_acc);
+        return response()->json($j_acc);
+    }
+
+    public function add_mem_join_account(Request $request){
+
+        $mem = JoinaccountMember::create($request->all());
+
+        if($request->file('other_holder_sign_img')){
+            $image = $request->file('other_holder_sign_img');
+            $path = '/images/';
+            $mem->other_holder_sign_img = time().rand().'.'.$image->extension();
+            $image->move(public_path($path), $mem->other_holder_sign_img);
+        }
+        $mem->save();
+
+        $j_acc = Joinaccount::find($request->join_account_id);
+        $j_acc->holders_count++;
+        $j_acc->save();
     }
 }
