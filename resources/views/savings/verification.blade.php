@@ -9,13 +9,14 @@
             </div>
         </div>
         <div class="card-body ">
-            <form method="get" action="/" class="form-horizontal">
+            <form id="form">
+                @csrf
                 <div class="row">
                     <label class="col-sm-2 col-form-label">CIF</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" class="form-control">
-                            <span class="bmd-help">USe Member Code To Search</span>
+                            <input type="text" class="form-control" name="customer_id">
+                            <span class="bmd-help">Use Member Code To Search</span>
                         </div>
                     </div>
                 </div>
@@ -23,7 +24,7 @@
                     <label class="col-sm-2 col-form-label">Client Name</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="full_name">
                         </div>
                     </div>
                 </div>
@@ -31,14 +32,23 @@
                     <label class="col-sm-2 col-form-label">Identification Type</label>
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-3">
-                            <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                                data-size="7">
-                                <option disabled> type 1</option>
-                                <option disabled> type 2</option>
+                            @php
+                            $idtypes = Illuminate\Support\Facades\DB::table('iedentification_types')->get()
+                            @endphp
+                            <select name="oh_identification_type_id" id="oh_identification_type_id"
+                                class="form-control">
+                                <option value="">Select</option>
+                                @isset($idtypes)
+                                @foreach ($idtypes as $idtype)
+                                <option value="{{$idtype->id}}">
+                                    {{$idtype->identification_type}}
+                                    @endforeach
+                                    @endisset
                             </select>
                         </div>
                         <div class="col-lg-5 col-md-6 col-sm-3 ml-5">
-                            <input type="text" class="form-control" placeholder="Enter Identification No">
+                            <input type="text" class="form-control" name="identification_number"
+                                placeholder="Enter Identification No">
 
                         </div>
                     </div>
@@ -47,21 +57,21 @@
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Account No</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="account_number">
 
                     </div>
                 </div>
 
-                <div class="card-footer ">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button type="" class="btn btn-fill btn-rose">SEARCH</button>
-                        </div>
-
-
-                    </div>
-                </div>
             </form>
+            <div class="card-footer ">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button onclick="search()" class="btn btn-fill btn-rose">SEARCH</button>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -91,7 +101,7 @@
                                     <th>Action</th>
                                     <th>Edit List</th>
                                 </thead>
-                                <tbody>
+                                <tbody id="results_tbody">
                                     {{-- @foreach ($permissions as $perm)
                       <tr>
                         <th > {{$perm->name}} </th>
@@ -128,6 +138,48 @@
     </div>
 </div>
 
+<td></td>
 
+<script>
+    function search(){
+    $.ajax({
+        type: 'POST',
+        url: '{{('/verification/search')}}',
+        data: new FormData(form) ,
+        processData: false,
+        contentType: false,
+        success: function(data){
+            console.log(data);
+            return show_data(data)
+        }
+    })
+    }
+
+    function show_data(data){
+        results_tbody.innerHTML = ''
+        data.forEach(i => {
+            html = `
+            <tr>
+                <td>${i.account_number}</td>
+                <td>${i.customer_id}</td>
+                <td>${i.full_name}</td>
+                <td>${i.identification_type}</td>
+                <td>${i.identification_number}</td>
+                <td></td>
+                <td><button class="btn btn-sm btn-primary">View</button></td>
+                <td><button class="btn btn-sm btn-primary">View</button></td>
+                <td><button class="btn btn-sm btn-primary">Verify</button></td>
+                <td><button class="btn btn-sm btn-primary">Verify</button></td>
+                <td>
+                    <button class="btn btn-sm btn-primary">Approve</button>
+                    <button class="btn btn-sm btn-primary">Reject</button>
+                </td>
+                <td><button class="btn btn-sm btn-primary">Generate</button></td>
+            </tr>
+            `
+            results_tbody.innerHTML += html
+        })
+    }
+</script>
 
 @endsection
