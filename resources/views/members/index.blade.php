@@ -15,8 +15,8 @@
                     <label class="col-sm-2 col-form-label">Code</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" class="form-control">
-                            <span class="bmd-help">USe Member Code To Search</span>
+                            <input type="text" class="form-control" id="customer_id" name="customer_id">
+                            <span class="bmd-help">Use Member Code To Search</span>
                         </div>
                     </div>
                 </div>
@@ -24,20 +24,11 @@
                     <label class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" id="full_name" name="full_name">
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Type</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option > type 1</option>
-                            <option > type 2</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Relegion</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">
@@ -45,8 +36,9 @@
                            $religions = Illuminate\Support\Facades\DB::table('relegion_data')->get();
                         @endphp
                         <select class="selectpicker" data-style="select-with-transition"  title="Select"
-                            name="religion_id"
+                            name="religion_data_id" id="religion_data_id"
                         >
+                        <option value="">Select</option>
                             @foreach ($religions as $r)
                                 <option value="{{$r->id}}">{{$r->religion_data}}</option>
                             @endforeach
@@ -58,39 +50,21 @@
                     <div class="col-lg-5 col-md-6 col-sm-3">
                         <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
                             data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
+                            <option value="">Select</option>
+                            <option  > type 1</option>
+                            <option  > type 2</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Civil Status</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Expiry</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
                         @php
                            $marital_status = Illuminate\Support\Facades\DB::table('married_statuses')->get();
                         @endphp
-                        <select name="marital_status_id" class="selectpicker" data-style="select-with-transition" title="Select"
+                        <select name="married_status_id" class="selectpicker" id="married_status_id" data-style="select-with-transition" title="Select"
                             >
+                            <option value="">Select</option>
                             @foreach ($marital_status as $ms)
                                 <option value="{{$ms->id}}">{{$ms->married_status}}</option>
                             @endforeach
@@ -98,15 +72,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label">Type</label>
+                    <label class="col-sm-2 col-form-label">Expiry</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
-                            data-size="7">
-                            <option disabled> type 1</option>
-                            <option disabled> type 2</option>
-                        </select>
+                        <input type="date" name="expire_date" id="expire_date" class="form-control">
                     </div>
                 </div>
+
+
             </form>
                 <div class="card-footer ">
                     <div class="row">
@@ -151,15 +123,17 @@
                                     <th>STATUS</th>
                                     <th>ACTION</th>
                                 </thead>
-                                <tbody>
+                                <tbody id="results_tbody">
                                    <?php $members=\App\Models\CustomerBasicData::all()?>
                                    @isset($members)
                                    @foreach ($members as $member)
-                                   <th>{{$member->id}}</th>
-                                   <th>{{$member->customer_id}} </th>
-                                   <th>{{$member->name_in_use}}</th>
-                                   <th>{{$member->is_enable}}</th>
-                                   <th><a href="http://" class="btn btn-primary" >VIEW</a></th>
+                                   <tr>
+                                    <th>{{$member->id}}</th>
+                                    <th>{{$member->customer_id}} </th>
+                                    <th>{{$member->name_in_use}}</th>
+                                    <th>{{$member->is_enable}}</th>
+                                    <th><a href="http://" class="btn btn-primary" >VIEW</a></th>
+                                   </tr>
                                    @endforeach
 
                                    @endisset
@@ -185,9 +159,25 @@
         contentType: false,
         success: function(data){
             console.log(data);
-            // return show_data(data)
+            return show_data(data)
         }
     })
+    }
+
+    function show_data(data){
+        results_tbody.innerHTML = ''
+        data.forEach(i => {
+            html = `
+            <tr>
+                <th>${i.id}</th>
+                <th>${i.customer_id} </th>
+                <th>${i.name_in_use}</th>
+                <th>${i.is_enable}</th>
+                <th><a href="http://" class="btn btn-primary" >VIEW</a></th>
+            </tr>
+            `
+            results_tbody.innerHTML += html
+        })
     }
 </script>
 
