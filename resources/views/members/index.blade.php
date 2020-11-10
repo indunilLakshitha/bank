@@ -137,7 +137,6 @@
                     </a>
                     @endcan
                 </h4>
-
             </div>
             <div class="card-body ">
                 <div class="row">
@@ -153,30 +152,17 @@
                                     <th>ACTION</th>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($permissions as $perm)
-                      <tr>
-                        <th > {{$perm->name}} </th>
-                                    <th> |
-                                        @foreach ($perm->roles as $role)
-                                        {{$role->name}} |
-                                        @endforeach
-                                    </th>
-                                    <td class="td-actions text-right">
-                                        @can('update_permissions')
-                                        <a href="/permissions/edit/{{$perm->id}}" rel="tooltip"
-                                            class="btn btn-success btn-round">
-                                            <i class="material-icons">edit</i> <span class="mx-1">Edit</span>
-                                        </a>
-                                        @endcan
-                                        @can('delete_permissions')
-                                        <a href="/permissions/delete/{{$perm->id}}" rel="tooltip"
-                                            class="btn btn-danger btn-round">
-                                            <i class="material-icons">close</i> <span class="mx-1">Delete</span>
-                                        </a>
-                                    </td>
-                                    @endcan
-                                    </tr>
-                                    @endforeach --}}
+                                   <?php $members=\App\Models\CustomerBasicData::all()?>
+                                   @isset($members)
+                                   @foreach ($members as $member)
+                                   <th>{{$member->id}}</th>
+                                   <th>{{$member->customer_id}} </th>
+                                   <th>{{$member->name_in_use}}</th>
+                                   <th>{{$member->is_enable}}</th>
+                                   <th><a href="http://" class="btn btn-primary" >VIEW</a></th>
+                                   @endforeach
+
+                                   @endisset
 
 
                                 </tbody>

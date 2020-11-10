@@ -93,6 +93,7 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
+    
     #view all users
     Route::get('/users/index', 'UserController@index');
 
