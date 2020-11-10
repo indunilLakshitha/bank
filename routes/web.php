@@ -170,6 +170,10 @@ Route::post('/save_documents', 'OpenSavingsAccountController@save_documents');
 Route::post('/tax_details', 'OpenSavingsAccountController@tax_details');
 Route::post('/add_tax', 'OpenSavingsAccountController@add_tax');
 Route::post('/nominee', 'OpenSavingsAccountController@nominee');
+Route::post('/add_nominee', 'OpenSavingsAccountController@add_nominee');
+Route::post('/autorized_officers', 'OpenSavingsAccountController@autorized_officers');
+Route::post('/add_officer', 'OpenSavingsAccountController@add_officer');
+Route::post('/finish_open_account_saving', 'OpenSavingsAccountController@finish_open_account_saving');
 
 // Route::get('/open-savings/client_details', function(){
 //     return view('savings.1_client_details');

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\AccountGeneralInformation;
+use App\Models\AuthorizedOfficer;
 use App\Models\Joinaccount;
 use App\Models\JoinaccountMember;
+use App\Models\NomineeMember;
 use App\Models\ProductData;
 use App\Models\ProductDocument;
 use App\Models\ProductFeeData;
@@ -215,5 +217,34 @@ class OpenSavingsAccountController extends Controller
         $prod_id = $request->prod_id;
 
         return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id'));
+    }
+
+
+    public function add_nominee(Request $request){
+
+        NomineeMember::create($request->all());
+
+        return response()->json($request);
+    }
+
+    public function autorized_officers(Request $request){
+        $account_id = $request->account_id;
+        $customer_id = $request->customer_id;
+        $prod_id = $request->prod_id;
+
+        return view('savings.11_authorized_officer', compact('account_id', 'customer_id', 'prod_id'));
+    }
+
+    public function add_officer(Request $request){
+
+        AuthorizedOfficer::create($request->all());
+
+        return response()->json($request);
+    }
+    public function finish_open_account_saving(Request $request){
+
+        AccountGeneralInformation::find($request->account_id)->status = 2;
+
+        return redirect('/');
     }
 }
