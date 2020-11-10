@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -140,14 +129,16 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 });
+//-------------------------------------------------account verification view
 Route::get('/savings/verification', function () {
     return view('savings.verification');
 });
+//-------------------------------------------------account approval view(disabled)
 Route::get('/savings/approve', function () {
     return view('savings.approval');
 });
 
-
+//-------------------------------------------------------------------------------------new saving account openning-------start
 Route::get('/late', function () {
     $idtypes = DB::table('iedentification_types')->get();
     $CIF = count(DB::table('account_general_information')->get()) + 1;
@@ -176,6 +167,8 @@ Route::post('/autorized_officers', 'OpenSavingsAccountController@autorized_offic
 Route::post('/add_officer', 'OpenSavingsAccountController@add_officer');
 Route::post('/finish_open_account_saving', 'OpenSavingsAccountController@finish_open_account_saving');
 
+
+
 // Route::get('/open-savings/client_details', function(){
 //     return view('savings.1_client_details');
 // });
@@ -202,7 +195,10 @@ Route::post('/member/add/special-and-assets', 'CustomerBasicDataController@inser
 Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
 Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
 
-// KTA Start
+//-------------------------------------------------------------------------------------new saving account openning-------end
+
+
+//---------------------------------------------withdrawal views------start
 Route::get('/deposits/n-with', function () {
     return view('deposit.normal_withdrawal');
 });
@@ -215,6 +211,8 @@ Route::get('/deposits/fd-with', function () {
 Route::get('/deposits/fd-dep', function () {
     return view('deposit.fd_deposite');
 });
+//---------------------------------------------withdrawal views------end
+
 Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
 Route::get('/savings/generalinformation', 'SavingsController@generalInformation');
 Route::get('/savings/productdetails', 'SavingsController@productDetails');
@@ -227,7 +225,9 @@ Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction'
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
 
-// KTA End
+//-------------------------------------------------------------------------------account verification routes------start
+Route::get('/accountdetails/{id}','AccountVerificationController@accountDetails');
+
 
 
 

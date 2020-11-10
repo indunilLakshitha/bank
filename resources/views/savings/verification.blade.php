@@ -166,7 +166,7 @@
                 <td>${i.identification_type}</td>
                 <td>${i.identification_number}</td>
                 <td></td>
-                <td><button class="btn btn-sm btn-primary">View</button></td>
+                <td><a href="/accountdetails/${i.account_number}" class="btn btn-sm btn-primary">View</a></td>
                 <td><button class="btn btn-sm btn-primary">View</button></td>
                 <td><button class="btn btn-sm btn-primary">Verify</button></td>
                 <td><button class="btn btn-sm btn-primary">Verify</button></td>

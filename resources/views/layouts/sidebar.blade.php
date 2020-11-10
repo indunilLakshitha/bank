@@ -77,12 +77,12 @@
                                 <span class="sidebar-normal"> Account Verification</span>
                             </a>
                         </li>
-                        <li class="nav-item ">
+                        {{-- <li class="nav-item ">
                             <a class="nav-link" href="/savings/approve">
                                 <span class="sidebar-mini"> <i class="material-icons">supervisor_account</i> </span>
                                 <span class="sidebar-normal"> Account Approval </span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item ">
                             <a class="nav-link" href="/savings/open">
                                 <span class="sidebar-mini"> <i class="material-icons">add</i> </span>

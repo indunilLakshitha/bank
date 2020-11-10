@@ -37,7 +37,6 @@ class CustomerBasicDataController extends Controller
     }
 
     public function insertStatus(Request $request){
-        // return $request;
 
         CustomerStatusDates::create($request->all());
         $cus_id = $request->customer_id;
@@ -47,7 +46,7 @@ class CustomerBasicDataController extends Controller
 
     }
     public function insertOccupation(Request $request){
-        // return $request;
+
         OccupationData::create($request->all());
         $cus_id = $request->customer_id;
         return view('members.4_othersocieties',compact('cus_id'))->with('success', 'Details submitted');
@@ -80,8 +79,6 @@ class CustomerBasicDataController extends Controller
     public function add(){
 
         $cus_id = 'U'.Auth::user()->id.'CBD'.(count(CustomerBasicData::all())+1);
-        // return $cus_id;
-
         $branches=Branch::all();
         $accountcategories=AccountCategory::all();
         $smallgroups=SmallGroup::all();
@@ -114,7 +111,7 @@ class CustomerBasicDataController extends Controller
     }
 
     public function guardianAjax(Request $request){
-        // return $request;
+
         $row = GuardianData::create($request->all());
         $row->guardian_id = $request->id;
         $row->save();
