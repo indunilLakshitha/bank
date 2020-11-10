@@ -104,8 +104,13 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
+<<<<<<< HEAD
     //perm for member
     Route::group(['middleware' => ['permission:view_members']], function () {
+=======
+        //perm for member
+        // Route::group(['middleware' => ['permission:view_members']], function () {
+>>>>>>> 946be3a0dd0f2cb2ca44413d325d051214ad6b82
 
         //members index
         Route::get('/members', function () {
@@ -116,6 +121,7 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
         Route::post('/members/search', 'MemberController@search');
+<<<<<<< HEAD
         Route::post('/verification/search', 'MemberController@VerificationSearch');
     });
     Route::group(['middleware' => ['permission:member_add']], function () {
@@ -123,6 +129,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/members/add', 'CustomerBasicDataController@add');
     });
     Route::group(['middleware' => ['permission:view_member_type']], function () {
+=======
+    // });
+        // Route::group(['middleware' => ['permission:member_add']], function () {
+        //members add
+        Route::get('/members/add','CustomerBasicDataController@add');
+    // });
+        Route::group(['middleware' => ['permission:view_member_type']], function () {
+>>>>>>> 946be3a0dd0f2cb2ca44413d325d051214ad6b82
         //members typr index
         Route::get('/members/type', function () {
             return view('members.type');
@@ -224,6 +238,9 @@ Route::get('/savings/taxdetails', 'SavingsController@taxDetails');
 Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction');
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
+Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
+
+
 
 //-------------------------------------------------------------------------------account verification routes------start
 Route::get('/accountdetails/{id}','AccountVerificationController@accountDetails');
