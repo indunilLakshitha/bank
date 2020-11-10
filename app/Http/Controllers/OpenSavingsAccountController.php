@@ -164,26 +164,7 @@ class OpenSavingsAccountController extends Controller
 
     public function save_documents(Request $request)
     {
-        // return dd($request);
-        // $prod = new ProductDocument;
-
-        // $imgs = $request->file('docs');
-
-        // for ($i = 0; $i < count($imgs); $i++) {
-        //     $prod->account_id = $request->account_id;
-        //     $prod->product_data_id = $request->product_data_id;
-        //     $prod->customer_id = $request->customer_id;
-        //     // $prod->img = time() . rand() . '.' . $imgs[$i]->extension();
-        //     // $prod->save();
-
-        //     $prod->document_id = $imgs[$i];
-        //     for ($j = 0; $j < count($imgs); $j++) {
-        //         $prod->img = time() . rand() . '.' . $imgs[$i][$j]->extension();
-        //         $prod->save();
-        //     }
-        // }
-
-        // return 1;
+        
 
         $prod = ProductDocument::create($request->all());
         $image = $request->file('img');

@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -81,8 +70,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/permissions/store', 'PermissionController@store');
         });
 
-         //permissions/edit
-         Route::group(['middleware' => ['permission:update_permissions']], function () {
+        //permissions/edit
+        Route::group(['middleware' => ['permission:update_permissions']], function () {
             Route::get('/permissions/edit/{id}', 'PermissionController@edit');
             Route::post('/permissions/update/{id}', 'PermissionController@update');
         });
@@ -92,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
         });
     });
+
 
     #view all users
     Route::get('/users/index', 'UserController@index');
@@ -114,49 +104,51 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
-        //perm for member
-        // Route::group(['middleware' => ['permission:view_members']], function () {
+    //perm for member
+    Route::group(['middleware' => ['permission:view_members']], function () {
 
         //members index
-        Route::get('/members', function(){
+        Route::get('/members', function () {
             return view('members.index');
         });
-        Route::get('/test', function(){
+        Route::get('/test', function () {
             return view('members.addX');
         });
+
         Route::post('/members/search', 'MemberController@search');
-    // });
-        // Route::group(['middleware' => ['permission:member_add']], function () {
+        Route::post('/verification/search', 'MemberController@VerificationSearch');
+    });
+    Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
-        Route::get('/members/add','CustomerBasicDataController@add');
-    // });
-        Route::group(['middleware' => ['permission:view_member_type']], function () {
+        Route::get('/members/add', 'CustomerBasicDataController@add');
+    });
+    Route::group(['middleware' => ['permission:view_member_type']], function () {
         //members typr index
-        Route::get('/members/type', function(){
+        Route::get('/members/type', function () {
             return view('members.type');
         });
-
     });
-
 });
-Route::get('/savings/verification', function(){
+//-------------------------------------------------account verification view
+Route::get('/savings/verification', function () {
     return view('savings.verification');
 });
-Route::get('/savings/approve', function(){
+//-------------------------------------------------account approval view(disabled)
+Route::get('/savings/approve', function () {
     return view('savings.approval');
 });
 
-
-Route::get('/late', function(){
+//-------------------------------------------------------------------------------------new saving account openning-------start
+Route::get('/late', function () {
     $idtypes = DB::table('iedentification_types')->get();
-    $CIF = count(DB::table('account_general_information')->get())+1;
-    $acc_no = 'ACC'.$CIF;
+    $CIF = count(DB::table('account_general_information')->get()) + 1;
+    $acc_no = 'ACC' . $CIF;
     return view('savings.open_account', compact('idtypes', 'CIF', 'acc_no'));
 });
-Route::get('/savings/open', function(){
+Route::get('/savings/open', function () {
     $idtypes = DB::table('iedentification_types')->get();
-    $CIF = count(DB::table('account_general_information')->get())+1;
-    $acc_no = 'ACC'.$CIF;
+    $CIF = count(DB::table('account_general_information')->get()) + 1;
+    $acc_no = 'ACC' . $CIF;
     return view('savings.1_client_details', compact('idtypes', 'CIF', 'acc_no'));
 });
 
@@ -174,6 +166,8 @@ Route::post('/add_nominee', 'OpenSavingsAccountController@add_nominee');
 Route::post('/autorized_officers', 'OpenSavingsAccountController@autorized_officers');
 Route::post('/add_officer', 'OpenSavingsAccountController@add_officer');
 Route::post('/finish_open_account_saving', 'OpenSavingsAccountController@finish_open_account_saving');
+
+
 
 // Route::get('/open-savings/client_details', function(){
 //     return view('savings.1_client_details');
@@ -201,19 +195,24 @@ Route::post('/member/add/special-and-assets', 'CustomerBasicDataController@inser
 Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
 Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
 
-// KTA Start
-Route::get('/deposits/n-with', function(){
+//-------------------------------------------------------------------------------------new saving account openning-------end
+
+
+//---------------------------------------------withdrawal views------start
+Route::get('/deposits/n-with', function () {
     return view('deposit.normal_withdrawal');
 });
-Route::get('/deposits/n-dep', function(){
+Route::get('/deposits/n-dep', function () {
     return view('deposit.normal_deposite');
 });
-Route::get('/deposits/fd-with', function(){
+Route::get('/deposits/fd-with', function () {
     return view('deposit.fd_withdrawal');
 });
-Route::get('/deposits/fd-dep', function(){
+Route::get('/deposits/fd-dep', function () {
     return view('deposit.fd_deposite');
 });
+//---------------------------------------------withdrawal views------end
+
 Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
 Route::get('/savings/generalinformation', 'SavingsController@generalInformation');
 Route::get('/savings/productdetails', 'SavingsController@productDetails');
@@ -229,7 +228,9 @@ Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
 
 
 
-// KTA End
+//-------------------------------------------------------------------------------account verification routes------start
+Route::get('/accountdetails/{id}','AccountVerificationController@accountDetails');
+
 
 
 
