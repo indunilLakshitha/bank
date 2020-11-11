@@ -89,6 +89,9 @@
                         <div class="col-md-6">
                             <a href="/members/type" type="" class="btn btn-fill btn-rose">TYPE</a>
                         </div>
+                        <div class="col-md-6">
+                            <a href="/members/view/{{1}}" type="" class="btn btn-fill btn-rose">View</a>
+                        </div>
                     </div>
                 </div>
         </div>
@@ -103,11 +106,9 @@
             <i class="material-icons"></i>
           </div> --}}
                 <h4 class="card-title">
-                    @can('add_member')
                     <a href="/members/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
                         <i class="material-icons">add</i> <span class="mx-1">Add Member</span>
                     </a>
-                    @endcan
                 </h4>
             </div>
             <div class="card-body ">
