@@ -155,9 +155,13 @@
     })
     }
 
+
+
     function show_data(data){
+
         results_tbody.innerHTML = ''
         data.forEach(i => {
+
             html = `
             <tr>
                 <td>${i.account_number}</td>
@@ -167,11 +171,13 @@
                 <td>${i.identification_number}</td>
                 <td></td>
                 <td><a href="/accountdetails/${i.account_number}" class="btn btn-sm btn-primary">View</a></td>
-                <td><button class="btn btn-sm btn-primary">View</button></td>
-                <td><button class="btn btn-sm btn-primary">Verify</button></td>
-                <td><button class="btn btn-sm btn-primary">Verify</button></td>
+                <td><a href="/customer_details/${i.account_number}" class="btn btn-sm btn-primary">View</a></td>
                 <td>
-                    <button class="btn btn-sm btn-primary">Approve</button>
+                <a href="/signature_verification/${i.account_number}" class="btn btn-sm btn-primary">Verify</a>
+                </td>
+                <td><a href="/document_verification/${i.account_number}" class="btn btn-sm btn-primary">Verify</a></td>
+                <td>
+                    <button class="btn btn-sm btn-primary " onclick="check_approve('${i.account_number}')" >Approve</button>
                     <button class="btn btn-sm btn-primary">Reject</button>
                 </td>
                 <td><button class="btn btn-sm btn-primary">Generate</button></td>
@@ -179,6 +185,37 @@
             `
             results_tbody.innerHTML += html
         })
+    }
+
+    function check_approve(account_number){
+        $.ajax({
+        type: 'GET',
+        url: '{{('/approve_check')}}',
+        data: {account_number} ,
+        success: function(data){
+            console.log(data);
+
+            if(data == 'UNVERIFIED'){
+                return Swal.fire('There are Unverified files')
+            }else {
+
+                return approve(account_number)
+            }
+
+        }
+    })
+    }
+
+    function approve(account_number){
+        $.ajax({
+        type: 'GET',
+        url: '{{('/approve_done')}}',
+        data: {account_number} ,
+        success: function(data){
+            console.log(data);
+
+        }
+    })
     }
 </script>
 
