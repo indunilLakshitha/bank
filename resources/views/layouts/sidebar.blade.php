@@ -72,6 +72,12 @@
                 <div class="collapse" id="savings">
                     <ul class="nav">
                         <li class="nav-item ">
+                            <a class="nav-link" href="/savings/view">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal"> View Savings Account</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
                             <a class="nav-link" href="/savings/verification">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal"> Account Verification</span>
