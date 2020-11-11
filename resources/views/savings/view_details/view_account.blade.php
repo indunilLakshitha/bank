@@ -17,7 +17,7 @@
                             <label class="col-sm-2 col-form-label">CIF</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  placeholder="{{$CIF}}">
+                                    <input type="text" class="form-control" readonly value="{{$CIF}}">
                                 </div>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="client_full_name"  readonly placeholder="{{ $view_1->client_full_name}}">
+                                    <input type="text" class="form-control" id="client_full_name"  readonly value="{{ $view_1->client_full_name}}">
                                 </div>
                             </div>
                         </div>
@@ -35,12 +35,12 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" nme= "identification_type_id" readonly placeholder="{{$view_1->identification_type_id}}">
+                                            <input type="text" class="form-control" nme= "identification_type_id" readonly value="{{$view_1->identification_type_id}}">
                                         </div>
                                     </div>
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" readonly class="form-control" placeholder="{{$view_1->identification_number}}">
+                                            <input type="text" name="identification_number"  id="identification_number" readonly class="form-control" value="{{$view_1->identification_number}}">
 
                                         </div>
                                     </div>
@@ -50,24 +50,23 @@
                             </div>
                         </div>
 
-                        <form action="/submit_all" method="POST" enctype="multipart/form-data">
+                        <!-- <form action="/submit_all" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" id="branch_id" name="branch_id">
                             <input type="hidden" id="customer_id" name="customer_id">
-                            <input type="hidden" id="account_number" name="account_number" value= >
+                            <input type="hidden" id="account_number" name="account_number" value= > -->
                             <div class="row">
-                            <label class="col-sm-2 col-form-label">Full Name</label>
+                            <label class="col-sm-2 col-form-label" >Full Name</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="full_name" class="form-control" id="full_name">
+                                            <input type="text" name="full_name" class="form-control" id="full_name" readonly value="{{ $view_1->full_name}}">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
-
+                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ $view_1->identification_type_id}}">
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +76,7 @@
                             <label class="col-sm-2 col-form-label">DOB</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                    <input type="text" name="dob"  id="dob" class="form-control" readonly value="{{ $view_1->dob}}">
                                 </div>
                             </div>
                         </div>
@@ -87,7 +86,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ $view_1->identification_type_id}}">
 
                                         </div>
                                     </div>
@@ -100,7 +99,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ $view_1->identification_type_id}}">
 
                                         </div>
                                     </div>
@@ -114,7 +113,7 @@
                             <label class="col-sm-2 col-form-label">Branch Code</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="branch_code" name="branch_code">
+                                    <input type="text" class="form-control" id="branch_code" name="branch_code" readonly value="{{ $view_1->branch_code}}">
                                 </div>
                             </div>
                         </div>
@@ -123,7 +122,7 @@
                             <label class="col-sm-2 col-form-label">Customer Rating</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" readonly value="{{ $view_1->branch_code}}">
                                 </div>
                             </div>
                         </div>
@@ -142,7 +141,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="lead_source_category_id"  id="lead_source_category_id" class="form-control" readonly value="{{ $view_1->lead_source_category_id}}">
 
                                         </div>
                                     </div>
@@ -155,7 +154,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="lead_source_identification">
+                                            <input type="text" class="form-control" name="lead_source_identification" readonly value="{{ $view_1->lead_source_identification}}">
 
                                         </div>
                                     </div>
@@ -168,7 +167,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="account_description">
+                                            <input type="text" class="form-control" name="account_description" readonly value="{{ $view_1->account_description}}">
 
                                         </div>
                                     </div>
@@ -181,7 +180,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="account_category_id"  id="account_category_id" class="form-control"  readonly value="{{ $view_1->account_category_id}}">
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +192,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="account_type_id"  id="account_type_id" class="form-control"   readonly value="{{ $view_1->account_type_id}}">
 
                                         </div>
                                     </div>
@@ -205,7 +204,15 @@
                             <div class="col-sm-8">
                                 <div class="col-10">
                                     <div class="form-group">
-                                        <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                        <!-- <input type="text" name="identification_number"  id="identification_number" class="form-control"> -->
+                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_atm" <?php echo($view_1->has_atm == 1 ? 'checked': '') ?>> ATM
+                                        </div>
+                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_sms" readonly <?php echo($view_1->has_sms == 1 ? 'checked': '') ?>  > SMS
+                                        </div>
+                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_internet_banking"  readonly  <?php echo($view_1->has_internet_banking == 1 ? 'checked': '') ?> >
+                                            Internet Banking</div>
+                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_mobile_banking" readonly  <?php echo($view_1->has_mobile_banking == 1 ? 'checked': '') ?>  >
+                                            Mobile Banking</div>
 
                                     </div>
                                 </div>
@@ -217,7 +224,7 @@
                             <div class="col-sm-8">
                                 <div class="col-10">
                                     <div class="form-group">
-                                        <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                        <input type="text" name="identification_number"  id="identification_number" class="form-control" readonly value="{{ $view_1->has_passbook}}" >
 
                                     </div>
                                 </div>
@@ -242,7 +249,7 @@
                                     <div class="col-5">
                                         <div class="form-group">
 
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="product_type_id"  id="product_type_id" class="form-control" readonly placeholder="{{ $view_2->product_type_id}}">
 
                                         </div>
                                     </div>
@@ -255,7 +262,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="interest_type_id"  id="interest_type_id" class="form-control" readonly placeholder="{{ $view_2->interest_type_id}}">
 
                                         </div>
                                     </div>
@@ -268,7 +275,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="default_interest"  id="default_interest" class="form-control" readonly placeholder="{{ $view_2->default_interest}}">
 
                                         </div>
                                     </div>
@@ -281,7 +288,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="currency_id"  id="currency_id" class="form-control" readonly placeholder="{{ $view_2->currency_id}}">
 
                                         </div>
                                     </div>
@@ -295,7 +302,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="identification_number"  id="identification_number" class="form-control" readonly placeholder="{{ $view_1->identification_type_id}}">
 
                                         </div>
                                     </div>
@@ -308,7 +315,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="identification_number"  id="identification_number" class="form-control" readonly placeholder="{{ $view_1->identification_type_id}}">
 
                                         </div>
                                     </div>
@@ -321,7 +328,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="date" name="interest_credit_date" class="form-control">
+                                            <input type="date" name="interest_credit_date" class="form-control" readonly placeholder="{{ $view_2->interest_credit_date}}">
                                         </div>
                                     </div>
                                 </div>
@@ -333,7 +340,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="number" name="minimum_balance">
+                                            <input type="number" name="minimum_balance" readonly placeholder="{{ $view_2->minimum_balance}}">
                                         </div>
                                     </div>
                                 </div>
@@ -354,7 +361,7 @@
                             <label class="col-sm-2 col-form-label"> Main Holder</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="join_acc_main_holder">
+                                    <input type="text" class="form-control" id="join_acc_main_holder" readonly value="{{ $view_1->customer_id}}">
                                 </div>
                             </div>
                         </div>
@@ -364,7 +371,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
+                                            <input type="text" name="identification_number"  id="identification_number" class="form-control"  readonly value="{{ $view_1->identification_number}}">
 
                                         </div>
                                     </div>
@@ -514,11 +521,9 @@
                                                 <input type="text" name="client_name" class="form-control">
                                             </div>
                                         </div>
-                                         <a
-                                         onclick="get_guardian(gaurdian_identification_type_id.value, gaurdian_identification_id.value)"
-                                          class="btn btn-primary text-white">Search</a>
+
                                 </div>
-                                {{-- <div class="card" style="border: solid">
+                                <!-- {{-- <div class="card" style="border: solid">
                                     <div class="row">
                                     <label class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-8">
@@ -697,7 +702,7 @@
                                                         </div>
                                                 </div>
                                         </div>
-                                    </div> --}}
+                                    </div> --}} -->
                                 </div>
                             </div>
                             <div class="card ">

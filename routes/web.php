@@ -137,7 +137,10 @@ Route::get('/savings/verification', function () {
 Route::get('/savings/approve', function () {
     return view('savings.approval');
 });
-
+//savings index
+        Route::get('/savings/view', function () {
+            return view('savings.index');
+        });
 //-------------------------------------------------------------------------------------new saving account openning-------start
 Route::get('/late', function () {
     $idtypes = DB::table('iedentification_types')->get();
@@ -225,6 +228,7 @@ Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction'
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
 Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
+Route::get('/savings/account/{id}', 'OpenSavingsAccountController@viewSavingAccount');
 
 
 
