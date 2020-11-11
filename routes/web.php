@@ -227,6 +227,7 @@ Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
 
 //-------------------------------------------------------------------------------account verification routes------start
 Route::get('/accountdetails/{id}','AccountVerificationController@accountDetails');
+Route::get('/verify_image','AccountVerificationController@verify_image');
 
 
 
