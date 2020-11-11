@@ -61,7 +61,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     //perm for perms
     Route::group(['middleware' => ['permission:view_permissions']], function () {
-
         //perms/index
         Route::get('/permissions/index', 'PermissionController@index');
 
@@ -81,7 +80,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['permission:delete_permissions']], function () {
             Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
         });
-        
     });
 
 
@@ -106,8 +104,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
-        //perm for member
-        Route::group(['middleware' => ['permission:view_members']], function () {
+    //perm for member
+    Route::group(['middleware' => ['permission:view_members']], function () {
 
         //members index
         Route::get('/members', function () {
@@ -118,12 +116,13 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
         Route::post('/members/search', 'MemberController@search');
+        Route::post('/verification/search', 'MemberController@VerificationSearch');
     });
-        Route::group(['middleware' => ['permission:member_add']], function () {
+    Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
-        Route::get('/members/add','CustomerBasicDataController@add');
+        Route::get('/members/add', 'CustomerBasicDataController@add');
     });
-        Route::group(['middleware' => ['permission:view_member_type']], function () {
+    Route::group(['middleware' => ['permission:view_member_type']], function () {
         //members typr index
         Route::get('/members/type', function () {
             return view('members.type');
@@ -225,18 +224,18 @@ Route::get('/savings/taxdetails', 'SavingsController@taxDetails');
 Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction');
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
-Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
-
-
 
 //-------------------------------------------------------------------------------account verification routes------start
 Route::get('/accountdetails/{id}','AccountVerificationController@accountDetails');
-Route::get('/verify_image','AccountVerificationController@verify_image');
+
+
 
 
 //-------------------------------------------------------------------------------Transactions------start
 Route::get('/findmember','TransactionController@findMembers');
 Route::get('/findmemberbyaccno','TransactionController@findMembersById');
+Route::get('/normalwithdraw','TransactionController@normalWithdraw');
+Route::get('/normaldeposite','TransactionController@normalDeposite');
 
 
 

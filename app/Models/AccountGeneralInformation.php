@@ -25,5 +25,6 @@ class AccountGeneralInformation extends Model
         'is_enable',
         'created_by',
         'updated_by',
+        'account_balance',
     ];
 }

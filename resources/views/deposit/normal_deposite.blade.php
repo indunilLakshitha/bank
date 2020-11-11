@@ -7,7 +7,7 @@
         <div class="card-body ">
             <div class="card-header card-header-rose card-header-text">
                 <div class="card-text">
-                    <h4 class="card-title">Normal Deposite</h4>
+                    <h4 class="card-title">Normal Deposit</h4>
                 </div>
             </div>
 
@@ -59,8 +59,9 @@
                 <label class="col-sm-2 col-form-label">Account Name</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="text" class="form-control">
-                        <input type="text" class="form-control" id="customer_id" >
+                        <input type="text" class="form-control" id="full_name">
+                        <input type="text" class="form-control" name="customer_id" id="customer_id">
+                        <input type="text" class="form-control" name="account_id" id="account_id">
                     </div>
                 </div>
             </div>
@@ -71,10 +72,10 @@
                     <div class="row">
                         <div class="col-5">
                             <div class="form-group">
-                                <select name="identification_type_id" id="" class="form-control">
+                                <select name="payment_method_id" id="payment_method_id" class="form-control">
                                     <option value="">Select </option>
                                     @php
-                                        $payment_methods = Illuminate\Support\Facades\DB::table('payment_methods')->get();
+                                    $payment_methods = Illuminate\Support\Facades\DB::table('payment_methods')->get();
                                     @endphp
                                     @isset($payment_methods)
                                     @foreach ($payment_methods as $payment_method)
@@ -92,7 +93,7 @@
                 <label class="col-sm-2 col-form-label">Value</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="transaction_value">
                     </div>
                 </div>
             </div>
@@ -106,10 +107,10 @@
             </div>
 
             <div class="row">
-                <label class="col-sm-2 col-form-label">Balence</label>
+                <label class="col-sm-2 col-form-label">Balance</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" readonly>
+                        <input type="text" class="form-control" id="account_balance" name="account_balance" readonly>
                     </div>
                 </div>
             </div>
@@ -123,11 +124,14 @@
             </div>
 
 
+        </form>
 
             <div class="row">
 
                 <div class="col-6 text-right">
-                    <button type="submit" class="btn btn-rose col-4">RECEIVED</button>
+                    <a
+                        onclick="normalWithdraw(transaction_value.value,customer_id.value,account_id.value,payment_method_id.value)"
+                        class="btn btn-rose col-4 text-white">WITHDRAW</a>
                 </div>
                 <div class="col-1 text-right">
                     <button type="submit" class="btn ">Clear</button>
@@ -139,7 +143,6 @@
     </div>
     </div>
     </div>
-</form>
 
 <script type="text/javascript">
     $.ajaxSetup({
@@ -149,7 +152,7 @@
         });
             function getCustomers(name){
 
-                console.log(name)
+                // console.log(name)
                $.ajax({
                    type: 'GET',
                    url : '{{('/findmember')}}',
@@ -157,7 +160,7 @@
                        'name': name,
                     },
                     success: function(data){
-                        console.log(data)
+                        // console.log(data)
                         return showCustomers(data)
                     }
                })
@@ -172,7 +175,29 @@
                        'id': id,
                     },
                     success: function(data){
-                        console.log(data)
+                        // console.log(data)
+                    }
+               })
+           }
+            function normalWithdraw(amount,customer_id,account_id,payment_method_id){
+
+                // console.log(amount)
+                // console.log(customer_id)
+                // console.log(account_id)
+               $.ajax({
+                   type: 'GET',
+                   url : '{{('/normaldeposite')}}',
+                   data: {
+                       'transaction_value': amount,
+                       'customer_id': customer_id,
+                       'account_id': account_id,
+                       'payment_method_id': payment_method_id,
+                       'transaction_type': 'on_test',
+                    },
+                    success: function(data){
+
+                        account_balance.value=data.balance_amount
+                        return Swal.fire('Withdrawal Successful')
                     }
                })
            }
@@ -183,18 +208,21 @@
                     html = `
                     <tr>
                         <th>${i.id}</th>
-                        <th>${i.name_in_use}</th>
+                        <th>${i.full_name}</th>
                         <th>${i.identification_number} </th>
                         <th>${i.is_enable}</th>
-                        <th><a href="http://" class="btn btn-primary"  >GET</a></th>
+                        <th><a  onclick="viewCustomer('${i.full_name}','${i.account_number}','${i.customer_id}','${i.account_balance}')" class="btn btn-primary"  >GET</a></th>
                     </tr>
                     `
                     results_tbody.innerHTML += html
                 })
            }
 
-           function viewCustomer(name,account){
-
+           function viewCustomer(name,account,id,balance){
+            full_name.value = name
+            account_id.value = account
+            customer_id.value = id
+            account_balance.value = balance
            }
 
 
