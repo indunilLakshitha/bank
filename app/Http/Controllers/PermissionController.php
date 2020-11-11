@@ -28,10 +28,10 @@ class PermissionController extends Controller
     //--------------------------------RETURN TO PERMISSION CREATE VIEW---------------------
     public function store(Request $request)
     {
-        // return $request;
+    //  return $request;
         try{
 
-            $permission = Permission::create(['name' => $request->permission_name]);
+            $permission = Permission::create(['name' => $request->permission_name,'view_name'=>$request->view_name]);
 
             foreach($request->roles as $role_name){
                 $role = Role::findByName($role_name);
@@ -56,6 +56,7 @@ class PermissionController extends Controller
         $perm = Permission::find($id);
         $roles = Role::all();
         $roles_with_this_perm = Permission::where('id',$id)->first()->roles->pluck('name');
+
         return view('permissions.edit', compact('perm', 'roles_with_this_perm', 'roles'));
     }
 
@@ -65,6 +66,7 @@ class PermissionController extends Controller
         try{
             $permission = Permission::find($id)->syncRoles($request->roles);
             $permission->name = $request->permission_name;
+            $permission->view_name = $request->view_name;
             $permission->save();
 
             // foreach($request->roles as $role_name){

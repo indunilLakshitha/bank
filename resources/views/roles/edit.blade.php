@@ -24,7 +24,7 @@
                                     <tbody>
                                         @foreach ($all_permissions as $p)
                                 <tr>
-                                    <th> {{$p->name}} </th>
+                                    <th> {{$p->view_name}} </th>
                                         <td class="td-actions text-right">
                                             @can('update_roles')
                                             <input type="checkbox" value=" {{$p->name}} " name="permissions[]" id=""

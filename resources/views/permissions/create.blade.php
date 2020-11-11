@@ -23,6 +23,10 @@
                                     <label for="">Permission Name</label>
                                     <input type="text" name="permission_name" class="form-control">
                                 </div>
+                                <div class="from-group">
+                                    <label for="">Permission Name to View</label>
+                                    <input type="text" name="view_name" class="form-control">
+                                </div>
                                 <table class="table">
                                     <tbody>
                                         @foreach ($roles as $r)
