@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //perm for perms
     Route::group(['middleware' => ['permission:view_permissions']], function () {
+
         //perms/index
         Route::get('/permissions/index', 'PermissionController@index');
 
@@ -80,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['permission:delete_permissions']], function () {
             Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
         });
+        
     });
 
 
@@ -227,6 +229,11 @@ Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
 
 //-------------------------------------------------------------------------------account verification routes------start
 Route::get('/accountdetails/{id}','AccountVerificationController@accountDetails');
+
+
+//-------------------------------------------------------------------------------Transactions------start
+Route::get('/findmember','TransactionController@findMembers');
+Route::get('/findmemberbyaccno','TransactionController@findMembersById');
 
 
 

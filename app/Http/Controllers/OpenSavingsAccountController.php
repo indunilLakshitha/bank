@@ -164,7 +164,7 @@ class OpenSavingsAccountController extends Controller
 
     public function save_documents(Request $request)
     {
-        
+
 
         $prod = ProductDocument::create($request->all());
         $image = $request->file('img');
@@ -180,7 +180,6 @@ class OpenSavingsAccountController extends Controller
         $account_id = $request->account_id;
         $customer_id = $request->customer_id;
         $prod_id = $request->prod_id;
-
         $f_details = DB::table('fee_details')->get();
         $f_types = DB::table('fee_types')->get();
         return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types'));
@@ -193,6 +192,7 @@ class OpenSavingsAccountController extends Controller
     }
 
     public function nominee(Request $request){
+        
         $account_id = $request->account_id;
         $customer_id = $request->customer_id;
         $prod_id = $request->prod_id;
@@ -204,11 +204,11 @@ class OpenSavingsAccountController extends Controller
     public function add_nominee(Request $request){
 
         NomineeMember::create($request->all());
-
         return response()->json($request);
     }
 
     public function autorized_officers(Request $request){
+
         $account_id = $request->account_id;
         $customer_id = $request->customer_id;
         $prod_id = $request->prod_id;
@@ -219,13 +219,11 @@ class OpenSavingsAccountController extends Controller
     public function add_officer(Request $request){
 
         AuthorizedOfficer::create($request->all());
-
         return response()->json($request);
     }
     public function finish_open_account_saving(Request $request){
 
         AccountGeneralInformation::find($request->account_id)->status = 2;
-
         return redirect('/');
     }
 }
