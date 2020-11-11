@@ -80,6 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['permission:delete_permissions']], function () {
             Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
         });
+
     });
 
 
@@ -137,7 +138,10 @@ Route::get('/savings/verification', function () {
 Route::get('/savings/approve', function () {
     return view('savings.approval');
 });
-
+//savings index
+        Route::get('/savings/view', function () {
+            return view('savings.index');
+        });
 //-------------------------------------------------------------------------------------new saving account openning-------start
 Route::get('/late', function () {
     $idtypes = DB::table('iedentification_types')->get();
@@ -225,10 +229,24 @@ Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction'
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
 
+
+
+
+Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
+Route::get('/savings/account/{id}', 'OpenSavingsAccountController@viewSavingAccount');
+
+
+
 //-------------------------------------------------------------------------------account verification routes------start
 Route::get('/accountdetails/{id}','AccountVerificationController@accountDetails');
-
-
+Route::get('/customer_details/{id}','AccountVerificationController@customer_details');
+Route::get('/document_verification/{id}','AccountVerificationController@document_verification');
+Route::get('/signature_verification/{id}','AccountVerificationController@signature_verification');
+Route::get('/verify_image','AccountVerificationController@verify_image');
+Route::get('/main_holder_sign','AccountVerificationController@main_holder_sign');
+Route::get('/other_holder_sign','AccountVerificationController@other_holder_sign');
+Route::get('/approve_check','AccountVerificationController@approve_check');
+Route::get('/approve_done','AccountVerificationController@approve_done');
 
 
 //-------------------------------------------------------------------------------Transactions------start
