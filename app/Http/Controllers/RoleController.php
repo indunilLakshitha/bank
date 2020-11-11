@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-       //--------------------------------RETURN TO ROLES INDEX VIEW---------------------
+    //--------------------------------RETURN TO ROLES INDEX VIEW---------------------
     public function index()
     {
         // return 123;
@@ -17,14 +17,14 @@ class RoleController extends Controller
         return view('roles.index', compact('roles'));
     }
 
-       //--------------------------------RETURN TO ROLES CREATE VIEW---------------------
+    //--------------------------------RETURN TO ROLES CREATE VIEW---------------------
     public function create()
     {
         $permissions = Permission::all();
         return view('roles.create', compact('permissions'));
     }
 
-       //--------------------------------ROLES CREATE ---------------------
+    //--------------------------------ROLES CREATE ---------------------
     public function store(Request $request)
     {
         // return $request->permissions;
@@ -48,7 +48,7 @@ class RoleController extends Controller
 
     }
 
-       //--------------------------------RETURN TO ROLES EDIT VIEW---------------------
+    //--------------------------------RETURN TO ROLES EDIT VIEW---------------------
     public function edit($id)
     {
         $role = Role::find($id);
@@ -59,7 +59,7 @@ class RoleController extends Controller
         return view('roles.edit', compact('all_permissions', 'this_role_permissions', 'role'));
     }
 
-       //--------------------------------RETURN TO ROLES UPDATE VIEW---------------------
+    //--------------------------------RETURN TO ROLES UPDATE VIEW---------------------
     public function update(Request $request, $id)
     {
         try{
@@ -75,7 +75,7 @@ class RoleController extends Controller
         }
     }
 
-       //--------------------------------RETURN TO ROLES DELETE VIEW---------------------
+    //--------------------------------RETURN TO ROLES DELETE VIEW---------------------
     public function destroy($id)
     {
 

@@ -20,6 +20,10 @@
                                     <label for="">Permission Name</label>
                                     <input type="text" name="permission_name" class="form-control" value="{{$perm->name}}">
                                 </div>
+                                <div class="from-group">
+                                    <label for=""> Name to View</label>
+                                    <input type="text" name="view_name" class="form-control" value="{{$perm->view_name}}">
+                                </div>
                                 <table class="table">
                                     <tbody>
                                         @foreach ($roles as $r)
