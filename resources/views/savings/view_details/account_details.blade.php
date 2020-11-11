@@ -14,6 +14,7 @@
                             <h4 class="card-title">General Information</h4>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="row">
                         <label class="col-sm-2 col-form-label">Lead source Category</label>
                         <div class="col-sm-8">
@@ -22,6 +23,37 @@
                                     <div class="form-group">
                                         <input type="text" name="identification_number" id="identification_number"
                                             class="form-control" disabled value="{{$data->lead_source_category}}">
+=======
+                    <div class="card-body ">
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">CIF</label>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control"  placeholder="{{$CIF}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label"> Client Full Name</label>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="client_full_name"  readonly placeholder="{{ $view_1->client_full_name}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">ID Type</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" nme= "identification_type_id" readonly placeholder="{{$view_1->identification_type_id}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <input type="text" name="identification_number"  id="identification_number" readonly class="form-control" placeholder="{{$view_1->identification_number}}">
+>>>>>>> fd4c8da67a5c94e33ce58aed67948f1e687e16b2
 
                                     </div>
                                 </div>

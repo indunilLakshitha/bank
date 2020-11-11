@@ -81,7 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['permission:delete_permissions']], function () {
             Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
         });
-        
+
     });
 
 
@@ -139,7 +139,10 @@ Route::get('/savings/verification', function () {
 Route::get('/savings/approve', function () {
     return view('savings.approval');
 });
-
+//savings index
+        Route::get('/savings/view', function () {
+            return view('savings.index');
+        });
 //-------------------------------------------------------------------------------------new saving account openning-------start
 Route::get('/late', function () {
     $idtypes = DB::table('iedentification_types')->get();
@@ -226,6 +229,10 @@ Route::get('/savings/taxdetails', 'SavingsController@taxDetails');
 Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction');
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
+Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
+Route::get('/savings/account/{id}', 'OpenSavingsAccountController@viewSavingAccount');
+
+
 
 //-------------------------------------------------------------------------------account verification routes------start
 Route::get('/accountdetails/{id}','AccountVerificationController@accountDetails');
