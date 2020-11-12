@@ -106,7 +106,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //perm for member
-    Route::group(['middleware' => ['permission:view_members']], function () {
+    // Route::group(['middleware' => ['permission:view_members']], function () {
 
         //members index
         Route::get('/members', function () {
@@ -114,12 +114,12 @@ Route::group(['middleware' => 'auth'], function () {
         });
         Route::get('/test', function () {
             return view('members.addX');
-        });
+        // });
 
         Route::post('/members/search', 'MemberController@search');
         Route::post('/verification/search', 'MemberController@VerificationSearch');
     });
-    Route::group(['middleware' => ['permission:member_add']], function () {
+    // Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
         Route::get('/members/add', 'CustomerBasicDataController@add');
     });
@@ -129,7 +129,7 @@ Route::group(['middleware' => 'auth'], function () {
             return view('members.type');
         });
     });
-});
+// });
 //-------------------------------------------------account verification view
 Route::get('/savings/verification', function () {
     return view('savings.verification');

@@ -28,7 +28,7 @@ class CustomerBasicDataController extends Controller
     // }
     public function insert(Request $request){
 
-
+// return $request;
         $cus_id = $request->customer_id;
         CustomerBasicData::create($request->all());
         return view('members.2_statusanddated',compact('cus_id'))->with('success', 'Details submitted');

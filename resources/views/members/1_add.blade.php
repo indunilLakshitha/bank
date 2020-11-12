@@ -48,10 +48,13 @@
                                 <label class="col-sm-2 col-form-label">Ttile</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        {{-- <input type="text" class="form-control"> --}}
+                                        <?php $titles=\App\Models\CutomerTitle::all()?>
                                         <select name="customer_title_id" id="" class="form-control">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+                                            <option value="">Select</option>
+                                            @foreach ($titles as $title)
+                                              <option value="{{$title->id}}">{{$title->customer_title}}</option>
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>
