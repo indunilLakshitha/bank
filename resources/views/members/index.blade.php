@@ -89,9 +89,6 @@
                         <div class="col-md-6">
                             <a href="/members/type" type="" class="btn btn-fill btn-rose">TYPE</a>
                         </div>
-                        <div class="col-md-6">
-                            <a href="/members/view/{{1}}" type="" class="btn btn-fill btn-rose">View</a>
-                        </div>
                     </div>
                 </div>
         </div>
@@ -133,7 +130,7 @@
                                     <th>{{$member->customer_id}} </th>
                                     <th>{{$member->name_in_use}}</th>
                                     <th>{{$member->is_enable}}</th>
-                                    <th><a href="http://" class="btn btn-primary" >VIEW</a></th>
+                                    <th><a href="/members/view/{{$member->customer_id}}" class="btn btn-primary" >VIEW</a></th>
                                    </tr>
                                    @endforeach
 
@@ -174,7 +171,7 @@
                 <th>${i.customer_id} </th>
                 <th>${i.name_in_use}</th>
                 <th>${i.is_enable}</th>
-                <th><a href="http://" class="btn btn-primary" >VIEW</a></th>
+                <th><a href="http:/members/view/${i.customer_id}" class="btn btn-primary" >VIEW</a></th>
             </tr>
             `
             results_tbody.innerHTML += html

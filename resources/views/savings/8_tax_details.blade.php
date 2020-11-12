@@ -64,7 +64,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <select name="fee_type" id="" class="form-control" name="fee_type_id">
+                                            <select  id="" class="form-control" name="fee_type_id">
                                                 <option value="">Select </option>
 
                                                 @foreach ($f_types as $ft)
