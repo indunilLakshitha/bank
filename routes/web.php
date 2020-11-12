@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //perm for perms
     Route::group(['middleware' => ['permission:view_permissions']], function () {
+
         //perms/index
         Route::get('/permissions/index', 'PermissionController@index');
 
@@ -122,7 +123,13 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
         Route::get('/members/add', 'CustomerBasicDataController@add');
+        // Route::post('/verification/search', 'MemberController@VerificationSearch');
     });
+
+        // Route::group(['middleware' => ['permission:add_member']], function () {
+            //members add
+            Route::get('/members/add', 'CustomerBasicDataController@add');
+        // });
     Route::group(['middleware' => ['permission:view_member_type']], function () {
         //members typr index
         Route::get('/members/type', function () {
@@ -139,9 +146,9 @@ Route::get('/savings/approve', function () {
     return view('savings.approval');
 });
 //savings index
-        Route::get('/savings/view', function () {
-            return view('savings.index');
-        });
+Route::get('/savings/view', function () {
+    return view('savings.index');
+});
 //-------------------------------------------------------------------------------------new saving account openning-------start
 Route::get('/late', function () {
     $idtypes = DB::table('iedentification_types')->get();

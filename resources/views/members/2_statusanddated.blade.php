@@ -25,8 +25,8 @@
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <select name="religion_data_id" id="" class="form-control">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
                                         </select>
                                     </div>
                                 </div>
@@ -36,8 +36,8 @@
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <select name="married_status_id" id="" class="form-control">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
                                         </select>
                                     </div>
                                 </div>

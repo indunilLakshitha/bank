@@ -8,7 +8,7 @@
         <div class="col-md-10 col-12 mr-auto ml-auto">
             <div class="card">
                 <div class="card-body">
-                    <form id="private_1" action="/member/add/private" method="POST">
+                    <form id="private_1" action="{{url('/member/add/private')}}" method="POST">
                         @csrf
                         <div class="tab-pane active" id="private_1">
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
@@ -45,16 +45,19 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Ttile</label>
+                                <label class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <?php $titles=\App\Models\CutomerTitle::all()?>
                                         <select name="customer_title_id" id="" class="form-control">
-                                            <option value="">Select</option>
-                                            @foreach ($titles as $title)
-                                              <option value="{{$title->id}}">{{$title->customer_title}}</option>
-                                            @endforeach
-
+                                            <option value="">Select Title</option>
+                                            @isset($titles)
+                                                @foreach ($titles as $title)
+                                                    @if(intval($title->is_enable) == 1)
+                                                        <option value="{{$title->id}}">{{$title->customer_title}}</option>
+                                                    @endif
+                                                @endforeach
+                                            @endisset
                                         </select>
                                     </div>
                                 </div>
@@ -68,7 +71,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Fullname</label>
+                                <label class="col-sm-2 col-form-label">Full Name</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <input type="text" name="full_name" class="form-control">
@@ -98,9 +101,11 @@
                                         <select name="branch_id" id="" class="form-control">
                                             <option value="">Select Branch</option>
                                             @isset($branches)
-                                            @foreach ($branches as $branche)
-                                            <option value="{{$branche->id}}">{{$branche->branch_name}}</option>
-                                            @endforeach
+                                                @foreach ($branches as $branch)
+                                                    @if(intval($branch->is_enable) == 1)
+                                                        <option value="{{$branch->id}}">{{$branch->branch_name}}</option>
+                                                    @endif
+                                                @endforeach
                                             @endisset
 
                                         </select>
@@ -180,11 +185,15 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="account_category_id" id="" class="form-control">
+                                            <option value="">Select Account Category</option>
                                             @isset($accountcategories)
-                                            @foreach ($accountcategories as $accountcategory)
-                                            <option value="{{$accountcategory->id}}">
-                                                        {{$accountcategory->account_category}}
-                                            @endforeach
+                                                @foreach ($accountcategories as $account_category)
+                                                    @if(intval($account_category->is_enable) == 1)
+                                                        <option value="{{$account_category->id}}">
+                                                                {{$account_category->account_category}}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
                                             @endisset
 
                                         </select>
@@ -198,12 +207,15 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="small_group_id" id="" class="form-control">
-                                            <option value="">Select</option>
+                                            <option value="">Select Small Group</option>
                                             @isset($smallgroups)
-                                            @foreach ($smallgroups as $smallgroup)
-                                            <option value="{{$smallgroup->id}}">
-                                                        {{$smallgroup->small_group}}
-                                            @endforeach
+                                                @foreach ($smallgroups as $small_group)
+                                                    @if(intval($small_group->is_enable) == 1)
+                                                        <option value="{{$small_group->id}}">
+                                                                {{$small_group->small_group}}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
                                             @endisset
                                         </select>
                                     </div>
@@ -216,12 +228,15 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="sub_account_office_id" id="" class="form-control">
-                                            <option value="">Select</option>
+                                            <option value="">Select Sub Office</option>
                                             @isset($subaccountoffices)
-                                            @foreach ($subaccountoffices as $subaccountoffice)
-                                            <option value="{{$subaccountoffice->id}}">
-                                                        {{$subaccountoffice->sub_account_office}}
-                                            @endforeach
+                                                @foreach ($subaccountoffices as $sub_account_office)
+                                                    @if(intval($sub_account_office->is_enable) == 1)
+                                                        <option value="{{$sub_account_office->id}}">
+                                                                {{$sub_account_office->sub_account_office}}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
                                             @endisset
                                         </select>
                                     </div>
@@ -233,7 +248,7 @@
                                 <label class="col-sm-2 col-form-label">Sub Account Office</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="sub_account_office" class="form-control">
                                     </div>
                                 </div>
 
@@ -245,13 +260,17 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <select name="identification_type_id" id="id_type" class="form-control">
-                                                    <option value="">Select</option>
+                                                    <option value="">Select Identification Type</option>
                                                     @isset($idtypes)
-                                                    @foreach ($idtypes as $idtype)
-                                                    <option value="{{$idtype->id}}">
-                                                                {{$idtype->identification_type}}
-                                                    @endforeach
-                                                    @endisset                                                </select>
+                                                        @foreach ($idtypes as $id_type)
+                                                            @if(intval($id_type->is_enable) == 1)
+                                                                <option value="{{$id_type->id}}">
+                                                                        {{$id_type->identification_type}}
+                                                                </option>
+                                                            @endif
+                                                        @endforeach
+                                                    @endisset
+                                                </select>
 
                                             </div>
                                         </div>
@@ -287,18 +306,22 @@
                                             <select name="" id="" class="form-control">
                                                 <option value="">Select Type</option>
                                                 @isset($contacttypes)
-                                                @foreach ($contacttypes as $contacttype)
-                                                <option value="{{$contacttype->id}}">
-                                                            {{$contacttype->contact_type}}
-                                                @endforeach
-                                                @endisset                                            </select>
+                                                    @foreach ($contacttypes as $contact_type)
+                                                        @if(intval($contact_type->is_enable) == 1)
+                                                            <option value="{{$contact_type->id}}">
+                                                                    {{$contact_type->contact_type}}
+                                                            </option>
+                                                        @endif
+                                                    @endforeach
+                                                @endisset
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="telephone_number" class="form-control">
 
                                         </div>
                                     </div>
@@ -309,7 +332,7 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="fax_number" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -324,7 +347,7 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="email_address" class="form-control">
                                         </div>
                                     </div>
                                 </div>

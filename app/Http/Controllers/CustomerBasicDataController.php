@@ -16,6 +16,7 @@ use App\Models\GuardianData;
 use App\Models\OccupationData;
 use App\Models\OtherSocietyData;
 use App\Models\SpecialData;
+use App\Models\CutomerTitle;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -38,7 +39,11 @@ class CustomerBasicDataController extends Controller
 
     public function insertStatus(Request $request){
 
-        CustomerStatusDates::create($request->all());
+        $status_dates=$request;
+        $status_dates['is_enable']=1;
+        $status_dates['created_by']=Auth::user()->id;
+        $status_dates['updated_by']=Auth::user()->id;
+        CustomerStatusDates::create($status_dates->all());
         $cus_id = $request->customer_id;
 
         return view('members.3_occupation',compact('cus_id'))->with('success', 'Details submitted');
@@ -46,15 +51,23 @@ class CustomerBasicDataController extends Controller
 
     }
     public function insertOccupation(Request $request){
-
-        OccupationData::create($request->all());
+        $occupation_data=$request;
+        $occupation_data['is_enable']=1;
+        $occupation_data['is_employee']=1;
+        $occupation_data['created_by']=Auth::user()->id;
+        $occupation_data['updated_by']=Auth::user()->id;
+        OccupationData::create($occupation_data->all());
         $cus_id = $request->customer_id;
         return view('members.4_othersocieties',compact('cus_id'))->with('success', 'Details submitted');
 
 
     }
     public function insertOthersociety(Request $request){
-        OtherSocietyData::create($request->all());
+        $other_society_data=$request;
+        $other_society_data['is_enable']=1;
+        $other_society_data['created_by']=Auth::user()->id;
+        $other_society_data['updated_by']=Auth::user()->id;
+        OtherSocietyData::create($other_society_data->all());
         $cus_id = $request->customer_id;
         $all_customers = CustomerBasicData::all();
 
@@ -71,7 +84,12 @@ class CustomerBasicDataController extends Controller
     }
 
     public function insertSpecialAndAssets(Request $request){
-        SpecialData::create($request->all());
+        $special=$request;
+        $special['is_enable']=1;
+        $special['is_real_member']=1;
+        $special['created_by']=Auth::user()->id;
+        $special['updated_by']=Auth::user()->id;
+        SpecialData::create($special->all());
 
         return redirect('/');
     }
@@ -85,6 +103,7 @@ class CustomerBasicDataController extends Controller
         $subaccountoffices=SubAccountOffice::all();
         $idtypes=IedentificationType::all();
         $contacttypes=ContactType::all();
+        $titles=CutomerTitle::all();
         return view('members.1_add', compact([
                     'branches',
                     'accountcategories',
@@ -92,13 +111,17 @@ class CustomerBasicDataController extends Controller
                     'subaccountoffices',
                     'idtypes',
                     'contacttypes',
-                    'cus_id'
+                    'cus_id',
+                    'titles'
         ]));
     }
 
     public function beneficiariesAjax(Request $request){
-
-        $row = BeneficiaryData::create($request->all());
+        $benificiary=$request;
+        $benificiary['is_enable']=1;
+        $benificiary['created_by']=Auth::user()->id;
+        $benificiary['updated_by']=Auth::user()->id;
+        $row = BeneficiaryData::create($benificiary->all());
         $row->beneficiary_id = $request->id;
         $row->save();
 
@@ -111,8 +134,11 @@ class CustomerBasicDataController extends Controller
     }
 
     public function guardianAjax(Request $request){
-
-        $row = GuardianData::create($request->all());
+        $guardian=$request;
+        $guardian['is_enable']=1;
+        $guardian['created_by']=Auth::user()->id;
+        $guardian['updated_by']=Auth::user()->id;
+        $row = GuardianData::create($guardian->all());
         $row->guardian_id = $request->id;
         $row->save();
 
