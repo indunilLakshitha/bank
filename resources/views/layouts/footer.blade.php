@@ -24,7 +24,7 @@
           </li>
         </ul>
       </nav> --}}
-      <div class="copyright float-right">
+      <div class="copyright float-right" style="display: none;">
         &copy;
         <script>
           document.write(new Date().getFullYear())

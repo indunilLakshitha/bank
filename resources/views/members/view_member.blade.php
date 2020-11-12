@@ -2,12 +2,13 @@
 
 
 @section('content')
-
-<div class="content">
-    <div class="container-fluid">
-        <div class="col-md-10 col-12 mr-auto ml-auto">
+<div class="card">
+                <div class="card-body  ">
+<div class="content ">
+    <div class="container-fluid ">
+        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body  ">
                         @csrf
                         @isset($view_1)
                         <div class="tab-pane active" id="private_1">
@@ -275,19 +276,14 @@
                             </div>
                         </div>
                         @endisset
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="content">
-    <div class="container-fluid">
-        <div class="col-md-10 col-12 mr-auto ml-auto">
+        <div class="col-md-6 col-6 mr-auto ml-auto pull-right">
             <div class="card">
-                <div class="card-body">
-
+                <div class="card-body  ">
                         @csrf
                         @isset($view_2)
                         <div class="tab-pane active" id="status">
@@ -369,15 +365,13 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
 
 <div class="content">
     <div class="container-fluid">
-        <div class="col-md-10 col-12 mr-auto ml-auto">
+        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
             <div class="card">
                 <div class="card-body">
+
 
                         @csrf
                         @isset($idtypes)
@@ -426,10 +420,13 @@
         </div>
     </div>
 </div>
-
-<div class="content">
-    <div class="container-fluid">
-        <div class="col-md-10 col-12 mr-auto ml-auto">
+</div>
+</div>
+<div class="card">
+    <div class="card-body  ">
+<div class="content ">
+    <div class="container-fluid ">
+        <div class="col-md-6 col-6 mr-auto ml-auto pull-right">
             <div class="card">
                 <div class="card-body">
                         @csrf
@@ -440,7 +437,7 @@
                                     <label class="col-sm-2 col-form-label">Other Memberships</label>
                                     <div class="col-sm-10">
                                         <div class="form-group">
-                                            <textarea name="other_memberships" id="" readonly cols="70" rows="8" placeholder="{{ $view_4->other_memberships}}"></textarea>
+                                            <textarea name="other_memberships" id="" readonly cols="30" rows="10" placeholder="{{ $view_4->other_memberships}}"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -454,9 +451,9 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Previous Designation</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
-                                            <textarea name="previous_designation" readonly id="" cols="70" rows="8" placeholder="{{ $view_4->previous_designation}}"></textarea>
+                                            <textarea name="previous_designation" readonly id="" cols="30" rows="8" placeholder="{{ $view_4->previous_designation}}"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -470,11 +467,9 @@
     </div>
 </div>
 
-
 <!-- Beneficiary -->
-<div class="content">
-    <div class="container-fluid">
-        <div class="col-md-10 col-12 mr-auto ml-auto">
+
+        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
             <div class="card">
                 <div class="card-body">
                         @csrf
@@ -546,14 +541,11 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
 
 <!-- End Beneficiary -->
 
-<div class="content">
-    <div class="container-fluid">
-        <div class="col-md-10 col-12 mr-auto ml-auto">
+        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
             <div class="card">
                 <div class="card-body">
                         @csrf
@@ -561,15 +553,15 @@
                         <div class="tab-pane" id="special">
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Special Information</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <textarea name="special_information" readonly id="" cols="70" rows="10" placeholder="{{ $view_6->special_information}}"></textarea>
+                                        <textarea name="special_information" readonly id="" cols="30" rows="10" placeholder="{{ $view_6->special_information}}"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Real Member</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <input name="is_real_member" readonly  id="" class="form-control" placeholder="{{ $view_6->is_real_member}}">
                                     </div>
@@ -579,7 +571,7 @@
                             <h5 class="text-center">Assets</h5>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Item</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <input type="text" readonly class="form-control" placeholder="">
                                     </div>
@@ -601,8 +593,8 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
+ </div>
+            </div>
 
 @endsection

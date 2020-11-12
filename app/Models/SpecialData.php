@@ -10,5 +10,10 @@ class SpecialData extends Model
         'customer_id',
         'special_information',
         'is_real_member',
+        'is_enable',
+        'created_by',
+        'updated_by',
+        'created_at',
+        'updated_at',
     ];
 }

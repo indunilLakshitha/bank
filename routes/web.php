@@ -107,7 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //perm for member
-    Route::group(['middleware' => ['permission:view_members']], function () {
+    // Route::group(['middleware' => ['permission:view_members']], function () {
 
         //members index
         Route::get('/members', function () {
@@ -115,22 +115,28 @@ Route::group(['middleware' => 'auth'], function () {
         });
         Route::get('/test', function () {
             return view('members.addX');
-        });
+        // });
 
         Route::post('/members/search', 'MemberController@search');
         Route::post('/verification/search', 'MemberController@VerificationSearch');
     });
-    Route::group(['middleware' => ['permission:member_add']], function () {
+    // Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
         Route::get('/members/add', 'CustomerBasicDataController@add');
+        // Route::post('/verification/search', 'MemberController@VerificationSearch');
     });
+
+        // Route::group(['middleware' => ['permission:add_member']], function () {
+            //members add
+            Route::get('/members/add', 'CustomerBasicDataController@add');
+        // });
     Route::group(['middleware' => ['permission:view_member_type']], function () {
         //members typr index
         Route::get('/members/type', function () {
             return view('members.type');
         });
     });
-});
+// });
 //-------------------------------------------------account verification view
 Route::get('/savings/verification', function () {
     return view('savings.verification');
@@ -140,9 +146,9 @@ Route::get('/savings/approve', function () {
     return view('savings.approval');
 });
 //savings index
-        Route::get('/savings/view', function () {
-            return view('savings.index');
-        });
+Route::get('/savings/view', function () {
+    return view('savings.index');
+});
 //-------------------------------------------------------------------------------------new saving account openning-------start
 Route::get('/late', function () {
     $idtypes = DB::table('iedentification_types')->get();
@@ -229,6 +235,10 @@ Route::get('/savings/taxdetails', 'SavingsController@taxDetails');
 Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction');
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
+
+
+
+
 Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
 Route::get('/savings/account/{id}', 'OpenSavingsAccountController@viewSavingAccount');
 
@@ -249,6 +259,8 @@ Route::get('/approve_done','AccountVerificationController@approve_done');
 //-------------------------------------------------------------------------------Transactions------start
 Route::get('/findmember','TransactionController@findMembers');
 Route::get('/findmemberbyaccno','TransactionController@findMembersById');
+Route::get('/normalwithdraw','TransactionController@normalWithdraw');
+Route::get('/normaldeposite','TransactionController@normalDeposite');
 
 
 
