@@ -16,6 +16,7 @@ use App\Models\GuardianData;
 use App\Models\OccupationData;
 use App\Models\OtherSocietyData;
 use App\Models\SpecialData;
+use App\Models\CutomerTitle;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -85,6 +86,7 @@ class CustomerBasicDataController extends Controller
         $subaccountoffices=SubAccountOffice::all();
         $idtypes=IedentificationType::all();
         $contacttypes=ContactType::all();
+        $titles=CutomerTitle::all();
         return view('members.1_add', compact([
                     'branches',
                     'accountcategories',
@@ -92,7 +94,8 @@ class CustomerBasicDataController extends Controller
                     'subaccountoffices',
                     'idtypes',
                     'contacttypes',
-                    'cus_id'
+                    'cus_id',
+                    'titles'
         ]));
     }
 

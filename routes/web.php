@@ -81,7 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['permission:delete_permissions']], function () {
             Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
         });
-        
+
     });
 
 
@@ -119,7 +119,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::post('/members/search', 'MemberController@search');
     });
-        Route::group(['middleware' => ['permission:member_add']], function () {
+        Route::group(['middleware' => ['permission:add_member']], function () {
         //members add
         Route::get('/members/add','CustomerBasicDataController@add');
     });
