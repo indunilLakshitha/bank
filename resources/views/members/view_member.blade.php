@@ -9,6 +9,7 @@
             <div class="card">
                 <div class="card-body">
                         @csrf
+                        @isset($view_1)
                         <div class="tab-pane active" id="private_1">
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
                             <div class="row justify-content-center">
@@ -273,6 +274,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endisset
 
                 </div>
             </div>
@@ -287,6 +289,7 @@
                 <div class="card-body">
 
                         @csrf
+                        @isset($view_2)
                         <div class="tab-pane active" id="status">
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Birth Date / Nic Date</label>
@@ -361,7 +364,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        @endisset
                     {{-- Ends Private 1 --}}
                 </div>
             </div>
@@ -377,6 +380,7 @@
                 <div class="card-body">
 
                         @csrf
+                        @isset($idtypes)
                         <div class="tab-pane active" id="status">
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Employee at Society</label>
@@ -415,6 +419,7 @@
                                 </div>
                             </div>
                         </div>
+                         @endisset
                     {{-- Ends Private 1 --}}
                 </div>
             </div>
@@ -428,6 +433,7 @@
             <div class="card">
                 <div class="card-body">
                         @csrf
+                        @isset($view_4)
                         <div class="tab-pane active" id="status">
                             <div class="tab-pane" id="other_societies">
                                 <div class="row">
@@ -456,7 +462,7 @@
                                 </div>
                             </div>
                         </div>
-
+                         @endisset
                     {{-- Ends Private 1 --}}
                 </div>
             </div>
@@ -551,6 +557,7 @@
             <div class="card">
                 <div class="card-body">
                         @csrf
+                        @isset($view_6)
                         <div class="tab-pane" id="special">
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Special Information</label>
@@ -590,6 +597,7 @@
 
                             </div>
                         </div>
+                        @endisset
                 </div>
             </div>
         </div>
