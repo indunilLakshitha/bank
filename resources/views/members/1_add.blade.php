@@ -276,7 +276,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                <input type="text" name="identification_number" class="form-control">
+                                                <input type="text" name="identification_number" class="form-control" placeholder="900000000V">
                                             </div>
                                         </div>
                                         {{-- <div class="col">
@@ -321,7 +321,7 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <input type="text" name="telephone_number" class="form-control">
+                                            <input type="text" name="telephone_number" placeholder="011 2345 678" class="form-control">
 
                                         </div>
                                     </div>

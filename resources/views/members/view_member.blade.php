@@ -18,7 +18,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                             <label for="">Code</label>
-                                            <input class="form-control" name="customer_id" readonly type="text"  value="{{ $view_1->customer_id}}">
+                                            <input class="form-control" name="customer_id" readonly type="text"  value="{{ isset($view_1->customer_id)?$view_1->customer_id:0}}">
                                             </div>
                                         </div>
                                     </div>
@@ -33,7 +33,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                <input name="customer_status_id" id="c" readonly class="form-control" value="{{ $view_1->customer_status_id}}">
+                                                <input name="customer_status_id" id="c" readonly class="form-control" value="{{ isset($view_1->customer_status_id)?$view_1->customer_status_id:0}}">
 
                                                 </div>
                                             </div>
@@ -42,10 +42,10 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Ttile</label>
+                                <label class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="customer_title_id" readonly class="form-control"  value="{{ $view_1->customer_title_id}}">
+                                        <input type="text" name="customer_title_id" readonly class="form-control"  value="{{isset($view_1->customer_title_id)? $view_1->customer_title_id: 0}}">
                                     </div>
                                 </div>
                             </div>
@@ -53,15 +53,15 @@
                                 <label class="col-sm-2 col-form-label">Name in Use</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input name="name_in_use" type="text" readonly class="form-control" value="{{ $view_1->name_in_use}}">
+                                        <input name="name_in_use" type="text" readonly class="form-control" value="{{ isset($view_1->name_in_use)?$view_1->name_in_use:''}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Fullname</label>
+                                <label class="col-sm-2 col-form-label">Full Name</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="full_name" readonly class="form-control" value="{{ $view_1->full_name}}" >
+                                        <input type="text" name="full_name" readonly class="form-control" value="{{ isset($view_1->full_name) ? $view_1->full_name: ''}}" >
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                 <label class="col-sm-2 col-form-label">Surname</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="surname" readonly class="form-control" value="{{ $view_1->surname}}">
+                                        <input type="text" name="surname" readonly class="form-control" value="{{ isset($view_1->surname) ? $view_1->surname: ''}}">
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                 <label class="col-sm-2 col-form-label">Branch</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="branch_id"  readonly class="form-control" value="{{ $view_1->branch_id}}">
+                                        <input type="text" name="branch_id"  readonly class="form-control" value="{{ isset($view_1->branch_id)?$view_1->branch_id:0}}">
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                                 <label class="col-sm-2 col-form-label">Account Category</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" name="account_category_id" readonly class="form-control" value="{{ $view_1->account_category_id}}">
+                                        <input type="text" name="account_category_id" readonly class="form-control" value="{{ isset($view_1->account_category_id)?$view_1->account_category_id:0}}">
                                     </div>
                                 </div>
 
@@ -171,7 +171,7 @@
                                 <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" name="small_group_id" readonly class="form-control" value="{{ $view_1->small_group_id}}">
+                                        <input type="text" name="small_group_id" readonly class="form-control" value="{{ isset($view_1->small_group_id)?$view_1->small_group_id:0}}">
                                     </div>
                                 </div>
 
@@ -181,7 +181,7 @@
                                 <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" name="sub_account_office_id" readonly class="form-control" value="{{ $view_1->sub_account_office_id}}">
+                                        <input type="text" name="sub_account_office_id" readonly class="form-control" value="{{ isset($view_1->sub_account_office_id)?$view_1->sub_account_office_id:0}}">
                                     </div>
                                 </div>
 
@@ -202,12 +202,12 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <input type="text" name="identification_type_id " readonly class="form-control" value="{{ $view_1->identification_type_id }}">
+                                                <input type="text" name="identification_type_id " readonly class="form-control" value="{{ isset($view_1->identification_type_id)?$view_1->identification_type_id:0 }}">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                <input type="text" name="identification_number" readonly class="form-control" value="{{ $view_1->identification_number }}">
+                                                <input type="text" name="identification_number" readonly class="form-control" value="{{ isset($view_1->identification_number)?$view_1->identification_number:'' }}">
                                             </div>
                                         </div>
                                     </div>
@@ -292,7 +292,7 @@
                                 <label class="col-sm-2 col-form-label">Birth Date / Nic Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="date_of_birth" class="form-control" readonly value="{{ $view_2->date_of_birth }}">
+                                        <input type="text" name="date_of_birth" class="form-control" readonly value="{{ isset($view_2->date_of_birth)?$view_2->date_of_birth:'' }}">
                                     </div>
                                 </div>
                             </div>
@@ -300,7 +300,7 @@
                                 <label class="col-sm-2 col-form-label">Religion</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="religion_data_id" class="form-control" readonly value="{{ $view_2->religion_data_id }}">
+                                        <input type="text" name="religion_data_id" class="form-control" readonly value="{{ isset($view_2->religion_data_id)?$view_2->religion_data_id:'' }}">
                                     </div>
                                 </div>
                             </div>
@@ -308,7 +308,7 @@
                                 <label class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="married_status_id" class="form-control" readonly value="{{ $view_2->married_status_id }}">
+                                        <input type="text" name="married_status_id" class="form-control" readonly value="{{ isset($view_2->married_status_id)?$view_2->married_status_id:0 }}">
                                     </div>
                                 </div>
                             </div>
@@ -316,7 +316,7 @@
                                 <label class="col-sm-2 col-form-label">Date Became Member</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="member_date" class="form-control" readonly value="{{ $view_2->member_date}}" >
+                                        <input type="text" name="member_date" class="form-control" readonly value="{{ isset($view_2->member_date)?$view_2->member_date:''}}" >
                                     </div>
                                 </div>
                             </div>
@@ -324,7 +324,7 @@
                                 <label class="col-sm-2 col-form-label">Joined Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="join_date" class="form-control" readonly value="{{ $view_2->join_date}}">
+                                        <input type="text" name="join_date" class="form-control" readonly value="{{ isset($view_2->join_dat)?$view_2->join_date:''}}">
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +332,7 @@
                                 <label class="col-sm-2 col-form-label">Expired Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="expire_date" class="form-control" readonly value="{{ $view_2->expire_date}}">
+                                        <input type="text" name="expire_date" class="form-control" readonly value="{{ isset($view_2->expire_date)?$view_2->expire_date:''}}">
                                     </div>
                                 </div>
                             </div>
@@ -340,7 +340,7 @@
                                 <label class="col-sm-2 col-form-label">Exit Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="exit_date" class="form-control" readonly value="{{ $view_2->exit_date}}">
+                                        <input type="text" name="exit_date" class="form-control" readonly value="{{ isset($view_2->exit_date)?$view_2->exit_date:''}}">
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +348,7 @@
                                 <label class="col-sm-2 col-form-label">Death Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="death_date" class="form-control" readonly placeholder="{{ $view_2->death_date}}">
+                                        <input type="text" name="death_date" class="form-control" readonly placeholder="{{ isset($view_2->death_date)?$view_2->death_date:''}}">
                                     </div>
                                 </div>
                             </div>
@@ -356,7 +356,7 @@
                                 <label class="col-sm-2 col-form-label">Neglection Starting Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="neglection_starting_date" readonly class="form-control" placeholder="{{ $view_2->neglection_starting_date}}">
+                                        <input type="text" name="neglection_starting_date" readonly class="form-control" placeholder="{{ isset($view_2->neglection_starting_date)?$view_2->neglection_starting_date:''}}">
                                     </div>
                                 </div>
                             </div>
@@ -382,7 +382,7 @@
                                 <label class="col-sm-2 col-form-label">Employee at Society</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="is_employee" readonly class="form-control" placeholder="{{ $view_3->is_employee}}">
+                                        <input type="text" name="is_employee" readonly class="form-control" placeholder="{{ isset($view_3->is_employee)?$view_3->is_employee:0}}">
                                     </div>
                                 </div>
                             </div>
@@ -390,7 +390,7 @@
                                 <label class="col-sm-2 col-form-label">Designation</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="designation" readonly class="form-control" placeholder="{{ $view_3->designation}}">
+                                        <input type="text" name="designation" readonly class="form-control" placeholder="{{ isset($view_3->designation)?$view_3->designation:''}}">
                                     </div>
                                 </div>
                             </div>
@@ -398,10 +398,10 @@
                                 <label class="col-sm-2 col-form-label">Address</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="address_line_1" readonly class="form-control" placeholder="{{ $view_3->address_line_1}}">
-                                        <input type="text" name="address_line_2" readonly class="form-control" placeholder="{{ $view_3->address_line_2}}">
-                                        <input type="text" name="address_line_3" readonly class="form-control" placeholder="{{ $view_3->address_line_3}}">
-                                        <input type="text" name="address_line_4" readonly class="form-control" placeholder="{{ $view_3->address_line_4}}">
+                                        <input type="text" name="address_line_1" readonly class="form-control" placeholder="{{ isset($view_3->address_line_1)?$view_3->address_line_1:''}}">
+                                        <input type="text" name="address_line_2" readonly class="form-control" placeholder="{{ isset($view_3->address_line_2)?$view_3->address_line_2:''}}">
+                                        <input type="text" name="address_line_3" readonly class="form-control" placeholder="{{ isset($view_3->address_line_3)?$view_3->address_line_3:''}}">
+                                        <input type="text" name="address_line_4" readonly class="form-control" placeholder="{{ isset($view_3->address_line_4)?$view_3->address_line_4:''}}">
                                     </div>
                                 </div>
                             </div>
@@ -409,7 +409,7 @@
                                 <label class="col-sm-2 col-form-label">EPF No</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" readonly name="epf_no" placeholder="{{ $view_3->epf_no}}">
+                                        <input type="text" class="form-control" readonly name="epf_no" placeholder="{{ isset($view_3->epf_no)?$view_3->epf_no:''}}">
 
                                     </div>
                                 </div>
@@ -434,7 +434,7 @@
                                     <label class="col-sm-2 col-form-label">Other Memberships</label>
                                     <div class="col-sm-10">
                                         <div class="form-group">
-                                            <textarea name="other_memberships" id="" readonly cols="70" rows="8" placeholder="{{ $view_4->other_memberships}}"></textarea>
+                                            <textarea name="other_memberships" id="" readonly cols="70" rows="8" placeholder="{{ isset($view_4->other_memberships)?$view_4->other_memberships:''}}"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -442,7 +442,7 @@
                                     <label class="col-sm-2 col-form-label">Curr. Designation</label>
                                     <div class="col-sm-10">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" readonly name="current_designation" placeholder="{{ $view_4->current_designation}}">
+                                            <input type="text" class="form-control" readonly name="current_designation" placeholder="{{ isset($view_4->current_designation)?$view_4->current_designation:''}}">
                                         </div>
                                     </div>
                                 </div>
@@ -450,7 +450,7 @@
                                     <label class="col-sm-2 col-form-label">Previous Designation</label>
                                     <div class="col-sm-10">
                                         <div class="form-group">
-                                            <textarea name="previous_designation" readonly id="" cols="70" rows="8" placeholder="{{ $view_4->previous_designation}}"></textarea>
+                                            <textarea name="previous_designation" readonly id="" cols="70" rows="8" placeholder="{{ isset($view_4->previous_designation)?$view_4->previous_designation:''}}"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -556,7 +556,7 @@
                                 <label class="col-sm-2 col-form-label">Special Information</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <textarea name="special_information" readonly id="" cols="70" rows="10" placeholder="{{ $view_6->special_information}}"></textarea>
+                                        <textarea name="special_information" readonly id="" cols="70" rows="10" placeholder="{{ isset($view_6->special_information)?$view_6->special_information:''}}"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -564,7 +564,7 @@
                                 <label class="col-sm-2 col-form-label">Real Member</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input name="is_real_member" readonly  id="" class="form-control" placeholder="{{ $view_6->is_real_member}}">
+                                        <input name="is_real_member" readonly  id="" class="form-control" placeholder="{{ isset($view_6->is_real_member)?$view_6->is_real_member:0}}">
                                     </div>
                                 </div>
                             </div>
