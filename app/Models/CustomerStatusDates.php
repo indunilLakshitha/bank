@@ -20,6 +20,6 @@ class CustomerStatusDates extends Model
         'is_enable',
         'created_by',
         'updated_by',
-        '',
+        'gender_id',
     ];
 }
