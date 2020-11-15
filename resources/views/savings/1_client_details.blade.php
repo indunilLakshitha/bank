@@ -34,9 +34,21 @@
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input
+                                    @php
+                                    $basic_data = Illuminate\Support\Facades\DB::table('customer_basic_data')->get();
+                                @endphp
+                                 <select  id="client_full_name" class="form-control">
+                                    <option value="">Select</option>
+                                    @isset($basic_data)
+                                    @foreach ($basic_data as $basic_dat)
+                                    <option value="{{$basic_dat->full_name}}">
+                                        {{$basic_dat->full_name}}
+                                        @endforeach
+                                        @endisset
+                                </select>
+                                    {{-- <input
                                     oninput="toCap(this.value, this.id)"
-                                    type="text" class="form-control" id="client_full_name">
+                                    type="text" class="form-control" id="client_full_name"> --}}
                                 </div>
                             </div>
                         </div>
@@ -46,7 +58,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <select name="identification_type_id" id="identification_type_id" class="form-control">
+                                            <select name="identification_type_id" id="identification_type_id" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select</option>
                                                 @isset($idtypes)
                                                 @foreach ($idtypes as $idtype)
@@ -85,7 +97,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <select name="identification_type_id"   class="form-control">
+                                            <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select Customer Type</option>
                                                 @isset($idtypes)
                                                 @foreach ($idtypes as $idtype)
@@ -124,7 +136,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="identification_type_id"   class="form-control">
+                                            <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                <option value="">Yes</option>
                                                <option value="">No</option>
@@ -140,7 +152,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="identification_type_id"   class="form-control">
+                                            <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                     <option value="">Yes</option>
                                                     <option value="">No</option>
@@ -249,7 +261,7 @@
                                             @php
                                             $acc_cats = Illuminate\Support\Facades\DB::table('account_categories')->get();
                                         @endphp
-                                            <select name="account_category_id"   class="form-control">
+                                            <select name="account_category_id"   class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($acc_cats)
                                                 @foreach ($acc_cats as $ac_cat)
@@ -272,7 +284,7 @@
                                             @php
                                                 $acc_types = Illuminate\Support\Facades\DB::table('account_types')->get();
                                             @endphp
-                                            <select name="account_type_id"   class="form-control">
+                                            <select name="account_type_id"   class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($acc_types)
                                                 @foreach ($acc_types as $ac_type)

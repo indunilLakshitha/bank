@@ -31,7 +31,7 @@
                                         @php
                                             $prod_types = Illuminate\Support\Facades\DB::table('product_types')->get();
                                         @endphp
-                                        <select name="product_type_id"   class="form-control">
+                                        <select name="product_type_id"   class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select </option>
                                             @isset($prod_types)
                                             @foreach ($prod_types as $item)
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="interest_type_id"   class="form-control">
+                                        <select name="interest_type_id"   class="selectpicker" data-style="select-with-transition">
                                             @php
                                                 $interest_types = Illuminate\Support\Facades\DB::table('interest_types')->get();
                                             @endphp
@@ -74,7 +74,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="identification_type_id"   class="form-control">
+                                        <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition"">
                                             <option value="">Select </option>
                                             @isset($idtypes)
                                             @foreach ($idtypes as $idtype)
@@ -94,7 +94,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="currency_id"   class="form-control">
+                                        <select name="currency_id"   class="selectpicker" data-style="select-with-transition">
                                             @php
                                                 $currencies = Illuminate\Support\Facades\DB::table('currencies')->get();
                                             @endphp
@@ -118,7 +118,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="identification_type_id"   class="form-control">
+                                        <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select </option>
                                             @isset($idtypes)
                                             @foreach ($idtypes as $idtype)
@@ -138,7 +138,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="identification_type_id"   class="form-control">
+                                        <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select </option>
                                             @isset($idtypes)
                                             @foreach ($idtypes as $idtype)

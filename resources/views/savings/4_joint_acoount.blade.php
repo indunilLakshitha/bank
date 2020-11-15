@@ -40,7 +40,7 @@
                                             @php
                                                 $idtypes = Illuminate\Support\Facades\DB::table('iedentification_types')->get()
                                             @endphp
-                                            <select name="oh_identification_type_id"  id="oh_identification_type_id" class="form-control">
+                                            <select name="oh_identification_type_id"  id="oh_identification_type_id" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select</option>
                                                 @isset($idtypes)
                                                 @foreach ($idtypes as $idtype)

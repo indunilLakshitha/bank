@@ -26,7 +26,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="identification_type_id" id="" class="form-control">
+                                            <select name="identification_type_id" id="" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($idtypes)
                                                 @foreach ($idtypes as $idtype)
@@ -46,7 +46,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="identification_type_id" id="" class="form-control">
+                                            <select name="identification_type_id" id="" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($idtypes)
                                                 @foreach ($idtypes as $idtype)
@@ -66,7 +66,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="identification_type_id" id="" class="form-control">
+                                            <select name="identification_type_id" id="" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($idtypes)
                                                 @foreach ($idtypes as $idtype)
