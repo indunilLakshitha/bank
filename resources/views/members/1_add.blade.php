@@ -320,8 +320,8 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div class="col-sm-6">
-                                            <input type="text" name="telephone_number" class="form-control">
+                                        <div class="col-sm-5">
+                                            <input type="number" name="telephone_number" class="form-control" maxlength="10">
 
                                         </div>
                                     </div>
@@ -346,8 +346,8 @@
                                 <label class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <div class="col-sm-8">
-                                            <input type="text" name="email_address" class="form-control">
+                                        <div class="col-sm-5">
+                                            <input type="email" name="email_address" class="form-control">
                                         </div>
                                     </div>
                                 </div>
