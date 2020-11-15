@@ -117,9 +117,9 @@ Route::group(['middleware' => 'auth'], function () {
             return view('members.addX');
         // });
 
-        Route::post('/members/search', 'MemberController@search');
-        Route::post('/verification/search', 'MemberController@VerificationSearch');
     });
+    Route::post('/members/search', 'MemberController@search');
+    Route::post('/verification/search', 'MemberController@VerificationSearch');
     // Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
         Route::get('/members/add', 'CustomerBasicDataController@add');

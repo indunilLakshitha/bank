@@ -2,7 +2,7 @@
 
 
 @section('content')
-
+@isset($view_1)
 <div class="content">
     <div class="container-fluid">
         <div class="col-md-12">
@@ -232,8 +232,8 @@
                         </div>
                     </div>
                 </div>
-
-
+@endisset
+@isset($view_2)
 
                     <div class="card ">
                         <div class="card-body ">
@@ -350,6 +350,7 @@
 
                     </div>
                 </div>
+                @endisset
                 <div class="card ">
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
