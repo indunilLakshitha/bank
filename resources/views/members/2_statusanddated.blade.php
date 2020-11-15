@@ -24,21 +24,47 @@
                                 <label class="col-sm-2 col-form-label">Religion</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <select name="religion_data_id" id="" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
+                                        @php
+                                            $rels = Illuminate\Support\Facades\DB::table('relegion_data')->get();
+                                        @endphp
+                                        <select name="religion_data_id" id=""  class="selectpicker" id="married_status_id" data-style="select-with-transition">
+                                            <option value="">Select</option>
+                                            @foreach ($rels as $item)
+                                                <option value="{{$item->id}}">{{$item->religion_data}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Status</label>
+                                <label class="col-sm-2 col-form-label">Married Status</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <select name="married_status_id" id="" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
+                                        @php
+                                        $rels = Illuminate\Support\Facades\DB::table('married_statuses')->get();
+                                    @endphp
+                                    <select name="married_status_id" id=""  class="selectpicker" id="married_status_id" data-style="select-with-transition">
+                                        <option value="">Select</option>
+                                        @foreach ($rels as $item)
+                                            <option value="{{$item->id}}">{{$item->married_status}}</option>
+                                        @endforeach
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Gender</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        @php
+                                        $rels = Illuminate\Support\Facades\DB::table('genders')->get();
+                                    @endphp
+                                    <select name="gender_id" id=""  class="selectpicker" id="married_status_id" data-style="select-with-transition">
+                                        <option value="">Select</option>
+                                        @foreach ($rels as $item)
+                                            <option value="{{$item->id}}">{{$item->gender}}</option>
+                                        @endforeach
+                                    </select>
                                     </div>
                                 </div>
                             </div>
