@@ -300,7 +300,7 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Telephone No</label>
-                                <div class="col-sm-5">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="col-sm-5">
                                             <select name="" id="" class="form-control">
@@ -318,9 +318,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-6">
                                             <input type="text" name="telephone_number" class="form-control">
 
                                         </div>
@@ -329,9 +329,9 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Fax</label>
-                                <div class="col-sm-5">
+                                <div class="col-sm-8">
                                     <div class="form-group">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-8">
                                             <input type="text" name="fax_number" class="form-control">
                                         </div>
                                     </div>
@@ -344,9 +344,9 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-5">
+                                <div class="col-sm-8">
                                     <div class="form-group">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-8">
                                             <input type="text" name="email_address" class="form-control">
                                         </div>
                                     </div>
