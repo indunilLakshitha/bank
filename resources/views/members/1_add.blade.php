@@ -276,7 +276,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                <input type="text" name="identification_number" class="form-control">
+                                                <input type="text" name="identification_number" class="form-control" placeholder="900000000V">
                                             </div>
                                         </div>
                                         {{-- <div class="col">
@@ -300,7 +300,7 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Telephone No</label>
-                                <div class="col-sm-5">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="col-sm-5">
                                             <select name="" id="" class="selectpicker" data-style="select-with-transition">
@@ -318,10 +318,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <input type="number" name="telephone_number" class="form-control" maxlength="10">
+                                            <input type="number" name="telephone_number" class="form-control" placeholder="011 2345 678" maxlength="10">
 
                                         </div>
                                     </div>
@@ -329,9 +329,15 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Fax</label>
+<<<<<<< HEAD
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="col-sm-6">
+=======
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+>>>>>>> 531b63b0514b80970728f7e8bc3db9df56ec01c1
                                             <input type="text" name="fax_number" class="form-control">
                                         </div>
                                     </div>
@@ -344,7 +350,11 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Email</label>
+<<<<<<< HEAD
                                 <div class="col-sm-6">
+=======
+                                <div class="col-sm-8">
+>>>>>>> 531b63b0514b80970728f7e8bc3db9df56ec01c1
                                     <div class="form-group">
                                         <div class="col-sm-6">
                                             <input type="email" name="email_address" class="form-control">

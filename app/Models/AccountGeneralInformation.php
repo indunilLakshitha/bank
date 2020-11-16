@@ -16,7 +16,7 @@ class AccountGeneralInformation extends Model
         'account_category_id',
         'account_type_id',
         'account_number',
-        'branch_id',
+        'branch_code',
         'has_passbook',
         'has_internet_banking',
         'has_mobile_banking',
@@ -26,5 +26,11 @@ class AccountGeneralInformation extends Model
         'created_by',
         'updated_by',
         'account_balance',
+        'FATCA_clearance_received ',
+        'PEP_clearance_received ',
+        'customer_rating ',
+        'has_account_statement ',
+        'branch_id'
+
     ];
 }

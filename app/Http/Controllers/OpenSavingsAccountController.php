@@ -11,6 +11,7 @@ use App\Models\ProductData;
 use App\Models\ProductDocument;
 use App\Models\ProductFeeData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OpenSavingsAccountController extends Controller
@@ -59,7 +60,7 @@ class OpenSavingsAccountController extends Controller
     public function submitAll(Request $request)
     {
 
-        // return $request;
+        $details['has_passbook']='1';
         $acc = AccountGeneralInformation::create($request->all());
 
         if ($request->file('cus_sign_img')) {
@@ -100,6 +101,9 @@ class OpenSavingsAccountController extends Controller
 
     public function client_details(Request $request)
     {
+        $details=$request;
+        $details['created_by']=Auth::user()->id;
+        $details['is_enable']=1;
         $acc = AccountGeneralInformation::create($request->all());
 
         if ($request->file('cus_sign_img')) {

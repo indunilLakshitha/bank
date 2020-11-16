@@ -129,15 +129,18 @@
                                     ?>
                                    @isset($members)
                                    @foreach ($members as $member)
-                                   <tr>
-                                    <th>{{$member->id}}</th>
-                                    <th>{{$member->customer_id}} </th>
-                                    <th>{{$member->identification_type}} </th>
-                                    <th>{{$member->identification_number}} </th>
-                                    <th>{{$member->name_in_use}}</th>
-                                    <th>{{$member->is_enable}}</th>
-                                    <th><a href="/members/view/{{$member->customer_id}}" class="btn btn-primary" >VIEW</a></th>
-                                   </tr>
+                                       <tr>
+                                            <th>{{$member->id}}</th>
+                                            <th>{{$member->customer_id}} </th>
+                                            <th>{{$member->identification_number}}</th>
+                                            <th>{{$member->name_in_use}}</th>
+                                           @if(intval($member->is_enable) == 1)
+                                                <th>ACTIVE</th>
+                                           @else
+                                               <th>INACTIVE</th>
+                                           @endif
+                                            <th><a href="{{url('/members/view/'.$member->customer_id)}}" class="btn btn-primary" >VIEW</a></th>
+                                       </tr>
                                    @endforeach
 
                                    @endisset

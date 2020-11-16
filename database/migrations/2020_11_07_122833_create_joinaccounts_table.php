@@ -21,6 +21,9 @@ class CreateJoinaccountsTable extends Migration
             $table->string('holders_count');
             $table->string('withdrawal_limit_holder');
             $table->string('minimum_auth_count');
+            $table->string('oh_identification_number');
+            $table->tinyInteger('oh_identification_type_id');
+            $table->string('oh_name');
 
             $table->tinyInteger('is_enable')->nullable();
             $table->string('created_by');

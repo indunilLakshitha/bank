@@ -29,6 +29,12 @@ class CreateAccountGeneralInformationTable extends Migration
             $table->tinyInteger('has_sms');
             $table->tinyInteger('has_atm');
 
+            $table->tinyInteger('FATCA_clearance_received');
+            $table->tinyInteger('PEP_clearance_received');
+            $table->tinyInteger('customer_rating');
+            $table->tinyInteger('has_account_statement');
+            $table->tinyInteger('branch_code');
+
             $table->tinyInteger('is_enable')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
