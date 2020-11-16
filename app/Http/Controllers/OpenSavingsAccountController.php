@@ -75,6 +75,15 @@ class OpenSavingsAccountController extends Controller
         return 123;
     }
 
+    public function search_by_full_name(Request $request){
+        // return $request;
+        $data = DB::select("
+        SELECT * FROM customer_basic_data
+        WHERE full_name LIKE '%$request->text%'
+        ");
+        return response()->json($data);
+    }
+
     public function search_by_name(Request $request)
     {
         // $data = DB::table('customer_basic_data')
@@ -194,7 +203,7 @@ class OpenSavingsAccountController extends Controller
     }
 
     public function nominee(Request $request){
-        
+
         $account_id = $request->account_id;
         $customer_id = $request->customer_id;
         $prod_id = $request->prod_id;

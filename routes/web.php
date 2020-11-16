@@ -190,6 +190,7 @@ Route::get('/get_cus_details_by_name', 'OpenSavingsAccountController@get_cus_det
 Route::get('/get_guardian', 'OpenSavingsAccountController@get_guardian');
 Route::post('/submit_all', 'OpenSavingsAccountController@submitAll');
 Route::get('/search_by_name', 'OpenSavingsAccountController@search_by_name');
+Route::get('/search_by_full_name', 'OpenSavingsAccountController@search_by_full_name');
 
 Route::get('form/view', 'CustomerController@formView');
 Route::post('form/data', 'CustomerController@formData');

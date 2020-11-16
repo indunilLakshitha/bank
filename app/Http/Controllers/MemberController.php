@@ -16,6 +16,8 @@ class MemberController extends Controller
             SELECT * FROM customer_status_dates
             LEFT JOIN customer_basic_data
             ON customer_basic_data.customer_id = customer_status_dates.customer_id
+            LEFT JOIN iedentification_types
+            ON iedentification_types.id = customer_basic_data.identification_type_id
             WHERE customer_status_dates.customer_id LIKE '%$request->customer_id%'
             AND customer_status_dates.married_status_id LIKE '%$request->married_status_id%'
             AND  customer_status_dates.religion_data_id LIKE '%$request->religion_data_id%'

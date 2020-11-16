@@ -117,17 +117,23 @@
                                 <thead>
                                     <th>ID </th>
                                     <th>CODE</th>
+                                    <th>IDENTIFICATION TYPE</th>
+                                    <th>IDENTIFICATION NUMBER</th>
                                     <th>NAME</th>
                                     <th>STATUS</th>
                                     <th>ACTION</th>
                                 </thead>
                                 <tbody id="results_tbody">
-                                   <?php $members=\App\Models\CustomerBasicData::all()?>
+                                   <?php
+                                    $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')->get();
+                                    ?>
                                    @isset($members)
                                    @foreach ($members as $member)
                                    <tr>
                                     <th>{{$member->id}}</th>
                                     <th>{{$member->customer_id}} </th>
+                                    <th>{{$member->identification_type}} </th>
+                                    <th>{{$member->identification_number}} </th>
                                     <th>{{$member->name_in_use}}</th>
                                     <th>{{$member->is_enable}}</th>
                                     <th><a href="/members/view/{{$member->customer_id}}" class="btn btn-primary" >VIEW</a></th>
@@ -169,6 +175,8 @@
             <tr>
                 <th>${i.id}</th>
                 <th>${i.customer_id} </th>
+                <th>${i.identification_type} </th>
+                <th>${i.identification_number} </th>
                 <th>${i.name_in_use}</th>
                 <th>${i.is_enable}</th>
                 <th><a href="http:/members/view/${i.customer_id}" class="btn btn-primary" >VIEW</a></th>

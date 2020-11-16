@@ -35,9 +35,15 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input
-                                    oninput="toCap(this.value, this.id)"
-                                    type="text" class="form-control" id="client_full_name">
+                                    oninput="toCap(this.value, this.id), get_options(this.value, this)"
+                                    type="text" class="form-control js-example-data-ajax" id="client_full_name">
+
                                 </div>
+                                        <select
+                                        onchange="set_full_name(this.value, this )"
+                                        class="form-control d-none" id="client_full_name_select">
+
+                                        </select>
                             </div>
                         </div>
                         <div class="row">
@@ -328,6 +334,143 @@
         </div>
     </div>
 </div>
+
+<script>
+//     $("#client_full_name").select2({
+//   ajax: {
+//     url: '{{('/search_by_full_name')}}',
+//     dataType: 'json',
+//     delay: 250,
+//     // data: data
+//     data: function (params) {
+//       return {
+//         q: params.term, // search term
+//         page: params.page
+//       };
+//     },
+//     processResults : function(data, params){
+//         // return console.log(this.$element[0].id);
+//         return set_options(this.$element[0].id, data)
+
+//         // $(`#${this.$element[0].id}`).select2({
+//         //     data: data
+//         // })
+
+//     }
+//     // processResults: function (data, params) {
+//     //   // parse the results into the format expected by Select2
+//     //   // since we are using custom formatting functions we do not need to
+//     //   // alter the remote JSON data, except to indicate that infinite
+//     //   // scrolling can be used
+//     //   console.log(data);
+//     // //   params.page = params.page || 1;
+
+//     // //   return {
+//     // //     results: data.items,
+//     // //     pagination: {
+//     // //       more: (params.page * 30) < data.total_count
+//     // //     }
+//     // //   };
+//     // return {data: data}
+//     // },
+//     // cache: true
+//   },
+//   placeholder: 'Search by Name',
+//   minimumInputLength: 1,
+// //   templateResult: formatRepo,
+// // templateResult : set_options
+// //   templateSelection: formatRepoSelection
+// });
+
+function formatRepo (repo) {
+    console.log(repo);
+  if (repo.loading) {
+    return repo.text;
+  }
+
+//   var $container = $(
+//     "<div class='select2-result-repository clearfix'>" +
+//     //   "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' /></div>" +
+//       "<div class='select2-result-repository__meta'>" +
+//         "<div class='select2-result-repository__title'></div>" +
+//         "<div class='select2-result-repository__description'></div>" +
+//         "<div class='select2-result-repository__statistics'>" +
+//           "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> </div>" +
+//           "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> </div>" +
+//           "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> </div>" +
+//         "</div>" +
+//       "</div>" +
+//     "</div>"
+//   );
+
+//   $container.find(".select2-result-repository__title").text(repo.full_name);
+//   $container.find(".select2-result-repository__description").text(repo.description);
+//   $container.find(".select2-result-repository__forks").append(repo.forks_count + " Forks");
+//   $container.find(".select2-result-repository__stargazers").append(repo.stargazers_count + " Stars");
+//   $container.find(".select2-result-repository__watchers").append(repo.watchers_count + " Watchers");
+
+  return $container;
+// console.log($container);
+}
+
+// function formatRepoSelection (repo) {
+//     console.log(repo , '2');
+//   return repo.full_name || repo.text;
+// }
+
+// function set_options(id, data){
+//     // console.log(document.querySelector(`#${id}`));
+//     // let selection = document.querySelector(`#${id}`)
+//     let selection = document.querySelector(`#select2-client_full_name-results`)
+//     selection.innerHTML = ''
+//       console.log(selection);
+//     // return console.log(data, 'data');
+//     data.forEach(i => {
+//         html = `
+//         <li> ${i.full_name}</li>
+//         `
+//         selection.innerHTML += html
+//         console.log(selection);
+//     })
+//     //   selection.classList.remove('select2-hidden-accessible')
+//      return console.log(selection);
+// }
+
+function get_options(text, element){
+    $.ajax({
+        type: 'GET',
+        url: '{{('/search_by_full_name')}}',
+        data: {text},
+        success: function(data){
+            console.log(data)
+            return set_options(data)
+            // btn.classList.add('d-none')
+        },
+        error: function(data){
+            console.log(data)
+        }
+
+    })
+}
+
+function set_options(data){
+    client_full_name_select.classList.remove('d-none')
+    client_full_name_select.innerHTML = ''
+    data.forEach(i => {
+        html = `
+        <option value="${i.full_name}" > ${i.full_name}</option>
+        `
+        client_full_name_select.innerHTML += html
+
+    })
+}
+
+function set_full_name(name, el){
+    // console.log(name);
+    client_full_name.value = name
+    client_full_name_select.classList.add('d-none')
+}
+</script>
 
 
 @endsection

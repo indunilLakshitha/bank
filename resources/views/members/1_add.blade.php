@@ -49,7 +49,7 @@
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <?php $titles=\App\Models\CutomerTitle::all()?>
-                                        <select name="customer_title_id" id="" class="form-control">
+                                        <select name="customer_title_id" id="" class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select Title</option>
                                             @isset($titles)
                                                 @foreach ($titles as $title)
@@ -98,7 +98,7 @@
                                 <label class="col-sm-2 col-form-label">Branch</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <select name="branch_id" id="" class="form-control">
+                                        <select name="branch_id" id="" class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select Branch</option>
                                             @isset($branches)
                                                 @foreach ($branches as $branch)
@@ -184,7 +184,7 @@
                                 <label class="col-sm-2 col-form-label">Account Category</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <select name="account_category_id" id="" class="form-control">
+                                        <select name="account_category_id" id="" class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select Account Category</option>
                                             @isset($accountcategories)
                                                 @foreach ($accountcategories as $account_category)
@@ -206,7 +206,7 @@
                                 <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <select name="small_group_id" id="" class="form-control">
+                                        <select name="small_group_id" id="" class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select Small Group</option>
                                             @isset($smallgroups)
                                                 @foreach ($smallgroups as $small_group)
@@ -227,7 +227,7 @@
                                 <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <select name="sub_account_office_id" id="" class="form-control">
+                                        <select name="sub_account_office_id" id="" class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select Sub Office</option>
                                             @isset($subaccountoffices)
                                                 @foreach ($subaccountoffices as $sub_account_office)
@@ -259,7 +259,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <select name="identification_type_id" id="id_type" class="form-control">
+                                                <select name="identification_type_id" id="id_type" class="selectpicker" data-style="select-with-transition">
                                                     <option value="">Select Identification Type</option>
                                                     @isset($idtypes)
                                                         @foreach ($idtypes as $id_type)
@@ -303,7 +303,7 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <select name="" id="" class="form-control">
+                                            <select name="" id="" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select Type</option>
                                                 @isset($contacttypes)
                                                     @foreach ($contacttypes as $contact_type)
@@ -329,9 +329,9 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Fax</label>
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-6">
                                             <input type="text" name="fax_number" class="form-control">
                                         </div>
                                     </div>
@@ -344,9 +344,9 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-6">
                                             <input type="email" name="email_address" class="form-control">
                                         </div>
                                     </div>
