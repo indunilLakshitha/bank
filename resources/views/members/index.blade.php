@@ -132,6 +132,7 @@
                                        <tr>
                                             <th>{{$member->id}}</th>
                                             <th>{{$member->customer_id}} </th>
+                                            <th>{{$member->customer_type}} </th>
                                             <th>{{$member->identification_number}}</th>
                                             <th>{{$member->name_in_use}}</th>
                                            @if(intval($member->is_enable) == 1)
