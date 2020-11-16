@@ -22,20 +22,20 @@
                 <div class="input-group no-border">
                     <input type="text" value="" class="form-control" placeholder="Search...">
                     <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                        <i class="material-icons">search</i>
+                        {{-- <i class="material-icons">search</i> --}}
                         <div class="ripple-container"></div>
                     </button>
                 </div>
             </form>
             <ul class="navbar-nav">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="javascript:;">
                         <i class="material-icons">dashboard</i>
                         <p class="d-lg-none d-md-block">
                             Stats
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
