@@ -27,7 +27,9 @@ class CreateProductDataTable extends Migration
             $table->double('minimum_balance');
             $table->double('default_interest');
             $table->string('max_interest');
-
+            $table->integer('interest_rate');
+            $table->string('account_level');
+            $table->string('initial_deposit_allow');
             $table->tinyInteger('is_enable')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();

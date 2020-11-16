@@ -136,10 +136,10 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
+                                            <select name="FATCA_clearance_received"   class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select </option>
-                                               <option value="">Yes</option>
-                                               <option value="">No</option>
+                                               <option value="1">Yes</option>
+                                               <option value="0">No</option>
                                             </select>
                                         </div>
                                     </div>
@@ -152,10 +152,10 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
+                                            <select name="PEP_clearance_received"   class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select </option>
-                                                    <option value="">Yes</option>
-                                                    <option value="">No</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
                                             </select>
                                         </div>
                                     </div>
@@ -169,7 +169,7 @@
                             <label class="col-sm-2 col-form-label">Branch Code</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="branch_code" name="branch_code">
+                                    <input type="text" class="form-control" id="branch_id" name="branch_id">
                                 </div>
                             </div>
                         </div>
@@ -178,7 +178,7 @@
                             <label class="col-sm-2 col-form-label">Customer Rating</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="branch_code" name="branch_code" >
                                 </div>
                             </div>
                         </div>
@@ -321,7 +321,7 @@
                             <div class="col-sm-8">
                                 <div class="col-10">
                                     <div class="form-group">
-                                        <div class="col"><input type="checkbox" class="form-control" name=""  value="1" >
+                                        <div class="col"><input type="checkbox" class="form-control" name="has_account_statement"  value="1" >
                                             Account Statement</div>
                                         <div class="col"><input type="checkbox" class="form-control" name="has_passbook" value="1"
                                                  >Passbook</div>

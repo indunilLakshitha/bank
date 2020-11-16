@@ -74,7 +74,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition"">
+                                        <select name="interest_rate"   class="selectpicker" data-style="select-with-transition"">
                                             <option value="">Select </option>
                                             @isset($idtypes)
                                             @foreach ($idtypes as $idtype)
@@ -118,7 +118,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
+                                        <select name="account_level"   class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select </option>
                                             @isset($idtypes)
                                             @foreach ($idtypes as $idtype)
@@ -138,7 +138,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
+                                        <select name="initial_deposit_allow"   class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select </option>
                                             @isset($idtypes)
                                             @foreach ($idtypes as $idtype)

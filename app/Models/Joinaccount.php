@@ -17,6 +17,9 @@ class Joinaccount extends Model
         'is_enable',
         'created_by',
         'updated_by',
+        'oh_identification_type_id',
+        'oh_identification_number',
+        'oh_name'
 
     ];
 }
