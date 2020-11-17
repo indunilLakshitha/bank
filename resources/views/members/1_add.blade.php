@@ -115,7 +115,7 @@
                                 <div class="col-sm-10 checkbox-radios">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value=""> Non
+                                            <input class="form-check-input" type="checkbox" value="1" name="non_member" > Non
                                             Member
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value=""> Member
+                                            <input class="form-check-input" type="checkbox" value="1" name="member" > Member
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
+                                            <input class="form-check-input" type="checkbox" value="1" name="guarantor" >
                                             Guarantor
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -141,7 +141,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
+                                            <input class="form-check-input" type="checkbox" value="1" name="supplier" >
                                             Supplier
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -150,7 +150,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
+                                            <input class="form-check-input" type="checkbox" value="1" name="customer" >
                                             Customer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -159,7 +159,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value=""> Child
+                                            <input class="form-check-input" type="checkbox" value="1" name="child"> Child
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
+                                            <input class="form-check-input" type="checkbox" value="1" name="introducer" >
                                             Introducer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>

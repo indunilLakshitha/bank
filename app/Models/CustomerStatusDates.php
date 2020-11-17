@@ -21,5 +21,6 @@ class CustomerStatusDates extends Model
         'created_by',
         'updated_by',
         'gender_id',
+        'race_id'
     ];
 }

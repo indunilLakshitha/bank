@@ -29,5 +29,6 @@ class CustomerBasicData extends Model
         'is_enable',
         'created_by',
         'updated_by',
+ 
     ];
 }

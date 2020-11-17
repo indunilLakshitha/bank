@@ -17,6 +17,7 @@ use App\Models\OccupationData;
 use App\Models\OtherSocietyData;
 use App\Models\SpecialData;
 use App\Models\CutomerTitle;
+use App\Models\MainType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -38,7 +39,15 @@ class CustomerBasicDataController extends Controller
 
         $cbs = CustomerBasicData::create($request->all());
         $cbs->customer_id = $cus_id;
+        $cbs->is_enable = 1;
+        $cbs->created_by = Auth::user()->name;
         $cbs->save();
+
+        $main_type = MainType::create($request->all());
+        $main_type->customer_id = $cus_id;
+        $main_type->is_enable = 1;
+        $main_type->created_by = Auth::user()->name;
+        $main_type->save();
         return view('members.2_statusanddated',compact('cus_id'))->with('success', 'Details submitted');
 
 
