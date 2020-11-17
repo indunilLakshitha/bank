@@ -98,7 +98,7 @@
                                 <label class="col-sm-2 col-form-label">Branch</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        @isset($titles)
+                                        @isset($branches)
                                         <input type="text" name="branch_id"  readonly class="form-control" value="{{ $branches->branch_name}}">
                                         @endisset
                                     </div>
