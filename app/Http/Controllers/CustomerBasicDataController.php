@@ -41,6 +41,13 @@ class CustomerBasicDataController extends Controller
         $cbs->customer_id = $cus_id;
         $cbs->is_enable = 1;
         $cbs->created_by = Auth::user()->name;
+        if ($request->file('sign_img')) {
+            $image = $request->file('sign_img');
+            $path = '/images/';
+            $cbs->sign_img = time() . rand() . '.' . $image->extension();
+            $image->move(public_path($path), $cbs->sign_img);
+        }
+
         $cbs->save();
 
         $main_type = MainType::create($request->all());

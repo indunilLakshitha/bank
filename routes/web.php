@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AccountGeneralInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -160,9 +161,10 @@ Route::get('/late', function () {
 });
 Route::get('/savings/open', function () {
     $idtypes = DB::table('iedentification_types')->get();
-    $CIF = count(DB::table('account_general_information')->get()) + 1;
-    $acc_no = 'ACC' . $CIF;
-    return view('savings.1_client_details', compact('idtypes', 'CIF', 'acc_no'));
+    // $CIF = count(DB::table('account_general_information')->get()) + 1;
+    // $acc_no = 'ACC' . $CIF;
+    $acc_count = count(AccountGeneralInformation::all());
+    return view('savings.1_client_details', compact('idtypes', 'acc_count'));
 });
 
 Route::post('/savings/open', 'OpenSavingsAccountController@client_details');

@@ -357,6 +357,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Signature</label>
+                            <span class="btn btn-round btn-rose btn-file ">
+                                <span class="fileinput-new">Choose File</span>
+                                <input type="file" name="sign_img" />
+                            </span>
+
+                        </div>
                         <button type="submit" class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
