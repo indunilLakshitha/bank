@@ -59,10 +59,26 @@
                                         @php
                                         $rels = Illuminate\Support\Facades\DB::table('genders')->get();
                                     @endphp
-                                    <select name="gender_id" id=""  class="selectpicker" id="married_status_id" data-style="select-with-transition">
+                                    <select name="gender_id" id=""  class="selectpicker" id="gender_id" data-style="select-with-transition">
                                         <option value="">Select</option>
                                         @foreach ($rels as $item)
                                             <option value="{{$item->id}}">{{$item->gender}}</option>
+                                        @endforeach
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Race</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        @php
+                                        $rels = Illuminate\Support\Facades\DB::table('races')->get();
+                                    @endphp
+                                    <select name="race_id" id=""  class="selectpicker" id="race_id" data-style="select-with-transition">
+                                        <option value="">Select</option>
+                                        @foreach ($rels as $item)
+                                            <option value="{{$item->id}}">{{$item->race}}</option>
                                         @endforeach
                                     </select>
                                     </div>

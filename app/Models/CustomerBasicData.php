@@ -29,5 +29,19 @@ class CustomerBasicData extends Model
         'is_enable',
         'created_by',
         'updated_by',
+        'short_name',
+        'non_member',
+        'member',
+        'guarantor',
+        'supplier',
+        'customer',
+        'child',
+        'introducer',
+        'office_sub_id',
+        'address_data',
+        'telephone_no_type',
+        'telephone_number',
+        'fax_number',
+        'email_address'
     ];
 }

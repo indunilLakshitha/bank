@@ -17,6 +17,7 @@ use App\Models\OccupationData;
 use App\Models\OtherSocietyData;
 use App\Models\SpecialData;
 use App\Models\CutomerTitle;
+use App\Models\MainType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -30,8 +31,23 @@ class CustomerBasicDataController extends Controller
     public function insert(Request $request){
 
 // return $request;
-        $cus_id = $request->customer_id;
-        CustomerBasicData::create($request->all());
+
+        $br_code = Branch::find($request->branch_id)->branch_code;
+        $cus_count = '0000000'.count(CustomerBasicData::all());
+        $cus_count = substr($cus_count, -6);
+        $cus_id = $br_code.'-'.$cus_count;
+
+        $cbs = CustomerBasicData::create($request->all());
+        $cbs->customer_id = $cus_id;
+        $cbs->is_enable = 1;
+        $cbs->created_by = Auth::user()->name;
+        $cbs->save();
+
+        $main_type = MainType::create($request->all());
+        $main_type->customer_id = $cus_id;
+        $main_type->is_enable = 1;
+        $main_type->created_by = Auth::user()->name;
+        $main_type->save();
         return view('members.2_statusanddated',compact('cus_id'))->with('success', 'Details submitted');
 
 
@@ -96,7 +112,8 @@ class CustomerBasicDataController extends Controller
 
     public function add(){
 
-        $cus_id = 'U'.Auth::user()->id.'CBD'.(count(CustomerBasicData::all())+1);
+        // $cus_id = 'U'.Auth::user()->id.'CBD'.(count(CustomerBasicData::all())+1);
+        $cus_id = null;
         $branches=Branch::all();
         $accountcategories=AccountCategory::all();
         $smallgroups=SmallGroup::all();
@@ -157,9 +174,10 @@ class CustomerBasicDataController extends Controller
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
         $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
-        $view_5 = BeneficiaryData::where('customer_id',$request->id)->first();
+        $view_5_1 = BeneficiaryData::where('customer_id',$request->id)->get();
+        $view_5_2 = GuardianData::where('customer_id',$request->id)->get();
         $view_6 = SpecialData::where('customer_id',$request->id)->first();
-        return view('members.view_member',compact('view_1','view_2','view_3','view_4','view_5','view_6'));
+        return view('members.view_member',compact('view_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
     }
 
 }
