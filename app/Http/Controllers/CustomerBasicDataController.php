@@ -157,9 +157,10 @@ class CustomerBasicDataController extends Controller
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
         $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
-        $view_5 = BeneficiaryData::where('customer_id',$request->id)->first();
+        $view_5_1 = BeneficiaryData::where('customer_id',$request->id)->get();
+        $view_5_2 = GuardianData::where('customer_id',$request->id)->get();
         $view_6 = SpecialData::where('customer_id',$request->id)->first();
-        return view('members.view_member',compact('view_1','view_2','view_3','view_4','view_5','view_6'));
+        return view('members.view_member',compact('view_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
     }
 
 }

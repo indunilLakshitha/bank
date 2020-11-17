@@ -37,14 +37,14 @@
                                 <label class="col-sm-2 col-form-label">Item</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="item" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Value</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="value" class="form-control">
                                 </div>
                                 <div class="col-sm-3">
                                     <select name="" id="" class="form-control">

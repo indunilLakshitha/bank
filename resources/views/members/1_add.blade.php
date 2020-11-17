@@ -90,7 +90,7 @@
                                 <label class="col-sm-2 col-form-label">Short Name</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="short_name" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                 <div class="col-sm-10 checkbox-radios">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value=""> Non
+                                            <input class="form-check-input" type="checkbox" name="non_member" value="1"> Non
                                             Member
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -126,7 +126,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value=""> Member
+                                            <input class="form-check-input" type="checkbox" name="member" value="1"> Member
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
+                                            <input class="form-check-input" type="checkbox" name="guarantor" value="1">
                                             Guarantor
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -143,7 +143,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
+                                            <input class="form-check-input" type="checkbox" name="supplier" value="1">
                                             Supplier
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -152,7 +152,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
+                                            <input class="form-check-input" type="checkbox" name="customer" value="1">
                                             Customer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -161,7 +161,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value=""> Child
+                                            <input class="form-check-input" type="checkbox" name="child" value="1"> Child
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -169,7 +169,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
+                                            <input class="form-check-input" type="checkbox" name="introducer" value="1">
                                             Introducer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -248,7 +248,7 @@
                                 <label class="col-sm-2 col-form-label">Sub Account Office</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" name="sub_account_office" class="form-control">
+                                        <input type="text" name="office_sub_id" class="form-control">
                                     </div>
                                 </div>
 
@@ -303,7 +303,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <select name="" id="" class="selectpicker" data-style="select-with-transition">
+                                            <select name="telephone_no_type" id="" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select Type</option>
                                                 @isset($contacttypes)
                                                     @foreach ($contacttypes as $contact_type)
@@ -329,15 +329,9 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Fax</label>
-<<<<<<< HEAD
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="col-sm-6">
-=======
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <div class="col-sm-8">
->>>>>>> 531b63b0514b80970728f7e8bc3db9df56ec01c1
                                             <input type="text" name="fax_number" class="form-control">
                                         </div>
                                     </div>
@@ -350,11 +344,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Email</label>
-<<<<<<< HEAD
-                                <div class="col-sm-6">
-=======
                                 <div class="col-sm-8">
->>>>>>> 531b63b0514b80970728f7e8bc3db9df56ec01c1
                                     <div class="form-group">
                                         <div class="col-sm-6">
                                             <input type="email" name="email_address" class="form-control">
