@@ -22,14 +22,14 @@
                         </div>
                     </div>
                     <div class="card-body ">
-                        <div class="row">
+                        {{-- <div class="row">
                             <label class="col-sm-2 col-form-label">CIF</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control" value={{$CIF}} disabled>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-6">
@@ -40,8 +40,10 @@
 
                                 </div>
                                         <select
-                                        onchange="set_full_name(this.value, this )"
-                                        class="form-control d-none" id="client_full_name_select">
+                                        oninput="set_full_name(this.value, this )"
+                                        class="form-control d-none " id="client_full_name_select"
+                                        data-style="select-with-transition"
+                                        >
 
                                         </select>
                             </div>
@@ -79,7 +81,7 @@
 
                             <input type="hidden" id="branch_id" name="branch_id">
                             <input type="hidden" id="customer_id" name="customer_id">
-                            <input type="hidden" id="account_number" name="account_number" value={{$acc_no}} >
+                            <input type="hidden" id="account_number" name="account_number" value={{$acc_count}} >
                             <div class="row">
                             <label class="col-sm-2 col-form-label">Full Name</label>
                             <div class="col-sm-8">
@@ -455,7 +457,7 @@ function get_options(text, element){
 
 function set_options(data){
     client_full_name_select.classList.remove('d-none')
-    client_full_name_select.innerHTML = ''
+    client_full_name_select.innerHTML = '<option value="">Select </option>'
     data.forEach(i => {
         html = `
         <option value="${i.full_name}" > ${i.full_name}</option>
