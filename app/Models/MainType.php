@@ -17,10 +17,6 @@ class MainType extends Model
         'customer',
         'child',
         'introducer',
-        '',
-        '',
-        '',
-        '',
-        '',
+       
     ];
 }

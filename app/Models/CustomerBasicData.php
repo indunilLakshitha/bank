@@ -29,6 +29,7 @@ class CustomerBasicData extends Model
         'is_enable',
         'created_by',
         'updated_by',
+        'sign_img',
         'short_name',
         'non_member',
         'member',

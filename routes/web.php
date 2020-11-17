@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AccountGeneralInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -160,24 +161,25 @@ Route::get('/late', function () {
 });
 Route::get('/savings/open', function () {
     $idtypes = DB::table('iedentification_types')->get();
-    $CIF = count(DB::table('account_general_information')->get()) + 1;
-    $acc_no = 'ACC' . $CIF;
-    return view('savings.1_client_details', compact('idtypes', 'CIF', 'acc_no'));
+    // $CIF = count(DB::table('account_general_information')->get()) + 1;
+    // $acc_no = 'ACC' . $CIF;
+    $acc_count = count(AccountGeneralInformation::all());
+    return view('savings.1_client_details', compact('idtypes', 'acc_count'));
 });
 
 Route::post('/savings/open', 'OpenSavingsAccountController@client_details');
 Route::post('/product_details', 'OpenSavingsAccountController@product_details');
 Route::post('/create_join_account', 'OpenSavingsAccountController@create_join_account');
 Route::post('/add_mem_join_account', 'OpenSavingsAccountController@add_mem_join_account');
-Route::post('/guradian-information', 'OpenSavingsAccountController@guradian_information');
+// Route::post('/guradian-information', 'OpenSavingsAccountController@guradian_information');
 Route::post('/documents', 'OpenSavingsAccountController@getDocs');
 Route::post('/save_documents', 'OpenSavingsAccountController@save_documents');
 Route::post('/tax_details', 'OpenSavingsAccountController@tax_details');
 Route::post('/add_tax', 'OpenSavingsAccountController@add_tax');
 Route::post('/nominee', 'OpenSavingsAccountController@nominee');
 Route::post('/add_nominee', 'OpenSavingsAccountController@add_nominee');
-Route::post('/autorized_officers', 'OpenSavingsAccountController@autorized_officers');
-Route::post('/add_officer', 'OpenSavingsAccountController@add_officer');
+// Route::post('/autorized_officers', 'OpenSavingsAccountController@autorized_officers');
+// Route::post('/add_officer', 'OpenSavingsAccountController@add_officer');
 Route::post('/finish_open_account_saving', 'OpenSavingsAccountController@finish_open_account_saving');
 
 
