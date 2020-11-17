@@ -105,7 +105,7 @@ class UserController extends Controller
 
     public function create(){
 
-        $roles = Role::with('permissions')->get();
+        $roles = Role::with('permissions')->where('status', 1)->get();
         // return $roles;
         $permissions = Permission::all();
         return view('users.create', compact('permissions', 'roles'));
@@ -132,7 +132,7 @@ class UserController extends Controller
 
     public function edit($id){
 
-        $all_roles = Role::all();
+        $all_roles = Role::where('status', 1)->get();
         $all_permissions = Permission::all();
         $user = User::find($id);
 

@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <button type="submit" class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>

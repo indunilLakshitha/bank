@@ -53,7 +53,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button class="btn btn-sm btn-primary">Insert</button>
+                                    <button class="btn btn-sm btn-primary">SUBMIT & FINISH </button>
                                 </div>
                                 <div class="col-sm-2">
                                     <button class="btn btn-sm btn-primary">Remove</button>

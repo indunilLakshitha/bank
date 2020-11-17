@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="col-md-10 col-12 mr-auto ml-auto">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body col-6">
                     <form id="private_1" action="/member/add/occupation" method="POST">
                         @csrf
                         <input type="hidden" name="customer_id" value={{$cus_id}}>
@@ -47,12 +47,12 @@
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="epf_no">
-                                        
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <button type="submit" class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>

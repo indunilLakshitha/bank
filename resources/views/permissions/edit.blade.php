@@ -2,12 +2,14 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 container">
         <div class="card ">
             <div class="card-header card-header-success card-header-icon">
-                <h4 class="card-title">Create Role
-
-                </h4>
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Edit Permission</h4>
+                    </div>
+                </div>
 
             </div>
             <div class="card-body ">
@@ -16,14 +18,22 @@
                         <div class="table-responsive">
                             <form action="/permissions/update/{{$perm->id}}" method="POST">
                                 @csrf
-                                <div class="from-group">
-                                    <label for="">Permission Name</label>
-                                    <input type="text" name="permission_name" class="form-control" value="{{$perm->name}}">
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="from-group">
+                                            <label for="">Permission Name</label>
+                                            <input type="text" name="permission_name" class="form-control" value="{{$perm->name}}">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="from-group">
+                                            <label for=""> Name to View</label>
+                                            <input type="text" name="view_name" class="form-control" value="{{$perm->view_name}}">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="from-group">
-                                    <label for=""> Name to View</label>
-                                    <input type="text" name="view_name" class="form-control" value="{{$perm->view_name}}">
-                                </div>
+
+
                                 <table class="table">
                                     <tbody>
                                         @foreach ($roles as $r)

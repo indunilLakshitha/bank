@@ -8,9 +8,11 @@
                 {{-- <div class="card-icon">
             <i class="material-icons"></i>
           </div> --}}
-                <h4 class="card-title">Create Role
-
-                </h4>
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Create Role</h4>
+                    </div>
+                </div>
 
             </div>
             <div class="card-body ">
@@ -26,20 +28,21 @@
                                 <table class="table">
                                     <tbody>
                                         @foreach ($permissions as $p)
-                                <tr>
-                                    <th> {{$p->view_name}} </th>
-                                        <td class="td-actions text-right">
-                                            @can('create_roles')
-                                            <input type="checkbox" value=" {{$p->name}} " name="permissions[]" id="">
-                                            @endcan
-                                        </td>
-                                </tr>
+                                        <tr>
+                                            <th> {{$p->view_name}} </th>
+                                            <td class="td-actions text-right">
+                                                @can('create_roles')
+                                                <input type="checkbox" value=" {{$p->name}} " name="permissions[]"
+                                                    id="">
+                                                @endcan
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                    <tr >
-                                        <button class="btn btn-danger" type="submit">Create Role</button>
-                                    </tr>
+                                <tr>
+                                    <button class="btn btn-danger" type="submit">Create Role</button>
+                                </tr>
                             </form>
                         </div>
                     </div>

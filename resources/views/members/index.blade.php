@@ -11,6 +11,7 @@
         <div class="card-body ">
             <form method="get" class="form-horizontal" id="form">
                 @csrf
+
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Code</label>
                     <div class="col-sm-10">
@@ -20,6 +21,45 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                                <label class="col-sm-2 col-form-label">ID Type</label>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @php
+                                        $idtypes = Illuminate\Support\Facades\DB::table('iedentification_types')->get();
+                                    @endphp
+                                                <select name="identification_type_id" id="id_type" class="selectpicker" data-style="select-with-transition">
+                                                    <option value="">Select Identification Type</option>
+                                                    @isset($idtypes)
+                                                        @foreach ($idtypes as $id_type)
+                                                            @if(intval($id_type->is_enable) == 1)
+                                                                <option value="{{$id_type->id}}">
+                                                                        {{$id_type->identification_type}}
+                                                                </option>
+                                                            @endif
+                                                        @endforeach
+                                                    @endisset
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <input type="text" name="identification_number" class="form-control" placeholder="900000000V">
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col">
+                                            <div class="form-group">
+                                                <a onclick="submit_id(id_type.value, )"  class="btn btn-sm btn-primary">Add</a>
+                                            </div>
+                                        </div> --}}
+                                    </div>
+
+
+                                </div>
+                            </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
@@ -46,9 +86,25 @@
                     </div>
                 </div>
                 <div class="row">
+                    <label class="col-sm-2 col-form-label">Race</label>
+                    <div class="col-lg-5 col-md-6 col-sm-3">
+                        @php
+                           $races = Illuminate\Support\Facades\DB::table('races')->get();
+                        @endphp
+                        <select class="selectpicker" data-style="select-with-transition"  title="Select"
+                            name="race_id" id="race_id"
+                        >
+                        <option value="">Select</option>
+                            @foreach ($races as $r)
+                                <option value="{{$r->id}}">{{$r->race}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
                     <label class="col-sm-2 col-form-label">Gender</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">
-                        <select class="selectpicker" data-style="select-with-transition" multiple title="Type"
+                        <select class="selectpicker" data-style="select-with-transition"  title="Type"
                             data-size="7">
                             <option value="">Select</option>
                             <option  > type 1</option>
