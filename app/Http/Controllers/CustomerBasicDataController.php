@@ -30,8 +30,15 @@ class CustomerBasicDataController extends Controller
     public function insert(Request $request){
 
 // return $request;
-        $cus_id = $request->customer_id;
-        CustomerBasicData::create($request->all());
+
+        $br_code = Branch::find($request->branch_id)->branch_code;
+        $cus_count = '0000000'.count(CustomerBasicData::all());
+        $cus_count = substr($cus_count, -6);
+        $cus_id = $br_code.'-'.$cus_count;
+
+        $cbs = CustomerBasicData::create($request->all());
+        $cbs->customer_id = $cus_id;
+        $cbs->save();
         return view('members.2_statusanddated',compact('cus_id'))->with('success', 'Details submitted');
 
 
@@ -96,7 +103,8 @@ class CustomerBasicDataController extends Controller
 
     public function add(){
 
-        $cus_id = 'U'.Auth::user()->id.'CBD'.(count(CustomerBasicData::all())+1);
+        // $cus_id = 'U'.Auth::user()->id.'CBD'.(count(CustomerBasicData::all())+1);
+        $cus_id = null;
         $branches=Branch::all();
         $accountcategories=AccountCategory::all();
         $smallgroups=SmallGroup::all();

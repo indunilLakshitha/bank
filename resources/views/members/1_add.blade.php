@@ -16,10 +16,10 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                             <label for="">Code</label>
                                             <input class="form-control" name="customer_id" type="text" readonly value={{$cus_id}}>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
