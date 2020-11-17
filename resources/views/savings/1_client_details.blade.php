@@ -109,14 +109,14 @@
                         </div>
 
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">CIF</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">DOB</label>
@@ -165,7 +165,7 @@
                             <label class="col-sm-2 col-form-label">Branch Code</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="branch_id" name="branch_id">
+                                    <input type="text" class="form-control" id="branch_code" name="branch_code">
                                 </div>
                             </div>
                         </div>

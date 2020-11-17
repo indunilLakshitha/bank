@@ -88,7 +88,7 @@
                                 <label class="col-sm-2 col-form-label">Short Name</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="short_name" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,11 @@
                                 <div class="col-sm-10 checkbox-radios">
                                     <div class="form-check">
                                         <label class="form-check-label">
+<<<<<<< HEAD
+                                            <input class="form-check-input" type="checkbox" name="non_member" value="1"> Non
+=======
                                             <input class="form-check-input" type="checkbox" value="1" name="non_member" > Non
+>>>>>>> 75db249e1fb655513f07a36a87e062c53a7a446c
                                             Member
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -124,7 +128,11 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
+<<<<<<< HEAD
+                                            <input class="form-check-input" type="checkbox" name="member" value="1"> Member
+=======
                                             <input class="form-check-input" type="checkbox" value="1" name="member" > Member
+>>>>>>> 75db249e1fb655513f07a36a87e062c53a7a446c
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -132,7 +140,11 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
+<<<<<<< HEAD
+                                            <input class="form-check-input" type="checkbox" name="guarantor" value="1">
+=======
                                             <input class="form-check-input" type="checkbox" value="1" name="guarantor" >
+>>>>>>> 75db249e1fb655513f07a36a87e062c53a7a446c
                                             Guarantor
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -141,7 +153,11 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
+<<<<<<< HEAD
+                                            <input class="form-check-input" type="checkbox" name="supplier" value="1">
+=======
                                             <input class="form-check-input" type="checkbox" value="1" name="supplier" >
+>>>>>>> 75db249e1fb655513f07a36a87e062c53a7a446c
                                             Supplier
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -150,7 +166,11 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
+<<<<<<< HEAD
+                                            <input class="form-check-input" type="checkbox" name="customer" value="1">
+=======
                                             <input class="form-check-input" type="checkbox" value="1" name="customer" >
+>>>>>>> 75db249e1fb655513f07a36a87e062c53a7a446c
                                             Customer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -159,7 +179,11 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
+<<<<<<< HEAD
+                                            <input class="form-check-input" type="checkbox" name="child" value="1"> Child
+=======
                                             <input class="form-check-input" type="checkbox" value="1" name="child"> Child
+>>>>>>> 75db249e1fb655513f07a36a87e062c53a7a446c
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -167,7 +191,11 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
+<<<<<<< HEAD
+                                            <input class="form-check-input" type="checkbox" name="introducer" value="1">
+=======
                                             <input class="form-check-input" type="checkbox" value="1" name="introducer" >
+>>>>>>> 75db249e1fb655513f07a36a87e062c53a7a446c
                                             Introducer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -246,7 +274,7 @@
                                 <label class="col-sm-2 col-form-label">Sub Account Office</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" name="sub_account_office" class="form-control">
+                                        <input type="text" name="office_sub_id" class="form-control">
                                     </div>
                                 </div>
 
@@ -301,7 +329,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <select name="" id="" class="selectpicker" data-style="select-with-transition">
+                                            <select name="telephone_no_type" id="" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select Type</option>
                                                 @isset($contacttypes)
                                                     @foreach ($contacttypes as $contact_type)
