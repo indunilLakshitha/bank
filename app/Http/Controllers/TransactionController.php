@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
+    //returning active acounts by name
     public function findMembers(Request $request){
 
         $customers= CustomerBasicData::join('account_general_information','account_general_information.customer_id','customer_basic_data.customer_id')
@@ -21,6 +22,8 @@ class TransactionController extends Controller
             ->get();
         return response()->json($customers);
     }
+
+    //returning active acounts by acc no
     public function findMembersById(Request $request){
 
         $customers= AccountGeneralInformation::leftjoin('customer_basic_data','customer_basic_data.customer_id','account_general_information.customer_id')
@@ -30,7 +33,7 @@ class TransactionController extends Controller
                  ->get();
         return response()->json($customers);
     }
-
+//  noramal withdrawal
     public function normalWithdraw(Request $request){
 
         $payment_log=$request;
@@ -52,6 +55,7 @@ class TransactionController extends Controller
 
 
     }
+    // normal deposites
     public function normalDeposite(Request $request){
 
         $payment_log=$request;

@@ -44,4 +44,5 @@ class MemberController extends Controller
 
         return response()->json($results);
     }
+  
 }
