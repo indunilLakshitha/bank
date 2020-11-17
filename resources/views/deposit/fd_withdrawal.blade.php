@@ -21,7 +21,7 @@
                 <button class="btn fa fa-search btn-info btn"> &nbspFind</button>
             </div>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6 " style="margin-left: 260px" >
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
