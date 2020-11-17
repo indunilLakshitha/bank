@@ -31,7 +31,9 @@
                                         @php
                                             $prod_types = Illuminate\Support\Facades\DB::table('product_types')->get();
                                         @endphp
-                                        <select name="product_type_id"   class="selectpicker" data-style="select-with-transition">
+                                        <select
+                                        oninput="set_min_max(this.value)"
+                                        name="product_type_id"   class="form-control" data-style="select-with-transition">
                                             <option value="">Select </option>
                                             @isset($prod_types)
                                             @foreach ($prod_types as $item)
@@ -51,7 +53,9 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="interest_type_id"   class="selectpicker" data-style="select-with-transition">
+                                        <select name="interest_type_id"   class="selectpicker" data-style="select-with-transition"
+
+                                        >
                                             @php
                                                 $interest_types = Illuminate\Support\Facades\DB::table('interest_types')->get();
                                             @endphp
@@ -73,17 +77,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-5">
-                                    <div class="form-group">
-                                        <select name="interest_rate"   class="selectpicker" data-style="select-with-transition"">
-                                            <option value="">Select </option>
-                                            @isset($idtypes)
-                                            @foreach ($idtypes as $idtype)
-                                            <option value="{{$idtype->id}}">
-                                                {{$idtype->identification_type}}
-                                                @endforeach
-                                                @endisset
-                                        </select>
-                                    </div>
+                                    <input type="number" name="interest_rate" id="interest_rate"  class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -187,4 +181,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    const prod_types = {!! json_encode($prod_types, JSON_HEX_TAG) !!}
+
+function set_min_max(id){
+    if(id === ''){return}
+    console.log(prod_types, id);
+
+    prod_types.forEach(i => {
+        // console.log(i.id, id);
+        if(i.id === parseInt(id)){
+            interest_rate.value = i.default_interest
+            interest_rate.max = i.max_interest
+        }
+    })
+}
+</script>
 @endsection

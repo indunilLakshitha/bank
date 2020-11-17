@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AccountGeneralInformation;
+use App\Models\AccountGeneralInformation as ModelsAccountGeneralInformation;
 use App\Models\AuthorizedOfficer;
 use App\Models\Joinaccount;
 use App\Models\JoinaccountMember;
@@ -129,8 +130,19 @@ class OpenSavingsAccountController extends Controller
         $prod_id = $prod_data->id;
         $account_id = $request->account_id;
 
+         $is_joint_account = AccountGeneralInformation::find($request->account_id)->account_type_id == 2;
 
-        return view('savings.4_joint_acoount', compact('customer_id', 'prod_id', 'account_id'));
+         if($is_joint_account){
+
+             return view('savings.4_joint_acoount', compact('customer_id', 'prod_id', 'account_id'));
+         } else {
+            $docs = DB::table('documents')->get();
+            $account_id = $request->account_id;
+            $customer_id = $request->customer_id;
+            $prod_id = $request->prod_id;
+            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
+         }
+
     }
 
     public function create_join_account(Request $request)
@@ -211,8 +223,9 @@ class OpenSavingsAccountController extends Controller
         $account_id = $request->account_id;
         $customer_id = $request->customer_id;
         $prod_id = $request->prod_id;
+        $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
 
-        return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id'));
+        return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
     }
 
 

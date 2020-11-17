@@ -171,15 +171,15 @@ Route::post('/savings/open', 'OpenSavingsAccountController@client_details');
 Route::post('/product_details', 'OpenSavingsAccountController@product_details');
 Route::post('/create_join_account', 'OpenSavingsAccountController@create_join_account');
 Route::post('/add_mem_join_account', 'OpenSavingsAccountController@add_mem_join_account');
-Route::post('/guradian-information', 'OpenSavingsAccountController@guradian_information');
+// Route::post('/guradian-information', 'OpenSavingsAccountController@guradian_information');
 Route::post('/documents', 'OpenSavingsAccountController@getDocs');
 Route::post('/save_documents', 'OpenSavingsAccountController@save_documents');
 Route::post('/tax_details', 'OpenSavingsAccountController@tax_details');
 Route::post('/add_tax', 'OpenSavingsAccountController@add_tax');
 Route::post('/nominee', 'OpenSavingsAccountController@nominee');
 Route::post('/add_nominee', 'OpenSavingsAccountController@add_nominee');
-Route::post('/autorized_officers', 'OpenSavingsAccountController@autorized_officers');
-Route::post('/add_officer', 'OpenSavingsAccountController@add_officer');
+// Route::post('/autorized_officers', 'OpenSavingsAccountController@autorized_officers');
+// Route::post('/add_officer', 'OpenSavingsAccountController@add_officer');
 Route::post('/finish_open_account_saving', 'OpenSavingsAccountController@finish_open_account_saving');
 
 

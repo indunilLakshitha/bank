@@ -127,12 +127,15 @@
     </div>
     </form>
 
-    <form action="/autorized_officers" method="POST">
+    {{-- <form action="/autorized_officers" method="POST"> --}}
+    <form action="/finish_open_account_saving" method="POST" id="final_form">
         @csrf
         <input type="hidden" name="product_data_id" value={{$prod_id}}>
-        <input type="hidden" name="account_id" value={{$account_id}}>
+        <input type="hidden" name="account_id" value={{$account_id}} id="account_id">
         <input type="hidden" name="customer_id" value={{$customer_id}}>
-        <button type="submit" class="btn btn-primary">SUBMIT</button>
+        <button type="button" class="btn btn-primary"
+        onclick="Swal.fire(`Created Account {{$acc_no}}`).then(() => {final_form.submit()})"
+        >SUBMIT</button>
     </form>
 
 </div>
