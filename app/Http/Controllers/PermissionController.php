@@ -21,7 +21,7 @@ class PermissionController extends Controller
     //--------------------------------RETURN TO PERMISSION CREATE VIEW---------------------
     public function create()
     {
-        $roles = Role::all();
+        $roles = Role::where('status', 1)->get();
         return view('permissions.create', compact('roles'));
     }
 
@@ -54,7 +54,7 @@ class PermissionController extends Controller
     public function edit( $id)
     {
         $perm = Permission::find($id);
-        $roles = Role::all();
+        $roles = Role::where('status', 1)->get();
         $roles_with_this_perm = Permission::where('id',$id)->first()->roles->pluck('name');
 
         return view('permissions.edit', compact('perm', 'roles_with_this_perm', 'roles'));

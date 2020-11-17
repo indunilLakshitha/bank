@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['permission:update_roles']], function () {
             Route::get('/roles/edit/{id}', 'RoleController@edit');
             Route::post('/roles/update/{id}', 'RoleController@update');
+            Route::get('chnage_role_status', 'RoleController@chnage_role_status');
+
         });
     });
 

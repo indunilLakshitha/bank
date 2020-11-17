@@ -28,24 +28,20 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         // return $request->permissions;
-        try{
+        try {
 
             $role = Role::create(['name' => $request->role_name]);
 
             $role->syncPermissions($request->permissions);
             return redirect('/roles/index')->with('success', 'Role created successfully');
-
-        } catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->back()->with('error', 'Role already exists');
         }
-
-
     }
 
 
     public function show($id)
     {
-
     }
 
     //--------------------------------RETURN TO ROLES EDIT VIEW---------------------
@@ -62,17 +58,24 @@ class RoleController extends Controller
     //--------------------------------RETURN TO ROLES UPDATE VIEW---------------------
     public function update(Request $request, $id)
     {
-        try{
+        try {
             $role = Role::find($id);
 
             $role->syncPermissions($request->permissions);
             $role->name = $request->role_name;
             $role->save();
             return redirect('/roles/index')->with('success', 'Role updated successfully');
-
-        } catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->back()->with('error', 'A Role with this name already exists');
         }
+    }
+
+    public function chnage_role_status(Request $request)
+    {
+        $role = Role::find($request->id);
+        $role->status = $request->status;
+        $role->save();
+        return response()->json($request);
     }
 
     //--------------------------------RETURN TO ROLES DELETE VIEW---------------------
