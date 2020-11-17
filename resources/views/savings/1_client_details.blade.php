@@ -26,7 +26,7 @@
                             <label class="col-sm-2 col-form-label">CIF</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value={{$CIF}} disabled>
+                                    <input type="hidden" class="form-control" value={{$CIF}}>
                                 </div>
                             </div>
                         </div>
@@ -34,16 +34,12 @@
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input
-                                    oninput="toCap(this.value, this.id), get_options(this.value, this)"
-                                    type="text" class="form-control js-example-data-ajax" id="client_full_name">
-
+                                    <input oninput="toCap(this.value, this.id), get_options(this.value, this)"
+                                        type="text" class="form-control js-example-data-ajax" id="client_full_name">
                                 </div>
-                                        <select
-                                        onchange="set_full_name(this.value, this )"
-                                        class="form-control d-none" id="client_full_name_select">
-
-                                        </select>
+                                <select onchange="set_full_name(this.value, this )" class="form-control d-none"
+                                    id="client_full_name_select">
+                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -52,7 +48,8 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <select name="identification_type_id" id="identification_type_id" class="selectpicker" data-style="select-with-transition">
+                                            <select name="identification_type_id" id="identification_type_id"
+                                                class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select</option>
                                                 @isset($idtypes)
                                                 @foreach ($idtypes as $idtype)
@@ -65,10 +62,10 @@
                                     </div>
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" class="form-control">
-                                            <a
-                                            onclick="get_cus_details(identification_type_id.value, identification_number.value, client_full_name.value)"
-                                            class="btn btn-primary text-white" >SEARCH</a>
+                                            <input type="text" name="identification_number" id="identification_number"
+                                                class="form-control">
+                                            <a onclick="get_cus_details(identification_type_id.value, identification_number.value, client_full_name.value)"
+                                                class="btn btn-primary text-white">SEARCH</a>
                                         </div>
                                     </div>
                                 </div>
@@ -77,10 +74,10 @@
                             </div>
                         </div>
 
-                            <input type="hidden" id="branch_id" name="branch_id">
-                            <input type="hidden" id="customer_id" name="customer_id">
-                            <input type="hidden" id="account_number" name="account_number" value={{$acc_no}} >
-                            <div class="row">
+                        <input type="hidden" id="branch_id" name="branch_id">
+                        <input type="hidden" id="customer_id" name="customer_id">
+                        <input type="hidden" id="account_number" name="account_number" value={{$acc_no}}>
+                        <div class="row">
                             <label class="col-sm-2 col-form-label">Full Name</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -91,15 +88,8 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <select name="identification_type_id"   class="selectpicker" data-style="select-with-transition">
-                                                <option value="">Select Customer Type</option>
-                                                @isset($idtypes)
-                                                @foreach ($idtypes as $idtype)
-                                                <option value="{{$idtype->id}}">
-                                                    {{$idtype->identification_type}}
-                                                    @endforeach
-                                                    @endisset
-                                            </select>
+                                            <input
+                                            type="text" disabled class="form-control js-example-data-ajax" neme="customer_type" id="client_full_name">
                                         </div>
                                     </div>
                                 </div>
@@ -107,18 +97,11 @@
                         </div>
 
 
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">CIF</label>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">DOB</label>
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <input type="date" id="dob" name="dob" class="form-control">
                                 </div>
@@ -130,10 +113,11 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="FATCA_clearance_received"   class="selectpicker" data-style="select-with-transition">
+                                            <select name="FATCA_clearance_received" class="selectpicker"
+                                                data-style="select-with-transition">
                                                 <option value="">Select </option>
-                                               <option value="1">Yes</option>
-                                               <option value="0">No</option>
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
                                             </select>
                                         </div>
                                     </div>
@@ -146,10 +130,11 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="PEP_clearance_received"   class="selectpicker" data-style="select-with-transition">
+                                            <select name="PEP_clearance_received" class="selectpicker"
+                                                data-style="select-with-transition">
                                                 <option value="">Select </option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
                                             </select>
                                         </div>
                                     </div>
@@ -161,18 +146,18 @@
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Branch Code</label>
-                            <div class="col-sm-6">
+                            <div class="col-sm-2">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="branch_id" name="branch_id">
+                                    <input type="text" class="form-control" id="branch_id" name="branch_id" disabled>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Customer Rating</label>
-                            <div class="col-sm-6">
+                            <div class="col-sm-2">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="branch_code" name="branch_code" >
+                                    <input type="text" class="form-control" id="branch_code" name="branch_code">
                                 </div>
                             </div>
                         </div>
@@ -197,16 +182,16 @@
                                 <h4 class="card-title">General Information</h4>
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <label class="col-sm-2 col-form-label">Lead source Category</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
                                             @php
-                                                $lead_src_cts = Illuminate\Support\Facades\DB::table('lead_sources')->get();
+                                            $lead_src_cts = Illuminate\Support\Facades\DB::table('lead_sources')->get();
                                             @endphp
-                                            <select name="lead_source_category_id"  class="form-control">
+                                            <select name="lead_source_category_id" class="form-control">
                                                 <option value="">Select </option>
                                                 @isset($lead_src_cts)
                                                 @foreach ($lead_src_cts as $ls)
@@ -232,7 +217,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Account Description</label>
                             <div class="col-sm-8">
@@ -253,9 +238,11 @@
                                     <div class="col-5">
                                         <div class="form-group">
                                             @php
-                                            $acc_cats = Illuminate\Support\Facades\DB::table('account_categories')->get();
-                                        @endphp
-                                            <select name="account_category_id"   class="selectpicker" data-style="select-with-transition">
+                                            $acc_cats =
+                                            Illuminate\Support\Facades\DB::table('account_categories')->get();
+                                            @endphp
+                                            <select name="account_category_id" class="selectpicker"
+                                                data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($acc_cats)
                                                 @foreach ($acc_cats as $ac_cat)
@@ -276,9 +263,10 @@
                                     <div class="col-5">
                                         <div class="form-group">
                                             @php
-                                                $acc_types = Illuminate\Support\Facades\DB::table('account_types')->get();
+                                            $acc_types = Illuminate\Support\Facades\DB::table('account_types')->get();
                                             @endphp
-                                            <select name="account_type_id"   class="selectpicker" data-style="select-with-transition">
+                                            <select name="account_type_id" class="selectpicker"
+                                                data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($acc_types)
                                                 @foreach ($acc_types as $ac_type)
@@ -297,13 +285,17 @@
                             <div class="col-sm-8">
                                 <div class="col-10">
                                     <div class="form-group">
-                                        <div class="col"><input type="checkbox" class="form-control" name="has_atm" value="1" > ATM
+                                        <div class="col"><input type="checkbox" class="form-control" name="has_atm"
+                                                value="1"> ATM
                                         </div>
-                                        <div class="col"><input type="checkbox" class="form-control" name="has_sms" value="1"  > SMS
+                                        <div class="col"><input type="checkbox" class="form-control" name="has_sms"
+                                                value="1"> SMS
                                         </div>
-                                        <div class="col"><input type="checkbox" class="form-control" name="has_internet_banking"  value="1" >
+                                        <div class="col"><input type="checkbox" class="form-control"
+                                                name="has_internet_banking" value="1">
                                             Internet Banking</div>
-                                        <div class="col"><input type="checkbox" class="form-control" name="has_mobile_banking" value="1"  >
+                                        <div class="col"><input type="checkbox" class="form-control"
+                                                name="has_mobile_banking" value="1">
                                             Mobile Banking</div>
                                     </div>
                                 </div>
@@ -315,10 +307,11 @@
                             <div class="col-sm-8">
                                 <div class="col-10">
                                     <div class="form-group">
-                                        <div class="col"><input type="checkbox" class="form-control" name="has_account_statement"  value="1" >
+                                        <div class="col"><input type="checkbox" class="form-control"
+                                                name="has_account_statement" value="1">
                                             Account Statement</div>
-                                        <div class="col"><input type="checkbox" class="form-control" name="has_passbook" value="1"
-                                                 >Passbook</div>
+                                        <div class="col"><input type="checkbox" class="form-control" name="has_passbook"
+                                                value="1">Passbook</div>
                                     </div>
                                 </div>
                             </div>
@@ -336,7 +329,7 @@
 </div>
 
 <script>
-//     $("#client_full_name").select2({
+    //     $("#client_full_name").select2({
 //   ajax: {
 //     url: '{{('/search_by_full_name')}}',
 //     dataType: 'json',

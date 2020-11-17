@@ -74,15 +74,9 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="interest_rate"   class="selectpicker" data-style="select-with-transition"">
-                                            <option value="">Select </option>
-                                            @isset($idtypes)
-                                            @foreach ($idtypes as $idtype)
-                                            <option value="{{$idtype->id}}">
-                                                {{$idtype->identification_type}}
-                                                @endforeach
-                                                @endisset
-                                        </select>
+
+                                        <input type="text" class="form-control" name="interest_rate">
+
                                     </div>
                                 </div>
                             </div>
