@@ -34,12 +34,7 @@
                                 <span class="sidebar-normal"> All Users </span>
                             </a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/users/find">
-                                <span class="sidebar-mini"> <i class="material-icons">supervised_user_circle</i> </span>
-                                <span class="sidebar-normal"> Find Users </span>
-                            </a>
-                        </li>
+                      
 
                         <li class="nav-item ">
                             <a class="nav-link" href="/roles/index">
