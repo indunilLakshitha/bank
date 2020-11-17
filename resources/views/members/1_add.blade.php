@@ -13,7 +13,6 @@
                         <div class="tab-pane active" id="private_1">
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
                             <div class="row justify-content-center">
-
                                 <div class="col-4">
                                     <div class="form-group">
                                         <div class="row">
@@ -26,7 +25,6 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="row">
-
                                             <div class="col">
                                                 <div class="form-group">
                                                 <label for="c">STATUS</label>
@@ -359,7 +357,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <button type="submit" class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>

@@ -16,7 +16,7 @@
                                 <label class="col-sm-2 col-form-label">Birth Date / Nic Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="date" name="date_of_birth" class="form-control">
+                                        <input type="date" name="date_of_birth" class="form-control col-3">
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                 <label class="col-sm-2 col-form-label">Date Became Member</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="date" name="member_date" class="form-control">
+                                        <input type="date" name="member_date" class="form-control col-3">
                                     </div>
                                 </div>
                             </div>
@@ -80,44 +80,13 @@
                                 <label class="col-sm-2 col-form-label">Joined Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="date" name="join_date" class="form-control">
+                                        <input type="date" name="join_date" class="form-control col-3">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Expired Date</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="date" name="expire_date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Exit Date</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="date" name="exit_date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Death Date</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="date" name="death_date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Neglection Starting Date</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="date" name="neglection_starting_date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
-                        <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <button type="submit" class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>

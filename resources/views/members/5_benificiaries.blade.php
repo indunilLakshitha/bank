@@ -25,7 +25,7 @@
                                 <div class="col-sm-2">
                                     <a class="btn btn-sm btn-primary"
                                     onclick="add_bene_guard('/bene', '{{$cus_id}}', select_bene.value)"
-                                    >Select</a>
+                                    >ADD</a>
                                 </div>
                                 {{-- <div class="col-sm-7">
                                     <input type="text" class="form-control">
@@ -58,7 +58,7 @@
                                 <div class="col-sm-2">
                                     <a class="btn btn-sm btn-primary"
                                     onclick="add_bene_guard('/guard', '{{$cus_id}}', select_guard.value)"
-                                    >Select</a>
+                                    >ADD</a>
                                 </div>
                                 {{-- <div class="col-sm-7">
                                     <input type="text" class="form-control">
@@ -78,7 +78,7 @@
                                 </table>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <button type="submit" class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>
