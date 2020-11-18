@@ -55,6 +55,12 @@ class CustomerBasicDataController extends Controller
         $main_type->is_enable = 1;
         $main_type->created_by = Auth::user()->name;
         $main_type->save();
+
+        $contact_data = MainType::create($request->all());
+        $contact_data->customer_id = $cus_id;
+        $contact_data->is_enable = 1;
+        $contact_data->created_by = Auth::user()->name;
+        $contact_data->save();
         return view('members.2_statusanddated',compact('cus_id'))->with('success', 'Details submitted');
 
 

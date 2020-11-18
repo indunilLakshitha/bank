@@ -363,38 +363,38 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Expired Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <input type="text" name="expire_date" class="form-control" readonly value="{{ isset($view_2->expire_date)?$view_2->expire_date:''}}">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+                            </div> -->
+                            <!-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Exit Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <input type="text" name="exit_date" class="form-control" readonly value="{{ isset($view_2->exit_date)?$view_2->exit_date:''}}">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+                            </div> -->
+                            <!-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Death Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <input type="text" name="death_date" class="form-control" readonly value="{{ isset($view_2->death_date)?$view_2->death_date:''}}">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+                            </div> -->
+                            <!-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Neglection Starting Date</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <input type="text" name="neglection_starting_date" readonly class="form-control" value="{{ isset($view_2->neglection_starting_date)?$view_2->neglection_starting_date:''}}">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         @endisset
                     {{-- Ends Private 1 --}}
@@ -543,7 +543,7 @@
                                 <table class="table table-striped table-bordered" readonly id="guard_table">
                                    <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th>Customer ID</th>
                                         <th>Guardian Name</th>
                                     </tr>
                                    </thead>

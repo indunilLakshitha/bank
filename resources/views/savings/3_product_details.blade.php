@@ -114,10 +114,10 @@
                                     <div class="form-group">
                                         <select name="account_level"   class="selectpicker" data-style="select-with-transition">
                                             <option value="">Select </option>
-                                            @isset($idtypes)
-                                            @foreach ($idtypes as $idtype)
+                                            @isset($acc_levels)
+                                            @foreach ($acc_levels as $acc_level)
                                             <option value="{{$idtype->id}}">
-                                                {{$idtype->identification_type}}
+                                                {{$acc_level->identification_type}}
                                                 @endforeach
                                                 @endisset
                                         </select>
@@ -132,12 +132,15 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <select name="initial_deposit_allow"   class="selectpicker" data-style="select-with-transition">
+                                        <select name="deposite_mode_id"   class="selectpicker" data-style="select-with-transition">
+                                             @php
+                                                $diposits = Illuminate\Support\Facades\DB::table('deposite_modes')->get();
+                                            @endphp
                                             <option value="">Select </option>
-                                            @isset($idtypes)
-                                            @foreach ($idtypes as $idtype)
-                                            <option value="{{$idtype->id}}">
-                                                {{$idtype->identification_type}}
+                                            @isset($diposits)
+                                            @foreach ($diposits as $diposit)
+                                            <option value="{{$diposit->id}}">
+                                                {{$diposit->deposite_mode}}
                                                 @endforeach
                                                 @endisset
                                         </select>
