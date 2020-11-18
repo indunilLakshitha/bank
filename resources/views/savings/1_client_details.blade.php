@@ -44,7 +44,6 @@
                                         class="form-control d-none " id="client_full_name_select"
                                         data-style="select-with-transition"
                                         >
-
                                         </select>
                             </div>
                         </div>
