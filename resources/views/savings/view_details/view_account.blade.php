@@ -25,7 +25,7 @@
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="client_full_name"  readonly value="{{ $view_1->client_full_name}}">
+                                    <input type="text" class="form-control" id="client_full_name"  readonly value="{{ isset($view_1_1->full_name ) ? $view_1_1->full_name : ''}}" >
                                 </div>
                             </div>
                         </div>
@@ -33,15 +33,17 @@
                             <label class="col-sm-2 col-form-label">ID Type</label>
                             <div class="col-sm-8">
                                 <div class="row">
+                                    <?php $id_types=\App\Models\IedentificationType::where('id',$view_1_1->identification_type_id )->first()?>
                                     <div class="col-4">
+                                        @isset($id_types)
                                         <div class="form-group">
-                                            <input type="text" class="form-control" nme= "identification_type_id" readonly value="{{$view_1->identification_type_id}}">
+                                            <input type="text" class="form-control" nme= "identification_type_id" readonly value="{{ $id_types->identification_type }}">
                                         </div>
+                                        @endisset
                                     </div>
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" readonly class="form-control" value="{{$view_1->identification_number}}">
-
+                                            <input type="text" name="identification_number"  id="identification_number" readonly class="form-control" value="{{ isset($view_1_1->identification_number ) ? $view_1_1->identification_number : ''}}">
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +63,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="full_name" class="form-control" id="full_name" readonly value="{{ $view_1->full_name}}">
+                                            <input type="text" name="full_name" class="form-control" id="full_name" readonly value="{{ isset($view_1_1->full_name ) ? $view_1_1->full_name : ''}}">
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -74,10 +76,13 @@
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">DOB</label>
+                            <?php $dob=\App\Models\CustomerStatusDates::where('customer_id',$view_1_1->customer_id)->first()?>
                             <div class="col-sm-6">
+                                @isset($dob)
                                 <div class="form-group">
-                                    <input type="text" name="dob"  id="dob" class="form-control" readonly value="{{ $view_1->dob}}">
+                                    <input type="text" name="dob"  id="dob" class="form-control" readonly valvalue="{{ $dob->date_of_birth }}">
                                 </div>
+                                @endisset
                             </div>
                         </div>
                         <div class="row">
@@ -86,7 +91,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ $view_1->identification_type_id}}">
+                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ isset($view_1->FATCA_clearance_received ) ? $view_1->FATCA_clearance_received : ''}}">
 
                                         </div>
                                     </div>
@@ -99,8 +104,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ $view_1->identification_type_id}}">
-
+                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ isset($view_1->PEP_clearance_received ) ? $view_1->PEP_clearance_received : ''}}">
                                         </div>
                                     </div>
                                 </div>
@@ -111,10 +115,13 @@
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Branch Code</label>
+                            <?php $branch=\App\Models\Branch::where('id',$view_1->branch_id)->first()?>
                             <div class="col-sm-6">
+                                @isset($branch)
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="branch_code" name="branch_code" readonly value="{{ $view_1->branch_code}}">
+                                    <input type="text" class="form-control" id="branch_code" name="branch_code" readonly value="{{ $branch->branch_code}}">
                                 </div>
+                                @endisset
                             </div>
                         </div>
 
@@ -122,7 +129,7 @@
                             <label class="col-sm-2 col-form-label">Customer Rating</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" readonly value="{{ $view_1->branch_code}}">
+                                    <input type="text" class="form-control" readonly value="">
                                 </div>
                             </div>
                         </div>
@@ -137,13 +144,15 @@
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Lead source Category</label>
+                            <?php $led_id=\App\Models\LeadSource::where('id',$view_1->lead_source_category_id)->first()?>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
+                                        @isset($led_id)
                                         <div class="form-group">
-                                            <input type="text" name="lead_source_category_id"  id="lead_source_category_id" class="form-control" readonly value="{{ $view_1->lead_source_category_id}}">
-
+                                            <input type="text" name="lead_source_category_id"  id="lead_source_category_id" class="form-control" readonly value="{{ $led_id->lead_source_category}}">
                                         </div>
+                                        @endisset
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +163,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="lead_source_identification" readonly value="{{ $view_1->lead_source_identification}}">
+                                            <input type="text" class="form-control" name="lead_source_identification" readonly value="{{ isset($view_1->lead_source_identification ) ? $view_1->lead_source_identification : ''}}">
 
                                         </div>
                                     </div>
@@ -167,7 +176,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="account_description" readonly value="{{ $view_1->account_description}}">
+                                            <input type="text" class="form-control" name="account_description" readonly value="{{ isset($view_1->account_description ) ? $view_1->account_description : ''}}">
 
                                         </div>
                                     </div>
@@ -176,25 +185,30 @@
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Account Category</label>
+                            <?php $acc_cat=\App\Models\AccountCategory::where('id',$view_1->account_category_id )->first()?>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
+                                        @isset($acc_cat)
                                         <div class="form-group">
-                                            <input type="text" name="account_category_id"  id="account_category_id" class="form-control"  readonly value="{{ $view_1->account_category_id}}">
+                                            <input type="text" name="account_category_id"  id="account_category_id" class="form-control"  readonly value="{{ $acc_cat->account_category}}">
                                         </div>
+                                        @endisset
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Account Type</label>
+                            <?php $acc_typ=\App\Models\AccountCategory::where('id',$view_1->account_type_id )->first()?>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
+                                        @isset($acc_typ)
                                         <div class="form-group">
-                                            <input type="text" name="account_type_id"  id="account_type_id" class="form-control"   readonly value="{{ $view_1->account_type_id}}">
-
+                                            <input type="text" name="account_type_id"  id="account_type_id" class="form-control"   readonly value="{{ $acc_typ->account_type}}">
                                         </div>
+                                        @endisset
                                     </div>
                                 </div>
                             </div>
@@ -205,13 +219,13 @@
                                 <div class="col-10">
                                     <div class="form-group">
                                         <!-- <input type="text" name="identification_number"  id="identification_number" class="form-control"> -->
-                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_atm" <?php echo($view_1->has_atm == 1 ? 'checked': '') ?>> ATM
+                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_atm" <?php echo(@isset($view_1->has_atm) == 1 ? 'checked': '') ?>> ATM
                                         </div>
-                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_sms" readonly <?php echo($view_1->has_sms == 1 ? 'checked': '') ?>  > SMS
+                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_sms" readonly <?php echo(@isset($view_1->has_sms) == 1 ? 'checked': '') ?>  > SMS
                                         </div>
-                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_internet_banking"  readonly  <?php echo($view_1->has_internet_banking == 1 ? 'checked': '') ?> >
+                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_internet_banking"  readonly  <?php echo(@isset($view_1->has_internet_banking) == 1 ? 'checked': '') ?> >
                                             Internet Banking</div>
-                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_mobile_banking" readonly  <?php echo($view_1->has_mobile_banking == 1 ? 'checked': '') ?>  >
+                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_mobile_banking" readonly  <?php echo(@isset($view_1->has_mobile_banking) == 1 ? 'checked': '') ?>  >
                                             Mobile Banking</div>
 
                                     </div>
@@ -224,7 +238,11 @@
                             <div class="col-sm-8">
                                 <div class="col-10">
                                     <div class="form-group">
-                                        <input type="text" name="identification_number"  id="identification_number" class="form-control" readonly value="{{ $view_1->has_passbook}}" >
+                                        @if(@isset($view_1->has_passbook) == 1)
+                                        <input type="text" name="has_passbook"  id="has_passbook" class="form-control" readonly value="Pass Book" >
+                                        @else
+                                        <input type="text" name="has_passbook"  id="has_passbook" class="form-control" readonly value="No Pass Book" >
+                                        @endif
 
                                     </div>
                                 </div>
@@ -249,7 +267,7 @@
                                     <div class="col-5">
                                         <div class="form-group">
 
-                                            <input type="text" name="product_type_id"  id="product_type_id" class="form-control" readonly placeholder="{{ $view_2->product_type_id}}">
+                                            <input type="text" name="product_type_id"  id="product_type_id" class="form-control" readonly value="">
 
                                         </div>
                                     </div>

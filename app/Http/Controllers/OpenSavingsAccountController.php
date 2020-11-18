@@ -14,6 +14,8 @@ use App\Models\ProductFeeData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\CustomerBasicData;
+
 
 class OpenSavingsAccountController extends Controller
 {
@@ -261,6 +263,7 @@ class OpenSavingsAccountController extends Controller
     public function viewSavingAccount(Request $request){
 
         $view_1 = AccountGeneralInformation::where('customer_id',$request->id)->first();
+        $view_1_1 = CustomerBasicData::where('customer_id',$request->id)->first();
         $view_2 = ProductData::where('account_id',$view_1->id)->first();
         $view_3 = Joinaccount::where('customer_id',$request->id)->first();
         $view_4 = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
@@ -270,7 +273,7 @@ class OpenSavingsAccountController extends Controller
         $acc_no = 'ACC' . $CIF;
 
         // return response()->json($view_2);
-        return view('savings.view_details.view_account',compact('view_1','view_2','view_3','view_3','view_3','idtypes', 'CIF', 'acc_no'));
+        return view('savings.view_details.view_account',compact('view_1','view_1_1','view_2','view_3','view_3','view_3','idtypes', 'CIF', 'acc_no'));
 
     }
 }
