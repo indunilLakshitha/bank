@@ -12,36 +12,19 @@
                         @csrf
                         <div class="tab-pane active" id="private_1">
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
-                            <div class="row justify-content-center">
-                                <div class="col-4">
+
+
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">STATUS</label>
+                                <div class="col-sm-10">
                                     <div class="form-group">
-                                        <div class="row">
-                                            {{-- <div class="form-group">
-                                            <label for="">Code</label>
-                                            <input class="form-control" name="customer_id" type="text" readonly value={{$cus_id}}>
-                                            </div> --}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                <label for="c">STATUS</label>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                <select name="customer_status_id" id="c" class="form-control">
-                                                    <option value="1">ACTIVE</option>
-                                                    <option value="0">INACTIVE</option>
-                                                </select>
-                                                </div>
-                                            </div>
+                                        <select name="customer_status_id" id="c" class="selectpicker" data-style="select-with-transition">
+                                            <option value="1">ACTIVE</option>
+                                            <option value="0">INACTIVE</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
@@ -249,7 +232,6 @@
                                         <input type="text" name="office_sub_id" class="form-control">
                                     </div>
                                 </div>
-
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">ID Type</label>
@@ -301,7 +283,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <select name="telephone_no_type" id="" class="selectpicker" data-style="select-with-transition">
+                                            <select name="telephone_no_type" id="n" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select Type</option>
                                                 @isset($contacttypes)
                                                     @foreach ($contacttypes as $contact_type)

@@ -17,6 +17,9 @@ class MainType extends Model
         'customer',
         'child',
         'introducer',
-       
+        'is_enable',
+        'created_by',
+        'updated_by',
+
     ];
 }

@@ -174,7 +174,7 @@
                     <input type="hidden" name="product_data_id" value={{$prod_id}}>
                     <input type="hidden" name="account_id" value={{$account_id}}>
                     <input type="hidden" name="customer_id" value={{$customer_id}}>
-                    <button type="submit" class="btn btn-primary">SUBMIT</button>
+                    <button type="submit" class="btn btn-primary">NEXT</button>
                 </form>
             </div>
         </div>
