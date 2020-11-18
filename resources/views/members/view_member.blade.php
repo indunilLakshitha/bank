@@ -109,7 +109,7 @@
                                 <div class="col-sm-10 checkbox-radios">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1->non_member) == 1 ? 'checked': '') ?>> Non
+                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1_1->non_member) == 1 ? 'checked': '') ?>> Non
                                             Member
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" disabled type="checkbox" <?php echo($view_1->member == 1 ? 'checked': '') ?>> Member
+                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1_1->member) == 1 ? 'checked': '') ?>> Member
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -126,7 +126,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1->guarantor)  == 1 ? 'checked': '') ?>>
+                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1_1->guarantor)  == 1 ? 'checked': '') ?>>
                                             Guarantor
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -135,7 +135,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1->supplier ) == 1 ? 'checked': '') ?>>
+                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1_1->supplier ) == 1 ? 'checked': '') ?>>
                                             Supplier
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -144,7 +144,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1->customer)  == 1 ? 'checked': '') ?>>
+                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1_1->customer)  == 1 ? 'checked': '') ?>>
                                             Customer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -153,7 +153,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1->child)  == 1 ? 'checked': '') ?>> Child
+                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1_1->child)  == 1 ? 'checked': '') ?>> Child
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -161,7 +161,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1->introducer)  == 1 ? 'checked': '') ?>>
+                                            <input class="form-check-input" disabled type="checkbox" <?php echo(@isset($view_1_1->introducer)  == 1 ? 'checked': '') ?>>
                                             Introducer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>

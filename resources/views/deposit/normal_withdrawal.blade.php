@@ -22,7 +22,16 @@
                 <button class="btn fa fa-search btn-info btn"> &nbspFind</button>
             </div>
             <div class="row">
-                <div class="col-sm-12">
+                <label class="col-sm-2 col-form-label">Account</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)">
+                    </div>
+                </div>
+                <button class="btn fa fa-search btn-info btn-sm"></button>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 " style="margin-left: 260px" >
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
@@ -47,15 +56,6 @@
                 </div>
             </div>
             <div class="row">
-                <label class="col-sm-2 col-form-label">Account</label>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)">
-                    </div>
-                </div>
-                <button class="btn fa fa-search btn-info btn-sm"></button>
-            </div>
-            <div class="row">
                 <label class="col-sm-2 col-form-label">Account Name</label>
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -75,7 +75,7 @@
                                 <select name="payment_method_id" id="payment_method_id" class="form-control">
                                     <option value="">Select </option>
                                     @php
-                                    $payment_methods = Illuminate\Support\Facades\DB::table('payment_methods')->get();
+                                    $payment_methods = Illuminate\Support\Facades\DB::table('payment_methods')->where('is_enable',1)->get();
                                     @endphp
                                     @isset($payment_methods)
                                     @foreach ($payment_methods as $payment_method)
@@ -124,25 +124,24 @@
             </div>
 
 
-        </form>
+</form>
 
-            <div class="row">
+<div class="row">
 
-                <div class="col-6 text-right">
-                    <a
-                        onclick="normalWithdraw(transaction_value.value,customer_id.value,account_id.value,payment_method_id.value)"
-                        class="btn btn-rose col-4 text-white">WITHDRAW</a>
-                </div>
-                <div class="col-1 text-right">
-                    <button type="submit" class="btn ">Clear</button>
-                </div>
-            </div>
+    <div class="col-6 text-right">
+        <a onclick="normalWithdraw(transaction_value.value,customer_id.value,account_id.value,payment_method_id.value)"
+            class="btn btn-rose col-4 text-white">WITHDRAW</a>
+    </div>
+    <div class="col-1 text-right">
+        <button type="submit" class="btn ">Clear</button>
+    </div>
+</div>
 
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <script type="text/javascript">
     $.ajaxSetup({
@@ -152,7 +151,7 @@
         });
             function getCustomers(name){
 
-                // console.log(name)
+                console.log(name)
                $.ajax({
                    type: 'GET',
                    url : '{{('/findmember')}}',
@@ -176,6 +175,8 @@
                     },
                     success: function(data){
                         // console.log(data)
+                        return showCustomers(data)
+
                     }
                })
            }

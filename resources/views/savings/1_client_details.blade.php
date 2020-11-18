@@ -173,7 +173,7 @@
                             <label class="col-sm-2 col-form-label">Customer Rating</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="branch_code" name="branch_code" >
+                                    <input type="text" class="form-control" id="" name="" >
                                 </div>
                             </div>
                         </div>

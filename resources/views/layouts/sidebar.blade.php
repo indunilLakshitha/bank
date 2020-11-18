@@ -6,7 +6,7 @@
        <a href="" class="simple-text logo-mini">
 
       </a>
-      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      <a href="/dashboard" class="simple-text logo-normal">
         EDCB
       </a></div>
     <div class="sidebar-wrapper">
@@ -34,7 +34,7 @@
                                 <span class="sidebar-normal"> All Users </span>
                             </a>
                         </li>
-                      
+
 
                         <li class="nav-item ">
                             <a class="nav-link" href="/roles/index">
@@ -67,9 +67,9 @@
                 <div class="collapse" id="savings">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="/savings/view">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal"> View Savings Account</span>
+                            <a class="nav-link" href="/savings/open">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal"> Savings Account Opening</span>
                             </a>
                         </li>
                         <li class="nav-item ">
@@ -78,18 +78,18 @@
                                 <span class="sidebar-normal"> Account Verification</span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/savings/view">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal"> View Savings Account</span>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item ">
                             <a class="nav-link" href="/savings/approve">
                                 <span class="sidebar-mini"> <i class="material-icons">supervisor_account</i> </span>
                                 <span class="sidebar-normal"> Account Approval </span>
                             </a>
                         </li> --}}
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/savings/open">
-                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
-                                <span class="sidebar-normal"> Savings Account Opening</span>
-                            </a>
-                        </li>
 
                     </ul>
                 </div>

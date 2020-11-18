@@ -172,7 +172,7 @@
                     </div>
                     <br>
                         <div class="col-6 text-right">
-                        <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <button type="submit" class="btn btn-primary">NEXT</button>
                         </div>
                 </div>
             </div>

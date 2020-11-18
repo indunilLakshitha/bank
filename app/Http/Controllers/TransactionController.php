@@ -12,20 +12,28 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
+    //returning active acounts by name
     public function findMembers(Request $request){
 
-        $customers= CustomerBasicData::leftjoin('account_general_information','account_general_information.customer_id','customer_basic_data.customer_id')
+        $customers= CustomerBasicData::join('account_general_information','account_general_information.customer_id','customer_basic_data.customer_id')
             ->where('customer_basic_data.name_in_use',$request->name)
+            ->where('account_general_information.status',1)
             ->select('account_general_information.account_number','account_general_information.account_balance','customer_basic_data.*')
             ->get();
         return response()->json($customers);
     }
+
+    //returning active acounts by acc no
     public function findMembersById(Request $request){
 
-        $customers= AccountGeneralInformation::where('account_number',$request->id)->get();
+        $customers= AccountGeneralInformation::leftjoin('customer_basic_data','customer_basic_data.customer_id','account_general_information.customer_id')
+                ->select('account_general_information.account_number','account_general_information.account_balance','customer_basic_data.*')
+                 ->where('account_general_information.account_number',$request->id)
+                 ->where('account_general_information.status',1)
+                 ->get();
         return response()->json($customers);
     }
-
+//  noramal withdrawal
     public function normalWithdraw(Request $request){
 
         $payment_log=$request;
@@ -47,6 +55,7 @@ class TransactionController extends Controller
 
 
     }
+    // normal deposites
     public function normalDeposite(Request $request){
 
         $payment_log=$request;
