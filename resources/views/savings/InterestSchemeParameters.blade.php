@@ -6,8 +6,8 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="card ">
-                    <div class="card-body ">
-            <form id="form" class="form-horizontal" >
+                <div class="card-body ">
+                    <form id="form" class="form-horizontal" >
                 @csrf
 
                         <div class="card-header card-header-rose card-header-text">
@@ -121,12 +121,7 @@
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <select name=""  id="" class="selectpicker col-12" data-style="select-with-transition">
-                                            <option value="">Type</option>
 
-                                            <option value="">
-
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -164,12 +159,7 @@
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <select name=""  id="" class="selectpicker col-12" data-style="select-with-transition">
-                                            <option value="">Type</option>
-
-                                            <option value="">
-
-                                        </select>
+                                        
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -515,6 +505,7 @@
                                     </div>
                                 </div>
                             </div>
+
                     </form>
                 </div>
              </div>

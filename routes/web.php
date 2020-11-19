@@ -241,19 +241,28 @@ Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction'
 Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
 
-
+// Add by Kanishka 19/11/2020
 Route::get('/savings/parameter', function () {
 
     return view('savings.savingsAccountParameter');
 });
 
 
-Route::get('/savings/SchemeParameters', function () {
+Route::get('/savings/schemeParameters', function () {
 
     return view('savings.InterestSchemeParameters');
 });
 
+Route::get('/savings/savingsSchemeParameters', function () {
 
+    return view('savings.savingSchemeParameters');
+});
+
+Route::get('/savings/otherViews', function () {
+
+    return view('savings.otherViews');
+});
+// End
 
 Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
 Route::get('/savings/account/{id}', 'OpenSavingsAccountController@viewSavingAccount');

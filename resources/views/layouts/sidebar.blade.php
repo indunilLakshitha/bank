@@ -92,9 +92,21 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link" href="/savings/SchemeParameters">
+                            <a class="nav-link" href="/savings/schemeParameters">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal">Interest Scheme Parameters</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/savings/savingsSchemeParameters">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Saving Scheme Parameters</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/savings/otherViews">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Other Views</span>
                             </a>
                         </li>
                         {{-- <li class="nav-item ">
