@@ -242,6 +242,17 @@ Route::get('/savings/correspondance', 'SavingsController@correspondance');
 Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
 
 
+Route::get('/savings/parameter', function () {
+
+    return view('savings.savingsAccountParameter');
+});
+
+
+Route::get('/savings/SchemeParameters', function () {
+
+    return view('savings.InterestSchemeParameters');
+});
+
 
 
 Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
