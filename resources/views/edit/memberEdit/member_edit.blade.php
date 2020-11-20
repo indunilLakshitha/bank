@@ -3,13 +3,13 @@
 
 @section('content')
 <div class="card">
-<div class="card-body  ">
-<div class="content ">
-    <div class="container-fluid ">
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
-            <div class="card">
-                <div class="card-body  ">
-                    <form id="private_1" action="/member/edit/1add" method="POST">
+    <div class="card-body  ">
+        <div class="content ">
+            <div class="container-fluid ">
+                <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
+                    <div class="card">
+                        <div class="card-body ">
+                            <form id="private_1" action="/member/edit/1add" method="POST">
                         @csrf
                         @isset($view_1)
                         <div class="tab-pane active" id="private_1">
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
-                                     <select name="customer_title_id" id="" placeholder="{{isset($titles->customer_title)}}" class="selectpicker" data-style="select-with-transition">
+                                     <select name="customer_title_id" id=""  class="selectpicker" data-style="select-with-transition">
                                             @isset($titlesAll,$view_1)
                                                 @foreach ($titlesAll as $title)
                                                         <option  value="{{$title->id}}" <?php echo($title->id == $view_1->customer_title_id ? 'selected' : '' )?> >{{$title->customer_title}}</option>
@@ -64,7 +64,7 @@
                                 <label class="col-sm-2 col-form-label" >Name in Use</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input name="name_in_use" type="text"  class="form-control" value="{{ isset($view_1->name_in_use)?$view_1->name_in_use:''}}">
+                                        <input name="name_in_use" type="text"  class="form-control" value="{{ $view_1->name_in_use'}}">
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                 <label class="col-sm-2 col-form-label">Full Name</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="full_name"  class="form-control" value="{{ isset($view_1->full_name) ? $view_1->full_name: ''}}" >
+                                        <input type="text" name="full_name"  class="form-control" value="{{ $view_1->full_name}}" >
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                 <label class="col-sm-2 col-form-label">Surname</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="surname"  class="form-control" value="{{ isset($view_1->surname) ? $view_1->surname: ''}}">
+                                        <input type="text" name="surname"  class="form-control" value="{{ $view_1->surname}}">
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                 <label class="col-sm-2 col-form-label">Short Name</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="short_name" class="form-control"  value="{{ isset($view_1->short_name) ? $view_1->short_name: ''}}">
+                                        <input type="text" name="short_name" class="form-control"  value="{{ $view_1->short_name}}">
                                     </div>
                                 </div>
                             </div>
@@ -96,10 +96,10 @@
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Branch</label>
                                 <div class="col-sm-10">
-                                    <select name="branch_id" id=""  class="selectpicker" data-style="select-with-transition">
+                                    <select name="branch_id" "  class="selectpicker" data-style="select-with-transition">
                                             @isset($branchesAll,$view_1)
                                                 @foreach ($branchesAll as $branch)
-                                                        <option value="{{$branch->id}}" <?php echo($branch->id == $view_1->branch_id ? 'selected' : '' )?> >{{$branch->branch_name}}</option>
+                                                    <option value="{{$branch->id}}" <?php echo($branch->id == $view_1->branch_id ? 'selected' : '' )?> >{{$branch->branch_name}}</option>
                                                 @endforeach
                                             @endisset
                                     </select>
@@ -334,22 +334,27 @@
                                 </div>
 
                             </div>
-                        </div>
-                       @endisset
+
+                            </div>
+
+                        @endisset
                         <div class="row">
                              <div class="col-4">
                              <button type="submit"  class="btn btn-primary" >SAVE</button>
                              </div>
                          </div>
                          </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
+
         <div class="col-md-6 col-6 mr-auto ml-auto pull-right">
             <div class="card">
                 <div class="card-body  ">
+                    <form id="private_2" action="/member/edit/1status" method="POST">
                         @csrf
                         @isset($view_2)
                         <div class="tab-pane active" id="status">
@@ -365,308 +370,78 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Religion</label>
-                                <?php $religons=\App\Models\RelegionData::where('id',$view_2->religion_data_id )->first()?>
+                                <?php $rels=\App\Models\RelegionData::all()?>
                                 <div class="col-sm-10">
-                                    @isset($religons)
-                                    <div class="form-group">
-                                        <input type="text" name="religion_data_id" class="form-control"  value="{{ $religons->religion_data }}">
-                                    </div>
+                                    @isset($rels,$view_2->religion_data_id)
+                                    <select name="religion_data_id" id=""  class="selectpicker" id="married_status_id" data-style="select-with-transition">
+                                            <option value="">Select</option>
+                                            @foreach ($rels as $item)
+                                                <option value="{{$item->id}}" <?php echo($item->id == $view_2->religion_data_id ? 'selected' : '' )?> >{{$item->religion_data}}</option>
+                                            @endforeach
+                                        </select>
                                     @endisset
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Married Status</label>
-                                <?php $married_st=\App\Models\MarriedStatus::where('id',$view_2->married_status_id)->first()?>
+                                <?php $married_st=\App\Models\MarriedStatus::all()?>
                                 <div class="col-sm-10">
-                                    @isset($married_st)
-                                    <div class="form-group">
-                                        <input type="text" name="married_status_id" class="form-control"  value="{{ $married_st->married_status}}">
-                                    </div>
+                                    @isset($married_st,$view_2->married_status_id)
+                                    <select name="married_status_id" id=""  class="selectpicker" id="married_status_id" data-style="select-with-transition">
+                                        <option value="">Select</option>
+                                        @foreach ($married_st as $item)
+                                            <option value="{{$item->id}}" <?php echo($item->id == $view_2->married_status_id ? 'selected' : '' )?>>{{$item->married_status}}</option>
+                                        @endforeach
+                                    </select>
                                     @endisset
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Gender</label>
-                                <?php $gen=\App\Models\Gender::where('id',$view_2->gender_id)->first()?>
+                                <?php $gen=\App\Models\Gender::all()?>
                                 <div class="col-sm-10">
-                                    @isset($gen)
-                                    <div class="form-group">
-                                        <input type="text" name="gender_id " class="form-control"  value="{{ $gen->gender }}">
-                                    </div>
+                                    @isset($gen,$view_2->gender_id)
+                                    <select name="gender_id" id=""  class="selectpicker" id="gender_id" data-style="select-with-transition">
+                                        <option value="">Select</option>
+                                        @foreach ($gen as $item)
+                                            <option value="{{$item->id}}" <?php echo($item->id == $view_2->gender_id ? 'selected' : '' )?>>{{$item->gender}}</option>
+                                        @endforeach
+                                    </select>
                                      @endisset
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Date Became Member</label>
                                 <div class="col-sm-10">
+                                    @isset($view_2->member_date)
                                     <div class="form-group">
-                                        <input type="text" name="member_date" class="form-control"  value="{{ isset($view_2->member_date)?$view_2->member_date:''}}" >
+                                        <input type="date" name="member_date" class="form-control"  value="{{$view_2->member_date}}" >
                                     </div>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Joined Date</label>
                                 <div class="col-sm-10">
+                                    @isset($view_2->join_date)
                                     <div class="form-group">
-                                        <input type="text" name="join_date" class="form-control"  value="{{ isset($view_2->join_date)?$view_2->join_date:''}}">
+                                        <input type="date" name="join_date" class="form-control"  value="{{$view_2->join_date}}">
                                     </div>
+                                    @endisset
                                 </div>
                             </div>
-                            <!-- <div class="row">
-                                <label class="col-sm-2 col-form-label">Expired Date</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="text" name="expire_date" class="form-control" readonly value="{{ isset($view_2->expire_date)?$view_2->expire_date:''}}">
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- <div class="row">
-                                <label class="col-sm-2 col-form-label">Exit Date</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="text" name="exit_date" class="form-control" readonly value="{{ isset($view_2->exit_date)?$view_2->exit_date:''}}">
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- <div class="row">
-                                <label class="col-sm-2 col-form-label">Death Date</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="text" name="death_date" class="form-control" readonly value="{{ isset($view_2->death_date)?$view_2->death_date:''}}">
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- <div class="row">
-                                <label class="col-sm-2 col-form-label">Neglection Starting Date</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="text" name="neglection_starting_date" readonly class="form-control" value="{{ isset($view_2->neglection_starting_date)?$view_2->neglection_starting_date:''}}">
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                         @endisset
-                    {{-- Ends Private 1 --}}
-                </div>
-            </div>
-        </div>
-
-<div class="content">
-    <div class="container-fluid">
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
-            <div class="card">
-                <div class="card-body">
-
-
-                        @csrf
-                        @isset($view_3)
-                        <div class="tab-pane active" id="status">
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Employee at Society</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="text" name="is_employee" readonly class="form-control" value="{{ isset($view_3->is_employee)?$view_3->is_employee:0}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Designation</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="text" name="designation" readonly class="form-control" value="{{ isset($view_3->designation)?$view_3->designation:''}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Address</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="text" name="address_line_1" readonly class="form-control" value="{{ isset($view_3->address_line_1)?$view_3->address_line_1:''}}">
-                                        <input type="text" name="address_line_2" readonly class="form-control" value="{{ isset($view_3->address_line_2)?$view_3->address_line_2:''}}">
-                                        <input type="text" name="address_line_3" readonly class="form-control" value="{{ isset($view_3->address_line_3)?$view_3->address_line_3:''}}">
-                                        <input type="text" name="address_line_4" readonly class="form-control" value="{{ isset($view_3->address_line_4)?$view_3->address_line_4:''}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">EPF No</label>
-                                <div class="col-sm-10">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" readonly name="epf_no" value="{{ isset($view_3->epf_no)?$view_3->epf_no:''}}">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         @endisset
+                         <div class="row">
+                             <div class="col-4">
+                             <button type="submit"  class="btn btn-primary" >SAVE</button>
+                             </div>
+                         </div>
+                    </form>
                     {{-- Ends Private 1 --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
-<div class="card">
-    <div class="card-body  ">
-<div class="content ">
-    <div class="container-fluid ">
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-right">
-            <div class="card">
-                <div class="card-body">
-                        @csrf
-                        @isset($view_4)
-                        <div class="tab-pane active" id="status">
-                            <div class="tab-pane" id="other_societies">
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label">Other Memberships</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-group">
-                                            <textarea name="other_memberships" id="" readonly cols="30" rows="8" placeholder="{{ isset($view_4->other_memberships)?$view_4->other_memberships:''}}"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label">Curr. Designation</label>
-                                    <div class="col-sm-10">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" readonly name="current_designation" value="{{ isset($view_4->current_designation)?$view_4->current_designation:''}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label">Previous Designation</label>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <textarea name="previous_designation" readonly id="" cols="30" rows="8" placeholder="{{ isset($view_4->previous_designation)?$view_4->previous_designation:''}}"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         @endisset
-                    {{-- Ends Private 1 --}}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Beneficiary -->
-
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
-            <div class="card">
-                <div class="card-body">
-                        @csrf
-                            <h5 class="">Beneficiaries</h5>
-
-                            @isset($view_5_1)
-
-                                <table class="table table-striped table-bordered" readonly id="bene_table">
-                                   <thead>
-                                    <tr>
-                                        <th>Customer ID</th>
-                                        <th>Beneficiary ID</th>
-                                    </tr>
-                                   </thead>
-                                   <tbody id="bene_body">
-
-                                       @foreach($view_5_1 as $view_5_11)
-                                        <?php $benes=\App\Models\CustomerBasicData::where('customer_id',$view_5_11->beneficiary_id)->first()?>
-                                       <tr>
-                                            <td>{{$benes->customer_id}} </td>
-                                            <td> {{$benes->name_in_use}}</th>
-                                        </tr>
-                                        @endforeach
-
-
-                                   </tbody>
-                                </table>
-
-                                @endisset
-
-                            <br>
-                            <h5 class="">Guardians</h5>
-
-                            @isset($view_5_2)
-                                <table class="table table-striped table-bordered" readonly id="guard_table">
-                                   <thead>
-                                    <tr>
-                                        <th>Customer ID</th>
-                                        <th>Guardian Name</th>
-                                    </tr>
-                                   </thead>
-                                   <tbody id="guard_body">
-                                         @foreach($view_5_2 as $view_5_22)
-                                        <?php $gudrs=\App\Models\CustomerBasicData::where('customer_id',$view_5_22->guardian_id)->first()?>
-                                       <tr>
-                                             <td>{{$gudrs->customer_id}} </td>
-                                            <td> {{$gudrs->name_in_use}}</td>
-                                        </tr>
-                                        @endforeach
-
-                                   </tbody>
-                                </table>
-                                @endisset
-
-                    {{-- Ends Private 1 --}}
-                </div>
-            </div>
-        </div>
-
-
-<!-- End Beneficiary -->
-
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
-            <div class="card">
-                <div class="card-body">
-                        @csrf
-                        @isset($view_6)
-                        <div class="tab-pane" id="special">
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Special Information</label>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <textarea name="special_information" readonly id="" cols="30" rows="10" placeholder="{{ isset($view_6->special_information)?$view_6->special_information:''}}"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Real Member</label>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input name="is_real_member" readonly  id="" class="form-control" value="{{ isset($view_6->is_real_member)?$view_6->is_real_member:0}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <h5 class="text-center">Assets</h5>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Item</label>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input type="text" readonly class="form-control" value="{{ isset($view_6->item)?$view_6->item:0}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Value</label>
-                                <div class="col-sm-3">
-                                    <input type="text" readonly class="form-control" value="{{ isset($view_6->value)?$view_6->value:0}}">
-                                </div>
-                                <div class="col-sm-3">
-                                    <input name="" id="" readonly class="form-control">
-
-                                </div>
-
-                            </div>
-                        </div>
-                        @endisset
-                </div>
-            </div>
-        </div>
-
- </div>
-            </div>
-
 @endsection

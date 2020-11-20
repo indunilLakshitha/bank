@@ -266,6 +266,7 @@ Route::get('/savings/otherViews', function () {
 
 Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
 Route::get('/members/edit/{id}', 'CustomerBasicDataController@editMember');
+Route::post('/member/edit/1add', 'CustomerBasicDataController@editCustomerBasic');
 Route::get('/savings/account/{id}', 'OpenSavingsAccountController@viewSavingAccount');
 
 
