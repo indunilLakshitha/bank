@@ -14,25 +14,13 @@
                             <h4 class="card-title">General Information</h4>
                         </div>
                     </div>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">Lead source Category</label>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="form-group">
-                                        <input type="text" name="identification_number" id="identification_number"
-                                            class="form-control" disabled value="{{$data->lead_source_category}}">
-=======
->>>>>>> 0bd6ab53405f2a2e853c5fecd7a458800e5a811d
-                    <div class="card-body ">
+
+                    {{-- <div class="card-body "> --}}
                         <div class="row">
                             <label class="col-sm-2 col-form-label">CIF</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  placeholder="{{$CIF}}">
+                                    <input type="text" class="form-control"  >
                                 </div>
                             </div>
                         </div>

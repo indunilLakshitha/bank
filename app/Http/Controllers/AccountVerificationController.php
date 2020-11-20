@@ -37,21 +37,21 @@ class AccountVerificationController extends Controller
         // return $data;
         // _encode($data);
 
-        #join account members
+        // #join account members
         $acc_id = AccountGeneralInformation::where('account_number', $id)->first()->id;
-        $join_acc_id = Joinaccount::where('account_id', $acc_id)->first()->id;
-        $join_acc_mems = JoinaccountMember::where('join_account_id', $join_acc_id)->get();
+        // $join_acc_id = Joinaccount::where('account_id', $acc_id)->first()->id;
+        // $join_acc_mems = JoinaccountMember::where('join_account_id', $join_acc_id)->get();
 
-        #guardians
-        $cus_id = AccountGeneralInformation::where('account_number', $id)->first()->customer_id;
-        $guardians = GuardianData::where('customer_id', $cus_id)->get();
-        $g_arr = array();
-        foreach($guardians as $g){
-            array_push($g_arr,CustomerBasicData::find($g->id));
-        }
+        // #guardians
+        // $cus_id = AccountGeneralInformation::where('account_number', $id)->first()->customer_id;
+        // $guardians = GuardianData::where('customer_id', $cus_id)->get();
+        // $g_arr = array();
+        // foreach($guardians as $g){
+        //     array_push($g_arr,CustomerBasicData::find($g->id));
+        // }
 
         #nominees
-        $noms = NomineeMember::where('account_id', $acc_id)->get();
+        // $noms = NomineeMember::where('account_id', $acc_id)->get();
 
         #tax details
         $tax_dets = ProductFeeData::where('account_id', $acc_id)
@@ -65,7 +65,7 @@ class AccountVerificationController extends Controller
         ->select('documents.*', 'product_documents.*')
         ->get();
 
-        return view('savings.view_details.account_details', compact('data', 'join_acc_mems', 'g_arr', 'noms', 'tax_dets', 'docs'));
+        return view('savings.view_details.account_details', compact('data', 'tax_dets', 'docs'));
     }
 
     public function customer_details($id){

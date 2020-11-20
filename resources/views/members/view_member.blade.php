@@ -462,7 +462,7 @@
     <div class="card-body  ">
 <div class="content ">
     <div class="container-fluid ">
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-right">
+        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
             <div class="card">
                 <div class="card-body">
                         @csrf
@@ -502,6 +502,54 @@
         </div>
     </div>
 </div>
+ <div class="col-md-6 col-6 mr-auto ml-auto pull-right">
+            <div class="card">
+                <div class="card-body">
+                        @csrf
+                        @isset($view_6)
+                        <div class="tab-pane" id="special">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Special Information</label>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <textarea name="special_information" readonly id="" cols="30" rows="12" placeholder="{{ isset($view_6->special_information)?$view_6->special_information:''}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Real Member</label>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input name="is_real_member" readonly  id="" class="form-control" value="{{ isset($view_6->is_real_member)?$view_6->is_real_member:0}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <h5 class="text-center">Assets</h5>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Item</label>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" readonly class="form-control" value="{{ isset($view_6->item)?$view_6->item:0}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Value</label>
+                                <div class="col-sm-3">
+                                    <input type="text" readonly class="form-control" value="{{ isset($view_6->value)?$view_6->value:0}}">
+                                </div>
+                                <div class="col-sm-3">
+                                    <input name="" id="" readonly class="form-control">
+
+                                </div>
+
+                            </div>
+                        </div>
+                        @endisset
+                </div>
+            </div>
+        </div>
 
 <!-- Beneficiary -->
 
@@ -568,54 +616,7 @@
 
 <!-- End Beneficiary -->
 
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
-            <div class="card">
-                <div class="card-body">
-                        @csrf
-                        @isset($view_6)
-                        <div class="tab-pane" id="special">
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Special Information</label>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <textarea name="special_information" readonly id="" cols="30" rows="10" placeholder="{{ isset($view_6->special_information)?$view_6->special_information:''}}"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Real Member</label>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input name="is_real_member" readonly  id="" class="form-control" value="{{ isset($view_6->is_real_member)?$view_6->is_real_member:0}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <h5 class="text-center">Assets</h5>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Item</label>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input type="text" readonly class="form-control" value="{{ isset($view_6->item)?$view_6->item:0}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Value</label>
-                                <div class="col-sm-3">
-                                    <input type="text" readonly class="form-control" value="{{ isset($view_6->value)?$view_6->value:0}}">
-                                </div>
-                                <div class="col-sm-3">
-                                    <input name="" id="" readonly class="form-control">
 
-                                </div>
-
-                            </div>
-                        </div>
-                        @endisset
-                </div>
-            </div>
-        </div>
 
  </div>
             </div>

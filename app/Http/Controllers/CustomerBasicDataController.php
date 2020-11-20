@@ -20,6 +20,7 @@ use App\Models\CutomerTitle;
 use App\Models\MainType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class CustomerBasicDataController extends Controller
 {
@@ -196,6 +197,7 @@ class CustomerBasicDataController extends Controller
 
     public function editMember(Request $request){
 
+        $cus = $request->id;
         $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
         $view_1_1 = MainType::where('customer_id',$request->id)->first();
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
@@ -204,25 +206,63 @@ class CustomerBasicDataController extends Controller
         $view_5_1 = BeneficiaryData::where('customer_id',$request->id)->get();
         $view_5_2 = GuardianData::where('customer_id',$request->id)->get();
         $view_6 = SpecialData::where('customer_id',$request->id)->first();
-        return view('edit.memberEdit.member_edit',compact('view_1','view_1_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
+        return view('edit.memberEdit.member_edit',compact('cus','view_1','view_1_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
 
 
     }
 
     public function editCustomerBasic(Request $request){
 
-        $customer = CustomerBasicData::where('id',$request->customer_id)->first();
+        $customer = CustomerBasicData::where('customer_id',$request->customer_id)->first();
 
         $customer->update($request->all());
-        $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
-        $view_1_1 = MainType::where('customer_id',$request->id)->first();
-        $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
-        $view_3 = OccupationData::where('customer_id',$request->id)->first();
-        $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
-        $view_5_1 = BeneficiaryData::where('customer_id',$request->id)->get();
-        $view_5_2 = GuardianData::where('customer_id',$request->id)->get();
-        $view_6 = SpecialData::where('customer_id',$request->id)->first();
-        return view('edit.memberEdit.member_edit',compact('view_1','view_1_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
+
+        return Redirect::to('/members/edit/'.$request->customer_id);
+
+
+    }
+
+
+    public function editStatus(Request $request){
+
+        $customer = CustomerStatusDates::where('customer_id',$request->customer_id)->first();
+
+        $customer->update($request->all());
+
+        return Redirect::to('/members/edit/'.$request->customer_id);
+
+
+    }
+
+    public function editOccupati(Request $request){
+
+        $customer = OccupationData::where('customer_id',$request->customer_id)->first();
+
+        $customer->update($request->all());
+
+        return Redirect::to('/members/edit/'.$request->customer_id);
+
+
+    }
+
+    public function editOthersociety(Request $request){
+
+        $customer = OtherSocietyData::where('customer_id',$request->customer_id)->first();
+
+        $customer->update($request->all());
+
+        return Redirect::to('/members/edit/'.$request->customer_id);
+
+
+    }
+
+    public function editSpecialAndAssets(Request $request){
+
+        $customer = SpecialData::where('customer_id',$request->customer_id)->first();
+
+        $customer->update($request->all());
+
+        return Redirect::to('/members/edit/'.$request->customer_id);
 
 
     }
