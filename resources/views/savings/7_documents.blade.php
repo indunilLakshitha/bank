@@ -25,7 +25,7 @@
                         <div class="col-sm-12">
                             <label class="col-sm-2 col-form-label">Document Type</label>
 
-                            <label class="col-sm-2 col-form-label">Mandotory</label>
+                            <label class="col-sm-2 col-form-label">Mandatory</label>
 
                             <label class="col-sm-1 col-form-label">Availability</label>
                             <label class="col-sm-1 col-form-label"></label>
@@ -52,12 +52,8 @@
                             <div class="col-sm-1  checkbox">
                                 <div class="form-check ">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="" @if ($d->is_mandatory
-                                        == 1)
-
-                                        checked
-                                        @endif
-                                        >
+                                        <input class="form-check-input" type="checkbox" value=""
+                                         @if ($d->is_mandatory == 1) checked @endif ">
                                         <span class="form-check-sign">
                                             <span class="check"></span>
                                         </span>

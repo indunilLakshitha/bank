@@ -118,7 +118,8 @@ class OpenSavingsAccountController extends Controller
         $acc->save();
 
         $account_id = $acc->id;
-
+        // $diposits ??
+        // $acc_levels ??
 
         return view('savings.3_product_details', compact('account_id'));
     }
@@ -132,7 +133,7 @@ class OpenSavingsAccountController extends Controller
         $prod_id = $prod_data->id;
         $account_id = $request->account_id;
 
-         $is_joint_account = AccountGeneralInformation::find($request->account_id)->account_type_id == 2;
+        $is_joint_account = AccountGeneralInformation::find($request->account_id)->account_type_id == 2;
 
          if($is_joint_account){
 
@@ -267,13 +268,17 @@ class OpenSavingsAccountController extends Controller
         $view_2 = ProductData::where('account_id',$view_1->id)->first();
         $view_3 = Joinaccount::where('customer_id',$request->id)->first();
         $view_4 = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
-        $view_5 = ProductDocument::where('customer_id',$request->id)->first();
+        $view_5 = ProductDocument::where('customer_id',$request->id)->get();
+        $view_6 = ProductFeeData::where('customer_id',$request->id)->get();
+        $view_7 = NomineeMember::where('customer_id',$request->id)->get();
+        $view_8 = Joinaccount::where('customer_id',$request->id)->get();
+        $view_8_1 = JoinaccountMember::where('customer_id',$request->id)->get();
         $idtypes = DB::table('iedentification_types')->get();
         $CIF = count(DB::table('account_general_information')->get()) + 1;
         $acc_no = 'ACC' . $CIF;
 
         // return response()->json($view_2);
-        return view('savings.view_details.view_account',compact('view_1','view_1_1','view_2','view_3','view_3','view_3','idtypes', 'CIF', 'acc_no'));
+        return view('savings.view_details.view_account',compact('view_1','view_1_1','view_2','view_3','view_4','view_5','view_6','view_7','view_8','view_8_1','idtypes', 'CIF', 'acc_no'));
 
     }
 }

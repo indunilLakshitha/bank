@@ -84,6 +84,31 @@
                                 <span class="sidebar-normal"> View Savings Account</span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/savings/parameter">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Savings Account Parameters</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/savings/schemeParameters">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Interest Scheme Parameters</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/savings/savingsSchemeParameters">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Saving Scheme Parameters</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/savings/otherViews">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Other Views</span>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item ">
                             <a class="nav-link" href="/savings/approve">
                                 <span class="sidebar-mini"> <i class="material-icons">supervisor_account</i> </span>

@@ -59,7 +59,7 @@
                                 </label>
                             </div>
 
-                        <input type="text" value={{$fd->id}} readonly class="form-control" name="fee_details_id">
+                        <input type="text" value="{{$fd->id}}" readonly class="form-control" name="fee_details_id" >
                             <div class="col-sm-2">
                                 <div class="row">
                                     <div class="col-6">

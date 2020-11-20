@@ -283,7 +283,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <select name="telephone_no_type" id="n" class="selectpicker" data-style="select-with-transition">
+                                            <select name="contact_type_id" id="contact_type_id" class="selectpicker" data-style="select-with-transition">
                                                 <option value="">Select Type</option>
                                                 @isset($contacttypes)
                                                     @foreach ($contacttypes as $contact_type)
@@ -301,7 +301,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <input type="number" name="telephone_number" class="form-control" placeholder="011 2345 678" maxlength="10">
+                                            <input type="number" name="contact_data" class="form-control" placeholder="011 2345 678" maxlength="10">
 
                                         </div>
                                     </div>
