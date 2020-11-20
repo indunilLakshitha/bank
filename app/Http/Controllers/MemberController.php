@@ -12,7 +12,29 @@ class MemberController extends Controller
     public function search(Request $request)
     {
         // return $request;
-        $results = DB::select("
+        if(
+            $request->customer_id == null &&
+            $request->married_status_id == null &&
+            $request->religion_data_id == null &&
+            $request->expire_date == null &&
+            $request->race_id == null &&
+            $request->full_name == null &&
+            $request->identification_type_id == null &&
+            $request->identification_number == null
+        ){
+            $results = DB::select("
+            SELECT * FROM customer_status_dates
+
+            LEFT JOIN customer_basic_data
+            ON customer_basic_data.customer_id = customer_status_dates.customer_id
+
+            LEFT JOIN iedentification_types
+            ON iedentification_types.id = customer_basic_data.identification_type_id
+
+            ");
+        } else{
+
+            $results = DB::select("
             SELECT * FROM customer_status_dates
 
             LEFT JOIN customer_basic_data
@@ -32,6 +54,7 @@ class MemberController extends Controller
 
             ");
 
+        }
         return response()->json($results);
 
     }
@@ -51,5 +74,5 @@ class MemberController extends Controller
 
         return response()->json($results);
     }
-  
+
 }
