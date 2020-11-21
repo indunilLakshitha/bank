@@ -96,7 +96,7 @@
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Branch</label>
                                 <div class="col-sm-10">
-                                    <select name="branch_id" "  class="selectpicker" data-style="select-with-transition">
+                                    <select name="branch_id" class="selectpicker" data-style="select-with-transition">
                                             @isset($branchesAll,$view_1)
                                                 @foreach ($branchesAll as $branch)
                                                     <option value="{{$branch->id}}" <?php echo($branch->branch_id == $view_1->branch_id ? 'selected' : '' ) ?> >{{$branch->branch_name}}</option>
@@ -105,8 +105,9 @@
                                     </select>
                                 </div>
                             </div>
+                        
+
                             <div class="row">
-                                @isset($view_1_1)
                                 <label class="col-sm-2 col-form-label label-checkbox">Type(s)</label>
                                 <div class="col-sm-10 checkbox-radios">
                                     <div class="form-check">
@@ -173,10 +174,11 @@
 
                                 </div>
                             </div>
-                            @endisset
+
+
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Account Category</label>
+                                <label class="col-sm-3 col-form-label">Account Category</label>
                                 <?php $acc_catsAll=\App\Models\AccountCategory::all()?>
                                 <div class="col-sm-8">
                                     <select name="account_category_id"   class="selectpicker" data-style="select-with-transition">
@@ -193,7 +195,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
+                                <label class="col-sm-3 col-form-label">Small Gr./ Acc.Off</label>
                                 <?php $smallgroups=\App\Models\SmallGroup::all()?>
                                 <div class="col-sm-8">
                                      <select name="small_group_id" id=""  class="selectpicker" data-style="select-with-transition">
@@ -212,7 +214,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
+                                <label class="col-sm-3 col-form-label">Acc. Office Sub No.</label>
                                 <?php $subaccountoffices=\App\Models\SubAccountOffice::all()?>
                                 <div class="col-sm-8">
                                     <select name="sub_account_office_id" id="" class="selectpicker" data-style="select-with-transition">
@@ -232,7 +234,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Sub Account Office</label>
+                                <label class="col-sm-3 col-form-label">Sub Account Office</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         @isset($view_1->office_sub_id)
