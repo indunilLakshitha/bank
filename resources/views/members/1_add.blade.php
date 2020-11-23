@@ -47,7 +47,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Name in Use</label>
-                                <div class="col-sm-10">
+                                <div class="col-lg-3 col-md-3 col-sm-3">
                                     <div class="form-group">
                                         <input name="name_in_use" type="text" class="form-control">
                                     </div>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Full Name</label>
-                                <div class="col-sm-10">
+                                <div class="col-lg-5 col-md-4 col-sm-4">
                                     <div class="form-group">
                                         <input type="text" name="full_name" class="form-control">
                                     </div>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Surname</label>
-                                <div class="col-sm-10">
+                                <div class="col-lg-3 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="surname" class="form-control">
                                     </div>
@@ -71,7 +71,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Short Name</label>
-                                <div class="col-sm-10">
+                                <div  class="col-lg-3 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="short_name" class="form-control">
                                     </div>
@@ -236,7 +236,7 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Sub Account Office</label>
-                                <div class="col-sm-8">
+                                <div class="col-lg-2 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="office_sub_id" class="form-control">
                                     </div>
@@ -244,7 +244,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">ID Type</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-7">
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
@@ -264,7 +264,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-lg-4 col-md-2 col-sm-2">
                                             <div class="form-group">
                                                 <input type="text" name="identification_number" class="form-control"
                                                     placeholder="900000000V">
@@ -282,9 +282,9 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Address </label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-5">
                                     <div class="form-group">
-                                        <input type="text" name="address_data" class="form-control">
+                                        <textarea type="text" name="address_data" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -322,7 +322,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Fax</label>
-                                <div class="col-sm-8">
+                                <div class="col-lg-3 col-md-3 col-sm-2">
                                     <div class="form-group">
                                         <div class="col-sm-8">
                                             <input type="text" name="fax_number" class="form-control">
@@ -337,7 +337,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-8">
+                                <div class="col-lg-6 col-md-6 col-sm-4">
                                     <div class="form-group">
                                         <div class="col-sm-6">
                                             <input type="email" name="email_address" class="form-control">
