@@ -196,7 +196,9 @@
                                            @else
                                                <th>INACTIVE</th>
                                            @endif
-                                            <th><a href="{{url('/members/view/'.$member->customer_id)}}" class="btn btn-primary" >VIEW</a></th>
+                                            <th><a href="{{url('/members/view/'.$member->customer_id)}}" rel="tooltip" class="btn-sm btn-info btn-round" >VIEW</a>
+                                                <a href="{{url('/members/edit/'.$member->customer_id)}}" rel="tooltip" class="btn-sm btn-primary btn-round" ><i class="material-icons">edit</i></a>
+                                            </th>
                                        </tr>
                                    @endforeach
 

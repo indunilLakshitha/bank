@@ -328,7 +328,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-rose float-right" type="submit">Submit</button>
+                        <button class="btn btn-rose float-right" type="submit">NEXT</button>
                     </div>
                 </div>
             </form>

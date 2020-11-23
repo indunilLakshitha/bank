@@ -265,6 +265,12 @@ Route::get('/savings/otherViews', function () {
 // End
 
 Route::get('/members/view/{id}', 'CustomerBasicDataController@viewMember');
+Route::get('/members/edit/{id}', 'CustomerBasicDataController@editMember');
+Route::post('/member/edit/1add', 'CustomerBasicDataController@editCustomerBasic');
+Route::post('/member/edit/2status', 'CustomerBasicDataController@editStatus');
+Route::post('/member/edit/3other', 'CustomerBasicDataController@editOccupati');
+Route::post('/member/edit/4membership', 'CustomerBasicDataController@editOthersociety');
+Route::post('/member/edit/5special', 'CustomerBasicDataController@editSpecialAndAssets');
 Route::get('/savings/account/{id}', 'OpenSavingsAccountController@viewSavingAccount');
 
 
@@ -287,7 +293,49 @@ Route::get('/findmemberbyaccno','TransactionController@findMembersById');
 Route::get('/normalwithdraw','TransactionController@normalWithdraw');
 Route::get('/normaldeposite','TransactionController@normalDeposite');
 
+// ------------------------------------------------------------------------Account Categories------------
 
+Route::resource('/accountCategory', 'AccountCategoryController');
+
+// ------------------------------------------------------------------------Account TypeC ------------
+
+Route::resource('/accountType', 'AccountTypeController');
+
+// ------------------------------------------------------------------------Contact Type------------
+
+Route::resource('/contactType', 'ContactTypeController');
+
+// ------------------------------------------------------------------------Currency------------
+
+Route::resource('/currency', 'CurrencyController');
+
+// ------------------------------------------------------------------------Customer Status------------
+
+Route::resource('/cutomerStatus', 'CustomerStatusController');
+
+// ------------------------------------------------------------------------Customer Status------------
+
+Route::resource('/cutomerTitle', 'CustomerTitlesController');
+
+// ------------------------------------------------------------------------Fee Type------------
+
+Route::resource('/feeType', 'FeeTypeController');
+
+// ------------------------------------------------------------------------Gender------------
+
+Route::resource('/gender', 'GenderController');
+
+// ------------------------------------------------------------------------Identification Type------------
+
+Route::resource('/idType', 'IdentificationTypeController');
+
+// ------------------------------------------------------------------------Main Type------------
+
+Route::resource('/mainType', 'MainTypeController');
+
+// ------------------------------------------------------------------------Married Status------------
+
+Route::resource('/marriedStatus', 'MarriedStatusController');
 
 
 

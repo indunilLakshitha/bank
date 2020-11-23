@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" id="oh_identification_number" placeholder="Identoty No"
+                                            <input type="text" id="oh_identification_number" placeholder="Identity No"
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -134,8 +134,15 @@
         <input type="hidden" name="account_id" value={{$account_id}} id="account_id">
         <input type="hidden" name="customer_id" value={{$customer_id}}>
         <button type="button" class="btn btn-primary"
-        onclick="Swal.fire(`Created Account {{$acc_no}}`).then(() => {final_form.submit()})"
-        >SUBMIT</button>
+        onclick="
+        Swal.fire({
+            title: `Created Account {{$acc_no}}`,
+            confirmButtonText: `View Savings Account Page`
+
+        })
+        .then(() => {final_form.submit()})
+        "
+        >NEXT</button>
     </form>
 
 </div>
