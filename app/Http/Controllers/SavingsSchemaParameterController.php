@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InteresetSchema;
+use App\Models\InteresetTypeData;
 use App\Models\SubAccount;
 use App\Models\TransactionSchema;
 use Illuminate\Http\Request;
@@ -30,6 +32,27 @@ class SavingsSchemaParameterController extends Controller
         $ts = TransactionSchema::create($request->all());
         $ts->created_by = Auth::user()->name;
         $ts->save();
-        return redirect('/')->with('success', 'Created Sub Account'.$request->sub_account_id);
+        $sub_account_id =  $request->sub_account_id;
+        $success = 'Created Sub Account'.$request->sub_account_id;
+        // return redirect('/')->with('success', 'Created Sub Account'.$request->sub_account_id);
+        return view('sub_accounts.m.interest_schema.interest_schema', compact('sub_account_id', 'success'));
+    }
+
+    public function create_int_schema(Request $request){
+
+        $in_sch = InteresetSchema::create($request->all());
+        $in_sch->created_by = Auth::user()->name;
+        $in_sch->save();
+        $interest_schema_id = $in_sch->id;
+        return response()->json($interest_schema_id);
+    }
+    public function create_intereset_type_data(Request $request){
+
+        $int_type = InteresetTypeData::create($request->all());
+        $int_type->created_by = Auth::user()->name;
+        $int_type->save();
+
+        $data = InteresetTypeData::where('interest_schema_id', $request->interest_schema_id)->get();
+        return response()->json($data);
     }
 }
