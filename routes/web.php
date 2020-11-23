@@ -346,6 +346,7 @@ Route::resource('/marriedStatus', 'MarriedStatusController');
 //-------------------------------------------------------------------Savings Schema parameter -------------start--------
 Route::get('/savinsschemacreate','SavingsSchemaParameterController@generalSchemaParameters');
 Route::post('/savinsschemasubmit','SavingsSchemaParameterController@generalSchemaParametersSave');
+Route::post('/transaction_scheme_params','SavingsSchemaParameterController@transaction_scheme_params');
 //-------------------------------------------------------------------Savings Schema parameter -------------end--------
 
 
