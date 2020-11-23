@@ -14,7 +14,7 @@
 
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Code</label>
-                    <div class="col-sm-10">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <input type="text" class="form-control" id="customer_id" name="customer_id">
                             <span class="bmd-help">Use Member Code To Search</span>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="row">
                                 <label class="col-sm-2 col-form-label">ID Type</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-5">
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
@@ -45,7 +45,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-md-5">
                                             <div class="form-group">
                                                 <input type="text" name="identification_number" class="form-control" placeholder="900000000V">
                                             </div>
@@ -62,7 +62,7 @@
                             </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-sm-10">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <input type="text" class="form-control" id="full_name" name="full_name">
                         </div>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Expiry</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
                         <input type="date" name="expire_date" id="expire_date" class="form-control">
                     </div>
                 </div>
