@@ -3,7 +3,7 @@
     @include('layouts.sidebar')
     <div class="main-panel">
         @include('layouts.navbar')
-      <div class="content">
+      <div class="">
           @include('layouts.messages')
           <div class="container-fluid">
             @yield('content')
