@@ -115,7 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
         //members index
         Route::get('/members', function () {
             return view('members.index');
-        });
+        })->name('members');
         Route::get('/test', function () {
             return view('members.addX');
         // });

@@ -623,10 +623,9 @@
                         <tbody id="bene_body">
 
                             @foreach($view_5_1 as $view_5_11)
-                            <?php $benes=\App\Models\CustomerBasicData::where('customer_id',$view_5_11->beneficiary_id)->first()?>
                             <tr>
-                                <td>{{$benes->customer_id}} </td>
-                                <td> {{$benes->name_in_use}}</th>
+                                <td>{{$view_5_11->customer_id}} </td>
+                                <td> {{$view_5_11->name_in_use}}</th>
                             </tr>
                             @endforeach
 
@@ -649,10 +648,9 @@
                         </thead>
                         <tbody id="guard_body">
                             @foreach($view_5_2 as $view_5_22)
-                            <?php $gudrs=\App\Models\CustomerBasicData::where('customer_id',$view_5_22->guardian_id)->first()?>
                             <tr>
-                                <td>{{$gudrs->customer_id}} </td>
-                                <td> {{$gudrs->name_in_use}}</td>
+                                <td>{{$view_5_22->customer_id}} </td>
+                                <td> {{$view_5_22->name_in_use}}</td>
                             </tr>
                             @endforeach
 

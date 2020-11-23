@@ -18,7 +18,8 @@
                                 <label class="col-sm-2 col-form-label">STATUS</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <select name="customer_status_id" id="c" class="selectpicker" data-style="select-with-transition">
+                                        <select name="customer_status_id" id="c" class="selectpicker"
+                                            data-style="select-with-transition">
                                             <option value="1">ACTIVE</option>
                                             <option value="0">INACTIVE</option>
                                         </select>
@@ -30,14 +31,15 @@
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <?php $titles=\App\Models\CutomerTitle::all()?>
-                                        <select name="customer_title_id" id="" class="selectpicker" data-style="select-with-transition">
+                                        <select name="customer_title_id" id="" class="selectpicker"
+                                            data-style="select-with-transition">
                                             <option value="">Select Title</option>
                                             @isset($titles)
-                                                @foreach ($titles as $title)
-                                                    @if(intval($title->is_enable) == 1)
-                                                        <option value="{{$title->id}}">{{$title->customer_title}}</option>
-                                                    @endif
-                                                @endforeach
+                                            @foreach ($titles as $title)
+                                            @if(intval($title->is_enable) == 1)
+                                            <option value="{{$title->id}}">{{$title->customer_title}}</option>
+                                            @endif
+                                            @endforeach
                                             @endisset
                                         </select>
                                     </div>
@@ -79,14 +81,15 @@
                                 <label class="col-sm-2 col-form-label">Branch</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <select name="branch_id" id="" class="selectpicker" data-style="select-with-transition">
+                                        <select name="branch_id" id="" class="selectpicker"
+                                            data-style="select-with-transition">
                                             <option value="">Select Branch</option>
                                             @isset($branches)
-                                                @foreach ($branches as $branch)
-                                                    @if(intval($branch->is_enable) == 1)
-                                                        <option value="{{$branch->id}}">{{$branch->branch_name}}</option>
-                                                    @endif
-                                                @endforeach
+                                            @foreach ($branches as $branch)
+                                            @if(intval($branch->is_enable) == 1)
+                                            <option value="{{$branch->id}}">{{$branch->branch_name}}</option>
+                                            @endif
+                                            @endforeach
                                             @endisset
 
                                         </select>
@@ -98,7 +101,8 @@
                                 <div class="col-sm-10 checkbox-radios">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="non_member" value="1"> Non
+                                            <input class="form-check-input" type="checkbox" name="non_member" value="1">
+                                            Non
                                             Member
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -107,7 +111,8 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="1" name="member" > Member
+                                            <input class="form-check-input" type="checkbox" value="1" name="member">
+                                            Member
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -115,7 +120,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="1" name="guarantor" >
+                                            <input class="form-check-input" type="checkbox" value="1" name="guarantor">
                                             Guarantor
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -124,7 +129,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="1" name="supplier" >
+                                            <input class="form-check-input" type="checkbox" value="1" name="supplier">
                                             Supplier
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -133,7 +138,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="1" name="customer" >
+                                            <input class="form-check-input" type="checkbox" value="1" name="customer">
                                             Customer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -142,7 +147,8 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="1" name="child"> Child
+                                            <input class="form-check-input" type="checkbox" value="1" name="child">
+                                            Child
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
                                             </span>
@@ -150,7 +156,7 @@
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="1" name="introducer" >
+                                            <input class="form-check-input" type="checkbox" value="1" name="introducer">
                                             Introducer
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -165,16 +171,17 @@
                                 <label class="col-sm-2 col-form-label">Account Category</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <select name="account_category_id" id="" class="selectpicker" data-style="select-with-transition">
+                                        <select name="account_category_id" id="" class="selectpicker"
+                                            data-style="select-with-transition">
                                             <option value="">Select Account Category</option>
                                             @isset($accountcategories)
-                                                @foreach ($accountcategories as $account_category)
-                                                    @if(intval($account_category->is_enable) == 1)
-                                                        <option value="{{$account_category->id}}">
-                                                                {{$account_category->account_category}}
-                                                        </option>
-                                                    @endif
-                                                @endforeach
+                                            @foreach ($accountcategories as $account_category)
+                                            @if(intval($account_category->is_enable) == 1)
+                                            <option value="{{$account_category->id}}">
+                                                {{$account_category->account_category}}
+                                            </option>
+                                            @endif
+                                            @endforeach
                                             @endisset
 
                                         </select>
@@ -187,16 +194,17 @@
                                 <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <select name="small_group_id" id="" class="form-control" data-style="select-with-transition">
+                                        <select name="small_group_id" id="" class="form-control"
+                                            data-style="select-with-transition">
                                             <option value="">Select Small Group</option>
                                             @isset($smallgroups)
-                                                @foreach ($smallgroups as $small_group)
-                                                    @if(intval($small_group->is_enable) == 1)
-                                                        <option value="{{$small_group->id}}">
-                                                                {{$small_group->small_group}}
-                                                        </option>
-                                                    @endif
-                                                @endforeach
+                                            @foreach ($smallgroups as $small_group)
+                                            @if(intval($small_group->is_enable) == 1)
+                                            <option value="{{$small_group->id}}">
+                                                {{$small_group->small_group}}
+                                            </option>
+                                            @endif
+                                            @endforeach
                                             @endisset
                                         </select>
                                     </div>
@@ -208,16 +216,17 @@
                                 <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <select name="sub_account_office_id" id="" class="form-control" data-style="select-with-transition">
+                                        <select name="sub_account_office_id" id="" class="form-control"
+                                            data-style="select-with-transition">
                                             <option value="">Select Sub Office</option>
                                             @isset($subaccountoffices)
-                                                @foreach ($subaccountoffices as $sub_account_office)
-                                                    @if(intval($sub_account_office->is_enable) == 1)
-                                                        <option value="{{$sub_account_office->id}}">
-                                                                {{$sub_account_office->sub_account_office}}
-                                                        </option>
-                                                    @endif
-                                                @endforeach
+                                            @foreach ($subaccountoffices as $sub_account_office)
+                                            @if(intval($sub_account_office->is_enable) == 1)
+                                            <option value="{{$sub_account_office->id}}">
+                                                {{$sub_account_office->sub_account_office}}
+                                            </option>
+                                            @endif
+                                            @endforeach
                                             @endisset
                                         </select>
                                     </div>
@@ -239,16 +248,17 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <select name="identification_type_id" id="id_type" class="form-control" data-style="select-with-transition">
+                                                <select name="identification_type_id" id="id_type" class="form-control"
+                                                    data-style="select-with-transition">
                                                     <option value="">Select Identification Type</option>
                                                     @isset($idtypes)
-                                                        @foreach ($idtypes as $id_type)
-                                                            @if(intval($id_type->is_enable) == 1)
-                                                                <option value="{{$id_type->id}}">
-                                                                        {{$id_type->identification_type}}
-                                                                </option>
-                                                            @endif
-                                                        @endforeach
+                                                    @foreach ($idtypes as $id_type)
+                                                    @if(intval($id_type->is_enable) == 1)
+                                                    <option value="{{$id_type->id}}">
+                                                        {{$id_type->identification_type}}
+                                                    </option>
+                                                    @endif
+                                                    @endforeach
                                                     @endisset
                                                 </select>
 
@@ -256,7 +266,8 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                <input type="text" name="identification_number" class="form-control" placeholder="900000000V">
+                                                <input type="text" name="identification_number" class="form-control"
+                                                    placeholder="900000000V">
                                             </div>
                                         </div>
                                         {{-- <div class="col">
@@ -283,16 +294,17 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <select name="contact_type_id" id="contact_type_id" class="form-control" data-style="select-with-transition">
+                                            <select name="contact_type_id" id="contact_type_id" class="form-control"
+                                                data-style="select-with-transition">
                                                 <option value="">Select Type</option>
                                                 @isset($contacttypes)
-                                                    @foreach ($contacttypes as $contact_type)
-                                                        @if(intval($contact_type->is_enable) == 1)
-                                                            <option value="{{$contact_type->id}}">
-                                                                    {{$contact_type->contact_type}}
-                                                            </option>
-                                                        @endif
-                                                    @endforeach
+                                                @foreach ($contacttypes as $contact_type)
+                                                @if(intval($contact_type->is_enable) == 1)
+                                                <option value="{{$contact_type->id}}">
+                                                    {{$contact_type->contact_type}}
+                                                </option>
+                                                @endif
+                                                @endforeach
                                                 @endisset
                                             </select>
                                         </div>
@@ -301,7 +313,8 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <input type="number" name="contact_data" class="form-control" placeholder="011 2345 678" maxlength="10">
+                                            <input type="number" name="contact_data" class="form-control"
+                                                placeholder="011 2345 678" maxlength="10">
 
                                         </div>
                                     </div>

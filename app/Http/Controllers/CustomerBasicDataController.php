@@ -123,7 +123,7 @@ class CustomerBasicDataController extends Controller
         $special['updated_by']=Auth::user()->id;
         SpecialData::create($special->all());
 
-        return redirect('/');
+        return redirect()->route('members');
     }
 
     public function add(){
@@ -191,8 +191,10 @@ class CustomerBasicDataController extends Controller
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
         $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
-        $view_5_1 = BeneficiaryData::where('customer_id',$request->id)->get();
-        $view_5_2 = GuardianData::where('customer_id',$request->id)->get();
+        $view_5_1 = BeneficiaryData::leftjoin('customer_basic_data','customer_basic_data.customer_id','beneficiary_data.customer_id')
+        ->where('beneficiary_data.customer_id',$request->id)->get();
+          $view_5_2 = GuardianData::leftjoin('customer_basic_data','customer_basic_data.customer_id','guardian_data.customer_id')
+                    ->where('guardian_data.customer_id',$request->id)->get();
         $view_6 = SpecialData::where('customer_id',$request->id)->first();
         return view('members.view_member',compact('view_1','view_1_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
     }
@@ -205,8 +207,10 @@ class CustomerBasicDataController extends Controller
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
         $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
-        $view_5_1 = BeneficiaryData::where('customer_id',$request->id)->get();
-        $view_5_2 = GuardianData::where('customer_id',$request->id)->get();
+        $view_5_1 = BeneficiaryData::leftjoin('customer_basic_data','customer_basic_data.customer_id','beneficiary_data.customer_id')
+        ->where('beneficiary_data.customer_id',$request->id)->get();
+          $view_5_2 = GuardianData::leftjoin('customer_basic_data','customer_basic_data.customer_id','guardian_data.customer_id')
+                    ->where('guardian_data.customer_id',$request->id)->get();
         $view_6 = SpecialData::where('customer_id',$request->id)->first();
         return view('edit.memberEdit.member_edit',compact('cus','view_1','view_1_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
 
@@ -277,14 +281,15 @@ class CustomerBasicDataController extends Controller
     }
 
     public function viewVerify(Request $request){
-
-        $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
-        $view_1_1 = CutomerMainType::where('customer_id',$request->id)->first();
+         $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
+         $view_1_1 = CutomerMainType::where('customer_id',$request->id)->first();
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
         $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
-        $view_5_1 = BeneficiaryData::where('customer_id',$request->id)->get();
-        $view_5_2 = GuardianData::where('customer_id',$request->id)->get();
+        $view_5_1 = BeneficiaryData::leftjoin('customer_basic_data','customer_basic_data.customer_id','beneficiary_data.customer_id')
+        ->where('beneficiary_data.customer_id',$request->id)->get();
+          $view_5_2 = GuardianData::leftjoin('customer_basic_data','customer_basic_data.customer_id','guardian_data.customer_id')
+                    ->where('guardian_data.customer_id',$request->id)->get();
         $view_6 = SpecialData::where('customer_id',$request->id)->first();
         return view('members.verifyView',compact('view_1','view_1_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
     }

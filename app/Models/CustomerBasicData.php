@@ -36,6 +36,7 @@ class CustomerBasicData extends Model
         'telephone_no_type',
         'telephone_number',
         'fax_number',
-        'email_address'
+        'email_address',
+        'status'
     ];
 }
