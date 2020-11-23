@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SubAccount extends Model
 {
  protected $fillable=   [
-     'account_category_id',
+'account_category_id',
 'account_type_id',
 'maximum_joint_account',
 'transfer_process_id',

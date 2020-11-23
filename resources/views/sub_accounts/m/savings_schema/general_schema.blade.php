@@ -18,7 +18,7 @@
                             <label class="col-sm-2 col-form-label">Scheme Code</label>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="">
+                                    <input type="text" class="form-control" id="" name="">
                                 </div>
                             </div>
                         </div>
@@ -58,9 +58,9 @@
                                         $account_categories =
                                         Illuminate\Support\Facades\DB::table('account_categories')->where('is_enable',1)->get();
                                         @endphp
-                                        <select name="account_category_id"  class="selectpicker"
+                                        <select name="account_category_id"  class="selectpickerX form-control"
                                             data-style="select-with-transition">
-                                            <option value="0">Select</option>
+                                            <option value="">Select</option>
                                             @isset($account_categories)
                                             @foreach ($account_categories as $account_category)
                                             <option value="{{$account_category->id}}">
@@ -83,7 +83,7 @@
                                         $account_types =
                                         Illuminate\Support\Facades\DB::table('account_types')->where('is_enable',1)->get();
                                         @endphp
-                                        <select name="account_type_id" id="account_type_id" class="selectpicker"
+                                        <select name="account_type_id" id="account_type_id" class="form-control"
                                             data-style="select-with-transition">
                                             <option value="">Select</option>
                                             @isset($account_types)
@@ -242,8 +242,8 @@
                                         $currencies =
                                         Illuminate\Support\Facades\DB::table('currencies')->where('is_enable',1)->get();
                                         @endphp
-                                        <select name="	currency_idaccount_authorized_level"
-                                            id="	currency_idaccount_authorized_level" class="form-control"
+                                        <select name="currency_idaccount_authorized_level"
+                                            id="currency_idaccount_authorized_level" class="form-control"
                                             data-style="select-with-transition">
                                             <option value="">Select</option>
                                             @isset($currencies)
