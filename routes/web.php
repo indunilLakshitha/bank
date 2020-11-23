@@ -293,7 +293,49 @@ Route::get('/findmemberbyaccno','TransactionController@findMembersById');
 Route::get('/normalwithdraw','TransactionController@normalWithdraw');
 Route::get('/normaldeposite','TransactionController@normalDeposite');
 
+// ------------------------------------------------------------------------Account Categories------------
 
+Route::resource('/accountCategory', 'AccountCategoryController');
+
+// ------------------------------------------------------------------------Account TypeC ------------
+
+Route::resource('/accountType', 'AccountTypeController');
+
+// ------------------------------------------------------------------------Contact Type------------
+
+Route::resource('/contactType', 'ContactTypeController');
+
+// ------------------------------------------------------------------------Currency------------
+
+Route::resource('/currency', 'CurrencyController');
+
+// ------------------------------------------------------------------------Customer Status------------
+
+Route::resource('/cutomerStatus', 'CustomerStatusController');
+
+// ------------------------------------------------------------------------Customer Status------------
+
+Route::resource('/cutomerTitle', 'CustomerTitlesController');
+
+// ------------------------------------------------------------------------Fee Type------------
+
+Route::resource('/feeType', 'FeeTypeController');
+
+// ------------------------------------------------------------------------Gender------------
+
+Route::resource('/gender', 'GenderController');
+
+// ------------------------------------------------------------------------Identification Type------------
+
+Route::resource('/idType', 'IdentificationTypeController');
+
+// ------------------------------------------------------------------------Main Type------------
+
+Route::resource('/mainType', 'MainTypeController');
+
+// ------------------------------------------------------------------------Married Status------------
+
+Route::resource('/marriedStatus', 'MarriedStatusController');
 
 
 

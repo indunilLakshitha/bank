@@ -180,6 +180,85 @@
                 </div>
             </li>
 
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#dataAdd">
+                    <i class="material-icons">request_quote</i>
+                    <p> Data Add
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="dataAdd">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/accountCategory">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Account Categories</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/accountType">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Account Types</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/contactType">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Contact Types</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/currency">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Currencies</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/cutomerStatus">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Customer Statuses</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/cutomerTitle">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Customer Titles</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/feeType">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Fee Types</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/gender">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Genders</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/idType">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Identification Types</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/mainType">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Main Types</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/marriedStatus">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Married Statuses</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </div>

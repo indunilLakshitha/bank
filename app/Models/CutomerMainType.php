@@ -6,5 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class CutomerMainType extends Model
 {
-    //
+    protected $table = 'cutomer_main_types';
+
+    protected $fillable = [
+        'customer_id',
+        'non_member',
+        'member',
+        'guarantor',
+        'supplier',
+        'customer',
+        'child',
+        'introducer',
+        'is_enable',
+        'created_by',
+        'updated_by',
+
+    ];
 }

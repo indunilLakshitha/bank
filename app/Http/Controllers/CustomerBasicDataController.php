@@ -17,7 +17,7 @@ use App\Models\OccupationData;
 use App\Models\OtherSocietyData;
 use App\Models\SpecialData;
 use App\Models\CutomerTitle;
-use App\Models\MainType;
+use App\Models\CutomerMainType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -51,7 +51,7 @@ class CustomerBasicDataController extends Controller
 
         $cbs->save();
 
-        $main_type = MainType::create($request->all());
+        $main_type = CustomerMainType::create($request->all());
         $main_type->customer_id = $cus_id;
         $main_type->is_enable = 1;
         $main_type->created_by = Auth::user()->name;
@@ -185,7 +185,7 @@ class CustomerBasicDataController extends Controller
     public function viewMember(Request $request){
 
         $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
-        $view_1_1 = MainType::where('customer_id',$request->id)->first();
+        $view_1_1 = CutomerMainType::where('customer_id',$request->id)->first();
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
         $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
@@ -199,7 +199,7 @@ class CustomerBasicDataController extends Controller
 
         $cus = $request->id;
         $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
-        $view_1_1 = MainType::where('customer_id',$request->id)->first();
+        $view_1_1 = CutomerMainType::where('customer_id',$request->id)->first();
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
         $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
