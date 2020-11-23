@@ -281,4 +281,6 @@ class OpenSavingsAccountController extends Controller
         return view('savings.view_details.view_account',compact('view_1','view_1_1','view_2','view_3','view_4','view_5','view_6','view_7','view_8','view_8_1','idtypes', 'CIF', 'acc_no'));
 
     }
+
+
 }

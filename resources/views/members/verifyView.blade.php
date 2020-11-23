@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="card">
-<div class="card-body  ">
+<div class="card-body ">
     <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
                 <h4 class="card-title">Member Details</h4>
@@ -622,8 +622,9 @@
 <!-- End Beneficiary -->
 
 
-
  </div>
-            </div>
+</div>
+<a href="{{url('/members/verify')}}" rel="tooltip" class="btn btn-info btn-round"><i class="material-icons"></i> <span class="mx-1">Back</span></a>
+
 
 @endsection

@@ -272,6 +272,12 @@ Route::post('/member/edit/3other', 'CustomerBasicDataController@editOccupati');
 Route::post('/member/edit/4membership', 'CustomerBasicDataController@editOthersociety');
 Route::post('/member/edit/5special', 'CustomerBasicDataController@editSpecialAndAssets');
 Route::get('/savings/account/{id}', 'OpenSavingsAccountController@viewSavingAccount');
+Route::get('/members/verify', 'CustomerBasicDataController@memberVerify');
+Route::get('/members/view/check/{id}', 'CustomerBasicDataController@viewVerify');
+Route::get('/members/view/verify/{id}', 'CustomerBasicDataController@verification');
+
+
+
 
 
 

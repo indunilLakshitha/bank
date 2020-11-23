@@ -52,10 +52,28 @@
                 </div>
             </li>
             <li class="nav-item  ">
-                <a class="nav-link" href="/members">
+                <a class="nav-link" data-toggle="collapse" href="#members">
                     <i class="material-icons">account_box</i>
-                    <p> Members </p>
+                    <p> Members
+                        <b class="caret"></b> </p>
                 </a>
+                <div class="collapse" id="members">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/members">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">View Member Account</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/members/verify">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">View Member Verification</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#savings">
