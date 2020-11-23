@@ -142,7 +142,7 @@
                 </div>
             </li>
             @endcan
-            <li class="nav-item ">
+            {{-- <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#parameters">
                     <i class="material-icons">request_quote</i>
                     <p> Parameters
@@ -178,7 +178,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#dataAdd">

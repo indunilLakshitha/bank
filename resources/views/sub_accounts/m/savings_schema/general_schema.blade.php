@@ -216,7 +216,7 @@
                                         Illuminate\Support\Facades\DB::table('account_types')->get();
                                         @endphp --}}
                                         <select name="statment_generate_frequently_id"
-                                            id="statment_generate_frequently_id" class="selectpicker"
+                                            id="statment_generate_frequently_id" class="form-control"
                                             data-style="select-with-transition">
                                             <option value="">Select</option>
                                             {{-- @isset($account_types)
@@ -243,7 +243,7 @@
                                         Illuminate\Support\Facades\DB::table('currencies')->where('is_enable',1)->get();
                                         @endphp
                                         <select name="	currency_idaccount_authorized_level"
-                                            id="	currency_idaccount_authorized_level" class="selectpicker"
+                                            id="	currency_idaccount_authorized_level" class="form-control"
                                             data-style="select-with-transition">
                                             <option value="">Select</option>
                                             @isset($currencies)
@@ -265,14 +265,11 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-group">
-
                                         <select name="account_authorized_level" id="account_authorized_level"
-                                            class="selectpicker" data-style="select-with-transition">
+                                            class="form-control" data-style="select-with-transition">
                                             <option value="">1</option>
                                             <option value="">2</option>
                                             <option value="">3</option>
-
-
                                         </select>
                                     </div>
                                 </div>
