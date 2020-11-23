@@ -2,7 +2,7 @@
 
 
 @section('content')
-<form method="get" action="/" class="form-horizontal">
+{{-- <form method="get" action="/" class="form-horizontal"> --}}
     <div class="card ">
         <div class="card-body ">
             <div class="card-header card-header-rose card-header-text">
@@ -124,7 +124,7 @@
             </div>
 
 
-</form>
+{{-- </form> --}}
 
 <div class="row">
 

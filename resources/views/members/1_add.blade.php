@@ -187,7 +187,7 @@
                                 <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <select name="small_group_id" id="" class="selectpicker" data-style="select-with-transition">
+                                        <select name="small_group_id" id="" class="form-control" data-style="select-with-transition">
                                             <option value="">Select Small Group</option>
                                             @isset($smallgroups)
                                                 @foreach ($smallgroups as $small_group)
@@ -208,7 +208,7 @@
                                 <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <select name="sub_account_office_id" id="" class="selectpicker" data-style="select-with-transition">
+                                        <select name="sub_account_office_id" id="" class="form-control" data-style="select-with-transition">
                                             <option value="">Select Sub Office</option>
                                             @isset($subaccountoffices)
                                                 @foreach ($subaccountoffices as $sub_account_office)
@@ -239,7 +239,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
-                                                <select name="identification_type_id" id="id_type" class="selectpicker" data-style="select-with-transition">
+                                                <select name="identification_type_id" id="id_type" class="form-control" data-style="select-with-transition">
                                                     <option value="">Select Identification Type</option>
                                                     @isset($idtypes)
                                                         @foreach ($idtypes as $id_type)
@@ -283,7 +283,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="col-sm-5">
-                                            <select name="contact_type_id" id="contact_type_id" class="selectpicker" data-style="select-with-transition">
+                                            <select name="contact_type_id" id="contact_type_id" class="form-control" data-style="select-with-transition">
                                                 <option value="">Select Type</option>
                                                 @isset($contacttypes)
                                                     @foreach ($contacttypes as $contact_type)

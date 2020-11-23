@@ -343,6 +343,16 @@ Route::resource('/mainType', 'MainTypeController');
 
 Route::resource('/marriedStatus', 'MarriedStatusController');
 
+//-------------------------------------------------------------------Savings Schema parameter -------------start--------
+Route::get('/savinsschemacreate','SavingsSchemaParameterController@generalSchemaParameters');
+Route::post('/savinsschemasubmit','SavingsSchemaParameterController@generalSchemaParametersSave');
+//-------------------------------------------------------------------Savings Schema parameter -------------end--------
 
+
+//-------------------------------------------------------------------Interest Schema parameter -------------start--------
+Route::get('/interestschema','InterestSchemaParameterController@interestSchema');
+Route::post('/interestschemasubmit','InterestSchemaParameterController@interestSchemaSubmit');
+Route::post('/interestschemafeesubmit','InterestSchemaParameterController@interestSchemaFeeSubmit');
+//-------------------------------------------------------------------Interest Schema parameter -------------end--------
 
 Auth::routes();

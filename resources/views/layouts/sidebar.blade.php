@@ -2,13 +2,13 @@
 
 
 
-   <div class="logo">
-       <a href="" class="simple-text logo-mini">
+    <div class="logo">
+        <a href="" class="simple-text logo-mini">
 
-      </a>
-      <a href="/dashboard" class="simple-text logo-normal">
-        EDCB
-      </a></div>
+        </a>
+        <a href="/dashboard" class="simple-text logo-normal">
+            EDCB
+        </a></div>
     <div class="sidebar-wrapper">
 
         <ul class="nav">
@@ -160,7 +160,7 @@
                 </div>
             </li>
             @endcan
-            <li class="nav-item ">
+            {{-- <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#parameters">
                     <i class="material-icons">request_quote</i>
                     <p> Parameters
@@ -196,8 +196,34 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#dataAdd">
+                    <i class="material-icons">request_quote</i>
+                    <p> Sub Accounts
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="dataAdd">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/savinsschemacreate">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Saving Schema Parameters</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/interestschema">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Interest Schema</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#dataAdd">
                     <i class="material-icons">request_quote</i>
