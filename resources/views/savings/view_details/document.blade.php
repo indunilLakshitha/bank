@@ -16,6 +16,7 @@
                     </div>
                 </div>
                 <table class="table">
+                    @isset($docs)
                     @foreach ($docs as $item)
                     <tr>
                         <th>
@@ -34,6 +35,7 @@
                         </th>
                     </tr>
                         @endforeach
+                        @endisset
                 </table>
                 <div class="card-body ">
 

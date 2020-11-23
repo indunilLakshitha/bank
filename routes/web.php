@@ -142,7 +142,15 @@ Route::group(['middleware' => 'auth'], function () {
 // });
 //-------------------------------------------------account verification view
 Route::get('/savings/verification', function () {
-    return view('savings.verification');
+    $permissions = DB::select("
+            SELECT * FROM account_general_information
+            LEFT JOIN customer_basic_data
+            ON customer_basic_data.customer_id = account_general_information.customer_id
+            LEFT JOIN iedentification_types
+            ON iedentification_types.id = customer_basic_data.identification_type_id
+            WHERE account_general_information.status LIKE '2'
+            ");
+    return view('savings.verification',compact('permissions'));
 });
 //-------------------------------------------------account approval view(disabled)
 Route::get('/savings/approve', function () {

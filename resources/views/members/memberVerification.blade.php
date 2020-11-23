@@ -107,7 +107,7 @@
                                             class="btn btn-info btn-round">
                                             <i class="material-icons">edit</i> <span class="mx-1">Check</span>
                                         </a>
-
+                    
                                         <a href="{{url('/members/view/verify/'.$membr->customer_id)}}" rel="tooltip"
                                             class="btn btn-primary btn-round">
                                             <i class="material-icons">check</i> <span class="mx-1">Verify</span>
