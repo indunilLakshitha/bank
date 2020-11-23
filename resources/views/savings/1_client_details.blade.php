@@ -82,18 +82,12 @@
             <label class="col-sm-2 col-form-label">Full Name</label>
             <div class="col-sm-8">
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-8">
                         <div class="form-group">
                             <input type="text" name="full_name" class="form-control" id="full_name">
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="form-group">
-                            
-                            <input type="text" name="full_name" class="form-control" id="full_name">
 
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

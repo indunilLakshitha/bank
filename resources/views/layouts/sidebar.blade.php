@@ -199,13 +199,34 @@
             </li> --}}
 
             <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#dataAdd">
+                <a class="nav-link" data-toggle="collapse" href="#transaction_report">
+                    <i class="material-icons">request_quote</i>
+                    <p>Transaction Report
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="transaction_report">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/treport">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Transaction History</span>
+                            </a>
+                        </li>
+
+
+
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#schema">
                     <i class="material-icons">request_quote</i>
                     <p> Sub Accounts
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="dataAdd">
+                <div class="collapse" id="schema">
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/savinsschemacreate">
@@ -227,7 +248,7 @@
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#dataAdd">
                     <i class="material-icons">request_quote</i>
-                    <p> Data Add
+                    <p> Configurations
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -235,7 +256,7 @@
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/accountCategory">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-mini"> <i class="material-icons">settings</i> </span>
                                 <span class="sidebar-normal">Account Categories</span>
                             </a>
                         </li>

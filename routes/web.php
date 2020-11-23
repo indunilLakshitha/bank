@@ -355,4 +355,10 @@ Route::post('/interestschemasubmit','InterestSchemaParameterController@interestS
 Route::post('/interestschemafeesubmit','InterestSchemaParameterController@interestSchemaFeeSubmit');
 //-------------------------------------------------------------------Interest Schema parameter -------------end--------
 
+
+//-----------------------------------------------------------------transaction report----------------------
+Route::get('/treport','TransactionReportController@index');
+Route::get('/findmemberbyaccnoforreport','TransactionReportController@findMembersById');
+
+//------------------------------------------------------------------transaction report end-------------------
 Auth::routes();
