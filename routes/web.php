@@ -115,7 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
         //members index
         Route::get('/members', function () {
             return view('members.index');
-        });
+        })->name('members');
         Route::get('/test', function () {
             return view('members.addX');
         // });
@@ -148,6 +148,7 @@ Route::get('/savings/verification', function () {
             ON customer_basic_data.customer_id = account_general_information.customer_id
             LEFT JOIN iedentification_types
             ON iedentification_types.id = customer_basic_data.identification_type_id
+            WHERE account_general_information.status LIKE '2'
             ");
     return view('savings.verification',compact('permissions'));
 });
@@ -352,4 +353,16 @@ Route::resource('/marriedStatus', 'MarriedStatusController');
 
 
 
+//-------------------------------------------------------------------Interest Schema parameter -------------start--------
+Route::get('/interestschema','InterestSchemaParameterController@interestSchema');
+Route::post('/interestschemasubmit','InterestSchemaParameterController@interestSchemaSubmit');
+Route::post('/interestschemafeesubmit','InterestSchemaParameterController@interestSchemaFeeSubmit');
+//-------------------------------------------------------------------Interest Schema parameter -------------end--------
+
+
+//-----------------------------------------------------------------transaction report----------------------
+Route::get('/treport','TransactionReportController@index');
+Route::get('/findmemberbyaccnoforreport','TransactionReportController@findMembersById');
+
+//------------------------------------------------------------------transaction report end-------------------
 Auth::routes();

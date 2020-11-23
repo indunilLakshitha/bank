@@ -70,6 +70,7 @@ class MemberController extends Controller
             AND customer_basic_data.full_name LIKE '%$request->full_name%'
             AND customer_basic_data.identification_type_id LIKE '%$request->identification_type_id%'
             AND account_general_information.account_number LIKE '%$request->account_number%'
+            AND account_general_information.status LIKE '2'
             ");
 
         return response()->json($results);

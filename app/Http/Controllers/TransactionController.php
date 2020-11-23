@@ -44,6 +44,7 @@ class TransactionController extends Controller
         $general_account->save();
 
         $payment_log['created_by']=Auth::user()->id;
+        $payment_log['transaction_type']="WITHDRAW";
         $transaction_data=TransactionData::create($payment_log->all());
 
         $payment_log['transaction_data_id']=$transaction_data->id;
@@ -66,6 +67,8 @@ class TransactionController extends Controller
         $general_account->save();
 
         $payment_log['created_by']=Auth::user()->id;
+        $payment_log['transaction_type']="DEPOSITE";
+
         $transaction_data=TransactionData::create($payment_log->all());
 
         $payment_log['transaction_data_id']=$transaction_data->id;

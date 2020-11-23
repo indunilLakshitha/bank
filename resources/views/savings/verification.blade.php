@@ -91,9 +91,7 @@
                                     <th>Account No </th>
                                     <th>CIF</th>
                                     <th>Full Name</th>
-                                    <th>Identification Type</th>
                                     <th>Identification No</th>
-                                    <th> Comments</th>
                                     <th>Account Details</th>
                                     <th>Customer Details</th>
                                     <th>Signature Verification</th>
@@ -102,30 +100,22 @@
                                     <th>Edit List</th>
                                 </thead>
                                 <tbody id="results_tbody">
-                                    {{-- @foreach ($permissions as $perm)
-                      <tr>
-                        <th > {{$perm->name}} </th>
-                                    <th> |
-                                        @foreach ($perm->roles as $role)
-                                        {{$role->name}} |
-                                        @endforeach
-                                    </th>
-                                    <td class="td-actions text-right">
-                                        @can('update_permissions')
-                                        <a href="/permissions/edit/{{$perm->id}}" rel="tooltip"
-                                            class="btn btn-success btn-round">
-                                            <i class="material-icons">edit</i> <span class="mx-1">Edit</span>
-                                        </a>
-                                        @endcan
-                                        @can('delete_permissions')
-                                        <a href="/permissions/delete/{{$perm->id}}" rel="tooltip"
-                                            class="btn btn-danger btn-round">
-                                            <i class="material-icons">close</i> <span class="mx-1">Delete</span>
-                                        </a>
+                                    @foreach ($permissions as $perm)
+                                <tr>
+                                    <td>{{$perm->account_number}}</td>
+                                    <td>{{$perm->customer_id}}</td>
+                                    <td>{{$perm->name_in_use}}</td>
+                                    <td>{{$perm->identification_number}}</td>
+                                    <td><a href="{{url('/accountdetails/'.$perm->customer_id)}}" class="btn btn-sm btn-info">View</a></td>
+                                    <td><a href="{{url('/customer_details/'.$perm->customer_id)}}" class="btn btn-sm btn-info">View</a></td>
+                                    <td><a href="{{url('/signature_verification/'.$perm->account_number)}}" class="btn btn-sm btn-primary">Verify</a></td>
+                                    <td><a href="{{url('/document_verification/'.$perm->account_number)}}" class="btn btn-sm btn-primary">Verify</a></td>
+                                    <td><button class="btn btn-sm btn-primary " onclick="check_approve($perm.account_number)" >Approve</button>
+                                        <button class="btn btn-sm btn-danger">Reject</button>
                                     </td>
-                                    @endcan
-                                    </tr>
-                                    @endforeach --}}
+                                    <td><button class="btn btn-sm btn-primary">Generate</button></td>
+                                </tr>
+                                    @endforeach
 
 
                                 </tbody>
@@ -163,7 +153,7 @@
         data.forEach(i => {
 
             html = `
-            
+
             <tr>
                 <td>${i.account_number}</td>
                 <td>${i.customer_id}</td>
@@ -171,8 +161,8 @@
                 <td>${i.identification_type}</td>
                 <td>${i.identification_number}</td>
                 <td></td>
-                <td><a href="/accountdetails/${i.account_number}" class="btn btn-sm btn-primary">View</a></td>
-                <td><a href="/customer_details/${i.account_number}" class="btn btn-sm btn-primary">View</a></td>
+                <td><a href="/accountdetails/${i.customer_id}" class="btn btn-sm btn-primary">View</a></td>
+                <td><a href="/customer_details/${i.customer_id}" class="btn btn-sm btn-primary">View</a></td>
                 <td>
                 <a href="/signature_verification/${i.account_number}" class="btn btn-sm btn-primary">Verify</a>
                 </td>
@@ -219,5 +209,5 @@
     })
     }
 </script>
-
 @endsection
+
