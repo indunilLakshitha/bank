@@ -272,6 +272,12 @@ Route::post('/member/edit/3other', 'CustomerBasicDataController@editOccupati');
 Route::post('/member/edit/4membership', 'CustomerBasicDataController@editOthersociety');
 Route::post('/member/edit/5special', 'CustomerBasicDataController@editSpecialAndAssets');
 Route::get('/savings/account/{id}', 'OpenSavingsAccountController@viewSavingAccount');
+Route::get('/members/verify', 'CustomerBasicDataController@memberVerify');
+Route::get('/members/view/check/{id}', 'CustomerBasicDataController@viewVerify');
+Route::get('/members/view/verify/{id}', 'CustomerBasicDataController@verification');
+
+
+
 
 
 
@@ -337,6 +343,16 @@ Route::resource('/mainType', 'MainTypeController');
 
 Route::resource('/marriedStatus', 'MarriedStatusController');
 
+//-------------------------------------------------------------------Savings Schema parameter -------------start--------
+Route::get('/savinsschemacreate','SavingsSchemaParameterController@generalSchemaParameters');
+Route::post('/savinsschemasubmit','SavingsSchemaParameterController@generalSchemaParametersSave');
+//-------------------------------------------------------------------Savings Schema parameter -------------end--------
 
+
+//-------------------------------------------------------------------Interest Schema parameter -------------start--------
+Route::get('/interestschema','InterestSchemaParameterController@interestSchema');
+Route::post('/interestschemasubmit','InterestSchemaParameterController@interestSchemaSubmit');
+Route::post('/interestschemafeesubmit','InterestSchemaParameterController@interestSchemaFeeSubmit');
+//-------------------------------------------------------------------Interest Schema parameter -------------end--------
 
 Auth::routes();

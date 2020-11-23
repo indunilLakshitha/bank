@@ -52,8 +52,8 @@
                             <div class="col-sm-1  checkbox">
                                 <div class="form-check ">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                         @if ($d->is_mandatory == 1) checked @endif ">
+                                        <input class="form-check-input" type="checkbox" value="" @if ($d->is_mandatory
+                                        == 1) checked @endif ">
                                         <span class="form-check-sign">
                                             <span class="check"></span>
                                         </span>
@@ -87,8 +87,8 @@
                                 <span class="fileinput-new">Choose File</span>
                                 <input type="file" name="img" />
                             </span>
-                            <input type="button" onclick="upload('form_{{$d->id}}', this)" class="btn btn-sm btn-fill " name="submit"
-                                value="Upload">
+                            <input type="button" onclick="upload('form_{{$d->id}}', this)" class="btn btn-sm btn-fill "
+                                name="submit" value="Upload">
                     </form>
                 </div>
                 @endforeach

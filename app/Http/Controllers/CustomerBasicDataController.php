@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountCategory;
 use App\Models\BeneficiaryData;
+<<<<<<< HEAD
 use App\Models\Branch;
+=======
+use App\Models\ContactData;
+use App\Models\SmallGroup;
+use App\Models\SubAccountOffice;
+use App\Models\IedentificationType;
+>>>>>>> 934dadb8cd03eb8488d3796ec1b93e5ff888ca7f
 use App\Models\ContactType;
 use App\Models\CustomerBasicData;
 use App\Models\CustomerStatusDates;
@@ -42,6 +49,7 @@ class CustomerBasicDataController extends Controller
         $cbs = CustomerBasicData::create($request->all());
         $cbs->customer_id = $cus_id;
         $cbs->is_enable = 1;
+        $cbs->status = 2;
         $cbs->created_by = Auth::user()->name;
         if ($request->file('sign_img')) {
             $image = $request->file('sign_img');
@@ -58,7 +66,7 @@ class CustomerBasicDataController extends Controller
         $main_type->created_by = Auth::user()->name;
         $main_type->save();
 
-        $contact_data = MainType::create($request->all());
+        $contact_data = ContactData::create($request->all());
         $contact_data->customer_id = $cus_id;
         $contact_data->is_enable = 1;
         $contact_data->created_by = Auth::user()->name;
@@ -269,6 +277,34 @@ class CustomerBasicDataController extends Controller
 
         return Redirect::to('/members/edit/' . $request->customer_id);
 
+    }
+
+     public function memberVerify(Request $request){
+
+
+        $membrs = CustomerBasicData::where('status',2)->get();
+        return view('members.memberVerification',compact('membrs'));
+    }
+
+    public function viewVerify(Request $request){
+
+        $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
+        $view_1_1 = CutomerMainType::where('customer_id',$request->id)->first();
+        $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
+        $view_3 = OccupationData::where('customer_id',$request->id)->first();
+        $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
+        $view_5_1 = BeneficiaryData::where('customer_id',$request->id)->get();
+        $view_5_2 = GuardianData::where('customer_id',$request->id)->get();
+        $view_6 = SpecialData::where('customer_id',$request->id)->first();
+        return view('members.verifyView',compact('view_1','view_1_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
+    }
+
+    public function verification(Request $request){
+
+        $verify = CustomerBasicData::where('customer_id',$request->id)->first();
+        $verify->status = 1;
+        $verify->save();
+        return Redirect::to('/members/verify');
     }
 
 }

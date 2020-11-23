@@ -257,7 +257,7 @@ class OpenSavingsAccountController extends Controller
     public function finish_open_account_saving(Request $request){
 
         AccountGeneralInformation::find($request->account_id)->status = 2;
-        return redirect('/');
+        return redirect()->route('/savings/open');
     }
 
 
@@ -281,4 +281,6 @@ class OpenSavingsAccountController extends Controller
         return view('savings.view_details.view_account',compact('view_1','view_1_1','view_2','view_3','view_4','view_5','view_6','view_7','view_8','view_8_1','idtypes', 'CIF', 'acc_no'));
 
     }
+
+
 }
