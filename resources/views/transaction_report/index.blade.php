@@ -103,7 +103,7 @@
                                         <th>DATE</th>
                                         <th>WITHDRAWED</th>
                                         <th>DEPOSITED</th>
-                                        <th><button class="btn fa fa-print btn-info btn-sm"></button></th>
+                                        <th><button class="btn fa fa-print btn-info btn-sm" onclick="printData()"></button></th>
                                     </thead>
                                     <tbody id="results_tbody">
 
@@ -211,7 +211,18 @@
             customer_id.value = id
             account_balance.value = balance
            }
+           function printData()
+                {
+                var divToPrint=document.getElementById("table");
+                var win = window.open('', '', 'height=700,width=700');
+            win.document.write(table.outerHTML);
+            win.document.close();
+            win.print();
+        }
 
+        // $('button').on('click',function(){
+        // printData();
+        // })
 
 </script>
 @endsection
