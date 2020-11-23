@@ -142,7 +142,14 @@ Route::group(['middleware' => 'auth'], function () {
 // });
 //-------------------------------------------------account verification view
 Route::get('/savings/verification', function () {
-    return view('savings.verification');
+    $permissions = DB::select("
+            SELECT * FROM account_general_information
+            LEFT JOIN customer_basic_data
+            ON customer_basic_data.customer_id = account_general_information.customer_id
+            LEFT JOIN iedentification_types
+            ON iedentification_types.id = customer_basic_data.identification_type_id
+            ");
+    return view('savings.verification',compact('permissions'));
 });
 //-------------------------------------------------account approval view(disabled)
 Route::get('/savings/approve', function () {
@@ -343,16 +350,6 @@ Route::resource('/mainType', 'MainTypeController');
 
 Route::resource('/marriedStatus', 'MarriedStatusController');
 
-//-------------------------------------------------------------------Savings Schema parameter -------------start--------
-Route::get('/savinsschemacreate','SavingsSchemaParameterController@generalSchemaParameters');
-Route::post('/savinsschemasubmit','SavingsSchemaParameterController@generalSchemaParametersSave');
-//-------------------------------------------------------------------Savings Schema parameter -------------end--------
 
-
-//-------------------------------------------------------------------Interest Schema parameter -------------start--------
-Route::get('/interestschema','InterestSchemaParameterController@interestSchema');
-Route::post('/interestschemasubmit','InterestSchemaParameterController@interestSchemaSubmit');
-Route::post('/interestschemafeesubmit','InterestSchemaParameterController@interestSchemaFeeSubmit');
-//-------------------------------------------------------------------Interest Schema parameter -------------end--------
 
 Auth::routes();

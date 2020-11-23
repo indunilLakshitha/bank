@@ -163,6 +163,7 @@
         data.forEach(i => {
 
             html = `
+            
             <tr>
                 <td>${i.account_number}</td>
                 <td>${i.customer_id}</td>
