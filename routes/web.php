@@ -337,6 +337,8 @@ Route::resource('/mainType', 'MainTypeController');
 
 Route::resource('/marriedStatus', 'MarriedStatusController');
 
-
+//-------------------------------------------------------------------Savings Schema parameter -------------start--------
+Route::get('/savinsschemacreate','SavingsSchemaParameterController@generalSchemaParameters');
+//-------------------------------------------------------------------Savings Schema parameter -------------end--------
 
 Auth::routes();
