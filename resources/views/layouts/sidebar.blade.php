@@ -197,9 +197,9 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link" href="/accountType">
+                            <a class="nav-link" href="/interestschema">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Account Types</span>
+                                <span class="sidebar-normal">Interest Schema</span>
                             </a>
                         </li>
 
