@@ -182,6 +182,7 @@
 </div>
 
 <script>
+    
     function create_joint_account(btn){
         // return console.log(1);
         $.ajax({

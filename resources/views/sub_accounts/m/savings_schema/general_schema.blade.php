@@ -205,20 +205,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <label class="col-sm-4 col-form-label">Frequency of Statement Generation </label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-4">
-                                    <div class="form-group">
+                                    <div class="form-group"> --}}
                                         {{-- @php
                                         $account_types =
                                         Illuminate\Support\Facades\DB::table('account_types')->get();
                                         @endphp --}}
-                                        <select name="statment_generate_frequently_id"
+                                        {{-- <select name="statment_generate_frequently_id"
                                             id="statment_generate_frequently_id" class="form-control"
                                             data-style="select-with-transition">
-                                            <option value="">Select</option>
+                                            <option value="">Select</option> --}}
                                             {{-- @isset($account_types)
                                             @foreach ($account_types as $account_type)
                                             <option value="{{$account_type->id}}">
@@ -226,12 +226,12 @@
                                             @endforeach
                                             @endisset --}}
 
-                                        </select>
+                                        {{-- </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <label class="col-sm-4 col-form-label">Eligible Currency</label>
                         <div class="col-sm-8">

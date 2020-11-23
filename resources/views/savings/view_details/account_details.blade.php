@@ -28,7 +28,7 @@
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="client_full_name"  readonly placeholder="{{ $view_1->client_full_name}}">
+                                    <input type="text" class="form-control" id="client_full_name"  readonly placeholder="{{ $data->client_full_name}}">
                                 </div>
                             </div>
                         </div>
@@ -38,13 +38,12 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" nme= "identification_type_id" readonly placeholder="{{$view_1->identification_type_id}}">
+                                            <input type="text" class="form-control" nme= "identification_type_id" readonly placeholder="{{$data->identification_type_id}}">
                                         </div>
                                     </div>
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"  id="identification_number" readonly class="form-control" placeholder="{{$view_1->identification_number}}">
->>>>>>> 0bd6ab53405f2a2e853c5fecd7a458800e5a811d
+                                            <input type="text" name="identification_number"  id="identification_number" readonly class="form-control" placeholder="{{$data->identification_number}}">
 
                                     </div>
                                 </div>
@@ -176,7 +175,7 @@
                                 <div class="col-5">
                                     <div class="form-group">
 
-                                        <input type="text" name="identification_number" id="identification_number"
+                                        <input type="text" name="product_type" id="product_type"
                                             class="form-control" disabled value="{{$data->product_type}}">
 
                                     </div>
@@ -299,12 +298,7 @@
                             <td>Customer ID</td>
                             <td>Ownsership Percentage</td>
                         </tr>
-                        @foreach ($join_acc_mems as $item)
-                        <tr>
-                            <th>{{$item->customer_id}}</th>
-                            <th>{{$item->ownership_percentage}}</th>
-                        </tr>
-                        @endforeach
+
                     </table>
                     {{-- </div> --}}
 
@@ -429,12 +423,7 @@
                             <td>Customer ID</td>
                             <td>Nomineee Percentage</td>
                         </tr>
-                        @foreach ($noms as $item)
-                        <tr>
-                            <th>{{$item->customer_id}}</th>
-                            <th>{{$item->nominee_percentage}}</th>
-                        </tr>
-                        @endforeach
+
                     </table>
 
                 </div>
