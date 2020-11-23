@@ -181,6 +181,7 @@
            }
 
            function showCustomers(data){
+            full_name.value=data[0].full_name
                 results_tbody.innerHTML = ''
                 data.forEach(i => {
                     html = `

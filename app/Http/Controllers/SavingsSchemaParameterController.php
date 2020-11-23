@@ -14,7 +14,7 @@ class SavingsSchemaParameterController extends Controller
 
     public function generalSchemaParametersSave(Request $request){
         // return $request;
-          $sub_account=SubAccount::create($request->all());
+        //   $sub_account=SubAccount::create($request->all());
         return view('sub_accounts.m.savings_schema.transaction_schema');
     }
 }
