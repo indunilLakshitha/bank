@@ -14,7 +14,7 @@
                         <div class="tab-pane active" id="status">
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Birth Date / Nic Date</label>
-                                <div class="col-sm-4">
+                                <div class="col-sm-10">
                                     <div class="form-group">
                                         <input type="date" name="date_of_birth" class="form-control col-3">
                                     </div>

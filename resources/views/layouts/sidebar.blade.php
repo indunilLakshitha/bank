@@ -61,13 +61,13 @@
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/members">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
                                 <span class="sidebar-normal">View Member Account</span>
                             </a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="/members/verify">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-mini"> <i class="material-icons">verified</i> </span>
                                 <span class="sidebar-normal">View Member Verification</span>
                             </a>
                         </li>
@@ -75,33 +75,40 @@
                     </ul>
                 </div>
             </li>
+            @can('savings_account_veiw')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#savings">
-                    <i class="material-icons">request_quote</i>
+                    <i class="material-icons">account_balance</i>
                     <p> Savings
                         <b class="caret"></b>
                     </p>
                 </a>
                 <div class="collapse" id="savings">
                     <ul class="nav">
+                        @can('add_savings')
                         <li class="nav-item ">
                             <a class="nav-link" href="/savings/open">
                                 <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
                                 <span class="sidebar-normal"> Savings Account Opening</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('savings_account_verification')
                         <li class="nav-item ">
                             <a class="nav-link" href="/savings/verification">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-mini"> <i class="material-icons">assignment_turned_in</i> </span>
                                 <span class="sidebar-normal"> Account Verification</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('savings_account_veiw')
                         <li class="nav-item ">
                             <a class="nav-link" href="/savings/view">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
                                 <span class="sidebar-normal"> View Savings Account</span>
                             </a>
                         </li>
+                        @endcan
 
                         {{-- <li class="nav-item ">
                             <a class="nav-link" href="/savings/approve">
@@ -113,10 +120,11 @@
                     </ul>
                 </div>
             </li>
+            @endcan
             @can('withdrawal_deposites')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#diposits">
-                    <i class="material-icons">request_quote</i>
+                    <i class="material-icons">sync_alt</i>
                     <p> Withdrawals & Deposites
                         <b class="caret"></b>
                     </p>
@@ -197,10 +205,10 @@
                     </ul>
                 </div>
             </li> --}}
-
+            @can('transaction_report')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#transaction_report">
-                    <i class="material-icons">request_quote</i>
+                    <i class="material-icons">grading</i>
                     <p>Transaction Report
                         <b class="caret"></b>
                     </p>
@@ -213,15 +221,14 @@
                                 <span class="sidebar-normal">Transaction History</span>
                             </a>
                         </li>
-
-
-
                     </ul>
                 </div>
             </li>
+            @endcan
+            @can('sub_accounts')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#schema">
-                    <i class="material-icons">request_quote</i>
+                    <i class="material-icons">book_online</i>
                     <p> Sub Accounts
                         <b class="caret"></b>
                     </p>
@@ -230,7 +237,7 @@
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/savinsschemacreate">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-mini"> <i class="material-icons">api</i> </span>
                                 <span class="sidebar-normal">Saving Schema Parameters</span>
                             </a>
                         </li>
@@ -245,9 +252,11 @@
                     </ul>
                 </div>
             </li>
+            @endcan
+            @can('configurations')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#dataAdd">
-                    <i class="material-icons">request_quote</i>
+                    <i class="material-icons">build</i>
                     <p> Configurations
                         <b class="caret"></b>
                     </p>
@@ -325,5 +334,6 @@
                 </div>
             </li>
         </ul>
+        @endcan
     </div>
 </div>

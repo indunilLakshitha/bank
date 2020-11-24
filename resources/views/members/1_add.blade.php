@@ -7,6 +7,11 @@
     <div class="container-fluid">
         <div class="col-md-10 col-12 mr-auto ml-auto">
             <div class="card">
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Member Creation</h4>
+                    </div>
+                </div>
                 <div class="card-body">
                     <form id="private_1" action="{{url('/member/add/private')}}" method="POST">
                         @csrf
@@ -70,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Short Name</label>
+                                <label class="col-sm-2 col-form-label">Name With Initials</label>
                                 <div  class="col-lg-3 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="short_name" class="form-control">

@@ -32,7 +32,7 @@
                                 <table class="table-bordered">
                                     <tbody>
                                         @foreach ($roles as $r)
-                                        <tr >
+                                        <tr>
                                             <th> {{$r->name}} </th>
                                             <td class="td-actions text-right">
                                                 @can('create_roles')

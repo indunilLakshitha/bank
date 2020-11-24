@@ -211,7 +211,3 @@
 </script>
 @endsection
 
-<<<<<<< HEAD
-=======
-@endsection
->>>>>>> f92a7a1da90c2e60258ca52982f63b064a155a83
