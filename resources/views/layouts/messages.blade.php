@@ -34,13 +34,13 @@
 
 @if(isset($success))
     <script>
-        Swal.fire("{{$success}}")
+        return Swal.fire("{{$success}}")
     </script>
 @endif
 
 @if (isset($error))
     <script>
-        Swal.fire("{{$error}}")
+        return Swal.fire("{{$error}}")
     </script>
 @endif
 
