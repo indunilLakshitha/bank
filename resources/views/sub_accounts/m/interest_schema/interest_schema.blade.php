@@ -184,7 +184,7 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <button type="button" onclick="create_int_schema()" id="btn1" class="btn btn-primary">NEXT</button> </div>
-                        <a href="/interestschemasubmit" id="btn2" class="btn btn-primary d-none">NEXT</a> </div>
+                        <a href="/interestschemasubmit/{{$sub_account_id}}" id="btn2" class="btn btn-primary d-none">NEXT</a> </div>
                 </div>
             </div>
 

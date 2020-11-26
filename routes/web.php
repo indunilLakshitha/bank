@@ -4,6 +4,7 @@ use App\Models\AccountGeneralInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -362,8 +363,11 @@ Route::post('/create_intereset_type_data','SavingsSchemaParameterController@crea
 
 //-------------------------------------------------------------------Interest Schema parameter -------------start--------
 Route::get('/interestschema','InterestSchemaParameterController@interestSchema');
-Route::get('/interestschemasubmit','InterestSchemaParameterController@interestSchemaSubmit');
+Route::get('/interestschemasubmit/{id}','InterestSchemaParameterController@interestSchemaSubmit');
 Route::post('/interestschemafeesubmit','InterestSchemaParameterController@interestSchemaFeeSubmit');
+Route::post('/create_fee_data','InterestSchemaParameterController@create_fee_data');
+Route::get('/tax_n_docs/{id}','InterestSchemaParameterController@tax_n_docs');
+Route::post('/tax_n_docs','InterestSchemaParameterController@store_tax_n_docs');
 //-------------------------------------------------------------------Interest Schema parameter -------------end--------
 
 
