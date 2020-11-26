@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="rose" data-background-color="black" data-image="{{asset('mat_ui/img/sidebar-1.jpg')}}">
+<div class="sidebar" data-color="rose" data-background-color="black" data-image="{{asset('mat_ui/img/sidebar-1.gif')}}">
 
 
 
@@ -54,21 +54,27 @@
             <li class="nav-item  ">
                 <a class="nav-link" data-toggle="collapse" href="#members">
                     <i class="material-icons">account_box</i>
-                    <p> Members
+                    <p> Customers
                         <b class="caret"></b> </p>
                 </a>
                 <div class="collapse" id="members">
                     <ul class="nav">
                         <li class="nav-item ">
+                            <a class="nav-link" href="{{url('/members/add')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
+                                <span class="sidebar-normal">Add Customer </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
                             <a class="nav-link" href="/members">
                                 <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
-                                <span class="sidebar-normal">View Member Account</span>
+                                <span class="sidebar-normal">View Customer Profile</span>
                             </a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="/members/verify">
                                 <span class="sidebar-mini"> <i class="material-icons">verified</i> </span>
-                                <span class="sidebar-normal">View Member Verification</span>
+                                <span class="sidebar-normal"> Customer Verification</span>
                             </a>
                         </li>
 

@@ -34,11 +34,11 @@ class CustomerBasicDataController extends Controller
     {
 
 // return $request;
-
+        $province='W';
         $br_code = Branch::find($request->branch_id)->branch_code;
-        $cus_count = '0000000' . count(CustomerBasicData::all());
-        $cus_count = substr($cus_count, -6);
-        $cus_id = $br_code . '-' . $cus_count;
+        $cus_count = '0000' . count(CustomerBasicData::all());
+        $cus_count = substr($cus_count, -3);
+        $cus_id =$province.'-'. $br_code . '-' . $cus_count;
 
         $cbs = CustomerBasicData::create($request->all());
         $cbs->customer_id = $cus_id;
@@ -80,7 +80,7 @@ class CustomerBasicDataController extends Controller
         CustomerStatusDates::create($status_dates->all());
         $cus_id = $request->customer_id;
 
-        return view('members.3_occupation', compact('cus_id'))->with('success', 'Details submitted');
+        return view('members..4_othersocieties', compact('cus_id'))->with('success', 'Details submitted');
 
     }
     public function insertOccupation(Request $request)
@@ -105,7 +105,7 @@ class CustomerBasicDataController extends Controller
         $cus_id = $request->customer_id;
         $all_customers = CustomerBasicData::all();
 
-        return view('members.5_benificiaries', compact('cus_id', 'all_customers'))->with('success', 'Details submitted');
+        return view('members.6_special_and_assets', compact('cus_id', 'all_customers'))->with('success', 'Details submitted');
 
     }
 

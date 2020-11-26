@@ -6,7 +6,24 @@
 <div class="content">
     <div class="container-fluid">
         <div class="col-md-10 col-12 mr-auto ml-auto">
-            <div class="card">
+            <div class="card" style="border: solid">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Step 03 - Designation Details</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                {{-- <h4 class="card-title">Member Creation</h4> --}}
+                                <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <form id="private_1" action="/member/add/othersociety" method="POST">
                         @csrf

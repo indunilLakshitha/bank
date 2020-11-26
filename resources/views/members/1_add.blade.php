@@ -6,12 +6,26 @@
 <div class="content">
     <div class="container-fluid">
         <div class="col-md-10 col-12 mr-auto ml-auto">
-            <div class="card">
-                <div class="card-header card-header-rose card-header-text">
-                    <div class="card-text">
-                        <h4 class="card-title">Member Creation</h4>
+            <div class="card " style="border: solid">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Step 01 - Member Creation</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                {{-- <h4 class="card-title">Member Creation</h4> --}}
+                                <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
                 <div class="card-body">
                     <form id="private_1" action="{{url('/member/add/private')}}" method="POST">
                         @csrf
@@ -25,8 +39,8 @@
                                     <div class="form-group">
                                         <select name="customer_status_id" id="c" class="selectpicker"
                                             data-style="select-with-transition">
-                                            <option value="1">ACTIVE</option>
-                                            <option value="0">INACTIVE</option>
+                                            {{-- <option value="1">ACTIVE</option> --}}
+                                            <option value="0" selected>INACTIVE</option>
                                         </select>
                                     </div>
                                 </div>
@@ -51,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Name in Use</label>
+                                <label class="col-sm-2 col-form-label">Name in Use <font color="red">*</font></label>
                                 <div class="col-lg-3 col-md-3 col-sm-3">
                                     <div class="form-group">
                                         <input name="name_in_use" type="text" class="form-control">
@@ -59,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Full Name</label>
+                                <label class="col-sm-2 col-form-label">Full Name<font color="red">*</font></label>
                                 <div class="col-lg-5 col-md-4 col-sm-4">
                                     <div class="form-group">
                                         <input type="text" name="full_name" class="form-control">
@@ -67,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Surname</label>
+                                <label class="col-sm-2 col-form-label">Surname<font color="red">*</font></label>
                                 <div class="col-lg-3 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="surname" class="form-control">
@@ -75,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Name With Initials</label>
+                                <label class="col-sm-2 col-form-label">Name With Initials<font color="red">*</font></label>
                                 <div  class="col-lg-3 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="short_name" class="form-control">
@@ -83,7 +97,27 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Branch</label>
+                                <label class="col-sm-2 col-form-label">Address<font color="red">*</font></label>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        <input type="text" name="address_line_1" class="form-control">
+                                        <input type="text" name="address_line_2" class="form-control">
+                                        <input type="text" name="address_line_3" class="form-control">
+                                        <input type="text" name="address_line_4" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">EPF No</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="epf_no">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Branch<font color="red">*</font></label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <select name="branch_id" id="" class="selectpicker"
@@ -106,7 +140,7 @@
                                 <div class="col-sm-10 checkbox-radios">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="non_member" value="1">
+                                            <input class="form-check-input" disabled checked type="checkbox" name="non_member" value="1">
                                             Non
                                             Member
                                             <span class="form-check-sign">
@@ -114,7 +148,7 @@
                                             </span>
                                         </label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="checkbox" value="1" name="member">
                                             Member
@@ -167,13 +201,13 @@
                                                 <span class="check"></span>
                                             </span>
                                         </label>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Account Category</label>
+                                <label class="col-sm-2 col-form-label">Account Category<font color="red">*</font></label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="account_category_id" id="" class="selectpicker"
@@ -196,7 +230,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
+                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off<font color="red">*</font></label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="small_group_id" id="" class="form-control"
@@ -218,7 +252,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
+                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.<font color="red">*</font></label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="sub_account_office_id" id="" class="form-control"
@@ -240,7 +274,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Sub Account Office</label>
+                                <label class="col-sm-2 col-form-label">Sub Account Office<font color="red"> *</font></label>
                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="office_sub_id" class="form-control">
@@ -248,7 +282,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">ID Type</label>
+                                <label class="col-sm-2 col-form-label">ID Type<font color="red">*</font></label>
                                 <div class="col-sm-7">
                                     <div class="row">
                                         <div class="col">
