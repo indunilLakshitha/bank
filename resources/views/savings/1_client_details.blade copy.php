@@ -7,20 +7,9 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="card ">
-                <div class="row">
-                    <div class="col-3">
-                        <div class="card-header card-header-rose card-header-text">
-                            <div class="card-text">
-                                <h4 class="card-title">Step 01 - Savings Account Opening</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        {{-- <div class="card-header card-header-rose card-header-text"> --}}
-                        <div class="card-text">
-                            <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
-                        </div>
-                        {{-- </div> --}}
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Savings Account Opening</h4>
                     </div>
                 </div>
             </div>
@@ -41,48 +30,48 @@
                     </div>
                 </div>
         </div> --}}
-        <div style="border: solid">
-            <div class="row">
-                <label class="col-sm-2 col-form-label"> Client Full Name</label>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input oninput="toCap(this.value, this.id), get_options(this.value, this)" type="text"
-                            class="form-control js-example-data-ajax" id="client_full_name">
+        <div class="row">
+            <label class="col-sm-2 col-form-label"> Client Full Name</label>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input oninput="toCap(this.value, this.id), get_options(this.value, this)" type="text"
+                        class="form-control js-example-data-ajax" id="client_full_name">
 
-                    </div>
-                    <select oninput="set_full_name(this.value, this )" class="form-control d-none "
-                        id="client_full_name_select" data-style="select-with-transition">
-                    </select>
                 </div>
+                <select oninput="set_full_name(this.value, this )" class="form-control d-none "
+                    id="client_full_name_select" data-style="select-with-transition">
+                </select>
             </div>
-            <div class="row">
-                <label class="col-sm-2 col-form-label">ID Type</label>
-                <div class="col-sm-8">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <select name="identification_type_id" id="identification_type_id" class="selectpicker"
-                                    data-style="select-with-transition">
-                                    <option value="">Select</option>
-                                    @isset($idtypes)
-                                    @foreach ($idtypes as $idtype)
-                                    <option value="{{$idtype->id}}">
-                                        {{$idtype->identification_type}}
-                                        @endforeach
-                                        @endisset
-                                </select>
-                            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-2 col-form-label">ID Type</label>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <select name="identification_type_id" id="identification_type_id" class="selectpicker"
+                                data-style="select-with-transition">
+                                <option value="">Select</option>
+                                @isset($idtypes)
+                                @foreach ($idtypes as $idtype)
+                                <option value="{{$idtype->id}}">
+                                    {{$idtype->identification_type}}
+                                    @endforeach
+                                    @endisset
+                            </select>
                         </div>
-                        <div class="col-5">
-                            <div class="form-group">
-                                <input type="text" name="identification_number" id="identification_number"
-                                    class="form-control">
-                                <a onclick="get_cus_details(identification_type_id.value, identification_number.value, client_full_name.value)"
-                                    class="btn btn-primary text-white">SEARCH</a>
-                            </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-group">
+                            <input type="text" name="identification_number" id="identification_number"
+                                class="form-control">
+                            <a onclick="get_cus_details(identification_type_id.value, identification_number.value, client_full_name.value)"
+                                class="btn btn-primary text-white">SEARCH</a>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 
@@ -254,7 +243,7 @@
                             @php
                             $acc_cats = Illuminate\Support\Facades\DB::table('account_categories')->get();
                             @endphp
-                            <select name="account_category_id" class="selectpicker" data-style="select-with-transition">
+                            <select name="account_category_id" class="form-control" data-style="select-with-transition">
                                 <option value="">Select </option>
                                 @isset($acc_cats)
                                 @foreach ($acc_cats as $ac_cat)
@@ -277,7 +266,7 @@
                             @php
                             $acc_types = Illuminate\Support\Facades\DB::table('account_types')->get();
                             @endphp
-                            <select name="account_type_id" class="selectpicker" data-style="select-with-transition">
+                            <select name="account_type_id" class="form-control" data-style="select-with-transition">
                                 <option value="">Select </option>
                                 @isset($acc_types)
                                 @foreach ($acc_types as $ac_type)

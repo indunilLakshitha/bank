@@ -112,7 +112,6 @@
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="epf_no">
-
                                     </div>
                                 </div>
                             </div>
