@@ -229,7 +229,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off<font color="red">*</font></label>
+                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="small_group_id" id="" class="form-control"
@@ -251,7 +251,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.<font color="red">*</font></label>
+                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="sub_account_office_id" id="" class="form-control"
@@ -318,14 +318,14 @@
 
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Address </label>
                                 <div class="col-sm-5">
                                     <div class="form-group">
-                                        <textarea type="text" name="address_data" class="form-control"></textarea>
+                                        <textarea type="text" name="address_data"  class="form-control"></textarea>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Telephone No</label>
