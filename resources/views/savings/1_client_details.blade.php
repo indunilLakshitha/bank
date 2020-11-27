@@ -24,7 +24,8 @@
                     {{-- </div> --}}
                 </div>
             </div>
-            <form method="post" action="/savings/open" class="form-horizontal">
+            <form method="post" action="/saving/open" class="form-horizontal">
+            <div class="card " style="border: solid">
                 @csrf
                 <div class="card ">
                     <div class="card-header card-header-rose card-header-text">
@@ -189,9 +190,13 @@
         </div>
     </div>
 </div>
+            </div>
+                    <div class="card " style="border: solid">
+
 <div class="card ">
     <div class="card-body ">
         <div class="card-header card-header-rose card-header-text">
+
             <div class="card-text">
                 <h4 class="card-title">General Information</h4>
             </div>
@@ -399,9 +404,10 @@
 </div> --}}
 </div>
 </div>
+</div>
 <div class="row">
     <div class="col">
-        <button class="btn btn-rose float-right" type="submit">NEXT</button>
+        <button class="btn btn-primary float-right" type="submit">NEXT</button>
     </div>
 </div>
 </form>

@@ -176,7 +176,8 @@ Route::get('/savings/open', function () {
     return view('savings.1_client_details', compact('idtypes', 'acc_count'));
 });
 
-Route::post('/savings/open', 'OpenSavingsAccountController@client_details');
+Route::post('/saving/open', 'OpenSavingsAccountController@client_details');
+Route::post('/benificiaries', 'OpenSavingsAccountController@benificiaries');
 Route::post('/product_details', 'OpenSavingsAccountController@product_details');
 Route::post('/create_join_account', 'OpenSavingsAccountController@create_join_account');
 Route::post('/add_mem_join_account', 'OpenSavingsAccountController@add_mem_join_account');

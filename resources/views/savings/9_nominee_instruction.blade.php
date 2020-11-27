@@ -6,12 +6,24 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="card ">
-                <div class="card-header card-header-rose card-header-text">
-                    <div class="card-text">
-                        <h4 class="card-title">Savings Account Opening</h4>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Step 06 - Savings Account Opening</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        {{-- <div class="card-header card-header-rose card-header-text"> --}}
+                        <div class="card-text">
+                            <!-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> -->
+                        </div>
+                        {{-- </div> --}}
                     </div>
                 </div>
             </div>
+            <div class="card " style="border: solid">
             <form id="form" class="form-horizontal">
                 @csrf
                 <input type="hidden" name="product_data_id" value={{$prod_id}}>
@@ -133,7 +145,9 @@
         <input type="hidden" name="product_data_id" value={{$prod_id}}>
         <input type="hidden" name="account_id" value={{$account_id}} id="account_id">
         <input type="hidden" name="customer_id" value={{$customer_id}}>
-        <button type="button" class="btn btn-primary" onclick="
+        <div class="row">
+    <div class="col-11">
+        <button type="button" class="btn btn-primary float-right" onclick="
         Swal.fire({
             title: `Created Account {{$acc_no}}`,
             confirmButtonText: `View Savings Account Page`
@@ -141,7 +155,10 @@
         })
         .then(() => {final_form.submit()})
         ">NEXT</button>
+    </div>
+        </div>
     </form>
+    </div>
 
 </div>
 </div>

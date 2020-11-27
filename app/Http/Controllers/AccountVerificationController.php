@@ -167,10 +167,14 @@ class AccountVerificationController extends Controller
         $acc = AccountGeneralInformation::where('account_number', $id)->first();
         #join account members
         $acc_id = AccountGeneralInformation::where('account_number', $id)->first()->id;
-        $join_acc_id = Joinaccount::where('account_id', $acc_id)->first()->id;
-        $join_acc_mems = JoinaccountMember::where('join_account_id', $join_acc_id)->get();
+        $join_acc_id = Joinaccount::where('account_id', $acc_id)->first();
+        if(!empty($join_acc_id)){
+        $join_acc_mems = JoinaccountMember::where('join_account_id', $join_acc_id->id)->get();
 
          return view('savings.view_details.signature', compact('acc', 'join_acc_mems'));
+        }else{
+            return view('savings.view_details.signature', compact('acc'));
+        }
     }
 
     public function verify_image(Request $request){
