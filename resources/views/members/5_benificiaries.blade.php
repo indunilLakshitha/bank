@@ -5,18 +5,46 @@
 
 <div class="content">
     <div class="container-fluid">
-        <div class="col-md-10 col-12 mr-auto ml-auto">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Step 03 - Savings Account Opening</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        {{-- <div class="card-header card-header-rose card-header-text"> --}}
+                        <div class="card-text">
+                            <!-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> -->
+                        </div>
+                        {{-- </div> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="card " style="border: solid">
             <div class="card">
                 <div class="card-body">
-                    <form id="private_1" action="/member/add/benificiaris" method="POST">
+                    <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Beneficiaries</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    <form id="private_1" action="/benificiaries" method="POST">
                         @csrf
                         <input type="hidden" name="customer_id" value={{$cus_id}}>
+                        <input type="hidden" name="account_id" value={{$account_id}}>
+                        <input type="hidden" name="prod_id" value={{$prod_id}}>
                         <div class="tab-pane active" id="private_1">
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
                             <h5 class="">Beneficiaries</h5>
                             <div class="row">
                                 <label class="col-sm-1 col-form-label">Add</label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <select name=""  class="form-control" id="select_bene">
                                         @foreach ($all_customers as $customer)
                                             <option value="{{$customer->customer_id}}">{{$customer->name_in_use}}</option>
@@ -49,7 +77,7 @@
                             <h5 class="">Guardians</h5>
                             <div class="row">
                                 <label class="col-sm-1 col-form-label">1st</label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <select name="" id="select_guard" class="form-control" >
                                         @foreach ($all_customers as $customer)
                                             <option value="{{$customer->customer_id}}">{{$customer->name_in_use}}</option>
@@ -78,12 +106,18 @@
                                 </table>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">NEXT</button>
+                        <div class="row">
+                            <div class="col">
+                        <button type="submit" class="btn btn-primary float-right">NEXT</button>
+                            </div>
+                        </div>
+
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>
             </div>
         </div>
+         </div>
     </div>
 </div>
 

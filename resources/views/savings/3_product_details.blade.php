@@ -24,6 +24,8 @@
                 </div>
             </div>
             <form method="post" action="/product_details" class="form-horizontal">
+                    <div class="card " style="border: solid">
+
             <input type="hidden" name="account_id" value="{{$account_id}}">
                 @csrf
                 <div class="card ">
@@ -190,8 +192,9 @@
                         </div>
                 </div>
             </div>
-
+                    </div>
             </form>
+
         </div>
     </div>
 </div>

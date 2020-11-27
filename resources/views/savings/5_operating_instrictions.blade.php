@@ -6,13 +6,25 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="card ">
-                <div class="card-header card-header-rose card-header-text">
-                    <div class="card-text">
-                        <h4 class="card-title">Savings Account Opening</h4>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Step 01 - Savings Account Opening</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        {{-- <div class="card-header card-header-rose card-header-text"> --}}
+                        <div class="card-text">
+                            <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+                        </div>
+                        {{-- </div> --}}
                     </div>
                 </div>
             </div>
             <form method="get" action="/" class="form-horizontal">
+            <div class="card " style="border: solid">
              <div class="card ">
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
@@ -52,6 +64,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </form>
         </div>
     </div>
