@@ -24,13 +24,7 @@
                 </div>
             </div>
             <form method="post" action="/product_details" class="form-horizontal">
-<<<<<<< HEAD
-                    <div class="card " style="border: solid">
-
-            <input type="hidden" name="account_id" value="{{$account_id}}">
-=======
                 <input type="hidden" name="account_id" value="{{$account_id}}">
->>>>>>> 143ddfc3ccd7f4eb3e0cbd43d4911fd38733ffec
                 @csrf
                 <div class="card ">
                     <div class="card-body ">
@@ -201,11 +195,8 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
             </div>
                     </div>
-=======
->>>>>>> 143ddfc3ccd7f4eb3e0cbd43d4911fd38733ffec
             </form>
 
         </div>

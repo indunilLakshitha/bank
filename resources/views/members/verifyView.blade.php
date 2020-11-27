@@ -558,7 +558,7 @@
 
 <!-- Beneficiary -->
 
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
+        <!-- <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
             <div class="card">
                 <div class="card-body">
                         @csrf
@@ -614,7 +614,7 @@
                     {{-- Ends Private 1 --}}
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 <!-- End Beneficiary -->
