@@ -376,4 +376,10 @@ Route::get('/treport','TransactionReportController@index');
 Route::get('/findmemberbyaccnoforreport','TransactionReportController@findMembersById');
 
 //------------------------------------------------------------------transaction report end-------------------
+
+//---------------------------------------------------------------------shares---------------------------
+Route::get('/member','MemberController@create');
+Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
+Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
+Route::get('/sharetransferdata','ShareController@historyview')->name('shares.history');
 Auth::routes();

@@ -76,4 +76,9 @@ class MemberController extends Controller
         return response()->json($results);
     }
 
+
+    public function create(){
+        return view('members.member.create');
+    }
+
 }
