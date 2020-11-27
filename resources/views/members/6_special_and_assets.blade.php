@@ -49,32 +49,57 @@
                                 </div>
                             </div>
                             <br>
+                        </form>
+
+                            <form id="assets_form">
+                                @csrf
+                                <input type="hidden" name="customer_id" value={{$cus_id}}>
                             <h5 class="text-center">Assets</h5>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Item</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="item" class="form-control">
+                                        <input type="text" name="asset_description" id="item" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Value</label>
                                 <div class="col-sm-3">
-                                    <input type="text" name="value" class="form-control">
+                                    <input type="text" name="asset_qty" id="value" class="form-control">
                                 </div>
-                                <div class="col-sm-3">
+                                {{-- <div class="col-sm-3">
                                     <select name="" id="" class="form-control">
                                         <option value="">1</option>
                                         <option value="">2</option>
                                     </select>
-                                </div>
+                                </div> --}}
+                                <hr>
+                            </form>
+
                                 <div class="col-sm-2">
-                                    <button class="btn btn-sm btn-primary">SUBMIT & FINISH </button>
+                                    <button type="button" onclick="add_asset()" class="btn btn-sm btn-primary">Add</button>
                                 </div>
-                                <div class="col-sm-2">
-                                    <button class="btn btn-sm btn-primary">Remove</button>
-                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-6">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                    <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="assets_tbody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <button class="btn btn-sm btn-primary">SUBMIT & FINISH </button>
                             </div>
                         </div>
                 </div>
@@ -82,5 +107,66 @@
         </div>
     </div>
 </div>
+
+<script>
+    function add_asset(){
+        // let rnd = Math.random()
+        // assets_tbody.innerHTML += `
+        // <tr id='row_${rnd}'>
+        //     <td>${item.value}</td>
+        // <td>${value.value}</td>
+        // <td>
+        //     <button type="button" onclick="this.parentElement.parentElement.classList.add('d-none')" class="btn btn-sm btn-primary">Remove</button>
+        // </td>
+        // </tr>
+        // `
+
+        $.ajax({
+        type: 'POST',
+        url: '{{('/add_asset')}}',
+        data: new FormData(assets_form) ,
+        processData: false,
+        contentType: false,
+        success: function(data){
+            console.log(data);
+            return show_data(data)
+        }
+    })
+    }
+
+    function show_data(data){
+
+        assets_tbody.innerHTML = ''
+
+        data.forEach(i => {
+            let html = `
+            <tr id='${i.id}' >
+                <td>${i.asset_description}</td>
+            <td>${i.asset_qty}</td>
+            <td>
+                <button type="button" onclick="
+                delete_asset('${i.id}'), this.parentElement.parentElement.classList.add('d-none')" class="btn btn-sm btn-primary">Remove</button>
+            </td>
+            </tr>
+            `
+            assets_tbody.innerHTML += html
+        })
+
+    }
+
+    function delete_asset(id){
+        // console.log(id);
+        $.ajax({
+        type: 'GET',
+        url: '{{('/delete_asset')}}',
+        data: {id} ,
+        success: function(data){
+            console.log(data);
+            return
+        }
+    })
+    }
+
+</script>
 
 @endsection

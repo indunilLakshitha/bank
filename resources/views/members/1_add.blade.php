@@ -100,7 +100,7 @@
                                 <label class="col-sm-2 col-form-label">Address<font color="red">*</font></label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <input type="text" name="address_line_1" class="form-control">
+                                        <input type="text" name="address_data" class="form-control">
                                         <input type="text" name="address_line_2" class="form-control">
                                         <input type="text" name="address_line_3" class="form-control">
                                         <input type="text" name="address_line_4" class="form-control">
