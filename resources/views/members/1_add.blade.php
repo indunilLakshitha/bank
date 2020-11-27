@@ -15,14 +15,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
+                    {{-- <div class="col-8">
                         <div class="card-header card-header-rose card-header-text">
-                            <div class="card-text">
+                            <div class="card-text"> --}}
                                 {{-- <h4 class="card-title">Member Creation</h4> --}}
-                                <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
-                            </div>
+                                {{-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> --}}
+                            {{-- </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
 
@@ -305,7 +305,7 @@
                                         <div class="col-lg-4 col-md-2 col-sm-2">
                                             <div class="form-group">
                                                 <input type="text" name="identification_number" class="form-control"
-                                                    placeholder="900000000V">
+                                                    placeholder="">
                                             </div>
                                         </div>
                                         {{-- <div class="col">
