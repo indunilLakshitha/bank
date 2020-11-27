@@ -6,14 +6,25 @@
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="card ">
-                <div class="card-header card-header-rose card-header-text">
-                    <div class="card-text">
-                        <h4 class="card-title">Savings Account Opening</h4>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Step 04 - Savings Account Opening</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        {{-- <div class="card-header card-header-rose card-header-text"> --}}
+                        <div class="card-text">
+                            <!-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> -->
+                        </div>
+                        {{-- </div> --}}
                     </div>
                 </div>
             </div>
             {{-- <form method="post" action="/save_documents" class="form-horizontal" enctype="multipart/form-data"> --}}
-
+    <div class="card " style="border: solid">
             <div class="card ">
                 <div class="card-body ">
                     <div class="card-header card-header-rose card-header-text">
@@ -99,9 +110,14 @@
                     <input type="hidden" name="product_data_id" value={{$prod_id}}>
                     <input type="hidden" name="account_id" value={{$account_id}}>
                     <input type="hidden" name="customer_id" value={{$customer_id}}>
-                    <button type="submit" class="btn btn-primary">NEXT</button>
+                    <div class="row">
+                            <div class="col">
+                        <button type="submit" class="btn btn-primary float-right">NEXT</button>
+                            </div>
+                        </div>
                 </form>
             </div>
+    </div>
         </div>
     </div>
 </div>

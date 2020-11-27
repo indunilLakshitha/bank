@@ -15,16 +15,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
+                    {{-- <div class="col-8"> --}}
                         {{-- <div class="card-header card-header-rose card-header-text"> --}}
-                        <div class="card-text">
-                            <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
-                        </div>
+                        {{-- <div class="card-text"> --}}
+                            {{-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> --}}
                         {{-- </div> --}}
-                    </div>
+                        {{-- </div> --}}
+                    {{-- </div> --}}
                 </div>
             </div>
-            <form method="post" action="/savings/open" class="form-horizontal">
+            <form method="post" action="/saving/open" class="form-horizontal">
+            <div class="card " style="border: solid">
                 @csrf
                 <div class="card ">
                     <div class="card-header card-header-rose card-header-text">
@@ -76,9 +77,9 @@
                         <div class="col-5">
                             <div class="form-group">
                                 <input type="text" name="identification_number" id="identification_number"
-                                    class="form-control">
+                                    class="form-control" placeholder="ID Number">
                                 <a onclick="get_cus_details(identification_type_id.value, identification_number.value, client_full_name.value)"
-                                    class="btn btn-primary text-white">SEARCH</a>
+                                    class="btn btn-primary text-white">SELECT</a>
                             </div>
                         </div>
                     </div>
@@ -189,9 +190,13 @@
         </div>
     </div>
 </div>
+            </div>
+                    <div class="card " style="border: solid">
+
 <div class="card ">
     <div class="card-body ">
         <div class="card-header card-header-rose card-header-text">
+
             <div class="card-text">
                 <h4 class="card-title">General Information</h4>
             </div>
@@ -245,7 +250,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <label class="col-sm-2 col-form-label">Account Category</label>
             <div class="col-sm-8">
                 <div class="row">
@@ -259,77 +264,150 @@
                                 @isset($acc_cats)
                                 @foreach ($acc_cats as $ac_cat)
                                 <option value="{{$ac_cat->id}}">
-                                    {{$ac_cat->account_category}}
-                                    @endforeach
-                                    @endisset
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{$ac_cat->account_category}}
+        @endforeach
+        @endisset
+        </select>
+    </div>
+</div>
+</div>
+</div>
+</div> --}}
+<div class="row">
+    <label class="col-sm-2 col-form-label">Account Type</label>
+    <div class="col-sm-8">
         <div class="row">
-            <label class="col-sm-2 col-form-label">Account Type</label>
-            <div class="col-sm-8">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="form-group">
-                            @php
-                            $acc_types = Illuminate\Support\Facades\DB::table('account_types')->get();
-                            @endphp
-                            <select name="account_type_id" class="selectpicker" data-style="select-with-transition">
-                                <option value="">Select </option>
-                                @isset($acc_types)
-                                @foreach ($acc_types as $ac_type)
-                                <option value="{{$ac_type->id}}">
-                                    {{$ac_type->account_type}}
-                                    @endforeach
-                                    @endisset
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Options</label>
-            <div class="col-sm-8">
-                <div class="col-10">
-                    <div class="form-group">
-                        <div class="col"><input type="checkbox" class="form-control" name="has_atm" value="1"> ATM
-                        </div>
-                        <div class="col"><input type="checkbox" class="form-control" name="has_sms" value="1"> SMS
-                        </div>
-                        <div class="col"><input type="checkbox" class="form-control" name="has_internet_banking"
-                                value="1">
-                            Internet Banking</div>
-                        <div class="col"><input type="checkbox" class="form-control" name="has_mobile_banking"
-                                value="1">
-                            Mobile Banking</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Account Maintenance Via</label>
-            <div class="col-sm-8">
-                <div class="col-10">
-                    <div class="form-group">
-                        <div class="col"><input type="checkbox" class="form-control" name="has_account_statement"
-                                value="1">
-                            Account Statement</div>
-                        <div class="col"><input type="checkbox" class="form-control" name="has_passbook"
-                                value="1">Passbook</div>
-                    </div>
+            <div class="col-5">
+                <div class="form-group">
+                    @php
+                    $acc_types = Illuminate\Support\Facades\DB::table('account_types')->get();
+                    @endphp
+                    <select name="account_type_id" class="selectpicker" data-style="select-with-transition">
+                        <option value="">Select </option>
+                        @isset($acc_types)
+                        @foreach ($acc_types as $ac_type)
+                        <option value="{{$ac_type->id}}">
+                            {{$ac_type->account_type}}
+                            @endforeach
+                            @endisset
+                    </select>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="row">
+    <label class="col-sm-2 col-form-label label-checkbox">Options</label>
+    <div class="row">
+        <div class="col-sm-5 checkbox-radios ml-3">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" checked type="checkbox" name="has_atm" value="1">
+                    ATM
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-5 checkbox-radios">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="has_sms" value="1"> SMS
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-5 checkbox-radios ml-3">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="has_internet_banking" value="1">
+                    Internet Banking
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-5 checkbox-radios ml-3">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="has_mobile_banking" value="1">
+                    Mobile Banking
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <label class="col-sm-2 col-form-label label-checkbox">Account Maintenance Via</label>
+    <div class="row">
+        <div class="col-sm-4 checkbox-radios ml-3">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" checked type="checkbox" name="has_passbook" value="1">Passbook
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-6 checkbox-radios">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="has_account_statement" value="1">
+                    Account Statement
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>
+{{-- <div class="row">
+    <label class="col-sm-2 col-form-label">Options</label>
+    <div class="col-sm-8">
+        <div class="col-10">
+            <div class="form-group">
+                <div class="col"><input type="checkbox" class="form-control" name="has_atm" value="1"> ATM
+                </div>
+                <div class="col"><input type="checkbox" class="form-control" name="has_sms" value="1"> SMS
+                </div>
+                <div class="col"><input type="checkbox" class="form-control" name="has_internet_banking" value="1">
+                    Internet Banking</div>
+                <div class="col"><input type="checkbox" class="form-control" </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+{{--
+<div class="row">
+    <label class="col-sm-2 col-form-label">Account Maintenance Via</label>
+    <div class="col-sm-8">
+        <div class="col-10">
+            <div class="form-group">
+                <div class="col"><input type="checkbox" class="form-control" name="has_account_statement" value="1">
+                    Account Statement</div>
+                <div class="col"><input type="checkbox" class="form-control" name="has_passbook" value="1">Passbook
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+</div>
+</div>
+</div>
 <div class="row">
     <div class="col">
-        <button class="btn btn-rose float-right" type="submit">NEXT</button>
+        <button class="btn btn-primary float-right" type="submit">NEXT</button>
     </div>
 </div>
 </form>

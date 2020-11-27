@@ -15,14 +15,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
+                    {{-- <div class="col-8">
                         <div class="card-header card-header-rose card-header-text">
-                            <div class="card-text">
+                            <div class="card-text"> --}}
                                 {{-- <h4 class="card-title">Member Creation</h4> --}}
-                                <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
-                            </div>
+                                {{-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> --}}
+                            {{-- </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
 
@@ -229,7 +229,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off<font color="red">*</font></label>
+                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="small_group_id" id="" class="form-control"
@@ -251,7 +251,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.<font color="red">*</font></label>
+                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="sub_account_office_id" id="" class="form-control"
@@ -305,7 +305,7 @@
                                         <div class="col-lg-4 col-md-2 col-sm-2">
                                             <div class="form-group">
                                                 <input type="text" name="identification_number" class="form-control"
-                                                    placeholder="900000000V">
+                                                    placeholder="">
                                             </div>
                                         </div>
                                         {{-- <div class="col">
@@ -318,14 +318,14 @@
 
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Address </label>
                                 <div class="col-sm-5">
                                     <div class="form-group">
-                                        <textarea type="text" name="address_data" class="form-control"></textarea>
+                                        <textarea type="text" name="address_data"  class="form-control"></textarea>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Telephone No</label>

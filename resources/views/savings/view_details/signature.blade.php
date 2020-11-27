@@ -43,6 +43,7 @@
                 </div>
                 <div class="card-body ">
                 <table class="table">
+                    @isset($join_acc_mems)
                     @foreach ($join_acc_mems as $item)
                     <tr>
                         <th>
@@ -59,6 +60,7 @@
                         </th>
                     </tr>
                         @endforeach
+                        @endisset
                 </table>
 
                 </div>

@@ -259,6 +259,58 @@
                 </div>
             </li>
             @endcan
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#member">
+                    <i class="material-icons">supervised_user_circle</i>
+                    <p> Members
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="member">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/member">
+                                <span class="sidebar-mini"> <i class="material-icons">api</i> </span>
+                                <span class="sidebar-normal">Add</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#share">
+                    <i class="material-icons">addchart</i>
+                    <p> Shares
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="share">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                        <a class="nav-link" href="{{route('shares.buy')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">shopping_cart</i> </span>
+                                <span class="sidebar-normal">Share Buy</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{route('shares.transfer')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">cached</i> </span>
+                                <span class="sidebar-normal">Share Transfer</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{route('shares.history')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">analytics</i> </span>
+                                <span class="sidebar-normal">Share Transfer Data</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             @can('configurations')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#dataAdd">

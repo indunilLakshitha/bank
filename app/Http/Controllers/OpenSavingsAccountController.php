@@ -124,6 +124,8 @@ class OpenSavingsAccountController extends Controller
         return view('savings.3_product_details', compact('account_id'));
     }
 
+
+
     public function product_details(Request $request)
     {
         // return $request;
@@ -133,6 +135,19 @@ class OpenSavingsAccountController extends Controller
         $prod_id = $prod_data->id;
         $account_id = $request->account_id;
 
+
+        $cus_id = AccountGeneralInformation::find($request->account_id)->customer_id;
+        $all_customers = CustomerBasicData::all();
+
+        return view('members.5_benificiaries',compact('cus_id','account_id', 'prod_id','all_customers'))->with('success', 'Details submitted');
+
+    }
+
+    public function benificiaries(Request $request){
+
+        $prod_id = $request->prod_id;
+        $account_id = $request->account_id;
+        $customer_id = $request->customer_id;
         $is_joint_account = AccountGeneralInformation::find($request->account_id)->account_type_id == 2;
 
          if($is_joint_account){
@@ -145,6 +160,7 @@ class OpenSavingsAccountController extends Controller
             $prod_id = $request->prod_id;
             return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
          }
+
 
     }
 
