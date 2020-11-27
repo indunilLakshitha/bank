@@ -7,6 +7,7 @@ use App\Models\BeneficiaryData;
 use App\Models\Branch;
 use App\Models\ContactData;
 use App\Models\ContactType;
+use App\Models\CustomerAsset;
 use App\Models\CustomerBasicData;
 use App\Models\CustomerStatusDates;
 use App\Models\CutomerMainType;
@@ -128,6 +129,22 @@ class CustomerBasicDataController extends Controller
         SpecialData::create($special->all());
 
         return redirect()->route('members');
+    }
+
+    public function add_asset(Request $request){
+        // return $request;
+        $ass = CustomerAsset::create($request->all());
+        $ass->created_by = Auth::user()->name;
+        $ass->save();
+
+        $data = CustomerAsset::where('customer_id', $ass->customer_id)->get();
+
+        return response()->json($data);
+    }
+
+    public function delete_asset(Request $request){
+        CustomerAsset::find($request->id)->delete();
+        return response()->json('del');
     }
 
     public function add()

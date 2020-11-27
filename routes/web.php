@@ -215,6 +215,8 @@ Route::post('/member/add/occupation', 'CustomerBasicDataController@insertOccupat
 Route::post('/member/add/othersociety', 'CustomerBasicDataController@insertOthersociety');
 Route::post('/member/add/benificiaris', 'CustomerBasicDataController@insertBeneficiaries');
 Route::post('/member/add/special-and-assets', 'CustomerBasicDataController@insertSpecialAndAssets');
+Route::post('/add_asset', 'CustomerBasicDataController@add_asset');
+Route::get('/delete_asset', 'CustomerBasicDataController@delete_asset');
 
 //bebeficiary and guardians
 Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
