@@ -62,8 +62,8 @@
                                            @else
                                                <th>INACTIVE</th>
                                            @endif
-                                            <th><a href="{{ route('accountType.show', $accTyp->id) }}" rel="tooltip" class="btn-sm btn-info btn-round" ><i class="material-icons">list</a>
-                                                <a href="{{route('accountType.edit', $accTyp->id)}}" rel="tooltip" class="btn-sm btn-primary btn-round" ><i class="material-icons">edit</i></a>
+                                            <th><a href="{{ route('accountType.show', $accTyp->id) }}" rel="tooltip" class="btn-sm btn-info " ><i class="material-icons">list</i></a>
+                                                <a href="{{route('accountType.edit', $accTyp->id)}}" rel="tooltip" class="btn-sm btn-primary " ><i class="material-icons">edit</i></a>
                                             </th>
                                        </tr>
                                    @endforeach

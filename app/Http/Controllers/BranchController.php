@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AccountCategory;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AccountCategoryController extends Controller
+class BranchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class AccountCategoryController extends Controller
      */
     public function index()
     {
-
-        $accCats = AccountCategory::all();
-        return view('account_categories.indexAccCat', compact('accCats'));
+        $branches = Branch::all();
+        return view('branches.indexBranches', compact('branches'));
     }
 
     /**
@@ -40,18 +39,19 @@ class AccountCategoryController extends Controller
     {
         $request->validate([
 
-            'account_category' => 'required ',
-            'account_category_code' => 'required',
+            'branch_name' => 'required ',
+            'branch_code' => 'required',
 
         ]);
 
-        $acc_cat = $request;
-        $acc_cat['is_enable'] = 1;
-        $acc_cat['created_by'] = Auth::user()->id;
-        $acc_cat['updated_by'] = Auth::user()->id;
-        AccountCategory::create($acc_cat->all());
-        return redirect()->route('accountCategory.index')
-            ->with('success', 'Account Category created successfully.');
+        $branch = $request;
+        $branch['is_enable'] = 1;
+        $branch['created_by'] = Auth::user()->id;
+        $branch['updated_by'] = Auth::user()->id;
+        Branch::create($branch->all());
+        return redirect()->route('branches.index')
+            ->with('success', 'Branch created successfully.');
+
     }
 
     /**
@@ -73,9 +73,8 @@ class AccountCategoryController extends Controller
      */
     public function edit($id)
     {
-        $accCats = AccountCategory::find($id);
-        return view('account_categories.editAccCat', compact('accCats'));
-
+        $branch = Branch::find($id);
+        return view('branches.editBranch', compact('branch'));
     }
 
     /**
@@ -87,12 +86,12 @@ class AccountCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $accCat = AccountCategory::find($id);
-        $accCat->account_category = $request->input('account_category');
-        $accCat->account_category_code = $request->input('account_category_code');
-        $accCat->save();
-        return redirect('/accountCategory')
-            ->with('success', 'Account Category updated successfully.');
+        $branch = Branch::find($id);
+        $branch->branch_name = $request->input('branch_name');
+        $branch->branch_code = $request->input('branch_code');
+        $branch->save();
+        return redirect('/branches')
+            ->with('success', 'Branch updated successfully.');
 
     }
 
@@ -104,10 +103,8 @@ class AccountCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $accCat = AccountCategory::find($id);
-        $accCat->delete();
-        return redirect('/accountCategory')->with('success', 'Deleted successfully.');
-
-
+        $branch = Branch::find($id);
+        $branch->delete();
+        return redirect('/branches')->with('message' , 'Branch deleted!!');
     }
 }
