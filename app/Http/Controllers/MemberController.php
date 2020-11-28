@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Member;
+use App\Models\Branch;
 use App\Models\CustomerBasicData;
 use App\Models\CustomerStatusDates;
 use Illuminate\Http\Request;
@@ -78,7 +80,20 @@ class MemberController extends Controller
 
 
     public function create(){
-        return view('members.member.create');
+         $share_amount = DB::table('setting_data')->where('setting_description', 'share_amount')->first()->setting_data;
+        return view('members.member.create', compact('share_amount'));
+    }
+
+    public function member_creation(Request $request){
+        $mem = Member::create($request->all());
+        $mem->is_enable= 1;
+
+        $branch_id = CustomerBasicData::where('customer_id', $request->customer_id)->first()->branch_id;
+        $mem->member_number= 'W'.Branch::find($branch_id)->branch_code.$request->customer_id;
+
+        $mem->save();
+        return 123;
+
     }
 
 }

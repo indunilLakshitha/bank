@@ -2,7 +2,8 @@
 
 
 @section('content')
-{{-- <form method="get" action="/" class="form-horizontal"> --}}
+<form method="post" id="form" class="form-horizontal">
+    @csrf
 <div class="card " style="border: solid">
     <div class="card-body ">
         <div class="card-header card-header-rose card-header-text">
@@ -52,7 +53,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <input type="text" class="form-control" id="full_name" readonly>
-                    <input type="text" class="form-control" id="customer_id" name="customer_id" readonly>
+                    <input type="hidden" class="form-control" id="customer_id" name="customer_id" readonly>
                 </div>
             </div>
         </div>
@@ -60,7 +61,9 @@
             <label class="col-sm-2 col-form-label">Allocated Shares</label>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="text" class="form-control">
+                    <input type="number" class="form-control"
+                oninput="share_amount.value = this.value*{{$share_amount}}"
+                    >
                 </div>
             </div>
         </div>
@@ -68,7 +71,7 @@
             <label class="col-sm-2 col-form-label">Payment Amount</label>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="text" class="form-control">
+                    <input type="number" class="form-control" name="share_amount" id="share_amount">
                 </div>
             </div>
         </div>
@@ -76,8 +79,8 @@
         <div class="row">
 
             <div class="col-6 text-right">
-                <a
-                    class="btn btn-rose col-4 text-white">SUBMIT</a>
+                <button type="button" onclick="submit_form()"
+                    class="btn btn-rose col-4 text-white">SUBMIT</button>
             </div>
             <div class="col-1 text-right">
                 <button type="submit" class="btn ">Clear</button>
@@ -86,6 +89,7 @@
 
     </div>
 </div>
+</form>
 
 <script>
     function getCustomers(value){
@@ -122,11 +126,27 @@ data.forEach(i => {
 
 }
 
-function add_name(name,customer_id){
-     console.log(customer_id);
+function add_name(name,id){
+     console.log(id);
      full_name.value = name
-     customer_id.value = customer_id
+     customer_id.value = id
+
 }
+
+function submit_form(){
+    $.ajax({
+        type: 'POST',
+        url: '{{('/member_creation')}}',
+        data: new FormData(form) ,
+        processData: false,
+        contentType: false,
+        success: function(data){
+            console.log(data);
+            // return show_data(data)
+            return Swal.fire('Success')
+        }
+    })
+    }
 
 </script>
 
