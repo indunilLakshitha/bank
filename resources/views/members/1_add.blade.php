@@ -394,11 +394,11 @@
                             <label class="col-sm-2 col-form-label">Signature</label>
                             <span class="btn btn-round btn-rose btn-file ">
                                 <span class="fileinput-new">Choose File</span>
-                                <input type="file" name="sign_img" />
+                                <input type="file" name="sign_img" id="sign_img" />
                             </span>
 
                         </div>
-                        <button type="submit" class="btn btn-primary">NEXT</button>
+                        <button onclick="validate_form()" type="button"  class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>
@@ -406,5 +406,16 @@
         </div>
     </div>
 </div>
+
+<script>
+     function validate_form(){
+
+            if(!sign_img.files[0]) {
+                // console.log(img_1.files[0]);
+                return Swal.fire('Please upload Signature Image')
+            }
+            return private_1.submit()
+        }
+</script>
 
 @endsection
