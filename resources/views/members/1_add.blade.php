@@ -27,7 +27,7 @@
 
 
                 <div class="card-body">
-                    <form id="private_1" action="{{url('/member/add/private')}}" method="POST">
+                    <form id="form" action="{{url('/member/add/private')}}" method="POST">
                         @csrf
                         <div class="tab-pane active" id="private_1">
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
@@ -414,7 +414,7 @@
                 // console.log(img_1.files[0]);
                 return Swal.fire('Please upload Signature Image')
             }
-            return private_1.submit()
+            return form.submit()
         }
 </script>
 
