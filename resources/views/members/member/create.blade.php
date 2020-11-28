@@ -52,6 +52,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <input type="text" class="form-control" id="full_name" readonly>
+                    <input type="text" class="form-control" id="customer_id" name="customer_id" readonly>
                 </div>
             </div>
         </div>
@@ -112,7 +113,7 @@ data.forEach(i => {
     <td>${i.full_name}</td>
     <td>
         <button type="button" onclick="
-        add_name('${i.full_name}'), this.parentElement.parentElement.parentElement.classList.add('d-none')" class="btn btn-sm btn-primary">Select</button>
+        add_name('${i.full_name}','${i.customer_id}'), this.parentElement.parentElement.parentElement.classList.add('d-none')" class="btn btn-sm btn-primary">Select</button>
     </td>
     </tr>
     `
@@ -121,9 +122,10 @@ data.forEach(i => {
 
 }
 
-function add_name(name){
-    // console.log(name);
-    return full_name.value = name
+function add_name(name,customer_id){
+     console.log(customer_id);
+     full_name.value = name
+     customer_id.value = customer_id
 }
 
 </script>
