@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="card col-10 " style="border: solid">
-<div class="card col-10 set-center ">
+<div class="card col-12 set-center ">
     <div class="card-body ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
@@ -12,8 +12,6 @@
         </div>
             <div class="container-fluid ">
                 <div class="col-md-12 col-12 mr-auto ml-auto">
-                    <div class="card">
-                        <div class="card-body  ">
                             @csrf
                             @isset($view_1)
                             <div class="tab-pane active" id="private_1">
@@ -315,10 +313,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <label class="col-sm-4 col-form-label">Signature</label>
+                                    <div class="col-sm-8">
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                @if(!empty(@isset($view_1->sign_img)))
+                                                <img src="{{env('IMAGE_LOCATION').$view_1->sign_img}}" height="200px" width="300px" alt="">
+                                                @else
+                                                <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             @endisset
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -327,7 +339,7 @@
 </div>
 <div class="card col-10 " style="border: solid">
 
-<div class="card col-10 ">
+<div class="card col-12 ">
     <div class="card-body  ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
@@ -335,8 +347,7 @@
             </div>
         </div>
         <div class="col-md-12 col-12 mr-auto ml-auto ">
-            <div class="card">
-                <div class="card-body  ">
+
                     @csrf
                     @isset($view_2)
                     <div class="tab-pane active" id="status">
@@ -450,8 +461,7 @@
                     </div>
                     @endisset
                     {{-- Ends Private 1 --}}
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
@@ -521,7 +531,7 @@
 </div>
 <div class="card col-10 " style="border: solid">
 
-<div class="card col-10 ">
+<div class="card col-12 ">
     <div class="card-body  ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
@@ -529,8 +539,7 @@
             </div>
         </div>
                 <div class="col-md-12 col-12 mr-auto ml-auto pull-left">
-                    <div class="card">
-                        <div class="card-body">
+
                             @csrf
                             @isset($view_4)
                             <div class="tab-pane active" id="status">
@@ -567,15 +576,14 @@
                             </div>
                             @endisset
                             {{-- Ends Private 1 --}}
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
 </div>
 <div class="card col-10 " style="border: solid">
 
-<div class="card col-10 ">
+<div class="card col-12 ">
     <div class="card-body  ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
@@ -583,8 +591,7 @@
             </div>
         </div>
         <div class="col-md-12 col-12 mr-auto ml-auto pull-right">
-            <div class="card">
-                <div class="card-body">
+
                     @csrf
                     @isset($view_6)
                     <div class="tab-pane" id="special">
@@ -631,8 +638,7 @@
                         </div>
                     </div>
                     @endisset
-                </div>
-            </div>
+               
         </div>
     </div>
 </div>

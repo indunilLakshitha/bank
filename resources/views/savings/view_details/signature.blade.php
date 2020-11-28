@@ -17,9 +17,15 @@
                 <div class="card-body ">
                 <table class="table">
                     <tr>
+                        @if(!empty($acc->cus_sign_img))
                         <th>
                             <img src="{{env('IMAGE_LOCATION').$acc->cus_sign_img}}" height="500px" width="500px alt="">
                         </th>
+                        @else
+                         <th>
+                            <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
+                        </th>
+                        @endif
                         <th>
                             @if ($acc->sign_status == 1)
                                 <button class="btn btn-success">Verified</button>
@@ -46,9 +52,15 @@
                     @isset($join_acc_mems)
                     @foreach ($join_acc_mems as $item)
                     <tr>
+                        @if(!empty($item->other_holder_sign_img))
                         <th>
                             <img src="{{env('IMAGE_LOCATION').$item->other_holder_sign_img}}" height="500px" width="500px" alt="">
                         </th>
+                        @else
+                         <th>
+                        <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
+                        </th>
+                         @endif
                         <th>{{$item->document_name}}</th>
                         <th>
                             @if ($item->sign_status == 1)
