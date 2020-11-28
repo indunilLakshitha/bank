@@ -17,7 +17,6 @@ class CreateBranchesTable extends Migration
             $table->bigIncrements('id');
             $table->string('branch_name');
             $table->string('branch_code');
-
             $table->tinyInteger('is_enable');
             $table->string('created_by');
             $table->string('updated_by');

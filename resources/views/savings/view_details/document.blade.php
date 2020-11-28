@@ -19,9 +19,15 @@
                     @isset($docs)
                     @foreach ($docs as $item)
                     <tr>
+                        @if(!empty($item->img))
                         <th >
                             <img src="{{env('IMAGE_LOCATION').$item->img}}" height="500px" width="500px" alt="">
                         </th>
+                        @else
+                         <th>
+                        <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
+                        </th>
+                        @endif
                         <th>{{$item->document_name}}</th>
                         <th>
                             @if ($item->status == 1)

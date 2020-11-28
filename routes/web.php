@@ -319,6 +319,10 @@ Route::resource('/accountCategory', 'AccountCategoryController');
 
 Route::resource('/accountType', 'AccountTypeController');
 
+// ------------------------------------------------------------------------Account TypeC ------------
+
+Route::resource('/branches', 'BranchController');
+
 // ------------------------------------------------------------------------Contact Type------------
 
 Route::resource('/contactType', 'ContactTypeController');

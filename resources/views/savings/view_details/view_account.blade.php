@@ -136,9 +136,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Customer Signature</label>
+                            <div class="col-sm-8">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        @if(!empty(@isset($view_1->sign_img)))
+                                        <img src="{{env('IMAGE_LOCATION').$view_1->sign_img}}" height="200px" width="300px" alt="">
+                                        @else
+                                        <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
+                                        @endif
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="card col-12 " style="border: solid">
 
                 <div class="card ">
@@ -238,13 +254,12 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Account Maintenance Via</label>
                             <div class="col-sm-8">
                                 <div class="col-10">
                                     <div class="form-group">
-                                        @if(@isset($view_1->has_passbook) == 1)
+                                        @if(!empty(@isset($view_1->sign_img)))
                                         <input type="text" name="has_passbook"  id="has_passbook" class="form-control" readonly value="Pass Book" >
                                         @else
                                         <input type="text" name="has_passbook"  id="has_passbook" class="form-control" readonly value="No Pass Book" >
@@ -254,6 +269,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -782,7 +798,11 @@
                                         @isset($doc)
                                         <tr>
                                             <td colspan="2">{{$doc->document_name}} </td>
+                                            @if(!empty($doc->img)))
                                             <td colspan="6"><img src="{{env('IMAGE_LOCATION').$doc->img}}" height="200px" width="300px" alt=""></td>
+                                            @else
+                                            <td colspan="6"><img src="/bank/public/images/default.png" height="100px" width="100px" alt=""></td>
+                                            @endif</td>
                                             <td colspan="2"> <input type="checkbox" readonly <?php echo(@isset($doc->is_mandatory) == 1 ? 'checked': '') ?>></th>
                                             <td colspan="2"><input type="checkbox" readonly ></td>
                                             <td colspan="2"><input type="text" readonly ><td>

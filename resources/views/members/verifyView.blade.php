@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="card col-10 " style="border: solid">
-<div class="card col-10 set-center ">
+<div class="card col-12 set-center ">
     <div class="card-body ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
@@ -12,8 +12,6 @@
         </div>
             <div class="container-fluid ">
                 <div class="col-md-12 col-12 mr-auto ml-auto">
-                    <div class="card">
-                        <div class="card-body  ">
                             @csrf
                             @isset($view_1)
                             <div class="tab-pane active" id="private_1">
@@ -108,6 +106,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- <div class="row">
                                     <label class="col-sm-2 col-form-label label-checkbox">Type(s)</label>
                                     <div class="col-sm-4 checkbox-radios">
@@ -251,7 +250,7 @@
                                                 </div>
                                                 @endisset
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col">
                                                 <div class="form-group">
                                                     <input type="text" name="identification_number" class="form-control"
                                                         value="{{ isset($view_1->identification_number)?$view_1->identification_number:'' }}">
@@ -272,10 +271,10 @@
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Telephone No</label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-5">
                                         <?php $con_types=\App\Models\ContactType::where('id',$view_1->telephone_no_type)->first()?>
                                         <div class="form-group">
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-5">
                                                 @isset($con_types)
                                                 <input type="text" name="telephone_no_type" class="form-control"
                                                     value="{{ $con_types->contact_type }}">
@@ -283,23 +282,20 @@
                                             @endisset
                                         </div>
                                     </div>
-                                    <div class="col-sm-8">
-                                        <?php $cn=\App\Models\ContactData::where('customer_id',$view_1->customer_id)->first()?>
+                                    <div class="col-sm-5">
                                         <div class="form-group">
-                                            @isset($cn)
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-5">
                                                 <input type="text" name="telephone_number" class="form-control"
-                                                    value="{{$cn->contact_data}}">
+                                                    value="{{ isset($view_1->telephone_number)?$view_1->telephone_number:'' }}">
                                             </div>
-                                            @endisset
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Fax</label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-5">
                                         <div class="form-group">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-6">
                                                 <input type="text" name="fax_number" class="form-control"
                                                     value="{{ isset($view_1->fax_number)?$view_1->fax_number:'' }}">
                                             </div>
@@ -308,19 +304,33 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Email</label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-10">
                                         <div class="form-group">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-8">
                                                 <input type="text" name="email_address" class="form-control"
                                                     value="{{ isset($view_1->email_address)?$view_1->email_address:'' }}">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <label class="col-sm-4 col-form-label">Signature</label>
+                                    <div class="col-sm-8">
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                @if(!empty(@isset($view_1->sign_img)))
+                                                <img src="{{env('IMAGE_LOCATION').$view_1->sign_img}}" height="200px" width="300px" alt="">
+                                                @else
+                                                <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             @endisset
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -329,7 +339,7 @@
 </div>
 <div class="card col-10 " style="border: solid">
 
-<div class="card col-10 ">
+<div class="card col-12 ">
     <div class="card-body  ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
@@ -337,8 +347,7 @@
             </div>
         </div>
         <div class="col-md-12 col-12 mr-auto ml-auto ">
-            <div class="card">
-                <div class="card-body  ">
+
                     @csrf
                     @isset($view_2)
                     <div class="tab-pane active" id="status">
@@ -452,8 +461,7 @@
                     </div>
                     @endisset
                     {{-- Ends Private 1 --}}
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
@@ -523,7 +531,7 @@
 </div>
 <div class="card col-10 " style="border: solid">
 
-<div class="card col-10 ">
+<div class="card col-12 ">
     <div class="card-body  ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
@@ -531,8 +539,7 @@
             </div>
         </div>
                 <div class="col-md-12 col-12 mr-auto ml-auto pull-left">
-                    <div class="card">
-                        <div class="card-body">
+
                             @csrf
                             @isset($view_4)
                             <div class="tab-pane active" id="status">
@@ -569,15 +576,14 @@
                             </div>
                             @endisset
                             {{-- Ends Private 1 --}}
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
 </div>
 <div class="card col-10 " style="border: solid">
 
-<div class="card col-10 ">
+<div class="card col-12 ">
     <div class="card-body  ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
@@ -585,8 +591,7 @@
             </div>
         </div>
         <div class="col-md-12 col-12 mr-auto ml-auto pull-right">
-            <div class="card">
-                <div class="card-body">
+
                     @csrf
                     @isset($view_6)
                     <div class="tab-pane" id="special">
@@ -633,8 +638,7 @@
                         </div>
                     </div>
                     @endisset
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

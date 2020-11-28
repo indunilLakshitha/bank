@@ -335,6 +335,12 @@
                             </a>
                         </li>
                         <li class="nav-item ">
+                            <a class="nav-link" href="/branches">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branches</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
                             <a class="nav-link" href="/contactType">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal">Contact Types</span>
