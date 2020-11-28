@@ -5,7 +5,10 @@
 @isset($view_1)
 <div class="content">
     <div class="container-fluid">
+
         <div class="col-md-12">
+            <div class="card col-12 " style="border: solid">
+
                 <div class="card ">
                     <div class="card-header card-header-rose card-header-text">
                         <div class="card-text">
@@ -135,6 +138,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="card col-12 " style="border: solid">
+
                 <div class="card ">
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
@@ -250,8 +256,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
 @endisset
 @isset($view_2)
+<div class="card col-12 " style="border: solid">
 
                     <div class="card ">
                         <div class="card-body ">
@@ -374,7 +382,76 @@
 
                     </div>
                 </div>
+</div>
                 @endisset
+                <!-- Beneficiary -->
+<div class="card col-12 " style="border: solid">
+
+        <div class="card ">
+                    <div class="card-body ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Beneficiaries</h4>
+                            </div>
+                        </div>
+
+
+                    @isset($view_5_1)
+                    <br>
+                    <br>
+                    @csrf
+                    <h5 class="">Beneficiaries</h5>
+                    <table class="table table-striped table-bordered" id="bene_table">
+                        <thead>
+                            <tr>
+                                <th>Customer ID</th>
+                                <th>Beneficiary ID</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bene_body">
+
+                            @foreach($view_5_1 as $view_5_11)
+                            <tr>
+                                <td>{{$view_5_11->customer_id}} </td>
+                                <td> {{$view_5_11->name_in_use}}</th>
+                            </tr>
+                            @endforeach
+
+
+                        </tbody>
+                    </table>
+
+                    @endisset
+                    <br>
+                    <br>
+                    <h5 class="">Guardians</h5>
+                    @isset($view_5_2)
+                    <table class="table table-striped table-bordered" id="guard_table">
+                        <thead>
+                            <tr>
+                                <th>Customer ID</th>
+                                <th>Guardian Name</th>
+                            </tr>
+                        </thead>
+                        <tbody id="guard_body">
+                            @foreach($view_5_2 as $view_5_22)
+                            <tr>
+                                <td>{{$view_5_22->customer_id}} </td>
+                                <td> {{$view_5_22->name_in_use}}</td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                    @endisset
+
+                    {{-- Ends Private 1 --}}
+                </div>
+            </div>
+
+</div>
+<div class="card col-12 " style="border: solid">
+
                 <div class="card ">
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
@@ -418,6 +495,7 @@
                                 </table>
                                 </div>
                 </div>
+</div>
                 <!-- <div class="card ">
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
@@ -678,6 +756,8 @@
                                 <!-- </div>
                             </div> -->
                             @isset($view_5)
+                            <div class="card col-12 " style="border: solid">
+
                             <div class="card ">
                                 <div class="card-body ">
                                         <div class="card-header card-header-rose card-header-text">
@@ -688,10 +768,11 @@
                                         <table class="table table-striped table-bordered" readonly id="document">
                                             <thead>
                                         <tr>
-                                        <th>Document Type</th>
-                                        <th>Mandatory</th>
-                                        <th>Availability</th>
-                                        <th>Remark</th>
+                                        <th colspan="2">Document Type</th>
+                                        <th colspan="6">Document</th>
+                                        <th colspan="2">Mandatory</th>
+                                        <th colspan="2">Availability</th>
+                                        <th colspan="2">Remark</th>
 
                                     </tr>
                                    </thead>
@@ -700,11 +781,11 @@
                                         <?php $doc=\App\Models\Document::where('id',$view_55->document_id)->first()?>
                                         @isset($doc)
                                         <tr>
-                                            <td>{{$doc->document_name}} </td>
-                                            <td> <input type="checkbox" readonly <?php echo(@isset($doc->is_mandatory) == 1 ? 'checked': '') ?>></th>
-                                            <td><input type="checkbox" readonly ></td>
-                                            <td><input type="checkbox" readonly ><td>
-                                            <td><input type="button" name="submit" value="Upload" readonly></td>
+                                            <td colspan="2">{{$doc->document_name}} </td>
+                                            <td colspan="6"><img src="{{env('IMAGE_LOCATION').$doc->img}}" alt=""></td>
+                                            <td colspan="2"> <input type="checkbox" readonly <?php echo(@isset($doc->is_mandatory) == 1 ? 'checked': '') ?>></th>
+                                            <td colspan="2"><input type="checkbox" readonly ></td>
+                                            <td colspan="2"><input type="text" readonly ><td>
                                         </tr>
                                         @endisset
                                         @endforeach
@@ -715,6 +796,9 @@
                             </div>
                             @endisset
                             @isset($view_6)
+                            </div>
+                            <div class="card col-12 " style="border: solid">
+
                             <div class="card ">
                                 <div class="card-body ">
                                         <div class="card-header card-header-rose card-header-text">
@@ -753,8 +837,11 @@
                                 </table>
                                 </div>
                             </div>
+                            </div>
                             @endisset
                             @isset($view_7)
+                            <div class="card col-12 " style="border: solid">
+
                             <div class="card ">
                             <div class="card-body ">
                                     <div class="card-header card-header-rose card-header-text">
@@ -791,6 +878,7 @@
                                                 </div>
 
                                         </div>
+                            </div>
                                         @endisset
                                         <!-- <div class="card" style="border: solid">
                                             <div class="row">

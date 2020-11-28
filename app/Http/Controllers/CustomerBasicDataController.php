@@ -215,8 +215,7 @@ class CustomerBasicDataController extends Controller
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
         $view_4 = OtherSocietyData::where('customer_id',$request->id)->first();
-        $view_5_1 = BeneficiaryData::leftjoin('customer_basic_data','customer_basic_data.customer_id','beneficiary_data.customer_id')
-        ->where('beneficiary_data.customer_id',$request->id)->get();
+        
         $view_5_2 = GuardianData::leftjoin('customer_basic_data','customer_basic_data.customer_id','guardian_data.customer_id')
         ->where('guardian_data.customer_id',$request->id)->get();
         $view_6 = SpecialData::where('customer_id',$request->id)->first();

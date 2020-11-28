@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AccountGeneralInformation;
 use App\Models\AccountGeneralInformation as ModelsAccountGeneralInformation;
 use App\Models\AuthorizedOfficer;
+use App\Models\BeneficiaryData;
 use App\Models\Joinaccount;
 use App\Models\JoinaccountMember;
 use App\Models\NomineeMember;
@@ -114,6 +115,7 @@ class OpenSavingsAccountController extends Controller
             $path = '/images/';
             $acc->cus_sign_img = time() . rand() . '.' . $image->extension();
             $image->move(public_path($path), $acc->cus_sign_img);
+
         }
         $acc->save();
 
@@ -285,6 +287,8 @@ class OpenSavingsAccountController extends Controller
         $view_3 = Joinaccount::where('customer_id',$request->id)->first();
         $view_4 = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
         $view_5 = ProductDocument::where('customer_id',$request->id)->get();
+        $view_5_1 = BeneficiaryData::leftjoin('customer_basic_data','customer_basic_data.customer_id','beneficiary_data.customer_id')
+        ->where('beneficiary_data.customer_id',$request->id)->get();
         $view_6 = ProductFeeData::where('customer_id',$request->id)->get();
         $view_7 = NomineeMember::where('customer_id',$request->id)->get();
         $view_8 = Joinaccount::where('customer_id',$request->id)->get();

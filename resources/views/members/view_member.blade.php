@@ -2,16 +2,16 @@
 
 
 @section('content')
-<div class="card">
-    <div class="card-body  ">
+<div class="card col-10 " style="border: solid">
+<div class="card col-10 set-center ">
+    <div class="card-body ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
                 <h4 class="card-title">Member Details</h4>
             </div>
         </div>
-        <div class="content ">
             <div class="container-fluid ">
-                <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
+                <div class="col-md-12 col-12 mr-auto ml-auto">
                     <div class="card">
                         <div class="card-body  ">
                             @csrf
@@ -23,28 +23,20 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <div class="row">
-
                                                 <div class="form-group">
                                                     <label for="c">Member ID</label>
                                                     <input class="form-control" name="customer_id" type="text"
                                                         value="{{ isset($view_1->customer_id)?$view_1->customer_id:0}}">
 
                                                 </div>
-
                                             </div>
-
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col-4">
                                                 <label for="c">STATUS</label>
-                                                <div class="form-group">
 
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group ">
                                                     @if(@isset($view_1->customer_status_id) == 1)
                                                     <input name="customer_status_id" id="c" class="form-control"
                                                         value="ACTIVE">
@@ -52,16 +44,14 @@
                                                     <input name="customer_status_id" id="c" class="form-control"
                                                         value="INACTIVE">
                                                     @endif
-
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <?php $titles=\App\Models\CutomerTitle::where('id',$view_1->customer_title_id)->first()?>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Title</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-2">
                                         @isset($titles)
                                         <div class="form-group">
                                             <input type="text" name="customer_title_id" class="form-control"
@@ -72,7 +62,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Name in Use</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <input name="name_in_use" type="text" class="form-control"
                                                 value="{{ isset($view_1->name_in_use)?$view_1->name_in_use:''}}">
@@ -81,7 +71,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Full Name</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <input type="text" name="full_name" class="form-control"
                                                 value="{{ isset($view_1->full_name) ? $view_1->full_name: ''}}">
@@ -90,7 +80,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Surname</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <input type="text" name="surname" class="form-control"
                                                 value="{{ isset($view_1->surname) ? $view_1->surname: ''}}">
@@ -99,7 +89,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Short Name</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <input type="text" name="short_name" class="form-control"
                                                 value="{{ isset($view_1->short_name) ? $view_1->short_name: ''}}">
@@ -109,7 +99,7 @@
                                 <?php $branches=\App\Models\Branch::where('id',$view_1->branch_id)->first()?>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Branch</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             @isset($branches)
                                             <input type="text" name="branch_id" class="form-control"
@@ -120,7 +110,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label label-checkbox">Type(s)</label>
-                                    <div class="col-sm-10 checkbox-radios">
+                                    <div class="col-sm-4 checkbox-radios">
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" disabled type="checkbox"
@@ -198,7 +188,7 @@
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Account Category</label>
                                     <?php $acc_cats=\App\Models\AccountCategory::where('id',$view_1->account_category_id)->first()?>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-4">
                                         @isset($acc_cats)
                                         <div class="form-group">
                                             <input type="text" name="account_category_id" class="form-control"
@@ -212,7 +202,7 @@
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
                                     <?php $small_g=\App\Models\SmallGroup::where('id',$view_1->small_group_id )->first()?>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-4">
                                         @isset($small_g)
                                         <div class="form-group">
                                             <input type="text" name="small_group_id" class="form-control"
@@ -226,7 +216,7 @@
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
                                     <?php $sub_o=\App\Models\SubAccountOffice::where('id',$view_1->sub_account_office_id )->first()?>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-4">
                                         @isset($sub_o)
                                         <div class="form-group">
                                             <input type="text" class="form-control"
@@ -239,7 +229,7 @@
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Sub Account Office</label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="office_sub_id"
                                                 value="{{ isset($view_1->office_sub_id)?$view_1->office_sub_id:0}}">
@@ -249,7 +239,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">ID Type</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-4">
                                         <div class="row">
                                             <?php $id_types=\App\Models\IedentificationType::where('id',$view_1->identification_type_id )->first()?>
                                             <div class="col">
@@ -285,7 +275,7 @@
                                     <div class="col-sm-5">
                                         <?php $con_types=\App\Models\ContactType::where('id',$view_1->telephone_no_type)->first()?>
                                         <div class="form-group">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-5">
                                                 @isset($con_types)
                                                 <input type="text" name="telephone_no_type" class="form-control"
                                                     value="{{ $con_types->contact_type }}">
@@ -295,7 +285,7 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <div class="form-group">
-                                            <div class="col-sm-11">
+                                            <div class="col-sm-5">
                                                 <input type="text" name="telephone_number" class="form-control"
                                                     value="{{ isset($view_1->telephone_number)?$view_1->telephone_number:'' }}">
                                             </div>
@@ -304,9 +294,9 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Fax</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-5">
                                         <div class="form-group">
-                                            <div class="col-sm-11">
+                                            <div class="col-sm-6">
                                                 <input type="text" name="fax_number" class="form-control"
                                                     value="{{ isset($view_1->fax_number)?$view_1->fax_number:'' }}">
                                             </div>
@@ -317,7 +307,7 @@
                                     <label class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
                                         <div class="form-group">
-                                            <div class="col-sm-11">
+                                            <div class="col-sm-8">
                                                 <input type="text" name="email_address" class="form-control"
                                                     value="{{ isset($view_1->email_address)?$view_1->email_address:'' }}">
                                             </div>
@@ -331,7 +321,19 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-right">
+    </div>
+</div>
+</div>
+<div class="card col-10 " style="border: solid">
+
+<div class="card col-10 ">
+    <div class="card-body  ">
+        <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+                <h4 class="card-title">States and Dates</h4>
+            </div>
+        </div>
+        <div class="col-md-12 col-12 mr-auto ml-auto ">
             <div class="card">
                 <div class="card-body  ">
                     @csrf
@@ -339,7 +341,7 @@
                     <div class="tab-pane active" id="status">
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Birth Date / Nic Date</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <input type="text" name="date_of_birth" class="form-control"
                                         value="{{ isset($view_2->date_of_birth)?$view_2->date_of_birth:'' }}">
@@ -349,7 +351,7 @@
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Religion</label>
                             <?php $religons=\App\Models\RelegionData::where('id',$view_2->religion_data_id )->first()?>
-                            <div class="col-sm-10">
+                            <div class="col-sm-3">
                                 @isset($religons)
                                 <div class="form-group">
                                     <input type="text" name="religion_data_id" class="form-control"
@@ -361,7 +363,7 @@
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Married Status</label>
                             <?php $married_st=\App\Models\MarriedStatus::where('id',$view_2->married_status_id)->first()?>
-                            <div class="col-sm-10">
+                            <div class="col-sm-3">
                                 @isset($married_st)
                                 <div class="form-group">
                                     <input type="text" name="married_status_id" class="form-control"
@@ -373,7 +375,7 @@
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Gender</label>
                             <?php $gen=\App\Models\Gender::where('id',$view_2->gender_id)->first()?>
-                            <div class="col-sm-10">
+                            <div class="col-sm-3">
                                 @isset($gen)
                                 <div class="form-group">
                                     <input type="text" name="gender_id " class="form-control"
@@ -383,8 +385,20 @@
                             </div>
                         </div>
                         <div class="row">
+                            <label class="col-sm-2 col-form-label">Race</label>
+                            <?php $race=\App\Models\Race::where('id',$view_2->race_id)->first()?>
+                            <div class="col-sm-3">
+                                @isset($race)
+                                <div class="form-group">
+                                    <input type="text" name="race " class="form-control"
+                                        value="{{ $race->race }}">
+                                </div>
+                                @endisset
+                            </div>
+                        </div>
+                        <div class="row">
                             <label class="col-sm-2 col-form-label">Date Became Member</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <input type="text" name="member_date" class="form-control"
                                         value="{{ isset($view_2->member_date)?$view_2->member_date:''}}">
@@ -393,7 +407,7 @@
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Joined Date</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <input type="text" name="join_date" class="form-control"
                                         value="{{ isset($view_2->join_date)?$view_2->join_date:''}}">
@@ -438,8 +452,9 @@
                 </div>
             </div>
         </div>
-
-        <div class="content">
+    </div>
+</div>
+        <!-- <div class="content">
             <div class="container-fluid">
                 <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
                     <div class="card">
@@ -501,12 +516,18 @@
             </div>
         </div>
     </div>
+</div> -->
 </div>
-<div class="card">
+<div class="card col-10 " style="border: solid">
+
+<div class="card col-10 ">
     <div class="card-body  ">
-        <div class="content ">
-            <div class="container-fluid ">
-                <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
+        <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+                <h4 class="card-title">Designation Details</h4>
+            </div>
+        </div>
+                <div class="col-md-12 col-12 mr-auto ml-auto pull-left">
                     <div class="card">
                         <div class="card-body">
                             @csrf
@@ -515,7 +536,7 @@
                                 <div class="tab-pane" id="other_societies">
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Other Memberships</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-8">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="other_memberships" id=""
                                                     value="{{ isset($view_4->other_memberships)?$view_4->other_memberships:''}}"></input>
@@ -524,7 +545,7 @@
                                     </div>
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Curr. Designation</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="current_designation"
                                                     value="{{ isset($view_4->current_designation)?$view_4->current_designation:''}}">
@@ -533,7 +554,7 @@
                                     </div>
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Previous Designation</label>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-8">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="previous_designation"
                                                     id="" cols="30" rows="8"
@@ -548,6 +569,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+</div>
+<div class="card col-10 " style="border: solid">
+
+<div class="card col-10 ">
+    <div class="card-body  ">
+        <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+                <h4 class="card-title">Assets Details</h4>
             </div>
         </div>
         <div class="col-md-6 col-6 mr-auto ml-auto pull-right">
@@ -602,7 +633,8 @@
                 </div>
             </div>
         </div>
-
+    </div>
+</div>
         <!-- Beneficiary -->
 
         <!-- <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
