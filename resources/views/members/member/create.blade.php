@@ -2,7 +2,7 @@
 
 
 @section('content')
-<form method="post" action="/member_creation" class="form-horizontal">
+<form method="post" id="form" class="form-horizontal">
     @csrf
 <div class="card " style="border: solid">
     <div class="card-body ">
@@ -79,7 +79,7 @@
         <div class="row">
 
             <div class="col-6 text-right">
-                <button
+                <button type="button" onclick="submit_form()"
                     class="btn btn-rose col-4 text-white">SUBMIT</button>
             </div>
             <div class="col-1 text-right">
@@ -126,11 +126,27 @@ data.forEach(i => {
 
 }
 
-function add_name(name,customer_id){
-     console.log(customer_id);
+function add_name(name,id){
+     console.log(id);
      full_name.value = name
-     customer_id.value = customer_id
+     customer_id.value = id
+
 }
+
+function submit_form(){
+    $.ajax({
+        type: 'POST',
+        url: '{{('/member_creation')}}',
+        data: new FormData(form) ,
+        processData: false,
+        contentType: false,
+        success: function(data){
+            console.log(data);
+            // return show_data(data)
+            return Swal.fire('Success')
+        }
+    })
+    }
 
 </script>
 
