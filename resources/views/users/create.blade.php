@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="from-group col-6">
                                         <label for="">Password</label>
-                                        <input type="text" name="password" class="form-control" required>
+                                        <input type="password" name="password" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="row">
