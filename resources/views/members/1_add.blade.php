@@ -125,7 +125,7 @@
                                             @isset($branches)
                                             @foreach ($branches as $branch)
                                             @if(intval($branch->is_enable) == 1)
-                                            <option value="{{$branch->id}}">{{$branch->branch_name}}</option>
+                                            <option value="{{$branch->id}}">{{$branch->branch_code.' - '.$branch->branch_name}}</option>
                                             @endif
                                             @endforeach
                                             @endisset
@@ -229,7 +229,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off<font color="red">*</font></label>
+                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="small_group_id" id="" class="form-control"
@@ -251,7 +251,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.<font color="red">*</font></label>
+                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <select name="sub_account_office_id" id="" class="form-control"
@@ -318,14 +318,14 @@
 
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Address </label>
                                 <div class="col-sm-5">
                                     <div class="form-group">
-                                        <textarea type="text" name="address_data" class="form-control"></textarea>
+                                        <textarea type="text" name="address_data"  class="form-control"></textarea>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Telephone No</label>
@@ -394,11 +394,11 @@
                             <label class="col-sm-2 col-form-label">Signature</label>
                             <span class="btn btn-round btn-rose btn-file ">
                                 <span class="fileinput-new">Choose File</span>
-                                <input type="file" name="sign_img" />
+                                <input type="file" name="sign_img" id="sign_img" />
                             </span>
 
                         </div>
-                        <button type="submit" class="btn btn-primary">NEXT</button>
+                        <button onclick="validate_form()" type="button"  class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>
@@ -406,5 +406,16 @@
         </div>
     </div>
 </div>
+
+<script>
+     function validate_form(){
+
+            if(!sign_img.files[0]) {
+                // console.log(img_1.files[0]);
+                return Swal.fire('Please upload Signature Image')
+            }
+            return private_1.submit()
+        }
+</script>
 
 @endsection
