@@ -18,7 +18,7 @@
                 <table class="table">
                     <tr>
                         <th>
-                            <img src="{{env('IMAGE_LOCATION').$acc->cus_sign_img}}" alt="">
+                            <img src="{{env('IMAGE_LOCATION').$acc->cus_sign_img}}" height="500px" width="500px alt="">
                         </th>
                         <th>
                             @if ($acc->sign_status == 1)
@@ -47,7 +47,7 @@
                     @foreach ($join_acc_mems as $item)
                     <tr>
                         <th>
-                            <img src="{{env('IMAGE_LOCATION').$item->other_holder_sign_img}}" alt="">
+                            <img src="{{env('IMAGE_LOCATION').$item->other_holder_sign_img}}" height="500px" width="500px" alt="">
                         </th>
                         <th>{{$item->document_name}}</th>
                         <th>

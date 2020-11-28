@@ -108,7 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- <div class="row">
                                     <label class="col-sm-2 col-form-label label-checkbox">Type(s)</label>
                                     <div class="col-sm-4 checkbox-radios">
@@ -582,7 +582,7 @@
                 <h4 class="card-title">Assets Details</h4>
             </div>
         </div>
-        <div class="col-md-6 col-6 mr-auto ml-auto pull-right">
+        <div class="col-md-12 col-12 mr-auto ml-auto pull-right">
             <div class="card">
                 <div class="card-body">
                     @csrf

@@ -110,7 +110,7 @@
                                     <td><a href="{{url('/customer_details/'.$perm->customer_id)}}" class="btn btn-sm btn-info">View</a></td>
                                     <td><a href="{{url('/signature_verification/'.$perm->account_number)}}" class="btn btn-sm btn-primary">Verify</a></td>
                                     <td><a href="{{url('/document_verification/'.$perm->account_number)}}" class="btn btn-sm btn-primary">Verify</a></td>
-                                    <td><button class="btn btn-sm btn-primary " onclick="check_approve($perm.account_number)" >Approve</button>
+                                    <td><button class="btn btn-sm btn-primary " id="{{$perm->account_number}}" onclick="check_approve(this.id)" >Approve</button>
                                         <button class="btn btn-sm btn-danger">Reject</button>
                                     </td>
                                     <td><button class="btn btn-sm btn-primary">Generate</button></td>
@@ -179,12 +179,13 @@
     }
 
     function check_approve(account_number){
+        console.log(account_number);
         $.ajax({
         type: 'GET',
         url: '{{('/approve_check')}}',
         data: {account_number} ,
         success: function(data){
-            console.log(data);
+            // console.log(data);
 
             if(data == 'UNVERIFIED'){
                 return Swal.fire('There are Unverified files')
@@ -198,12 +199,21 @@
     }
 
     function approve(account_number){
+        console.log(account_number);
         $.ajax({
         type: 'GET',
         url: '{{('/approve_done')}}',
         data: {account_number} ,
         success: function(data){
-            console.log(data);
+            // console.log(data);
+            if(data == 'APPROVED'){
+
+               window.location.reload();
+               return Swal.fire('Account Approved')
+
+            }else {
+
+            }
 
         }
     })

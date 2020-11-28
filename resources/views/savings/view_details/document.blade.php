@@ -19,15 +19,15 @@
                     @isset($docs)
                     @foreach ($docs as $item)
                     <tr>
-                        <th>
-                            <img src="{{env('IMAGE_LOCATION').$item->img}}" alt="">
+                        <th >
+                            <img src="{{env('IMAGE_LOCATION').$item->img}}" height="500px" width="500px" alt="">
                         </th>
                         <th>{{$item->document_name}}</th>
                         <th>
                             @if ($item->status == 1)
                             <button class="btn btn-success">Verified</button>
                         @else<a
-                            
+
                         onclick="verify_image('{{$item->id}}', this)"
                             class="btn btn-primary text-white">Verify</a>
 

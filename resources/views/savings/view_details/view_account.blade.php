@@ -782,7 +782,7 @@
                                         @isset($doc)
                                         <tr>
                                             <td colspan="2">{{$doc->document_name}} </td>
-                                            <td colspan="6"><img src="{{env('IMAGE_LOCATION').$doc->img}}" alt=""></td>
+                                            <td colspan="6"><img src="{{env('IMAGE_LOCATION').$doc->img}}" height="200px" width="300px" alt=""></td>
                                             <td colspan="2"> <input type="checkbox" readonly <?php echo(@isset($doc->is_mandatory) == 1 ? 'checked': '') ?>></th>
                                             <td colspan="2"><input type="checkbox" readonly ></td>
                                             <td colspan="2"><input type="text" readonly ><td>

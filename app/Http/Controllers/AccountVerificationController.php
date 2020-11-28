@@ -209,15 +209,16 @@ class AccountVerificationController extends Controller
         }
 
         #join account members
-        $join_acc_id = Joinaccount::where('account_id', $acc->id)->first()->id;
-        $join_acc_mems = JoinaccountMember::where('join_account_id', $join_acc_id)->get();
+        $join_acc_id = Joinaccount::where('account_id', $acc->id)->first();
+        if(!empty($join_acc_id)){
+        $join_acc_mems = JoinaccountMember::where('join_account_id', $join_acc_id->id)->get();
 
         foreach($join_acc_mems as $mem){
             if($mem->sign_status != 1){
                 return response()->json('UNVERIFIED');
             }
         }
-
+        }
         return response()->json('VERIFIED');
     }
 
