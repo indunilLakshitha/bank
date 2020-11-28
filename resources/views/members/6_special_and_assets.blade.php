@@ -99,7 +99,9 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-2">
-                                <button class="btn btn-sm btn-primary">SUBMIT & FINISH </button>
+                                <button onclick="
+                                Swal.fire('Created Customer {{$cus_id}} ').then(() => window.location = '/')
+                                " class="btn btn-sm btn-primary">SUBMIT & FINISH </button>
                             </div>
                         </div>
                 </div>

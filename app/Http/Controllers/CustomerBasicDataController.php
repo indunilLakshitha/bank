@@ -135,6 +135,7 @@ class CustomerBasicDataController extends Controller
         // return $request;
         $ass = CustomerAsset::create($request->all());
         $ass->created_by = Auth::user()->name;
+        $ass->is_enable = 1;
         $ass->save();
 
         $data = CustomerAsset::where('customer_id', $ass->customer_id)->get();
