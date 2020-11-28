@@ -23,11 +23,13 @@ class AccountGeneralInformation extends Model
         'has_sms',
         'has_atm',
         'is_enable',
+        'cus_sign_img',
         'created_by',
         'updated_by',
         'account_balance',
         'FATCA_clearance_received ',
         'PEP_clearance_received ',
+        'sign_status',
         'customer_rating ',
         'has_account_statement ',
         'branch_id'

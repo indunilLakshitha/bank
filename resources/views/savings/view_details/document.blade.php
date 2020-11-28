@@ -27,7 +27,7 @@
                             @if ($item->status == 1)
                             <button class="btn btn-success">Verified</button>
                         @else<a
-                            <a
+                            
                         onclick="verify_image('{{$item->id}}', this)"
                             class="btn btn-primary text-white">Verify</a>
 

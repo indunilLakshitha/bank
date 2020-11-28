@@ -190,8 +190,8 @@
         </div>
     </div>
 </div>
-            </div>
-                    <div class="card " style="border: solid">
+</div>
+<div class="card " style="border: solid">
 
 <div class="card ">
     <div class="card-body ">
