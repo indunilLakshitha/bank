@@ -108,7 +108,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                
+                                <!-- <div class="row">
                                     <label class="col-sm-2 col-form-label label-checkbox">Type(s)</label>
                                     <div class="col-sm-4 checkbox-radios">
                                         <div class="form-check">
@@ -183,7 +184,7 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Account Category</label>

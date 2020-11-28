@@ -15,6 +15,7 @@ class ProductDocument extends Model
         'document_id',
         'img',
         'is_enable',
+        'status',
         'created_by',
         'updated_by',
     ];

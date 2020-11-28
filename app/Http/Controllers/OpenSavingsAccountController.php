@@ -104,7 +104,7 @@ class OpenSavingsAccountController extends Controller
     }
 
     public function client_details(Request $request)
-    {
+    {   echo($request);
         $details=$request;
         $details['created_by']=Auth::user()->id;
         $details['is_enable']=1;
@@ -276,7 +276,7 @@ class OpenSavingsAccountController extends Controller
     }
     public function finish_open_account_saving(Request $request){
 
-        AccountGeneralInformation::where('account_no',$request->account_number)->update(['status' => '2']);
+        AccountGeneralInformation::where('account_number',$request->account_number)->update(['status' => '2']);
         return redirect()->route('/savings/open');
     }
 
