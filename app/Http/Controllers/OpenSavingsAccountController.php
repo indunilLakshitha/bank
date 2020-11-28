@@ -250,7 +250,9 @@ class OpenSavingsAccountController extends Controller
 
     public function add_nominee(Request $request){
 
-        NomineeMember::create($request->all());
+        $n = NomineeMember::create($request->all());
+        $n->created_by = Auth::user()->name;
+        $n->save();
         return response()->json($request);
     }
 
