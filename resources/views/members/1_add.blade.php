@@ -125,7 +125,7 @@
                                             @isset($branches)
                                             @foreach ($branches as $branch)
                                             @if(intval($branch->is_enable) == 1)
-                                            <option value="{{$branch->id}}">{{$branch->branch_name}}</option>
+                                            <option value="{{$branch->id}}">{{$branch->branch_code.' - '.$branch->branch_name}}</option>
                                             @endif
                                             @endforeach
                                             @endisset
