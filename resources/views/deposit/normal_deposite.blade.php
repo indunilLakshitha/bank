@@ -160,9 +160,9 @@
                         <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
                             width="100%" style="width:100%">
                             <thead>
-                                <th># </th>
-                                <th>A/C No </th>
-                                <th>A/C Name </th>
+                                <th style="text-align:center"># </th>
+                                <th style="text-align:center">A/C No </th>
+                                <th style="text-align:center">A/C Name </th>
                                 <th>Balance(Cap.) </th>
                                 <th>Balance </th>
 

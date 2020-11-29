@@ -7,14 +7,14 @@
         <div class="col-md-12">
             <div class="card ">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-11">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
                                 <h4 class="card-title">Step 02 - Savings Account Opening</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-1 ">
                         {{-- <div class="card-header card-header-rose card-header-text"> --}}
                         <div class="card-text">
                             <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
@@ -218,5 +218,45 @@ function set_min_max(id){
         }
     })
 }
+
+(function (global) {
+
+if(typeof (global) === "undefined") {
+    throw new Error("window is undefined");
+}
+
+var _hash = "!";
+var noBackPlease = function () {
+    global.location.href += "#";
+
+    // Making sure we have the fruit available for juice (^__^)
+    global.setTimeout(function () {
+        global.location.href += "!";
+    }, 50);
+};
+
+global.onhashchange = function () {
+    if (global.location.hash !== _hash) {
+        global.location.hash = _hash;
+    }
+};
+
+global.onload = function () {
+    noBackPlease();
+
+    // Disables backspace on page except on input fields and textarea..
+    document.body.onkeydown = function (e) {
+        var elm = e.target.nodeName.toLowerCase();
+        if (e.which === 8 && (elm !== 'input' && elm  !== 'textarea')) {
+            e.preventDefault();
+        }
+        // Stopping the event bubbling up the DOM tree...
+        e.stopPropagation();
+    };
+}
+})(window);
+
 </script>
+
+
 @endsection

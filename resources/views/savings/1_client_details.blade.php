@@ -154,14 +154,14 @@
         </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <label class="col-sm-2 col-form-label">Customer Rating</label>
         <div class="col-sm-6">
             <div class="form-group">
                 <input type="text" class="form-control" id="" name="">
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
         <label class="col-sm-2 col-form-label">Customer Signature</label>
@@ -187,7 +187,7 @@
                     <h4 class="card-title">General Information</h4>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <label class="col-sm-2 col-form-label">Lead source Category</label>
                 <div class="col-sm-8">
                     <div class="row">
@@ -222,8 +222,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
+            </div> --}}
+            {{-- <div class="row">
                 <label class="col-sm-2 col-form-label">Account Description</label>
                 <div class="col-sm-8">
                     <div class="row">
@@ -235,7 +235,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             {{-- <div class="row">
             <label class="col-sm-2 col-form-label">Account Category</label>
             <div class="col-sm-8">
@@ -259,16 +259,16 @@
 </div>
 </div>
 </div> --}}
-<div class="row">
-    <label class="col-sm-2 col-form-label">Account Type</label>
+{{-- <div class="row"> --}}
+    {{-- <label class="col-sm-2 col-form-label">Account Type</label>
     <div class="col-sm-8">
         <div class="row">
             <div class="col-5">
-                <div class="form-group">
-                    @php
+                <div class="form-group"> --}}
+                    {{-- @php
                     $acc_types = Illuminate\Support\Facades\DB::table('account_types')->get();
-                    @endphp
-                    <select name="account_type_id" class="selectpicker" data-style="select-with-transition">
+                    @endphp --}}
+                    {{-- <select name="account_type_id" class="selectpicker" data-style="select-with-transition">
                         <option value="">Select </option>
                         @isset($acc_types)
                         @foreach ($acc_types as $ac_type)
@@ -281,10 +281,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="row">
-    <label class="col-sm-2 col-form-label label-checkbox">Options</label>
+    <label class="col-sm-2 col-form-label label-checkbox">Services</label>
     <div class="row">
         <div class="col-sm-5 checkbox-radios ml-3">
             <div class="form-check">
@@ -297,10 +297,10 @@
                 </label>
             </div>
         </div>
-        <div class="col-sm-5 checkbox-radios">
+        <div class="col-sm-5 checkbox-radios ml-3">
             <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="has_sms" value="1"> SMS
+                    <input class="form-check-input" checked type="checkbox" name="has_sms" value="1"> SMS
                     <span class="form-check-sign">
                         <span class="check"></span>
                     </span>
@@ -331,10 +331,10 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mt-3">
     <label class="col-sm-2 col-form-label label-checkbox">Account Maintenance Via</label>
     <div class="row">
-        <div class="col-sm-4 checkbox-radios ml-3">
+        <div class="col-sm-7 checkbox-radios ml-3">
             <div class="form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" checked type="checkbox" name="has_passbook" value="1">Passbook
@@ -344,7 +344,7 @@
                 </label>
             </div>
         </div>
-        <div class="col-sm-6 checkbox-radios">
+        <div class="col-sm-3 checkbox-radios " style="margin-left: 44px">
             <div class="form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" type="checkbox" name="has_account_statement" value="1">
