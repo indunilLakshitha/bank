@@ -55,9 +55,17 @@
                                         <label for="">Mobile Number</label>
                                         <input type="text" name="mobile_number" class="form-control">
                                     </div>
+
+                                </div>
+                                <div class="row">
+
                                     <div class="from-group col-6">
                                         <label for="">Password</label>
-                                        <input type="password" name="password" class="form-control" required>
+                                        <input type="password" name="password" id="txtPassword" class="form-control" required>
+                                    </div>
+                                    <div class="from-group col-6">
+                                        <label for="">Confirm Password</label>
+                                        <input type="password" name="Cpassword" class="form-control" id="txtConfirmPassword" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -124,13 +132,22 @@
         </div>
 
         <tr>
-            <button class="btn btn-danger" type="submit">Create User</button>
+            <button class="btn btn-danger" type="submit" onclick="return Validate()">Create User</button>
         </tr>
     </div>
     </form>
 
 
     <script>
+        function Validate() {
+        var password = document.getElementById("txtPassword").value;
+        var confirmPassword = document.getElementById("txtConfirmPassword").value;
+        if (password != confirmPassword) {
+            Swal.fire('Passwords do not match.');
+            return false;
+        }
+        return true;
+    }
         function get_role_perms(role_checkbox, perms){
         // console.log(this_checkbox);
         // console.log(perms['perms']);
