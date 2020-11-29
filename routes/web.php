@@ -360,7 +360,7 @@ Route::resource('/mainType', 'MainTypeController');
 
 Route::resource('/marriedStatus', 'MarriedStatusController');
 
-// ------------------------------------------------------------------------Married Status------------
+// ------------------------------------------------------------------------Product Type------------
 
 Route::resource('/productType', 'ProductTypeController');
 

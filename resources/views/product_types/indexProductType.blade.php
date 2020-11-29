@@ -63,7 +63,7 @@
                     <div class="form-check">
                         <label class="form-check-label">
                             <input class="form-check-input" type="checkbox" name="is_beneficiearies_required" value="1">
-                            beneficiearies
+                            Beneficiearies
                             <span class="form-check-sign">
                                 <span class="check"></span>
                             </span>
