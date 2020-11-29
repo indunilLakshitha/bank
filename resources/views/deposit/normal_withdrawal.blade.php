@@ -261,7 +261,7 @@
                        'transaction_type': 'on_test',
                     },
                     success: function(data){
-
+console.log(data)
                         account_balance.value=data.balance_amount
                         return Swal.fire('Withdrawal Successful')
                     }
