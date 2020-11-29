@@ -211,7 +211,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             <div class="row">
                 <label class="col-sm-2 col-form-label">Lead source Identification</label>
                 <div class="col-sm-8">
@@ -402,6 +401,8 @@
 </div>
 </div>
 </div>
+
+
 {{-- wild card model------------------------------------------------------------------ --}}
 @include('layouts.search_modal')
 

@@ -2,7 +2,14 @@
 
 
 @section('content')
+<div class="col-9">
+    <div class="card-text">
+        <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+    </div>
+</div>
 <fieldset disabled="disabled">
+    @if(!empty($view_1))
+
 <div class="card col-10 " style="border: solid">
 <div class="card col-12 set-center ">
     <div class="card-body ">
@@ -11,6 +18,7 @@
                 <h4 class="card-title">Customer Details</h4>
             </div>
         </div>
+
         <br>
         <br>
             <div class="container-fluid ">
@@ -339,6 +347,8 @@
         </div>
     </div>
 </div>
+@endif
+@if(!empty($view_2))
 
 <div class="card col-10 " style="border: solid">
 
@@ -532,6 +542,9 @@
     </div>
 </div> -->
 </div>
+@endif
+@if(!empty($view_4))
+
 <div class="card col-10 " style="border: solid">
 
 <div class="card col-12 ">
@@ -584,6 +597,8 @@
             </div>
         </div>
 </div>
+@endif
+@if(!empty($view_6))
 <div class="card col-10 " style="border: solid">
 
 <div class="card col-12 ">
@@ -596,7 +611,6 @@
         <div class="col-md-12 col-12 mr-auto ml-auto pull-right">
 
                     @csrf
-                    @isset($view_6)
 
                     <table class="table table-striped table-bordered" id="bene_table">
                         <thead>
@@ -606,6 +620,7 @@
                             </tr>
                         </thead>
                         <tbody id="bene_body">
+                            @isset($view_6)
 
                             @foreach($view_6 as $view_6_1)
                             <tr>
@@ -732,7 +747,9 @@
 
 
     </div>
-</div>
-        </fieldset>
+
+@endif
+
+</fieldset>
 
 @endsection
