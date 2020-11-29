@@ -37,6 +37,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt-5">
+                            <label class="col-sm-2 col-form-label"> Client Full Name</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <input oninput="toCap(this.value, this.id), get_modal_search_by_full_name(this.value)"
+                                                type="text" class="form-control js-example-data-ajax"
+                                                id="client_full_name"
+                                                placeholder="Enter Full Name"
+                                                >
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                            <button class="btn  btn-info btn"
+                                            onclick="modal_serach_by_name_results_tbody.innerHTML = null"
+                                            >
+                                            Clear Results </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <table class="table">
                                 <tbody id="modal_serach_by_name_results_tbody" class="d-none"></tbody>
