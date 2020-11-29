@@ -35,9 +35,9 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">STATUS</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-2">
                                     <div class="form-group">
-                                        <select name="customer_status_id" id="c" class="selectpicker"
+                                        <select name="customer_status_id" id="c" class="form-control"
                                             data-style="select-with-transition">
                                             {{-- <option value="1">ACTIVE</option> --}}
                                             <option value="0" selected>INACTIVE</option>
@@ -47,10 +47,10 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Title</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <?php $titles=\App\Models\CutomerTitle::all()?>
-                                        <select name="customer_title_id" id="" class="selectpicker"
+                                        <select name="customer_title_id" id="" class="form-control"
                                             data-style="select-with-transition">
                                             <option value="">Select Title</option>
                                             @isset($titles)
@@ -66,7 +66,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Name in Use <font color="red">*</font></label>
-                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                <div class="col-lg-6 col-md-4 col-sm-4">
                                     <div class="form-group">
                                         <input name="name_in_use" type="text" class="form-control">
                                     </div>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Full Name<font color="red">*</font></label>
-                                <div class="col-lg-5 col-md-4 col-sm-4">
+                                <div class="col-lg-6 col-md-4 col-sm-4">
                                     <div class="form-group">
                                         <input type="text" name="full_name" class="form-control">
                                     </div>
@@ -82,7 +82,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Surname<font color="red">*</font></label>
-                                <div class="col-lg-3 col-md-2 col-sm-2">
+                                <div class="col-lg-6 col-md-4 col-sm-4">
                                     <div class="form-group">
                                         <input type="text" name="surname" class="form-control">
                                     </div>
@@ -90,7 +90,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Name With Initials<font color="red">*</font></label>
-                                <div  class="col-lg-3 col-md-2 col-sm-2">
+                                <div  class="col-lg-6 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="short_name" class="form-control">
                                     </div>
@@ -98,9 +98,9 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Address<font color="red">*</font></label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" name="address_data" class="form-control">
+                                        <input type="text" name="address_line_1" class="form-control">
                                         <input type="text" name="address_line_2" class="form-control">
                                         <input type="text" name="address_line_3" class="form-control">
                                         <input type="text" name="address_line_4" class="form-control">
@@ -109,7 +109,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">EPF No</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="epf_no">
                                     </div>
@@ -117,9 +117,9 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Branch<font color="red">*</font></label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <select name="branch_id" id="" class="selectpicker"
+                                        <select name="branch_id" id="" class="form-control"
                                             data-style="select-with-transition">
                                             <option value="">Select Branch</option>
                                             @isset($branches)
@@ -139,7 +139,7 @@
                                 <div class="col-sm-10 checkbox-radios">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" disabled checked type="checkbox" name="non_member" value="1">
+                                            <input class="form-check-input" disabled checked type="checkbox" id="non_member" name="non_member"   value="1" >
                                             Non
                                             Member
                                             <span class="form-check-sign">
@@ -207,9 +207,9 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Account Category<font color="red">*</font></label>
-                                <div class="col-sm-8">
+                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <select name="account_category_id" id="" class="selectpicker"
+                                        <select name="account_category_id" id="" class="form-control"
                                             data-style="select-with-transition">
                                             <option value="">Select Account Category</option>
                                             @isset($accountcategories)
@@ -230,7 +230,7 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
-                                <div class="col-sm-8">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <select name="small_group_id" id="" class="form-control"
                                             data-style="select-with-transition">
@@ -252,7 +252,7 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
-                                <div class="col-sm-8">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <select name="sub_account_office_id" id="" class="form-control"
                                             data-style="select-with-transition">
@@ -274,7 +274,7 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Sub Account Office<font color="red"> *</font></label>
-                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="col-lg-4 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="office_sub_id" class="form-control">
                                     </div>
@@ -282,13 +282,13 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">ID Type<font color="red">*</font></label>
-                                <div class="col-sm-7">
+                                <div class="col">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-3">
                                             <div class="form-group">
                                                 <select name="identification_type_id" id="id_type" class="form-control"
                                                     data-style="select-with-transition">
-                                                    <option value="">Select Identification Type</option>
+                                                    <option value="">Identification Type</option>
                                                     @isset($idtypes)
                                                     @foreach ($idtypes as $id_type)
                                                     @if(intval($id_type->is_enable) == 1)
@@ -356,35 +356,24 @@
 
                                         </div>
                                     </div>
-                                </div>
+                            </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Fax</label>
-                                <div class="col-lg-3 col-md-3 col-sm-2">
+                                <div class="col-lg-5 col-md-3 col-sm-2">
                                     <div class="form-group">
                                         <div class="col-sm-8">
                                             <input type="text" name="fax_number" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
-                                    <div class="form-group">
-
-                                    </div>
-                                </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-lg-6 col-md-6 col-sm-4">
+                                <div class="col-lg-5 col-md-3 col-sm-2">
                                     <div class="form-group">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-8">
                                             <input type="email" name="email_address" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class="form-group">
-                                        <div class="col-sm-5">
                                         </div>
                                     </div>
                                 </div>
@@ -392,10 +381,12 @@
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Signature</label>
+                            <div class="col-lg-6 col-md-4 col-sm-3">
                             <span class="btn btn-round btn-rose btn-file ">
                                 <span class="fileinput-new">Choose File</span>
                                 <input type="file" name="sign_img" id="sign_img" />
                             </span>
+                            </div>
 
                         </div>
                         <button onclick="validate_form()" type="button"  class="btn btn-primary">NEXT</button>
@@ -416,6 +407,8 @@
             }
             return form.submit()
         }
+
+
 </script>
 
 @endsection
