@@ -15,6 +15,7 @@ class AddressData extends Model
         'is_enable',
         'created_by',
         'updated_by',
+        'customer_id'
 
     ];
 }
