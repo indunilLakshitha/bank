@@ -339,7 +339,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <div class="card col-10 " style="border: solid">
 
 <div class="card col-12 ">
@@ -597,16 +597,37 @@
 
                     @csrf
                     @isset($view_6)
-                    <div class="tab-pane" id="special">
+
+                    <table class="table table-striped table-bordered" id="bene_table">
+                        <thead>
+                            <tr>
+                                <th>Asset Description</th>
+                                <th>Asset Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bene_body">
+
+                            @foreach($view_6 as $view_6_1)
+                            <tr>
+                                <td>{{$view_6_1->asset_description}} </td>
+                                <td> {{$view_6_1->asset_qty}}</th>
+                            </tr>
+                            @endforeach
+                            @endisset
+
+
+                        </tbody>
+                    </table>
+                    <!-- <div class="tab-pane" id="special">
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Special Information</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control""  id="" cols=" 30" rows="12"
-                                        value="{{ isset($view_6->asset_description)?$view_6->asset_description:''}}"></textarea>
+                                        value="{{ isset($view_6->asset_description)}}"></textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Real Member</label>
                             <div class="col-sm-6">
@@ -616,18 +637,18 @@
                                 </div>
                             </div>
                         </div> -->
-                        <br>
+                        <!-- <br>
                         <h5 class="text-center">Assets</h5>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Item</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control"
-                                        value="{{ isset($view_6->asset_qty)?$view_6->asset_qty:0}}">
+                                        value="{{ isset($view_6->asset_qty)}}">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
+                        </div> -->
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Value</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control"
@@ -638,9 +659,9 @@
 
                             </div>
 
-                        </div>
-                    </div>
-                    @endisset
+                        </div> -->
+                    <!-- </div> -->
+
 
         </div>
     </div>
