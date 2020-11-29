@@ -3,11 +3,9 @@
 
 
     <div class="logo">
-        <a href="" class="simple-text logo-mini">
-
-        </a>
-        <a href="/dashboard" class="simple-text logo-normal">
-            EDCB
+        
+        <a href="/dashboard" class="simple-text logo-normal " style="text-align: center">
+            Economic <br>Development <br>Co-op Bank
         </a></div>
     <div class="sidebar-wrapper">
 
@@ -408,6 +406,12 @@
                             <a class="nav-link" href="/marriedStatus">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal">Married Statuses</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/productType">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Product Types</span>
                             </a>
                         </li>
                     </ul>
