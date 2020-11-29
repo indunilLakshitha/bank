@@ -141,9 +141,7 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <br> <br>
+        <br> <br>
 
     <div class="row">
         <label class="col-sm-2 col-form-label">Branch Code</label>
@@ -174,9 +172,13 @@
             </div>
         </div>
     </div>
+    </div>
+
+
 </div>
 </div>
 </div>
+
 <div class="card " style="border: solid">
 
     <div class="card ">
