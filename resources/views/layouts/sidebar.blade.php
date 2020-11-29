@@ -139,7 +139,7 @@
                         <li class="nav-item ">
                             <a class="nav-link" href="/deposits/n-dep">
                                 <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
-                                <span class="sidebar-normal">Normal Deposit </span>
+                                <span class="sidebar-normal">Savings Deposit </span>
                             </a>
                         </li>
                         @endcan

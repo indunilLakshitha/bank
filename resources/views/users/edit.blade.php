@@ -21,34 +21,59 @@
                         <div class="col-10">
             <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 col-form-label">Full Name</label>
+                        <label class="col-sm-2 col-form-label">Full Name <font color="red">*</font></label>
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" name="name"  class="form-control" value="{{ $user->name}}"required >
+                                <input type="hidden" name="status"  class="form-control" value="{{ $user->status}}" required >
+                                <input type="text" name="name"  class="form-control" value="{{ $user->name}}" required >
                              </div>
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-sm-2 col-form-label">E Mail</label>
+                        <label class="col-sm-2 col-form-label">Email <font color="red">*</font></label>
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" name="email"  class="form-control" value="{{ isset($user->email) ? $user->email: ''}}" required >
+                                <input type="text" name="email" class="form-control" value="{{ isset($user->email) ? $user->email: ''}}" required >
                              </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="col-sm-2 col-form-label">Branch <font color="red">*</font></label>
+
+                        <div class="col-sm-5">
+                        <?php $branches=Illuminate\Support\Facades\DB::table('branches')->get(); ?>
+                            <select name="branh_id" id="branh_id" class="ml-3 selectpicker"
+                                    data-style="select-with-transition" required>
+                                <option value="">Select</option>
+                                @isset($branches)
+                                    @foreach ($branches as $branch)
+                                        @if($branch->id == $user->branh_id)
+                                            <option value="{{$branch->id}}" selected>
+                                                {{$branch->branch_code." - ".$branch->branch_name}}
+                                            </option>
+                                        @else
+                                            <option value="{{$branch->id}}">
+                                                {{$branch->branch_code." - ".$branch->branch_name}}
+                                            </option>
+                                        @endif
+                                    @endforeach
+                                @endisset
+                            </select>
                         </div>
                     </div>
                      <div class="row">
-                        <label class="col-sm-2 col-form-label">Phone Number</label>
+                        <label class="col-sm-2 col-form-label">Phone Number <font color="red">*</font></label>
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" name="mobile_number"  class="form-control" value="{{ isset($user->mobile_number) ? $user->mobile_number: ''}}" >
+                                <input type="text" name="mobile_number"  class="form-control" value="{{ isset($user->mobile_number) ? $user->mobile_number: ''}}" required>
                              </div>
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-sm-2 col-form-label">Employee Number</label>
+                        <label class="col-sm-2 col-form-label">Employee Number <font color="red">*</font></label>
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" name="employee_no"  class="form-control" value="{{ isset($user->employee_no) ? $user->employee_no: ''}}" >
+                                <input type="text" name="employee_no"  class="form-control" value="{{ isset($user->employee_no) ? $user->employee_no: ''}}" required>
                              </div>
                         </div>
                     </div>
@@ -62,57 +87,59 @@
                     </div>
                 </div>
             </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h5>User Role</h5>
-                    </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5>User Roles</h5>
+                </div>
 
-                    <div class="card-body">
-                        <table class="table">
-
-                            {{-- {{$user->getRoleNames()->first()}} --}}
+                <div class="card-body">
+                    <table class="table">
+                        {{-- <tr> --}}
+                        {{-- @foreach ($roles as $r)
+                                             {{$r->permissions}}
+                        @endforeach --}}
+                        @foreach ($all_roles as $r)
                             <tr>
-                                @foreach ($all_roles as $r)
+                                {{-- {{$r->permissions}} --}}
+                                <th>{{$r->name}}</th>
                                 <th> <input class="role_checkboxes" type="radio" value="{{$r->name}}" name="roles[]"
-                                        id="checkbox_{{$r->name}}" onclick="get_role_perms(this, {{$r->permissions}})"
-                                        @if($user->getRoleNames()->first() == $r->name)
-                                    checked
-                                    @endif
-                                    >
-                                    {{$r->name}}
+                                            id="checkbox_{{$r->name}}" onclick="get_role_perms(this, {{$r->permissions}})"></th>
+                                <th>
+                                    @foreach ($r->permissions as $perm)
+                                        <span class="badge badge-pill badge-rose"> {{$perm->name}} </span>
+                                    @endforeach
                                 </th>
-                                @endforeach
                             </tr>
-                            {{-- </tr> --}}
-                        </table>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h5>User Permissions</h5>
-                    </div>
-                    <div class="card-body">
-                        {{-- <table class="table"> --}}
-                            <div class="row">
-                        @foreach ($all_permissions as $p)
-
-                            <div class="col-3">
-                                {{-- <tr> --}}
-                                {{-- <th> --}}
-                                <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes "
-                                    name="permissions[]" id="{{$p->name}}">
-                                {{$p->view_name}}
-                                {{-- </th> --}}
-                                {{-- </tr> --}}
-                            </div>
-
                         @endforeach
-                    </div>
-                    </div>
-                    {{-- </table> --}}
+                        {{-- </tr> --}}
+                    </table>
                 </div>
-        </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5>User Permissions</h5>
+                </div>
+                <div class="card-body">
+                    {{-- <table class="table"> --}}
+                        <div class="row">
+                    @foreach ($all_permissions as $p)
+
+                        <div class="col-3">
+                            {{-- <tr> --}}
+                            {{-- <th> --}}
+                            <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes "
+                                name="permissions[]" id="{{$p->name}}">
+                            {{$p->view_name}}
+                            {{-- </th> --}}
+                            {{-- </tr> --}}
+                        </div>
+
+                    @endforeach
+                </div>
+                </div>
+                {{-- </table> --}}
+            </div>
 
         <tr>
             <button class="btn btn-danger" type="submit">Update User</button>

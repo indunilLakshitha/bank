@@ -18,4 +18,11 @@ class ShareController extends Controller
     public function historyview(){
         return view('shares.history');
     }
+
+    public function buy_shares(Request $request){
+        return response()->json($request);
+    }
+    public function transfer_shares(Request $request){
+        return response()->json($request);
+    }
 }
