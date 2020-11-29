@@ -33,28 +33,58 @@
                                 <h4 class="card-title">Tax Details</h4>
                             </div>
                         </div>
-                        <div class="row col-12 ">
-                            <div class="col-sm-12">
-                                <label class="col-sm-1 col-form-label">Mandotory</label>
+                        <table class="table table-striped table-bordered" id="bene_table">
+                        <thead>
+                            <tr>
+                                <th>Mandotory</th>
+                                <th>Fee</th>
+                                <th>Fee Type</th>
+                                <th>Amount</th>
+                                <th>Tax Applicable</th>
+                                <th>Fee Payable</th>
+                                <th>Add</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bene_body">
 
-                                <label class="col-sm-1 col-form-label">Fee</label>
+                             @foreach($f_details as $fd)
+                            <tr>
+                                <th hidden>{{$prod_id}} </th>
+                                <th hidden>{{$account_id}}</th>
+                                <th> <input class="form-check-input " name="is_mandatory" type="checkbox" value="1" @if ($fd->is_mandatory == 1) checked @endif>
+                                <span class="form-check-sign">
+                                        <span class="check"></span>
+                                </span></td>
+                                </th>
+                                <th><input type="text" value="{{$fd->id}}" readonly class="form-control" name="fee_details_id" ></th>
+                                <th><select  id="" class="form-control" name="fee_type_id">
+                                        <option value="">Select </option>
+                                            @foreach ($f_types as $ft)
+                                                 <option value="{{$ft->id}}">{{$ft->fee_type}}</option>
+                                            @endforeach
+                                        </select>
+                                </th>
+                                <th><input type="text" name="amount" class="form-control"></th>
+                                <th><input class="form-check-input " name="is_tax_applicable" type="checkbox" value="1" @if ($fd->is_tax_applicable == 1) checked @endif>
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span></td>
+                                <th> <input type="text" name="fee_payble_text" class="form-control"></th>
+                                <th><input onclick="add('form_{{$fd->id}}', this)" type="button" value="Add" class="btn btn-primary btn-sm"></th>
+                            </tr>
+                            @endforeach
 
-                                <label class="col-sm-2 col-form-label">Fee Type</label>
 
-                                <label class="col-sm-2 col-form-label">Amount</label>
+                        </tbody>
+                    </table>
 
-                                <label class="col-sm-2 col-form-label">Tax Applicable</label>
-
-                                <label class="col-sm-2 col-form-label">Fee Payable</label>
-                            </div>
-                        </div>
-                        @foreach($f_details as $fd)
-                        <form id="form_{{$fd->id}}">
-                            @csrf
+                        <!-- @foreach($f_details as $fd)
+                        <form id="form_{{$fd->id}}"> -->
+                            <!-- @csrf
                             <input type="hidden" name="product_data_id" value={{$prod_id}}>
-                            <input type="hidden" name="account_id" value={{$account_id}}>
-                            <input type="hidden" name="customer_id" value={{$customer_id}}>
-                        <div class="row">
+                            <input type="hidden" name="account_id" value=>
+                            <input type="hidden" name="customer_id" value={{$customer_id}}> -->
+                        <!-- <div class="row">
                             <div class="col-sm-1">
                             </div>
                             <div class="form-check  ">
@@ -70,9 +100,9 @@
                                         <span class="check"></span>
                                     </span>
                                 </label>
-                            </div>
+                            </div> -->
 
-                        <input type="text" value="{{$fd->id}}" readonly class="form-control" name="fee_details_id" >
+                        <!-- <input type="text" value="{{$fd->id}}" readonly class="form-control" name="fee_details_id" >
                             <div class="col-sm-2">
                                 <div class="row">
                                     <div class="col-6">
@@ -88,9 +118,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="col-sm-2">
+                            <!-- <div class="col-sm-2">
                                 <div class="form-group">
                                     <input type="text" name="amount" class="form-control">
                                 </div>
@@ -118,13 +148,13 @@
                                 <div class="form-group">
                                     <input type="text" name="fee_payble_text" class="form-control">
                                 </div>
-                            </div>
-                            <input
+                            </div> -->
+                            <!-- <input
                             onclick="add('form_{{$fd->id}}', this)"
                             type="button" value="Add" class="btn btn-primary btn-sm">
                         </div>
 
-                    </form>
+                    </form> -->
 
                         @endforeach
 

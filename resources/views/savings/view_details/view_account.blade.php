@@ -3,6 +3,13 @@
 
 @section('content')
 @isset($view_1)
+<div class="col-9">
+    <div class="card-text">
+        <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+    </div>
+</div>
+<fieldset disabled="disabled">
+    @if(!empty($view_1_1) || !empty($view_1))
 <div class="content">
     <div class="container-fluid">
 
@@ -274,6 +281,8 @@
                 </div>
             </div>
 @endisset
+@endif
+@if(!empty($view_2))
 @isset($view_2)
 <div class="card col-12 " style="border: solid">
 
@@ -400,7 +409,9 @@
                 </div>
 </div>
                 @endisset
+                @endif
                 <!-- Beneficiary -->
+                @if(!empty($view_5_1))
 <div class="card col-12 " style="border: solid">
 
         <div class="card ">
@@ -512,6 +523,7 @@
                                 </div>
                 </div>
 </div>
+@endif
                 <!-- <div class="card ">
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
@@ -771,6 +783,7 @@
                                     </div> --}} -->
                                 <!-- </div>
                             </div> -->
+                            @if(!empty($view_5))
                             @isset($view_5)
                             <div class="card col-12 " style="border: solid">
 
@@ -814,9 +827,12 @@
 
                                 </div>
                             </div>
-                            @endisset
-                            @isset($view_6)
                             </div>
+                            @endisset
+                            @endif
+                            @foreach($view_6 as $view_66)
+                            @if(!empty($view_6))
+                            @isset($view_6)
                             <div class="card col-12 " style="border: solid">
 
                             <div class="card ">
@@ -859,6 +875,11 @@
                             </div>
                             </div>
                             @endisset
+                            @endif
+                            @break
+                            @endforeach
+                            @foreach($view_7 as $view_7)
+                            @if(!empty($view_7))
                             @isset($view_7)
                             <div class="card col-12 " style="border: solid">
 
@@ -900,6 +921,8 @@
                                         </div>
                             </div>
                                         @endisset
+
+
                                         <!-- <div class="card" style="border: solid">
                                             <div class="row">
                                             <label class="col-sm-2 col-form-label">Title</label>
@@ -1085,6 +1108,9 @@
                                             </div> -->
                                         </div>
                             </div>
+                             @endif
+                             @break
+                            @endforeach
 
                             <!-- <div class="card ">
                                 <div class="card-body ">
@@ -1471,5 +1497,5 @@
                                         </div>
                                     </div> -->
 
-
+                                </fieldset>
 @endsection
