@@ -3,19 +3,19 @@
 
 
     <div class="logo">
-        
+
         <a href="/dashboard" class="simple-text logo-normal " style="text-align: center">
             Economic <br>Development <br>Co-op Bank
         </a></div>
     <div class="sidebar-wrapper">
 
         <ul class="nav">
-            <li class="nav-item  ">
+            {{-- <li class="nav-item  ">
                 <a class="nav-link" href="/dashboard">
                     <i class="material-icons">dashboard</i>
                     <p> Dashboard </p>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#pagesExamples">

@@ -200,11 +200,11 @@ class OpenSavingsAccountController extends Controller
         $all_customers = CustomerBasicData::all();
 
 
-        if($request->session()->get('is_beneficiearies_required')==1){
+        if($product_type->is_beneficiearies_required==1){
 
             return view('members.5_benificiaries', compact('cus_id', 'account_id', 'prod_id', 'all_customers'))->with('success', 'Details submitted');
 
-        }else if($request->session()->get('is_nominies_required')==1){
+        }else if($product_type->is_nominies_required==1){
 
             $account_id = $request->account_id;
         $customer_id = $request->customer_id;
