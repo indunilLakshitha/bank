@@ -167,7 +167,7 @@
                                 <th>Balance </th>
 
                             </thead>
-                            <tbody id="results_tbody">
+                            <tbody id="ress_tbody">
 
                                 @isset($members)
                                 @foreach ($members as $member)
@@ -223,7 +223,7 @@
                        'name': name,
                     },
                     success: function(data){
-                        // console.log(data)
+                        console.log(data)
                         return showCustomers(data)
                     }
                })

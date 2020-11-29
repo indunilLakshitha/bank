@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class cash_in_hand_ledger extends Model
 {
+    protected $table='cash_in_hand_ledgers';
     protected $fillable = [
         'transaction_data_id',
         'customer_id',
@@ -14,7 +15,7 @@ class cash_in_hand_ledger extends Model
         'transaction_value',
         'balance_amount',
         'is_enable',
-        'created_by',
-        'updated_by',
+        'created_at',
+        'updated_at',
     ];
 }
