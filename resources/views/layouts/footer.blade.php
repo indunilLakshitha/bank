@@ -433,7 +433,11 @@ $(document).ready(function() {
         // console.log(typeof data);
         console.log('inside setter - footer',  data);
         full_name.value = data.full_name
-        branch_code.value = data.branch_code
+        nominee_id.value = data.customer_id
+
+        if(branch_code){
+            branch_code.value = data.branch_code
+        }
         branch_id.value = data.branch_id
         customer_id.value = data.customer_id
         dob.value = data.date_of_birth

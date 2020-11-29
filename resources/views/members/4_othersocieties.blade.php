@@ -8,14 +8,14 @@
         <div class="col-md-10 col-12 mr-auto ml-auto">
             <div class="card" style="border: solid">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-10">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
                                 <h4 class="card-title">Step 03 - Designation Details</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-2">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
                                 {{-- <h4 class="card-title">Member Creation</h4> --}}

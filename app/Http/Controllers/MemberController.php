@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Member;
+use App\MemberCreationNominee;
 use App\Models\Branch;
 use App\Models\CustomerBasicData;
 use App\Models\CustomerStatusDates;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -85,15 +87,32 @@ class MemberController extends Controller
     }
 
     public function member_creation(Request $request){
-        $mem = Member::create($request->all());
-        $mem->is_enable= 1;
 
-        $branch_id = CustomerBasicData::where('customer_id', $request->customer_id)->first()->branch_id;
-        $mem->member_number= 'W'.Branch::find($branch_id)->branch_code.$request->customer_id;
+        // return $request;
 
-        $mem->save();
-        return 123;
+            $already_in = Member::where('customer_id', $request->customer_id)->first();
 
+            if($already_in){
+                return response()->json('Member already exists');
+            }
+
+            $mem = Member::create($request->all());
+            $mem->is_enable= 1;
+
+            $branch_id = CustomerBasicData::where('customer_id', $request->customer_id)->first()->branch_id;
+            $mem->member_number= 'W'.Branch::find($branch_id)->branch_code.$request->customer_id;
+
+            $mem->save();
+            return response()->json('Member created');
+
+    }
+
+    public function add_nominee_member_creation(Request $request){
+        MemberCreationNominee::create($request->all());
+
+        $data = MemberCreationNominee::where('member_id', $request->member_id)->get();
+
+        return response()->json($data);
     }
 
 }
