@@ -2,22 +2,24 @@
 
 
 @section('content')
+<fieldset disabled="disabled">
 <div class="card col-10 " style="border: solid">
 <div class="card col-12 set-center ">
     <div class="card-body ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
-                <h4 class="card-title">Member Details</h4>
+                <h4 class="card-title">Customer Details</h4>
             </div>
         </div>
+        <br>
+        <br>
             <div class="container-fluid ">
                 <div class="col-md-12 col-12 mr-auto ml-auto">
                             @csrf
                             @isset($view_1)
                             <div class="tab-pane active" id="private_1">
                                 {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
-                                <div class="row justify-content-center">
-
+                                <div class="row ">
                                     <div class="col-4">
                                         <div class="form-group">
                                             <div class="row">
@@ -30,7 +32,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-5">
+                                    <div class="col-4">
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="c">STATUS</label>
@@ -45,6 +47,17 @@
                                                 </div>
                                         </div>
                                     </div>
+                                    <div class="form-check">
+                                            <label class="form-check-label-bold" style="background-color: #ffff00;"><mark> Non
+                                                Member</mark>
+                                                <input class="form-check-input"  disabled type="checkbox"
+                                                    <?php echo(@isset($view_1_1->non_member) == 1 ? 'checked': '') ?>>
+
+                                                <span class="form-check-sign" >
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
                                 </div>
                                 <?php $titles=\App\Models\CutomerTitle::where('id',$view_1->customer_title_id)->first()?>
                                 <div class="row">
@@ -271,18 +284,8 @@
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Telephone No</label>
-                                    <div class="col-sm-5">
-                                        <?php $con_types=\App\Models\ContactType::where('id',$view_1->telephone_no_type)->first()?>
-                                        <div class="form-group">
-                                            <div class="col-sm-5">
-                                                @isset($con_types)
-                                                <input type="text" name="telephone_no_type" class="form-control"
-                                                    value="{{ $con_types->contact_type }}">
-                                            </div>
-                                            @endisset
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5">
+
+                                    <div class="col-sm-8">
                                         <div class="form-group">
                                             <div class="col-sm-5">
                                                 <input type="text" name="telephone_number" class="form-control"
@@ -295,7 +298,7 @@
                                     <label class="col-sm-2 col-form-label">Fax</label>
                                     <div class="col-sm-5">
                                         <div class="form-group">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-8">
                                                 <input type="text" name="fax_number" class="form-control"
                                                     value="{{ isset($view_1->fax_number)?$view_1->fax_number:'' }}">
                                             </div>
@@ -314,7 +317,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-sm-4 col-form-label">Signature</label>
+                                    <label class="col-sm-2 col-form-label">Signature</label>
                                     <div class="col-sm-8">
                                         <div class="col-10">
                                             <div class="form-group">
@@ -336,7 +339,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <div class="card col-10 " style="border: solid">
 
 <div class="card col-12 ">
@@ -594,17 +597,38 @@
 
                     @csrf
                     @isset($view_6)
-                    <div class="tab-pane" id="special">
+
+                    <table class="table table-striped table-bordered" id="bene_table">
+                        <thead>
+                            <tr>
+                                <th>Asset Description</th>
+                                <th>Asset Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bene_body">
+
+                            @foreach($view_6 as $view_6_1)
+                            <tr>
+                                <td>{{$view_6_1->asset_description}} </td>
+                                <td> {{$view_6_1->asset_qty}}</th>
+                            </tr>
+                            @endforeach
+                            @endisset
+
+
+                        </tbody>
+                    </table>
+                    <!-- <div class="tab-pane" id="special">
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Special Information</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control""  id="" cols=" 30" rows="12"
-                                        value="{{ isset($view_6->special_information)?$view_6->special_information:''}}"></textarea>
+                                        value="{{ isset($view_6->asset_description)}}"></textarea>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
+                        </div> -->
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Real Member</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -612,19 +636,19 @@
                                         value="{{ isset($view_6->is_real_member)?$view_6->is_real_member:0}}">
                                 </div>
                             </div>
-                        </div>
-                        <br>
+                        </div> -->
+                        <!-- <br>
                         <h5 class="text-center">Assets</h5>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Item</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control"
-                                        value="{{ isset($view_6->item)?$view_6->item:0}}">
+                                        value="{{ isset($view_6->asset_qty)}}">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
+                        </div> -->
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Value</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control"
@@ -635,10 +659,10 @@
 
                             </div>
 
-                        </div>
-                    </div>
-                    @endisset
-               
+                        </div> -->
+                    <!-- </div> -->
+
+
         </div>
     </div>
 </div>
@@ -709,5 +733,6 @@
 
     </div>
 </div>
+        </fieldset>
 
 @endsection

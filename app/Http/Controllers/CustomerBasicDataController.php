@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use AddSignToCbs;
 use App\Models\AccountCategory;
+use App\Models\AddressData;
 use App\Models\BeneficiaryData;
 use App\Models\Branch;
 use App\Models\ContactData;
@@ -19,10 +21,12 @@ use App\Models\OtherSocietyData;
 use App\Models\SmallGroup;
 use App\Models\SpecialData;
 use App\Models\SubAccountOffice;
+use Faker\Provider\ar_JO\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+
 
 class CustomerBasicDataController extends Controller
 {
@@ -40,6 +44,29 @@ class CustomerBasicDataController extends Controller
         $cus_count = '0000' . count(CustomerBasicData::all());
         $cus_id = substr($cus_count, -3);
         // $cus_id =$province.'-'. $br_code . '-' . $cus_count;
+        $main_type = $request;
+        $main_type['customer_id'] = $cus_id;
+        $main_type['is_enable'] = 1;
+        $main_type['non_member'] = 1;
+        $main_type['created_by'] = Auth::user()->name;
+        $main_type = CutomerMainType::create($main_type->all());
+        $main_type->save();
+
+
+        $contact_data = $request;
+        $contact_data['customer_id'] = $cus_id;
+        $contact_data['is_enable'] = 1;
+        $contact_data['created_by'] = Auth::user()->name;
+        $contact_data = ContactData::create($contact_data->all());
+        $main_type->save();
+
+
+        $addres_data = $request;
+        $addres_data['customer_id'] = $cus_id;
+        $addres_data['is_enable'] = 1;
+        $addres_data['created_by'] = Auth::user()->name;
+        $addres_data = AddressData::create($addres_data->all());
+        $addres_data->save();
 
         $cbs = CustomerBasicData::create($request->all());
         $cbs->customer_id = $cus_id;
@@ -55,17 +82,7 @@ class CustomerBasicDataController extends Controller
 
         $cbs->save();
 
-        $main_type = CutomerMainType::create($request->all());
-        $main_type->customer_id = $cus_id;
-        $main_type->is_enable = 1;
-        $main_type->created_by = Auth::user()->name;
-        $main_type->save();
 
-        $contact_data = $request;
-        $contact_data['customer_id'] = $cus_id;
-        $contact_data['is_enable'] = 1;
-        $contact_data['created_by'] = Auth::user()->name;
-        $contact_data = ContactData::create($contact_data->all());
         return view('members.2_statusanddated',compact('cus_id'))->with('success', 'Details submitted');
 
 
@@ -219,7 +236,7 @@ class CustomerBasicDataController extends Controller
 
         $view_5_2 = GuardianData::leftjoin('customer_basic_data','customer_basic_data.customer_id','guardian_data.customer_id')
         ->where('guardian_data.customer_id',$request->id)->get();
-        $view_6 = SpecialData::where('customer_id',$request->id)->first();
+        $view_6 = CustomerAsset::where('customer_id',$request->id)->get();
         return view('members.view_member',compact('view_1','view_1_1','view_2','view_3','view_4','view_5_2','view_6'));
     }
 

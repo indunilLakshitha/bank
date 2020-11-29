@@ -142,6 +142,15 @@
                         </div>
                     </div>
                     <div class="row">
+                        <label class="col-sm-4 col-form-label">Guardian Details Required</label>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input type="checkbox"value="1" class="form-control" name="is_guardian_required" id="is_guardian_required">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
                         <label class="col-sm-4 col-form-label">Internal Transaction SMS Allowed</label>
                         <div class="col-sm-2">
                             <div class="form-group">
