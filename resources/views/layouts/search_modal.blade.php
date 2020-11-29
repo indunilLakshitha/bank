@@ -38,24 +38,21 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <label class="col-sm-2 col-form-label"> Client Full Name</label>
+                            <label class="col-sm-2 col-form-label"> Customer ID</label>
                             <div class="col-sm-10">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <input oninput="toCap(this.value, this.id), get_modal_search_by_full_name(this.value)"
+                                            <input
+                                            oninput=
+                                            "
+                                            // toCap(this.value, this.id),
+                                            get_modal_search_by_customer_id(this.value)"
                                                 type="text" class="form-control js-example-data-ajax"
-                                                id="client_full_name"
-                                                placeholder="Enter Full Name"
+
+                                                placeholder="Enter Customer ID"
                                                 >
                                         </div>
-                                    </div>
-                                    <div class="col">
-                                            <button class="btn  btn-info btn"
-                                            onclick="modal_serach_by_name_results_tbody.innerHTML = null"
-                                            >
-                                            Clear Results </button>
-
                                     </div>
                                 </div>
                             </div>
@@ -140,6 +137,23 @@
         }
     })
     }
+
+    function get_modal_search_by_customer_id(value){
+        console.log(value);
+        if(value === ''){
+            modal_serach_by_name_results_tbody.innerHTML = ''
+        }
+        $.ajax({
+        type: 'GET',
+        url: '{{('/search_by_customer_id')}}',
+        data: {text:value} ,
+        success: function(data){
+            console.log(data);
+            return set_modal_serach_by_name_results(data)
+        }
+    })
+    }
+    get_modal_search_by_customer_id
 
 function set_modal_serach_by_name_results(data){
     console.log('inside setter -modal', data);

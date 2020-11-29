@@ -24,7 +24,7 @@
                     {{-- </div> --}}
                 </div>
             </div>
-            <form method="post" action="/saving/open" class="form-horizontal">
+            <form method="post" action="/saving/open" class="form-horizontal" enctype="multipart/form-data">
                 <div class="card " style="border: solid">
                     @csrf
                     <div class="card ">
