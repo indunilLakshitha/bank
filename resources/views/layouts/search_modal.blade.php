@@ -11,47 +11,42 @@
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content " style="width: 800px;height: auto">
                     <div>
-                        <div class="row mt-5">
+                        <div class="row mt-5 ml-3">
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-10">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <input oninput="toCap(this.value, this.id), get_modal_search_by_full_name(this.value)"
+                                            <input
+                                                oninput="toCap(this.value, this.id), get_modal_search_by_full_name(this.value)"
                                                 type="text" class="form-control js-example-data-ajax"
-                                                id="client_full_name"
-                                                placeholder="Enter Full Name"
-                                                >
+                                                id="client_full_name" placeholder="Enter Full Name">
                                         </div>
                                     </div>
                                     <div class="col">
                                         {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                            <button class="btn  btn-info btn"
+                                        {{-- <button class="btn  btn-info btn"
                                             onclick="modal_serach_by_name_results_tbody.innerHTML = null"
                                             >
-                                            Clear Results </button>
+                                            Clear Results </button> --}}
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-5">
+                        <div class="row ml-3">
                             <label class="col-sm-2 col-form-label"> Customer ID</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-5">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <input
-                                            oninput=
-                                            "
+                                            <input oninput="
                                             // toCap(this.value, this.id),
-                                            get_modal_search_by_customer_id(this.value)"
-                                                type="text" class="form-control js-example-data-ajax"
-
-                                                placeholder="Enter Customer ID"
-                                                >
+                                            get_modal_search_by_customer_id(this.value)" type="text"
+                                                class="form-control js-example-data-ajax"
+                                                placeholder="Enter Customer ID">
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +57,7 @@
                                 <tbody id="modal_serach_by_name_results_tbody" class="d-none"></tbody>
                             </table>
                         </div>
-                        <div class="row">
+                        <div class="row ml-3">
                             <label class="col-sm-2 col-form-label">ID Type</label>
                             <div class="col-sm-10">
                                 <div class="row">
@@ -90,8 +85,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">ID Number</label>
+                        <div class="row mb-5 ml-3">
+                            <label class="col-sm-2 col-form-label ">ID Number</label>
                             <div class="col-sm-10">
                                 <div class="row">
                                     <div class="col-7">
@@ -119,7 +114,6 @@
 </div>
 
 <script>
-
     let customer_data;
 
     function get_modal_search_by_full_name(value){
@@ -185,13 +179,15 @@ function set_modal_serach_by_name_results(data){
 }
 
 function set_cus_details_from_modal(id){
-    // console.log(customer_data);
-
+console.log(id)
+    console.log(customer_data);
     customer_data.filter(cus => {
         if(cus.id === parseInt(id)){
             full_name.value = cus.full_name
             customer_id.value = cus.customer_id
-             return console.log(cus);
+            dob.value = cus.date_of_birth
+            branch_code.value = branch_code.date_of_birth
+             return console.log(dob.value);
             //  console.log(full_name);
         }
     })

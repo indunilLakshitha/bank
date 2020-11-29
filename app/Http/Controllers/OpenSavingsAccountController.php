@@ -98,7 +98,7 @@ class OpenSavingsAccountController extends Controller
     {
         // return $request;
         $data = DB::select("
-        SELECT * FROM customer_basic_data
+        SELECT customer_basic_data.*,branches.*,customer_status_dates.*,customer_basic_data.customer_id as org_id FROM customer_basic_data
 
         LEFT JOIN branches
         ON branches.id = customer_basic_data.branch_id

@@ -99,7 +99,8 @@ class UserController extends Controller
     }
 
     public function index(){
-        $users = User::all();
+         $users = User::leftjoin('branches','branches.id','users.id')
+                    ->select('users.*','branches.*')->get();
         return view('users.index', compact('users'));
     }
 

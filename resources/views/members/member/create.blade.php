@@ -8,8 +8,8 @@
 <div class="card " style="border: solid">
     <div class="row">
         <div class="col">
-            <button type="button" class="btn fa fa-search btn-info float-right" data-toggle="modal"
-            href="#noticeModal"> SEARCH</button>
+            {{-- <button type="button" class="btn fa fa-search btn-info float-right" data-toggle="modal"
+            href="#noticeModal"> SEARCH</button> --}}
         </div>
     </div>
     <div class="card-body ">
@@ -19,16 +19,16 @@
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <label class="col-sm-2 col-form-label">Member Name</label>
             <div class="col-sm-6">
                 <div class="form-group">
                     <input type="text" class="form-control" id="member" oninput="getCustomers(this.value)">
 
                 </div>
-            </div>
+            </div> --}}
             {{-- <button class="btn fa fa-search btn-info btn"> &nbspFind</button> --}}
-        </div>
+        {{-- </div>
         <div class="row ">
             <div class="col">
                 <table class="table">
@@ -42,17 +42,18 @@
                 <div class="form-group">
                     <input type="text" class="form-control" >
                 </div>
-            </div>
+            </div> --}}
             {{-- <button class="btn fa fa-search btn-info btn-sm"></button> --}}
-        </div>
+        {{-- </div> --}}
         <div class="row">
-            <label class="col-sm-2 col-form-label">Authantification Number</label>
+            <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-6">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <input type="text" class="form-control">
-                </div>
+                </div> --}}
             </div>
-            <button class="btn fa fa-search btn-info btn-sm"></button>
+            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal"
+            href="#noticeModal"></a>
         </div>
 
         <div class="row">
