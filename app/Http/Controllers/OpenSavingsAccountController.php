@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\CustomerBasicData;
-
+use App\Models\ProductType;
 
 class OpenSavingsAccountController extends Controller
 {
@@ -181,8 +181,15 @@ class OpenSavingsAccountController extends Controller
 
     public function product_details(Request $request)
     {
-        // return $request;
-        $prod_data = ProductData::create($request->all());
+          $prod_data = ProductData::create($request->all());
+
+
+          $product_type=ProductType::where('id',$prod_data->product_type_id)->first();
+
+         $request->session()->put('is_beneficiearies_required',$product_type->is_beneficiearies_required);
+         $request->session()->put('is_guardianes_required',$product_type->is_nominies_required);
+         $request->session()->put('is_nominies_required',$product_type->is_nominies_required);
+         $request->session()->put('is_documents_required',$product_type->is_documents_required);
 
         $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
         $prod_id = $prod_data->id;
@@ -192,11 +199,32 @@ class OpenSavingsAccountController extends Controller
         $cus_id = AccountGeneralInformation::find($request->account_id)->customer_id;
         $all_customers = CustomerBasicData::all();
 
-        return view('members.5_benificiaries', compact('cus_id', 'account_id', 'prod_id', 'all_customers'))->with('success', 'Details submitted');
+
+        if($request->session()->get('is_beneficiearies_required')==1){
+
+            return view('members.5_benificiaries', compact('cus_id', 'account_id', 'prod_id', 'all_customers'))->with('success', 'Details submitted');
+
+        }else if($request->session()->get('is_nominies_required')==1){
+
+            $account_id = $request->account_id;
+        $customer_id = $request->customer_id;
+        $prod_id = $request->prod_id;
+        $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+
+        return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
+        }else if($request->session()->get('is_documents_required')==1){
+            $docs = DB::table('documents')->get();
+            $account_id = $request->account_id;
+            $customer_id = $request->customer_id;
+            $prod_id = $request->prod_id;
+            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
+        }
+
     }
 
     public function benificiaries(Request $request)
     {
+
 
         $prod_id = $request->prod_id;
         $account_id = $request->account_id;
@@ -207,11 +235,21 @@ class OpenSavingsAccountController extends Controller
 
             return view('savings.4_joint_acoount', compact('customer_id', 'prod_id', 'account_id'));
         } else {
-            $docs = DB::table('documents')->get();
-            $account_id = $request->account_id;
+            if($request->session()->get('is_nominies_required')==1){
+
+                $account_id = $request->account_id;
             $customer_id = $request->customer_id;
             $prod_id = $request->prod_id;
-            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
+            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+
+            return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
+            }else if($request->session()->get('is_documents_required')==1){
+                $docs = DB::table('documents')->get();
+                $account_id = $request->account_id;
+                $customer_id = $request->customer_id;
+                $prod_id = $request->prod_id;
+                return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
+            }
         }
     }
 
