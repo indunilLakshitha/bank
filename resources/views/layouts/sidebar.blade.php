@@ -3,11 +3,9 @@
 
 
     <div class="logo">
-        <a href="" class="simple-text logo-mini">
-
-        </a>
-        <a href="/dashboard" class="simple-text logo-normal">
-            EDCB
+        
+        <a href="/dashboard" class="simple-text logo-normal " style="text-align: center">
+            Economic <br>Development <br>Co-op Bank
         </a></div>
     <div class="sidebar-wrapper">
 

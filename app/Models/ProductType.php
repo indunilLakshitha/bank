@@ -21,5 +21,6 @@ class ProductType extends Model
         'is_enable',
         'created_by',
         'updated_by',
+        'product_code'
     ];
 }
