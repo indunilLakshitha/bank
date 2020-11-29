@@ -16,16 +16,21 @@
             <div class="card-body ">
                 <div class="row">
                     <div class="col-md-12">
+                        @if(Session::has('message'))
+                            <p class="alert alert-danger">{{ Session::get('message') }}</p>
+                        @endif
                         <div class="table-responsive">
-                            <form action="/users/store" method="POST">
+                            <form action="{{url('/users/store')}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="from-group col-6">
-                                        <label for="">Full Name</label>
+                                        <label for="">Full Name </label>
+                                        <font color="red">*</font>
                                         <input type="text" name="name" class="form-control" required>
                                     </div>
                                     <div class="from-group col-6">
                                         <label for="">Email</label>
+                                        <font color="red">*</font>
                                         <input type="email" name="email" class="form-control" required>
                                     </div>
 
@@ -34,18 +39,20 @@
                                 <div class="row">
                                     <div class="from-group col-6">
                                         <label for="">Employee Number</label>
-                                        <input type="text" name="employee_no" class="form-control">
+                                        <font color="red">*</font>
+                                        <input type="text" name="employee_no" class="form-control" required>
                                     </div>
                                     <div class="from-group col-6">
                                         <label for="">Branch</label>
+                                        <font color="red">*</font>
                                         <?php $branches=Illuminate\Support\Facades\DB::table('branches')->get(); ?>
-                                        <select name="branch_no" id="c" class="ml-3 selectpicker"
+                                        <select name="branh_id" id="branh_id" class="ml-3 selectpicker"
                                             data-style="select-with-transition">
                                             <option value="">Select</option>
                                             @isset($branches)
-                                            @foreach ($branches as $branch)
-                                            <option value="{{$branch->id}}">{{$branch->branch_name}}</option>
-                                            @endforeach
+                                                @foreach ($branches as $branch)
+                                                    <option value="{{$branch->id}}">{{$branch->branch_name}}</option>
+                                                @endforeach
                                             @endisset
                                         </select>
                                     </div>
@@ -53,23 +60,27 @@
                                 <div class="row">
                                     <div class="from-group col-6">
                                         <label for="">Mobile Number</label>
-                                        <input type="text" name="mobile_number" class="form-control">
+                                        <font color="red">*</font>
+                                        <input type="text" name="mobile_number" class="form-control" required>
                                     </div>
-                                    <div class="from-group col-6">
-                                        <label for="">Password</label>
-                                        <input type="password" name="password" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="from-group col-6">
                                         <label for="">NIC</label>
                                         <input type="text" name="nic" class="form-control">
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="from-group col-6">
-
+                                        <label for="">Password</label>
+                                        <font color="red">*</font>
+                                        <input type="password" name="password" class="form-control" required>
+                                    </div>
+                                    <div class="from-group col-6">
+                                        <label for="">Confirm Password</label>
+                                        <font color="red">*</font>
+                                        <input type="password" name="confirm_password" class="form-control" required>
                                     </div>
                                 </div>
-                                <br>
+                                <br/>
                         </div>
                     </div>
                 </div>

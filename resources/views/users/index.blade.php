@@ -10,7 +10,7 @@
           </div> --}}
                 <h4 class="card-title">Permissions
                     @can('create_users')
-                    <a href="/users/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
+                    <a href="{{url('/users/add')}}" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
                         <i class="material-icons">add</i> <span class="mx-1">Add User</span>
                     </a>
                     @endcan
@@ -20,11 +20,19 @@
             <div class="card-body ">
                 <div class="row">
                     <div class="col-md-12">
+                        @if(Session::has('message-error'))
+                            <p class="alert alert-danger">{{ Session::get('message') }}</p>
+                        @endif
+                        @if(Session::has('message'))
+                            <p class="alert alert-success">{{ Session::get('message') }}</p>
+                        @endif
                         <div class="material-datatables">
                             <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
                                     <th>Full Name </th>
+                                    <th>Employee Number</th>
+                                    <th>NIC Number</th>
                                     <th>Email</th>
                                     <th>Branch</th>
                                     <th>Mobile Number</th>
@@ -35,23 +43,25 @@
                                     @foreach ($users as $u)
                                     <tr>
                                         <th> {{$u->name}} </th>
+                                        <th> {{$u->employee_no}} </th>
+                                        <th> {{$u->nic}} </th>
                                         <th> {{$u->email}} </th>
-                                        <th> {{$u->branch_id}} </th>
+                                        <th> {{$u->branh_id}} </th>
                                         <th> {{$u->mobile_number}} </th>
                                         <th>
                                             @foreach ($u->roles as $r)
-                                            <span class="badge badge-pill badge-info">{{$r->name}}</span>
+                                                <span class="badge badge-pill badge-info">{{$r->name}}</span>
                                             @endforeach
                                         </th>
                                         <td class="td-actions text-right">
                                             @can('update_users')
-                                            <a href="/users/edit/{{$u->id}}" rel="tooltip"
+                                            <a href="{{url('/users/edit/'.$u->id)}}" rel="tooltip"
                                                 class="btn btn-success btn-round">
                                                 <i class="material-icons">edit</i> <span class="mx-1">Edit</span>
                                             </a>
                                             @endcan
                                             @can('delete_users')
-                                            <a href="/users/delete/{{$u->id}}" rel="tooltip"
+                                            <a href="{{url('/users/delete/'.$u->id)}}" rel="tooltip"
                                                 class="btn btn-danger btn-round">
                                                 <i class="material-icons">close</i> <span class="mx-1">Delete</span>
                                             </a>

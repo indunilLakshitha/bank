@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Cassandra\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -99,7 +101,7 @@ class UserController extends Controller
     }
 
     public function index(){
-        $users = User::all();
+        $users = User::all()->where('status','<', 2);
         return view('users.index', compact('users'));
     }
 
@@ -112,16 +114,41 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+        //check employee number existing
+        $employee_no = intval($request->input('employee_no'));
+        $email_address= $request->input('email');
+        $user_password = $request->input('password');
+        $user_confirm_password = $request->input('confirm_password');
+        $users_count_data1= DB::table('users')
+                                ->select(DB::raw('count(*) as user_count'))
+                                ->where('email', '=', $email_address)
+                                ->get();
+        $users_count_data2= DB::table('users')
+                                ->select(DB::raw('count(*) as user_count'))
+                                ->where('employee_no', '=', $employee_no)
+                                ->get();
+        $users_count1 = isset($users_count_data1[0]) ? intval($users_count_data1[0]->user_count): 0;
+        $users_count2 = isset($users_count_data1[0]) ? intval($users_count_data2[0]->user_count): 0;
+       // dd($user_password);
+        if($users_count1 > 0){
+            //Session::flash('alert-danger', 'danger');
+            return Redirect::back()->with('message', 'You enter existing email address');
+        } if($users_count2 > 0){
+            //Session::flash('alert-danger', 'danger');
+            return Redirect::back()->with('message', 'You enter existing employee number');
+        } elseif($user_password != $user_confirm_password) {
+            return Redirect::back()->with('message', 'Your enter password mismatch');
+        } else {
+            // return $request;
+            $user = User::create($request->all());
+            $user->password = Hash::make($request->password);
+            $user->save();
 
-        // return $request;
-        $user = User::create($request->all());
-        $user->password = Hash::make($request->password);
-        $user->save();
+            $user->syncRoles($request->roles);
+            $user->syncPermissions($request->permissions);
 
-        $user->syncRoles($request->roles);
-        $user->syncPermissions($request->permissions);
-
-        return redirect('/users/index')->with('success', 'User created successfully');
+            return redirect('/users/index')->with('message', 'User created successfully');
+        }
     }
 
     public function destroy($id){
