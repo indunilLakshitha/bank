@@ -8,24 +8,57 @@
         <div class="col-md-12">
             <div class="card ">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-10">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
                                 <h4 class="card-title">Step 01 - Savings Account Opening</h4>
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+                    {{-- <div class="col-8"> --}}
+                    {{-- <div class="card-header card-header-rose card-header-text"> --}}
+                    {{-- <div class="card-text"> --}}
+                    {{-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> --}}
+                    {{-- </div> --}}
+                    {{-- </div> --}}
+                    {{-- </div> --}}
+                    <div class="col-1">
+                        <div class="card-text">
+                            <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+                        </div>
+                    </div>
+>>>>>>> 5fc366d1e712a5aa61dac569c9e5720d4f83e127
                 </div>
             </div>
+            </div>
+     </div>
+</div>
             <form method="post" action="/saving/open" class="form-horizontal" enctype="multipart/form-data">
                 <div class="card " style="border: solid">
                     @csrf
+<<<<<<< HEAD
+=======
+                    <div class="col-md-12 ">
+>>>>>>> 5fc366d1e712a5aa61dac569c9e5720d4f83e127
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
                                 <h4 class="card-title">Client Details</h4>
                             </div>
                         </div>
                         <div class="card-body ">
+<<<<<<< HEAD
+=======
+                            {{-- <div class="row">
+                            <label class="col-sm-2 col-form-label">CIF</label>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value={{$CIF}} disabled>
+                                        </div>
+                                    </div>
+                                </div> --}}
+>>>>>>> 5fc366d1e712a5aa61dac569c9e5720d4f83e127
                             <div style="border: solid">
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label"> Client Full Name</label>
@@ -33,10 +66,15 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
+<<<<<<< HEAD
                                                     <input
                                                         oninput="toCap(this.value, this.id), get_options(this.value, this)"
                                                         type="text" class="form-control js-example-data-ajax"
                                                         id="client_full_name">
+=======
+                                                    <input oninput="toCap(this.value, this.id), get_options(this.value, this)"
+                                                        type="text" class="form-control js-example-data-ajax" id="client_full_name">
+>>>>>>> 5fc366d1e712a5aa61dac569c9e5720d4f83e127
                                                 </div>
                                             </div>
                                             <div class="col">
@@ -50,6 +88,7 @@
                                 </div>
 
                             </div>
+<<<<<<< HEAD
                         </div>
                 </div>
                 <div class="card" style="margin-top: 100px;border: solid">
@@ -64,8 +103,35 @@
                                     <div class="form-group">
                                         <input type="text" name="full_name" class="form-control" id="full_name">
                                     </div>
+=======
+
+                            <input type="hidden" id="branch_id" name="branch_id">
+                            <input type="hidden" id="customer_id" name="customer_id">
+                            <input type="hidden" id="account_number" name="account_number" value={{$acc_count}}>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Full Name</label>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <input type="text" name="full_name" class="form-control" id="full_name">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+    <!-- <div class="row">
+                            <label class="col-sm-2 col-form-label">CIF</label>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control">
+>>>>>>> 5fc366d1e712a5aa61dac569c9e5720d4f83e127
                                 </div>
 
+<<<<<<< HEAD
                             </div>
                         </div>
                     </div>
@@ -73,11 +139,117 @@
                     <div class="row ml-3 ">
                         <label class="col-sm-2 col-form-label">DOB</label>
                         <div class="col-sm-3">
+=======
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">DOB</label>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="date" id="dob" name="dob" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Customer FATCA Clearance Received</label>
+                                <div class="col-sm-3">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <select name="FATCA_clearance_received" class="form-control"
+                                                    data-style="select-with-transition">
+                                                    <option value="">Select </option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Customer PEP Clearance Received</label>
+                                <div class="col-sm-3">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <select name="PEP_clearance_received" class="form-control"
+                                                    data-style="select-with-transition">
+                                                    <option value="">Select </option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        <br> <br>
+
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Branch Code</label>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="branch_code" name="branch_code">
+                                    </div>
+                                </div>
+                            </div>
+
+                        {{-- <div class="row">
+                            <label class="col-sm-2 col-form-label">Customer Rating</label>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="" name="">
+                                </div>
+                            </div>
+                        </div> --}}
+
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Customer Signature</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <span class="btn btn-round btn-rose btn-file ">
+                                        <span class="fileinput-new">Choose File</span>
+                                        <input type="file" name="cus_sign_img" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+<div class="card " style="border: solid">
+
+    <div class="card ">
+        <div class="card-body ">
+            <div class="card-header card-header-rose card-header-text">
+
+                <div class="card-text">
+                    <h4 class="card-title">General Information</h4>
+                </div>
+            </div>
+            {{-- <div class="row">
+                <label class="col-sm-2 col-form-label">Lead source Category</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-5">
+>>>>>>> 5fc366d1e712a5aa61dac569c9e5720d4f83e127
                             <div class="form-group">
                                 <input type="date" id="dob" name="dob" class="form-control">
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+                </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Lead source Identification</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="lead_source_identification">
+>>>>>>> 5fc366d1e712a5aa61dac569c9e5720d4f83e127
 
                     <br> <br>
                     <div class="row ml-3 ">
@@ -199,6 +371,8 @@
 </div>
 </div>
 </div>
+
+
 {{-- wild card model------------------------------------------------------------------ --}}
 @include('layouts.search_modal')
 
