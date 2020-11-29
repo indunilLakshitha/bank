@@ -41,8 +41,9 @@ class CustomerBasicDataController extends Controller
 // return $request;
         // $province='W';
         // $br_code = Branch::find($request->branch_id)->branch_code;
-        $cus_count = '0000' . count(CustomerBasicData::all());
-        $cus_id = substr($cus_count, -3);
+        $count=count(CustomerBasicData::all())+1;
+        $cus_count = '0000' .$count ;
+         $cus_id = substr($cus_count, -3);
         // $cus_id =$province.'-'. $br_code . '-' . $cus_count;
         $main_type = $request;
         $main_type['customer_id'] = $cus_id;

@@ -8,14 +8,14 @@
         <div class="col-md-10 col-12 mr-auto ml-auto">
             <div class="card" style="border: solid">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-10">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
                                 <h4 class="card-title">Step 04 - Assets Details</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-2">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
                                 {{-- <h4 class="card-title">Member Creation</h4> --}}
@@ -57,16 +57,16 @@
                             <h5 class="text-center">Assets</h5>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Item</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <input type="text" name="asset_description" id="item" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Value</label>
+                                <label class="col-sm-2 col-form-label">Value(Rs.)</label>
                                 <div class="col-sm-3">
-                                    <input type="text" name="asset_qty" id="value" class="form-control">
+                                    <input type="number" name="asset_qty" id="value" class="form-control">
                                 </div>
                                 {{-- <div class="col-sm-3">
                                     <select name="" id="" class="form-control">
@@ -100,7 +100,7 @@
                         <div class="row">
                             <div class="col-sm-2">
                                 <button onclick="
-                                Swal.fire('Created Customer {{$cus_id}} ').then(() => window.location = '/')
+                                Swal.fire('Click OK to Submit  Customer {{$cus_id}} ').then(() => window.location = '/members')
                                 " class="btn btn-sm btn-primary">SUBMIT & FINISH </button>
                             </div>
                         </div>
