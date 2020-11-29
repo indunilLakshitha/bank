@@ -102,7 +102,7 @@ class UserController extends Controller
 
     public function index(){
         //$users = User::all()->where('status','<', 2);
-        $users = User::leftjoin('branches','branches.id','users.id')
+        $users = User::leftjoin('branches','branches.id','users.branh_id')
             ->select('users.*','branches.branch_name','branches.branch_code')
             ->where('users.status','<', 2)
             ->get();
@@ -136,12 +136,12 @@ class UserController extends Controller
        // dd($user_password);
         if($users_count1 > 0){
             //Session::flash('alert-danger', 'danger');
-            return Redirect::back()->with('message', 'You enter existing email address');
+            return Redirect::back()->with('message', 'You entered an existing email address');
         } if($users_count2 > 0){
             //Session::flash('alert-danger', 'danger');
-            return Redirect::back()->with('message', 'You enter existing employee number');
+            return Redirect::back()->with('message', 'You entered an existing employee number');
         } elseif($user_password != $user_confirm_password) {
-            return Redirect::back()->with('message', 'Your enter password mismatch');
+            return Redirect::back()->with('message', 'Password mismatch');
         } else {
             // return $request;
             $user = User::create($request->all());
@@ -186,5 +186,12 @@ class UserController extends Controller
 
         return redirect('/users/index')->with('success', 'User updated successfully');
 
+    }
+
+    public function change_user_status(Request $request) {
+        $user = User::find($request->id);
+        $user->status = $request->status;
+        $user->save();
+        return response()->json($request);
     }
 }

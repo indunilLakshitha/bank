@@ -20,6 +20,12 @@
             <div class="card-body ">
                 <div class="row">
                     <div class="col-md-12">
+                        @if(Session::has('success'))
+                            <p class="alert alert-success">{{ Session::get('success') }}</p>
+                        @endif
+                        @if(Session::has('error'))
+                            <p class="alert alert-danger">{{ Session::get('error') }}</p>
+                        @endif
                         <div class="material-datatables">
                             <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                 cellspacing="0" width="100%" style="width:100%">
@@ -54,6 +60,7 @@
                                             @endcan
                                             @can('delete_roles')
                                             <a href="/roles/delete/{{$role->id}}" rel="tooltip"
+                                               onclick="return confirm('{{'Are you sure, You want delete this role('.$role->name.')'}}')"
                                                 class="btn btn-danger btn-round">
                                                 <i class="material-icons">close</i> <span class="mx-1">Delete</span>
                                             </a>

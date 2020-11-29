@@ -8,7 +8,7 @@
                 {{-- <div class="card-icon">
             <i class="material-icons"></i>
           </div> --}}
-                <h4 class="card-title">Permissions
+                <h4 class="card-title">Users
                     @can('create_users')
                     <a href="{{url('/users/add')}}" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
                         <i class="material-icons">add</i> <span class="mx-1">Add User</span>
@@ -30,21 +30,20 @@
                             <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
-                                    <th>Full Name </th>
                                     <th>Employee Number</th>
-                                    <th>NIC Number</th>
+                                    <th>Full Name </th>
                                     <th>Email</th>
                                     <th>Branch</th>
                                     <th>Mobile Number</th>
                                     <th>User Role</th>
+                                    <th>Status</th>
                                     <th class="text-right">Actions</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $u)
                                     <tr>
-                                        <th> {{$u->name}} </th>
                                         <th> {{$u->employee_no}} </th>
-                                        <th> {{$u->nic}} </th>
+                                        <th> {{$u->name}} </th>
                                         <th> {{$u->email}} </th>
                                         <th> {{$u->branch_code . ' - ' . $u->branch_name}} </th>
                                         <th> {{$u->mobile_number}} </th>
@@ -52,6 +51,19 @@
                                             @foreach ($u->roles as $r)
                                                 <span class="badge badge-pill badge-info">{{$r->name}}</span>
                                             @endforeach
+                                        </th>
+                                        <th>
+                                            @if ($u->status == 1)
+                                                <button onclick="change_user_status({{$u->id}}, 0)"
+                                                        rel="tooltip" title="Click to change Status" class="btn btn-sm btn-success btn-round">
+                                                    <span class="mx-1">Active</span>
+                                                </button>
+                                            @elseif($u->status == 0)
+                                                <button onclick="change_user_status({{$u->id}}, 1)"
+                                                        rel="tooltip" title="Click to change Status"  class="btn btn-sm btn-danger btn-round">
+                                                    <span class="mx-1">Inactive</span>
+                                                </button>
+                                            @endif
                                         </th>
                                         <td class="td-actions text-right">
                                             @can('update_users')
@@ -106,6 +118,23 @@
 
     }
 
+    function change_user_status(id, status){
+        // console.log(id);
+        $.ajax({
+            type: 'GET',
+            url: '{{('/change_user_status')}}',
+            data: {id, status},
+            success: function(data){
+                // console.log(data)
+                // return set_cus_details(data)
+                return location.reload()
+            },
+            error: function(data){
+                console.log(data)
+            }
+
+        })
+    }
 
 </script>
 @endsection

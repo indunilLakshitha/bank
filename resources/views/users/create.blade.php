@@ -31,7 +31,7 @@
                                     <div class="from-group col-6">
                                         <label for="">Email</label>
                                         <font color="red">*</font>
-                                        <input type="email" name="email" class="form-control" required>
+                                        <input type="email" name="email" class="form-control" pattern="^([0-9]{9}[x|X|v|V]|[0-9]{12})$" required>
                                     </div>
 
                                 </div>
@@ -51,7 +51,7 @@
                                             <option value="">Select</option>
                                             @isset($branches)
                                                 @foreach ($branches as $branch)
-                                                    <option value="{{$branch->id}}">{{$branch->branch_name}}</option>
+                                                    <option value="{{$branch->id}}">{{$branch->branch_code .' - '.$branch->branch_name}}</option>
                                                 @endforeach
                                             @endisset
                                         </select>

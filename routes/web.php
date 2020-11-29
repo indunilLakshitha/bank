@@ -102,6 +102,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['permission:update_users']], function () {
         Route::get('/users/edit/{id}', 'UserController@edit');
         Route::post('/users/update/{id}', 'UserController@update');
+        Route::get('change_user_status', 'UserController@change_user_status');
     });
 
     //users/delete
