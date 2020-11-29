@@ -131,20 +131,12 @@
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#diposits">
                     <i class="material-icons">sync_alt</i>
-                    <p> Withdrawals & Deposites
+                    <p>Deposites
                         <b class="caret"></b>
                     </p>
                 </a>
                 <div class="collapse" id="diposits">
                     <ul class="nav">
-                        @can('normal_withdrawal')
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/deposits/n-with">
-                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
-                                <span class="sidebar-normal">Normal Withdrawal</span>
-                            </a>
-                        </li>
-                        @endcan
                         @can('normal_deposite')
                         <li class="nav-item ">
                             <a class="nav-link" href="/deposits/n-dep">
@@ -153,14 +145,7 @@
                             </a>
                         </li>
                         @endcan
-                        @can('fd_withdrawal')
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/deposits/fd-with">
-                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
-                                <span class="sidebar-normal">FD Withdrawal</span>
-                            </a>
-                        </li>
-                        @endcan
+
                         @can('fd_deposite')
                         <li class="nav-item ">
                             <a class="nav-link" href="/deposits/fd-dep">
@@ -169,6 +154,37 @@
                             </a>
                         </li>
                         @endcan
+
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#withdrawals">
+                    <i class="material-icons">sync_alt</i>
+                    <p> Withdrawals
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="withdrawals">
+                    <ul class="nav">
+                        @can('normal_withdrawal')
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/deposits/n-with">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal">Savings Withdrawal</span>
+                            </a>
+                        </li>
+                        @endcan
+
+                        @can('fd_withdrawal')
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/deposits/fd-with">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal">FD Withdrawal</span>
+                            </a>
+                        </li>
+                        @endcan
+
 
                     </ul>
                 </div>
@@ -332,6 +348,12 @@
                             <a class="nav-link" href="/accountType">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal">Account Types</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branches">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branches</span>
                             </a>
                         </li>
                         <li class="nav-item ">

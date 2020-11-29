@@ -4,204 +4,205 @@
 @section('content')
 {{-- <form method="get" action="/" class="form-horizontal"> --}}
 
-    <div class="row">
-        <div class="col">
-            <div class="card ">
-                <div class="card-body ">
-                    <div class="card-header card-header-rose card-header-text">
-                        <div class="card-text">
-                            <h4 class="card-title">Normal Withdrawal</h4>
-                        </div>
+<div class="row">
+    <div class="col">
+        <div class="card ">
+            <div class="card-body ">
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Normal Withdrawal</h4>
                     </div>
+                </div>
 
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">Member</label>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="member" oninput="getCustomers(this.value)">
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Member</label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="member" oninput="getCustomers(this.value)">
 
-                            </div>
-                        </div>
-                        <button class="btn fa fa-search btn-info btn"> &nbspFind</button>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">Account</label>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)">
-                            </div>
-                        </div>
-                        <button class="btn fa fa-search btn-info btn-sm"></button>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-8 " style="margin-left: 90px">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table">
-                                            <table id="table" class="table table-striped table-no-bordered table-hover"
-                                                cellspacing="0" width="100%" style="width:100%">
-                                                <thead>
-                                                    <th>ID </th>
-                                                    <th>NAME</th>
-                                                    <th>NIC</th>
-                                                    <th>STATUS</th>
-                                                    <th>ACTION</th>
-                                                </thead>
-                                                <tbody id="results_tbody">
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">Account Name</label>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="full_name">
-                                <input type="text" class="form-control" name="customer_id" id="customer_id">
-                                <input type="text" class="form-control" name="account_id" id="account_id">
-                            </div>
+                    <button class="btn fa fa-search btn-info btn"> &nbspFind</button>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Account</label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)">
                         </div>
                     </div>
-
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">Withdrawal Method</label>
-                        <div class="col-sm-8">
+                    <button class="btn fa fa-search btn-info btn-sm"></button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 " style="margin-left: 90px">
+                        <div class="form-group">
                             <div class="row">
-                                <div class="col-5">
-                                    <div class="form-group">
-                                        <select name="payment_method_id" id="payment_method_id" class="form-control">
-                                            <option value="">Select </option>
-                                            @php
-                                            $payment_methods =
-                                            Illuminate\Support\Facades\DB::table('payment_methods')->where('is_enable',1)->get();
-                                            @endphp
-                                            @isset($payment_methods)
-                                            @foreach ($payment_methods as $payment_method)
-                                            <option value="{{$payment_method->id}}">
-                                                {{$payment_method->payment_method}}
-                                                @endforeach
-                                                @endisset
-                                        </select>
+                                <div class="col-md-12">
+                                    <div class="table">
+                                        <table id="table" class="table table-striped table-no-bordered table-hover"
+                                            cellspacing="0" width="100%" style="width:100%">
+                                            <thead>
+                                                <th>ID </th>
+                                                <th>NAME</th>
+                                                <th>NIC</th>
+                                                <th>STATUS</th>
+                                                <th>ACTION</th>
+                                            </thead>
+                                            <tbody id="results_tbody">
+
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">Take Amount</label>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="transaction_value">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label"> Total Amount </label>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">Balance</label>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="account_balance" name="account_balance" readonly>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">Naration</label>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {{-- </form> --}}
-
-                    <div class="row">
-
-                        <div class="col-6 text-right">
-                            <a onclick="normalWithdraw(transaction_value.value,customer_id.value,account_id.value,payment_method_id.value)"
-                                class="btn btn-rose col-4 text-white">WITHDRAW</a>
-                        </div>
-                        <div class="col-1 text-right">
-                            <button type="submit" class="btn ">Clear</button>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card ">
-                <div class="card-body ">
-                    <div class="card-header card-header-rose card-header-text">
-                        <div class="card-text">
-                            <h4 class="card-title">Saving Details</h4>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Account Name</label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="full_name">
+                            <input type="text" class="form-control" name="customer_id" id="customer_id">
+                            <input type="text" class="form-control" name="account_id" id="account_id">
                         </div>
                     </div>
-                    <div class="ml-3">
-                        <a href="" class="btn btn-warning"> Load Saving Details</a>
-                    </div>
-                    <div>
-                        <div class="material-datatables">
-                            <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
-                                width="100%" style="width:100%">
-                                <thead>
-                                    <th># </th>
-                                    <th>A/C No </th>
-                                    <th>A/C Name </th>
-                                    <th>Balance(Cap.) </th>
-                                    <th>Balance </th>
-
-                                </thead>
-                                <tbody id="results_tbody">
-
-                                    @isset($members)
-                                    @foreach ($members as $member)
-                                    <tr>
-                                        <th>{{$member->id}}</th>
-                                        <th>{{$member->customer_id}} </th>
-                                        <th>{{$member->customer_type}} </th>
-                                        <th>{{$member->identification_number}}</th>
-                                        <th>{{$member->name_in_use}}</th>
-                                        @if(intval($member->is_enable) == 1)
-                                        <th>ACTIVE</th>
-                                        @else
-                                        <th>INACTIVE</th>
-                                        @endif
-                                        <th><a href="{{url('/members/view/'.$member->customer_id)}}" rel="tooltip"
-                                                class="btn-sm btn-info btn-round">VIEW</a>
-                                            <a href="{{url('/members/edit/'.$member->customer_id)}}" rel="tooltip"
-                                                class="btn-sm btn-primary btn-round"><i class="material-icons">edit</i></a>
-                                        </th>
-                                    </tr>
-                                    @endforeach
-
-                                    @endisset
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
                 </div>
+
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Withdrawal Method</label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <select name="payment_method_id" id="payment_method_id" class="form-control">
+                                        <option value="">Select </option>
+                                        @php
+                                        $payment_methods =
+                                        Illuminate\Support\Facades\DB::table('payment_methods')->where('is_enable',1)->get();
+                                        @endphp
+                                        @isset($payment_methods)
+                                        @foreach ($payment_methods as $payment_method)
+                                        <option value="{{$payment_method->id}}">
+                                            {{$payment_method->payment_method}}
+                                            @endforeach
+                                            @endisset
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Take Amount</label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="transaction_value">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label"> Total Amount </label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Balance</label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="account_balance" name="account_balance"
+                                readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Narration</label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- </form> --}}
+
+                <div class="row">
+
+                    <div class="col-6 text-right">
+                        <a onclick="normalWithdraw(transaction_value.value,customer_id.value,account_id.value,payment_method_id.value)"
+                            class="btn btn-rose col-4 text-white" style="text-align: center">WITHDRAW</a>
+                    </div>
+                    <div class="col-1 text-right">
+                        <button type="submit" class="btn ">Clear</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+    <div class="col">
+        <div class="card ">
+            <div class="card-body ">
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Saving Details</h4>
+                    </div>
+                </div>
+                <div class="ml-3">
+                    <a href="" class="btn btn-warning"> Load Saving Details</a>
+                </div>
+                <div>
+                    <div class="material-datatables">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                            width="100%" style="width:100%">
+                            <thead>
+                                <th># </th>
+                                <th>A/C No </th>
+                                <th>A/C Name </th>
+                                <th>Balance(Cap.) </th>
+                                <th>Balance </th>
+
+                            </thead>
+                            <tbody id="_tbody">
+
+                                @isset($members)
+                                @foreach ($members as $member)
+                                <tr>
+                                    <th>{{$member->id}}</th>
+                                    <th>{{$member->customer_id}} </th>
+                                    <th>{{$member->customer_type}} </th>
+                                    <th>{{$member->identification_number}}</th>
+                                    <th>{{$member->name_in_use}}</th>
+                                    @if(intval($member->is_enable) == 1)
+                                    <th>ACTIVE</th>
+                                    @else
+                                    <th>INACTIVE</th>
+                                    @endif
+                                    <th><a href="{{url('/members/view/'.$member->customer_id)}}" rel="tooltip"
+                                            class="btn-sm btn-info btn-round">VIEW</a>
+                                        <a href="{{url('/members/edit/'.$member->customer_id)}}" rel="tooltip"
+                                            class="btn-sm btn-primary btn-round"><i class="material-icons">edit</i></a>
+                                    </th>
+                                </tr>
+                                @endforeach
+
+                                @endisset
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 {{-- </div>
 </div>
@@ -223,7 +224,7 @@
                        'name': name,
                     },
                     success: function(data){
-                        // console.log(data)
+                        console.log(data)
                         return showCustomers(data)
                     }
                })
@@ -238,7 +239,7 @@
                        'id': id,
                     },
                     success: function(data){
-                        console.log(data)
+                        // console.log(data)
                         return showCustomers(data)
 
                     }
@@ -268,7 +269,8 @@
            }
 
            function showCustomers(data){
-                results_tbody.innerHTML = ''
+            //    console.log(data)
+            results_tbody.innerHTML = ''
                 data.forEach(i => {
                     html = `
                     <tr>
@@ -280,7 +282,8 @@
                     </tr>
                     `
                     results_tbody.innerHTML += html
-                    full_name.value = i.full_name
+            console.log(html)
+                    // full_name.value = i.full_name
                 })
            }
 
@@ -290,6 +293,9 @@
             customer_id.value = id
             account_balance.value = balance
            }
+
+
+
 
 
 </script>

@@ -305,6 +305,10 @@ $(document).ready(function() {
 
  function toCap(text, eleId){
 
+     if(text === ''){
+         return
+     }
+
     let textArr = text.toLowerCase().split(' ')
     let capsArr = []
 
@@ -377,8 +381,9 @@ $(document).ready(function() {
         })
     }
 
-    function get_cus_details(identification_type_id, identification_number, full_name){
-        if(full_name === ''){
+    function get_cus_details(identification_type_id, identification_number){
+        // if(full_name === ''){
+
             $.ajax({
             type: 'GET',
             url: '{{('/get_cus_details')}}',
@@ -392,9 +397,9 @@ $(document).ready(function() {
             }
 
             })
-        } else {
-            return get_cus_details_by_name(full_name)
-        }
+        // } else {
+        //     return get_cus_details_by_name(full_name)
+        // }
     }
 
     function get_cus_details_by_name(full_name){
@@ -404,16 +409,29 @@ $(document).ready(function() {
             data: {full_name},
             success: function(data){
                 console.log(data)
+
                 return set_cus_details(data)
+                // return set_modal_serach_by_name_results(data)
             },
             error: function(data){
                 console.log(data)
+
             }
 
         })
     }
 
+
+
     function set_cus_details(data){
+        // console.log(Object.keys(data).length === 0);
+        if(Object.keys(data).length === 0){
+            return Swal.fire('Search Unuccessful', '', 'error')
+        }
+        Swal.fire('Search Successful', '', 'success')
+
+        // console.log(typeof data);
+        console.log('inside setter - footer',  data);
         full_name.value = data.full_name
         branch_code.value = data.branch_code
         branch_id.value = data.branch_id

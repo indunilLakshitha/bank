@@ -16,49 +16,33 @@
                         </div>
                     </div>
                     {{-- <div class="col-8"> --}}
-                        {{-- <div class="card-header card-header-rose card-header-text"> --}}
-                        {{-- <div class="card-text"> --}}
-                            {{-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> --}}
-                        {{-- </div> --}}
-                        {{-- </div> --}}
+                    {{-- <div class="card-header card-header-rose card-header-text"> --}}
+                    {{-- <div class="card-text"> --}}
+                    {{-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> --}}
+                    {{-- </div> --}}
+                    {{-- </div> --}}
                     {{-- </div> --}}
                 </div>
             </div>
             <form method="post" action="/saving/open" class="form-horizontal">
-            <div class="card " style="border: solid">
-                @csrf
-                <div class="card ">
-                    <div class="card-header card-header-rose card-header-text">
-                        <div class="card-text">
-                            <h4 class="card-title">Client Details</h4>
+                <div class="card " style="border: solid">
+                    @csrf
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Client Details</h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body ">
-                        {{-- <div class="row">
+                        <div class="card-body ">
+                            {{-- <div class="row">
                             <label class="col-sm-2 col-form-label">CIF</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control" value={{$CIF}} disabled>
+                        </div>
                     </div>
-                </div>
-        </div> --}}
-        <div style="border: solid">
-            <div class="row">
-                <label class="col-sm-2 col-form-label"> Client Full Name</label>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input oninput="toCap(this.value, this.id), get_options(this.value, this)" type="text"
-                            class="form-control js-example-data-ajax" id="client_full_name">
-
-                    </div>
-                    <select oninput="set_full_name(this.value, this )" class="form-control d-none "
-                        id="client_full_name_select" data-style="select-with-transition">
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <label class="col-sm-2 col-form-label">ID Type</label>
-                <div class="col-sm-8">
+                </div> --}}
+                <div style="border: solid">
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">
@@ -83,29 +67,30 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <input type="hidden" id="branch_id" name="branch_id">
-        <input type="hidden" id="customer_id" name="customer_id">
-        <input type="hidden" id="account_number" name="account_number" value={{$acc_count}}>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Full Name</label>
-            <div class="col-sm-8">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="form-group">
-                            <input type="text" name="full_name" class="form-control" id="full_name">
-                        </div>
+                </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="branch_id" name="branch_id">
+    <input type="hidden" id="customer_id" name="customer_id">
+    <input type="hidden" id="account_number" name="account_number" value={{$acc_count}}>
+    <div class="row">
+        <label class="col-sm-2 col-form-label">Full Name</label>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" name="full_name" class="form-control" id="full_name">
                     </div>
-
                 </div>
+
             </div>
         </div>
+    </div>
 
 
-        <!-- <div class="row">
+    <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">CIF</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -156,101 +141,102 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <br> <br>
+    <br> <br>
 
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Branch Code</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="branch_code" name="branch_code">
-                </div>
+    <div class="row">
+        <label class="col-sm-2 col-form-label">Branch Code</label>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <input type="text" class="form-control" id="branch_code" name="branch_code">
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Customer Rating</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="" name="">
-                </div>
+    <div class="row">
+        <label class="col-sm-2 col-form-label">Customer Rating</label>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <input type="text" class="form-control" id="" name="">
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Customer Signature</label>
-            <div class="col-sm-10">
-                <div class="form-group">
-                    <span class="btn btn-round btn-rose btn-file ">
-                        <span class="fileinput-new">Choose File</span>
-                        <input type="file" name="cus_sign_img" />
-                    </span>
-                </div>
+    <div class="row">
+        <label class="col-sm-2 col-form-label">Customer Signature</label>
+        <div class="col-sm-10">
+            <div class="form-group">
+                <span class="btn btn-round btn-rose btn-file ">
+                    <span class="fileinput-new">Choose File</span>
+                    <input type="file" name="cus_sign_img" />
+                </span>
             </div>
         </div>
     </div>
 </div>
 </div>
+</div>
 <div class="card " style="border: solid">
 
-<div class="card ">
-    <div class="card-body ">
-        <div class="card-header card-header-rose card-header-text">
+    <div class="card ">
+        <div class="card-body ">
+            <div class="card-header card-header-rose card-header-text">
 
-            <div class="card-text">
-                <h4 class="card-title">General Information</h4>
+                <div class="card-text">
+                    <h4 class="card-title">General Information</h4>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Lead source Category</label>
-            <div class="col-sm-8">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="form-group">
-                            @php
-                            $lead_src_cts = Illuminate\Support\Facades\DB::table('lead_sources')->get();
-                            @endphp
-                            <select name="lead_source_category_id" class="form-control">
-                                <option value="">Select </option>
-                                @isset($lead_src_cts)
-                                @foreach ($lead_src_cts as $ls)
-                                <option value="{{$ls->id}}">
-                                    {{$ls->lead_source_category}}
-                                    @endforeach
-                                    @endisset
-                            </select>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Lead source Category</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-group">
+                                @php
+                                $lead_src_cts = Illuminate\Support\Facades\DB::table('lead_sources')->get();
+                                @endphp
+                                <select name="lead_source_category_id" class="form-control">
+                                    <option value="">Select </option>
+                                    @isset($lead_src_cts)
+                                    @foreach ($lead_src_cts as $ls)
+                                    <option value="{{$ls->id}}">
+                                        {{$ls->lead_source_category}}
+                                        @endforeach
+                                        @endisset
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Lead source Identification</label>
-            <div class="col-sm-8">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="lead_source_identification">
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Lead source Identification</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="lead_source_identification">
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Account Description</label>
-            <div class="col-sm-8">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="account_description">
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Account Description</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="account_description">
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {{-- <div class="row">
+            {{-- <div class="row">
             <label class="col-sm-2 col-form-label">Account Category</label>
             <div class="col-sm-8">
                 <div class="row">
@@ -264,12 +250,12 @@
                                 @isset($acc_cats)
                                 @foreach ($acc_cats as $ac_cat)
                                 <option value="{{$ac_cat->id}}">
-        {{$ac_cat->account_category}}
-        @endforeach
-        @endisset
-        </select>
+            {{$ac_cat->account_category}}
+            @endforeach
+            @endisset
+            </select>
+        </div>
     </div>
-</div>
 </div>
 </div>
 </div> --}}
@@ -414,6 +400,8 @@
 </div>
 </div>
 </div>
+{{-- wild card model------------------------------------------------------------------ --}}
+@include('layouts.search_modal')
 
 <script>
     //     $("#client_full_name").select2({

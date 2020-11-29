@@ -80,12 +80,21 @@ class OpenSavingsAccountController extends Controller
         return 123;
     }
 
+    # MUST HAVE request->text  ---------------------------------------------------------
     public function search_by_full_name(Request $request){
         // return $request;
         $data = DB::select("
         SELECT * FROM customer_basic_data
+
+        LEFT JOIN branches
+        ON branches.id = customer_basic_data.branch_id
+
+        LEFT JOIN customer_status_dates
+        ON customer_status_dates.customer_id = customer_basic_data.customer_id
+
         WHERE full_name LIKE '%$request->text%'
         ");
+
         return response()->json($data);
     }
 
