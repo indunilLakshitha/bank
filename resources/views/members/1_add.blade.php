@@ -11,7 +11,7 @@
                     <div class="col-3">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
-                                <h4 class="card-title">Step 01 - Member Creation</h4>
+                                <h4 class="card-title">Step 01 - Customer Creation</h4>
                             </div>
                         </div>
                     </div>

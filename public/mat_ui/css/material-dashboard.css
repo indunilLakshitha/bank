@@ -23348,20 +23348,20 @@ div.dataTables_wrapper div.dataTables_processing {
     padding: 1em 0;
 }
 
-table.dataTable thead > tr > th.sorting_asc,
-table.dataTable thead > tr > th.sorting_desc,
-table.dataTable thead > tr > th.sorting,
-table.dataTable thead > tr > td.sorting_asc,
-table.dataTable thead > tr > td.sorting_desc,
-table.dataTable thead > tr > td.sorting {
+/* table.dataTable thead > tr > th.sorting_asc, */
+/* table.dataTable thead > tr > th.sorting_desc, */
+/* table.dataTable thead > tr > th.sorting, */
+/* table.dataTable thead > tr > td.sorting_asc, */
+/* table.dataTable thead > tr > td.sorting_desc, */
+/* table.dataTable thead > tr > td.sorting {
     padding-right: 30px;
-}
+} */
 
-table.dataTable thead > tr > th:active,
+/* table.dataTable thead > tr > th:active,
 table.dataTable thead > tr > td:active {
     outline: none;
 }
-
+/*
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc,
@@ -23369,9 +23369,9 @@ table.dataTable thead .sorting_asc_disabled,
 table.dataTable thead .sorting_desc_disabled {
     cursor: pointer;
     position: relative;
-}
+} */ */
 
-table.dataTable thead .sorting:before,
+/* table.dataTable thead .sorting:before,
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting_asc:before,
 table.dataTable thead .sorting_asc:after,
@@ -23385,9 +23385,9 @@ table.dataTable thead .sorting_desc_disabled:after {
     bottom: 0.9em;
     display: block;
     opacity: 0.3;
-}
+} */
 
-table.dataTable thead .sorting:before,
+/* table.dataTable thead .sorting:before,
 table.dataTable thead .sorting_asc:before,
 table.dataTable thead .sorting_desc:before,
 table.dataTable thead .sorting_asc_disabled:before,
@@ -23405,9 +23405,9 @@ table.dataTable thead .sorting_desc_disabled:after {
     top: 2px;
     right: 0.5em;
     content: "\2193";
-}
+} */
 
-table.dataTable thead .sorting_asc:before,
+/* table.dataTable thead .sorting_asc:before,
 table.dataTable thead .sorting_desc:after {
     opacity: 1;
 }
@@ -23415,7 +23415,7 @@ table.dataTable thead .sorting_desc:after {
 table.dataTable thead .sorting_asc_disabled:before,
 table.dataTable thead .sorting_desc_disabled:after {
     opacity: 0;
-}
+} */
 
 div.dataTables_scrollHead table.dataTable {
     margin-bottom: 0 !important;
@@ -23427,14 +23427,14 @@ div.dataTables_scrollBody table {
     margin-bottom: 0 !important;
 }
 
-div.dataTables_scrollBody table thead .sorting:before,
+/* div.dataTables_scrollBody table thead .sorting:before,
 div.dataTables_scrollBody table thead .sorting_asc:before,
 div.dataTables_scrollBody table thead .sorting_desc:before,
 div.dataTables_scrollBody table thead .sorting:after,
 div.dataTables_scrollBody table thead .sorting_asc:after,
 div.dataTables_scrollBody table thead .sorting_desc:after {
     display: none;
-}
+} */
 
 div.dataTables_scrollBody table tbody tr:first-child th,
 div.dataTables_scrollBody table tbody tr:first-child td {
