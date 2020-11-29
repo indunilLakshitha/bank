@@ -143,10 +143,13 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
         // return $id;
-
         $user = User::find($id);
         $user->syncRoles($request->roles);
         $user->syncPermissions($request->permissions);
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->mobile_number=$request->mobile_number;
+        $user->save();
 
         return redirect('/users/index')->with('success', 'User updated successfully');
 

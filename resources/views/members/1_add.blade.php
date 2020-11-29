@@ -18,9 +18,9 @@
                     {{-- <div class="col-8">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text"> --}}
-                                {{-- <h4 class="card-title">Member Creation</h4> --}}
-                                {{-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> --}}
-                            {{-- </div>
+                    {{-- <h4 class="card-title">Member Creation</h4> --}}
+                    {{-- <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a> --}}
+                    {{-- </div>
                         </div>
                     </div> --}}
                 </div>
@@ -89,8 +89,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Name With Initials<font color="red">*</font></label>
-                                <div  class="col-lg-6 col-md-2 col-sm-2">
+                                <label class="col-sm-2 col-form-label">Name With Initials<font color="red">*</font>
+                                    </label>
+                                <div class="col-lg-6 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="short_name" class="form-control">
                                     </div>
@@ -125,7 +126,8 @@
                                             @isset($branches)
                                             @foreach ($branches as $branch)
                                             @if(intval($branch->is_enable) == 1)
-                                            <option value="{{$branch->id}}">{{$branch->branch_code.' - '.$branch->branch_name}}</option>
+                                            <option value="{{$branch->id}}">
+                                                {{$branch->branch_code.' - '.$branch->branch_name}}</option>
                                             @endif
                                             @endforeach
                                             @endisset
@@ -139,7 +141,8 @@
                                 <div class="col-sm-10 checkbox-radios">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" disabled checked type="checkbox" id="non_member" name="non_member"   value="1" >
+                                            <input class="form-check-input" disabled checked type="checkbox"
+                                                id="non_member" name="non_member" value="1">
                                             Non
                                             Member
                                             <span class="form-check-sign">
@@ -206,7 +209,8 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Account Category<font color="red">*</font></label>
+                                <label class="col-sm-2 col-form-label">Account Category<font color="red">*</font>
+                                    </label>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <select name="account_category_id" id="" class="form-control"
@@ -273,7 +277,8 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Sub Account Office<font color="red"> *</font></label>
+                                <label class="col-sm-2 col-form-label">Sub Account Office<font color="red"> *</font>
+                                    </label>
                                 <div class="col-lg-4 col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <input type="text" name="office_sub_id" class="form-control">
@@ -356,7 +361,7 @@
 
                                         </div>
                                     </div>
-                            </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Fax</label>
@@ -382,14 +387,14 @@
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Signature</label>
                             <div class="col-lg-6 col-md-4 col-sm-3">
-                            <span class="btn btn-round btn-rose btn-file ">
-                                <span class="fileinput-new">Choose File</span>
-                                <input type="file" name="sign_img" id="sign_img" />
-                            </span>
+                                <span class="btn btn-round btn-rose btn-file ">
+                                    <span class="fileinput-new">Choose File</span>
+                                    <input type="file" name="sign_img" id="sign_img" />
+                                </span>
                             </div>
 
                         </div>
-                        <button onclick="validate_form()" type="button"  class="btn btn-primary">NEXT</button>
+                        <button onclick="validate_form()" type="button" class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>
@@ -399,7 +404,7 @@
 </div>
 
 <script>
-     function validate_form(){
+    function validate_form(){
 
             if(!sign_img.files[0]) {
                 // console.log(img_1.files[0]);
