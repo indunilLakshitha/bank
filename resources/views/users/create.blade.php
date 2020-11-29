@@ -67,8 +67,6 @@
                                     <div class="from-group col-6">
                                         <label for="">NIC</label>
                                         <input type="text" name="nic" class="form-control">
-                                        <label for="">Password</label>
-                                        <input type="password" name="password" id="txtPassword" class="form-control" required>
                                     </div>
 
                                 </div>
@@ -124,18 +122,24 @@
                 <h5>User Permissions</h5>
             </div>
             <div class="card-body">
-                <table class="table">
-                    {{-- <tr> --}}
+                {{-- <table class="table"> --}}
+                <div class="row">
                     @foreach ($permissions as $p)
-                    <tr>
-                        <th>{{$p->name}}</th>
-                        <th> <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes" name="permissions[]"
-                                id="{{$p->name}}"></th>
-                    </tr>
+
+                        <div class="col-3">
+                            {{-- <tr> --}}
+                            {{-- <th> --}}
+                            <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes "
+                                   name="permissions[]" id="{{$p->name}}">
+                            {{$p->view_name}}
+                            {{-- </th> --}}
+                            {{-- </tr> --}}
+                        </div>
+
                     @endforeach
-                    {{-- </tr> --}}
-                </table>
+                </div>
             </div>
+            {{-- </table> --}}
         </div>
 
         <tr>

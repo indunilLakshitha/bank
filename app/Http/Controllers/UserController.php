@@ -101,7 +101,11 @@ class UserController extends Controller
     }
 
     public function index(){
-        $users = User::all()->where('status','<', 2);
+        //$users = User::all()->where('status','<', 2);
+        $users = User::leftjoin('branches','branches.id','users.id')
+            ->select('users.*','branches.branch_name','branches.branch_code')
+            ->where('users.status','<', 2)
+            ->get();
         return view('users.index', compact('users'));
     }
 
@@ -152,8 +156,10 @@ class UserController extends Controller
     }
 
     public function destroy($id){
-        User::find($id)->delete();
-
+        //User::find($id)->delete();
+        $user = User::find($id);
+        $user->status=2;
+        $user->save();
         return Redirect::back()->with('success', 'User removed successfully');
     }
 

@@ -46,7 +46,7 @@
                                         <th> {{$u->employee_no}} </th>
                                         <th> {{$u->nic}} </th>
                                         <th> {{$u->email}} </th>
-                                        <th> {{$u->branh_id}} </th>
+                                        <th> {{$u->branch_code . ' - ' . $u->branch_name}} </th>
                                         <th> {{$u->mobile_number}} </th>
                                         <th>
                                             @foreach ($u->roles as $r)
@@ -62,7 +62,8 @@
                                             @endcan
                                             @can('delete_users')
                                             <a href="{{url('/users/delete/'.$u->id)}}" rel="tooltip"
-                                                class="btn btn-danger btn-round">
+                                                class="btn btn-danger btn-round"
+                                               onclick="return confirm('{{'Are you sure, You want delete User('.$u->name.')'}}')">
                                                 <i class="material-icons">close</i> <span class="mx-1">Delete</span>
                                             </a>
                                         </td>
@@ -80,7 +81,31 @@
         </div>
     </div>
 </div>
+<script>
+    function validate_form(nic){
+        //e.preventDefault();
+        // console.log(img_1.files[0]);
+        /*Swal.fire({
+            title: 'Are you sure?',
+            text: "You want delete this user!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })*/
+        return Swal.fire('Are you sure you want remove this user?')
+
+    }
 
 
-
+</script>
 @endsection
