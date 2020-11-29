@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\AccountGeneralInformation as AppAccountGeneralInformation;
+use App\cash_in_hand_ledger;
 use App\Models\AccountGeneralInformation;
 use App\Models\CustomerBasicData;
 use App\Models\PaymentLog;
+use App\Models\CashierDailyTransaction;
+use App\Models\saving_deposit_base_ledger;
 use App\Models\TransactionData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +54,36 @@ class TransactionController extends Controller
         $payment_log['balance_amount']=$general_account->account_balance;
         $succsess=PaymentLog::create($payment_log->all());
 
+        $cashie_daily_trancastion=$request;
+        $cashie_daily_trancastion['user_id']=Auth::user()->id;
+        $cashie_daily_trancastion['transaction_type']="WITHDRAW";
+        $cashie_daily_trancastion['transaction_id']=$transaction_data->id;
+        $cashie_daily_trancastion['account_number']=$request->account_id;
+        $cashie_daily_trancastion['transaction_value']=$request->transaction_value;
+        $cashie_daily_trancastion['balance_value']=$general_account->account_balance;
+        $cashie_daily_trancastion['is_enable']=1;
+        CashierDailyTransaction::create($cashie_daily_trancastion->all());
+
+        $cash_in_hand_ledger=$request;
+        $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
+        $cash_in_hand_ledger['customer_id']=$transaction_data->id;
+        $cash_in_hand_ledger['acccount_id']=$request->account_id;
+        $cash_in_hand_ledger['transaction_type']="WITHDRAW";
+        $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
+        $cash_in_hand_ledger['balance_value']=$general_account->account_balance;
+        $cash_in_hand_ledger['is_enable']=1;
+
+         cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+
+
+         $saving_deposit_base_ledger=$request;
+         $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
+         $saving_deposit_base_ledger['acccount_id']=$request->account_id;
+         $saving_deposit_base_ledger['transaction_type']="WITHDRAW";
+         $saving_deposit_base_ledger['transaction_value']=$request->transaction_value;
+         $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
+         $saving_deposit_base_ledger['is_enable']=1;
+         saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
         return response()->json($succsess);
 
 
@@ -75,6 +108,36 @@ class TransactionController extends Controller
         $payment_log['balance_amount']=$general_account->account_balance;
         $succsess=PaymentLog::create($payment_log->all());
 
+        $cashie_daily_trancastion=$request;
+        $cashie_daily_trancastion['user_id']=Auth::user()->id;
+        $cashie_daily_trancastion['transaction_type']="DEPOSITE";
+        $cashie_daily_trancastion['transaction_id']=$transaction_data->id;
+        $cashie_daily_trancastion['account_number']=$request->account_id;
+        $cashie_daily_trancastion['transaction_value']=$request->transaction_value;
+        $cashie_daily_trancastion['balance_value']=$general_account->account_balance;
+        $cashie_daily_trancastion['is_enable']=1;
+        CashierDailyTransaction::create($cashie_daily_trancastion->all());
+
+        $cash_in_hand_ledger=$request;
+        $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
+        $cash_in_hand_ledger['customer_id']=$transaction_data->id;
+        $cash_in_hand_ledger['acccount_id']=$request->account_id;
+        $cash_in_hand_ledger['transaction_type']="DEPOSITE";
+        $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
+        $cash_in_hand_ledger['balance_value']=$general_account->account_balance;
+        $cash_in_hand_ledger['is_enable']=1;
+        // $cash_in_hand_ledger['crated_by']=Auth::user()->id;
+
+         cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+
+         $saving_deposit_base_ledger=$request;
+         $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
+         $saving_deposit_base_ledger['acccount_id']=$request->account_id;
+         $saving_deposit_base_ledger['transaction_type']="DEPOSITE";
+         $saving_deposit_base_ledger['transaction_value']=$request->transaction_value;
+         $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
+         $saving_deposit_base_ledger['is_enable']=1;
+         saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
         return response()->json($succsess);
 
 

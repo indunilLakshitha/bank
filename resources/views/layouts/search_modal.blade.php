@@ -37,6 +37,26 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt-5">
+                            <label class="col-sm-2 col-form-label"> Customer ID</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <input
+                                            oninput=
+                                            "
+                                            // toCap(this.value, this.id),
+                                            get_modal_search_by_customer_id(this.value)"
+                                                type="text" class="form-control js-example-data-ajax"
+
+                                                placeholder="Enter Customer ID"
+                                                >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <table class="table">
                                 <tbody id="modal_serach_by_name_results_tbody" class="d-none"></tbody>
@@ -118,6 +138,23 @@
     })
     }
 
+    function get_modal_search_by_customer_id(value){
+        console.log(value);
+        if(value === ''){
+            modal_serach_by_name_results_tbody.innerHTML = ''
+        }
+        $.ajax({
+        type: 'GET',
+        url: '{{('/search_by_customer_id')}}',
+        data: {text:value} ,
+        success: function(data){
+            console.log(data);
+            return set_modal_serach_by_name_results(data)
+        }
+    })
+    }
+
+
 function set_modal_serach_by_name_results(data){
     console.log('inside setter -modal', data);
     modal_serach_by_name_results_tbody.classList.remove('d-none')
@@ -152,8 +189,13 @@ function set_cus_details_from_modal(id){
 
     customer_data.filter(cus => {
         if(cus.id === parseInt(id)){
-            full_name.value = cus.full_name
-            customer_id.value = cus.customer_id
+            
+            if(document.querySelector('#full_name')){
+                full_name.value = cus.full_name
+            }
+            if(document.querySelector('#customer_id')){
+                customer_id.value = cus.customer_id
+            }
              return console.log(cus);
             //  console.log(full_name);
         }
