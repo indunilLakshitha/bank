@@ -24,49 +24,39 @@
                             href="#noticeModal"> SEARCH</button>
                         </div>
                     </div>
-                    {{-- <form id="private_1" action="{{url('/member/add/private')}}" method="POST"> --}}
-                        {{-- @csrf --}}
-                        <div class="tab-pane active" id="private_1">
+                    <form id="form"  method="POST">
+                         @csrf
+                        {{-- <div class="tab-pane active" id="private_1"> --}}
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Member Name<font color="red">*</font></label>
+                                <label class="col-sm-2 col-form-label">Customer ID<font color="red">*</font></label>
                                 <div class="col-lg-3 col-md-3 col-sm-3">
                                     <div class="form-group">
-                                        <input name="name_in_use" type="text" class="form-control" id="full_name">
+                                        <input name="customer_id" type="text" class="form-control" id="customer_id">
                                     </div>
                                 </div>
                             </div>
+
+                            @php
+                                $share_amount = DB::table('setting_data')->where('setting_description', 'share_amount')->first()->setting_data;
+                            @endphp
+
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Authentification Type<font color="red">*</font>
-                                </label>
-                                <div class="col-lg-3 col-md-4 col-sm-4">
-                                    <div class="form-group">
-                                        <input type="text" name="full_name" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Authentification Number<font color="red">*</font>
-                                </label>
+                                <label class="col-sm-2 col-form-label">No of Shares<font color="red">*</font></label>
                                 <div class="col-lg-3 col-md-2 col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" name="surname" class="form-control">
+                                        <input type="number" name="n_of_shares"  class="form-control"
+                                        oninput="share_cost.value = this.value*{{$share_amount}}"
+                                        >
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">No of Sharess<font color="red">*</font></label>
+                                <label class="col-sm-2 col-form-label">Cost For Shares<font color="red">*</font></label>
                                 <div class="col-lg-3 col-md-2 col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" name="short_name" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Cost Per Sharess<font color="red">*</font></label>
-                                <div class="col-lg-3 col-md-2 col-sm-2">
-                                    <div class="form-group">
-                                        <input type="text" name="short_name" class="form-control">
+                                        <input type="text"   value="{{$share_amount}}" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -74,18 +64,19 @@
                             <label class="col-sm-2 col-form-label">Total Share Value<font color="red">*</font></label>
                             <div class="col-lg-3 col-md-2 col-sm-2">
                                 <div class="form-group">
-                                    <input type="text" name="short_name" class="form-control">
+                                    <input type="text" id="share_cost" name="total_share_cost" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6 text-right">
-                                <a class="btn btn-rose col-4 text-white">SUBMIT</a>
+                                <button type="button" onclick="buy_shares()" class="btn btn-rose col-4 text-white">SUBMIT</button>
                             </div>
                             <div class="col-1 text-right">
-                                <button type="submit" class="btn ">Clear</button>
+                                <button type="button"  class="btn ">Clear</button>
                             </div>
-                        </div> {{-- </form> --}}
+                        </div>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -94,4 +85,20 @@
 
 
     @include('layouts.search_modal')
+
+    <script>
+        function buy_shares(){
+            $.ajax({
+            type: 'POST',
+            url: '{{('/buy_shares')}}',
+            data: new FormData(form) ,
+            processData: false,
+            contentType: false,
+            success: function(data){
+                console.log(data);
+
+            }
+        })
+        }
+    </script>
     @endsection

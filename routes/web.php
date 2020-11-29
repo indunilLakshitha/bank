@@ -102,6 +102,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['permission:update_users']], function () {
         Route::get('/users/edit/{id}', 'UserController@edit');
         Route::post('/users/update/{id}', 'UserController@update');
+        Route::get('change_user_status', 'UserController@change_user_status');
     });
 
     //users/delete
@@ -394,10 +395,13 @@ Route::get('/findmemberbyaccnoforreport','TransactionReportController@findMember
 Route::get('/member','MemberController@create');
 Route::post('/member_creation','MemberController@member_creation');
 Route::get('/add_nominee_member_creation','MemberController@add_nominee_member_creation');
+Route::get('/remove_nominee_member_creation','MemberController@remove_nominee_member_creation');
 
 Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
 Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
 Route::get('/sharetransferdata','ShareController@historyview')->name('shares.history');
+Route::post('/buy_shares','ShareController@buy_shares');
+Route::post('/transfer_shares','ShareController@transfer_shares');
 
 
 Auth::routes();

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Cassandra\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -99,8 +101,11 @@ class UserController extends Controller
     }
 
     public function index(){
-         $users = User::leftjoin('branches','branches.id','users.id')
-                    ->select('users.*','branches.*')->get();
+        //$users = User::all()->where('status','<', 2);
+        $users = User::leftjoin('branches','branches.id','users.branh_id')
+            ->select('users.*','branches.branch_name','branches.branch_code')
+            ->where('users.status','<', 2)
+            ->get();
         return view('users.index', compact('users'));
     }
 
@@ -113,21 +118,48 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+        //check employee number existing
+        $employee_no = intval($request->input('employee_no'));
+        $email_address= $request->input('email');
+        $user_password = $request->input('password');
+        $user_confirm_password = $request->input('confirm_password');
+        $users_count_data1= DB::table('users')
+                                ->select(DB::raw('count(*) as user_count'))
+                                ->where('email', '=', $email_address)
+                                ->get();
+        $users_count_data2= DB::table('users')
+                                ->select(DB::raw('count(*) as user_count'))
+                                ->where('employee_no', '=', $employee_no)
+                                ->get();
+        $users_count1 = isset($users_count_data1[0]) ? intval($users_count_data1[0]->user_count): 0;
+        $users_count2 = isset($users_count_data1[0]) ? intval($users_count_data2[0]->user_count): 0;
+       // dd($user_password);
+        if($users_count1 > 0){
+            //Session::flash('alert-danger', 'danger');
+            return Redirect::back()->with('message', 'You entered an existing email address');
+        } if($users_count2 > 0){
+            //Session::flash('alert-danger', 'danger');
+            return Redirect::back()->with('message', 'You entered an existing employee number');
+        } elseif($user_password != $user_confirm_password) {
+            return Redirect::back()->with('message', 'Password mismatch');
+        } else {
+            // return $request;
+            $user = User::create($request->all());
+            $user->password = Hash::make($request->password);
+            $user->save();
 
-        // return $request;
-        $user = User::create($request->all());
-        $user->password = Hash::make($request->password);
-        $user->save();
+            $user->syncRoles($request->roles);
+            $user->syncPermissions($request->permissions);
 
-        $user->syncRoles($request->roles);
-        $user->syncPermissions($request->permissions);
-
-        return redirect('/users/index')->with('success', 'User created successfully');
+            return redirect('/users/index')->with('message', 'User created successfully');
+        }
     }
 
     public function destroy($id){
-        User::find($id)->delete();
-
+        //User::find($id)->delete();
+        $user = User::find($id);
+        $user->status=2;
+        $user->save();
         return Redirect::back()->with('success', 'User removed successfully');
     }
 
@@ -150,9 +182,20 @@ class UserController extends Controller
         $user->name=$request->name;
         $user->email=$request->email;
         $user->mobile_number=$request->mobile_number;
+        $user->branh_id=$request->branh_id;
+        $user->nic=$request->nic;
+        $user->status=$request->status;
+        $user->employee_no=$request->employee_no;
         $user->save();
 
-        return redirect('/users/index')->with('success', 'User updated successfully');
+        return redirect('/users/index')->with('message', 'User updated successfully');
 
+    }
+
+    public function change_user_status(Request $request) {
+        $user = User::find($request->id);
+        $user->status = $request->status;
+        $user->save();
+        return response()->json($request);
     }
 }

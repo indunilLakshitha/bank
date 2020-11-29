@@ -147,7 +147,7 @@
         }
     })
     }
-    get_modal_search_by_customer_id
+
 
 function set_modal_serach_by_name_results(data){
     console.log('inside setter -modal', data);
@@ -158,7 +158,7 @@ function set_modal_serach_by_name_results(data){
 
     data.forEach(i => {
         let html = `
-        <tr id='${i.id}' >
+        <tr id='${i.org_id}' >
             <td>${i.customer_id}</td>
         <td>${i.full_name}</td>
         <td>
@@ -166,7 +166,7 @@ function set_modal_serach_by_name_results(data){
             onclick=
             "
             this.parentElement.parentElement.parentElement.classList.add('d-none'),
-            set_cus_details_from_modal('${i.id}')
+            set_cus_details_from_modal('${i.org_id}')
             "
             class="btn btn-sm btn-primary">Select</button>
         </td>
@@ -182,12 +182,27 @@ function set_cus_details_from_modal(id){
 console.log(id)
     console.log(customer_data);
     customer_data.filter(cus => {
-        if(cus.id === parseInt(id)){
-            full_name.value = cus.full_name
-            customer_id.value = cus.customer_id
-            dob.value = cus.date_of_birth
-            branch_code.value = branch_code.date_of_birth
-             return console.log(dob.value);
+        console.log(cus.org_id)
+        if(cus.org_id === id){
+            // full_name.value = cus.full_name
+            // customer_id.value = cus.customer_id
+
+            //  console.log(id);
+            //  console.log(dob.value);
+
+            if(document.querySelector('#dob')){
+                dob.value = cus.date_of_birth
+            }
+            if(document.querySelector('#full_name')){
+                full_name.value = cus.full_name
+            }
+            if(document.querySelector('#branch_code')){
+                full_name.value = cus.branch_code
+            }
+            if(document.querySelector('#customer_id')){
+                customer_id.value = cus.customer_id
+            }
+             return console.log(cus);
             //  console.log(full_name);
         }
     })

@@ -43,16 +43,26 @@
 
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <table class="table">
-                        <tbody id="nominees_modal_serach_by_name_results_tbody" class="d-none"></tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">ID Type</label>
-                    <div class="col-sm-10">
+                        <div class="row mt-5">
+                            <label class="col-sm-2 col-form-label"> Customer ID</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <input
+                                            oninput=
+                                            "
+                                            // toCap(this.value, this.id),
+                                            nominees_get_modal_search_by_customer_id(this.value)"
+                                                type="text" class="form-control js-example-data-ajax"
+
+                                                placeholder="Enter Customer ID"
+                                                >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-5">
                                 <div class="form-group">
@@ -115,8 +125,11 @@
 
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="row">
+                            <table class="table">
+                                <tbody id="show_nominees_tbody" class="d-none"></tbody>
+                            </table>
+                        </div>
 
             </div>
             <div class="modal-footer">
@@ -124,6 +137,10 @@
                 <button type="button" class="btn btn-info">Save changes</button>
             </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
 </div>
 
@@ -138,6 +155,22 @@
         $.ajax({
         type: 'GET',
         url: '{{('/search_by_full_name')}}',
+        data: {text:value} ,
+        success: function(data){
+            console.log(data);
+            return nominees_set_modal_serach_by_name_results(data)
+        }
+    })
+    }
+
+    function nominees_get_modal_search_by_customer_id(value){
+        console.log(value);
+        if(value === ''){
+            modal_serach_by_name_results_tbody.innerHTML = ''
+        }
+        $.ajax({
+        type: 'GET',
+        url: '{{('/search_by_customer_id')}}',
         data: {text:value} ,
         success: function(data){
             console.log(data);
@@ -188,7 +221,7 @@ function nominees_set_cus_details_from_modal(id){
 }
 
 function add_nominee(nominee_id, member_id){
-    return console.log(member_id);
+    //  console.log(member_id);
         $.ajax({
             type: 'GET',
             url: '{{('/add_nominee_member_creation')}}',
@@ -198,11 +231,51 @@ function add_nominee(nominee_id, member_id){
             },
             success: function(data){
                 console.log(data)
+                return show_nominees(data)
 
             },
             error: function(data){
                 console.log(data)
             }
+
+        })
+    }
+
+    function show_nominees(data){
+        show_nominees_tbody.classList.remove('d-none')
+        show_nominees_tbody.innerHTML = ''
+
+        data.forEach(i => {
+        let html = `
+        <tr id='${i.id}' >
+            <td>${i.nominee_id}</td>
+        <td>
+            <button type="button"
+            onclick=
+            "
+            this.parentElement.parentElement.classList.add('d-none'),
+            remove_nominee('${i.id}')
+            "
+            class="btn btn-sm btn-primary">Remove</button>
+        </td>
+        </tr>
+        `
+        show_nominees_tbody.innerHTML += html
+    })
+    }
+
+    function remove_nominee(id){
+        $.ajax({
+            type: 'GET',
+            url: '{{('/remove_nominee_member_creation')}}',
+            data: {
+               id
+            },
+            success: function(data){
+                console.log(data)
+                return
+
+            },
 
         })
     }

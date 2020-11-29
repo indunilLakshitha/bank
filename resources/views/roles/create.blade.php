@@ -27,17 +27,21 @@
                                 </div>
                                 <table class="table">
                                     <tbody>
-                                        @foreach ($permissions as $p)
-                                        <tr>
-                                            <th> {{$p->view_name}} </th>
-                                            <td class="td-actions text-right">
-                                                @can('create_roles')
-                                                <input type="checkbox" value=" {{$p->name}} " name="permissions[]"
-                                                    id="">
-                                                @endcan
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                        <div class="row">
+                                            @foreach ($permissions as $p)
+
+                                                <div class="col-3">
+                                                    {{-- <tr> --}}
+                                                    {{-- <th> --}}
+                                                    <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes "
+                                                           name="permissions[]" id="{{$p->name}}">
+                                                    {{$p->view_name}}
+                                                    {{-- </th> --}}
+                                                    {{-- </tr> --}}
+                                                </div>
+
+                                            @endforeach
+                                        </div>
                                     </tbody>
                                 </table>
                                 <tr>

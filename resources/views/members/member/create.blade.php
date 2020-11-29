@@ -19,32 +19,7 @@
             </div>
         </div>
 
-        {{-- <div class="row">
-            <label class="col-sm-2 col-form-label">Member Name</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="member" oninput="getCustomers(this.value)">
-
-                </div>
-            </div> --}}
-            {{-- <button class="btn fa fa-search btn-info btn"> &nbspFind</button> --}}
-        {{-- </div>
-        <div class="row ">
-            <div class="col">
-                <table class="table">
-                    <tbody id="results_tbody" class="d-none"></tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Authorization Type</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" >
-                </div>
-            </div> --}}
-            {{-- <button class="btn fa fa-search btn-info btn-sm"></button> --}}
-        {{-- </div> --}}
+       
         <div class="row">
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-6">
@@ -56,12 +31,13 @@
             href="#noticeModal"></a>
         </div>
 
+
         <div class="row">
             <label class="col-sm-2 col-form-label">Customer Name</label>
             <div class="col-sm-6">
                 <div class="form-group">
                     <input type="text" class="form-control" id="full_name" readonly>
-                    <input type="hidden" class="form-control" id="customer_id" name="customer_id" readonly>
+                    <input type="text" class="form-control" id="customer_id" name="customer_id" readonly>
                 </div>
             </div>
         </div>
@@ -158,11 +134,13 @@ function submit_form(){
         contentType: false,
         success: function(data){
             console.log(data);
-            // if(data === 'Member already exists'){
-            //     return Swal.fire(data)
-            // }
-            Swal.fire(data)
-            nominee_modal_trigger_btn.click()
+            if(data === 'Member already exists'){
+                return Swal.fire(data)
+            } else{
+
+                Swal.fire(data)
+                return nominee_modal_trigger_btn.click()
+            }
 
         }
     })

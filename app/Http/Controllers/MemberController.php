@@ -115,4 +115,10 @@ class MemberController extends Controller
         return response()->json($data);
     }
 
+    public function remove_nominee_member_creation(Request $request){
+        MemberCreationNominee::find($request->id)->delete();
+
+        return response()->json('Nominee Removed');
+    }
+
 }

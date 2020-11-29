@@ -28,6 +28,9 @@ class OpenSavingsAccountController extends Controller
             ->leftJoin('customer_status_dates', 'customer_status_dates.customer_id', 'customer_basic_data.customer_id')
             ->where('customer_basic_data.identification_type_id', $request->identification_type_id)
             ->where('customer_basic_data.identification_number', $request->identification_number)
+            ->where('customer_basic_data.is_enable', 1)
+            ->where('customer_basic_data.status', 1)
+            ->where('customer_basic_data.branch_id', Auth::user()->branh_id)
             ->select('customer_basic_data.customer_id', 'branches.branch_code', 'customer_basic_data.full_name', 'customer_status_dates.date_of_birth', 'customer_basic_data.branch_id')
             ->first();
         // $data = DB::select("
@@ -97,6 +100,8 @@ class OpenSavingsAccountController extends Controller
     public function search_by_full_name(Request $request)
     {
         // return $request;
+
+        $branch_id = Auth::user()->branh_id;
         $data = DB::select("
         SELECT customer_basic_data.*,branches.*,customer_status_dates.*,customer_basic_data.customer_id as org_id FROM customer_basic_data
 
@@ -107,13 +112,17 @@ class OpenSavingsAccountController extends Controller
         ON customer_status_dates.customer_id = customer_basic_data.customer_id
 
         WHERE full_name LIKE '%$request->text%'
+        AND customer_basic_data.is_enable = 1
+        AND customer_basic_data.status = 1
         ");
 
+        // return response()->json($request);
         return response()->json($data);
     }
     public function search_by_customer_id(Request $request)
     {
         // return $request;
+        $branch_id = Auth::user()->branh_id;
         $data = DB::select("
         SELECT * FROM customer_basic_data
 
@@ -124,6 +133,9 @@ class OpenSavingsAccountController extends Controller
         ON customer_status_dates.customer_id = customer_basic_data.customer_id
 
         WHERE customer_basic_data.customer_id LIKE '%$request->text%'
+        AND customer_basic_data.is_enable = 1
+        AND customer_basic_data.status = 1
+        AND customer_basic_data.status = '$branch_id'
         ");
 
         return response()->json($data);
