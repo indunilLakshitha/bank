@@ -19,41 +19,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Member Name</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="member" oninput="getCustomers(this.value)">
 
-                </div>
-            </div>
-            {{-- <button class="btn fa fa-search btn-info btn"> &nbspFind</button> --}}
-        </div>
-        <div class="row ">
-            <div class="col">
-                <table class="table">
-                    <tbody id="results_tbody" class="d-none"></tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Authorization Type</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" >
-                </div>
-            </div>
-            {{-- <button class="btn fa fa-search btn-info btn-sm"></button> --}}
-        </div>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Authantification Number</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <button class="btn fa fa-search btn-info btn-sm"></button>
-        </div>
 
         <div class="row">
             <label class="col-sm-2 col-form-label">Customer Name</label>

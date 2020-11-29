@@ -189,8 +189,13 @@ function set_cus_details_from_modal(id){
 
     customer_data.filter(cus => {
         if(cus.id === parseInt(id)){
-            full_name.value = cus.full_name
-            customer_id.value = cus.customer_id
+            
+            if(document.querySelector('#full_name')){
+                full_name.value = cus.full_name
+            }
+            if(document.querySelector('#customer_id')){
+                customer_id.value = cus.customer_id
+            }
              return console.log(cus);
             //  console.log(full_name);
         }
