@@ -8,8 +8,8 @@
 <div class="card " style="border: solid">
     <div class="row">
         <div class="col">
-            <button type="button" class="btn fa fa-search btn-info float-right" data-toggle="modal"
-            href="#noticeModal"> SEARCH</button>
+            {{-- <button type="button" class="btn fa fa-search btn-info float-right" data-toggle="modal"
+            href="#noticeModal"> SEARCH</button> --}}
         </div>
     </div>
     <div class="card-body ">
@@ -19,6 +19,17 @@
             </div>
         </div>
 
+       
+        <div class="row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-6">
+                {{-- <div class="form-group">
+                    <input type="text" class="form-control">
+                </div> --}}
+            </div>
+            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal"
+            href="#noticeModal"></a>
+        </div>
 
 
         <div class="row">
