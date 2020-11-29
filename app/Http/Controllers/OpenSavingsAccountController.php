@@ -181,10 +181,10 @@ class OpenSavingsAccountController extends Controller
 
     public function product_details(Request $request)
     {
-          $prod_data = ProductData::create($request->all());
+        $prod_data = ProductData::create($request->all());
 
 
-          $product_type=ProductType::where('id',$prod_data->product_type_id)->first();
+        $product_type=ProductType::where('id',$prod_data->product_type_id)->first();
 
          $request->session()->put('is_beneficiearies_required',$product_type->is_beneficiearies_required);
          $request->session()->put('is_guardianes_required',$product_type->is_nominies_required);
@@ -206,7 +206,7 @@ class OpenSavingsAccountController extends Controller
 
         }else if($product_type->is_nominies_required==1){
 
-            $account_id = $request->account_id;
+        $account_id = $request->account_id;
         $customer_id = $request->customer_id;
         $prod_id = $request->prod_id;
         $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
