@@ -99,6 +99,10 @@
 </div>
 
 </form>
+
+{{-- nominees modal --}}
+@include('layouts.search_nominees_modal')
+
 @include('layouts.search_modal')
 
 
@@ -153,8 +157,12 @@ function submit_form(){
         contentType: false,
         success: function(data){
             console.log(data);
-            // return show_data(data)
-            return Swal.fire('Success')
+            // if(data === 'Member already exists'){
+            //     return Swal.fire(data)
+            // }
+            Swal.fire(data)
+            nominee_modal_trigger_btn.click()
+
         }
     })
     }

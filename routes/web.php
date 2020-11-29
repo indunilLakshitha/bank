@@ -388,7 +388,12 @@ Route::get('/findmemberbyaccnoforreport','TransactionReportController@findMember
 //---------------------------------------------------------------------shares---------------------------
 Route::get('/member','MemberController@create');
 Route::post('/member_creation','MemberController@member_creation');
+Route::get('/add_nominee_member_creation','MemberController@add_nominee_member_creation');
+
 Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
 Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
 Route::get('/sharetransferdata','ShareController@historyview')->name('shares.history');
+
+
 Auth::routes();
+
