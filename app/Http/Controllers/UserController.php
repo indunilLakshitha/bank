@@ -182,9 +182,13 @@ class UserController extends Controller
         $user->name=$request->name;
         $user->email=$request->email;
         $user->mobile_number=$request->mobile_number;
+        $user->branh_id=$request->branh_id;
+        $user->nic=$request->nic;
+        $user->status=$request->status;
+        $user->employee_no=$request->employee_no;
         $user->save();
 
-        return redirect('/users/index')->with('success', 'User updated successfully');
+        return redirect('/users/index')->with('message', 'User updated successfully');
 
     }
 

@@ -24,6 +24,7 @@
                         <label class="col-sm-2 col-form-label">Full Name <font color="red">*</font></label>
                         <div class="col-sm-5">
                             <div class="form-group">
+                                <input type="hidden" name="status"  class="form-control" value="{{ $user->status}}" required >
                                 <input type="text" name="name"  class="form-control" value="{{ $user->name}}" required >
                              </div>
                         </div>
