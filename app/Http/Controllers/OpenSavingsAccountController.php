@@ -111,12 +111,27 @@ class OpenSavingsAccountController extends Controller
 
         return response()->json($data);
     }
+    public function search_by_customer_id(Request $request)
+    {
+        // return $request;
+        $data = DB::select("
+        SELECT * FROM customer_basic_data
+
+        LEFT JOIN branches
+        ON branches.id = customer_basic_data.branch_id
+
+        LEFT JOIN customer_status_dates
+        ON customer_status_dates.customer_id = customer_basic_data.customer_id
+
+        WHERE customer_basic_data.customer_id LIKE '%$request->text%'
+        ");
+
+        return response()->json($data);
+    }
 
     public function search_by_name(Request $request)
     {
-        // $data = DB::table('customer_basic_data')
-        // ->where('full_name', 'LIKE', '%$request->other_holder_name%')
-        // ->get();
+
         $data = DB::select("
         SELECT * FROM customer_basic_data
         WHERE full_name LIKE '%$request->other_holder_name%'
@@ -125,6 +140,8 @@ class OpenSavingsAccountController extends Controller
         ");
         return response()->json($data);
     }
+
+
 
     public function client_details(Request $request)
     {
