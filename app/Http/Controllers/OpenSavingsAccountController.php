@@ -101,6 +101,7 @@ class OpenSavingsAccountController extends Controller
     {
         // return $request;
 
+        $branch_id = Auth::user()->branh_id;
         $data = DB::select("
         SELECT * FROM customer_basic_data
 

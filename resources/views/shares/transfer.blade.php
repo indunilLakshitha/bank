@@ -280,7 +280,7 @@ function set_modal_serach_by_name_results_buyer(data){
             onclick=
             "
             this.parentElement.parentElement.parentElement.classList.add('d-none'),
-            set_cus_details_from_modal('${i.id}')
+            set_cus_details_from_modal_buyer('${i.id}')
             "
             class="btn btn-sm btn-primary">Select</button>
         </td>
@@ -292,7 +292,7 @@ function set_modal_serach_by_name_results_buyer(data){
 
 }
 
-function set_cus_details_from_modal(id){
+function set_cus_details_from_modal_buyer(id){
     // console.log(buyer_data);
 
     buyer_data.filter(cus => {
