@@ -10,12 +10,12 @@
     <div class="sidebar-wrapper">
 
         <ul class="nav">
-            <li class="nav-item  ">
+            {{-- <li class="nav-item  ">
                 <a class="nav-link" href="/dashboard">
                     <i class="material-icons">dashboard</i>
                     <p> Dashboard </p>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#pagesExamples">

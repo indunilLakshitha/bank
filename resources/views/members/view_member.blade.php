@@ -621,7 +621,6 @@
         </div>
 </div>
 @endif
-@foreach($view_6 as $view_6_1)
 @if(!empty($view_6))
 <div class="card col-10 " style="border: solid">
 
@@ -705,7 +704,7 @@
         </div>
     </div>
 </div>
-        <!-- Beneficiary -->
+     <!-- Beneficiary -->
 
         <!-- <div class="col-md-6 col-6 mr-auto ml-auto pull-left">
             <div class="card">
@@ -773,8 +772,6 @@
     </div>
 
 @endif
-@break
-@endforeach
 </fieldset>
 
 @endsection
