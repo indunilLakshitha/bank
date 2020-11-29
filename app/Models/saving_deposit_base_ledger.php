@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class saving_deposit_base_ledger extends Model
 {
+    protected $table ='saving_deposite_base_ledgers';
+
     protected $fillable = [
         'transaction_data_id',
         'customer_id',
@@ -14,7 +16,6 @@ class saving_deposit_base_ledger extends Model
         'transaction_value',
         'balance_amount',
         'is_enable',
-        'created_by',
-        'updated_by',
+
     ];
 }
