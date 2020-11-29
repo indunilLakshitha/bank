@@ -360,6 +360,10 @@ Route::resource('/mainType', 'MainTypeController');
 
 Route::resource('/marriedStatus', 'MarriedStatusController');
 
+// ------------------------------------------------------------------------Married Status------------
+
+Route::resource('/productType', 'ProductTypeController');
+
 //-------------------------------------------------------------------Savings Schema parameter -------------start--------
 Route::get('/savinsschemacreate','SavingsSchemaParameterController@generalSchemaParameters');
 Route::post('/savinsschemasubmit','SavingsSchemaParameterController@generalSchemaParametersSave');

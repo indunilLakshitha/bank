@@ -410,6 +410,12 @@
                                 <span class="sidebar-normal">Married Statuses</span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/productType">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Product Types</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
