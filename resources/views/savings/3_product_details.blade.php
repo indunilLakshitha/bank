@@ -63,7 +63,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="interest_type_id" class="selectpicker"
+                                            <select name="interest_type_id" class="form-control"
                                                 data-style="select-with-transition">
                                                 @php
                                                 $interest_types =
@@ -99,7 +99,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="currency_id" class="selectpicker"
+                                            <select name="currency_id" class="form-control"
                                                 data-style="select-with-transition">
                                                 @php
                                                 $currencies = Illuminate\Support\Facades\DB::table('currencies')->get();
@@ -124,7 +124,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="account_level" class="selectpicker"
+                                            <select name="account_level" class="form-control"
                                                 data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($acc_levels)
@@ -145,7 +145,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="deposite_mode_id" class="selectpicker"
+                                            <select name="deposite_mode_id" class="form-control"
                                                 data-style="select-with-transition">
                                                 @php
                                                 $diposits =

@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">
-                                <select name="identification_type_id" id="identification_type_id" class="selectpicker"
+                                <select name="identification_type_id" id="identification_type_id" class="form-control"
                                     data-style="select-with-transition">
                                     <option value="">Select</option>
                                     @isset($idtypes)
@@ -116,7 +116,7 @@
 
         <div class="row">
             <label class="col-sm-2 col-form-label">DOB</label>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <div class="form-group">
                     <input type="date" id="dob" name="dob" class="form-control">
                 </div>
@@ -128,7 +128,7 @@
                 <div class="row">
                     <div class="col-5">
                         <div class="form-group">
-                            <select name="FATCA_clearance_received" class="selectpicker"
+                            <select name="FATCA_clearance_received" class="form-control"
                                 data-style="select-with-transition">
                                 <option value="">Select </option>
                                 <option value="1">Yes</option>
@@ -145,7 +145,7 @@
                 <div class="row">
                     <div class="col-5">
                         <div class="form-group">
-                            <select name="PEP_clearance_received" class="selectpicker"
+                            <select name="PEP_clearance_received" class="form-control"
                                 data-style="select-with-transition">
                                 <option value="">Select </option>
                                 <option value="1">Yes</option>
@@ -259,7 +259,7 @@
                             @php
                             $acc_cats = Illuminate\Support\Facades\DB::table('account_categories')->get();
                             @endphp
-                            <select name="account_category_id" class="selectpicker" data-style="select-with-transition">
+                            <select name="account_category_id" class="form-control" data-style="select-with-transition">
                                 <option value="">Select </option>
                                 @isset($acc_cats)
                                 @foreach ($acc_cats as $ac_cat)
