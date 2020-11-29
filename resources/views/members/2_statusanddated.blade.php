@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Race<font color="red">*</font></label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
@@ -104,7 +104,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Joined Date<font color="red">*</font></label>
                                 <div class="col-sm-10">
