@@ -425,10 +425,10 @@ $(document).ready(function() {
 
     function set_cus_details(data){
         // console.log(Object.keys(data).length === 0);
-        // if(Object.keys(data).length === 0){
-        //     return Swal.fire('Search Unuccessful', '', 'error')
-        // }
-        // Swal.fire('Search Successful', '', 'success')
+        if(Object.keys(data).length === 0){
+            return Swal.fire('Search Unuccessful', '', 'error')
+        }
+        Swal.fire('Search Successful', '', 'success')
 
         // console.log(typeof data);
         console.log('inside setter - footer',  data);

@@ -2,9 +2,16 @@
 
 
 @section('content')
+
 <form method="post" id="form" class="form-horizontal">
     @csrf
 <div class="card " style="border: solid">
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn fa fa-search btn-info float-right" data-toggle="modal"
+            href="#noticeModal"> SEARCH</button>
+        </div>
+    </div>
     <div class="card-body ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
@@ -88,8 +95,12 @@
         </div>
 
     </div>
+
 </div>
+
 </form>
+@include('layouts.search_modal')
+
 
 <script>
     function getCustomers(value){
