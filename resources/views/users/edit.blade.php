@@ -93,28 +93,36 @@
                         <h5>User Permissions</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table">
-                            @foreach ($all_permissions as $p)
-                            <tr>
-                                <th> <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes "
-                                        name="permissions[]" id="{{$p->name}}">
-                                    {{$p->view_name}}
-                                </th>
-                            </tr>
-                            @endforeach
-                        </table>
+                        {{-- <table class="table"> --}}
+                            <div class="row">
+                        @foreach ($all_permissions as $p)
+
+                            <div class="col-3">
+                                {{-- <tr> --}}
+                                {{-- <th> --}}
+                                <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes "
+                                    name="permissions[]" id="{{$p->name}}">
+                                {{$p->view_name}}
+                                {{-- </th> --}}
+                                {{-- </tr> --}}
+                            </div>
+
+                        @endforeach
                     </div>
+                    </div>
+                    {{-- </table> --}}
                 </div>
-
-                <tr>
-                    <button class="btn btn-danger" type="submit">Update User</button>
-                </tr>
         </div>
-        </form>
+
+        <tr>
+            <button class="btn btn-danger" type="submit">Update User</button>
+        </tr>
+    </div>
+    </form>
 
 
-        <script>
-            function get_role_perms(role_checkbox, perms){
+    <script>
+        function get_role_perms(role_checkbox, perms){
         // console.log(this_checkbox);
         // console.log(perms['perms']);
         // console.log(role_checkbox.checked);
@@ -191,6 +199,6 @@
         //     return form.submit()
         // }
     }
-        </script>
+    </script>
 
-        @endsection
+    @endsection

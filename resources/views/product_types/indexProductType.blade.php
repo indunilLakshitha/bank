@@ -16,8 +16,17 @@
                     <label class="col-sm-2 col-form-label">Type</label>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="product_type" name="product_type">
+                            <input type="text" class="form-control" id="product_type" name="product_type" oninput="code(this.value)">
                             <span class="bmd-help">Product Type</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Code</label>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="product_code" name="product_code">
+                            <span class="bmd-help">Product Code</span>
                         </div>
                     </div>
                 </div>
@@ -133,6 +142,7 @@
                                 <thead>
                                     <th>ID </th>
                                     <th>PRODUCT TYPE</th>
+                                    <th>PRODUCT CODE</th>
                                     <th>MAXIMUM INTEREST</th>
                                     <th>DEFAULT INTEREST</th>
                                     <th>MINIMUM BALANCE</th>
@@ -146,6 +156,7 @@
                                        <tr>
                                             <th>{{$prd_typ->id}}</th>
                                             <th>{{$prd_typ->product_type}} </th>
+                                            <th>{{$prd_typ->product_code}} </th>
                                             <th>{{$prd_typ->max_interest}} </th>
                                             <th>{{$prd_typ->default_interest}}</th>
                                             <th>{{$prd_typ->minimum_balance}} </th>
@@ -174,6 +185,13 @@
     </div>
 </div>
 
-
+<script>
+    function code(product){
+var c=product.substring(0, 2)
+var code=c.toUpperCase()
+// console.log(code)
+product_code.value=code
+    }
+</script>
 
 @endsection
