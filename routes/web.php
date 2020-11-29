@@ -179,6 +179,8 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::post('/create_join_account', 'OpenSavingsAccountController@create_join_account');
     Route::post('/add_mem_join_account', 'OpenSavingsAccountController@add_mem_join_account');
     // Route::post('/guradian-information', 'OpenSavingsAccountController@guradian_information');
+    Route::post('/tax_details_view', 'OpenSavingsAccountController@tax_details_view');
+    Route::post('/checkout', 'OpenSavingsAccountController@checkout');
     Route::post('/documents', 'OpenSavingsAccountController@getDocs');
     Route::post('/save_documents', 'OpenSavingsAccountController@save_documents');
     Route::post('/tax_details', 'OpenSavingsAccountController@tax_details');

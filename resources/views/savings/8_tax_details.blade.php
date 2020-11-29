@@ -232,14 +232,17 @@
                         <!-- @endforeach -->
 
                         <br>
-                        <form action="/nominee" method="POST">
+                        <form action="/finish_open_account_saving" method="POST" id="final_form">
                             @csrf
                             <input type="hidden" name="product_data_id" value={{$prod_id}}>
                             <input type="hidden" name="account_id" value={{$account_id}}>
                             <input type="hidden" name="customer_id" value={{$customer_id}}>
                             <div class="row">
                             <div class="col">
-                                <button class="btn btn-primary float-right" type="submit">NEXT</button>
+                                <div class="col-11">
+                        <button type="button" class="btn btn-primary float-right"
+                        onclick="Swal.fire({title: `Created Account {{$acc_no}}`,confirmButtonText: `View Savings Account Page`}).then(() => {final_form.submit()})
+                        ">NEXT</button>
                             </div>
                         </div>
                         </form>
