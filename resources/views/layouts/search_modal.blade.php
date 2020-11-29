@@ -153,7 +153,7 @@
         }
     })
     }
-    get_modal_search_by_customer_id
+
 
 function set_modal_serach_by_name_results(data){
     console.log('inside setter -modal', data);

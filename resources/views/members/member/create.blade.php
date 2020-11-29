@@ -60,7 +60,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <input type="text" class="form-control" id="full_name" readonly>
-                    <input type="hidden" class="form-control" id="customer_id" name="customer_id" readonly>
+                    <input type="text" class="form-control" id="customer_id" name="customer_id" readonly>
                 </div>
             </div>
         </div>
@@ -157,11 +157,13 @@ function submit_form(){
         contentType: false,
         success: function(data){
             console.log(data);
-            // if(data === 'Member already exists'){
-            //     return Swal.fire(data)
-            // }
-            Swal.fire(data)
-            nominee_modal_trigger_btn.click()
+            if(data === 'Member already exists'){
+                return Swal.fire(data)
+            } else{
+
+                Swal.fire(data)
+                return nominee_modal_trigger_btn.click()
+            }
 
         }
     })
