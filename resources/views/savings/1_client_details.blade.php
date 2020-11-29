@@ -394,88 +394,8 @@
 </div>
 </div>
 {{-- wild card model------------------------------------------------------------------ --}}
-<div class="row">
-    <div class="col-md-12 text-center" style="border: solid">
-        <!-- notice modal -->
-        <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-notice" >
-                <div class="modal-content" style="width: 800px;height: 300px">
-                    <div >
-                        <div class="row mt-5">
-                            <label class="col-sm-2 col-form-label"> Client Full Name</label>
-                            <div class="col-sm-10">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <input oninput="toCap(this.value, this.id), get_options(this.value, this)"
-                                                type="text" class="form-control js-example-data-ajax"
-                                                id="client_full_name">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <button class="btn fa fa-search btn-info btn"
-                                            onclick="get_cus_details(identification_type_id.value, identification_number.value, client_full_name.value)">
-                                            &nbspFind</button>
-                                    </div>
-                                </div>
+@include('layouts.search_modal')
 
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">ID Type</label>
-                            <div class="col-sm-10">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="form-group">
-                                            <select name="identification_type_id" id="identification_type_id"
-                                                class="selectpicker" data-style="select-with-transition">
-                                                <option value="">Select</option>
-                                                @isset($idtypes)
-                                                @foreach ($idtypes as $idtype)
-                                                <option value="{{$idtype->id}}">
-                                                    {{$idtype->identification_type}}
-                                                    @endforeach
-                                                    @endisset
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">ID Numbere</label>
-                            <div class="col-sm-10">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <input type="text" name="identification_number" id="identification_number"
-                                                class="form-control" placeholder="">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="form-group">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                    </div> --}}
-                </div>
-            </div>
-        </div>
-        <!-- end notice modal -->
-
-    </div>
-</div>
 <script>
     //     $("#client_full_name").select2({
 //   ajax: {

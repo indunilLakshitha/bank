@@ -97,7 +97,7 @@
         $.ajax({
         type: 'GET',
         url: '{{('/search_by_full_name')}}',
-        data: {name} ,
+        data: {text:value} ,
         success: function(data){
             console.log(data);
             return show_data(data)
