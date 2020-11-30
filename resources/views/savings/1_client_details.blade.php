@@ -42,32 +42,12 @@
                             </div>
                         </div>
                         <div class="card-body ">
-                            {{-- <div class="row">
-                            <label class="col-sm-2 col-form-label">CIF</label>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" value={{$CIF}} disabled>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                            <div style="border: solid">
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label"> Client Full Name</label>
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <input oninput="toCap(this.value, this.id), get_options(this.value, this)"
-                                                        type="text" class="form-control js-example-data-ajax" id="client_full_name">
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <a class="btn btn-primary text-white" data-toggle="modal"
-                                                        href="#noticeModal">SEARCH</a>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <a class="btn btn-primary text-white float-right" data-toggle="modal"
+                                            href="#noticeModal">SEARCH</a>
                                     </div>
                                 </div>
                             </div>
