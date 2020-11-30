@@ -20,17 +20,17 @@
                                             <input
                                                 oninput="toCap(this.value, this.id), get_modal_search_by_full_name(this.value)"
                                                 type="text" class="form-control js-example-data-ajax"
-                                                id="client_full_name" placeholder="Enter Full Name">
+                                                id="client_full_name_search_modal" placeholder="Enter Full Name">
                                         </div>
                                     </div>
                                     <div class="col">
                                         {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                        {{-- <button class="btn  btn-info btn"
+                                        <button class="btn  btn-info btn"
                                             onclick="modal_serach_by_name_results_tbody.innerHTML = null"
                                             >
-                                            Clear Results </button> --}}
+                                            Clear Results </button>
 
                                     </div>
                                 </div>
@@ -157,19 +157,23 @@ function set_modal_serach_by_name_results(data){
     customer_data = data
 
     data.forEach(i => {
+
+        let member_status = i.non_member===1 ? 'Member' : 'Non-member'
         let html = `
-        <tr id='${i.id}' >
+        <tr id='${i.id}'>
             <td>${i.customer_id}</td>
-        <td>${i.full_name}</td>
-        <td>
-            <button type="button"
-            onclick=
-            "
-            this.parentElement.parentElement.parentElement.classList.add('d-none'),
-            set_cus_details_from_modal('${i.id}')
-            "
-            class="btn btn-sm btn-primary">Select</button>
-        </td>
+            <td>${i.full_name}</td>
+            <td>${i.identification_number}</td>
+            <td>${member_status}</td>
+            <td>
+                <button type="button"
+                onclick=
+                "
+                this.parentElement.parentElement.parentElement.classList.add('d-none'),
+                set_cus_details_from_modal('${i.id}')
+                "
+                class="btn btn-sm btn-primary">Select</button>
+            </td>
         </tr>
         `
         modal_serach_by_name_results_tbody.innerHTML += html
@@ -189,10 +193,13 @@ function set_cus_details_from_modal(id){
                 full_name.value = cus.full_name
             }
             if(document.querySelector('#branch_code')){
-                full_name.value = cus.branch_code
+                branch_code.value = cus.branch_code
             }
             if(document.querySelector('#customer_id')){
                 customer_id.value = cus.customer_id
+            }
+            if(document.querySelector('#dob')){
+                dob.value = cus.date_of_birth
             }
              return console.log(cus);
             //  console.log(full_name);

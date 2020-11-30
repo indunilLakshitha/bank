@@ -432,15 +432,18 @@ $(document).ready(function() {
 
         // console.log(typeof data);
         console.log('inside setter - footer',  data);
-        full_name.value = data.full_name
-        nominee_id.value = data.customer_id
-
-        if(branch_code){
+        if(document.querySelector('#full_name')){
+            full_name.value = data.full_name
+        }
+        if(document.querySelector('#branch_code')){
             branch_code.value = data.branch_code
         }
-        branch_id.value = data.branch_id
-        customer_id.value = data.customer_id
-        dob.value = data.date_of_birth
+        if(document.querySelector('#customer_id')){
+            customer_id.value = data.customer_id
+        }
+        if(document.querySelector('#dob')){
+            dob.value = data.date_of_birth
+        }
         account_number.value = `${account_number.value}-${data.customer_id}`
         // join_acc_main_holder.value = data.customer_id
     }

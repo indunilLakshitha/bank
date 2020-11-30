@@ -109,7 +109,11 @@ class OpenSavingsAccountController extends Controller
         SELECT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
-            customer_basic_data.id
+            customer_basic_data.id,
+            customer_basic_data.identification_number,
+            customer_basic_data.non_member,
+            customer_status_dates.date_of_birth,
+            branches.branch_code
 
         FROM customer_basic_data
 
@@ -135,7 +139,11 @@ class OpenSavingsAccountController extends Controller
         SELECT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
-            customer_basic_data.id
+            customer_basic_data.id,
+            customer_basic_data.identification_number,
+            customer_basic_data.non_member,
+            customer_status_dates.date_of_birth,
+            branches.branch_code
 
         FROM customer_basic_data
 
