@@ -2,7 +2,14 @@
 
 
 @section('content')
+<div class="col-9">
+    <div class="card-text">
+        <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+    </div>
+</div>
 <fieldset disabled="disabled">
+    @if(!empty($view_1))
+
 <div class="card col-10 " style="border: solid">
 <div class="card col-12 set-center ">
     <div class="card-body ">
@@ -11,6 +18,7 @@
                 <h4 class="card-title">Customer Details</h4>
             </div>
         </div>
+
         <br>
         <br>
             <div class="container-fluid ">
@@ -25,6 +33,7 @@
                                             <div class="row">
                                                 <div class="form-group">
                                                     <label for="c">Member ID</label>
+                                                    <br>
                                                     <input class="form-control" name="customer_id" type="text"
                                                         value="{{ isset($view_1->customer_id)?$view_1->customer_id:0}}">
 
@@ -33,10 +42,12 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="row">
+                                        <div class="form-group">
+                                            <div class="row">
                                             <div class="col-4">
+                                                 <div class="form-group">
                                                 <label for="c">STATUS</label>
-
+                                                    <br>
                                                     @if(@isset($view_1->customer_status_id) == 1)
                                                     <input name="customer_status_id" id="c" class="form-control"
                                                         value="ACTIVE">
@@ -45,19 +56,28 @@
                                                         value="INACTIVE">
                                                     @endif
                                                 </div>
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                            <label class="form-check-label-bold" style="background-color: #ffff00;"><mark> Non
-                                                Member</mark>
-                                                <input class="form-check-input"  disabled type="checkbox"
-                                                    <?php echo(@isset($view_1_1->non_member) == 1 ? 'checked': '') ?>>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <div class="row">
+                                            <div class="col-6">
+                                                <br>
+                                                 <div class="form-group">
 
-                                                <span class="form-check-sign" >
-                                                    <span class="check"></span>
-                                                </span>
+                                            <label class="form-check-label-bold" style="background-color: #ffff00;">
+                                                @if(@isset($view_1_1->non_member) == 1)
+                                                    <input name="customer_status_id" id="c" class="form-control"
+                                                        value="NON MEMBER">
+                                                    @else
+                                                    <input name="customer_status_id" id="c" class="form-control"
+                                                        value="MEMBER">
+                                                    @endif
                                             </label>
                                         </div>
+                                            </div></div></div></div>
                                 </div>
                                 <?php $titles=\App\Models\CutomerTitle::where('id',$view_1->customer_title_id)->first()?>
                                 <div class="row">
@@ -73,7 +93,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Name in Use</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <input name="name_in_use" type="text" class="form-control"
                                                 value="{{ isset($view_1->name_in_use)?$view_1->name_in_use:''}}">
@@ -82,7 +102,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Full Name</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-8">
                                         <div class="form-group">
                                             <input type="text" name="full_name" class="form-control"
                                                 value="{{ isset($view_1->full_name) ? $view_1->full_name: ''}}">
@@ -91,7 +111,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Surname</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <input type="text" name="surname" class="form-control"
                                                 value="{{ isset($view_1->surname) ? $view_1->surname: ''}}">
@@ -99,11 +119,40 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-sm-2 col-form-label">Short Name</label>
-                                    <div class="col-sm-4">
+                                    <label class="col-sm-2 col-form-label">Name With Initials</label>
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <input type="text" name="short_name" class="form-control"
                                                 value="{{ isset($view_1->short_name) ? $view_1->short_name: ''}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <?php $address=\App\Models\AddressData::where('customer_id',$view_1->customer_id )->first()?>
+                                    <label class="col-sm-2 col-form-label">Address </label>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <input type="text" name="address_line_1" class="form-control"
+                                                value="{{ isset($address->address_line_1)?$address->address_line_1:'' }}">
+
+                                                <input type="text" name="address_line_2" class="form-control"
+                                                value="{{ isset($address->address_line_2)?$address->address_line_2:'' }}">
+
+                                                <input type="text" name="address_line_3" class="form-control"
+                                                value="{{ isset($address->address_line_3)?$address->address_line_3:'' }}">
+
+                                                <input type="text" name="address_line_4" class="form-control"
+                                                value="{{ isset($address->address_line_4)?$address->address_line_4:'' }}">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">EPF No</label>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <input type="text" name="short_name" class="form-control"
+                                                value="">
                                         </div>
                                     </div>
                                 </div>
@@ -272,15 +321,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label class="col-sm-2 col-form-label">Address </label>
-                                    <div class="col-sm-10">
-                                        <div class="form-group">
-                                            <input type="text" name="address_data" class="form-control"
-                                                value="{{ isset($view_1->address_data)?$view_1->address_data:'' }}">
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Telephone No</label>
@@ -339,6 +380,8 @@
         </div>
     </div>
 </div>
+@endif
+@if(!empty($view_2))
 
 <div class="card col-10 " style="border: solid">
 
@@ -411,21 +454,22 @@
                                 @endisset
                             </div>
                         </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Date Became Member</label>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <input type="text" name="member_date" class="form-control"
-                                        value="{{ isset($view_2->member_date)?$view_2->member_date:''}}">
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Joined Date</label>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <input type="text" name="join_date" class="form-control"
                                         value="{{ isset($view_2->join_date)?$view_2->join_date:''}}">
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <label class="col-sm-2 col-form-label">Date Became Member</label>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input type="text" name="member_date" class="form-control"
+                                        value="{{ isset($view_2->member_date)?$view_2->member_date:''}}">
                                 </div>
                             </div>
                         </div>
@@ -532,6 +576,9 @@
     </div>
 </div> -->
 </div>
+@endif
+@if(!empty($view_4))
+
 <div class="card col-10 " style="border: solid">
 
 <div class="card col-12 ">
@@ -584,6 +631,9 @@
             </div>
         </div>
 </div>
+@endif
+@foreach($view_6 as $view_6_1)
+@if(!empty($view_6))
 <div class="card col-10 " style="border: solid">
 
 <div class="card col-12 ">
@@ -596,7 +646,6 @@
         <div class="col-md-12 col-12 mr-auto ml-auto pull-right">
 
                     @csrf
-                    @isset($view_6)
 
                     <table class="table table-striped table-bordered" id="bene_table">
                         <thead>
@@ -606,6 +655,7 @@
                             </tr>
                         </thead>
                         <tbody id="bene_body">
+                            @isset($view_6)
 
                             @foreach($view_6 as $view_6_1)
                             <tr>
@@ -732,7 +782,10 @@
 
 
     </div>
-</div>
-        </fieldset>
+
+@endif
+@break
+@endforeach
+</fieldset>
 
 @endsection

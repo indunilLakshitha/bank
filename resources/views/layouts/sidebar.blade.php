@@ -3,19 +3,19 @@
 
 
     <div class="logo">
-        
+
         <a href="/dashboard" class="simple-text logo-normal " style="text-align: center">
             Economic <br>Development <br>Co-op Bank
         </a></div>
     <div class="sidebar-wrapper">
 
         <ul class="nav">
-            <li class="nav-item  ">
+            {{-- <li class="nav-item  ">
                 <a class="nav-link" href="/dashboard">
                     <i class="material-icons">dashboard</i>
                     <p> Dashboard </p>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
@@ -64,18 +64,17 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="/members">
-                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
-                                <span class="sidebar-normal">View Customer Profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
                             <a class="nav-link" href="/members/verify">
                                 <span class="sidebar-mini"> <i class="material-icons">verified</i> </span>
                                 <span class="sidebar-normal"> Customer Verification</span>
                             </a>
                         </li>
-
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/members">
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
+                                <span class="sidebar-normal">View Customer Profile</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -229,7 +228,7 @@
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#transaction_report">
                     <i class="material-icons">grading</i>
-                    <p>Transaction Report
+                    <p> Reports
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -239,6 +238,14 @@
                             <a class="nav-link" href="/treport">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal">Transaction History</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/creport">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Cashier Report</span>
                             </a>
                         </li>
                     </ul>
@@ -385,6 +392,12 @@
                             </a>
                         </li>
                         <li class="nav-item ">
+                            <a class="nav-link" href="/productType">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Product Types</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
                             <a class="nav-link" href="/gender">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal">Genders</span>
@@ -408,12 +421,7 @@
                                 <span class="sidebar-normal">Married Statuses</span>
                             </a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/productType">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Product Types</span>
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
             </li>

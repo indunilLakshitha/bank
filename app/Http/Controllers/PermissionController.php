@@ -83,8 +83,10 @@ class PermissionController extends Controller
     //--------------------------------RETURN TO PERMISSION DELETE VIEW---------------------
     public function destroy( $id)
     {
-        Permission::find($id)->delete();
-
+        //Permission::find($id)->delete();
+        $permission = Permission::find($id);
+        $permission->status=2;
+        $permission->save();
         return redirect()->back()->with('success', 'Permission removed successfully');
     }
 }

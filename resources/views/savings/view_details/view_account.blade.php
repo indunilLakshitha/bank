@@ -3,10 +3,18 @@
 
 @section('content')
 @isset($view_1)
+<div class="col-9">
+    <div class="card-text">
+        <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+    </div>
+</div>
+<fieldset disabled="disabled">
+    @if(!empty($view_1_1) && !empty($view_1))
 <div class="content">
     <div class="container-fluid">
 
         <div class="col-md-12">
+
             <div class="card col-12 " style="border: solid">
 
                 <div class="card ">
@@ -16,14 +24,14 @@
                         </div>
                     </div>
                     <div class="card-body ">
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">CIF</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control" readonly value="{{$CIF}}">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-6">
@@ -32,7 +40,43 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="row">
+                            <label class="col-sm-2 col-form-label">Date Of Birth</label>
+                            <?php $dob=\App\Models\CustomerStatusDates::where('customer_id',$view_1_1->customer_id)->first()?>
+                            <div class="col-sm-4">
+                                @isset($dob)
+                                <div class="form-group">
+                                    <input type="text" name="dob"  id="dob" class="form-control" readonly value="{{$dob->date_of_birth}}">
+                                </div>
+                                @endisset
+                            </div>
+                        </div>
                         <div class="row">
+                            <label class="col-sm-2 col-form-label">Customer FATCA Clearance Received</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ isset($view_1->FATCA_clearance_received ) ? $view_1->FATCA_clearance_received : ''}}">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Customer PEP Clearance Received</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ isset($view_1->PEP_clearance_received ) ? $view_1->PEP_clearance_received : ''}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">ID Type</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -53,14 +97,14 @@
 
 
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- <form action="/submit_all" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" id="branch_id" name="branch_id">
                             <input type="hidden" id="customer_id" name="customer_id">
                             <input type="hidden" id="account_number" name="account_number" value= > -->
-                            <div class="row">
+                            <!-- <div class="row">
                             <label class="col-sm-2 col-form-label" >Full Name</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -76,50 +120,16 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">DOB</label>
-                            <?php $dob=\App\Models\CustomerStatusDates::where('customer_id',$view_1_1->customer_id)->first()?>
-                            <div class="col-sm-6">
-                                @isset($dob)
-                                <div class="form-group">
-                                    <input type="text" name="dob"  id="dob" class="form-control" readonly valvalue="{{ $dob->date_of_birth }}">
-                                </div>
-                                @endisset
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Customer FATCA Clearance Received</label>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="form-group">
-                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ isset($view_1->FATCA_clearance_received ) ? $view_1->FATCA_clearance_received : ''}}">
+                        </div> -->
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Customer PEP Clearance Received</label>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="form-group">
-                                            <input type="text" name="identification_type_id"  id="identification_type_id" class="form-control" readonly value="{{ isset($view_1->PEP_clearance_received ) ? $view_1->PEP_clearance_received : ''}}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <br> <br>
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Branch Code</label>
                             <?php $branch=\App\Models\Branch::where('id',$view_1->branch_id)->first()?>
-                            <div class="col-sm-6">
+                            <div class="col-sm-2">
                                 @isset($branch)
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="branch_code" name="branch_code" readonly value="{{ $branch->branch_code}}">
@@ -128,14 +138,14 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Customer Rating</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control" readonly value="">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Customer Signature</label>
                             <div class="col-sm-8">
@@ -164,7 +174,7 @@
                                 <h4 class="card-title">General Information</h4>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Lead source Category</label>
                             <?php $led_id=\App\Models\LeadSource::where('id',$view_1->lead_source_category_id)->first()?>
                             <div class="col-sm-8">
@@ -234,7 +244,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Options</label>
                             <div class="col-sm-8">
@@ -257,9 +267,9 @@
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Account Maintenance Via</label>
                             <div class="col-sm-8">
-                                <div class="col-10">
+                                <div class="col-4">
                                     <div class="form-group">
-                                        @if(!empty(@isset($view_1->sign_img)))
+                                        @if(!empty(@isset($view_1->has_passbook)))
                                         <input type="text" name="has_passbook"  id="has_passbook" class="form-control" readonly value="Pass Book" >
                                         @else
                                         <input type="text" name="has_passbook"  id="has_passbook" class="form-control" readonly value="No Pass Book" >
@@ -274,6 +284,8 @@
                 </div>
             </div>
 @endisset
+@endif
+@if(!empty($view_2))
 @isset($view_2)
 <div class="card col-12 " style="border: solid">
 
@@ -400,7 +412,11 @@
                 </div>
 </div>
                 @endisset
+                @endif
                 <!-- Beneficiary -->
+
+
+@if(!empty($view_5_1) && !empty($view_5_2))
 <div class="card col-12 " style="border: solid">
 
         <div class="card ">
@@ -466,6 +482,13 @@
             </div>
 
 </div>
+@endif
+
+@foreach($view_8 as $v)
+@foreach($view_8_1 as $v2)
+
+@if(!empty($v) && !empty($v2))
+@isset($view_8,$view_8_1)
 <div class="card col-12 " style="border: solid">
 
                 <div class="card ">
@@ -512,6 +535,12 @@
                                 </div>
                 </div>
 </div>
+@endisset
+@endif
+@break
+@endforeach
+@break
+@endforeach
                 <!-- <div class="card ">
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
@@ -771,6 +800,8 @@
                                     </div> --}} -->
                                 <!-- </div>
                             </div> -->
+                            @foreach($view_5 as $v5)
+                            @if(!empty($v5))
                             @isset($view_5)
                             <div class="card col-12 " style="border: solid">
 
@@ -814,9 +845,15 @@
 
                                 </div>
                             </div>
-                            @endisset
-                            @isset($view_6)
                             </div>
+                            @endisset
+                            @endif
+                            @break
+                            @endforeach
+
+                            @foreach($view_6 as $v)
+                            @if(!empty($v))
+                            @isset($view_6)
                             <div class="card col-12 " style="border: solid">
 
                             <div class="card ">
@@ -826,29 +863,29 @@
                                                 <h4 class="card-title">Tax Details</h4>
                                             </div>
                                         </div>
-                                        <table class="table table-striped table-bordered" readonly id="document">
+                                        <table class="table table-bordered" readonly id="t">
                                             <thead>
                                         <tr>
-                                        <th>Mandotory</th>
-                                        <th>Fee</th>
-                                        <th>Fee Type</th>
+
+                                        <th >Mandotory</th>
+                                        <th >Fee</th>
+                                        <th >Fee Type</th>
                                         <th>Amount</th>
-                                        <th>Tax Applicable</th>
-                                        <th>Fee Payable</th>
+                                        <th>Tax <br>Applicable</th>
+                                        <th>Fee <br> Payable</th>
                                     </tr>
                                    </thead>
-                                   <tbody id="document_body">
+                                   <tbody id="t_body">
                                        @foreach($view_6 as $view_66)
                                         <?php $fd=\App\Models\FeeDetails::where('id',$view_66->fee_details_id)->first()?>
                                         <?php $ft=\App\Models\FeeType::where('id',$view_66->fee_type_id)->first()?>
                                         @isset($ft,$fd)
                                         <tr>
-                                            <td><input type="checkbox" readonly <?php echo(@isset($fd->is_mandatory) == 1 ? 'checked': '') ?>></td>
-                                            <td>{{$fd->id}}></th>
-                                            <td><input type="checkbox" readonly ></td>
+                                            <td> <?php echo(@isset($fd->is_mandatory) == 1 ? 'Checked': '') ?></td>
+                                            <td>{{$fd->id}}</td>
                                             <td>{{$ft->fee_type}}<td>
                                             <td>{{$view_66->amount}}</td>
-                                            <td><input type="checkbox" readonly <?php echo(@isset($fd->is_tax_applicable) == 1 ? 'checked': '') ?>></td>
+                                            <td> <?php echo(@isset($fd->is_tax_applicable) == 1 ? 'Checked': '')?></td>
                                             <td>{{$view_66->fee_payble_text}}</td>
                                         </tr>
                                         @endisset
@@ -859,6 +896,12 @@
                             </div>
                             </div>
                             @endisset
+                            @endif
+                            @break
+                            @endforeach
+
+                            @foreach($view_7 as $v)
+                            @if(!empty($v))
                             @isset($view_7)
                             <div class="card col-12 " style="border: solid">
 
@@ -900,6 +943,8 @@
                                         </div>
                             </div>
                                         @endisset
+
+
                                         <!-- <div class="card" style="border: solid">
                                             <div class="row">
                                             <label class="col-sm-2 col-form-label">Title</label>
@@ -1085,6 +1130,9 @@
                                             </div> -->
                                         </div>
                             </div>
+                             @endif
+                             @break
+                            @endforeach
 
                             <!-- <div class="card ">
                                 <div class="card-body ">
@@ -1471,5 +1519,5 @@
                                         </div>
                                     </div> -->
 
-
+                                </fieldset>
 @endsection
