@@ -32,7 +32,7 @@
                             <label class="col-sm-2 col-form-label">Customer ID<font color="red">*</font></label>
                             <div class="col-lg-3 col-md-3 col-sm-3">
                                 <div class="form-group">
-                                    <input name="customer_id" type="text" disabled class="form-control" id="customer_id">
+                                    <input name="customer_id" type="text" class="form-control" id="customer_id">
                                 </div>
                             </div>
                         </div>
@@ -61,18 +61,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 col-form-label">Total Share Value Rs.<font color="red">*</font></label>
+                            <label class="col-sm-2 col-form-label">Total Share Value Rs.<font color="red">*</font>
+                                </label>
                             <div class="col-lg-3 col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <input type="text" id="share_cost" name="total_share_cost" class="form-control">
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Current Share Value<font color="red">*</font></label>
                             <div class="col-lg-3 col-md-2 col-sm-2">
                                 <div class="form-group">
-                                    <input type="text" id="current" name="current" class="form-control">
+                                    <input type="text" id="share_amount" name="current" class="form-control">
                                 </div>
                             </div>
                         </div>

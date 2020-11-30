@@ -65,14 +65,14 @@
                                                 data-style="select-with-transition">
                                                 @php
                                                 $interest_types =
-                                                Illuminate\Support\Facades\DB::table('interest_types')->get();
+                                                Illuminate\Support\Facades\DB::table('interest_types')->where('id',1)->get();
                                                 @endphp
-                                                <option value="">Select </option>
                                                 @isset($interest_types)
-                                                @foreach ($interest_types as $item)
+                                                <option value="{{$interest_types[0]->id}}" selected> {{$interest_types[0]->interest_type}}</option>
+                                                {{-- @foreach ($interest_types as $item)
                                                 <option value="{{$item->id}}">
                                                     {{$item->interest_type}}
-                                                    @endforeach
+                                                    @endforeach --}}
                                                     @endisset
                                             </select>
                                         </div>
@@ -85,7 +85,7 @@
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
-                                        <input type="number" name="interest_rate" id="interest_rate"
+                                        <input type="text" name="interest_rate" id="interest_rate" value="FIXED" readonly
                                             class="form-control">
                                     </div>
                                 </div>
@@ -100,12 +100,12 @@
                                             <select name="currency_id" class="form-control"
                                                 data-style="select-with-transition">
                                                 @php
-                                                $currencies = Illuminate\Support\Facades\DB::table('currencies')->get();
+                                                $currencies = Illuminate\Support\Facades\DB::table('currencies')->where('id',1)->get();
                                                 @endphp
-                                                <option value="">Select </option>
+                                                {{-- <option value="">Select </option> --}}
                                                 @isset($currencies)
                                                 @foreach ($currencies as $item)
-                                                <option value="{{$item->id}}">
+                                                <option value="{{$item->id}}" selected aria-readonly="">
                                                     {{$item->currency_name}}
                                                     @endforeach
                                                     @endisset
@@ -124,13 +124,15 @@
                                         <div class="form-group">
                                             <select name="account_level" class="form-control"
                                                 data-style="select-with-transition">
-                                                <option value="">Select </option>
-                                                @isset($acc_levels)
+                                                <option value="">1 </option>
+                                                <option value="">2 </option>
+                                                <option value="">3 </option>
+                                                {{-- @isset($acc_levels)
                                                 @foreach ($acc_levels as $acc_level)
                                                 <option value="{{$idtype->id}}">
                                                     {{$acc_level->identification_type}}
                                                     @endforeach
-                                                    @endisset
+                                                    @endisset --}}
                                             </select>
                                         </div>
                                     </div>
@@ -180,7 +182,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="number" name="minimum_balance" class="form-control"
+                                            <input type="number" name="minimum_balance" readonly class="form-control"
                                                 value="200">
                                         </div>
                                     </div>

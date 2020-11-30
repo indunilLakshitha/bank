@@ -51,7 +51,7 @@
                                 @endisset
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Customer FATCA Clearance Received</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">ID Type</label>
                             <div class="col-sm-8">
@@ -123,8 +123,6 @@
                         </div> -->
 
 
-
-                        <br> <br>
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Branch Code</label>
@@ -174,6 +172,8 @@
                                 <h4 class="card-title">General Information</h4>
                             </div>
                         </div>
+                        <br>
+                            <br>
                         <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Lead source Category</label>
                             <?php $led_id=\App\Models\LeadSource::where('id',$view_1->lead_source_category_id)->first()?>
@@ -247,18 +247,53 @@
                         </div> -->
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Options</label>
+
                             <div class="col-sm-8">
                                 <div class="col-10">
                                     <div class="form-group">
                                         <!-- <input type="text" name="identification_number"  id="identification_number" class="form-control"> -->
-                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_atm" <?php echo(@isset($view_1->has_atm) == 1 ? 'checked': '') ?>> ATM
+                                        @if($view_1->has_atm == 1)
+                                        <div class="col">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <span style="font-size: 100%;" class="badge badge badge-rose">ATM</span>
+                                                </div>
+                                        @else
+                                        @endif
+                                            <div class="form-group">
+                                            @if($view_1->has_sms == 1)
+                                                <span style="font-size: 100%;" class="badge badge badge-rose">SMS</span>
+                                            </div>
+
+                                            </div>
                                         </div>
-                                        <div class="col"><input type="checkbox" class="form-control" disabled name="has_sms" readonly <?php echo(@isset($view_1->has_sms) == 1 ? 'checked': '') ?>  > SMS
+
+                                        @else
+                                        @endif
+                                        @if($view_1->has_internet_banking == 1)
+                                        <div class="col">
+                                            <div class="col">
+                                                <div class="form-group">
+                                        <span style="font-size: 100%;" class="badge badge badge-rose">Internet Banking</span>
+                                        </div>
+                                        @else
+                                        @endif
+                                        <div class="form-group">
+                                        @if($view_1->has_mobile_banking == 1)
+                                        <span style="font-size: 100%;" class="badge badge badge-rose"> Mobile Bankin</span>
+                                        </div>
+                                            </div>
+                                        </div>
+
+                                        @else
+                                        @endif
+                                        <!-- <div class="col"><input type="checkbox" class="form-control" disabled name="has_atm" <?php echo(@isset($view_1->has_atm) == 1 ? 'checked': '') ?>> ATM -->
+                                        <!-- <div class="col"><input type="checkbox" class="form-control" disabled name="has_sms" readonly <?php echo(@isset($view_1->has_sms) == 1 ? 'checked': '') ?>  > SMS
                                         </div>
                                         <div class="col"><input type="checkbox" class="form-control" disabled name="has_internet_banking"  readonly  <?php echo(@isset($view_1->has_internet_banking) == 1 ? 'checked': '') ?> >
                                             Internet Banking</div>
                                         <div class="col"><input type="checkbox" class="form-control" disabled name="has_mobile_banking" readonly  <?php echo(@isset($view_1->has_mobile_banking) == 1 ? 'checked': '') ?>  >
-                                            Mobile Banking</div>
+                                           <span class="badge badge badge-rose">  Mobile Banking</span></div> -->
 
                                     </div>
                                 </div>
@@ -415,7 +450,8 @@
                 @endif
                 <!-- Beneficiary -->
 
-
+@foreach($view_5_1 as $v)
+@foreach($view_5_2 as $v2)
 @if(!empty($view_5_1) && !empty($view_5_2))
 <div class="card col-12 " style="border: solid">
 
@@ -441,15 +477,12 @@
                             </tr>
                         </thead>
                         <tbody id="bene_body">
-
                             @foreach($view_5_1 as $view_5_11)
                             <tr>
                                 <td>{{$view_5_11->customer_id}} </td>
                                 <td> {{$view_5_11->name_in_use}}</th>
                             </tr>
                             @endforeach
-
-
                         </tbody>
                     </table>
 
@@ -483,6 +516,10 @@
 
 </div>
 @endif
+@break
+@endforeach
+@break
+@endforeach
 
 @foreach($view_8 as $v)
 @foreach($view_8_1 as $v2)

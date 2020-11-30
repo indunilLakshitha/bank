@@ -98,12 +98,17 @@
                         {{-- @foreach ($roles as $r)
                                              {{$r->permissions}}
                         @endforeach --}}
+                        <input type="hidden" id="user_role" value="{{$user->roles[0]->name}}">
                         @foreach ($all_roles as $r)
                             <tr>
                                 {{-- {{$r->permissions}} --}}
                                 <th>{{$r->name}}</th>
-                                <th> <input class="role_checkboxes" type="radio" value="{{$r->name}}" name="roles[]"
-                                            id="checkbox_{{$r->name}}" onclick="get_role_perms(this, {{$r->permissions}})"></th>
+                                <th> <input class="role_checkboxes"  type="radio" value="{{$r->name}}" name="roles[]"
+
+                                    @if ($r->name == $user->roles[0]->name)
+                                        checked
+                                    @endif
+                                            id="checkbox_{{$r->name}}"  onclick="get_role_perms(this, {{$r->permissions}})"></th>
                                 <th>
                                     @foreach ($r->permissions as $perm)
                                         <span class="badge badge-pill badge-rose"> {{$perm->name}} </span>
@@ -128,7 +133,16 @@
                         <div class="col-3">
                             {{-- <tr> --}}
                             {{-- <th> --}}
-                            <input type="checkbox" value="{{$p->name}}" class="perm_checkboxes "
+                            <input type="checkbox"
+                                {{-- @foreach ($all_roles as $r)
+                                    @foreach ($r->permissions as $perm)
+                                        @if ($perm->name == $p->name)
+
+                                        @endif
+                                    @endforeach
+                                @endforeach --}}
+
+                             value="{{$p->name}}" class="perm_checkboxes "
                                 name="permissions[]" id="{{$p->name}}">
                             {{$p->view_name}}
                             {{-- </th> --}}
@@ -149,6 +163,11 @@
 
 
     <script>
+
+
+        window.onload = document.querySelector(`#checkbox_${user_role.value}`).click()
+
+
         function get_role_perms(role_checkbox, perms){
         // console.log(this_checkbox);
         // console.log(perms['perms']);

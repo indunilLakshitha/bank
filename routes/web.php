@@ -236,6 +236,9 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/deposits/fd-dep', function () {
         return view('deposit.fd_deposite');
     });
+
+    Route::get('/load_saving_details', 'WithdrawalController@load_saving_details');
+
     //---------------------------------------------withdrawal views------end
 
     Route::get('/savings/clientdetails', 'SavingsController@clientDetails');

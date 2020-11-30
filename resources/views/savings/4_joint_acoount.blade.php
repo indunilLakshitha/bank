@@ -183,8 +183,13 @@
                 <form action="/checkout" method="POST">
                     @csrf
                     <input type="hidden" name="product_data_id" value={{$prod_id}}>
-                    <input type="hidden" name="account_id" value={{$account_id}}>
-                    <input type="hidden" name="customer_id" value={{$customer_id}}>
+                            <input type="hidden" name="account_id" value={{$account_id}}>
+                            <input type="hidden" name="customer_id" value={{$cus_id}}>
+                            <input type="hidden" name="account_number" value={{$acc_no}}>
+                            <input type="hidden" name="$guard " value={{$guard}}>
+                            <input type="hidden" name="nomin" value={{$nomin}}>
+                            <input type="hidden" name="docum" value={{$docum}}>
+                            <input type="hidden" name="benef" value={{$benef}}>
                     <button type="submit" class="btn btn-primary">NEXT</button>
                 </form>
             </div>
