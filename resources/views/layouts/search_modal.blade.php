@@ -185,11 +185,12 @@ function set_modal_serach_by_name_results(data){
 }
 
 function set_cus_details_from_modal(id){
-    // console.log(customer_data);
+    console.log(id);
 
     customer_data.filter(cus => {
         if(cus.id === parseInt(id)){
-            
+            console.log(cus);
+
             if(document.querySelector('#full_name')){
                 full_name.value = cus.full_name
             }

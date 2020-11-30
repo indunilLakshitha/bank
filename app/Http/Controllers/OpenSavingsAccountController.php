@@ -103,7 +103,12 @@ class OpenSavingsAccountController extends Controller
 
         $branch_id = Auth::user()->branh_id;
         $data = DB::select("
-        SELECT * FROM customer_basic_data
+        SELECT
+            customer_basic_data.customer_id,
+            customer_basic_data.full_name,
+            customer_basic_data.id
+
+        FROM customer_basic_data
 
         LEFT JOIN branches
         ON branches.id = customer_basic_data.branch_id
@@ -123,7 +128,12 @@ class OpenSavingsAccountController extends Controller
         // return $request;
         $branch_id = Auth::user()->branh_id;
         $data = DB::select("
-        SELECT * FROM customer_basic_data
+        SELECT
+            customer_basic_data.customer_id,
+            customer_basic_data.full_name,
+            customer_basic_data.id
+
+        FROM customer_basic_data
 
         LEFT JOIN branches
         ON branches.id = customer_basic_data.branch_id

@@ -36,7 +36,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <label class="col-sm-2 col-form-label">No of Shares To Sell<font color="red">*</font>
                                 </label>
                             <div class="col-lg-3 col-md-3 col-sm-3">
@@ -44,7 +44,7 @@
                                     <input type="text" name="n_of_shares_to_sell" class="form-control">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Name of Buyer<font color="red">*</font>
                                 </label>
@@ -59,19 +59,26 @@
                                 href="#buyer_modal"> SEARCH Buyer</button>
                             </div>
                         </div>
+                        @php
+                        $share_amount = DB::table('setting_data')->where('setting_description', 'share_amount')->first()->setting_data;
+                    @endphp
                         <div class="row">
-                            <label class="col-sm-2 col-form-label">No of Shares To Buy<font color="red">*</font></label>
+                            <label class="col-sm-2 col-form-label">No of Shares To Transfer<font color="red">*</font></label>
                             <div class="col-lg-3 col-md-2 col-sm-2">
                                 <div class="form-group">
-                                    <input type="text" name="n_of_shares_to_buy" class="form-control">
+                                    <input type="number" name="n_of_shares_to_transfer" class="form-control"
+                                oninput="total_transaction_amount.value = this.value*{{$share_amount}}"
+                                    >
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Total Transaction Amount<font color="red">*</font></label>
                             <div class="col-lg-3 col-md-2 col-sm-2">
                                 <div class="form-group">
-                                    <input type="text" name="total_transaction_amount" class="form-control">
+                                    <input type="text" name="total_transaction_amount" id="total_transaction_amount" class="form-control">
                                 </div>
                             </div>
                         </div>

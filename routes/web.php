@@ -400,7 +400,7 @@ Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
 Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
 Route::get('/sharetransferdata','ShareController@historyview')->name('shares.history');
 Route::post('/buy_shares','ShareController@buy_shares');
-Route::post('/transfer_shares','ShareController@transfer_shares');
+Route::post('/transfer_shares','TransactionController@transfer_shares');
 
 
 Auth::routes();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AccountGeneralInformation as AppAccountGeneralInformation;
 use App\cash_in_hand_ledger;
+use App\Member;
 use App\Models\AccountGeneralInformation;
 use App\Models\CustomerBasicData;
 use App\Models\PaymentLog;
@@ -140,6 +141,21 @@ class TransactionController extends Controller
          saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
         return response()->json($succsess);
 
+
+
+    }
+
+    public function transfer_shares(Request $request){
+        $seller = Member::where('customer_id', $request->seller_id)->first();
+        $seller->share_amount -= $request->n_of_shares_to_transfer;
+        $seller->save();
+
+
+        $buyer = Member::where('customer_id', $request->buyer_id)->first();
+        $buyer->share_amount += $request->n_of_shares_to_transfer;
+        $buyer->save();
+
+        return response()->json($request);
 
 
     }
