@@ -269,7 +269,7 @@ function add_nominee(nominee_id, member_id){
         </tr>
         `
         show_nominees_tbody.innerHTML += html
-    })
+
     }
 
     function remove_nominee(id){
