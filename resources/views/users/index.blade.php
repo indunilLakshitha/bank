@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         @if(Session::has('message-error'))
-                            <p class="alert alert-danger">{{ Session::get('message') }}</p>
+                            <p class="alert alert-danger">{{ Session::get('message-error') }}</p>
                         @endif
                         @if(Session::has('message'))
                             <p class="alert alert-success">{{ Session::get('message') }}</p>

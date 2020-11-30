@@ -104,7 +104,7 @@ class UserController extends Controller
         //$users = User::all()->where('status','<', 2);
          $users = User::leftjoin('branches','branches.id','users.branh_id')
             ->select('users.*','branches.branch_name','branches.branch_code')
-            ->where('users.status', 2)
+            ->where('users.status', '<',2)
             ->get();
         return view('users.index', compact('users'));
     }
