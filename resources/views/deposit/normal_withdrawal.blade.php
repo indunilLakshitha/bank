@@ -161,6 +161,7 @@
                         <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
                             width="100%" style="width:100%">
                             <thead>
+
                                 <th># </th>
                                 <th>A/C No </th>
                                 <th>A/C Name </th>
@@ -168,35 +169,14 @@
                                 <th>Balance </th>
 
                             </thead>
-                            <tbody id="_tbody">
-
-                                @isset($members)
-                                @foreach ($members as $member)
-                                <tr>
-                                    <th>{{$member->id}}</th>
-                                    <th>{{$member->customer_id}} </th>
-                                    <th>{{$member->customer_type}} </th>
-                                    <th>{{$member->identification_number}}</th>
-                                    <th>{{$member->name_in_use}}</th>
-                                    @if(intval($member->is_enable) == 1)
-                                    <th>ACTIVE</th>
-                                    @else
-                                    <th>INACTIVE</th>
-                                    @endif
-                                    <th><a href="{{url('/members/view/'.$member->customer_id)}}" rel="tooltip"
-                                            class="btn-sm btn-info btn-round">VIEW</a>
-                                        <a href="{{url('/members/edit/'.$member->customer_id)}}" rel="tooltip"
-                                            class="btn-sm btn-primary btn-round"><i class="material-icons">edit</i></a>
-                                    </th>
-                                </tr>
-                                @endforeach
-
-                                @endisset
-
+                            <tbody id="saving_details_tbody">
 
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="d-none" id="shares_row">
+
                 </div>
 
             </div>
@@ -305,6 +285,34 @@ console.log(data)
             },
             success: function(data){
                 console.log(data);
+
+                let i=0
+                saving_details_tbody.innerHTML = ''
+
+                data.accs.forEach(acc => {
+                    html =
+                    `
+                    <tr>
+                        <th>${i}</th>
+                        <th>${acc.account_number}</th>
+                        <th></th>
+                        <th></th>
+                        <th>${acc.account_balance}</th>
+                    </tr>
+                    `
+
+                    i++
+                    saving_details_tbody.innerHTML += html
+                })
+
+                html =
+                `
+                    <div class="col">Shares Amount</div>
+                    <div class="col">${data.shares.share_amount}</div>
+                `
+                shares_row.classList.remove('d-none')
+                shares_row.innerHTML = ''
+                shares_row.innerHTML = html
             }
         })
     }

@@ -10,11 +10,8 @@ class WithdrawalController extends Controller
 {
     public function load_saving_details(Request $request){
 
-        $data =
-        AccountGeneralInformation::leftjoin('members', 'members.customer_id','account_general_information.customer_id' )
-        ->where('account_general_information.customer_id', $request->id)
-        ->get();
-
-        return response()->json($data);
+        $accs = AccountGeneralInformation::where('customer_id', $request->id)->get();
+        $shares = Member::where('customer_id',  $request->id)->first();
+        return response()->json(compact('accs', 'shares'));
     }
 }
