@@ -44,7 +44,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                  <div class="form-group">
                                                 <label for="c">STATUS</label>
                                                     <br>
@@ -329,8 +329,9 @@
                                     <div class="col-sm-8">
                                         <div class="form-group">
                                             <div class="col-sm-5">
+                                                <?php $cnt=\App\Models\ContactData::where('customer_id',$view_1->customer_id )->first()?>
                                                 <input type="text" name="telephone_number" class="form-control"
-                                                    value="{{ isset($view_1->telephone_number)?$view_1->telephone_number:'' }}">
+                                                    value="{{ isset($cnt->contact_data)?$cnt->contact_data:'' }}">
                                             </div>
                                         </div>
                                     </div>
@@ -442,7 +443,7 @@
                                 @endisset
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Race</label>
                             <?php $race=\App\Models\Race::where('id',$view_2->race_id)->first()?>
                             <div class="col-sm-3">
@@ -453,7 +454,7 @@
                                 </div>
                                 @endisset
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Joined Date</label>
