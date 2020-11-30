@@ -254,7 +254,7 @@ class CustomerBasicDataController extends Controller
         ->where('beneficiary_data.customer_id',$request->id)->get();
           $view_5_2 = GuardianData::leftjoin('customer_basic_data','customer_basic_data.customer_id','guardian_data.customer_id')
                     ->where('guardian_data.customer_id',$request->id)->get();
-        $view_6 = SpecialData::where('customer_id',$request->id)->first();
+        $view_6 = CustomerAsset::where('customer_id',$request->id)->first();
         return view('edit.memberEdit.member_edit',compact('cus','view_1','view_1_1','view_2','view_3','view_4','view_5_1','view_5_2','view_6'));
 
 
@@ -307,7 +307,7 @@ class CustomerBasicDataController extends Controller
     public function editSpecialAndAssets(Request $request)
     {
 
-        $customer = SpecialData::where('customer_id', $request->customer_id)->first();
+        $customer = CustomerAsset::where('customer_id', $request->customer_id)->first();
 
         $customer->update($request->all());
 
