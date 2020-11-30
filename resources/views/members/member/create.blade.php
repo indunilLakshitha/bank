@@ -25,9 +25,11 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <input type="text" class="form-control" id="full_name" readonly>
-                        <input type="text" class="form-control" id="customer_id" name="customer_id" readonly>
+                        <input type="hidden" class="form-control" id="customer_id" name="customer_id" readonly>
                     </div>
                 </div>
+                <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal"
+                href="#noticeModal"></a>
             </div>
             <div class="row">
                 <label class="col-sm-2 col-form-label">Allocated Shares</label>

@@ -11,6 +11,7 @@ use App\Models\PaymentLog;
 use App\Models\CashierDailyTransaction;
 use App\Models\saving_deposit_base_ledger;
 use App\Models\TransactionData;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,9 +61,14 @@ class TransactionController extends Controller
         $cashie_daily_trancastion['transaction_type']="WITHDRAW";
         $cashie_daily_trancastion['transaction_id']=$transaction_data->id;
         $cashie_daily_trancastion['account_number']=$request->account_id;
-        $cashie_daily_trancastion['transaction_value']=$request->transaction_value;
+        $cashie_daily_trancastion['transaction_amount']=$request->transaction_value;
         $cashie_daily_trancastion['balance_value']=$general_account->account_balance;
         $cashie_daily_trancastion['is_enable']=1;
+        $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
+        $cashie_daily_trancastion['branch_id']=Auth::user()->branh_id;
+        $cashie_daily_trancastion['branch_balance']=
+        CashierDailyTransaction::where('branch_id',Auth::user()->branh_id)->sum('branch_balance')-$request->transaction_value;
+
         CashierDailyTransaction::create($cashie_daily_trancastion->all());
 
         $cash_in_hand_ledger=$request;
@@ -114,9 +120,14 @@ class TransactionController extends Controller
         $cashie_daily_trancastion['transaction_type']="DEPOSITE";
         $cashie_daily_trancastion['transaction_id']=$transaction_data->id;
         $cashie_daily_trancastion['account_number']=$request->account_id;
-        $cashie_daily_trancastion['transaction_value']=$request->transaction_value;
+        $cashie_daily_trancastion['transaction_amount']=$request->transaction_value;
         $cashie_daily_trancastion['balance_value']=$general_account->account_balance;
         $cashie_daily_trancastion['is_enable']=1;
+        $cashie_daily_trancastion['branch_id']=Auth::user()->branh_id;
+        $cashie_daily_trancastion['branch_balance']=
+                CashierDailyTransaction::where('branch_id',Auth::user()->branh_id)->sum('branch_balance')+$request->transaction_value;
+        $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
+
         CashierDailyTransaction::create($cashie_daily_trancastion->all());
 
         $cash_in_hand_ledger=$request;

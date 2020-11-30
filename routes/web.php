@@ -370,9 +370,10 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::post('/tax_n_docs', 'InterestSchemaParameterController@store_tax_n_docs');
     //-------------------------------------------------------------------Interest Schema parameter -------------end--------
 
-    //-----------------------------------------------------------------transaction report----------------------
-    Route::get('/treport', 'TransactionReportController@index');
-    Route::get('/findmemberbyaccnoforreport', 'TransactionReportController@findMembersById');
+//-----------------------------------------------------------------transaction report----------------------
+Route::get('/treport','TransactionReportController@index');
+Route::get('/findmemberbyaccnoforreport','TransactionReportController@findMembersById');
+Route::get('/creport','TransactionReportController@cashierReport');
 
     //------------------------------------------------------------------transaction report end-------------------
 
