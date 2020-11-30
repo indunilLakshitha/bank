@@ -5,64 +5,63 @@
 
 <form method="post" id="form" class="form-horizontal">
     @csrf
-<div class="card " style="border: solid">
-    <div class="row">
-        <div class="col">
-            <button type="button" class="btn fa fa-search btn-info float-right" data-toggle="modal"
-            href="#noticeModal"> SEARCH</button>
+    <div class="card " style="border: solid">
+        <div class="row">
+            <div class="col">
+                {{-- <button type="button" class="btn fa fa-search btn-info float-right" data-toggle="modal"
+            href="#noticeModal"> SEARCH</button> --}}
+            </div>
         </div>
+        <div class="card-body ">
+            <div class="card-header card-header-rose card-header-text">
+                <div class="card-text">
+                    <h4 class="card-title">Member Creation</h4>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Customer Name</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="full_name" readonly>
+                        <input type="hidden" class="form-control" id="customer_id" name="customer_id" readonly>
+                    </div>
+                </div>
+                <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal"
+                href="#noticeModal"></a>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Allocated Shares</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input type="number" class="form-control"
+                            oninput="share_amount.value = this.value*{{$share_amount}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Payment Amount</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="share_amount" id="share_amount">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-6 text-right">
+                    <button type="button" onclick="submit_form()" class="btn btn-rose col-4 text-white">SUBMIT</button>
+                </div>
+                <div class="col-1 text-right">
+                    <button type="submit" class="btn ">Clear</button>
+                </div>
+            </div>
+
+        </div>
+
     </div>
-    <div class="card-body ">
-        <div class="card-header card-header-rose card-header-text">
-            <div class="card-text">
-                <h4 class="card-title">Member Creation</h4>
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Customer Name</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="full_name" readonly>
-                    <input type="text" class="form-control" id="customer_id" name="customer_id" readonly>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Allocated Shares</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="number" class="form-control"
-                oninput="share_amount.value = this.value*{{$share_amount}}"
-                    >
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <label class="col-sm-2 col-form-label">Payment Amount</label>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="number" class="form-control" name="share_amount" id="share_amount">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-6 text-right">
-                <button type="button" onclick="submit_form()"
-                    class="btn btn-rose col-4 text-white">SUBMIT</button>
-            </div>
-            <div class="col-1 text-right">
-                <button type="submit" class="btn ">Clear</button>
-            </div>
-        </div>
-
-    </div>
-
-</div>
 
 </form>
 

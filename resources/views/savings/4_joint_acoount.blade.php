@@ -180,7 +180,7 @@
 
             <div class="col-6 text-right">
                 {{-- <form action="/guradian-information" method="POST"> --}}
-                <form action="/documents" method="POST">
+                <form action="/checkout" method="POST">
                     @csrf
                     <input type="hidden" name="product_data_id" value={{$prod_id}}>
                     <input type="hidden" name="account_id" value={{$account_id}}>

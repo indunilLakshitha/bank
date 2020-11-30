@@ -97,7 +97,7 @@
                                     <th>Signature Verification</th>
                                     <th>Document Verification</th>
                                     <th>Action</th>
-                                    <th>Edit List</th>
+
                                 </thead>
                                 <tbody id="results_tbody">
                                     @foreach ($permissions as $perm)
@@ -113,7 +113,7 @@
                                     <td><button class="btn btn-sm btn-primary " id="{{$perm->account_number}}" onclick="check_approve(this.id)" >Approve</button>
                                         <button class="btn btn-sm btn-danger">Reject</button>
                                     </td>
-                                    <td><button class="btn btn-sm btn-primary">Generate</button></td>
+
                                 </tr>
                                     @endforeach
 
@@ -171,7 +171,7 @@
                     <button class="btn btn-sm btn-primary " onclick="check_approve('${i.account_number}')" >Approve</button>
                     <button class="btn btn-sm btn-primary">Reject</button>
                 </td>
-                <td><button class="btn btn-sm btn-primary">Generate</button></td>
+                
             </tr>
             `
             results_tbody.innerHTML += html

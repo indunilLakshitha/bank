@@ -11,7 +11,7 @@
             <div class="card ">
                 <div class="card-header card-header-rose card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">Main Holder</h4>
+                        <h4 class="card-title">Main Holder Signature</h4>
                     </div>
                 </div>
                 <div class="card-body ">
@@ -44,7 +44,7 @@
             <div class="card ">
                 <div class="card-header card-header-rose card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">Other Holders</h4>
+                        <h4 class="card-title">Other Holders Signatures</h4>
                     </div>
                 </div>
                 <div class="card-body ">

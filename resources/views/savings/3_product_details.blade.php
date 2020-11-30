@@ -7,19 +7,17 @@
         <div class="col-md-12">
             <div class="card ">
                 <div class="row">
-                    <div class="col-11">
+                    <div class="col-10">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
                                 <h4 class="card-title">Step 02 - Savings Account Opening</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-1 ">
-                        {{-- <div class="card-header card-header-rose card-header-text"> --}}
+                   <div class="col-1">
                         <div class="card-text">
                             <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
                         </div>
-                        {{-- </div> --}}
                     </div>
                 </div>
             </div>

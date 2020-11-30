@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountGeneralInformation;
+use App\Models\CashierDailyTransaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionReportController extends Controller
 {
@@ -22,5 +25,10 @@ class TransactionReportController extends Controller
                 //  ->where('account_general_information.status',1)
                  ->get();
         return response()->json($transactions);
+    }
+
+    public function cashierReport(){
+         $details=CashierDailyTransaction::where('user_id',Auth::user()->id)->where('transaction_date',Carbon::today()->toDateString())->get();
+         return view('transaction_report.cashie_daily',compact('details'));
     }
 }

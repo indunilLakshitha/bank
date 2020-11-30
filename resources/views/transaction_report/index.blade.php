@@ -103,7 +103,8 @@
                                         <th>DATE</th>
                                         <th>WITHDRAWED</th>
                                         <th>DEPOSITED</th>
-                                        <th><button class="btn fa fa-print btn-info btn-sm" onclick="printData()"></button></th>
+                                        <th><button class="btn fa fa-print btn-info btn-sm"
+                                                onclick="printData()"></button></th>
                                     </thead>
                                     <tbody id="results_tbody">
 
