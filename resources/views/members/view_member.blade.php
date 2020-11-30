@@ -443,7 +443,7 @@
                                 @endisset
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Race</label>
                             <?php $race=\App\Models\Race::where('id',$view_2->race_id)->first()?>
                             <div class="col-sm-3">
@@ -454,7 +454,7 @@
                                 </div>
                                 @endisset
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Joined Date</label>
