@@ -201,6 +201,9 @@ function set_cus_details_from_modal(id){
             if(document.querySelector('#dob')){
                 dob.value = cus.date_of_birth
             }
+            if(document.querySelector('#share_amount')){
+                share_amount.value = cus.share_amount
+            }
              return console.log(cus);
             //  console.log(full_name);
         }

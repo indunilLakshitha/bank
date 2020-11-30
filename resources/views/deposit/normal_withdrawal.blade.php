@@ -175,9 +175,11 @@
                         </table>
                     </div>
                 </div>
-                <div class="d-none" id="shares_row">
+                <table class="table">
+                    <tr class="d-none" id="shares_row">
 
-                </div>
+                    </tr>
+                </table>
 
             </div>
         </div>
@@ -307,12 +309,15 @@ console.log(data)
 
                 html =
                 `
-                    <div class="col">Shares Amount</div>
-                    <div class="col">${data.shares.share_amount}</div>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Shares Amount</th>
+                        <th></th>
+                        <th>${data.shares.share_amount}</th>
+                    </tr>
                 `
-                shares_row.classList.remove('d-none')
-                shares_row.innerHTML = ''
-                shares_row.innerHTML = html
+                saving_details_tbody.innerHTML += html
             }
         })
     }

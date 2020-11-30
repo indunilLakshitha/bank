@@ -22,11 +22,19 @@ class ShareController extends Controller
 
     public function buy_shares(Request $request){
 
-        return response()->json($request);
-        
-        $member=Member::where('customer_id',$request->customer_id)->first();
-        $member->share_amount+=$request->n_of_shares;
-        $member->save();
+        return $request;
+        if(Member::where('customer_id',$request->customer_id)->first()){
+            $member=Member::where('customer_id',$request->customer_id)->first();
+            $member->share_amount+=$request->n_of_shares;
+            $member->save();
+            return response()->json($member);
+        }
+
+        return response()->json('Not a Member');
+
+
+
+
     }
     public function transfer_shares(Request $request){
         return response()->json($request);

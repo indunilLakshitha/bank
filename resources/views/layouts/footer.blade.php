@@ -444,6 +444,9 @@ $(document).ready(function() {
         if(document.querySelector('#dob')){
             dob.value = data.date_of_birth
         }
+        if(document.querySelector('#share_amount')){
+                share_amount.value = cus.share_amount
+        }
         account_number.value = `${account_number.value}-${data.customer_id}`
         // join_acc_main_holder.value = data.customer_id
     }
