@@ -33,6 +33,7 @@
                                             <div class="row">
                                                 <div class="form-group">
                                                     <label for="c">Member ID</label>
+                                                    <br>
                                                     <input class="form-control" name="customer_id" type="text"
                                                         value="{{ isset($view_1->customer_id)?$view_1->customer_id:0}}">
 
@@ -41,10 +42,12 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="row">
+                                        <div class="form-group">
+                                            <div class="row">
                                             <div class="col-4">
+                                                 <div class="form-group">
                                                 <label for="c">STATUS</label>
-
+                                                    <br>
                                                     @if(@isset($view_1->customer_status_id) == 1)
                                                     <input name="customer_status_id" id="c" class="form-control"
                                                         value="ACTIVE">
@@ -53,11 +56,18 @@
                                                         value="INACTIVE">
                                                     @endif
                                                 </div>
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                            <label class="form-check-label-bold" style="background-color: #ffff00;">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <div class="row">
+                                            <div class="col-6">
+                                                <br>
+                                                 <div class="form-group">
 
+                                            <label class="form-check-label-bold" style="background-color: #ffff00;">
                                                 @if(@isset($view_1_1->non_member) == 1)
                                                     <input name="customer_status_id" id="c" class="form-control"
                                                         value="NON MEMBER">
@@ -67,6 +77,7 @@
                                                     @endif
                                             </label>
                                         </div>
+                                            </div></div></div></div>
                                 </div>
                                 <?php $titles=\App\Models\CutomerTitle::where('id',$view_1->customer_title_id)->first()?>
                                 <div class="row">
