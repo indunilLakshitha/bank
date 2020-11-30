@@ -131,7 +131,7 @@
         {{-- <h4 class="card-title">General Information</h4> --}}
         {{-- </div> --}}
         {{-- </div> --}}
-        <div class="row ml-3">
+        {{-- <div class="row ml-3">
             <label class="col-sm-2 col-form-label label-checkbox ">Services</label>
             <div class="row">
                 <div class="col-sm-5 checkbox-radios ml-3">
@@ -145,69 +145,156 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-sm-5 checkbox-radios ml-3">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" checked type="checkbox" name="has_sms" value="1"> SMS
-                            <span class="form-check-sign">
-                                <span class="check"></span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-5 checkbox-radios ml-3">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="has_internet_banking" value="1">
-                            Internet Banking
-                            <span class="form-check-sign">
-                                <span class="check"></span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-5 checkbox-radios ml-3">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="has_mobile_banking" value="1">
-                            Mobile Banking
-                            <span class="form-check-sign">
-                                <span class="check"></span>
-                            </span>
-                        </label>
-                    </div>
+            </div> --}}
+            {{-- <div class="row">
+            <label class="col-sm-2 col-form-label">Account Category</label>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="form-group">
+                            @php
+                            $acc_cats = Illuminate\Support\Facades\DB::table('account_categories')->get();
+                            @endphp
+                            <select name="account_category_id" class="form-control" data-style="select-with-transition">
+                                <option value="">Select </option>
+                                @isset($acc_cats)
+                                @foreach ($acc_cats as $ac_cat)
+                                <option value="{{$ac_cat->id}}">
+            {{$ac_cat->account_category}}
+            @endforeach
+            @endisset
+            </select>
+        </div>
+    </div>
+</div>
+</div>
+</div> --}}
+{{-- <div class="row"> --}}
+    {{-- <label class="col-sm-2 col-form-label">Account Type</label>
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-5">
+                <div class="form-group"> --}}
+                    {{-- @php
+                    $acc_types = Illuminate\Support\Facades\DB::table('account_types')->get();
+                    @endphp --}}
+                    {{-- <select name="account_type_id" class="selectpicker" data-style="select-with-transition">
+                        <option value="">Select </option>
+                        @isset($acc_types)
+                        @foreach ($acc_types as $ac_type)
+                        <option value="{{$ac_type->id}}">
+                            {{$ac_type->account_type}}
+                            @endforeach
+                            @endisset
+                    </select>
                 </div>
             </div>
         </div>
-        <div class="row mt-3 ml-3 mb-3">
-            <label class="col-sm-2 col-form-label label-checkbox">Account Maintenance Via</label>
-            <div class="row">
-                <div class="col-sm-7 checkbox-radios ml-3">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" checked type="checkbox" name="has_passbook"
-                                value="1">Passbook
-                            <span class="form-check-sign">
-                                <span class="check"></span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-3 checkbox-radios " style="margin-left: 44px">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="has_account_statement" value="1">
-                            Account Statement
-                            <span class="form-check-sign">
-                                <span class="check"></span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
+    </div>
+</div> --}}
 
+<div class="row">
+    <label class="col-sm-2 col-form-label label-checkbox">Services</label>
+    <div class="row">
+        <div class="col-sm-5 checkbox-radios ml-3">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" checked type="checkbox" name="has_atm" value="1">
+                    ATM
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
             </div>
         </div>
-
+        <div class="col-sm-5 checkbox-radios ml-3">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" checked type="checkbox" name="has_sms" value="1"> SMS
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-5 checkbox-radios ml-3">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="has_internet_banking" value="1">
+                    Internet Banking
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-5 checkbox-radios ml-3">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="has_mobile_banking" value="1">
+                    Mobile Banking
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <label class="col-sm-2 col-form-label label-checkbox">Account Maintenance Via</label>
+    <div class="row">
+        <div class="col-sm-7 checkbox-radios ml-3">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" checked type="checkbox" name="has_passbook" value="1">Passbook
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-3 checkbox-radios " style="margin-left: 44px">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="has_account_statement" value="1">
+                    Account Statement
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- <div class="row">
+    <label class="col-sm-2 col-form-label">Options</label>
+    <div class="col-sm-8">
+        <div class="col-10">
+            <div class="form-group">
+                <div class="col"><input type="checkbox" class="form-control" name="has_atm" value="1"> ATM
+                </div>
+                <div class="col"><input type="checkbox" class="form-control" name="has_sms" value="1"> SMS
+                </div>
+                <div class="col"><input type="checkbox" class="form-control" name="has_internet_banking" value="1">
+                    Internet Banking</div>
+                <div class="col"><input type="checkbox" class="form-control" </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+{{--
+<div class="row">
+    <label class="col-sm-2 col-form-label">Account Maintenance Via</label>
+    <div class="col-sm-8">
+        <div class="col-10">
+            <div class="form-group">
+                <div class="col"><input type="checkbox" class="form-control" name="has_account_statement" value="1">
+                    Account Statement</div>
+                <div class="col"><input type="checkbox" class="form-control" name="has_passbook" value="1">Passbook
+                </div>
+            </div>
+        </div>
     </div>
     </div>
     </>
@@ -359,8 +446,6 @@ function set_full_name(name, el){
     // console.log(name);
     client_full_name.value = name
     client_full_name_select.classList.add('d-none')
-    dob.value=2
-    branch_code.value=3
 }
 </script>
 
