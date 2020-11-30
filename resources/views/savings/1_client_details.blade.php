@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Customer FATCA Clearance Received</label>
                                 <div class="col-sm-3">
                                     <div class="row">
@@ -140,8 +140,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-        <br> <br>
+                            </div> -->
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Branch Code</label>
@@ -373,28 +372,26 @@
         </div>
     </div>
 </div> --}}
-{{--
+
 <div class="row">
-    <label class="col-sm-2 col-form-label">Account Maintenance Via</label>
-    <div class="col-sm-8">
+    {{-- <label class="col-sm-2 col-form-label">Account Maintenance Via</label> --}}
+     <div class="col-sm-8">
         <div class="col-10">
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <div class="col"><input type="checkbox" class="form-control" name="has_account_statement" value="1">
                     Account Statement</div>
                 <div class="col"><input type="checkbox" class="form-control" name="has_passbook" value="1">Passbook
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
-</div> --}}
-</div>
-</div>
-</div>
-<div class="row">
-    <div class="col">
-        <button class="btn btn-primary float-right" type="submit">NEXT</button>
+     </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-right" type="submit">NEXT</button>
+        </div>
     </div>
-</div>
 </form>
 </div>
 </div>

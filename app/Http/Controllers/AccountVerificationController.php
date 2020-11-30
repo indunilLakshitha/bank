@@ -92,22 +92,26 @@ class AccountVerificationController extends Controller
 
         // return view('savings.view_details.account_details', compact('data', 'tax_dets', 'docs'));
 // End Comment
-        $view_1 = AccountGeneralInformation::where('customer_id',$request->id)->first();
-        $view_1_1 = CustomerBasicData::where('customer_id',$request->id)->first();
-        $view_2 = ProductData::where('account_id',$view_1->id)->first();
-        $view_3 = Joinaccount::where('customer_id',$request->id)->first();
+        $view_1 = AccountGeneralInformation::where('customer_id', $request->id)->first();
+        $view_1_1 = CustomerBasicData::where('customer_id', $request->id)->first();
+        $view_2 = ProductData::where('account_id', $view_1->id)->first();
+        $view_3 = Joinaccount::where('customer_id', $request->id)->first();
         $view_4 = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
-        $view_5 = ProductDocument::where('customer_id',$request->id)->get();
-        $view_6 = ProductFeeData::where('customer_id',$request->id)->get();
-        $view_7 = NomineeMember::where('customer_id',$request->id)->get();
-        $view_8 = Joinaccount::where('customer_id',$request->id)->get();
-        $view_8_1 = JoinaccountMember::where('customer_id',$request->id)->get();
+        $view_5 = ProductDocument::where('customer_id', $request->id)->get();
+        $view_5_1 = BeneficiaryData::leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'beneficiary_data.customer_id')
+            ->where('beneficiary_data.customer_id', $request->id)->get();
+        $view_5_2 = GuardianData::leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'guardian_data.customer_id')
+            ->where('guardian_data.customer_id', $request->id)->get();
+        $view_6 = ProductFeeData::where('customer_id', $request->id)->get();
+        $view_7 = NomineeMember::where('customer_id', $request->id)->get();
+        $view_8 = Joinaccount::where('customer_id', $request->id)->get();
+        $view_8_1 = JoinaccountMember::where('customer_id', $request->id)->get();
         $idtypes = DB::table('iedentification_types')->get();
         $CIF = count(DB::table('account_general_information')->get()) + 1;
         $acc_no = 'ACC' . $CIF;
 
         // return response()->json($view_2);
-        return view('savings.view_details.view_account',compact('view_1','view_1_1','view_2','view_3','view_4','view_5','view_6','view_7','view_8','view_8_1','idtypes', 'CIF', 'acc_no'));
+        return view('savings.view_details.view_account',compact('view_1', 'view_1_1', 'view_2', 'view_3', 'view_4', 'view_5','view_5_1','view_5_2', 'view_6', 'view_7', 'view_8', 'view_8_1', 'idtypes', 'CIF', 'acc_no'));
 
     }
 

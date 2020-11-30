@@ -1,66 +1,78 @@
-<div class="row">
-    <div class="col-md-12 text-center">
-        <button id="nominee_modal_trigger_btn" type="button" class="btn btn-primary d-none" data-toggle="modal"
-            data-target="#nominees_modal">
-            Launch demo modal
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="nominees_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="width: 800px;height: auto">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Nominees</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<button id="nominee_modal_trigger_btn" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#nominees_modal">
+    Launch demo modal
+  </button>
+<!-- Modal -->
+<div  class="modal fade" id="nominees_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width: 800px;height: auto">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Nominees</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
 
-                    </div>
-                    <div class="modal-body">
-                        {{-- <div class="row align-content-center">
+        </div>
+        <div class="modal-body">
+            {{-- <div class="row align-content-center">
                 <div class="col">
                     <button type="button" class="btn fa fa-search btn-info " data-toggle="modal"
             href="#noticeModal"> SEARCH Nominees</button>
                 </div>
             </div> --}}
-                        <div class="row mt-5">
+            <div class="row mt-5">
                             <label class="col-sm-2 col-form-label"> Client Full Name</label>
                             <div class="col-sm-10">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <input
-                                                oninput="toCap(this.value, this.id), nominees_get_modal_search_by_full_name(this.value)"
+                                            <input oninput="toCap(this.value, this.id), nominees_get_modal_search_by_full_name(this.value)"
                                                 type="text" class="form-control js-example-data-ajax"
-                                                id="nominee_full_name" placeholder="Enter Full Name">
+                                                id="nominee_full_name"
+                                                placeholder="Enter Full Name"
+                                                >
                                         </div>
                                     </div>
                                     <div class="col">
                                         {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                        {{-- <button class="btn  btn-info btn"
-                                            onclick="nominees_modal_serach_by_name_results_tbody.innerHTML = null">
-                                            Clear Results </button> --}}
+                                            <button class="btn  btn-info btn"
+                                            onclick="nominees_modal_serach_by_name_results_tbody.innerHTML = null"
+                                            >
+                                            Clear Results </button>
 
                                     </div>
                                 </div>
-                                <div class="row mt-5">
-                                    <label class="col-sm-2 col-form-label"> Customer ID</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <input oninput="
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <label class="col-sm-2 col-form-label"> Customer ID</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <input
+                                            oninput=
+                                            "
                                             // toCap(this.value, this.id),
-                                            nominees_get_modal_search_by_customer_id(this.value)" type="text"
-                                                        class="form-control js-example-data-ajax"
-                                                        placeholder="Enter Customer ID">
-                                                </div>
-                                            </div>
+                                            nominees_get_modal_search_by_customer_id(this.value)"
+                                                type="text" class="form-control js-example-data-ajax"
+
+                                                placeholder="Enter Customer ID"
+                                                >
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table">
+                                <tbody id="nominees_modal_serach_by_name_results_tbody" class="d-none"></tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">ID Type</label>
+                            <div class="col-sm-10">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
@@ -92,8 +104,8 @@
                                 <div class="row">
                                     <div class="col-7">
                                         <div class="form-group">
-                                            <input type="text" name="identification_number"
-                                                id="nominee_identification_number" class="form-control" placeholder="">
+                                            <input type="text" name="identification_number" id="nominee_identification_number"
+                                                class="form-control" placeholder="">
 
                                         </div>
                                     </div>
@@ -105,12 +117,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <tbody id="nominees_modal_serach_by_name_results_tbody">
-
-                            </tbody>
                         </div>
 
                         <div class="row">
@@ -129,29 +135,25 @@
 
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <table class="table">
-                                        <tbody id="show_nominees_tbody" class="d-none"></tbody>
-                                    </table>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table">
+                                <tbody id="show_nominees_tbody" class="d-none"></tbody>
+                            </table>
+                        </div>
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-info">Save changes</button>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
-</div>
-<script>
-    let nominees;
+  </div>
+
+  <script>
+
+      let nominees;
 
     function nominees_get_modal_search_by_full_name(value){
         console.log(value);
@@ -267,7 +269,7 @@ function add_nominee(nominee_id, member_id){
         </tr>
         `
         show_nominees_tbody.innerHTML += html
-    })
+
     }
 
     function remove_nominee(id){
