@@ -46,12 +46,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Title</label>
+                                <label class="col-sm-2 col-form-label">Title <font color="red">*</font></label>
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <?php $titles=\App\Models\CutomerTitle::all()?>
                                         <select name="customer_title_id" id="" class="form-control"
-                                            data-style="select-with-transition">
+                                            data-style="select-with-transition" required>
                                             <option value="">Select Title</option>
                                             @isset($titles)
                                             @foreach ($titles as $title)
@@ -68,7 +68,7 @@
                                 <label class="col-sm-2 col-form-label">Name in Use <font color="red">*</font></label>
                                 <div class="col-lg-6 col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <input name="name_in_use" type="text" class="form-control">
+                                        <input name="name_in_use" type="text" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <label class="col-sm-2 col-form-label">Full Name<font color="red">*</font></label>
                                 <div class="col-lg-6 col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" name="full_name" class="form-control">
+                                        <input type="text" name="full_name" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                                 <label class="col-sm-2 col-form-label">Surname<font color="red">*</font></label>
                                 <div class="col-lg-6 col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" name="surname" class="form-control">
+                                        <input type="text" name="surname" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                     </label>
                                 <div class="col-lg-6 col-md-2 col-sm-2">
                                     <div class="form-group">
-                                        <input type="text" name="short_name" class="form-control">
+                                        <input type="text" name="short_name" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                                 <label class="col-sm-2 col-form-label">Address<font color="red">*</font></label>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" name="address_line_1" class="form-control">
+                                        <input type="text" name="address_line_1" class="form-control" required>
                                         <input type="text" name="address_line_2" class="form-control">
                                         <input type="text" name="address_line_3" class="form-control">
                                         <input type="text" name="address_line_4" class="form-control">
@@ -121,7 +121,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <select name="branch_id" id="" class="form-control"
-                                            data-style="select-with-transition">
+                                            data-style="select-with-transition" required>
                                             <option value="">Select Branch</option>
                                             @isset($branches)
                                             @foreach ($branches as $branch)
@@ -214,7 +214,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <select name="account_category_id" id="" class="form-control"
-                                            data-style="select-with-transition">
+                                            data-style="select-with-transition" required>
                                             <option value="">Select Account Category</option>
                                             @isset($accountcategories)
                                             @foreach ($accountcategories as $account_category)
@@ -277,7 +277,7 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Sub Account Office<font color="red"> *</font>
+                                <label class="col-sm-2 col-form-label">Sub Account Office
                                     </label>
                                 <div class="col-lg-4 col-md-2 col-sm-2">
                                     <div class="form-group">
