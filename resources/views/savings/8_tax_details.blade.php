@@ -237,12 +237,13 @@
                             <input type="hidden" name="product_data_id" value={{$prod_id}}>
                             <input type="hidden" name="account_id" value={{$account_id}}>
                             <input type="hidden" name="customer_id" value={{$customer_id}}>
+                            <input type="hidden" name="account_number" value={{$acc_no}}>
                             <div class="row">
                             <div class="col">
                                 <div class="col-11">
                         <button type="button" class="btn btn-primary float-right"
                         onclick="Swal.fire({title: `Created Account {{$acc_no}}`,confirmButtonText: `View Savings Account Page`}).then(() => {final_form.submit()})
-                        ">NEXT</button>
+                        ">SUBMIT & FINISH</button>
                             </div>
                         </div>
                         </form>

@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\CustomerBasicData;
+use App\Models\GuardianData;
 use App\Models\ProductType;
 
 class OpenSavingsAccountController extends Controller
@@ -429,6 +430,7 @@ class OpenSavingsAccountController extends Controller
         $prod_id = $request->product_data_id;
         $f_details = DB::table('fee_details')->get();
         $f_types = DB::table('fee_types')->get();
+        $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
 
 
         $productData = ProductData::where('id',$prod_id)->first();
@@ -438,7 +440,8 @@ class OpenSavingsAccountController extends Controller
 
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
-            $prod_id = $request->prod_id;
+            $prod_id = $request->        $prod_id = $request->product_data_id;
+;
             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
 
@@ -454,10 +457,10 @@ class OpenSavingsAccountController extends Controller
     {
         $account_id = $request->account_id;
         $customer_id = $request->customer_id;
-        $prod_id = $request->prod_id;
+        $prod_id = $request->product_data_id;
         $f_details = DB::table('fee_details')->get();
         $f_types = DB::table('fee_types')->get();
-
+        $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
 
         return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types','acc_no'));
 
@@ -530,6 +533,8 @@ class OpenSavingsAccountController extends Controller
         $view_5 = ProductDocument::where('customer_id', $request->id)->get();
         $view_5_1 = BeneficiaryData::leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'beneficiary_data.customer_id')
             ->where('beneficiary_data.customer_id', $request->id)->get();
+        $view_5_2 = GuardianData::leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'guardian_data.customer_id')
+            ->where('guardian_data.customer_id', $request->id)->get();
         $view_6 = ProductFeeData::where('customer_id', $request->id)->get();
         $view_7 = NomineeMember::where('customer_id', $request->id)->get();
         $view_8 = Joinaccount::where('customer_id', $request->id)->get();
@@ -537,8 +542,9 @@ class OpenSavingsAccountController extends Controller
         $idtypes = DB::table('iedentification_types')->get();
         $CIF = count(DB::table('account_general_information')->get()) + 1;
         $acc_no = 'ACC' . $CIF;
+        echo($);
 
         // return response()->json($view_2);
-        return view('savings.view_details.view_account', compact('view_1', 'view_1_1', 'view_2', 'view_3', 'view_4', 'view_5', 'view_6', 'view_7', 'view_8', 'view_8_1', 'idtypes', 'CIF', 'acc_no'));
+        return view('savings.view_details.view_account', compact('view_1', 'view_1_1', 'view_2', 'view_3', 'view_4', 'view_5','view_5_1','view_5_2', 'view_6', 'view_7', 'view_8', 'view_8_1', 'idtypes', 'CIF', 'acc_no'));
     }
 }
