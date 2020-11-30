@@ -17,9 +17,9 @@ class BlockedUserMiddleware
     public function handle($request, Closure $next)
     {
 
-        if (Auth::check() && Auth::user()->status== '0') {
+        if (Auth::check() && Auth::user()->status != '1') {
             Auth::logout();
-            return redirect('/login')->with('status', 'Your Account Has Been Blocked');
+            return redirect('/login')->with('message', 'Your Account Has Been Blocked');
         }
 
         return $next($request);
