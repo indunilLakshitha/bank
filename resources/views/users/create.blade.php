@@ -31,7 +31,7 @@
                                     <div class="from-group col-6">
                                         <label for="">Email</label>
                                         <font color="red">*</font>
-                                        <input type="email" name="email" class="form-control" pattern="^([0-9]{9}[x|X|v|V]|[0-9]{12})$" required>
+                                        <input type="email" name="email" class="form-control" required>
                                     </div>
 
                                 </div>

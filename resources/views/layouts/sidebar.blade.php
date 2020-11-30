@@ -3,7 +3,7 @@
 
 
     <div class="logo">
-        
+
         <a href="/dashboard" class="simple-text logo-normal " style="text-align: center">
             Economic <br>Development <br>Co-op Bank
         </a></div>
@@ -64,18 +64,17 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="/members">
-                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
-                                <span class="sidebar-normal">View Customer Profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
                             <a class="nav-link" href="/members/verify">
                                 <span class="sidebar-mini"> <i class="material-icons">verified</i> </span>
                                 <span class="sidebar-normal"> Customer Verification</span>
                             </a>
                         </li>
-
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/members">
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
+                                <span class="sidebar-normal">View Customer Profile</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

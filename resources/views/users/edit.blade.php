@@ -33,7 +33,7 @@
                         <label class="col-sm-2 col-form-label">Email <font color="red">*</font></label>
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" name="email" class="form-control" value="{{ isset($user->email) ? $user->email: ''}}" required >
+                                <input type="text" name="email" class="form-control" value="{{ isset($user->email) ? $user->email: ''}}" required readonly>
                              </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <label class="col-sm-2 col-form-label">Employee Number <font color="red">*</font></label>
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" name="employee_no"  class="form-control" value="{{ isset($user->employee_no) ? $user->employee_no: ''}}" required>
+                                <input type="text" name="employee_no"  class="form-control" value="{{ isset($user->employee_no) ? $user->employee_no: ''}}" required readonly>
                              </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                         <label class="col-sm-2 col-form-label">NIC</label>
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" name="nic"  class="form-control" value="{{ isset($user->nic) ? $user->nic: ''}}" >
+                                <input type="text" name="nic"  class="form-control" value="{{ isset($user->nic) ? $user->nic: ''}}" readonly>
                              </div>
                         </div>
                     </div>
