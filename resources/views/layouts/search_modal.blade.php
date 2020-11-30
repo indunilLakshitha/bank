@@ -179,20 +179,12 @@ function set_modal_serach_by_name_results(data){
 }
 
 function set_cus_details_from_modal(id){
-console.log(id)
-    console.log(customer_data);
+    console.log(id);
+
     customer_data.filter(cus => {
-        console.log(cus.org_id)
-        if(cus.org_id === id){
-            // full_name.value = cus.full_name
-            // customer_id.value = cus.customer_id
+        if(cus.id === parseInt(id)){
+            console.log(cus);
 
-            //  console.log(id);
-            //  console.log(dob.value);
-
-            if(document.querySelector('#dob')){
-                dob.value = cus.date_of_birth
-            }
             if(document.querySelector('#full_name')){
                 full_name.value = cus.full_name
             }

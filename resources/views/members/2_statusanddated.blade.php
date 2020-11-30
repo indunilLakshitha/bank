@@ -88,23 +88,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!--div class="row">
                                 <label class="col-sm-2 col-form-label">Race<font color="red">*</font></label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        @php
-                                        $rels = Illuminate\Support\Facades\DB::table('races')->get();
-                                        @endphp
+                                        @ php
+                                        $ rels = Illuminate\Support\Facades\DB::table('races')->get();
+                                        @ endphp
                                         <select name="race_id" id="" class="selectpicker" id="race_id"
                                             data-style="select-with-transition">
                                             <option value="">Select</option>
-                                            @foreach ($rels as $item)
-                                            <option value="{{$item->id}}">{{$item->race}}</option>
-                                            @endforeach
+                                            @ foreach ($ rels as $ item)
+                                            <option value="{ {$item->id} }">{ {$item->race} }</option>
+                                            @ endforeach
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Joined Date<font color="red">*</font></label>
                                 <div class="col-sm-10">
