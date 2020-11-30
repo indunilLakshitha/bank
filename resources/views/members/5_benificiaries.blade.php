@@ -36,9 +36,14 @@
                         <br>
                     <form id="private_1" action="/benificiaries" method="POST">
                         @csrf
-                        <input type="hidden" name="customer_id" value={{$cus_id}}>
-                        <input type="hidden" name="account_id" value={{$account_id}}>
-                        <input type="hidden" name="prod_id" value={{$prod_id}}>
+                            <input type="hidden" name="product_data_id" value={{$prod_id}}>
+                            <input type="hidden" name="account_id" value={{$account_id}}>
+                            <input type="hidden" name="customer_id" value={{$cus_id}}>
+                            <input type="hidden" name="account_number" value={{$acc_no}}>
+                            <input type="hidden" name="$guard " value={{$guard}}>
+                            <input type="hidden" name="nomin" value={{$nomin}}>
+                            <input type="hidden" name="docum" value={{$docum}}>
+                            <input type="hidden" name="benef" value={{$benef}}>
                         <div class="tab-pane active" id="private_1">
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
                             <h5 class="">Beneficiaries</h5>
@@ -74,6 +79,7 @@
                             </div>
 
                             <br>
+                            @if($guard == 1)
                             <h5 class="">Guardians</h5>
                             <div class="row">
                                 <label class="col-sm-1 col-form-label">1st</label>
@@ -106,11 +112,36 @@
                                 </table>
                             </div>
                         </div>
+                        @endif
+                        @if($docum == 1)
                         <div class="row">
                             <div class="col">
                         <button type="submit" class="btn btn-primary float-right">NEXT</button>
                             </div>
                         </div>
+                        @elseif(@$nomin == 0)
+                        <form action="/finish_open_account_saving" method="POST" id="final_form">
+                            @csrf
+                            <input type="hidden" name="product_data_id" value={{$prod_id}}>
+                            <input type="hidden" name="account_id" value={{$account_id}}>
+                            <input type="hidden" name="customer_id" value={{$cus_id}}>
+                            <input type="hidden" name="account_number" value={{$acc_no}}>
+                            <div class="row">
+                            <div class="col">
+                                <div class="col-11">
+                        <button type="button" class="btn btn-primary float-right"
+                        onclick="Swal.fire({title: `Created Account {{$acc_no}}`,confirmButtonText: `View Savings Account Page`}).then(() => {final_form.submit()})
+                        ">SUBMIT & FINISH</button>
+                            </div>
+                        </div>
+                        </form>
+                        @elseif(@$nomin == 1)
+                        <div class="row">
+                            <div class="col">
+                        <button type="submit" class="btn btn-primary float-right">NEXT</button>
+                            </div>
+                        </div>
+                        @endif
 
                     </form>
                     {{-- Ends Private 1 --}}
@@ -168,6 +199,8 @@
             }
         })
     }
+
+
 </script>
 
 @endsection

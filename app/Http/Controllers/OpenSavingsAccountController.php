@@ -215,15 +215,25 @@ class OpenSavingsAccountController extends Controller
 
         if($product_type->is_beneficiearies_required==1){
 
-            return view('members.5_benificiaries', compact('cus_id', 'account_id', 'prod_id', 'all_customers'))->with('success', 'Details submitted');
+            $guard = $product_type->is_guardianes_required;
+            $nomin = $product_type->is_nominies_required;
+            $docum = $product_type->is_documents_required;
+            $benef = $product_type->is_beneficiearies_required;
+
+            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+            return view('members.5_benificiaries', compact('cus_id', 'docum','guard','nomin','account_id', 'prod_id', 'all_customers', 'benef','acc_no'))->with('success', 'Details submitted');
 
         }else if($product_type->is_guardianes_required==1){
 
-             $account_id = $request->account_id;
-            $customer_id = $request->customer_id;
+            $account_id = $request->account_id;
             $prod_id = $request->prod_id;
+            $guard = $product_type->is_guardianes_required;
+            $nomin = $product_type->is_nominies_required;
+            $docum = $product_type->is_documents_required;
+            $benef = $product_type->is_beneficiearies_required;
+            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             $guardians = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
-            return view('savings.6_guardian_information', compact('guardians', 'account_id', 'customer_id', 'prod_id'));
+            return view('savings.6_guardian_information', compact('cus_id', 'benef','acc_no', 'docum','guard', 'all_customers','nomin','guardians', 'account_id', 'customer_id', 'prod_id'));
 
 
         }else if($product_type->is_documents_required ==1){
@@ -247,10 +257,6 @@ class OpenSavingsAccountController extends Controller
 
         }else {
 
-            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-            $f_details = DB::table('fee_details')->get();
-            $f_types = DB::table('fee_types')->get();
-            return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types','acc_no'));
         }
 
     }
@@ -266,40 +272,56 @@ class OpenSavingsAccountController extends Controller
 
         if ($is_joint_account) {
 
-            return view('savings.4_joint_acoount', compact('customer_id', 'prod_id', 'account_id'));
-        } else {
-        $productData = ProductData::where('id',$prod_id)->first();
-        $checkAccess = ProductType::where('id',$productData->product_type_id)->first();
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
+            $benef = $request->benef;
 
-        if($checkAccess->is_guardianes_required==1){
+            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+            return view('savings.4_joint_acoount', compact('customer_id', 'prod_id', 'account_id', 'prod_id', 'docum','guard','nomin','acc_no'));
+        } else {
+
+        if(($request->guard == 1) && ($request->benef == 0)){
 
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
             $prod_id = $request->prod_id;
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
+            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             $guardians = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
-            return view('savings.6_guardian_information', compact('guardians', 'account_id', 'customer_id', 'prod_id'));
+            return view('savings.6_guardian_information', compact('guardians', 'account_id', 'customer_id', 'prod_id', 'docum','guard','nomin','acc_no'));
 
-        }else if($checkAccess->is_documents_required==1){
+        }else if($request->docum ==1){
 
+            $account_id = $request->account_id;
+            $customer_id = $request->customer_id;
+            $prod_id = $request->prod_id;
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
+            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             $docs = DB::table('documents')->get();
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
             $prod_id = $request->prod_id;
-            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
+            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id',  'docum','guard','nomin','acc_no'));
 
 
-        }else if($checkAccess->is_nominies_required ==1){
+        }else if($nomin = $request->nomin ==1){
 
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
             $prod_id = $request->prod_id;
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-            return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
+            return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id',  'docum','guard','nomin','acc_no'));
+        }else{
+
         }
-        $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-        $f_details = DB::table('fee_details')->get();
-        $f_types = DB::table('fee_types')->get();
-        return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types','acc_no'));
 
     }
 }
@@ -338,50 +360,61 @@ class OpenSavingsAccountController extends Controller
 
 
 
-        $productData = ProductData::where('id',$prod_id)->first();
-        $checkAccess = ProductType::where('id',$productData->product_type_id)->first();
 
-        if($checkAccess->is_guardianes_required==1){
+
+        if(($request->guard == 1) && ($request->benef == 0)){
 
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
-            $prod_id = $request->product_data_id;
+            $prod_id = $request->prod_id;
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
+            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             $guardians = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
-            return view('savings.6_guardian_information', compact('guardians', 'account_id', 'customer_id', 'prod_id'));
+            return view('savings.6_guardian_information', compact('guardians', 'account_id', 'customer_id', 'prod_id', 'docum','guard','nomin','acc_no'));
 
-        }else if($checkAccess->is_documents_required==1){
+        }else if($request->docum ==1){
 
+            $account_id = $request->account_id;
+            $customer_id = $request->customer_id;
+            $prod_id = $request->prod_id;
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
+            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             $docs = DB::table('documents')->get();
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
-            $prod_id = $request->product_data_id;
-            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
+            $prod_id = $request->prod_id;
+            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id', 'prod_id', 'docum','guard','nomin','acc_no'));
 
 
-        }else if($checkAccess->is_nominies_required ==1){
+        }else if($nomin = $request->nomin ==1){
 
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
-            $prod_id = $request->product_data_id;
+            $prod_id = $request->prod_id;
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-            return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
+            return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id',  'docum','guard','nomin','acc_no'));
+        }else{
+
         }
-        $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-        $f_details = DB::table('fee_details')->get();
-        $f_types = DB::table('fee_types')->get();
-        return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types','acc_no'));
 
 
 
     }
-    public function guradian_information(Request $request)
-    {
-        $account_id = $request->account_id;
-        $customer_id = $request->customer_id;
-        $prod_id = $request->prod_id;
-        $guardians = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
-        return view('savings.6_guardian_information', compact('guardians', 'account_id', 'customer_id', 'prod_id'));
-    }
+    // public function guradian_information(Request $request)
+    // {
+    //     $account_id = $request->account_id;
+    //     $customer_id = $request->customer_id;
+    //     $prod_id = $request->prod_id;
+    //     $guardians = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
+    //     return view('savings.6_guardian_information', compact('guardians', 'account_id', 'customer_id', 'prod_id'));
+    // }
 
 
 
@@ -391,33 +424,36 @@ class OpenSavingsAccountController extends Controller
         $customer_id = $request->customer_id;
         $prod_id = $request->product_data_id;
 
-        $productData = ProductData::where('id',$prod_id)->first();
-        $checkAccess = ProductType::where('id',$productData->product_type_id)->first();
 
-        if($checkAccess->is_documents_required==1){
+
+        if($request->docum ==1 ){
 
             $docs = DB::table('documents')->get();
-            $account_id = $request->account_id;
-            $customer_id = $request->customer_id;
-            $prod_id = $request->product_data_id;
-            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
-
-        }else if($checkAccess->is_nominies_required ==1){
 
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
             $prod_id = $request->product_data_id;
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
+             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id', 'docum','guard','nomin','acc_no'));
+
+        }else if($nomin = $request->nomin ==1){
+
+            $account_id = $request->account_id;
+            $customer_id = $request->customer_id;
+            $prod_id = $request->product_data_id;
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-            return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
+            return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id',  'docum','guard','nomin','acc_no'));
 
 
 
         }else {
-            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-        $f_details = DB::table('fee_details')->get();
-        $f_types = DB::table('fee_types')->get();
-        return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types','acc_no'));
-
+       
         }
     }
 
@@ -435,57 +471,57 @@ class OpenSavingsAccountController extends Controller
         return response()->json($request);
     }
 
-    public function tax_details(Request $request)
-    {
-        $account_id = $request->account_id;
-        $customer_id = $request->customer_id;
-        $prod_id = $request->product_data_id;
-        $f_details = DB::table('fee_details')->get();
-        $f_types = DB::table('fee_types')->get();
-        $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+//     public function tax_details(Request $request)
+//     {
+//         $account_id = $request->account_id;
+//         $customer_id = $request->customer_id;
+//         $prod_id = $request->product_data_id;
+//         $f_details = DB::table('fee_details')->get();
+//         $f_types = DB::table('fee_types')->get();
+//         $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
 
 
-        $productData = ProductData::where('id',$prod_id)->first();
-        $checkAccess = ProductType::where('id',$productData->product_type_id)->first();
+//         $productData = ProductData::where('id',$prod_id)->first();
+//         $checkAccess = ProductType::where('id',$productData->product_type_id)->first();
 
-        if($checkAccess->is_nominies_required==1){
+//         if($checkAccess->is_nominies_required==1){
 
-            $account_id = $request->account_id;
-            $customer_id = $request->customer_id;
-            $prod_id = $request->        $prod_id = $request->product_data_id;
-;
-            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-            return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
+//             $account_id = $request->account_id;
+//             $customer_id = $request->customer_id;
+//             $prod_id = $request->        $prod_id = $request->product_data_id;
+// ;
+//             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+//             return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
 
-        }else {
-
-
-            return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types','acc_no'));
+//         }else {
 
 
-        }
-    }
-    public function tax_details_view(Request $request)
-    {
-        $account_id = $request->account_id;
-        $customer_id = $request->customer_id;
-        $prod_id = $request->product_data_id;
-        $f_details = DB::table('fee_details')->get();
-        $f_types = DB::table('fee_types')->get();
-        $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-
-        return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types','acc_no'));
+//             return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types','acc_no'));
 
 
+//         }
+//     }
+    // public function tax_details_view(Request $request)
+    // {
+    //     $account_id = $request->account_id;
+    //     $customer_id = $request->customer_id;
+    //     $prod_id = $request->product_data_id;
+    //     $f_details = DB::table('fee_details')->get();
+    //     $f_types = DB::table('fee_types')->get();
+    //     $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
 
-    }
+    //     return view('savings.8_tax_details', compact('account_id', 'customer_id', 'prod_id', 'f_details', 'f_types','acc_no'));
 
-    public function add_tax(Request $request)
-    {
 
-        ProductFeeData::create($request->all());
-        return response()->json($request);
-    }
+
+    // }
+
+    // public function add_tax(Request $request)
+    // {
+
+    //     ProductFeeData::create($request->all());
+    //     return response()->json($request);
+    // }
 
     public function nominee(Request $request)
     {
@@ -494,8 +530,14 @@ class OpenSavingsAccountController extends Controller
         $customer_id = $request->customer_id;
         $prod_id = $request->prod_id;
         $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+        $account_id = $request->account_id;
+            $customer_id = $request->customer_id;
+            $prod_id = $request->product_data_id;
+            $guard = $request->guard;
+            $nomin = $request->nomin;
+            $docum = $request->docum;
 
-        return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
+        return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no', 'docum','guard','nomin'));
     }
 
 
@@ -508,24 +550,24 @@ class OpenSavingsAccountController extends Controller
         return response()->json($request);
     }
 
-    public function autorized_officers(Request $request)
-    {
+    // public function autorized_officers(Request $request)
+    // {
 
-        $account_id = $request->account_id;
-        $customer_id = $request->customer_id;
-        $prod_id = $request->prod_id;
+    //     $account_id = $request->account_id;
+    //     $customer_id = $request->customer_id;
+    //     $prod_id = $request->prod_id;
 
 
 
-        return view('savings.11_authorized_officer', compact('account_id', 'customer_id', 'prod_id'));
-    }
+    //     return view('savings.11_authorized_officer', compact('account_id', 'customer_id', 'prod_id'));
+    // }
 
-    public function add_officer(Request $request)
-    {
+    // public function add_officer(Request $request)
+    // {
 
-        AuthorizedOfficer::create($request->all());
-        return response()->json($request);
-    }
+    //     AuthorizedOfficer::create($request->all());
+    //     return response()->json($request);
+    // }
     public function finish_open_account_saving(Request $request)
     {
 
