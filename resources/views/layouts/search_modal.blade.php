@@ -116,7 +116,11 @@
 <script>
     let customer_data;
 
+    let is_customer_id_2 = false;
+
+
     function get_modal_search_by_full_name(value){
+        // console.log(is_customer_id_2);
         console.log(value);
         if(value === ''){
             modal_serach_by_name_results_tbody.innerHTML = ''
@@ -189,15 +193,23 @@ function set_cus_details_from_modal(id){
         if(cus.id === parseInt(id)){
             console.log(cus);
 
+            if(is_customer_id_2){
+                if(document.querySelector('#customer_id_2')){
+                    customer_id_2.value = cus.customer_id
+                }
+            } else{
+                if(document.querySelector('#customer_id')){
+                customer_id.value = cus.customer_id
+                }
+            }
+
             if(document.querySelector('#full_name')){
                 full_name.value = cus.full_name
             }
             if(document.querySelector('#branch_code')){
                 branch_code.value = cus.branch_code
             }
-            if(document.querySelector('#customer_id')){
-                customer_id.value = cus.customer_id
-            }
+
             if(document.querySelector('#dob')){
                 dob.value = cus.date_of_birth
             }
