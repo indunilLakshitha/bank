@@ -42,8 +42,8 @@
                                             <th>වටිනාකම</th>
                                         </thead>
                                         <tbody id="results_tbody">
-                                            <?php $members=\App\Models\AccountGeneralInformation::all()?>
-                                            @isset($members)
+                                            <?php $total_d=0?>
+                                            @isset($details)
                                             @foreach ($details as $detail)
                                             @if($detail->transaction_type=="DEPOSITE")
                                             <tr>
@@ -55,6 +55,7 @@
                                                 echo  date("h:i:sa", $d);
                                             ?></th>
                                                 <th></th>
+                                                <?php $total_d+=$detail->transaction_amount ?>
                                                 <th><?php echo number_format( $detail->transaction_amount , 2 , '.' , ',' ) ?>
                                                 </th>
 
@@ -62,6 +63,13 @@
                                             @endif
                                             @endforeach
                                             @endisset
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>එකතුව</td>
+                                                <td></td>
+                                            <th><?php echo number_format( $total_d , 2 , '.' , ',' ) ?></th>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -78,12 +86,13 @@
                                             <th>වටිනාකම</th>
                                         </thead>
                                         <tbody id="results_tbody">
-                                            <?php $members=\App\Models\AccountGeneralInformation::all()?>
-                                            @isset($members)
+                                            <?php $total_w=0?>
+                                            @isset($details)
                                             @foreach ($details as $detail)
                                             @if($detail->transaction_type=="WITHDRAW")
 
                                             <tr>
+                                                <?php $total_w+=$detail->transaction_amount ?>
                                                 <th>{{$detail->id}}</th>
                                                 <th>{{$detail->account_number}} </th>
                                                 <th>
@@ -99,6 +108,53 @@
                                             @endif
                                             @endforeach
                                             @endisset
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>එකතුව</td>
+                                                <td></td>
+                                            <th><?php echo number_format( $total_w , 2 , '.' , ',' ) ?></th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="">
+                                    <table id="" class="table table-striped table-no-bordered table-hover"
+                                        cellspacing="0" width="100%" style="width:100%">
+                                        <thead>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </thead>
+
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="">
+                                    <table id="" class="table table-striped table-no-bordered table-hover"
+                                        cellspacing="0" width="100%" style="width:100%">
+                                        <thead>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody id="results_tbody">
+                                            
                                         </tbody>
                                     </table>
                                 </div>
