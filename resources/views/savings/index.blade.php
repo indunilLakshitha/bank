@@ -23,20 +23,20 @@
                             <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
-                                    <th >ID </th>
-                                    <th>CODE</th>
-                                    <th>ACCOUNT NUMBER</th>
-                                    <th>DESCRIPTION</th>
-                                    <th>ACCOUNT TYPE</th>
-                                    <th>BRANCH ID</th>
-                                    <th>ACTION</th>
+                                    {{-- <th >ID </th> --}}
+                                    <th>Customer ID</th>
+                                    <th>Account Number</th>
+                                    <th>Description</th>
+                                    <th>Account Type</th>
+                                    <th>Branch ID</th>
+                                    <th>Action</th>
                                 </thead>
                                 <tbody id="results_tbody">
                                    <?php $members=\App\Models\AccountGeneralInformation::all()?>
                                    @isset($members)
                                    @foreach ($members as $member)
                                    <tr>
-                                    <th>{{$member->id}}</th>
+                                    {{-- <th>{{$member->id}}</th> --}}
                                     <th>{{$member->customer_id}} </th>
                                     <th>{{$member->account_number}}</th>
                                     <th>{{$member->account_description}}</th>

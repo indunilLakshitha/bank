@@ -99,22 +99,22 @@
                 <input type="hidden" name="account_id" value={{$account_id}}>
 
 
-                <div class="row">
-                    <label for="" class="col-sm-2 col-form-label">Selected Nominee : </label>
-                    <div class="col-sm-6">
-                        <div class="form-control">
-                            <input type="text" id="selected_oh" name="customer_id" class="form-control" readonly>
-
-                        </div>
-                    </div>
-                </div>
 
 
 
                 <div class="card " style="border: solid" id="oh_card">
-                    <div class="card-header">Nominees</div>
+                    {{-- <div class="card-header">Nominees</div> --}}
                     <div class="card-body">
 
+                        <div class="row">
+                            <label for="" class="col-sm-2 col-form-label">Selected Nominee : </label>
+                            <div class="col-sm-6">
+                                <div class="form-control">
+                                    <input type="text" id="selected_oh" name="customer_id" class="form-control" readonly>
+
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <label class="col-sm-2 col-form-label"> Nominee Percentage</label>

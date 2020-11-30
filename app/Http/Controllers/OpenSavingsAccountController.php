@@ -289,15 +289,16 @@ class OpenSavingsAccountController extends Controller
         $productData = ProductData::where('id',$prod_id)->first();
         $checkAccess = ProductType::where('id',$productData->product_type_id)->first();
 
-        if($checkAccess->is_guardianes_required==1){
+        // if($checkAccess->is_guardianes_required==1){
 
-            $account_id = $request->account_id;
-            $customer_id = $request->customer_id;
-            $prod_id = $request->prod_id;
-            $guardians = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
-            return view('savings.6_guardian_information', compact('guardians', 'account_id', 'customer_id', 'prod_id'));
+        //     $account_id = $request->account_id;
+        //     $customer_id = $request->customer_id;
+        //     $prod_id = $request->prod_id;
+        //     $guardians = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
+        //     return view('savings.6_guardian_information', compact('guardians', 'account_id', 'customer_id', 'prod_id'));
 
-        }else if($checkAccess->is_documents_required==1){
+        // }else
+        if($checkAccess->is_documents_required==1){
 
             $docs = DB::table('documents')->get();
             $account_id = $request->account_id;
