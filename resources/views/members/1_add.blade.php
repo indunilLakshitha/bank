@@ -27,7 +27,7 @@
 
 
                 <div class="card-body">
-                    <form id="form" action="{{url('/member/add/private')}}" method="POST">
+                    <form id="form" action="{{url('/member/add/private')}}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="tab-pane active" id="private_1">
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
