@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <div class="ml-3">
-                    <a href="" class="btn btn-warning"> Load Saving Details</a>
+                    <button type="button" onclick="load_saving_details(customer_id.value)" href="" class="btn btn-warning"> Load Saving Details</button>
                 </div>
                 <div>
                     <div class="material-datatables">
@@ -295,7 +295,19 @@ console.log(data)
            }
 
 
-
+    function load_saving_details(id){
+        // console.log(id);
+        $.ajax({
+            type: 'GET',
+            url : '{{('/load_saving_details')}}',
+            data: {
+                id
+            },
+            success: function(data){
+                console.log(data);
+            }
+        })
+    }
 
 
 </script>

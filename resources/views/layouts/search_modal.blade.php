@@ -158,7 +158,7 @@ function set_modal_serach_by_name_results(data){
 
     data.forEach(i => {
         let html = `
-        <tr id='${i.org_id}' >
+        <tr id='${i.id}' >
             <td>${i.customer_id}</td>
         <td>${i.full_name}</td>
         <td>
@@ -166,7 +166,7 @@ function set_modal_serach_by_name_results(data){
             onclick=
             "
             this.parentElement.parentElement.parentElement.classList.add('d-none'),
-            set_cus_details_from_modal('${i.org_id}')
+            set_cus_details_from_modal('${i.id}')
             "
             class="btn btn-sm btn-primary">Select</button>
         </td>
