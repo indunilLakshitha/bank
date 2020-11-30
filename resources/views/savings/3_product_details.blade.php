@@ -40,7 +40,7 @@
                                             @php
                                             $prod_types = Illuminate\Support\Facades\DB::table('product_types')->get();
                                             @endphp
-                                            <select oninput="set_min_max(this.value)" name="product_type_id"
+                                            <select oninput="set_min_max(this.value)" required name="product_type_id"
                                                 class="form-control" data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($prod_types)

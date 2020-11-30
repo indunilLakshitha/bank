@@ -10,9 +10,20 @@
 
 
             <div class="card ">
+                <div class="row">
+                    <div class="col-10">
                 <div class="card-header card-header-rose card-header-text">
                     <div class="card-text">
                         <h4 class="card-title">Documents Verification</h4>
+                    </div>
+                </div>
+                    </div>
+                <div class="col-2">
+                       <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+                        </div>
+                         </div>
                     </div>
                 </div>
                 <table class="table">
