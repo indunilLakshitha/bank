@@ -392,6 +392,10 @@ Route::get('/sharetransferdata','ShareController@historyview')->name('shares.his
 Route::post('/buy_shares','ShareController@buy_shares');
 Route::post('/transfer_shares','TransactionController@transfer_shares');
 
+
+
+//-------------------------------------------------------------branch cash routes---------------------------
+Route::get('/branchcash','BranchCashInOutController@index')->name('branch_cash.index');
 });
 
 Auth::routes();
