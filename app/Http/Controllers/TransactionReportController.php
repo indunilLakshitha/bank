@@ -31,4 +31,14 @@ class TransactionReportController extends Controller
          $details=CashierDailyTransaction::where('user_id',Auth::user()->id)->where('transaction_date',Carbon::today()->toDateString())->get();
          return view('transaction_report.cashie_daily',compact('details'));
     }
+
+    public function cashInHand(){
+
+        return view('transaction_report.cashInHand');
+    }
+
+    public function reportOfMember(){
+
+        return view('transaction_report.reportOfMember');
+    }
 }
