@@ -590,7 +590,12 @@ class OpenSavingsAccountController extends Controller
     {
 
         AccountGeneralInformation::where('account_number', $request->account_number)->update(['status' => '2']);
+        $take = AccountGeneralInformation::where('account_number', $request->account_number)->first();
+        // $first = Auth::user()->branch;
+        // $second = $take->customer_id;
+        
         return redirect('/savings/open');
+
     }
 
 

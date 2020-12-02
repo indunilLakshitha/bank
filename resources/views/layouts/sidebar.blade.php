@@ -249,6 +249,22 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/cashInHand">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Cash In Hand</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/ReportOfMember">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Report</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </li>
             @endcan
