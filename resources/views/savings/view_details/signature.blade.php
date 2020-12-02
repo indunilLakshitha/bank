@@ -30,13 +30,27 @@
                     <tr>
                         @if(!empty($acc->cus_sign_img))
                         <th>
-                            <img src="{{env('IMAGE_LOCATION').$acc->cus_sign_img}}" height="500px" width="500px alt="">
+                            <img src="{{env('IMAGE_LOCATION').$acc->cus_sign_img}}" height="250px" width="250px" alt="">
                         </th>
                         @else
                          <th>
                             <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
                         </th>
                         @endif
+                        <th>
+                        </th>
+
+                        @if(!empty($cus->cus_sign_img))
+                        <th>
+                            <img src="{{env('IMAGE_LOCATION').$acc->sign_img}}" height="250px" width="250px" alt="">
+                        </th>
+                        @else
+                         <th>
+                            <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
+                        </th>
+                        @endif
+
+
                         <th>
                             @if ($acc->sign_status == 1)
                                 <button class="btn btn-success">Verified</button>
@@ -46,6 +60,7 @@
                             class="btn btn-primary text-white">Verify</a>
                             @endif
                         </th>
+                    <tr>
                     </tr>
                 </table>
 
