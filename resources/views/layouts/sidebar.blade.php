@@ -99,6 +99,12 @@
                                 <span class="sidebar-normal">View Branches </span>
                             </a>
                         </li>
+                        <li>
+                        <a class="nav-link" href="{{url('/cashiercash')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
+                                <span class="sidebar-normal">Casier </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -449,7 +455,34 @@
                     </ul>
                 </div>
             </li>
+            @endcan
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#dataAdd">
+                    <i class="material-icons"></i>
+                    <p>
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/accountCategory">
+                                <span class="sidebar-mini"> <i class="material-icons">settings</i> </span>
+                                <span class="sidebar-normal"></span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/accountType">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal"></span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </li>
         </ul>
-        @endcan
     </div>
 </div>

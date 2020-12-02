@@ -396,6 +396,11 @@ Route::post('/transfer_shares','TransactionController@transfer_shares');
 Route::get('/newbranches','MainBranchController@index')->name('newbranches.index');
 Route::get('/newbranchesadd','MainBranchController@add');
 Route::post('/branchesadd','MainBranchController@store');
+Route::get('/branchesview/{id}','MainBranchController@view')->name('newbranches.view');
 });
+
+//------------------------------------------------------------cashier cash in out --------------------
+Route::get('/cashiercash','BranchCashInOutController@index')->name('cashiercash.index');
+Route::post('/cashiercashadd','BranchCashInOutController@index')->name('cashiercash.store');
 
 Auth::routes();

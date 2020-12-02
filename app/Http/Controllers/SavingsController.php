@@ -91,9 +91,11 @@ class SavingsController extends Controller
         $subaccountdetails=SubAccount::leftjoin('intereset_schemas','intereset_schemas.sub_account_id','sub_accounts.id')
         ->leftjoin('intereset_type_data','intereset_type_data.interest_schema_id','intereset_schemas.id')
         ->leftjoin('interest_types','interest_types.id','intereset_schemas.interest_type_id')
+        ->leftjoin('transaction_schemas','transaction_schemas.sub_account_id','sub_accounts.id')
         ->leftjoin('currencies','currencies.id','sub_accounts.currency_id')
+        ->leftjoin('deposite_modes','deposite_modes.id','transaction_schemas.deposite_mode_id')
         ->where('sub_accounts.id',$request->id)
-        ->select('intereset_schemas.*','intereset_type_data.*','sub_accounts.*','interest_types.*','currencies.*')
+        ->select('intereset_schemas.*','intereset_type_data.*','sub_accounts.*','interest_types.*','currencies.*','transaction_schemas.*','deposite_modes.*')
         ->get();
         return response()->json($subaccountdetails);
     }

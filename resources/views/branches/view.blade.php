@@ -661,7 +661,7 @@
                             @foreach($view_6 as $view_6_1)
                             <tr>
                                 <td>{{$view_6_1->asset_description}} </td>
-                                <td> Rs.<?php echo number_format( $view_6_1->asset_qty , 2 , '.' , ',' ) ?></th>
+                                <td> {{$view_6_1->asset_qty}}</th>
                             </tr>
                             @endforeach
                             @endisset

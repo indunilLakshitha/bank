@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="card-body ">
-            <form method="POST" class="form-horizontal" action="{{route('branches.store')}}"  id="Branchform" >
+            <form method="POST" class="form-horizontal" action="{{route('branches.store')}}" id="Branchform">
                 @csrf
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Branch Name</label>
@@ -61,29 +61,31 @@
                                 </thead>
                                 <tbody id="results_tbody">
 
-                                   @isset($branches)
-                                   @foreach ($branches as $b)
-                                       <tr>
-                                            <th>{{$b->id}}</th>
-                                            <th>{{$b->branch_name}} </th>
-                                            <th>{{$b->branch_code}} </th>
-                                           @if(intval($b->is_enable) == 1)
-                                                <th>ACTIVE</th>
-                                           @else
-                                               <th>INACTIVE</th>
-                                           @endif
-                                            <th>
-                                                <form action="{{route('branches.destroy', $b->id)}}"  method="POST">
-                                                    <a href="{{ route('branches.edit', $b->id) }}" rel="tooltip" class="btn-sm btn-primary " ><i class="material-icons">edit</i></a>
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('Delete')}}
-                                                    <button type="submit" rel="tooltip" class="btn-es btn-danger " ><i class="material-icons">delete</i></button>
-                                                </form>
-                                            </th>
-                                       </tr>
-                                   @endforeach
+                                    @isset($branches)
+                                    @foreach ($branches as $b)
+                                    <tr>
+                                        <th>{{$b->id}}</th>
+                                        <th>{{$b->branch_name}} </th>
+                                        <th>{{$b->branch_code}} </th>
+                                        @if(intval($b->is_enable) == 1)
+                                        <th>ACTIVE</th>
+                                        @else
+                                        <th>INACTIVE</th>
+                                        @endif
+                                        <th>
+                                            <form action="{{route('branches.destroy', $b->id)}}" method="POST">
+                                                <a href="{{ route('branches.edit', $b->id) }}" rel="tooltip"
+                                                    class="btn-sm btn-primary "><i class="material-icons">edit</i></a>
+                                                {{ csrf_field() }}
+                                                {{ method_field('Delete')}}
+                                                <button type="submit" rel="tooltip" class="btn-es btn-danger "><i
+                                                        class="material-icons">delete</i></button>
+                                            </form>
+                                        </th>
+                                    </tr>
+                                    @endforeach
 
-                                   @endisset
+                                    @endisset
 
 
                                 </tbody>

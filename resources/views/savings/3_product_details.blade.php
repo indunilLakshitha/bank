@@ -61,8 +61,8 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="interest_type" id="interest_type"
-                                            readonly class="form-control">
+                                            <input type="text" name="interest_type" id="interest_type" readonly
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -73,8 +73,8 @@
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
-                                        <input type="text" name="interest_rate" id="interest_rate"
-                                            readonly class="form-control">
+                                        <input type="text" name="interest_rate" id="interest_rate" readonly
+                                            class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -86,10 +86,9 @@
                                     <div class="col-5">
                                         <div class="form-group">
 
-                                            <input type="hidden" name="currency_id" id="currency_id"
-                                            readonly class="form-control">
-                                            <input type="text"  id="currency"
-                                            readonly class="form-control">
+                                            <input type="hidden" name="currency_id" id="currency_id" readonly
+                                                class="form-control">
+                                            <input type="text" id="currency" readonly class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -103,8 +102,8 @@
                                     <div class="col-5">
                                         <div class="form-group">
 
-                                            <input type="text" name="account_level" id="account_level"
-                                            readonly class="form-control">
+                                            <input type="text" name="account_level" id="account_level" readonly
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -117,35 +116,35 @@
                                     <div class="col-5">
                                         <div class="form-group">
 
-                                            <input type="hidden" name="deposite_mode_id" id="deposite_mode_id"
-                                            readonly class="form-control">
-                                            <input type="text"  id="deposite_mode"
-                                            readonly class="form-control">
+                                            <input type="hidden" name="deposite_mode_id" id="deposite_mode_id" readonly
+                                                class="form-control">
+                                            <input type="text" id="deposite_mode" readonly class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <label class="col-sm-2 col-form-label">Interest Credit Dated</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="date" name="interest_credit_date" id="interest_credit_date" class="form-control">
+                                            <input type="date" name="interest_credit_date" id="interest_credit_date"
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Minimum Balance to active the account</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="number" id="minimum_balance"  name="minimum_balance" readonly class="form-control"
-                                                >
+                                            <input type="number" id="minimum_balance" name="minimum_balance" readonly
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +182,10 @@ success: function (data) {
     currency.value=data[0].currency_name
     currency_id.value=data[0].currency_id
     account_level.value=data[0].account_authorized_level
-    interest_credit_date.value=data[0].interest_credit_dated
+    // interest_credit_date.value=data[0].interest_credit_dated
+    minimum_balance.value=data[0].minimum_balance_activate
+    deposite_mode.value=data[0].deposite_mode
+    deposite_mode_id.value=data[0].deposite_mode_id
 
 
 }
