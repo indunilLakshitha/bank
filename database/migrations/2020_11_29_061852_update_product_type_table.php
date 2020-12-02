@@ -13,12 +13,12 @@ class UpdateProductTypeTable extends Migration
      */
     public function up()
     {
-       Schema::table('product_types', function (Blueprint $table) {
-            $table->string('is_beneficiearies_required')->nullable();
-            $table->string('is_nominies_required')->nullable();
-            $table->string('is_guardianes_required')->nullable();
-            $table->string('is_documents_required')->nullable();
-                    });
+    //    Schema::table('product_types', function (Blueprint $table) {
+            // $table->string('is_beneficiearies_required')->nullable();
+            // $table->string('is_nominies_required')->nullable();
+            // $table->string('is_guardianes_required')->nullable();
+            // $table->string('is_documents_required')->nullable();
+                    // });
     }
 
     /**

@@ -236,9 +236,6 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/deposits/fd-dep', function () {
         return view('deposit.fd_deposite');
     });
-
-    Route::get('/load_saving_details', 'WithdrawalController@load_saving_details');
-
     //---------------------------------------------withdrawal views------end
 
     Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
@@ -252,6 +249,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction');
     Route::get('/savings/correspondance', 'SavingsController@correspondance');
     Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
+    Route::get('/savings/getsubdetails', 'SavingsController@getSubDetails');
 
     // Add by Kanishka 19/11/2020
     Route::get('/savings/parameter', function () {
@@ -392,6 +390,12 @@ Route::get('/sharetransferdata','ShareController@historyview')->name('shares.his
 Route::post('/buy_shares','ShareController@buy_shares');
 Route::post('/transfer_shares','TransactionController@transfer_shares');
 
+
+
+//--------------------------------------------------------ew main branches-----------------------
+Route::get('/newbranches','MainBranchController@index')->name('newbranches.index');
+Route::get('/newbranchesadd','MainBranchController@add');
+Route::post('/branchesadd','MainBranchController@store');
 });
 
 Auth::routes();

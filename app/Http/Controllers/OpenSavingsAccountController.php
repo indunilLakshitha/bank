@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\CustomerBasicData;
 use App\Models\GuardianData;
 use App\Models\ProductType;
+use App\Models\SubAccount;
 
 class OpenSavingsAccountController extends Controller
 {
@@ -215,7 +216,7 @@ class OpenSavingsAccountController extends Controller
         $prod_data = ProductData::create($request->all());
 
 
-        $product_type=ProductType::where('id',$prod_data->product_type_id)->first();
+        $product_type=SubAccount::where('id',$prod_data->product_type_id)->first();
 
          $request->session()->put('is_beneficiearies_required',$product_type->is_beneficiearies_required);
          $request->session()->put('is_guardianes_required',$product_type->is_guardianes_required);

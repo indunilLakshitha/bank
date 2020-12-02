@@ -238,7 +238,7 @@
                     success: function(data){
 
                         account_balance.value=data.balance_amount
-                        return Swal.fire('Withdrawal Successful')
+                        return Swal.fire('Deposite Successful')
                     }
                })
            }

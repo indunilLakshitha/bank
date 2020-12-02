@@ -78,6 +78,30 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item  ">
+                <a class="nav-link" data-toggle="collapse" href="#branchess">
+                    <i class="material-icons">account_box</i>
+                    <p> Branches
+                        <b class="caret"></b> </p>
+                </a>
+                <div class="collapse" id="branchess">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{url('/newbranchesadd')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
+                                <span class="sidebar-normal">Add Branches </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                        <a class="nav-link" href="{{url('/newbranches')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
+                                <span class="sidebar-normal">View Branches </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             @can('savings_account_veiw')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#savings">

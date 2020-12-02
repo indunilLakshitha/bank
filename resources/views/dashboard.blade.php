@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="container-fluid">
         <div>
-        <img style="margin-top:200px;margin-left: 400px;box-shadow: 2px 2px 2px 2px;" src="{{asset('logo.png')}}" alt="">
+        <img style="margin-top:20%;margin-left: 30%;box-shadow: 2px 2px 2px 2px;" src="{{asset('logo.png')}}" alt="">
         </div>
       </div>
     </div>

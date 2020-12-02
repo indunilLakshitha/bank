@@ -7,14 +7,14 @@
     <div class="card ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
-                <h4 class="card-title">Customer</h4>
+                <h4 class="card-title">Branches</h4>
             </div>
         </div>
         <div class="card-body ">
             <form method="get" class="form-horizontal" id="form">
                 @csrf
 
-                <div class="row">
+                {{-- <div class="row">
                     <label class="col-sm-2 col-form-label">Code</label>
                     <div class="col-md-2">
                         <div class="form-group">
@@ -53,15 +53,15 @@
                                     <input type="text" name="identification_number" class="form-control"
                                         placeholder="900000000V">
                                 </div>
-                            </div>
+                            </div> --}}
                             {{-- <div class="col">
                                             <div class="form-group">
                                                 <a onclick="submit_id(id_type.value, )"  class="btn btn-sm btn-primary">Add</a>
                                             </div>
                                         </div> --}}
-                        </div>
+                        {{-- </div> --}}
 
-
+{{--
                     </div>
                 </div>
                 <div class="row">
@@ -136,8 +136,8 @@
                 </div>
 
 
-            </form>
-            <div class="card-footer ">
+            </form> --}}
+            {{-- <div class="card-footer ">
                 <div class="row">
                     <div class="col-md-6">
                         <button onclick="search()" class="btn btn-fill btn-rose">SEARCH</button>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 
@@ -160,8 +160,8 @@
             <i class="material-icons"></i>
           </div> --}}
                 <h4 class="card-title">
-                    <a href="/members/add" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
-                        <i class="material-icons">add</i> <span class="mx-1">Add Member</span>
+                    <a href="{{url('newbranchesadd')}}" rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
+                        <i class="material-icons">add</i> <span class="mx-1">Add Branch</span>
                     </a>
                 </h4>
             </div>
@@ -172,34 +172,31 @@
                             <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
-                                    <th>ID </th>
                                     <th>CODE</th>
-                                    <th>IDENTIFICATION TYPE</th>
-                                    <th>IDENTIFICATION NUMBER</th>
                                     <th>NAME</th>
                                     <th>STATUS</th>
                                     <th>ACTION</th>
                                 </thead>
                                 <tbody id="results_tbody">
                                     <?php
-                                    echo $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')->where('customer_basic_data.status','1')->get();
+                                     $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')
+                                     ->where('customer_basic_data.status','1')
+                                     ->where('customer_basic_data.account_category_id','1')
+                                     ->get();
                                     ?>
                                     @isset($members)
                                     @foreach ($members as $member)
                                     <tr>
-                                        <th>{{$member->id}}</th>
                                         <th>{{$member->customer_id}} </th>
-                                        <th>{{$member->customer_type}} </th>
-                                        <th>{{$member->identification_number}}</th>
                                         <th>{{$member->name_in_use}}</th>
                                         @if(intval($member->is_enable) == 1)
                                         <th>ACTIVE</th>
                                         @else
                                         <th>INACTIVE</th>
                                         @endif
-                                        <th><a href="{{url('/members/view/'.$member->customer_id)}}" rel="tooltip"
+                                        <th><a href="" rel="tooltip"
                                                 class="btn-sm btn-info btn-round">VIEW</a>
-                                            <a href="{{url('/members/edit/'.$member->customer_id)}}" rel="tooltip"
+                                            <a href="" rel="tooltip"
                                                 class="btn-sm btn-primary btn-round"><i
                                                     class="material-icons">edit</i></a>
                                         </th>

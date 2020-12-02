@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\cash_in_hand_ledger;
 use App\Member;
 use App\MemberCreationNominee;
 use App\Models\Branch;
+use App\Models\CashierDailyTransaction;
 use App\Models\CustomerBasicData;
 use App\Models\CustomerStatusDates;
+use App\Models\PaymentLog;
+use App\Models\saving_deposit_base_ledger;
+use App\Models\TransactionData;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
@@ -89,6 +96,7 @@ class MemberController extends Controller
     public function member_creation(Request $request){
 
         // return $request;
+        // return response()->json($request);
 
             $already_in = Member::where('customer_id', $request->customer_id)->first();
 
@@ -99,10 +107,61 @@ class MemberController extends Controller
             $mem = Member::create($request->all());
             $mem->is_enable= 1;
 
-            $branch_id = CustomerBasicData::where('customer_id', $request->customer_id)->first()->branch_id;
-            $mem->member_number= 'W'.Branch::find($branch_id)->branch_code.$request->customer_id;
+            $branch_id = CustomerBasicData::where('customer_id', $request->customer_id)->first();
+            $branch_id->non_member=0;
+            $branch_id->member=1;
+            $branch_id->save();
+            $mem->member_number= 'W'.Branch::find($branch_id->branch_id)->branch_code.$request->customer_id;
 
             $mem->save();
+
+
+            $payment_log=$request;
+            $payment_log['created_by']=Auth::user()->id;
+            $payment_log['transaction_type']="DEPOSITE";
+            $payment_log['transaction_value']=$request->share_amount;
+            $payment_log['payment_method_id']=1;
+            $transaction_data=TransactionData::create($payment_log->all());
+
+            $payment_log['transaction_data_id']=$transaction_data->id;
+            // $payment_log['balance_amount']=$transaction_data->account_balance;
+            $succsess=PaymentLog::create($payment_log->all());
+
+            $cashie_daily_trancastion=$request;
+            $cashie_daily_trancastion['user_id']=Auth::user()->id;
+            $cashie_daily_trancastion['transaction_type']="DEPOSITE";
+            $cashie_daily_trancastion['transaction_id']=$transaction_data->id;
+            // $cashie_daily_trancastion['account_number']=$request->account_id;
+            $cashie_daily_trancastion['transaction_amount']=$request->share_amount;
+            // $cashie_daily_trancastion['balance_value']=$general_account->account_balance;
+            $cashie_daily_trancastion['is_enable']=1;
+            $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
+            $cashie_daily_trancastion['branch_id']=Auth::user()->branh_id;
+            $cashie_daily_trancastion['branch_balance']=
+            CashierDailyTransaction::where('branch_id',Auth::user()->branh_id)->sum('branch_balance')+$request->share_amount;
+
+            CashierDailyTransaction::create($cashie_daily_trancastion->all());
+
+            $cash_in_hand_ledger=$request;
+            $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
+            $cash_in_hand_ledger['customer_id']=$transaction_data->id;
+            $cash_in_hand_ledger['acccount_id']=$request->account_id;
+            $cash_in_hand_ledger['transaction_type']="DEPOSITE";
+            $cash_in_hand_ledger['transaction_value']=$request->share_amount;
+            // $cash_in_hand_ledger['balance_value']=$general_account->account_balance;
+            $cash_in_hand_ledger['is_enable']=1;
+
+             cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+
+
+             $saving_deposit_base_ledger=$request;
+             $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
+             $saving_deposit_base_ledger['acccount_id']=$request->account_id;
+             $saving_deposit_base_ledger['transaction_type']="DEPOSITE";
+             $saving_deposit_base_ledger['transaction_value']=$request->share_amount;
+            //  $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
+             $saving_deposit_base_ledger['is_enable']=1;
+             saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
             return response()->json('Member created');
 
     }
