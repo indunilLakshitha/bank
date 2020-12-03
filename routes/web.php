@@ -285,6 +285,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/members/verify', 'CustomerBasicDataController@memberVerify');
     Route::get('/members/view/check/{id}', 'CustomerBasicDataController@viewVerify');
     Route::get('/members/view/verify/{id}', 'CustomerBasicDataController@verification');
+    Route::post('/checknic', 'CustomerBasicDataController@checkNic');
 
     //-------------------------------------------------------------------------------account verification routes------start
     Route::get('/accountdetails/{id}', 'AccountVerificationController@accountDetails');
@@ -403,16 +404,13 @@ Route::post('/transfer_shares','TransactionController@transfer_shares');
 
 
 
-<<<<<<< HEAD
 //-------------------------------------------------------------branch cash routes---------------------------
 Route::get('/branchcash','BranchCashInOutController@index')->name('branch_cash.index');
-=======
 //--------------------------------------------------------ew main branches-----------------------
 Route::get('/newbranches','MainBranchController@index')->name('newbranches.index');
 Route::get('/newbranchesadd','MainBranchController@add');
 Route::post('/branchesadd','MainBranchController@store');
 Route::get('/branchesview/{id}','MainBranchController@view')->name('newbranches.view');
->>>>>>> 312c31de896bf54198132e9ed70cd3ddec072060
 });
 
 //------------------------------------------------------------cashier cash in out --------------------

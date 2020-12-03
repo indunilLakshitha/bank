@@ -343,4 +343,16 @@ class CustomerBasicDataController extends Controller
         return Redirect::to('/members/verify');
     }
 
+
+    public function checkNic(Request $request){
+
+        $customer=CustomerBasicData::where('identification_number',$request->nic)->first();
+
+        if ($customer) {
+            return response()->json('NIC already registered');
+        } else {
+            return response()->json('NIC available');
+        }
+    }
+
 }

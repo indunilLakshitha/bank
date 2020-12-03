@@ -79,6 +79,63 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src={{asset("mat_ui/js/material-dashboard.js?v=2.1.2")}} type="text/javascript"></script>
 <script src={{asset("mat_ui/demo/demo.js")}}></script>
+<script>
+     $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    function validate_nic(nic, input){  // (this.value, this)
+            var pattern = /^([0-9]{9}[X|V]|[0-9]{12})$/gm
+
+            if(   nic.length == 10){
+                nic = Array.from(nic)
+
+                if(nic[9] == 'v'){
+                    nic[9] = 'V'
+                }
+                if(nic[9] == 'x'){
+                    nic[9] = 'X'
+                }
+                nic = nic.join('')
+                input.classList.remove('bg-warning')
+                console.log(nic);
+            }
+            nic.match(pattern) ? input.classList.remove('bg-warning') : input.classList.add('bg-warning')
+            input.value = nic
+        }
+
+         // ----------- CHECK NIC
+         function check_nic(nic,messageId){
+            messageId.classList.add('d-none')
+            sub_btn.disabled = false
+            $.ajax({
+                type: 'POST',
+                url: '{{('/checknic')}}',
+                data: {'nic': nic} ,
+                success: function(data){
+                    console.log(data);
+                    if(data === 'NIC already registered' ){
+                        messageId.classList.remove('d-none')
+                        sub_btn.disabled = true
+                    }
+                }
+            })
+        }
+
+         // ----------- validate contact no
+         function validate_contact(no,messageId){
+            messageId.classList.add('d-none')
+            sub_btn.disabled = false
+
+                    if(no.length !=10){
+                        messageId.classList.remove('d-none')
+                        sub_btn.disabled = true
+                    }
+        }
+
+</script>
+
 
 <script>
 $(document).ready(function() {

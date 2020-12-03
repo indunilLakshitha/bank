@@ -62,7 +62,16 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="full_name">
-                            <input type="text" class="form-control" name="customer_id" id="customer_id">
+                            <input type="hidden" class="form-control" name="customer_id" id="customer_id">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Account Number</label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+
                             <input type="text" class="form-control" name="account_id" id="account_id">
                         </div>
                     </div>
@@ -96,7 +105,7 @@
                     <label class="col-sm-2 col-form-label">Take Amount</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="transaction_value">
+                            <input type="text" class="form-control" id="transaction_value" oninput="caltotal(this.value)">
                         </div>
                     </div>
                 </div>
@@ -104,7 +113,7 @@
                     <label class="col-sm-2 col-form-label"> Total Amount </label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" id="tot">
                         </div>
                     </div>
                 </div>
@@ -153,7 +162,8 @@
                     </div>
                 </div>
                 <div class="ml-3">
-                    <button type="button" onclick="load_saving_details(customer_id.value)" href="" class="btn btn-warning"> Load Saving Details</button>
+                    <button type="button" onclick="load_saving_details(customer_id.value)" href=""
+                        class="btn btn-warning"> Load Saving Details</button>
                 </div>
                 <div>
                     <div class="material-datatables">
@@ -236,7 +246,7 @@
                        'transaction_type': 'on_test',
                     },
                     success: function(data){
-
+console.log(data)
                         account_balance.value=data.balance_amount
                         return Swal.fire('Deposite Successful')
                     }
@@ -266,6 +276,12 @@
             account_balance.value = balance
            }
 
+           function caltotal(amout){
+               console.log(amout)
+               tota=parseFloat(account_balance.value)+parseFloat(amout)
+               console.log(tota)
+               tot.value=tota
+           }
            function load_saving_details(id){
         // console.log(id);
         $.ajax({

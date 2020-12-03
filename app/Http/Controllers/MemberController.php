@@ -12,6 +12,7 @@ use App\Models\CustomerStatusDates;
 use App\Models\PaymentLog;
 use App\Models\saving_deposit_base_ledger;
 use App\Models\TransactionData;
+use App\TransactionShare;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -20,6 +21,10 @@ use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Colombo');
+    }
     public function search(Request $request)
     {
         // return $request;
@@ -95,12 +100,15 @@ class MemberController extends Controller
 
     public function member_creation(Request $request){
 
-        // return $request;
-        // return response()->json($request);
+        //-------------------------------------request parameters
+        // return $request->customer_id;
+        // return $request->share_amount/share count;
+        // return $request->share_value;
 
-            $already_in = Member::where('customer_id', $request->customer_id)->first();
 
-            if($already_in){
+        $already_in = Member::where('customer_id', $request->customer_id)->first();
+
+        if($already_in){
                 return response()->json('Member already exists');
             }
 
@@ -111,7 +119,7 @@ class MemberController extends Controller
             $branch_id->non_member=0;
             $branch_id->member=1;
             $branch_id->save();
-            $mem->member_number= 'W'.Branch::find($branch_id->branch_id)->branch_code.$request->customer_id;
+            $mem->member_number= 'W-'.$request->customer_id;
 
             $mem->save();
 
@@ -119,9 +127,43 @@ class MemberController extends Controller
             $payment_log=$request;
             $payment_log['created_by']=Auth::user()->id;
             $payment_log['transaction_type']="DEPOSITE";
-            $payment_log['transaction_value']=$request->share_amount;
+            $payment_log['transaction_details']="Shares buy in member creation";
+            $payment_log['transaction_value']=$request->share_value;
+            $payment_log['transaction_code']="ST";
             $payment_log['payment_method_id']=1;
+            // $deposits_today=TransactionData::where()
             $transaction_data=TransactionData::create($payment_log->all());
+
+            $transaction_shares=$request;
+            $transaction_shares['member_id']=$mem->member_number;
+            $transaction_shares['transaction_type']="DEPOSITE";
+            $transaction_shares['transaction_code']="ST";
+            $transaction_shares['transaction_details']=$payment_log['transaction_details'];
+            $transaction_shares['customer_id']=$branch_id->customer_id;
+            $transaction_shares['branch_id']=$branch_id->branch_id;
+            $transaction_shares['is_enable']=1;
+            $transaction_shares['created_by']=Auth::user()->id;
+            $transaction_shares['transaction_value']= $request->share_amount;
+            $transaction_shares['balance_value']=$request->share_amount;
+            TransactionShare::create($transaction_shares->all());
+
+
+        $cash_in_hand_ledger=$request;
+        $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
+        $cash_in_hand_ledger['customer_id']=$request->customer_id;
+        $cash_in_hand_ledger['user_id']=Auth::user()->id;
+        $cash_in_hand_ledger['transaction_type']="DEPOSITE";
+        $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
+        $deposite_total=cash_in_hand_ledger::where('transaction_type','DEPOSITE')
+                                        ->where('user_id',Auth::user()->id)
+                                        ->sum('transaction_value');
+        $withdraw_total=cash_in_hand_ledger::where('transaction_type','WITHDRAW')
+                                        ->where('user_id',Auth::user()->id)
+                                        ->sum('transaction_value');
+        $cash_in_hand_ledger['balance_amount']=$deposite_total-$withdraw_total+$request->transaction_value;
+        $cash_in_hand_ledger['is_enable']=1;
+
+        cash_in_hand_ledger::create($cash_in_hand_ledger->all());
 
             $payment_log['transaction_data_id']=$transaction_data->id;
             // $payment_log['balance_amount']=$transaction_data->account_balance;
@@ -142,16 +184,7 @@ class MemberController extends Controller
 
             CashierDailyTransaction::create($cashie_daily_trancastion->all());
 
-            $cash_in_hand_ledger=$request;
-            $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
-            $cash_in_hand_ledger['customer_id']=$transaction_data->id;
-            $cash_in_hand_ledger['acccount_id']=$request->account_id;
-            $cash_in_hand_ledger['transaction_type']="DEPOSITE";
-            $cash_in_hand_ledger['transaction_value']=$request->share_amount;
-            // $cash_in_hand_ledger['balance_value']=$general_account->account_balance;
-            $cash_in_hand_ledger['is_enable']=1;
 
-             cash_in_hand_ledger::create($cash_in_hand_ledger->all());
 
 
              $saving_deposit_base_ledger=$request;

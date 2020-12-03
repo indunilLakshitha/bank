@@ -309,8 +309,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-2 col-sm-2">
                                             <div class="form-group">
-                                                <input type="text" name="identification_number" class="form-control"
-                                                    placeholder="">
+                                                <input type="text" name="identification_number" class="form-control" oninput="check_nic(this.value,guradian_nic_message)"
+                                                    >
+                                                    <a id="guradian_nic_message" class="d-none btn btn-danger">Already registered</a>
+
                                             </div>
                                         </div>
                                         {{-- <div class="col">
@@ -334,9 +336,9 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Telephone No</label>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-12">
                                             <select name="contact_type_id" id="contact_type_id" class="form-control"
                                                 data-style="select-with-transition">
                                                 <option value="">Select Type</option>
@@ -353,11 +355,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     <div class="form-group">
                                         <div class="col-sm-5">
                                             <input type="number" name="contact_data" class="form-control"
-                                                placeholder="011 2345 678" maxlength="10">
+                                                placeholder="Enter contact Number" id="contact_no" oninput="validate_contact(this.value,contact_er)">
+                                                <a id="contact_er" class="d-none btn btn-danger">Invalid Contact Number</a>
 
                                         </div>
                                     </div>
@@ -394,7 +397,7 @@
                             </div>
 
                         </div>
-                        <button onclick="validate_form()" type="button" class="btn btn-primary">NEXT</button>
+                        <button onclick="validate_form()" id="sub_btn" type="button" class="btn btn-primary">NEXT</button>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>
