@@ -28,8 +28,7 @@
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
                                         <button class="btn  btn-info btn"
-                                            onclick="modal_serach_by_name_results_tbody.innerHTML = null"
-                                            >
+                                            onclick="modal_serach_by_name_results_tbody.innerHTML = null">
                                             Clear Results </button>
 
                                     </div>
@@ -216,6 +215,7 @@ function set_cus_details_from_modal(id){
             if(document.querySelector('#share_amount')){
                 share_amount.value = cus.share_amount
             }
+            $('#noticeModal').modal('hide');
              return console.log(cus);
             //  console.log(full_name);
         }

@@ -6,6 +6,7 @@ use App\AccountGeneralInformation;
 use App\Models\AccountGeneralInformation as ModelsAccountGeneralInformation;
 use App\Models\AuthorizedOfficer;
 use App\Models\BeneficiaryData;
+use App\Models\Branch;
 use App\Models\Joinaccount;
 use App\Models\JoinaccountMember;
 use App\Models\NomineeMember;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\CustomerBasicData;
 use App\Models\GuardianData;
 use App\Models\ProductType;
+use App\Models\SubAccount;
 
 class OpenSavingsAccountController extends Controller
 {
@@ -107,7 +109,7 @@ class OpenSavingsAccountController extends Controller
 
         $branch_id = Auth::user()->branh_id;
         $data = DB::select("
-        SELECT
+        SELECT DISTINCT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
             customer_basic_data.id,
@@ -215,7 +217,7 @@ class OpenSavingsAccountController extends Controller
         $prod_data = ProductData::create($request->all());
 
 
-        $product_type=ProductType::where('id',$prod_data->product_type_id)->first();
+        $product_type=SubAccount::where('id',$prod_data->product_type_id)->first();
 
          $request->session()->put('is_beneficiearies_required',$product_type->is_beneficiearies_required);
          $request->session()->put('is_guardianes_required',$product_type->is_guardianes_required);
@@ -224,57 +226,80 @@ class OpenSavingsAccountController extends Controller
 
         $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
         $prod_id = $prod_data->id;
-        $account_id = $request->account_id;
+         $account_id = $request->account_id;
 
 
         $cus_id = AccountGeneralInformation::find($request->account_id)->customer_id;
         $all_customers = CustomerBasicData::all();
 
 
-        if($product_type->is_beneficiearies_required==1){
+        if($product_type->is_guardianes_required==1){
 
             $guard = $product_type->is_guardianes_required;
             $nomin = $product_type->is_nominies_required;
             $docum = $product_type->is_documents_required;
             $benef = $product_type->is_beneficiearies_required;
+
+            $branch_code=CustomerBasicData::leftjoin('branches','branches.id','customer_basic_data.branch_id')
+            ->where('customer_basic_data.customer_id',$customer_id)
+            ->select('branches.branch_code')
+            ->get();
+             $cus_count = '0000' .$account_id ;
+              $cus_id = substr($cus_count, -3);
+               $account_number=$customer_id.'-'.$cus_id;
+            //    $account_number=$branch_code[0]->branch_code.'-'.$cus_id;
+
+            AccountGeneralInformation::where('id', $account_id)->update(['status' => '2','account_number'=>$account_number]);
 
             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             return view('members.5_benificiaries', compact('cus_id', 'docum','guard','nomin','account_id', 'prod_id', 'all_customers', 'benef','acc_no'))->with('success', 'Details submitted');
 
-        }else if($product_type->is_guardianes_required==1){
+        }
+        // }else if($product_type->is_guardianes_required==1){
 
-            $account_id = $request->account_id;
-            $prod_id = $request->prod_id;
-            $guard = $product_type->is_guardianes_required;
-            $nomin = $product_type->is_nominies_required;
-            $docum = $product_type->is_documents_required;
-            $benef = $product_type->is_beneficiearies_required;
-            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-            $guardians = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
-            return view('savings.6_guardian_information', compact('cus_id', 'benef','acc_no', 'docum','guard', 'all_customers','nomin','guardians', 'account_id', 'customer_id', 'prod_id'));
-
-
-        }else if($product_type->is_documents_required ==1){
+        //     $account_id = $request->account_id;
+        //     $prod_id = $request->prod_id;
+        //     $guard = $product_type->is_guardianes_required;
+        //     $nomin = $product_type->is_nominies_required;
+        //     $docum = $product_type->is_documents_required;
+        //     $benef = $product_type->is_beneficiearies_required;
+        //     $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+        //     $guardians = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
+        //     return view('savings.6_guardian_information', compact('cus_id', 'benef','acc_no', 'docum','guard', 'all_customers','nomin','guardians', 'account_id', 'customer_id', 'prod_id'));
 
 
-            $docs = DB::table('documents')->get();
-            $account_id = $request->account_id;
-            $customer_id = $request->customer_id;
-            $prod_id = $request->prod_id;
-            return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
-
-        }else if($product_type->is_nominies_required ==1){
-
-            $account_id = $request->account_id;
-            $customer_id = $request->customer_id;
-            $prod_id = $request->prod_id;
-            $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
-            return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
+        // }else if($product_type->is_documents_required ==1){
 
 
+        //     $docs = DB::table('documents')->get();
+        //     $account_id = $request->account_id;
+        //     $customer_id = $request->customer_id;
+        //     $prod_id = $request->prod_id;
+        //     return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id'));
 
-        }else {
+        // }else if($product_type->is_nominies_required ==1){
 
+        //     $account_id = $request->account_id;
+        //     $customer_id = $request->customer_id;
+        //     $prod_id = $request->prod_id;
+        //     $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
+        //     return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id', 'acc_no'));
+
+
+
+        // }
+        else {
+            $branch_code=CustomerBasicData::leftjoin('branches','branches.id','customer_basic_data.branch_id')
+            ->where('customer_basic_data.customer_id',$customer_id)
+            ->select('branches.branch_code')
+            ->get();
+             $cus_count = '0000' .$account_id ;
+              $cus_id = substr($cus_count, -3);
+               $account_number=$customer_id.'-'.$cus_id;
+
+            AccountGeneralInformation::where('id', $account_id)->update(['status' => '2','account_number'=>$account_number]);
+
+            return redirect('/savings/open')->with('success','Account Created Successsfully');
         }
 
     }

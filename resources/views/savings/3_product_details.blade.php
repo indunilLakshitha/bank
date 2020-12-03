@@ -14,7 +14,7 @@
                             </div>
                         </div>
                     </div>
-                   <div class="col-1">
+                    <div class="col-1">
                         <div class="card-text">
                             <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
                         </div>
@@ -38,15 +38,15 @@
                                     <div class="col-5">
                                         <div class="form-group">
                                             @php
-                                            $prod_types = Illuminate\Support\Facades\DB::table('product_types')->get();
+                                            $prod_types = Illuminate\Support\Facades\DB::table('sub_accounts')->get();
                                             @endphp
-                                            <select oninput="set_min_max(this.value)" required name="product_type_id"
+                                            <select oninput="getData(this.value)" required name="product_type_id"
                                                 class="form-control" data-style="select-with-transition">
                                                 <option value="">Select </option>
                                                 @isset($prod_types)
                                                 @foreach ($prod_types as $item)
                                                 <option value="{{$item->id}}">
-                                                    {{$item->product_type}}
+                                                    {{$item->sub_account_description}}
                                                     @endforeach
                                                     @endisset
                                             </select>
@@ -61,20 +61,8 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="interest_type_id" class="form-control"
-                                                data-style="select-with-transition">
-                                                @php
-                                                $interest_types =
-                                                Illuminate\Support\Facades\DB::table('interest_types')->where('id',1)->get();
-                                                @endphp
-                                                @isset($interest_types)
-                                                <option value="{{$interest_types[0]->id}}" selected> {{$interest_types[0]->interest_type}}</option>
-                                                {{-- @foreach ($interest_types as $item)
-                                                <option value="{{$item->id}}">
-                                                    {{$item->interest_type}}
-                                                    @endforeach --}}
-                                                    @endisset
-                                            </select>
+                                            <input type="text" name="interest_type" id="interest_type" readonly
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +73,7 @@
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
-                                        <input type="text" name="interest_rate" id="interest_rate" value="FIXED" readonly
+                                        <input type="text" name="interest_rate" id="interest_rate" readonly
                                             class="form-control">
                                     </div>
                                 </div>
@@ -97,19 +85,10 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="currency_id" class="form-control"
-                                                data-style="select-with-transition">
-                                                @php
-                                                $currencies = Illuminate\Support\Facades\DB::table('currencies')->where('id',1)->get();
-                                                @endphp
-                                                {{-- <option value="">Select </option> --}}
-                                                @isset($currencies)
-                                                @foreach ($currencies as $item)
-                                                <option value="{{$item->id}}" selected aria-readonly="">
-                                                    {{$item->currency_name}}
-                                                    @endforeach
-                                                    @endisset
-                                            </select>
+
+                                            <input type="hidden" name="currency_id" id="currency_id" readonly
+                                                class="form-control">
+                                            <input type="text" id="currency" readonly class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -122,18 +101,9 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="account_level" class="form-control"
-                                                data-style="select-with-transition">
-                                                <option value="">1 </option>
-                                                <option value="">2 </option>
-                                                <option value="">3 </option>
-                                                {{-- @isset($acc_levels)
-                                                @foreach ($acc_levels as $acc_level)
-                                                <option value="{{$idtype->id}}">
-                                                    {{$acc_level->identification_type}}
-                                                    @endforeach
-                                                    @endisset --}}
-                                            </select>
+
+                                            <input type="text" name="account_level" id="account_level" readonly
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -145,45 +115,36 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select name="deposite_mode_id" class="form-control"
-                                                data-style="select-with-transition">
-                                                @php
-                                                $diposits =
-                                                Illuminate\Support\Facades\DB::table('deposite_modes')->get();
-                                                @endphp
-                                                <option value="">Select </option>
-                                                @isset($diposits)
-                                                @foreach ($diposits as $diposit)
-                                                <option value="{{$diposit->id}}">
-                                                    {{$diposit->deposite_mode}}
-                                                    @endforeach
-                                                    @endisset
-                                            </select>
+
+                                            <input type="hidden" name="deposite_mode_id" id="deposite_mode_id" readonly
+                                                class="form-control">
+                                            <input type="text" id="deposite_mode" readonly class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <label class="col-sm-2 col-form-label">Interest Credit Dated</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="date" name="interest_credit_date" class="form-control">
+                                            <input type="date" name="interest_credit_date" id="interest_credit_date"
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Minimum Balance to active the account</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="number" name="minimum_balance" readonly class="form-control"
-                                                value="200">
+                                            <input type="number" id="minimum_balance" name="minimum_balance" readonly
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -195,16 +156,41 @@
                         </div>
                     </div>
                 </div>
-            </div>
-                    </div>
-            </form>
-
         </div>
     </div>
+    </form>
+
+</div>
+</div>
 </div>
 
 <script>
     const prod_types = {!! json_encode($prod_types, JSON_HEX_TAG) !!}
+
+    function getData(id){
+        console.log(id)
+        $.ajax({
+
+type: 'GET',
+url: '{{('/savings/getsubdetails')}}',
+data:{'id':id},
+dataType: 'JSON',
+success: function (data) {
+    console.log(data);
+    interest_type.value=data[0].interest_type
+    interest_rate.value=data[0].amount
+    currency.value=data[0].currency_name
+    currency_id.value=data[0].currency_id
+    account_level.value=data[0].account_authorized_level
+    // interest_credit_date.value=data[0].interest_credit_dated
+    minimum_balance.value=data[0].minimum_balance_activate
+    deposite_mode.value=data[0].deposite_mode
+    deposite_mode_id.value=data[0].deposite_mode_id
+
+
+}
+})
+}
 
 function set_min_max(id){
     if(id === ''){return}

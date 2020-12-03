@@ -270,7 +270,9 @@ function add_nominee(nominee_id, member_id){
         `
         show_nominees_tbody.innerHTML += html
 
-    }
+    });
+}
+
 
     function remove_nominee(id){
         $.ajax({

@@ -107,7 +107,7 @@
             contentType: false,
             success: function(data){
                 console.log(data);
-                current.value=data.share_amount
+                share_amount.value=data.share_amount
                 swal({
         title: "Success!",
         text: "Total Shares are "+data.share_amount,

@@ -3,8 +3,7 @@
 
 @section('content')
 
-{{-- <fieldset disabled="disabled"> --}}
-<fieldset >
+<fieldset disabled="disabled">
     @if(!empty($view_1))
 
     <div class="card col-10 " style="border: solid">
@@ -20,7 +19,7 @@
                     </div>
                     <div class="col-3">
                         <div class="card-text">
-                            <a href="{{ URL::previous() }}" class="btn btn-warning">Back</a>
+                            <a href="{{ url('/members')}}" class="btn btn-warning">Back</a>
                         </div>
                     </div>
                 </div>
@@ -52,20 +51,23 @@
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Member/Non-Member</label>
                                 <div class="col-sm-2">
-                                    <label class="form-check-label-bold" style="background-color: #ffff00;">
-                                        @if($view_1->non_member=== '1')
-                                        <input name="customer_status_id" id="c" class="form-control" value="NON MEMBER">
-                                        @else
-                                        <input name="customer_status_id" id="c" class="form-control" value="MEMBER">
-                                        @endif
-                                    </label> -
+                                    <label class="form-check-label-bold"
+                                                        style="background-color: #ffff00;">
+                                                        @if($view_1->non_member=== '1')
+                                                        <input name="customer_status_id" id="c" class="form-control"
+                                                            value="NON MEMBER">
+                                                         @else
+                                                        <input name="customer_status_id" id="c" class="form-control"
+                                                            value="MEMBER">
+                                                        @endif
+                                                    </label> -
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Customer ID</label>
                                 <div class="col-sm-2">
                                     <input class="form-control" name="customer_id" type="text"
-                                        value="{{ isset($view_1->customer_id)?$view_1->customer_id:0}}">
+                                    value="{{ isset($view_1->customer_id)?$view_1->customer_id:0}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -252,131 +254,132 @@
                                     <div class="form-group">
                                         <input type="text" name="account_category_id" class="form-control"
                                             value="{{ $acc_cats->account_category}}">
-                        </div>
-                        @endisset
-                    </div>
-
-                </div> --}}
-
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
-                    <?php $small_g=\App\Models\SmallGroup::where('id',$view_1->small_group_id )->first()?>
-                    <div class="col-sm-4">
-                        @isset($small_g)
-                        <div class="form-group">
-                            <input type="text" name="small_group_id" class="form-control"
-                                value="{{ $small_g->small_group}}">
-                        </div>
-                        @endisset
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
-                    <?php $sub_o=\App\Models\SubAccountOffice::where('id',$view_1->sub_account_office_id )->first()?>
-                    <div class="col-sm-4">
-                        @isset($sub_o)
-                        <div class="form-group">
-                            <input type="text" class="form-control" value="{{ $sub_o->sub_account_office}}">
-                        </div>
-                        @endisset
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Sub Account Office</label>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="office_sub_id"
-                                value="{{ isset($view_1->office_sub_id)?$view_1->office_sub_id:0}}">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">ID Type</label>
-                    <div class="col-sm-4">
-                        <div class="row">
-                            <?php $id_types=\App\Models\IedentificationType::where('id',$view_1->identification_type_id )->first()?>
-                            <div class="col">
-                                @isset($id_types)
-                                <div class="form-group">
-                                    <input type="text" name="identification_type_id " class="form-control"
-                                        value="{{ $id_types->identification_type}}">
+                                    </div>
+                                    @endisset
                                 </div>
-                                @endisset
+
+                            </div> --}}
+
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Small Gr./ Acc.Off</label>
+                                <?php $small_g=\App\Models\SmallGroup::where('id',$view_1->small_group_id )->first()?>
+                                <div class="col-sm-4">
+                                    @isset($small_g)
+                                    <div class="form-group">
+                                        <input type="text" name="small_group_id" class="form-control"
+                                            value="{{ $small_g->small_group}}">
+                                    </div>
+                                    @endisset
+                                </div>
+
                             </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <input type="text" name="identification_number" class="form-control"
-                                        value="{{ isset($view_1->identification_number)?$view_1->identification_number:'' }}">
+
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Acc. Office Sub No.</label>
+                                <?php $sub_o=\App\Models\SubAccountOffice::where('id',$view_1->sub_account_office_id )->first()?>
+                                <div class="col-sm-4">
+                                    @isset($sub_o)
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="{{ $sub_o->sub_account_office}}">
+                                    </div>
+                                    @endisset
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Sub Account Office</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="office_sub_id"
+                                            value="{{ isset($view_1->office_sub_id)?$view_1->office_sub_id:0}}">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">ID Type</label>
+                                <div class="col-sm-4">
+                                    <div class="row">
+                                        <?php $id_types=\App\Models\IedentificationType::where('id',$view_1->identification_type_id )->first()?>
+                                        <div class="col">
+                                            @isset($id_types)
+                                            <div class="form-group">
+                                                <input type="text" name="identification_type_id " class="form-control"
+                                                    value="{{ $id_types->identification_type}}">
+                                            </div>
+                                            @endisset
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <input type="text" name="identification_number" class="form-control"
+                                                    value="{{ isset($view_1->identification_number)?$view_1->identification_number:'' }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Telephone No</label>
+
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <div class="col-sm-5">
+                                            <?php $cnt=\App\Models\ContactData::where('customer_id',$view_1->customer_id )->first()?>
+                                            <input type="text" name="telephone_number" class="form-control"
+                                                value="{{ isset($cnt->contact_data)?$cnt->contact_data:'' }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Fax</label>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+                                            <input type="text" name="fax_number" class="form-control"
+                                                value="{{ isset($view_1->fax_number)?$view_1->fax_number:'' }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+                                            <input type="text" name="email_address" class="form-control"
+                                                value="{{ isset($view_1->email_address)?$view_1->email_address:'' }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Signature</label>
+                                <div class="col-sm-8">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            @if(!empty(@isset($view_1->sign_img)))
+                                            <img src="{{env('IMAGE_LOCATION').$view_1->sign_img}}" height="200px"
+                                                width="300px" alt="">
+                                            @else
+                                            <img src="/bank/public/images/default.png" height="100px" width="100px"
+                                                alt="">
+                                            @endif
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        @endisset
 
-
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Telephone No</label>
-
-                    <div class="col-sm-8">
-                        <div class="form-group">
-                            <div class="col-sm-5">
-                                <?php $cnt=\App\Models\ContactData::where('customer_id',$view_1->customer_id )->first()?>
-                                <input type="text" name="telephone_number" class="form-control"
-                                    value="{{ isset($cnt->contact_data)?$cnt->contact_data:'' }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Fax</label>
-                    <div class="col-sm-5">
-                        <div class="form-group">
-                            <div class="col-sm-8">
-                                <input type="text" name="fax_number" class="form-control"
-                                    value="{{ isset($view_1->fax_number)?$view_1->fax_number:'' }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <div class="form-group">
-                            <div class="col-sm-8">
-                                <input type="text" name="email_address" class="form-control"
-                                    value="{{ isset($view_1->email_address)?$view_1->email_address:'' }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-2 col-form-label">Signature</label>
-                    <div class="col-sm-8">
-                        <div class="col-10">
-                            <div class="form-group">
-                                @if(!empty(@isset($view_1->sign_img)))
-                                <img src="{{env('IMAGE_LOCATION').$view_1->sign_img}}" height="200px" width="300px"
-                                    alt="">
-                                @else
-                                <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
-                                @endif
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            @endisset
-
         </div>
-    </div>
-    </div>
-    </div>
     </div>
     @endif
     @if(!empty($view_2))
@@ -658,7 +661,7 @@
                             @foreach($view_6 as $view_6_1)
                             <tr>
                                 <td>{{$view_6_1->asset_description}} </td>
-                                <td> Rs.<?php echo number_format( $view_6_1->asset_qty , 2 , '.' , ',' ) ?></th>
+                                <td> {{$view_6_1->asset_qty}}</th>
                             </tr>
                             @endforeach
                             @endisset
