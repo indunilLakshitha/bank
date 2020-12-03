@@ -28,7 +28,7 @@
                 <div class="card-body ">
                 <table class="table">
                     <tr>
-                        @if(!empty($acc->cus_sign_img))
+                        <!-- @if(!empty($acc->cus_sign_img))
                         <th>
                             <img src="{{env('IMAGE_LOCATION').$acc->cus_sign_img}}" height="250px" width="250px" alt="">
                         </th>
@@ -36,13 +36,13 @@
                          <th>
                             <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
                         </th>
-                        @endif
-                        <th>
-                        </th>
+                        @endif -->
+                        <!-- <th>
+                        </th> -->
 
-                        @if(!empty($cus->cus_sign_img))
+                        @if(!empty($cus->sign_img))
                         <th>
-                            <img src="{{env('IMAGE_LOCATION').$acc->sign_img}}" height="250px" width="250px" alt="">
+                            <img src="{{env('IMAGE_LOCATION').$cus->sign_img}}" height="250px" width="250px" alt="">
                         </th>
                         @else
                          <th>

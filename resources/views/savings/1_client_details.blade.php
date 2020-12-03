@@ -140,7 +140,7 @@
                             </div>
                         </div> --}}
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Customer Signature</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
@@ -150,7 +150,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

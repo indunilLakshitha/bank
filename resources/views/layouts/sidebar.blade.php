@@ -473,6 +473,74 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#fd">
+                    <i class="material-icons">book_online</i>
+                    <p> FD
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="fd">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdAcCreation">
+                                <span class="sidebar-mini"> <i class="material-icons">api</i> </span>
+                                <span class="sidebar-normal">Account Creation</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdFindBussPrtn">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Find Partner</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdMemCreation">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Member Creation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdFindProd">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Find Produtc</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdFindInter">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Find Interducer</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdWithdReq">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Withdrawal Request</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdInvestNomi">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Investor Nominee</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdNomSlctGrp">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Nominee Select</span>
+                            </a>
+                        </li>
+                         <li class="nav-item ">
+                            <a class="nav-link" href="/fdWithdReq">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Withdrawal Request</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
         </ul>
         @endcan
     </div>

@@ -386,7 +386,41 @@ Route::get('/CasHiNhanDbrancH/branch','TransactionReportController@getBranchRep'
 Route::get('/ReportOfTransactions/transactions','TransactionReportController@getTransactions');
 
 
+// -------------------------------------------------------------FD-----------------------------------------
 
+    Route::get('/fdAcCreation', function () {
+
+        return view('deposit.fd_accountCreation');
+    });
+     Route::get('/fdFindBussPrtn', function () {
+
+        return view('deposit.fd_findBussPartn');
+    });
+    Route::get('/fdMemCreation', function () {
+
+        return view('deposit.fd_memberCreation');
+    });
+    Route::get('/fdFindProd', function () {
+
+        return view('deposit.fd_findProd');
+    });
+    Route::get('/fdFindInter', function () {
+
+        return view('deposit.fd_findInter');
+    });
+    Route::get('/fdInvestNomi', function () {
+
+        return view('deposit.fd_inv_nom');
+    });
+    Route::get('/fdNomSlctGrp', function () {
+
+        return view('deposit.fd_nomSlectGrp');
+    });
+    Route::get('/fdWithdReq', function () {
+
+        return view('deposit.fd_withdrawReq');
+    });
+  
 
 
     //------------------------------------------------------------------transaction report end-------------------

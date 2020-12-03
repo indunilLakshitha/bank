@@ -177,7 +177,7 @@ class AccountVerificationController extends Controller
         if(!empty($join_acc_id)){
         $join_acc_mems = JoinaccountMember::where('join_account_id', $join_acc_id->id)->get();
 
-         return view('savings.view_details.signature', compact('acc', 'join_acc_mems'));
+         return view('savings.view_details.signature', compact('acc','cus', 'join_acc_mems'));
         }else{
             return view('savings.view_details.signature', compact('acc','cus'));
         }

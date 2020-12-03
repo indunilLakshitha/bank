@@ -144,7 +144,7 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Customer Signature</label>
                             <div class="col-sm-8">
                                 <div class="col-10">
@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
