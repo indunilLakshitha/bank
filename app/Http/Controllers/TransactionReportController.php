@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AccountGeneralInformation;
 use App\Models\CashierDailyTransaction;
 use App\Models\TransactionData;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,8 @@ class TransactionReportController extends Controller
 
     public function cashInHand(){
 
-        return view('transaction_report.cashInHand');
+        $users = User::where('branh_id',Auth::user()->branh_id)->get();
+        return view('transaction_report.cashInHand',compact('users'));
     }
 
     public function reportOfTransactions(){
@@ -52,7 +54,40 @@ class TransactionReportController extends Controller
 
     public function getUserRep(Request $request){
 
-        return response()->json($request);
+
+        $data = array(0,0,0,0,0,0,0);
+
+        $t_in = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITED')
+                ->sum('transaction_value');
+
+        $t_out = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->sum('transaction_value');
+        $reci = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITED')
+                ->sum('transaction_value');
+        $paym = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->sum('transaction_value');
+        $depo = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITED')
+                ->sum('transaction_value');
+        $withd = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->sum('transaction_value');
+
+        $bal = ($t_in + $reci +$depo ) - ($t_out + $paym +$withd);
+        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal];
+
+        return response()->json(['DATA' => $data]);
+        // return response()->json(['DATA' => $data]);
     }
 
     public function getBranchRep(Request $request){

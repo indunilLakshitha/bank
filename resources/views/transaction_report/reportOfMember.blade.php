@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="row">
     <div class="col-md-12">
         <div class="card ">
@@ -20,6 +21,7 @@
                             <div class="pull-right col-2">
                                 <select name="type" class="form-control" id="type">
                                     <option value="" >--Select--</option>
+                                   
                                 </select>
                             </div>
                             <label >FROM:</label>
@@ -57,7 +59,7 @@
                     <div class="col-md-12">
 
                         <div class="material-datatables">
-                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                            <table id="datatables" class="table   table-bordered table-hover"
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
                                     <th>BP. Code</th>
