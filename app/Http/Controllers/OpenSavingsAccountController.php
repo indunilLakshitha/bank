@@ -109,7 +109,7 @@ class OpenSavingsAccountController extends Controller
 
         $branch_id = Auth::user()->branh_id;
         $data = DB::select("
-        SELECT
+        SELECT DISTINCT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
             customer_basic_data.id,
@@ -246,10 +246,11 @@ class OpenSavingsAccountController extends Controller
             ->get();
              $cus_count = '0000' .$account_id ;
               $cus_id = substr($cus_count, -3);
-               $account_number=$branch_code[0]->branch_code.'-'.$cus_id;
+               $account_number=$customer_id.'-'.$cus_id;
+            //    $account_number=$branch_code[0]->branch_code.'-'.$cus_id;
 
             AccountGeneralInformation::where('id', $account_id)->update(['status' => '2','account_number'=>$account_number]);
-            
+
             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             return view('members.5_benificiaries', compact('cus_id', 'docum','guard','nomin','account_id', 'prod_id', 'all_customers', 'benef','acc_no'))->with('success', 'Details submitted');
 
@@ -294,7 +295,7 @@ class OpenSavingsAccountController extends Controller
             ->get();
              $cus_count = '0000' .$account_id ;
               $cus_id = substr($cus_count, -3);
-               $account_number=$branch_code[0]->branch_code.'-'.$cus_id;
+               $account_number=$customer_id.'-'.$cus_id;
 
             AccountGeneralInformation::where('id', $account_id)->update(['status' => '2','account_number'=>$account_number]);
 

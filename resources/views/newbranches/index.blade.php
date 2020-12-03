@@ -181,6 +181,7 @@
                                      $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')
                                      ->where('customer_basic_data.status','1')
                                      ->where('customer_basic_data.account_category_id','1')
+                                     ->where('branch_id',Auth::user()->branh_id)
                                      ->get();
                                     ?>
                                     @isset($members)

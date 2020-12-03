@@ -38,11 +38,10 @@ class CustomerBasicDataController extends Controller
     public function insert(Request $request)
     {
 
-// return $request;
         // $province='W';
         // $br_code = Branch::find($request->branch_id)->branch_code;
-        $count=CustomerBasicData::where('branch_id',Auth::user()->branh_id)->count()+1;
-        $branch_code=Branch::where('id',Auth::user()->branh_id)->first();
+        $count=CustomerBasicData::where('branch_id',$request->branch_id)->count()+1;
+        $branch_code=Branch::where('id',$request->branch_id)->first();
         $cus_id = $branch_code->branch_code.'-'.'0000' .$count ;
         //  $cus_id = substr($cus_count, -3);
         // $cus_id =$province.'-'. $br_code . '-' . $cus_count;
