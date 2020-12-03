@@ -13,12 +13,12 @@ class CreateMemberCreationNomineesTable extends Migration
      */
     public function up()
     {
-        Schema::create('member_creation_nominees', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('member_id')->nullable();
-            $table->string('nominee_id')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('member_creation_nominees', function (Blueprint $table) {
+            // $table->bigIncrements('id');
+            // $table->string('member_id')->nullable();
+            // $table->string('nominee_id')->nullable();
+            // $table->timestamps();
+        // });
     }
 
     /**

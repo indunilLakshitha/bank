@@ -237,9 +237,6 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/deposits/fd-dep', function () {
         return view('deposit.fd_deposite');
     });
-
-    Route::get('/load_saving_details', 'WithdrawalController@load_saving_details');
-
     //---------------------------------------------withdrawal views------end
 
     Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
@@ -253,6 +250,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/savings/nomineeinstruction', 'SavingsController@nomineeInstruction');
     Route::get('/savings/correspondance', 'SavingsController@correspondance');
     Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
+    Route::get('/savings/getsubdetails', 'SavingsController@getSubDetails');
 
     // Add by Kanishka 19/11/2020
     Route::get('/savings/parameter', function () {
@@ -397,16 +395,25 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
     Route::get('/add_nominee_member_creation', 'MemberController@add_nominee_member_creation');
     Route::get('/remove_nominee_member_creation', 'MemberController@remove_nominee_member_creation');
 
-Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
-Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
-Route::get('/sharetransferdata','ShareController@historyview')->name('shares.history');
-Route::post('/buy_shares','ShareController@buy_shares');
-Route::post('/transfer_shares','TransactionController@transfer_shares');
+    Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
+    Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
+    Route::get('/sharetransferdata','ShareController@historyview')->name('shares.history');
+    Route::post('/buy_shares','ShareController@buy_shares');
+    Route::post('/transfer_shares','TransactionController@transfer_shares');
 
 
 
-//-------------------------------------------------------------branch cash routes---------------------------
-Route::get('/branchcash','BranchCashInOutController@index')->name('branch_cash.index');
+    //-------------------------------------------------------------branch cash routes---------------------------
+    Route::get('/branchcash','BranchCashInOutController@index')->name('branch_cash.index');
+    //--------------------------------------------------------ew main branches-----------------------
+    Route::get('/newbranches','MainBranchController@index')->name('newbranches.index');
+    Route::get('/newbranchesadd','MainBranchController@add');
+    Route::post('/branchesadd','MainBranchController@store');
+    Route::get('/branchesview/{id}','MainBranchController@view')->name('newbranches.view');
 });
+
+//------------------------------------------------------------cashier cash in out --------------------
+Route::get('/cashiercash','BranchCashInOutController@index')->name('cashiercash.index');
+Route::post('/cashiercashadd','BranchCashInOutController@index')->name('cashiercash.store');
 
 Auth::routes();

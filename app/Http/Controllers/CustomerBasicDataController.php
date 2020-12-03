@@ -41,9 +41,10 @@ class CustomerBasicDataController extends Controller
 // return $request;
         // $province='W';
         // $br_code = Branch::find($request->branch_id)->branch_code;
-        $count=count(CustomerBasicData::all())+1;
-        $cus_count = '0000' .$count ;
-         $cus_id = substr($cus_count, -3);
+        $count=CustomerBasicData::where('branch_id',Auth::user()->branh_id)->count()+1;
+        $branch_code=Branch::where('id',Auth::user()->branh_id)->first();
+        $cus_id = $branch_code->branch_code.'-'.'0000' .$count ;
+        //  $cus_id = substr($cus_count, -3);
         // $cus_id =$province.'-'. $br_code . '-' . $cus_count;
         $main_type = $request;
         $main_type['customer_id'] = $cus_id;
@@ -229,7 +230,7 @@ class CustomerBasicDataController extends Controller
 
     public function viewMember(Request $request){
 
-        $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
+         $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
         $view_1_1 = CutomerMainType::where('customer_id',$request->id)->first();
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();

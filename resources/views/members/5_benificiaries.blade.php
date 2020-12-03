@@ -48,7 +48,6 @@
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
                             <h5 class="">Beneficiaries</h5>
                             <div class="row">
-
                             </div>
                             <div class="row">
                                 <label class="col-sm-1 col-form-label">Add</label>
@@ -78,11 +77,9 @@
                                     </tr>
                                    </thead>
                                    <tbody id="bene_body">
-
                                    </tbody>
                                 </table>
                             </div>
-
                             <br>
                             @if($guard == 1)
                             <h5 class="">Guardians</h5>
@@ -135,7 +132,7 @@
                             <div class="col">
                                 <div class="col-11">
                         <button type="button" class="btn btn-primary float-right"
-                        onclick="Swal.fire({title: `Created Account {{$acc_no}}`,confirmButtonText: `View Savings Account Page`}).then(() => {final_form.submit()})
+                        onclick="Swal.fire({title: `Created Account {{$acc_no}}`,confirmButtonText: `View Savings Account Page`}).then(() => {window.location = '/savings/open'})
                         ">SUBMIT & FINISH</button>
                             </div>
                         </div>
