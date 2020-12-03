@@ -13,20 +13,20 @@ class CreateTransactionSharesTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_shares', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('member_id')->nullable();
-            $table->string('customer_id')->nullable();
-            $table->string('account_id')->nullable();
-            $table->string('branch_id')->nullable();
-            $table->string('transaction_type')->nullable();
-            $table->string('transaction_code')->nullable();
-            $table->string('transaction_details')->nullable();
-            $table->string('transaction_value')->nullable();
-            $table->string('balance_amount')->nullable();
-            $table->string('is_enable')->defualt(1);
-            $table->timestamps();
-        });
+        // Schema::create('transaction_shares', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->string('member_id')->nullable();
+        //     $table->string('customer_id')->nullable();
+        //     $table->string('account_id')->nullable();
+        //     $table->string('branch_id')->nullable();
+        //     $table->string('transaction_type')->nullable();
+        //     $table->string('transaction_code')->nullable();
+        //     $table->string('transaction_details')->nullable();
+        //     $table->string('transaction_value')->nullable();
+        //     $table->string('balance_amount')->nullable();
+        //     $table->string('is_enable')->defualt(1);
+        //     $table->timestamps();
+        // });
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Slab extends Migration
+class UpdateSubAcountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class Slab extends Migration
      */
     public function up()
     {
-        Schema::table('intereset_type_data', function (Blueprint $table) {
-            // $table->string('slab')->nullable();
-            // $table->string('amount')->nullable();
+        Schema::table('sub_accounts', function (Blueprint $table) {
+            $table->string('is_beneficiearies_required')->nullable();
+            $table->string('is_nominies_required')->nullable();
+            $table->string('is_guardianes_required')->nullable();
+            $table->string('is_documents_required')->nullable();
         });
     }
 

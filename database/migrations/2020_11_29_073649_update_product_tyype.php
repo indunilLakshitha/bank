@@ -13,9 +13,9 @@ class UpdateProductTyype extends Migration
      */
     public function up()
     {
-        Schema::table('product_types', function (Blueprint $table) {
-$table->string('product_code')->nullable();
-        });
+        // Schema::table('product_types', function (Blueprint $table) {
+// $table->string('product_code')->nullable();
+        // });
     }
 
     /**

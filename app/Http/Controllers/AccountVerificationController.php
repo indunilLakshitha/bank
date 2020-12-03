@@ -173,6 +173,7 @@ class AccountVerificationController extends Controller
         $cus = CustomerBasicData::where('customer_id',$acc->customer_id)->first();
         #join account members
         $acc_id = AccountGeneralInformation::where('account_number', $id)->first()->id;
+        $customer=CustomerBasicData::where('customer_id',$acc_id)->first();
         $join_acc_id = Joinaccount::where('account_id', $acc_id)->first();
         if(!empty($join_acc_id)){
         $join_acc_mems = JoinaccountMember::where('join_account_id', $join_acc_id->id)->get();

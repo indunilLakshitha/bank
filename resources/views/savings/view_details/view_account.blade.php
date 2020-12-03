@@ -10,21 +10,21 @@
 </div>
 <fieldset disabled="disabled">
     @if(!empty($view_1_1) && !empty($view_1))
-<div class="content">
-    <div class="container-fluid">
+    <div class="content">
+        <div class="container-fluid">
 
-        <div class="col-md-12">
+            <div class="col-md-12">
 
-            <div class="card col-12 " style="border: solid">
+                <div class="card col-12 " style="border: solid">
 
-                <div class="card ">
-                    <div class="card-header card-header-rose card-header-text">
-                        <div class="card-text">
-                            <h4 class="card-title">Client Details</h4>
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Client Details</h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body ">
-                        <!-- <div class="row">
+                        <div class="card-body ">
+                            <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">CIF</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -32,26 +32,28 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label"> Client Full Name</label>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="client_full_name"  readonly value="{{ isset($view_1_1->full_name ) ? $view_1_1->full_name : ''}}" >
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label"> Client Full Name</label>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="client_full_name" readonly
+                                            value="{{ isset($view_1_1->full_name ) ? $view_1_1->full_name : ''}}">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                         <div class="row">
-                            <label class="col-sm-2 col-form-label">Date Of Birth</label>
-                            <?php $dob=\App\Models\CustomerStatusDates::where('customer_id',$view_1_1->customer_id)->first()?>
-                            <div class="col-sm-4">
-                                @isset($dob)
-                                <div class="form-group">
-                                    <input type="text" name="dob"  id="dob" class="form-control" readonly value="{{$dob->date_of_birth}}">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Date Of Birth</label>
+                                <?php $dob=\App\Models\CustomerStatusDates::where('customer_id',$view_1_1->customer_id)->first()?>
+                                <div class="col-sm-4">
+                                    @isset($dob)
+                                    <div class="form-group">
+                                        <input type="text" name="dob" id="dob" class="form-control" readonly
+                                            value="{{$dob->date_of_birth}}">
+                                    </div>
+                                    @endisset
                                 </div>
-                                @endisset
                             </div>
-                        </div>
-                        <!-- <div class="row">
+                            <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Customer FATCA Clearance Received</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -76,7 +78,7 @@
                                 </div>
                             </div>
                         </div> -->
-                        <!-- <div class="row">
+                            <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">ID Type</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -99,7 +101,7 @@
                             </div>
                         </div> -->
 
-                        <!-- <form action="/submit_all" method="POST" enctype="multipart/form-data">
+                            <!-- <form action="/submit_all" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" id="branch_id" name="branch_id">
                             <input type="hidden" id="customer_id" name="customer_id">
@@ -124,19 +126,20 @@
 
 
 
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Branch Code</label>
-                            <?php $branch=\App\Models\Branch::where('id',$view_1->branch_id)->first()?>
-                            <div class="col-sm-2">
-                                @isset($branch)
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="branch_code" name="branch_code" readonly value="{{ $branch->branch_code}}">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Branch Code</label>
+                                <?php $branch=\App\Models\Branch::where('id',$view_1->branch_id)->first()?>
+                                <div class="col-sm-2">
+                                    @isset($branch)
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="branch_code" name="branch_code"
+                                            readonly value="{{ $branch->branch_code}}">
+                                    </div>
+                                    @endisset
                                 </div>
-                                @endisset
                             </div>
-                        </div>
 
-                        <!-- <div class="row">
+                            <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Customer Rating</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -144,6 +147,7 @@
                                 </div>
                             </div>
                         </div> -->
+<<<<<<< HEAD
                         <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Customer Signature</label>
                             <div class="col-sm-8">
@@ -154,27 +158,41 @@
                                         @else
                                         <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
                                         @endif
+=======
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Customer Signature</label>
+                                <div class="col-sm-8">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            @if(!empty(@isset($view_1->sign_img)))
+                                            <img src="{{env('IMAGE_LOCATION').$view_1->sign_img}}" height="200px"
+                                                width="300px" alt="">
+                                            @else
+                                            <img src="/bank/public/images/default.png" height="100px" width="100px"
+                                                alt="">
+                                            @endif
+>>>>>>> 24238843b8765a2569e1992cbc62ad2d72a161bb
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div> -->
                     </div>
                 </div>
-            </div>
 
-            <div class="card col-12 " style="border: solid">
+                <div class="card col-12 " style="border: solid">
 
-                <div class="card ">
-                    <div class="card-body ">
-                        <div class="card-header card-header-rose card-header-text">
-                            <div class="card-text">
-                                <h4 class="card-title">General Information</h4>
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="card-header card-header-rose card-header-text">
+                                <div class="card-text">
+                                    <h4 class="card-title">General Information</h4>
+                                </div>
                             </div>
-                        </div>
-                        <br>
                             <br>
-                        <!-- <div class="row">
+                            <br>
+                            <!-- <div class="row">
                             <label class="col-sm-2 col-form-label">Lead source Category</label>
                             <?php $led_id=\App\Models\LeadSource::where('id',$view_1->lead_source_category_id)->first()?>
                             <div class="col-sm-8">
@@ -245,84 +263,90 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Options</label>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Options</label>
 
-                            <div class="col-sm-8">
-                                <div class="col-10">
-                                    <div class="form-group">
-                                        <!-- <input type="text" name="identification_number"  id="identification_number" class="form-control"> -->
-                                        @if($view_1->has_atm == 1)
-                                        <div class="col">
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <span style="font-size: 100%;" class="badge badge badge-rose">ATM</span>
-                                                </div>
-                                        @else
-                                        @endif
-                                            <div class="form-group">
-                                            @if($view_1->has_sms == 1)
-                                                <span style="font-size: 100%;" class="badge badge badge-rose">SMS</span>
-                                            </div>
-
-                                            </div>
-                                        </div>
-
-                                        @else
-                                        @endif
-                                        @if($view_1->has_internet_banking == 1)
-                                        <div class="col">
-                                            <div class="col">
-                                                <div class="form-group">
-                                        <span style="font-size: 100%;" class="badge badge badge-rose">Internet Banking</span>
-                                        </div>
-                                        @else
-                                        @endif
+                                <div class="col-sm-8">
+                                    <div class="col-10">
                                         <div class="form-group">
-                                        @if($view_1->has_mobile_banking == 1)
-                                        <span style="font-size: 100%;" class="badge badge badge-rose"> Mobile Bankin</span>
-                                        </div>
-                                            </div>
-                                        </div>
+                                            <!-- <input type="text" name="identification_number"  id="identification_number" class="form-control"> -->
+                                            @if($view_1->has_atm == 1)
+                                            <div class="col">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <span style="font-size: 100%;"
+                                                            class="badge badge badge-rose">ATM</span>
+                                                    </div>
+                                                    @else
+                                                    @endif
+                                                    <div class="form-group">
+                                                        @if($view_1->has_sms == 1)
+                                                        <span style="font-size: 100%;"
+                                                            class="badge badge badge-rose">SMS</span>
+                                                    </div>
 
-                                        @else
-                                        @endif
-                                        <!-- <div class="col"><input type="checkbox" class="form-control" disabled name="has_atm" <?php echo(@isset($view_1->has_atm) == 1 ? 'checked': '') ?>> ATM -->
-                                        <!-- <div class="col"><input type="checkbox" class="form-control" disabled name="has_sms" readonly <?php echo(@isset($view_1->has_sms) == 1 ? 'checked': '') ?>  > SMS
+                                                </div>
+                                            </div>
+
+                                            @else
+                                            @endif
+                                            @if($view_1->has_internet_banking == 1)
+                                            <div class="col">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <span style="font-size: 100%;"
+                                                            class="badge badge badge-rose">Internet Banking</span>
+                                                    </div>
+                                                    @else
+                                                    @endif
+                                                    <div class="form-group">
+                                                        @if($view_1->has_mobile_banking == 1)
+                                                        <span style="font-size: 100%;" class="badge badge badge-rose">
+                                                            Mobile Bankin</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @else
+                                            @endif
+                                            <!-- <div class="col"><input type="checkbox" class="form-control" disabled name="has_atm" <?php echo(@isset($view_1->has_atm) == 1 ? 'checked': '') ?>> ATM -->
+                                            <!-- <div class="col"><input type="checkbox" class="form-control" disabled name="has_sms" readonly <?php echo(@isset($view_1->has_sms) == 1 ? 'checked': '') ?>  > SMS
                                         </div>
                                         <div class="col"><input type="checkbox" class="form-control" disabled name="has_internet_banking"  readonly  <?php echo(@isset($view_1->has_internet_banking) == 1 ? 'checked': '') ?> >
                                             Internet Banking</div>
                                         <div class="col"><input type="checkbox" class="form-control" disabled name="has_mobile_banking" readonly  <?php echo(@isset($view_1->has_mobile_banking) == 1 ? 'checked': '') ?>  >
                                            <span class="badge badge badge-rose">  Mobile Banking</span></div> -->
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Account Maintenance Via</label>
-                            <div class="col-sm-8">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        @if(!empty(@isset($view_1->has_passbook)))
-                                        <input type="text" name="has_passbook"  id="has_passbook" class="form-control" readonly value="Pass Book" >
-                                        @else
-                                        <input type="text" name="has_passbook"  id="has_passbook" class="form-control" readonly value="No Pass Book" >
-                                        @endif
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Account Maintenance Via</label>
+                                <div class="col-sm-8">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            @if(!empty(@isset($view_1->has_passbook)))
+                                            <input type="text" name="has_passbook" id="has_passbook"
+                                                class="form-control" readonly value="Pass Book">
+                                            @else
+                                            <input type="text" name="has_passbook" id="has_passbook"
+                                                class="form-control" readonly value="No Pass Book">
+                                            @endif
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-@endisset
-@endif
-@if(!empty($view_2))
-@isset($view_2)
-<div class="card col-12 " style="border: solid">
+                @endisset
+                @endif
+                @if(!empty($view_2))
+                @isset($view_2)
+                <div class="card col-12 " style="border: solid">
 
                     <div class="card ">
                         <div class="card-body ">
@@ -331,215 +355,226 @@
                                     <h4 class="card-title">Product Details</h4>
                                 </div>
                             </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Sub Product Type</label>
-                            <?php $pro_typ=\App\Models\ProductType::where('id',$view_2->product_type_id)->first()?>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        @isset($pro_typ)
-                                        <div class="form-group">
-                                            <input type="text" name="product_type_id"  id="product_type_id" class="form-control" readonly value="{{$pro_typ->product_type}}">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Sub Product Type</label>
+                                <?php $pro_typ=\App\Models\ProductType::where('id',$view_2->product_type_id)->first()?>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            @isset($pro_typ)
+                                            <div class="form-group">
+                                                <input type="text" name="product_type_id" id="product_type_id"
+                                                    class="form-control" readonly value="{{$pro_typ->product_type}}">
+                                            </div>
+                                            @endisset
                                         </div>
-                                        @endisset
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Interest Type</label>
-                            <?php $interestType=\App\Models\InterestType::where('id',$view_2->interest_type_id)->first()?>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        @isset($interestType)
-                                        <div class="form-group">
-                                            <input type="text" name="interest_type_id"  id="interest_type_id" class="form-control" readonly placeholder="{{ $interestType->interest_type}}">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Interest Type</label>
+                                <?php $interestType=\App\Models\InterestType::where('id',$view_2->interest_type_id)->first()?>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            @isset($interestType)
+                                            <div class="form-group">
+                                                <input type="text" name="interest_type_id" id="interest_type_id"
+                                                    class="form-control" readonly
+                                                    placeholder="{{ $interestType->interest_type}}">
+                                            </div>
+                                            @endisset
                                         </div>
-                                        @endisset
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Interest Rate</label>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="form-group">
-                                            <input type="text" name="default_interest"  id="default_interest" class="form-control" readonly value="{{ isset($view_2->max_interest  ) ? $view_2->max_interest  : ''}}">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Interest Rate</label>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <input type="text" name="default_interest" id="default_interest"
+                                                    class="form-control" readonly
+                                                    value="{{ isset($view_2->max_interest  ) ? $view_2->max_interest  : ''}}">
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Currency</label>
-                            <?php $currency=\App\Models\Currency::where('id',$view_2->currency_id)->first()?>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        @isset($currency)
-                                        <div class="form-group">
-                                            <input type="text" name=""  id="" class="form-control" readonly placeholder="{{ $currency->currency_name}}">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Currency</label>
+                                <?php $currency=\App\Models\Currency::where('id',$view_2->currency_id)->first()?>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            @isset($currency)
+                                            <div class="form-group">
+                                                <input type="text" name="" id="" class="form-control" readonly
+                                                    placeholder="{{ $currency->currency_name}}">
+                                            </div>
+                                            @endisset
                                         </div>
-                                        @endisset
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Account Level</label>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="form-group">
-                                            <input type="text" name=""  id="" class="form-control" readonly >
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Account Level</label>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <input type="text" name="" id="" class="form-control" readonly>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Initial Deposit Allow Mode</label>
-                            <?php $deposite_mode=\App\Models\Currency::where('id',$view_2->deposite_mode_id)->first()?>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        @isset($deposite_mode)
-                                        <div class="form-group">
-                                            <input type="text" name="deposite_mode_id"  id="deposite_mode_id" class="form-control" readonly placeholder="{{ $deposite_mode->deposite_mode}}">
-                                        </div>
-                                        @endisset
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Interest Credit Dated</label>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="form-group">
-                                            <input type="date" name="interest_credit_date" class="form-control" readonly value="{{ isset($view_2->interest_credit_date  ) ? $view_2->interest_credit_date : ''}}">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Initial Deposit Allow Mode</label>
+                                <?php $deposite_mode=\App\Models\Currency::where('id',$view_2->deposite_mode_id)->first()?>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            @isset($deposite_mode)
+                                            <div class="form-group">
+                                                <input type="text" name="deposite_mode_id" id="deposite_mode_id"
+                                                    class="form-control" readonly
+                                                    placeholder="{{ $deposite_mode->deposite_mode}}">
+                                            </div>
+                                            @endisset
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Minimum Balance to active the account</label>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="form-group">
-                                            <input type="number" name="minimum_balance" readonly value="{{ isset($view_2->minimum_balance ) ? $view_2->minimum_balance : ''}}">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Interest Credit Dated</label>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <input type="date" name="interest_credit_date" class="form-control"
+                                                    readonly
+                                                    value="{{ isset($view_2->interest_credit_date  ) ? $view_2->interest_credit_date : ''}}">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Minimum Balance to active the account</label>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <input type="number" name="minimum_balance" readonly
+                                                    value="{{ isset($view_2->minimum_balance ) ? $view_2->minimum_balance : ''}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
+                        </div>
                     </div>
                 </div>
-</div>
                 @endisset
                 @endif
                 <!-- Beneficiary -->
 
-@foreach($view_5_1 as $v)
-@foreach($view_5_2 as $v2)
-@if(!empty($view_5_1) && !empty($view_5_2))
-<div class="card col-12 " style="border: solid">
+                @foreach($view_5_1 as $v)
+                @foreach($view_5_2 as $v2)
+                @if(!empty($view_5_1) && !empty($view_5_2))
+                <div class="card col-12 " style="border: solid">
 
-        <div class="card ">
-                    <div class="card-body ">
-                        <div class="card-header card-header-rose card-header-text">
-                            <div class="card-text">
-                                <h4 class="card-title">Beneficiaries</h4>
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="card-header card-header-rose card-header-text">
+                                <div class="card-text">
+                                    <h4 class="card-title">Beneficiaries</h4>
+                                </div>
                             </div>
+
+
+                            @isset($view_5_1)
+                            <br>
+                            <br>
+                            @csrf
+                            <h5 class="">Beneficiaries</h5>
+                            <table class="table table-striped table-bordered" id="bene_table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer ID</th>
+                                        <th>Beneficiary ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bene_body">
+                                    @foreach($view_5_1 as $view_5_11)
+                                    <tr>
+                                        <td>{{$view_5_11->customer_id}} </td>
+                                        <td> {{$view_5_11->name_in_use}}</th>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                            @endisset
+                            <br>
+                            <br>
+                            <h5 class="">Guardians</h5>
+                            @isset($view_5_2)
+                            <table class="table table-striped table-bordered" id="guard_table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer ID</th>
+                                        <th>Guardian Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="guard_body">
+                                    @foreach($view_5_2 as $view_5_22)
+                                    <tr>
+                                        <td>{{$view_5_22->customer_id}} </td>
+                                        <td> {{$view_5_22->name_in_use}}</td>
+                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                            @endisset
+
+                            {{-- Ends Private 1 --}}
                         </div>
+                    </div>
 
-
-                    @isset($view_5_1)
-                    <br>
-                    <br>
-                    @csrf
-                    <h5 class="">Beneficiaries</h5>
-                    <table class="table table-striped table-bordered" id="bene_table">
-                        <thead>
-                            <tr>
-                                <th>Customer ID</th>
-                                <th>Beneficiary ID</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bene_body">
-                            @foreach($view_5_1 as $view_5_11)
-                            <tr>
-                                <td>{{$view_5_11->customer_id}} </td>
-                                <td> {{$view_5_11->name_in_use}}</th>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                    @endisset
-                    <br>
-                    <br>
-                    <h5 class="">Guardians</h5>
-                    @isset($view_5_2)
-                    <table class="table table-striped table-bordered" id="guard_table">
-                        <thead>
-                            <tr>
-                                <th>Customer ID</th>
-                                <th>Guardian Name</th>
-                            </tr>
-                        </thead>
-                        <tbody id="guard_body">
-                            @foreach($view_5_2 as $view_5_22)
-                            <tr>
-                                <td>{{$view_5_22->customer_id}} </td>
-                                <td> {{$view_5_22->name_in_use}}</td>
-                            </tr>
-                            @endforeach
-
-                        </tbody>
-                    </table>
-                    @endisset
-
-                    {{-- Ends Private 1 --}}
                 </div>
-            </div>
+                @endif
+                @break
+                @endforeach
+                @break
+                @endforeach
 
-</div>
-@endif
-@break
-@endforeach
-@break
-@endforeach
+                @foreach($view_8 as $v)
+                @foreach($view_8_1 as $v2)
 
-@foreach($view_8 as $v)
-@foreach($view_8_1 as $v2)
+                @if(!empty($v) && !empty($v2))
+                @isset($view_8,$view_8_1)
+                <div class="card col-12 " style="border: solid">
 
-@if(!empty($v) && !empty($v2))
-@isset($view_8,$view_8_1)
-<div class="card col-12 " style="border: solid">
-
-                <div class="card ">
-                    <div class="card-body ">
-                        <div class="card-header card-header-rose card-header-text">
-                            <div class="card-text">
-                                <h4 class="card-title">Joint Acoount</h4>
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="card-header card-header-rose card-header-text">
+                                <div class="card-text">
+                                    <h4 class="card-title">Joint Acoount</h4>
+                                </div>
                             </div>
-                        </div>
 
 
-                <table class="table table-striped table-bordered" readonly id="joint_acc">
-                    <thead>
-                                        <tr>
+                            <table class="table table-striped table-bordered" readonly id="joint_acc">
+                                <thead>
+                                    <tr>
                                         <th>Main Holder</th>
                                         <th>Other Holder Name</th>
                                         <!-- <th>Fee Type</th>
@@ -547,37 +582,37 @@
                                         <th>Tax Applicable</th>
                                         <th>Fee Payable</th> -->
                                     </tr>
-                                   </thead>
-                                   <tbody id="document_body">
-                                       @foreach($view_8 as $view_88)
-                                        @foreach($view_8_1 as $view_8_11)
-                                        <?php $main=\App\Models\CustomerBasicData::where('customer_id',$view_88->customer_id)->first()?>
-                                        <?php $Other=\App\Models\CustomerBasicData::where('id',$view_8_11->customer_id)->first()?>
+                                </thead>
+                                <tbody id="document_body">
+                                    @foreach($view_8 as $view_88)
+                                    @foreach($view_8_1 as $view_8_11)
+                                    <?php $main=\App\Models\CustomerBasicData::where('customer_id',$view_88->customer_id)->first()?>
+                                    <?php $Other=\App\Models\CustomerBasicData::where('id',$view_8_11->customer_id)->first()?>
 
-                                        @isset($main,$Other)
-                                        <tr>
-                                            <td>{{$main->name_in_use}}</td>
-                                            <td>{{$Other->name_in_use}}></th>
+                                    @isset($main,$Other)
+                                    <tr>
+                                        <td>{{$main->name_in_use}}</td>
+                                        <td>{{$Other->name_in_use}}></th>
                                             <!-- <td><input type="checkbox" readonly ></td>
                                             <td>{{$ft->fee_type}}<td>
                                             <td>{{$view_66->amount}}</td>
                                             <td><input type="checkbox" readonly <?php echo(@isset($fd->is_tax_applicable) == 1 ? 'checked': '') ?>></td>
                                             <td>{{$view_66->fee_payble_text}}</td> -->
-                                        </tr>
-                                        @endisset
-                                        @endforeach
-                                        @endforeach
-                                   </tbody>
-                                </table>
-                                </div>
+                                    </tr>
+                                    @endisset
+                                    @endforeach
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-</div>
-@endisset
-@endif
-@break
-@endforeach
-@break
-@endforeach
+                @endisset
+                @endif
+                @break
+                @endforeach
+                @break
+                @endforeach
                 <!-- <div class="card ">
                     <div class="card-body ">
                         <div class="card-header card-header-rose card-header-text">
@@ -655,7 +690,7 @@
                                         </div>
 
                                 </div> -->
-                                <!-- {{-- <div class="card" style="border: solid">
+                <!-- {{-- <div class="card" style="border: solid">
                                     <div class="row">
                                     <label class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-8">
@@ -835,23 +870,23 @@
                                                 </div>
                                         </div>
                                     </div> --}} -->
-                                <!-- </div>
+                <!-- </div>
                             </div> -->
-                            @foreach($view_5 as $v5)
-                            @if(!empty($v5))
-                            @isset($view_5)
-                            <div class="card col-12 " style="border: solid">
+                @foreach($view_5 as $v5)
+                @if(!empty($v5))
+                @isset($view_5)
+                <div class="card col-12 " style="border: solid">
 
-                            <div class="card ">
-                                <div class="card-body ">
-                                        <div class="card-header card-header-rose card-header-text">
-                                            <div class="card-text">
-                                                <h4 class="card-title">Documents</h4>
-                                            </div>
-                                        </div>
-                                        <table class="table table-striped table-bordered" readonly id="document">
-                                            <thead>
-                                        <tr>
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="card-header card-header-rose card-header-text">
+                                <div class="card-text">
+                                    <h4 class="card-title">Documents</h4>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-bordered" readonly id="document">
+                                <thead>
+                                    <tr>
                                         <th colspan="2">Document Type</th>
                                         <th colspan="6">Document</th>
                                         <th colspan="2">Mandatory</th>
@@ -859,130 +894,135 @@
                                         <th colspan="2">Remark</th>
 
                                     </tr>
-                                   </thead>
-                                   <tbody id="document_body">
-                                       @foreach($view_5 as $view_55)
-                                        <?php $doc=\App\Models\Document::where('id',$view_55->document_id)->first()?>
-                                        @isset($doc)
-                                        <tr>
-                                            <td colspan="2">{{$doc->document_name}} </td>
-                                            @if(!empty($doc->img)))
-                                            <td colspan="6"><img src="{{env('IMAGE_LOCATION').$doc->img}}" height="200px" width="300px" alt=""></td>
-                                            @else
-                                            <td colspan="6"><img src="/bank/public/images/default.png" height="100px" width="100px" alt=""></td>
-                                            @endif</td>
-                                            <td colspan="2"> <input type="checkbox" readonly <?php echo(@isset($doc->is_mandatory) == 1 ? 'checked': '') ?>></th>
-                                            <td colspan="2"><input type="checkbox" readonly ></td>
-                                            <td colspan="2"><input type="text" readonly ><td>
-                                        </tr>
-                                        @endisset
-                                        @endforeach
-                                   </tbody>
-                                </table>
+                                </thead>
+                                <tbody id="document_body">
+                                    @foreach($view_5 as $view_55)
+                                    <?php $doc=\App\Models\Document::where('id',$view_55->document_id)->first()?>
+                                    @isset($doc)
+                                    <tr>
+                                        <td colspan="2">{{$doc->document_name}} </td>
+                                        @if(!empty($doc->img)))
+                                        <td colspan="6"><img src="{{env('IMAGE_LOCATION').$doc->img}}" height="200px"
+                                                width="300px" alt=""></td>
+                                        @else
+                                        <td colspan="6"><img src="/bank/public/images/default.png" height="100px"
+                                                width="100px" alt=""></td>
+                                        @endif</td>
+                                        <td colspan="2"> <input type="checkbox" readonly
+                                                <?php echo(@isset($doc->is_mandatory) == 1 ? 'checked': '') ?>></th>
+                                        <td colspan="2"><input type="checkbox" readonly></td>
+                                        <td colspan="2"><input type="text" readonly>
+                                        <td>
+                                    </tr>
+                                    @endisset
+                                    @endforeach
+                                </tbody>
+                            </table>
 
+                        </div>
+                    </div>
+                </div>
+                @endisset
+                @endif
+                @break
+                @endforeach
+
+                @foreach($view_6 as $v)
+                @if(!empty($v))
+                @isset($view_6)
+                <div class="card col-12 " style="border: solid">
+
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="card-header card-header-rose card-header-text">
+                                <div class="card-text">
+                                    <h4 class="card-title">Tax Details</h4>
                                 </div>
                             </div>
-                            </div>
-                            @endisset
-                            @endif
-                            @break
-                            @endforeach
+                            <table class="table table-bordered" readonly id="t">
+                                <thead>
+                                    <tr>
 
-                            @foreach($view_6 as $v)
-                            @if(!empty($v))
-                            @isset($view_6)
-                            <div class="card col-12 " style="border: solid">
-
-                            <div class="card ">
-                                <div class="card-body ">
-                                        <div class="card-header card-header-rose card-header-text">
-                                            <div class="card-text">
-                                                <h4 class="card-title">Tax Details</h4>
-                                            </div>
-                                        </div>
-                                        <table class="table table-bordered" readonly id="t">
-                                            <thead>
-                                        <tr>
-
-                                        <th >Mandotory</th>
-                                        <th >Fee</th>
-                                        <th >Fee Type</th>
+                                        <th>Mandotory</th>
+                                        <th>Fee</th>
+                                        <th>Fee Type</th>
                                         <th>Amount</th>
                                         <th>Tax <br>Applicable</th>
                                         <th>Fee <br> Payable</th>
                                     </tr>
-                                   </thead>
-                                   <tbody id="t_body">
-                                       @foreach($view_6 as $view_66)
-                                        <?php $fd=\App\Models\FeeDetails::where('id',$view_66->fee_details_id)->first()?>
-                                        <?php $ft=\App\Models\FeeType::where('id',$view_66->fee_type_id)->first()?>
-                                        @isset($ft,$fd)
-                                        <tr>
-                                            <td> <?php echo(@isset($fd->is_mandatory) == 1 ? 'Checked': '') ?></td>
-                                            <td>{{$fd->id}}</td>
-                                            <td>{{$ft->fee_type}}<td>
-                                            <td>{{$view_66->amount}}</td>
-                                            <td> <?php echo(@isset($fd->is_tax_applicable) == 1 ? 'Checked': '')?></td>
-                                            <td>{{$view_66->fee_payble_text}}</td>
-                                        </tr>
-                                        @endisset
-                                        @endforeach
-                                   </tbody>
-                                </table>
+                                </thead>
+                                <tbody id="t_body">
+                                    @foreach($view_6 as $view_66)
+                                    <?php $fd=\App\Models\FeeDetails::where('id',$view_66->fee_details_id)->first()?>
+                                    <?php $ft=\App\Models\FeeType::where('id',$view_66->fee_type_id)->first()?>
+                                    @isset($ft,$fd)
+                                    <tr>
+                                        <td> <?php echo(@isset($fd->is_mandatory) == 1 ? 'Checked': '') ?></td>
+                                        <td>{{$fd->id}}</td>
+                                        <td>{{$ft->fee_type}}
+                                        <td>
+                                        <td>{{$view_66->amount}}</td>
+                                        <td> <?php echo(@isset($fd->is_tax_applicable) == 1 ? 'Checked': '')?></td>
+                                        <td>{{$view_66->fee_payble_text}}</td>
+                                    </tr>
+                                    @endisset
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                @endisset
+                @endif
+                @break
+                @endforeach
+
+                @foreach($view_7 as $v)
+                @if(!empty($v))
+                @isset($view_7)
+                <div class="card col-12 " style="border: solid">
+
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="card-header card-header-rose card-header-text">
+                                <div class="card-text">
+                                    <h4 class="card-title">Nominee Instruction</h4>
                                 </div>
                             </div>
-                            </div>
-                            @endisset
-                            @endif
-                            @break
-                            @endforeach
-
-                            @foreach($view_7 as $v)
-                            @if(!empty($v))
-                            @isset($view_7)
-                            <div class="card col-12 " style="border: solid">
-
-                            <div class="card ">
-                            <div class="card-body ">
-                                    <div class="card-header card-header-rose card-header-text">
-                                        <div class="card-text">
-                                            <h4 class="card-title">Nominee Instruction</h4>
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Identification Type</label>
+                                <div class="col-sm-8">
                                     <div class="row">
-                                            <label class="col-sm-2 col-form-label">Identification Type</label>
-                                            <div class="col-sm-8">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <div class="form-group">
-                                                            <input type="text" name="gaurdian_identification_type_id"
-                                                                placeholder="Iditification No" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-5">
-                                                        <div class="form-group">
-                                                            <input type="text" name="gaurdian_identification_type_id"
-                                                                placeholder="Iditification No" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <input type="text" name="gaurdian_identification_type_id"
+                                                    placeholder="Iditification No" class="form-control">
                                             </div>
                                         </div>
-
-                                        <div class="row">
-                                            <label class="col-sm-2 col-form-label"> Client Name</label>
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <input type="text" name="client_name" class="form-control">
-                                                    </div>
-                                                </div>
-
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <input type="text" name="gaurdian_identification_type_id"
+                                                    placeholder="Iditification No" class="form-control">
+                                            </div>
                                         </div>
+                                    </div>
+                                </div>
                             </div>
-                                        @endisset
+
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label"> Client Name</label>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" name="client_name" class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        @endisset
 
 
-                                        <!-- <div class="card" style="border: solid">
+                        <!-- <div class="card" style="border: solid">
                                             <div class="row">
                                             <label class="col-sm-2 col-form-label">Title</label>
                                             <div class="col-sm-8">
@@ -1165,13 +1205,13 @@
                                                 </div>
 
                                             </div> -->
-                                        </div>
-                            </div>
-                             @endif
-                             @break
-                            @endforeach
+                    </div>
+                </div>
+                @endif
+                @break
+                @endforeach
 
-                            <!-- <div class="card ">
+                <!-- <div class="card ">
                                 <div class="card-body ">
                                         <div class="card-header card-header-rose card-header-text">
                                             <div class="card-text">
@@ -1328,7 +1368,7 @@
                                 </div>
                             </div> -->
 
-                            <!-- <div class="card ">
+                <!-- <div class="card ">
                                 <div class="card-body ">
                                     <div class="card-header card-header-rose card-header-text">
                                         <div class="card-text">
@@ -1556,5 +1596,5 @@
                                         </div>
                                     </div> -->
 
-                                </fieldset>
+</fieldset>
 @endsection

@@ -13,21 +13,21 @@ class CreateCashierDailyTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cashier_daily_transactions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('user_id')->nullable();
-            $table->string('transaction_id')->nullable();
-            $table->string('transaction_code')->nullable();
-            $table->string('account_number')->nullable();
-            $table->string('branch_id')->nullable();
-            $table->string('transaction_date')->nullable();
-            $table->string('transaction_type')->nullable();
-            $table->string('transaction_amount')->nullable();
-            $table->string('balance_value')->nullable();
-            $table->string('branch_balance')->nullable();
-            $table->string('is_enable')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('cashier_daily_transactions', function (Blueprint $table) {
+            // $table->bigIncrements('id');
+            // $table->string('user_id')->nullable();
+            // $table->string('transaction_id')->nullable();
+            // $table->string('transaction_code')->nullable();
+            // $table->string('account_number')->nullable();
+            // $table->string('branch_id')->nullable();
+            // $table->string('transaction_date')->nullable();
+            // $table->string('transaction_type')->nullable();
+            // $table->string('transaction_amount')->nullable();
+            // $table->string('balance_value')->nullable();
+            // $table->string('branch_balance')->nullable();
+            // $table->string('is_enable')->nullable();
+            // $table->timestamps();
+        // });
     }
 
     /**

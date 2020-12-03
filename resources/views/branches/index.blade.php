@@ -182,11 +182,7 @@
                                 </thead>
                                 <tbody id="results_tbody">
                                     <?php
-                                     $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')
-                                     ->where('customer_basic_data.status','1')
-                                     ->where('branch_id',Auth::user()->branh_id)
-
-                                     ->get();
+                                    echo $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')->where('customer_basic_data.status','1')->get();
                                     ?>
                                     @isset($members)
                                     @foreach ($members as $member)

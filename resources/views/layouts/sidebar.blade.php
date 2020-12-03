@@ -102,6 +102,36 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item  ">
+                <a class="nav-link" data-toggle="collapse" href="#branchess">
+                    <i class="material-icons">account_box</i>
+                    <p> Branches
+                        <b class="caret"></b> </p>
+                </a>
+                <div class="collapse" id="branchess">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{url('/newbranchesadd')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
+                                <span class="sidebar-normal">Add Branches </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                        <a class="nav-link" href="{{url('/newbranches')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
+                                <span class="sidebar-normal">View Branches </span>
+                            </a>
+                        </li>
+                        <li>
+                        <a class="nav-link" href="{{url('/cashiercash')}}">
+                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
+                                <span class="sidebar-normal">Casier </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             @can('savings_account_veiw')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#savings">
@@ -473,19 +503,20 @@
                     </ul>
                 </div>
             </li>
+            @endcan
             <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#fd">
-                    <i class="material-icons">book_online</i>
-                    <p> FD
+                <a class="nav-link" data-toggle="collapse" href="#dataAdd">
+                    <i class="material-icons"></i>
+                    <p>
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="fd">
+                <div class="collapse" id="">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="/fdAcCreation">
-                                <span class="sidebar-mini"> <i class="material-icons">api</i> </span>
-                                <span class="sidebar-normal">Account Creation</span>
+                            <a class="nav-link" href="/accountCategory">
+                                <span class="sidebar-mini"> <i class="material-icons">settings</i> </span>
+                                <span class="sidebar-normal"></span>
                             </a>
                         </li>
 
@@ -542,6 +573,5 @@
                 </div>
             </li>
         </ul>
-        @endcan
     </div>
 </div>

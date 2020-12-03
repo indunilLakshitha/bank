@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Slab extends Migration
+class UpdateTablesCash extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class Slab extends Migration
      */
     public function up()
     {
-        Schema::table('intereset_type_data', function (Blueprint $table) {
-            // $table->string('slab')->nullable();
-            // $table->string('amount')->nullable();
+        Schema::table('cash_in_hand_ledgers', function (Blueprint $table) {
+$table->double('branch_balance')->nullable();
+$table->string('user_id')->nullable();
+        });
+        Schema::table('saving_deposite_base_ledgers', function (Blueprint $table) {
+$table->double('branch_balance')->nullable();
+$table->string('user_id')->nullable();
         });
     }
 
