@@ -132,10 +132,10 @@ background:#eee;
   <div class="col-sm-12">
 	  	<div class="panel panel-default invoice" id="invoice">
 		  <div class="panel-body">
-            <div class="col-3">
+            <div class="col-5">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
-                                <h4 class="card-title">CASH IN HAND</h4>
+                                <h4 class="card-title">CASH/CHEQUES INHAND</h4>
                             </div>
                         </div>
                     </div>
@@ -168,67 +168,98 @@ background:#eee;
                             <button type="button"  onclick="search(this)" class="btn btn-info" id="search">Search</button>
                         </div>
                     </div>
-                    </div>
                 </div>
+            </div>
 
 			<div class="row table-row">
 				<table class="table table-striped">
 			      <thead>
 			        <tr>
-			          <th class="text-left" style="width:30%">#</th>
+			          <th class="text-center" style="width:30%">USER</th>
 			          <th class="text-center" style="width:15%">CASH</th>
-			          <th class="text-center" style="width:15%">CHEQUE</th>
+                      <th class="text-center" style="width:15%">CHEQUES</th>
+                      <th class="text-center" style="width:15%">PETTY CASH</th>
+			          <th class="text-center" style="width:15%">TOTAL</th>
 			        </tr>
 			      </thead>
 			      <tbody>
 			        <tr>
-			          <td class="table-info">OPEN</td>
+			          <td class="table-info">OPEN IN HAND</td>
 			          <td class="table-info text-center" >0.00</td>
-			          <td class="table-info text-center" >0.00</td>
+                      <td class="table-info text-center" >0.00</td>
+                      <td class="table-info text-center" >0.00</td>
+                      <td class="table-info text-center" >0.00</td>
+
                     </tr>
                     <tr>
-			          <td ></td>
-			          <td  ></td>
-			          <td  ></td>
+			          <td></td>
+			          <td></td>
+                      <td></td>
+                      <td></td>
+			          <td></td>
                     </tr>
-
-			        <tr>
-			          <td>INT. TRANSFER IN</td>
-			          <td class="text-center">0.00</td>
-			          <td class="text-center">0.00</td>
-			        </tr>
-			        <tr>
+                    <tr>
 			          <td>INT. TRANSFER OUT</td>
 			          <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
 			          <td class="text-center">0.00</td>
+                    </tr>
+                    <tr>
+			          <td></td>
+			          <td></td>
+                      <td></td>
+                      <td></td>
+			          <td></td>
                     </tr>
                     <tr>
 			          <td>RECIPT</td>
 			          <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
 			          <td class="text-center">0.00</td>
                     </tr>
                     <tr>
 			          <td>PAYMENT</td>
 			          <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
 			          <td class="text-center">0.00</td>
                     </tr>
+                    <tr>
 			          <td>CASH DEPOSIT</td>
 			          <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
 			          <td class="text-center">0.00</td>
                     </tr>
+			        <tr>
+			          <td>INT. TRANSFER IN</td>
+			          <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+			          <td class="text-center">0.00</td>
+                    </tr>
+                    <tr>
 			          <td >CASH WITHDROWEL</td>
 			          <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
 			          <td class="text-center">0.00</td>
                     </tr>
-                    </tr>
+                    <tr>
 			          <td ></td>
 			          <td ></td>
+                      <td ></td>
+                      <td ></td>
 			          <td ></td>
                     </tr>
 
                     <tr class="invoice-total" >
-			          <td class="table-success text-right ">BALANCE</td>
+			          <td class="table-success">CLOSING IN HAND</td>
 			          <td class="table-success text-center ">0.00</td>
+                      <td class="table-success text-center ">0.00</td>
+                      <td class="table-success text-center ">0.00</td>
 			          <td class="table-success text-center ">0.00</td>
 			        </tr>
 			       </tbody>
@@ -261,7 +292,7 @@ function search(){
 
         $.ajax({
             type: 'GET',
-            url: '{{('/cashInHand/user')}}',
+            url: '{{('/CasHiNhanDbrancH/branch')}}',
             data: {'from':from.value,'to':to.value,'user':user.value},
             processData: false,
             contentType: false,

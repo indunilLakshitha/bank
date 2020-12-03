@@ -379,7 +379,15 @@ Route::get('/treport','TransactionReportController@index');
 Route::get('/findmemberbyaccnoforreport','TransactionReportController@findMembersById');
 Route::get('/creport','TransactionReportController@cashierReport');
 Route::get('/cashInHand','TransactionReportController@cashInHand');
-Route::get('/ReportOfMember','TransactionReportController@reportOfMember');
+Route::get('/ReportOfTransactions','TransactionReportController@reportOfTransactions');
+Route::get('/CasHiNhanDbrancH','TransactionReportController@cashInHandBranch');
+Route::get('/cashInHand/user','TransactionReportController@getUserRep');
+Route::get('/CasHiNhanDbrancH/branch','TransactionReportController@getBranchRep');
+Route::get('/ReportOfTransactions/transactions','TransactionReportController@getTransactions');
+
+
+
+
 
     //------------------------------------------------------------------transaction report end-------------------
 

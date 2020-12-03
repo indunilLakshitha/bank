@@ -37,8 +37,28 @@ class TransactionReportController extends Controller
         return view('transaction_report.cashInHand');
     }
 
-    public function reportOfMember(){
+    public function reportOfTransactions(){
 
         return view('transaction_report.reportOfMember');
+    }
+
+    public function cashInHandBranch(){
+
+        return view('transaction_report.cashInHandBranch');
+    }
+
+    public function getUserRep(Request $request){
+
+        return response()->json($request);
+    }
+
+    public function getBranchRep(Request $request){
+
+        return response()->json($request);
+    }
+
+    public function getTransactions(Request $request){
+
+        return response()->json($request);
     }
 }
