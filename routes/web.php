@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\AccountGeneralInformation;
+use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -375,6 +376,16 @@ Route::group(['middleware' => 'isBlocked'], function () {
 Route::get('/treport','TransactionReportController@index');
 Route::get('/findmemberbyaccnoforreport','TransactionReportController@findMembersById');
 Route::get('/creport','TransactionReportController@cashierReport');
+Route::get('/cashInHand','TransactionReportController@cashInHand');
+Route::get('/ReportOfTransactions','TransactionReportController@reportOfTransactions');
+Route::get('/CasHiNhanDbrancH','TransactionReportController@cashInHandBranch');
+Route::get('/cashInHand/user','TransactionReportController@getUserRep');
+Route::get('/CasHiNhanDbrancH/branch','TransactionReportController@getBranchRep');
+Route::get('/ReportOfTransactions/transactions','TransactionReportController@getTransactions');
+
+
+
+
 
     //------------------------------------------------------------------transaction report end-------------------
 
