@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountGeneralInformation;
 use App\Models\CashierDailyTransaction;
+use App\Models\TransactionData;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class TransactionReportController extends Controller
 {
@@ -59,6 +62,15 @@ class TransactionReportController extends Controller
 
     public function getTransactions(Request $request){
 
-        return response()->json($request);
+
+        $trn = DB::table('transaction_data')
+                ->leftJoin('customer_basic_data','transaction_data.customer_id','=','customer_basic_data.customer_id')
+                ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
+                ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
+                ->leftJoin('users','transaction_data.created_by','=','users.id')
+                ->where('transaction_type','DEPOSITED')
+                ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                ->get();
+        return response()->json($trn);
     }
 }

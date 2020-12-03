@@ -74,18 +74,7 @@
 
 
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>  </th>
-                                        <th> </th>
-                                        <th>  </th>
-                                        <th> </th>
-                                        <th> </th>
-
-
-
-                                    </tr>
-
+                                <tbody id="datatables_body">
 
                                 </tbody>
                             </table>
@@ -111,17 +100,40 @@
             type: 'GET',
             url: '{{('/ReportOfTransactions/transactions')}}',
             data: {'from':from.value,'to':to.value,'user':user.value,'type':type.value},
-            processData: false,
-            contentType: false,
+
             success: function(data){
                 console.log(data)
+                return show_data(data)
 
-            },
-            error: function(data){
-                console.log(data)
             }
-
         })
+    }
+
+    function show_data(data){
+
+        datatables_body.innerHTML = ''
+
+        data.forEach(i => {
+            let html = `
+            <tr>
+                <td>${i.customer_id}</td>
+                <td>${i.name_in_use}</td>
+                <td>${i.account_number}</td>
+                <td>${i.account_type}</td>
+                <td>${i.transaction_value}</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>${i.transaction_value}</td>
+                <td>${i.employee_no}</td>
+
+
+            </tr>
+            `
+            datatables_body.innerHTML += html
+        })
+
     }
 
 </script>
