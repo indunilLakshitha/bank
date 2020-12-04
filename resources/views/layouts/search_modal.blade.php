@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="row ml-3">
-                            <label class="col-sm-2 col-form-label"> Customer ID</label>
+                            <label class="col-sm-2 col-form-label"> BP. Code</label>
                             <div class="col-sm-5">
                                 <div class="row">
                                     <div class="col">
@@ -51,58 +51,26 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row ml-3">
+                            <label class="col-sm-2 col-form-label"> ID Number</label>
+                            <div class="col-sm-5">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <input oninput="
+                                            // toCap(this.value, this.id),
+                                            get_modal_search_by_customer_id(this.value)" type="text"
+                                                class="form-control js-example-data-ajax"
+                                                placeholder="Enter Identification Number">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <table class="table">
                                 <tbody id="modal_serach_by_name_results_tbody" class="d-none"></tbody>
                             </table>
-                        </div>
-                        <div class="row ml-3">
-                            <label class="col-sm-2 col-form-label">ID Type</label>
-                            <div class="col-sm-10">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="form-group">
-                                            @php
-                                            $idtypes =
-                                            Illuminate\Support\Facades\DB::table('iedentification_types')->get();
-                                            @endphp
-                                            <select name="identification_type_id" id="identification_type_id"
-                                                class="selectpicker" data-style="select-with-transition">
-                                                <option value="">Select</option>
-                                                @isset($idtypes)
-                                                @foreach ($idtypes as $idtype)
-                                                <option value="{{$idtype->id}}">
-                                                    {{$idtype->identification_type}}
-                                                    @endforeach
-                                                    @endisset
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-5 ml-3">
-                            <label class="col-sm-2 col-form-label ">ID Number</label>
-                            <div class="col-sm-10">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <div class="form-group">
-                                            <input type="text" name="identification_number" id="identification_number"
-                                                class="form-control" placeholder="">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn fa fa-search btn-info btn"
-                                            onclick="get_cus_details(identification_type_id.value, identification_number.value)">
-                                            &nbspSearch By ID</button>
-
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
