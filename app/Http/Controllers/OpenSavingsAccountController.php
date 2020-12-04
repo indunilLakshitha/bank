@@ -117,12 +117,17 @@ class OpenSavingsAccountController extends Controller
             customer_basic_data.non_member,
             customer_status_dates.date_of_birth,
             branches.branch_code,
-            members.share_amount
+            members.share_amount,
+            account_general_information.account_balance,
+            account_general_information.account_number
 
         FROM customer_basic_data
 
         LEFT JOIN branches
         ON branches.id = customer_basic_data.branch_id
+
+        LEFT JOIN account_general_information
+        ON account_general_information.customer_id = customer_basic_data.customer_id
 
         LEFT JOIN customer_status_dates
         ON customer_status_dates.customer_id = customer_basic_data.customer_id
@@ -153,11 +158,16 @@ class OpenSavingsAccountController extends Controller
             customer_status_dates.date_of_birth,
             branches.branch_code,
             members.share_amount
+            account_general_information.account_balance,
+            account_general_information.account_number
 
         FROM customer_basic_data
 
         LEFT JOIN branches
         ON branches.id = customer_basic_data.branch_id
+
+        LEFT JOIN account_general_information
+        ON account_general_information.customer_id = customer_basic_data.customer_id
 
         LEFT JOIN customer_status_dates
         ON customer_status_dates.customer_id = customer_basic_data.customer_id
@@ -483,7 +493,6 @@ class OpenSavingsAccountController extends Controller
             return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id', 'docum','guard','nomin','acc_no'));
 
         }else if($nomin = $request->nomin ==1){
-
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
             $prod_id = $request->product_data_id;
@@ -492,9 +501,6 @@ class OpenSavingsAccountController extends Controller
             $docum = $request->docum;
             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id',  'docum','guard','nomin','acc_no'));
-
-
-
         }else {
 
         }
@@ -618,7 +624,7 @@ class OpenSavingsAccountController extends Controller
         $take = AccountGeneralInformation::where('account_number', $request->account_number)->first();
         // $first = Auth::user()->branch;
         // $second = $take->customer_id;
-        
+
         return redirect('/savings/open');
 
     }

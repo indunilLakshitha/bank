@@ -21,8 +21,8 @@
 
                         </div>
                     </div>
-                    <button class="btn fa fa-search btn-info btn"> &nbspFind</button>
-                </div>
+                    <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal"
+                    href="#noticeModal"></a>                </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Account</label>
                     <div class="col-sm-6">
@@ -30,7 +30,7 @@
                             <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)">
                         </div>
                     </div>
-                    <button class="btn fa fa-search btn-info btn-sm"></button>
+                    {{-- <button class="btn fa fa-search btn-info btn-sm"></button> --}}
                 </div>
                 <div class="row">
                     <div class="col-sm-8 " style="margin-left: 90px">
@@ -188,6 +188,7 @@
         </div>
     </div>
 </div>
+@include('layouts.search_modal')
 
 {{-- </div>
 </div>
@@ -246,8 +247,9 @@
                        'transaction_type': 'on_test',
                     },
                     success: function(data){
-console.log(data)
+                        console.log(data)
                         account_balance.value=data.balance_amount
+                        transaction_value.value=""
                         return Swal.fire('Deposite Successful')
                     }
                })

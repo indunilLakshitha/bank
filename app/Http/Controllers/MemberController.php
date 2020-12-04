@@ -63,7 +63,6 @@ class MemberController extends Controller
             AND customer_status_dates.married_status_id LIKE '%$request->married_status_id%'
             AND  customer_status_dates.religion_data_id LIKE '%$request->religion_data_id%'
             AND  customer_status_dates.expire_date LIKE '%$request->expire_date%'
-            AND  customer_status_dates.race_id LIKE '%$request->race_id%'
             AND customer_basic_data.full_name LIKE '%$request->full_name%'
             AND customer_basic_data.identification_type_id LIKE '%$request->identification_type_id%'
             AND customer_basic_data.identification_number LIKE '%$request->identification_number%'
@@ -104,6 +103,7 @@ class MemberController extends Controller
         // return $request->customer_id;
         // return $request->share_amount/share count;
         // return $request->share_value;
+        return response()->json('Member created');
 
 
         $already_in = Member::where('customer_id', $request->customer_id)->first();
@@ -212,5 +212,7 @@ class MemberController extends Controller
 
         return response()->json('Nominee Removed');
     }
+
+
 
 }

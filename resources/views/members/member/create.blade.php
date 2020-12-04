@@ -43,7 +43,7 @@
                 <label class="col-sm-2 col-form-label">Payment Amount</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="number" class="form-control" name="share_value" id="share_value">
+                        <input type="number" class="form-control" name="share_value" id="share_value" oninput="share_amount.value = this.value/{{$share_amount}}">
                     </div>
                 </div>
             </div>

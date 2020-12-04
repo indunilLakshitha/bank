@@ -417,4 +417,7 @@ Route::get('/branchesview/{id}','MainBranchController@view')->name('newbranches.
 Route::get('/cashiercash','BranchCashInOutController@index')->name('cashiercash.index');
 Route::post('/cashiercashadd','BranchCashInOutController@index')->name('cashiercash.store');
 
+
+//----------------------------------------external nominies add -------------
+Route::post('/add_external_nominies','ExternalNomimiesController@add');
 Auth::routes();
