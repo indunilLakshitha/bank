@@ -438,6 +438,7 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
     Route::get('/add_nominee_member_creation', 'MemberController@add_nominee_member_creation');
     Route::get('/remove_nominee_member_creation', 'MemberController@remove_nominee_member_creation');
 
+<<<<<<< HEAD
 Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
 Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
 Route::get('/sharetransferdata','ShareController@historyview')->name('shares.history');
@@ -458,12 +459,36 @@ Route::get('/branchesview/{id}','MainBranchController@view')->name('newbranches.
 //------------------------------------------------------------cashier cash in out --------------------
 Route::get('/cashiercash','BranchCashInOutController@index')->name('cashiercash.index');
 Route::post('/cashiercashadd','BranchCashInOutController@index')->name('cashiercash.store');
+=======
+    Route::get('/sharebuy', 'ShareController@buyview')->name('shares.buy');
+    Route::get('/sharetransfer', 'ShareController@transferview')->name('shares.transfer');
+    Route::get('/sharetransferdata', 'ShareController@historyview')->name('shares.history');
+    Route::post('/buy_shares', 'ShareController@buy_shares');
+    Route::post('/transfer_shares', 'ShareController@transfer_shares');
 
+    //------------------------------------------------------branch cash routes---------------------------
+    Route::get('/branchcash','BranchCashInOutController@index')->name('branch_cash.index');
+    //--------------------------------------------------------ew main branches-----------------------
+    Route::get('/newbranches','MainBranchController@index')->name('newbranches.index');
+    Route::get('/newbranchesadd','MainBranchController@add');
+    Route::post('/branchesadd','MainBranchController@store');
+    Route::get('/branchesview/{id}','MainBranchController@view')->name('newbranches.view');
+>>>>>>> c8b3ddbea767bd3807ee75e74fa131bbb4731055
 
+    //------------------------------------------------------------cashier cash in out --------------------
+    Route::get('/cashiercash','BranchCashInOutController@index')->name('cashiercash.index');
+    Route::post('/cashiercashadd','BranchCashInOutController@index')->name('cashiercash.store');
+
+<<<<<<< HEAD
 //----------------------------------------external nominies add -------------
 Route::post('/add_external_nominies','ExternalNomimiesController@add');
 
 
 //----------------------------------------FD account----------------------------
 Route::get('/fd','FdAccountController@index');
+=======
+    //----------------------------------------external nominies add -------------
+    Route::post('/add_external_nominies','ExternalNomimiesController@add');
+});
+>>>>>>> c8b3ddbea767bd3807ee75e74fa131bbb4731055
 Auth::routes();

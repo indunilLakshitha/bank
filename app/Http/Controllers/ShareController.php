@@ -9,6 +9,7 @@ use App\Models\CustomerBasicData;
 use App\Models\PaymentLog;
 use App\Models\saving_deposit_base_ledger;
 use App\Models\TransactionData;
+use App\Share;
 use App\TransactionShare;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -68,22 +69,22 @@ class ShareController extends Controller
             TransactionShare::create($transaction_shares->all());
 
 
-        $cash_in_hand_ledger=$request;
-        $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
-        $cash_in_hand_ledger['customer_id']=$request->customer_id;
-        $cash_in_hand_ledger['user_id']=Auth::user()->id;
-        $cash_in_hand_ledger['transaction_type']="DEPOSITE";
-        $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
-        $deposite_total=cash_in_hand_ledger::where('transaction_type','DEPOSITE')
+            $cash_in_hand_ledger=$request;
+            $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
+            $cash_in_hand_ledger['customer_id']=$request->customer_id;
+            $cash_in_hand_ledger['user_id']=Auth::user()->id;
+            $cash_in_hand_ledger['transaction_type']="DEPOSITE";
+            $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
+            $deposite_total=cash_in_hand_ledger::where('transaction_type','DEPOSITE')
                                         ->where('user_id',Auth::user()->id)
                                         ->sum('transaction_value');
-        $withdraw_total=cash_in_hand_ledger::where('transaction_type','WITHDRAW')
-                                        ->where('user_id',Auth::user()->id)
-                                        ->sum('transaction_value');
-        $cash_in_hand_ledger['balance_amount']=$deposite_total-$withdraw_total+$request->transaction_value;
-        $cash_in_hand_ledger['is_enable']=1;
+            $withdraw_total=cash_in_hand_ledger::where('transaction_type','WITHDRAW')
+                                            ->where('user_id',Auth::user()->id)
+                                            ->sum('transaction_value');
+            $cash_in_hand_ledger['balance_amount']=$deposite_total-$withdraw_total+$request->transaction_value;
+            $cash_in_hand_ledger['is_enable']=1;
 
-        cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+            cash_in_hand_ledger::create($cash_in_hand_ledger->all());
 
             $payment_log['transaction_data_id']=$transaction_data->id;
             // $payment_log['balance_amount']=$transaction_data->account_balance;
@@ -103,9 +104,6 @@ class ShareController extends Controller
             CashierDailyTransaction::where('branch_id',Auth::user()->branh_id)->sum('branch_balance')+$request->share_amount;
 
             CashierDailyTransaction::create($cashie_daily_trancastion->all());
-
-
-
 
              $saving_deposit_base_ledger=$request;
              $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
