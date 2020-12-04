@@ -462,4 +462,8 @@ Route::post('/cashiercashadd','BranchCashInOutController@index')->name('cashierc
 
 //----------------------------------------external nominies add -------------
 Route::post('/add_external_nominies','ExternalNomimiesController@add');
+
+
+//----------------------------------------FD account----------------------------
+Route::get('/fd','FdAccountController@index');
 Auth::routes();
