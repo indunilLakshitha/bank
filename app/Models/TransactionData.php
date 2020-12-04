@@ -12,10 +12,12 @@ class TransactionData extends Model
                             'transaction_type',
                             'transaction_detail',
                             'transaction_value',
+                            'transaction_code',
                             'is_enable',
                             'created_by',
                             'updated_by',
                             'created_at',
-                            'updated_at'
+                            'updated_at',
+                            'balance_value'
                         ];
 }

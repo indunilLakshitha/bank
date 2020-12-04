@@ -86,7 +86,7 @@
                             <label class="col-sm-2 col-form-label">Balance Share Amount of Seller<font color="red">*</font></label>
                             <div class="col-lg-3 col-md-2 col-sm-2">
                                 <div class="form-group">
-                                    <input type="text" name="balance_share_amount_seller" class="form-control">
+                                    <input type="text" name="balance_share_amount_seller" id="balance_share_amount_seller" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                             <label class="col-sm-2 col-form-label">Balance Share Amount of Buyer<font color="red">*</font></label>
                             <div class="col-lg-3 col-md-2 col-sm-2">
                                 <div class="form-group">
-                                    <input type="text" name="balance_share_amount_buyer" class="form-control">
+                                    <input type="text" name="balance_share_amount_buyer" id="balance_share_amount_buyer" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -322,6 +322,25 @@ function transfer_shares(){
             contentType: false,
             success: function(data){
                 console.log(data);
+                if(data.msg=='Successfully Transfered'){
+                    balance_share_amount_buyer.value=data.buyer_balance
+                    balance_share_amount_seller.value=data.seller_balance
+                    swal({
+                        title: "Success!",
+                        text: data.msg ,
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-success",
+                        type: "success"
+                    }).catch(swal.noop)
+                }else{
+                    swal({
+                        title: "Failed!",
+                        text: data.msg ,
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-success",
+                        type: "error"
+                    }).catch(swal.noop)
+                }
 
             }
         })

@@ -285,6 +285,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/members/verify', 'CustomerBasicDataController@memberVerify');
     Route::get('/members/view/check/{id}', 'CustomerBasicDataController@viewVerify');
     Route::get('/members/view/verify/{id}', 'CustomerBasicDataController@verification');
+    Route::post('/checknic', 'CustomerBasicDataController@checkNic');
 
     //-------------------------------------------------------------------------------account verification routes------start
     Route::get('/accountdetails/{id}', 'AccountVerificationController@accountDetails');
@@ -450,10 +451,12 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
     Route::get('/newbranchesadd','MainBranchController@add');
     Route::post('/branchesadd','MainBranchController@store');
     Route::get('/branchesview/{id}','MainBranchController@view')->name('newbranches.view');
+
+    //------------------------------------------------------------cashier cash in out --------------------
+    Route::get('/cashiercash','BranchCashInOutController@index')->name('cashiercash.index');
+    Route::post('/cashiercashadd','BranchCashInOutController@index')->name('cashiercash.store');
+
+    //----------------------------------------external nominies add -------------
+    Route::post('/add_external_nominies','ExternalNomimiesController@add');
 });
-
-//------------------------------------------------------------cashier cash in out --------------------
-Route::get('/cashiercash','BranchCashInOutController@index')->name('cashiercash.index');
-Route::post('/cashiercashadd','BranchCashInOutController@index')->name('cashiercash.store');
-
 Auth::routes();

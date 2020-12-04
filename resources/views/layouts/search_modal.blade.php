@@ -114,6 +114,7 @@
         data: {text:value} ,
         success: function(data){
             console.log(data);
+
             return set_modal_serach_by_name_results(data)
         }
     })
@@ -148,6 +149,7 @@ function set_modal_serach_by_name_results(data){
         </tr>
         `
         modal_serach_by_name_results_tbody.innerHTML += html
+
     })
 
 
@@ -182,6 +184,19 @@ function set_cus_details_from_modal(id){
             }
             if(document.querySelector('#share_amount')){
                 share_amount.value = cus.share_amount
+            }
+            // ---------------------------for deposites and withdrwals
+            // if(document.querySelector('#full_name')){
+            //     share_amount.value = cus.share_amount
+            // }
+            // if(document.querySelector('#customer_id')){
+            //     share_amount.value = cus.share_amount
+            // }
+            if(document.querySelector('#account_id')){
+                account_balance.value = cus.account_balance
+            }
+            if(document.querySelector('#account_balance')){
+                account_id.value = cus.account_number
             }
             $('#noticeModal').modal('hide');
              return console.log(cus);

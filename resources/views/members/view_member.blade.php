@@ -4,7 +4,7 @@
 @section('content')
 
 {{-- <fieldset disabled="disabled"> --}}
-<fieldset >
+<fieldset>
     @if(!empty($view_1))
 
     <div class="card col-10 " style="border: solid">
