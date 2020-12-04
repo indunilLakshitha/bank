@@ -121,6 +121,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
 
         });
         Route::post('/members/search', 'MemberController@search');
+        Route::get('/members/search/data', 'MemberController@search');
         Route::post('/verification/search', 'MemberController@VerificationSearch');
         // Route::group(['middleware' => ['permission:member_add']], function () {
         //members add

@@ -28,48 +28,47 @@ class MemberController extends Controller
     public function search(Request $request)
     {
         // return $request;
-        if(
-            $request->customer_id == null &&
-            $request->married_status_id == null &&
-            $request->religion_data_id == null &&
-            $request->expire_date == null &&
-            $request->race_id == null &&
-            $request->full_name == null &&
-            $request->identification_type_id == null &&
-            $request->identification_number == null
-        ){
-            $results = DB::select("
-            SELECT * FROM customer_status_dates
-
-            LEFT JOIN customer_basic_data
-            ON customer_basic_data.customer_id = customer_status_dates.customer_id
-
-            LEFT JOIN iedentification_types
-            ON iedentification_types.id = customer_basic_data.identification_type_id
-
-            ");
-        } else{
-
-            $results = DB::select("
-            SELECT * FROM customer_status_dates
-
-            LEFT JOIN customer_basic_data
-            ON customer_basic_data.customer_id = customer_status_dates.customer_id
-
-            LEFT JOIN iedentification_types
-            ON iedentification_types.id = customer_basic_data.identification_type_id
-
-            WHERE customer_status_dates.customer_id LIKE '%$request->customer_id%'
-            AND customer_status_dates.married_status_id LIKE '%$request->married_status_id%'
-            AND  customer_status_dates.religion_data_id LIKE '%$request->religion_data_id%'
-            AND  customer_status_dates.expire_date LIKE '%$request->expire_date%'
-            AND customer_basic_data.full_name LIKE '%$request->full_name%'
-            AND customer_basic_data.identification_type_id LIKE '%$request->identification_type_id%'
-            AND customer_basic_data.identification_number LIKE '%$request->identification_number%'
-
-            ");
-
+        //dd($request->input());
+        $customer_id = $request->input('customer_id');
+        $identification_number = $request->input('identification_number');
+        $full_name = $request->input('full_name');
+        $religion_data_id = $request->input('religion_data_id');
+        //$gender_id = $request->input('gender_id');
+        //$married_status_id= $request->input('married_status_id');
+        $join_date= $request->input('join_date');
+        $sql = "SELECT cbd.`id`, cbd.`customer_id`, cbd.`customer_status_id`, cbd.`full_name`, cbd.`customer_status_id`,
+                `status`, cbd.`identification_number`, IF(`non_member` = 1, 'Non Member', 'Member') AS 'status'
+                FROM customer_status_dates AS csd
+                LEFT JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
+                LEFT JOIN iedentification_types AS it ON it.id = cbd.identification_type_id
+                WHERE `status` != 3 ";
+        if($customer_id != null && $customer_id != ''){
+            $sql .= " AND cbd.`customer_id` LIKE '%".$customer_id."%'";
         }
+        if($identification_number != null && $identification_number != ''){
+            $sql .= " AND cbd.`identification_number` LIKE '%".$identification_number."%'";
+        }
+        if($full_name != null && $full_name != ''){
+            $sql .= " AND cbd.`full_name` LIKE '%".$full_name."%'";
+        }
+        if($full_name != null && $full_name != ''){
+            $sql .= " AND csd.`religion_data_id` LIKE '%".$religion_data_id."%'";
+        }
+        /*if($gender_id != null && $gender_id != ''){
+            //$sql .= " AND csd.`religion_data_id` LIKE '%".$religion_data_id."%'";
+        }*/
+        /*if($married_status_id != null && $married_status_id != ''){
+            //$sql .= " AND csd.`married_status_id` LIKE '%".$married_status_id."%'";
+        }*/
+        if($join_date != null && $join_date != ''){
+            $sql .= " AND csd.`join_date` LIKE '%".$join_date."%'";
+        }
+        $user_data = Auth::user();
+        if(intval($user_data->roles[0]->id) != 1) {
+            $branch_id = $user_data->branh_id;
+            $sql .= " AND cbd.branch_id = ". $branch_id;
+        }
+        $results = DB::select($sql);
         return response()->json($results);
 
     }
