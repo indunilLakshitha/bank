@@ -192,7 +192,9 @@ class CustomerBasicDataController extends Controller
 
     public function beneficiariesAjax(Request $request)
     {
+        // return response()->json($request);
         $benificiary = $request;
+        $benificiary['customer_id'] = $request->c;
         $benificiary['is_enable'] = 1;
         $benificiary['created_by'] = Auth::user()->id;
         $benificiary['updated_by'] = Auth::user()->id;
@@ -201,11 +203,11 @@ class CustomerBasicDataController extends Controller
         $row->save();
 
         $data = DB::table('beneficiary_data')
-            ->where('beneficiary_data.customer_id', $request->customer_id)
-            ->leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'beneficiary_data.beneficiary_id')
-            ->get();
-
+        ->where('beneficiary_data.customer_id', $benificiary->customer_id)
+        ->leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'beneficiary_data.customer_id')
+        ->get();
         return response()->json(['bene', $data]);
+
     }
 
     public function guardianAjax(Request $request)
