@@ -16,7 +16,7 @@
 
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Code</label>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <input type="text" class="form-control" id="customer_id" name="customer_id">
                             <span class="bmd-help">Use Member Code To Search</span>
@@ -48,7 +48,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-7">
                                 <div class="form-group">
                                     <input type="text" name="identification_number" class="form-control"
                                         placeholder="900000000V">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-md-2">
+                    <div class="col-md-8">
                         <div class="form-group">
                             <input type="text" class="form-control" id="full_name" name="full_name">
                         </div>
@@ -88,21 +88,7 @@
                         </select>
                     </div>
                 </div>
-                {{-- <div class="row">
-                    <label class="col-sm-2 col-form-label">Race</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
-                        @php
-                        $races = Illuminate\Support\Facades\DB::table('races')->get();
-                        @endphp
-                        <select class="selectpicker" data-style="select-with-transition" title="Select" name="race_id"
-                            id="race_id">
-                            <option value="">Select</option>
-                            @foreach ($races as $r)
-                            <option value="{{$r->id}}">{{$r->race}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div> --}}
+               
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Gender</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">
@@ -130,7 +116,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Expiry</label>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
                         <input type="date" name="expire_date" id="expire_date" class="form-control">
                     </div>
                 </div>
@@ -174,7 +160,7 @@
                                 <thead>
                                     <th>ID </th>
                                     <th>CODE</th>
-                                    <th>IDENTIFICATION TYPE</th>
+                                    <!--th>IDENTIFICATION TYPE</th-->
                                     <th>IDENTIFICATION NUMBER</th>
                                     <th>NAME</th>
                                     <th>STATUS</th>
@@ -188,29 +174,26 @@
 
                                      ->get();
                                     ?>
-                                    @isset($members)
-                                    @foreach ($members as $member)
-                                    <tr>
-                                        <th>{{$member->id}}</th>
-                                        <th>{{$member->customer_id}} </th>
-                                        <th>{{$member->customer_type}} </th>
-                                        <th>{{$member->identification_number}}</th>
-                                        <th>{{$member->name_in_use}}</th>
-                                        @if(intval($member->is_enable) == 1)
-                                        <th>ACTIVE</th>
-                                        @else
-                                        <th>INACTIVE</th>
-                                        @endif
-                                        <th><a href="{{url('/members/view/'.$member->customer_id)}}" rel="tooltip"
-                                                class="btn-sm btn-info btn-round">VIEW</a>
-                                            <a href="{{url('/members/edit/'.$member->customer_id)}}" rel="tooltip"
-                                                class="btn-sm btn-primary btn-round"><i
-                                                    class="material-icons">edit</i></a>
-                                        </th>
-                                    </tr>
-                                    @endforeach
+                                   @isset($members)
+                                   @foreach ($members as $member)
+                                       <tr>
+                                            <th>{{$member->id}}</th>
+                                            <th>{{$member->customer_id}} </th>
+                                            <!--th>{ {$member->customer_type} } </th-->
+                                            <th>{{$member->identification_number}}</th>
+                                            <th>{{$member->name_in_use}}</th>
+                                           @if(intval($member->is_enable) == 1)
+                                                <th>ACTIVE</th>
+                                           @else
+                                               <th>INACTIVE</th>
+                                           @endif
+                                            <th><a href="{{url('/members/view/'.$member->customer_id)}}" rel="tooltip" class="btn-sm btn-info btn-round" >VIEW</a>
+                                                <a href="{{url('/members/edit/'.$member->customer_id)}}" rel="tooltip" class="btn-sm btn-primary btn-round" ><i class="material-icons">edit</i></a>
+                                            </th>
+                                       </tr>
+                                   @endforeach
 
-                                    @endisset
+                                   @endisset
 
 
                                 </tbody>

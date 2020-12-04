@@ -205,12 +205,12 @@ class OpenSavingsAccountController extends Controller
         $details['is_enable'] = 1;
         $acc = AccountGeneralInformation::create($request->all());
 
-        if ($request->file('cus_sign_img')) {
-            $image = $request->file('cus_sign_img');
-            $path = '/images/';
-            $acc->cus_sign_img = time() . rand() . '.' . $image->extension();
-            $image->move(public_path($path), $acc->cus_sign_img);
-        }
+        // if ($request->file('cus_sign_img')) {
+        //     $image = $request->file('cus_sign_img');
+        //     $path = '/images/';
+        //     $acc->cus_sign_img = time() . rand() . '.' . $image->extension();
+        //     $image->move(public_path($path), $acc->cus_sign_img);
+        // }
         $acc->save();
 
         $account_id = $acc->id;

@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class ShareController extends Controller
 {
 
@@ -26,7 +27,8 @@ class ShareController extends Controller
     }
 
     public function historyview(){
-        return view('shares.history');
+        $members = Share::all();
+        return view('shares.history',compact('members'));
     }
 
     public function buy_shares(Request $request){

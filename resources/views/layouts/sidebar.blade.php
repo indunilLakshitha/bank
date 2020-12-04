@@ -521,16 +521,81 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link" href="/accountType">
+                            <a class="nav-link" href="/fdFindBussPrtn">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal"></span>
+                                <span class="sidebar-normal">Find Partner</span>
                             </a>
                         </li>
-
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdMemCreation">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Member Creation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdFindProd">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Find Produtc</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdFindInter">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Find Interducer</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdWithdReq">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Withdrawal Request</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdInvestNomi">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Investor Nominee</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdNomSlctGrp">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Nominee Select</span>
+                            </a>
+                        </li>
+                         <li class="nav-item ">
+                            <a class="nav-link" href="/fdWithdReq">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Withdrawal Request</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut1">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out 1</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut2">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out 2</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
             </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut1">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out 1</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut2">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out 2</span>
+                            </a>
+                        </li>
         </ul>
     </div>
 </div>

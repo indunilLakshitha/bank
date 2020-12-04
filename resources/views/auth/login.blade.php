@@ -54,9 +54,6 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-              @if(Session::has('message'))
-                  <p class="alert alert-danger">{{ Session::get('message') }}</p>
-              @endif
             <form class="form" method="POST" action="{{ route('login') }}">
                 @csrf
               <div class="card card-login card-hidden">
@@ -65,6 +62,15 @@
                   <div class="social-line">
                   </div>
                 </div>
+                  @if(Session::has('message'))
+                      <p class="alert alert-danger">{{ Session::get('message') }}</p>
+                  @endif
+
+                  @error('email')
+                  <div class="alert alert-danger">
+                      {{$message}}
+                  </div>
+                  @endif
                 <div class="card-body ">
                   {{-- <p class="card-description text-center">Or Be Classical</p> --}}
                   <span class="bmd-form-group">
@@ -76,11 +82,6 @@
                       </div>
                       <input type="email" name="email"  class="form-control" placeholder="Email...">
                     </div>
-                    @error('email')
-                    <div class="alert alert-danger">
-                        {{$message}}
-                    </div>
-                    @endif
                   </span>
                   <span class="bmd-form-group">
                     <div class="input-group">

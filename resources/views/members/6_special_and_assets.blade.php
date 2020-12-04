@@ -141,10 +141,12 @@
         assets_tbody.innerHTML = ''
 
         data.forEach(i => {
+            let formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'LKR' });
+            let price = formatter.format(i.asset_qty);
             let html = `
             <tr id='${i.id}' >
                 <td>${i.asset_description}</td>
-            <td>${i.asset_qty}</td>
+            <td>${price}</td>
             <td>
                 <button type="button" onclick="
                 delete_asset('${i.id}'), this.parentElement.parentElement.classList.add('d-none')" class="btn btn-sm btn-primary">Remove</button>

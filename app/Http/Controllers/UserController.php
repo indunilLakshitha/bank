@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
 use App\User;
 use Cassandra\Session;
 use Illuminate\Http\Request;
@@ -23,13 +24,29 @@ class UserController extends Controller
 
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
+                return response()->json(
+                    [
+                        'status' => 'failed',
+                        'data' => 'invalid_credentials',
+                        'token' => null
+                    ], 400);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json(
+                [
+                    'status' => 'failed',
+                    'data' => 'could_not_create_token',
+                    'token' => null
+                ], 500);
         }
 
-        return response()->json(compact('token'));
+        return response()->json(
+            [
+                'status' => 'succeed',
+                'data' => 'user authenticated successfully',
+                'token' => $token
+            ]
+        );
     }
 
     public function register(Request $request)
@@ -77,27 +94,69 @@ class UserController extends Controller
 
     public function getAuthenticatedUser()
     {
+        $output = array();
         try {
 
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
 
+            $output['user_id'] = intval($user->id);
+            $output['role_id'] = intval($user->roles[0]->id);
+            $output['role_name'] = $user->roles[0]->name;
+            $output['is_collector'] = ($user->roles[0]->name == 'Collector') ? 1 : 0;
+            $output['user_name'] = $user->name;
+            $output['email_address'] = $user->email;
+            $output['mobile_number'] = $user->mobile_number;
+            $output['employee_number'] = $user->employee_no;
+            $output['nic_number'] = $user->nic;
+            $output['branch_id'] = intval($user->branh_id);
+            $branch = Branch::find($output['branch_id']);
+            $output['branch_name'] = $branch->branch_name;
+            $output['branch_code'] = $branch->branch_code;
+            $output['status'] = intval($user->status);
+            $output['created_at'] = date('Y-m-d H:i:s', strtotime($user->created_at));
+            $output['updated_at'] = date('Y-m-d H:i:s', strtotime($user->updated_at));
+
+
+
         } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
-            return response()->json(['token_expired'], $e->getStatusCode());
+            return response()->json(
+                [
+                    'status' => 'failed',
+                    'data' => 'token_expired',
+                    'output' => array()
+                ], $e->getStatusCode());
 
         } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
 
-            return response()->json(['token_invalid'], $e->getStatusCode());
+            return response()->json(
+                [
+                    'status' => 'failed',
+                    'data' => 'token_invalid',
+                    'output' => array()
+                ], $e->getStatusCode());
 
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
 
-            return response()->json(['token_absent'], $e->getStatusCode());
+            return response()->json(
+                [
+                    'status' => 'failed',
+                    'data' => 'token_absent',
+                    'output' => array()
+
+                ], $e->getStatusCode());
 
         }
 
-        return response()->json(compact('user'));
+        return response()->json(
+            [
+                'status' => 'succeed',
+                'data' => 'Login user data pass successfully',
+                'output' => $output
+            ]
+        );
     }
 
     public function index(){

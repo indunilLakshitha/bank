@@ -66,22 +66,22 @@
                             <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
+                                    <th>ID </th>
                                     <th>Date </th>
                                     <th>Description </th>
                                     <th>Credit </th>
-                                    <th>Debit </th>
                                     <th>Balance </th>
                                 </thead>
                                 <tbody id="results_tbody">
                                     @isset($members)
                                     @foreach ($members as $member)
                                     <tr>
-                                        <th>{{$member->id}}</th>
-                                        <th>{{$member->customer_id}} </th>
-                                        <th>{{$member->customer_type}} </th>
-                                        <th>{{$member->identification_number}}</th>
-                                        <th>{{$member->name_in_use}}</th>
-                                        
+                                        <th>{{$member->member_id}}</th>
+                                        <th>{{$member->created_at}}</th>
+                                        <th>{{$member->transaction_details}} </th>
+                                        <th>{{$member->transaction_value}} </th>
+                                        <th>{{$member->balance_value}}</th>
+
                                     </tr>
                                     @endforeach
                                     @endisset

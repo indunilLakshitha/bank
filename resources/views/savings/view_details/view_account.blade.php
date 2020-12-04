@@ -147,6 +147,18 @@
                                 </div>
                             </div>
                         </div> -->
+<<<<<<< HEAD
+                        <!-- <div class="row">
+                            <label class="col-sm-2 col-form-label">Customer Signature</label>
+                            <div class="col-sm-8">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        @if(!empty(@isset($view_1->sign_img)))
+                                        <img src="{{env('IMAGE_LOCATION').$view_1->sign_img}}" height="200px" width="300px" alt="">
+                                        @else
+                                        <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
+                                        @endif
+=======
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Customer Signature</label>
                                 <div class="col-sm-8">
@@ -159,12 +171,13 @@
                                             <img src="/bank/public/images/default.png" height="100px" width="100px"
                                                 alt="">
                                             @endif
+>>>>>>> 24238843b8765a2569e1992cbc62ad2d72a161bb
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
