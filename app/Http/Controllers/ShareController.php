@@ -8,9 +8,11 @@ use App\Models\CashierDailyTransaction;
 use App\Models\PaymentLog;
 use App\Models\saving_deposit_base_ledger;
 use App\Models\TransactionData;
+use App\Share;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class ShareController extends Controller
 {
@@ -24,7 +26,8 @@ class ShareController extends Controller
     }
 
     public function historyview(){
-        return view('shares.history');
+        $members = Share::all();
+        return view('shares.history',compact('members'));
     }
 
     public function buy_shares(Request $request){

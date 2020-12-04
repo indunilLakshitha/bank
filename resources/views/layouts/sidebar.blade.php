@@ -568,10 +568,34 @@
                                 <span class="sidebar-normal">Withdrawal Request</span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut1">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out 1</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut2">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out 2</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
             </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut1">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out 1</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut2">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out 2</span>
+                            </a>
+                        </li>
         </ul>
     </div>
 </div>

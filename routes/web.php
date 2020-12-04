@@ -418,6 +418,14 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
 
         return view('deposit.fd_withdrawReq');
     });
+    Route::get('/branchCashInOut1', function () {
+
+        return view('deposit.branchCashInOut1');
+    });
+    Route::get('/branchCashInOut2', function () {
+
+        return view('deposit.branchCashInOut2');
+    });
 
 
 
