@@ -173,7 +173,7 @@ function set_cus_details_from_modal(id){
                 }
 
 
-            
+
 
             if(document.querySelector('#account_id')){
                 account_balance.value = cus.account_balance

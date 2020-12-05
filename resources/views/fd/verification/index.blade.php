@@ -26,40 +26,31 @@
                             <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
-                                    <th>ID </th>
+                                    <th>ACCOUNT ID </th>
                                     <th>CODE</th>
-                                    <!--th>IDENTIFICATION TYPE</th-->
-                                    <th>IDENTIFICATION NUMBER</th>
+                                    <th>BRANCH ID</th>
                                     <th>NAME</th>
-                                    <th>STATUS</th>
                                     <th>ACTION</th>
                                 </thead>
                                 <tbody id="results_tbody">
                                     <?php
-                                     $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')
-                                     ->where('customer_basic_data.status','1')
-                                     ->where('branch_id',Auth::user()->branh_id)
+                                     $members=\App\Models\FdAccountGeneralInformation::leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'fd_account_general_information.customer_id')
+                                     ->where('fd_account_general_information.status','2')
 
                                      ->get();
                                     ?>
                                     @isset($members)
                                     @foreach ($members as $member)
                                     <tr>
-                                        <th>{{$member->id}}</th>
+                                        <th>{{$member->account_id}}</th>
                                         <th>{{$member->customer_id}} </th>
                                         <!--th>{ {$member->customer_type} } </th-->
-                                        <th>{{$member->identification_number}}</th>
+                                        <th>{{$member->branch_id}}</th>
                                         <th>{{$member->name_in_use}}</th>
-                                        @if(intval($member->is_enable) == 1)
-                                        <th>ACTIVE</th>
-                                        @else
-                                        <th>INACTIVE</th>
-                                        @endif
-                                        <th><a href="{{url('/members/view/'.$member->customer_id)}}" rel="tooltip"
-                                                class="btn-sm btn-info btn-round">VIEW</a>
-                                            <a href="{{url('/members/edit/'.$member->customer_id)}}" rel="tooltip"
-                                                class="btn-sm btn-primary btn-round"><i
-                                                    class="material-icons">edit</i></a>
+                                        <th><a href="{{url('/fd/view/'.$member->account_id)}}" rel="tooltip"
+                                                class="btn btn-sm btn-info btn-round">VIEW</a>
+                                            <a href="{{url('/fd/verification/'.$member->account_id)}}" rel="tooltip"
+                                                class="btn btn-sm btn-primary btn-round"><i class="material-icons">check</i> <span class="mx-1">Verify</span></a>
                                         </th>
                                     </tr>
                                     @endforeach
