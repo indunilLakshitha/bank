@@ -64,7 +64,8 @@ class FdAccountController extends Controller
 
         $id=FdAccountGeneralInformation::all()->count();
         $branch_code=Branch::where('id',$request->branch_id)->first()->branch_code;
-             $cus_count = '0000' .$id+1 ;
+        $c=$id+1;
+             $cus_count = '0000' .$c ;
               $cus_id = substr($cus_count, -3);
                $fd_id='FD-'.$request->customer_id.'-'.$cus_id;
 
@@ -133,7 +134,7 @@ class FdAccountController extends Controller
         // $invester['created_by']=$inv->
         // $invester['updated_by']=$inv->
 
-        FdInvestor::create($invester->all());
+        FdNominee::create($invester->all());
         $investers=FdNominee::where('fd_account_id',$request->fdod)->get();
         return response()->json($investers);
     }

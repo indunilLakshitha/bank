@@ -28,13 +28,12 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
-                    <label class="col-sm-2 col-form-label">ID Number</label>
+                    <label class="col-sm-2 col-form-label">>ID Number</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter Identification No" name="identification_number" id="identification_number">
-                        </div>
+                            <input type="text" class="form-control" name="identification_number"
+                            placeholder="Enter Identification No" id="identification_number">                        </div>
                     </div>
                 </div>
 
@@ -108,11 +107,11 @@
         let customer_id = $("#customer_id").val();
         let identification_number = $("#identification_number").val();
         let full_name = $("#full_name").val();
-        let religion_data_id = null;
-        let gender_id = null;
-        let married_status_id = null;
-        let expire_date = null;
-        let join_date = null;
+        let religion_data_id = $("#religion_data_id").val();
+        let gender_id = $("#gender_id").val();
+        let married_status_id = $("#married_status_id").val();
+        let expire_date = $("#expire_date").val();
+        let join_date = $("#join_date").val();
         //alert(religion_data_id);
         $.ajax({
             type: 'POST',
@@ -143,10 +142,7 @@
                 <th>${i.identification_number} </th>
                 <th>${i.full_name}</th>
                 <th>${i.status}</th>
-                <th>
-                    <a href="/members/view/check/${i.customer_id}" class="btn btn-primary" >Check</a>
-                    <a href="/members/view/verify/${i.customer_id}" class="btn btn-primary" >Verify</a>
-                </th>
+                <th><a href="http:/members/view/${i.customer_id}" class="btn btn-primary" >VIEW</a></th>
             </tr>
             `
             results_tbody.innerHTML += html
