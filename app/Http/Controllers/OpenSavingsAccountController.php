@@ -103,9 +103,8 @@ class OpenSavingsAccountController extends Controller
     # MUST HAVE request->text  ---------------------------------------------------------
     public function search_by_full_name(Request $request)
     {
-        // return $request;
 
-        // SELECT customer_basic_data.*,branches.*,customer_status_dates.*,customer_basic_data.customer_id as org_id FROM customer_basic_data
+        // return response()->json($request);
 
         $branch_id = Auth::user()->branh_id;
         $data = DB::select("
