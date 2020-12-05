@@ -60,6 +60,13 @@
                         </select>
                     </div>
                 </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> d3384bf60878e6b882fe4768b45ee6620d18a8de
+=======
+>>>>>>> 4eceb42eb12b6ef4ff05182c23db81b5e726bad0
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Gender</label>
                     <div class="col-lg-5 col-md-6 col-sm-3">

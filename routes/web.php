@@ -477,5 +477,9 @@ Route::get('/addinvester','FdAccountController@addInvester');
 Route::get('/findnominee','FdAccountController@findNominee');
 Route::get('/addnominee','FdAccountController@addNominee');
 Route::get('/findsavingaccounts','FdAccountController@findSavings');
+Route::get('/verify','FdAccountController@verify');
+Route::get('/fd/view/{id}','FdAccountController@view');
+Route::get('/fd/verification/{id}','FdAccountController@verification');
+
 
 Auth::routes();

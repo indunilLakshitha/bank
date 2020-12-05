@@ -148,4 +148,36 @@ class FdAccountController extends Controller
 
         return response()->json($acc);
     }
+    public function verify(){
+         return view('fd.verification.index');
+
+    }
+    public function view(Request $request){
+
+        $branch=Branch::where('id',Auth::user()->branh_id)->first();
+         $deposite_types=DepositeType::where('is_enable',1)->get();
+         $interest_types=FdInterestType::where('is_enable',1)->get();
+         $deposite_periods=DepositePeriod::where('is_enable',1)->get();
+         $fD = FdAccountGeneralInformation::leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'fd_account_general_information.customer_id')
+                                        ->leftjoin('branches', 'branches.id', 'fd_account_general_information.branch_id')
+                                        ->where('fd_account_general_information.account_id',$request->id)->first();
+
+        $fd_ins = FdInvestor::where('fd_account_id',$request->id)->get();
+        $fd_ns = FdNominee::where('fd_account_id',$request->id)->get();
+         return view('fd.verification.view',compact('branch','fD','deposite_types','interest_types','deposite_periods','fd_ins','fd_ns'));
+
+    }
+
+    public function verification(Request $request){
+
+        $findFD = FdAccountGeneralInformation::where('account_id',$request->id)->first();
+        $findFD->status=1;
+        $findFD->save();
+
+        return redirect('/verify');
+
+    }
+
+
+
 }
