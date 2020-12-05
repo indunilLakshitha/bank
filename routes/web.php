@@ -471,6 +471,10 @@ Route::post('/add_external_nominies','ExternalNomimiesController@add');
 //----------------------------------------FD account----------------------------
 Route::get('/fd','FdAccountController@index');
 Route::get('/findproduct','FdAccountController@findProduct');
-Route::get('/createfd','FdAccountController@createFd');
+Route::post('/createfd','FdAccountController@createFd');
+Route::get('/findinvester','FdAccountController@findInvester');
+Route::get('/addinvester','FdAccountController@addInvester');
+Route::get('/findnominee','FdAccountController@findNominee');
+Route::get('/addnominee','FdAccountController@addNominee');
 
 Auth::routes();

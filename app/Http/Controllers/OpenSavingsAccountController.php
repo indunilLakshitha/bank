@@ -141,7 +141,7 @@ class OpenSavingsAccountController extends Controller
 
         // return response()->json($request);
 
-        return response()->json($data);
+        return response()->json($request);
     }
     public function search_by_customer_id(Request $request)
     {
@@ -156,7 +156,7 @@ class OpenSavingsAccountController extends Controller
             customer_basic_data.non_member,
             customer_status_dates.date_of_birth,
             branches.branch_code,
-            members.share_amount
+            members.share_amount,
             account_general_information.account_balance,
             account_general_information.account_number
 
@@ -177,7 +177,7 @@ class OpenSavingsAccountController extends Controller
         WHERE customer_basic_data.customer_id LIKE '%$request->text%'
         AND customer_basic_data.is_enable = 1
         AND customer_basic_data.status = 1
-        AND customer_basic_data.status = '$branch_id'
+        AND customer_basic_data.branch_id = '$branch_id'
         ");
 
         return response()->json($data);
