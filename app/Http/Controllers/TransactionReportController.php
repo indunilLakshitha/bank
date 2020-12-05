@@ -44,7 +44,8 @@ class TransactionReportController extends Controller
 
     public function reportOfTransactions(){
 
-        return view('transaction_report.reportOfMember');
+        $users = User::where('branh_id',Auth::user()->branh_id)->get();
+        return view('transaction_report.reportOfMember',compact('users'));
     }
 
     public function cashInHandBranch(){
@@ -59,7 +60,7 @@ class TransactionReportController extends Controller
 
         $t_in = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
-                ->where('transaction_type','DEPOSITED')
+                ->where('transaction_type','DEPOSITE')
                 ->sum('transaction_value');
 
         $t_out = TransactionData::where('created_by',$request->user)
@@ -68,7 +69,7 @@ class TransactionReportController extends Controller
                 ->sum('transaction_value');
         $reci = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
-                ->where('transaction_type','DEPOSITED')
+                ->where('transaction_type','DEPOSITE')
                 ->sum('transaction_value');
         $paym = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
@@ -76,7 +77,7 @@ class TransactionReportController extends Controller
                 ->sum('transaction_value');
         $depo = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
-                ->where('transaction_type','DEPOSITED')
+                ->where('transaction_type','DEPOSITE')
                 ->sum('transaction_value');
         $withd = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
@@ -103,7 +104,7 @@ class TransactionReportController extends Controller
                 ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
                 ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
                 ->leftJoin('users','transaction_data.created_by','=','users.id')
-                ->where('transaction_type','DEPOSITED')
+                ->where('transaction_data.transaction_type','DEPOSITE')
                 ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
                 ->get();
         return response()->json($trn);

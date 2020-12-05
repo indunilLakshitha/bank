@@ -171,7 +171,7 @@
                     <button class="btn btn-sm btn-primary " onclick="check_approve('${i.account_number}')" >Approve</button>
                     <button class="btn btn-sm btn-primary">Reject</button>
                 </td>
-                
+
             </tr>
             `
             results_tbody.innerHTML += html
