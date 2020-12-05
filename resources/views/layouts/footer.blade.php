@@ -36,6 +36,7 @@
 </div>
 
 
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
 <!--   Core JS Files   -->
 <script src={{asset("mat_ui/js/core/jquery.min.js")}}></script>

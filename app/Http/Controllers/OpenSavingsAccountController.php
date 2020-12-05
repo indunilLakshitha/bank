@@ -141,7 +141,7 @@ class OpenSavingsAccountController extends Controller
 
         // return response()->json($request);
 
-        return response()->json($request);
+        return response()->json($data);
     }
     public function search_by_customer_id(Request $request)
     {

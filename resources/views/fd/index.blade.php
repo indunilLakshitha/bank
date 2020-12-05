@@ -24,7 +24,7 @@
             <label class="col-sm-2 col-form-label">Opaning Date</label>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <input type="date" readonly class="form-control" id="">
+                    <input type="date" class="form-control" id="open_date">
                 </div>
             </div>
         </div>
@@ -32,10 +32,10 @@
             <label class="col-sm-2 col-form-label">Member</label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="customer_id" name="customer_id">
+                    <input type="text" class="form-control" id="customer_id" name="customer_id" >
                 </div>
             </div>
-            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#memberSearchModel"></a>
+            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#mmodel"></a>
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Product</label>
@@ -86,6 +86,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <input type="text" class="form-control" name="introducer_id" id="introducer_id">
+
                 </div>
             </div>
             <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#introducerSearchModel"></a>
@@ -115,7 +116,7 @@
             <label class="col-sm-2 col-form-label">Starting Date</label>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <input type="date" readonly class="form-control" id="start_date" name="start_date">
+                    <input type="date"  class="form-control" id="start_date" name="start_date">
                 </div>
             </div>
         </div>
@@ -141,7 +142,19 @@
             <label class="col-sm-2 col-form-label">No of Period</label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="text" placeholder="Interest (%)" class="form-control">
+                    <select name="deposite_period_id" id="deposite_period_id" class="form-control">
+                        <option value="0" selected>Select </option>
+                        @isset($deposite_periods)
+                        @foreach ($deposite_periods as $deposite_period)
+
+                        <option value="{{$deposite_period->deposite_period_id}}" selected>
+                            {{$deposite_period->deposite_period}} </option>
+                        @endforeach
+
+                        @endisset
+
+
+                    </select>
                 </div>
             </div>
 
@@ -159,7 +172,13 @@
             <label class="col-sm-2 col-form-label">Auto Renew</label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="is_auto_renew">
+                    {{-- <input type="text" class="form-control" id="is_auto_renew"> --}}
+                    <select name="is_auto_renew" id="is_auto_renew" class="form-control">
+                        <option value="Yes" selected>Yes </option>
+                        <option value="No">No </option>
+
+
+                    </select>
                 </div>
             </div>
         </div>
@@ -167,10 +186,13 @@
             <label class="col-sm-2 col-form-label">Savings Account</label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="saving_account_id">
+                    {{-- <input type="text" class="form-control" id="saving_account_id"> --}}
+                    <select name="saving_account_id" id="saving_account_id" class="form-control">
+                        <option value="0">Select </option>
+                    </select>
                 </div>
             </div>
-            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></a>
+            {{-- <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></a> --}}
             <a class="btn fa  btn-danger btn-sm form-control d-none" id="create" onclick="createFd()">CREATE</a>
         </div>
     </div>
@@ -187,11 +209,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label">Investor</label>
+                    <label class="col-sm-2 col-form-label">Investor Name</label>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="meber" oninput="findInvester(this.value)">
-                            <input type="text" class="form-control" id="account_id">
+                            <input type="hidden" class="form-control" id="account_id">
                         </div>
                     </div>
                     {{-- <button class="btn fa fa-search btn-sm btn-info btn"></button> --}}
@@ -212,7 +234,7 @@
                                 <table id="datatables" class="table   table-bordered table-hover" cellspacing="0"
                                     width="100%" style="width:100%">
                                     <thead>
-                                        = </thead>
+                                    </thead>
                                     <tbody id="investor_data">
                                     </tbody>
                                 </table>
@@ -252,7 +274,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label">Member</label>
+                    <label class="col-sm-2 col-form-label">Nominee Name</label>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="meber" oninput="findNominee(this.value)">
@@ -313,10 +335,44 @@
 @include('fd.models.member_search')
 @include('fd.models.product_search')
 @include('fd.models.introducer')
-@include('layouts.search_modal')
+{{-- @include('layouts.search_modal') --}}
 
 
 <script>
+
+
+function getAccounts(cus_id){
+console.log(cus_id)
+
+saving_account_id.innerHTML = ''
+        $.ajax({
+        type: 'GET',
+        url: '{{('/findsavingaccounts')}}',
+        data: {text:cus_id} ,
+        success: function(data){
+            console.log(data);
+            setSavings(data)
+        }
+    })
+}
+function setSavings(data){
+    console.log('savings dropdown', data);
+    saving_account_id.innerHTML = ''
+
+
+    data.forEach(i => {
+
+        let html = `
+        <option value="${i.account_number}">${i.account_number}</option>
+
+        `
+        saving_account_id.innerHTML += html
+
+    })
+
+
+}
+
     function calInterest(interest){
      console.log(interest)
     let min=min_interest.value
@@ -347,10 +403,10 @@ function createFd(){
                     'account_description' : document.querySelector('#account_description').value,
                     'start_date' : document.querySelector('#start_date').value,
                     'set_interest' : document.querySelector('#set_interest').value,
-                    // 'deposite_period_id' : document.querySelector('#deposite_period_id').value,
+                    'deposite_period_id' : document.querySelector('#deposite_period_id').value,
                     'close_date' : document.querySelector('#close_date').value,
                     'deposite_amount' : document.querySelector('#deposite_amount').value,
-                    // 'is_auto_renew' : document.querySelector('#is_auto_renew').value,
+                    'is_auto_renew' : document.querySelector('#is_auto_renew').value,
                     // 'interest_amount' : document.querySelector('#interest_amount').value,
                     // 'num_of_renew' : document.querySelector('#num_of_renew').value,
                     'saving_account_id' : document.querySelector('#saving_account_id').value,
@@ -359,6 +415,13 @@ function createFd(){
                     console.log(data);
                     account_id.value=data.account_id
                     inv.classList.remove('d-none')
+                    swal({
+                        title: "Success! FD Account Created",
+                        text: "You Can Add Nominees and Investores for "+data.account_id,
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-success",
+                        type: "success"
+                    }).catch(swal.noop)
 
 
                 }

@@ -37,6 +37,7 @@ class CustomerBasicData extends Model
         'telephone_number',
         'fax_number',
         'email_address',
-        'status'
+        'status',
+        'epf_no'
     ];
 }

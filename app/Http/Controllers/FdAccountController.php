@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountGeneralInformation;
 use App\Models\Branch;
 use App\Models\CustomerBasicData;
 use App\Models\DepositePeriod;
@@ -26,6 +27,8 @@ class FdAccountController extends Controller
     }
 
     public function findProduct(Request $request){
+        // return response()->json($request);
+
         $product_details=$data = DB::select("
         SELECT DISTINCT
 
@@ -137,5 +140,12 @@ class FdAccountController extends Controller
         FdNominee::create($invester->all());
         $investers=FdNominee::where('fd_account_id',$request->fdod)->get();
         return response()->json($investers);
+    }
+
+    public function findSavings(Request $request){
+
+        $acc=AccountGeneralInformation::where('customer_id',$request->text)->get();
+
+        return response()->json($acc);
     }
 }

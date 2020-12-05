@@ -359,9 +359,8 @@
                                     <div class="form-group">
                                         <div class="col-sm-5">
                                             <input type="number" name="contact_data" class="form-control"
-                                                placeholder="Enter contact Number" id="contact_no" oninput="validate_contact(this.value,contact_er)">
+                                                placeholder="Enter contact Number" id="contact_no" name="contact_no" oninput="validate_contact(this.value,contact_er)">
                                                 <a id="contact_er" class="d-none btn btn-danger">Invalid Contact Number</a>
-
                                         </div>
                                     </div>
                                 </div>
