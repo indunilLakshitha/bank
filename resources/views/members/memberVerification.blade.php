@@ -29,14 +29,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label">ID Number</label>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-6 col-sm-3 ml-5">
+                    <label class="col-sm-2 col-form-label">>ID Number</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
                             <input type="text" class="form-control" name="identification_number"
-                                placeholder="Enter Identification No" id="identification_number">
-                        </div>
+                            placeholder="Enter Identification No" id="identification_number">                        </div>
                     </div>
-
                 </div>
 
             </form>
@@ -109,20 +107,11 @@
         let customer_id = $("#customer_id").val();
         let identification_number = $("#identification_number").val();
         let full_name = $("#full_name").val();
-<<<<<<< HEAD
         let religion_data_id = $("#religion_data_id").val();
         let gender_id = $("#gender_id").val();
         let married_status_id = $("#married_status_id").val();
         let expire_date = $("#expire_date").val();
         let join_date = $("#join_date").val();
-=======
-        alert(customer_id + identification_number + full_name);
-        let religion_data_id = null;
-        let gender_id = null;
-        let married_status_id = null;
-        let expire_date = null;
-        let join_date = null;
->>>>>>> ec5b685b04a92cba79a5ddff5cfcec98715d6936
         //alert(religion_data_id);
         $.ajax({
             type: 'POST',
@@ -136,10 +125,7 @@
                 "married_status_id": married_status_id,
                 "expire_date": expire_date,
                 "join_date": join_date,
-<<<<<<< HEAD
-=======
                 "for_verify": 1,
->>>>>>> ec5b685b04a92cba79a5ddff5cfcec98715d6936
             },
         }).done(function(data) {
             console.log(data);
