@@ -28,7 +28,7 @@
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
                                         <button class="btn  btn-info btn"
-                                            onclick="modal_serach_by_name_results_tbody.innerHTML = null">
+                                            onclick="member_list.innerHTML = null">
                                             Clear Results </button>
 
                                     </div>
@@ -53,37 +53,10 @@
                         </div>
                         <div class="row">
                             <table class="table">
-                                <tbody id="modal_serach_by_name_results_tbody" class="d-none"></tbody>
+                                <tbody id="member_list" class="d-none"></tbody>
                             </table>
                         </div>
-                        <div class="row ml-3">
-                            <label class="col-sm-2 col-form-label">ID Type</label>
-                            <div class="col-sm-10">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="form-group">
-                                            @php
-                                            $idtypes =
-                                            Illuminate\Support\Facades\DB::table('iedentification_types')->get();
-                                            @endphp
-                                            <select name="identification_type_id" id="identification_type_id"
-                                                class="selectpicker" data-style="select-with-transition">
-                                                <option value="">Select</option>
-                                                @isset($idtypes)
-                                                @foreach ($idtypes as $idtype)
-                                                <option value="{{$idtype->id}}">
-                                                    {{$idtype->identification_type}}
-                                                    @endforeach
-                                                    @endisset
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row mb-5 ml-3">
                             <label class="col-sm-2 col-form-label ">ID Number</label>
                             <div class="col-sm-10">
@@ -115,14 +88,14 @@
 <script>
     let customer_data;
 
-    let is_customer_id_2 = false;
+    // let is_customer_id_2 = false;
 
 
     function get_modal_search_by_full_name(value){
         // console.log(is_customer_id_2);
         console.log(value);
         if(value === ''){
-            modal_serach_by_name_results_tbody.innerHTML = ''
+            member_list.innerHTML = ''
         }
         $.ajax({
         type: 'GET',
@@ -138,7 +111,7 @@
     function get_modal_search_by_customer_id(value){
         console.log(value);
         if(value === ''){
-            modal_serach_by_name_results_tbody.innerHTML = ''
+            member_list.innerHTML = ''
         }
         $.ajax({
         type: 'GET',
@@ -155,8 +128,8 @@
 
 function set_modal_serach_by_name_results(data){
     console.log('inside setter -modal', data);
-    modal_serach_by_name_results_tbody.classList.remove('d-none')
-    modal_serach_by_name_results_tbody.innerHTML = ''
+    member_list.classList.remove('d-none')
+    member_list.innerHTML = ''
 
     customer_data = data
 
@@ -180,8 +153,8 @@ function set_modal_serach_by_name_results(data){
             </td>
         </tr>
         `
-        modal_serach_by_name_results_tbody.innerHTML += html
-
+        member_list.innerHTML += html
+console.log('done')
     })
 
 
@@ -194,43 +167,21 @@ function set_cus_details_from_modal(id){
         if(cus.id === parseInt(id)){
             console.log(cus);
 
-            if(is_customer_id_2){
-                if(document.querySelector('#customer_id_2')){
-                    customer_id_2.value = cus.customer_id
-                }
-            } else{
+
                 if(document.querySelector('#customer_id')){
                 customer_id.value = cus.customer_id
                 }
-            }
 
-            if(document.querySelector('#full_name')){
-                full_name.value = cus.full_name
-            }
-            if(document.querySelector('#branch_code')){
-                branch_code.value = cus.branch_code
-            }
 
-            if(document.querySelector('#dob')){
-                dob.value = cus.date_of_birth
-            }
-            if(document.querySelector('#share_amount')){
-                share_amount.value = cus.share_amount
-            }
-            // ---------------------------for deposites and withdrwals
-            // if(document.querySelector('#full_name')){
-            //     share_amount.value = cus.share_amount
-            // }
-            // if(document.querySelector('#customer_id')){
-            //     share_amount.value = cus.share_amount
-            // }
+            
+
             if(document.querySelector('#account_id')){
                 account_balance.value = cus.account_balance
             }
             if(document.querySelector('#account_balance')){
                 account_id.value = cus.account_number
             }
-            $('#noticeModal').modal('hide');
+            $('#memberSearchModel').modal('hide');
              return console.log(cus);
             //  console.log(full_name);
         }
