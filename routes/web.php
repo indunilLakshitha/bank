@@ -121,6 +121,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
 
         });
         Route::post('/members/search', 'MemberController@search');
+        Route::get('/members/search/data', 'MemberController@search');
         Route::post('/verification/search', 'MemberController@VerificationSearch');
         // Route::group(['middleware' => ['permission:member_add']], function () {
         //members add
@@ -470,5 +471,6 @@ Route::post('/add_external_nominies','ExternalNomimiesController@add');
 //----------------------------------------FD account----------------------------
 Route::get('/fd','FdAccountController@index');
 Route::get('/findproduct','FdAccountController@findProduct');
+Route::get('/createfd','FdAccountController@createFd');
 
 Auth::routes();

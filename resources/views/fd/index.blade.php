@@ -289,5 +289,40 @@
     }
 }
 
+
+function createFd(){
+    $.ajax({
+                type: 'POST',
+                url: '{{('/createfd')}}',
+                data: {
+                    'branch' : document.querySelector('#select-branch').value,
+                    'center' : document.querySelector('#center_name').value,
+                    'group_no' : document.querySelector('#group-select').value,
+                    'borrower_no' : document.querySelector('#uniId').value,
+                    'full_name' : document.querySelector('#full_name').value,
+                    'address' : document.querySelector('#address').value,
+                    'nic' : document.querySelector('#nic').value,
+                    'mobile_no' : document.querySelector('#mobile_no').value,
+                    'birthday' : document.querySelector('#bday').value,
+                    'gender' : document.querySelector('#gender').value,
+                    'civil_status' : document.querySelector('#civil_status').value,
+                    'related_civil_status' : document.querySelector('#related_civil_status').value,
+                    'h_g_name' : document.querySelector('#h_g_name').value,
+                    'lp_no' : document.querySelector('#lp_no').value,
+                    'h_g_number' : document.querySelector('#h_g_number').value,
+                    'remarks' : document.querySelector('#remarks').value,
+                },
+                success: function(data){
+                    console.log(data);
+
+
+                //     Swal.fire({
+                //     title: 'Borrower Added',
+                //     text: 'Successfull',
+                //     icon: 'success',
+                //     timer: 2000
+                // })
+}
+
 </script>
 @endsection

@@ -55,4 +55,9 @@ class FdAccountController extends Controller
         ");
         return response()->json($product_details);
     }
+
+    public function createFd(Return $request){
+        
+                return response()->json($request);
+    }
 }
