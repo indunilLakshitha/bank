@@ -36,11 +36,15 @@ class MemberController extends Controller
         $gender_id = $request->input('gender_id');
         $married_status_id= $request->input('married_status_id');
         $join_date= $request->input('join_date');
+        $for_verify= intval($request->input('for_verify'));
         $sql = "SELECT cbd.`id`, cbd.`customer_id`, cbd.`customer_status_id`, cbd.`full_name`, cbd.`customer_status_id`,
                 `status`, cbd.`identification_number`, IF(`member` = 1, 'Member', 'Non Member') AS 'status'
                 FROM customer_status_dates AS csd
                 LEFT JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
-                WHERE `status` != 3 ";
+                WHERE cbd.`status` != 3 AND cbd.`status` != 0";
+        if($for_verify > 0){
+            $sql .= " AND cbd.`status` = 2 ";
+        }
         if($customer_id != null && $customer_id != ''){
             $sql .= " AND cbd.`customer_id` LIKE '%".$customer_id."%'";
         }

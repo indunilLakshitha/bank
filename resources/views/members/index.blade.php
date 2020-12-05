@@ -211,6 +211,7 @@
                 "married_status_id": married_status_id,
                 "expire_date": expire_date,
                 "join_date": join_date,
+                "for_verify": 0,
             },
         }).done(function(data) {
             console.log(data);
