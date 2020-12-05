@@ -228,7 +228,7 @@
                 <th>${i.identification_number} </th>
                 <th>${i.full_name}</th>
                 <th>${i.status}</th>
-                <th><a href="http:/members/view/${i.customer_id}" class="btn btn-primary" >VIEW</a></th>
+                <th><a href="/members/view/${i.customer_id}" class="btn btn-primary" >VIEW</a></th>
             </tr>
             `
             results_tbody.innerHTML += html
