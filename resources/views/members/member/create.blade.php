@@ -28,15 +28,14 @@
                         <input type="hidden" class="form-control" id="customer_id" name="customer_id" readonly>
                     </div>
                 </div>
-                <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal"
-                href="#noticeModal"></a>
+                <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></a>
             </div>
             <div class="row">
                 <label class="col-sm-2 col-form-label">Allocated Shares</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="number" class="form-control"
-                            oninput="share_amount.value = this.value*{{$share_amount}}">
+                        <input type="number" class="form-control" name="share_amount"
+                            oninput="share_value.value = this.value*{{$share_amount}}">
                     </div>
                 </div>
             </div>
@@ -44,7 +43,7 @@
                 <label class="col-sm-2 col-form-label">Payment Amount</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="number" class="form-control" name="share_amount" id="share_amount">
+                        <input type="number" class="form-control" name="share_value" id="share_value" oninput="share_amount.value = this.value/{{$share_amount}}">
                     </div>
                 </div>
             </div>

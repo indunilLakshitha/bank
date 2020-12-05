@@ -53,33 +53,35 @@
                                             @endforeach
                                         </th>
                                         <th>
-                                            @if ($u->status == 1)
-                                                <button onclick="change_user_status({{$u->id}}, 0)"
-                                                        rel="tooltip" title="Click to change Status" class="btn btn-sm btn-success btn-round">
-                                                    <span class="mx-1">Active</span>
-                                                </button>
-                                            @elseif($u->status == 0)
-                                                <button onclick="change_user_status({{$u->id}}, 1)"
-                                                        rel="tooltip" title="Click to change Status"  class="btn btn-sm btn-danger btn-round">
-                                                    <span class="mx-1">Inactive</span>
-                                                </button>
-                                            @endif
+                                            @can('update_users')
+                                                @if ($u->status == 1)
+                                                    <button onclick="change_user_status({{$u->id}}, 0)"
+                                                            rel="tooltip" title="Click to change Status" class="btn btn-sm btn-success btn-round">
+                                                        <span class="mx-1">Active</span>
+                                                    </button>
+                                                @elseif($u->status == 0)
+                                                    <button onclick="change_user_status({{$u->id}}, 1)"
+                                                            rel="tooltip" title="Click to change Status"  class="btn btn-sm btn-danger btn-round">
+                                                        <span class="mx-1">Inactive</span>
+                                                    </button>
+                                                @endif
+                                            @endcan
                                         </th>
                                         <td class="td-actions text-right">
                                             @can('update_users')
-                                            <a href="{{url('/users/edit/'.$u->id)}}" rel="tooltip"
-                                                class="btn btn-success btn-round">
-                                                <i class="material-icons">edit</i> <span class="mx-1">Edit</span>
-                                            </a>
+                                                <a href="{{url('/users/edit/'.$u->id)}}" rel="tooltip"
+                                                    class="btn btn-success btn-round">
+                                                    <i class="material-icons">edit</i> <span class="mx-1">Edit</span>
+                                                </a>
                                             @endcan
                                             @can('delete_users')
-                                            <a href="{{url('/users/delete/'.$u->id)}}" rel="tooltip"
-                                                class="btn btn-danger btn-round"
-                                               onclick="return confirm('{{'Are you sure, You want delete User('.$u->name.')'}}')">
-                                                <i class="material-icons">close</i> <span class="mx-1">Delete</span>
-                                            </a>
+                                                <a href="{{url('/users/delete/'.$u->id)}}" rel="tooltip"
+                                                    class="btn btn-danger btn-round"
+                                                   onclick="return confirm('{{'Are you sure, You want delete User('.$u->name.')'}}')">
+                                                    <i class="material-icons">close</i> <span class="mx-1">Delete</span>
+                                                </a>
+                                            @endcan
                                         </td>
-                                        @endcan
                                     </tr>
                                     @endforeach
 

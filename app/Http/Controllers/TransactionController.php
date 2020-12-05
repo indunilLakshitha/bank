@@ -18,6 +18,12 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
+    public function __construct()
+    {
+
+        date_default_timezone_set('Asia/Colombo');
+
+    }
     //returning active acounts by name
     public function findMembers(Request $request){
 
@@ -42,8 +48,14 @@ class TransactionController extends Controller
 //  noramal withdrawal
     public function normalWithdraw(Request $request){
 
+       //---------------------------------------request parameters
+        // $request->account_id
+        // $request->customer_id
+        // $request->payment_method_id
+        // $request->transaction_type
+        // $request->transaction_value
+        
         $payment_log=$request;
-        // return response()->json($request);
 
         $general_account=AccountGeneralInformation::where('account_number',$request->account_id)->first();
         $general_account->account_balance -= $request->transaction_value;
@@ -51,6 +63,8 @@ class TransactionController extends Controller
 
         $payment_log['created_by']=Auth::user()->id;
         $payment_log['transaction_type']="WITHDRAW";
+        $payment_log['balance_value']= $general_account->account_balance;
+
         $transaction_data=TransactionData::create($payment_log->all());
 
         $payment_log['transaction_data_id']=$transaction_data->id;
@@ -64,11 +78,15 @@ class TransactionController extends Controller
         $cashie_daily_trancastion['account_number']=$request->account_id;
         $cashie_daily_trancastion['transaction_amount']=$request->transaction_value;
         $cashie_daily_trancastion['balance_value']=$general_account->account_balance;
+        $cashie_daily_trancastion['transaction_code']="testing";
         $cashie_daily_trancastion['is_enable']=1;
-        $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
         $cashie_daily_trancastion['branch_id']=Auth::user()->branh_id;
         $cashie_daily_trancastion['branch_balance']=
-        CashierDailyTransaction::where('branch_id',Auth::user()->branh_id)->sum('branch_balance')-$request->transaction_value;
+        CashierDailyTransaction::where('branch_id',Auth::user()->branh_id)
+            // ->where('user_id',Auth::user()->id)
+            ->where('transaction_date',Carbon::today()->toDateString())
+            ->sum('transaction_amount')+$request->transaction_value;
+        $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
 
         CashierDailyTransaction::create($cashie_daily_trancastion->all());
 
@@ -76,22 +94,40 @@ class TransactionController extends Controller
         $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
         $cash_in_hand_ledger['customer_id']=$transaction_data->id;
         $cash_in_hand_ledger['acccount_id']=$request->account_id;
+        $cash_in_hand_ledger['user_id']=Auth::user()->id;
         $cash_in_hand_ledger['transaction_type']="WITHDRAW";
         $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
-        $cash_in_hand_ledger['balance_value']=$general_account->account_balance;
+        $deposite_total=cash_in_hand_ledger::where('transaction_type','DEPOSITE')
+                                        ->where('user_id',Auth::user()->id)
+                                        ->sum('transaction_value');
+        $withdraw_total=cash_in_hand_ledger::where('transaction_type','WITHDRAW')
+                                        ->where('user_id',Auth::user()->id)
+                                        ->sum('transaction_value');
+        $cash_in_hand_ledger['balance_amount']=$deposite_total-$withdraw_total;
         $cash_in_hand_ledger['is_enable']=1;
 
-         cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+        cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+        return response()->json($succsess);
+
+        $saving_deposit_base_ledger=$request;
+        $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
+        $saving_deposit_base_ledger['acccount_id']=$request->account_id;
+        $saving_deposit_base_ledger['transaction_type']="WITHDRAW";
+        $saving_deposit_base_ledger['transaction_value']=$request->transaction_value;
+        $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
+        $saving_deposit_base_ledger['is_enable']=1;
+        $saving_deposit_base_ledger['user_id']=Auth::user()->id;
+        $saving_deposit_base_ledger['transaction_date']=Carbon::today()->toDateString();
+
+        $saving_deposit_base_ledger['branch_balance']=
+        saving_deposit_base_ledger::where('user_id',Auth::user()->id)
+            // ->where('user_id',Auth::user()->id)
+            ->where('transaction_date',Carbon::today()->toDateString())
+            ->sum('transaction_value')+$request->transaction_value;
+        // $saving_deposit_base_ledger['transaction_date']=Carbon::today()->toDateString();
+        saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
 
 
-         $saving_deposit_base_ledger=$request;
-         $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
-         $saving_deposit_base_ledger['acccount_id']=$request->account_id;
-         $saving_deposit_base_ledger['transaction_type']="WITHDRAW";
-         $saving_deposit_base_ledger['transaction_value']=$request->transaction_value;
-         $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
-         $saving_deposit_base_ledger['is_enable']=1;
-         saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
         return response()->json($succsess);
 
 
@@ -100,8 +136,15 @@ class TransactionController extends Controller
     // normal deposites
     public function normalDeposite(Request $request){
 
+
+
+//---------------------------------------request parameters
+        // $request->account_id
+        // $request->customer_id
+        // $request->payment_method_id
+        // $request->transaction_type
+        // $request->transaction_value
         $payment_log=$request;
-        // return response()->json($request);
 
         $general_account=AccountGeneralInformation::where('account_number',$request->account_id)->first();
         $general_account->account_balance += $request->transaction_value;
@@ -109,6 +152,7 @@ class TransactionController extends Controller
 
         $payment_log['created_by']=Auth::user()->id;
         $payment_log['transaction_type']="DEPOSITE";
+        $payment_log['balance_value']= $general_account->account_balance;
 
         $transaction_data=TransactionData::create($payment_log->all());
 
@@ -123,10 +167,14 @@ class TransactionController extends Controller
         $cashie_daily_trancastion['account_number']=$request->account_id;
         $cashie_daily_trancastion['transaction_amount']=$request->transaction_value;
         $cashie_daily_trancastion['balance_value']=$general_account->account_balance;
+        $cashie_daily_trancastion['transaction_code']="testing";
         $cashie_daily_trancastion['is_enable']=1;
         $cashie_daily_trancastion['branch_id']=Auth::user()->branh_id;
         $cashie_daily_trancastion['branch_balance']=
-                CashierDailyTransaction::where('branch_id',Auth::user()->branh_id)->sum('branch_balance')+$request->transaction_value;
+        CashierDailyTransaction::where('branch_id',Auth::user()->branh_id)
+            // ->where('user_id',Auth::user()->id)
+            ->where('transaction_date',Carbon::today()->toDateString())
+            ->sum('transaction_amount')+$request->transaction_value;
         $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
 
         CashierDailyTransaction::create($cashie_daily_trancastion->all());
@@ -135,22 +183,34 @@ class TransactionController extends Controller
         $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
         $cash_in_hand_ledger['customer_id']=$transaction_data->id;
         $cash_in_hand_ledger['acccount_id']=$request->account_id;
+        $cash_in_hand_ledger['user_id']=Auth::user()->id;
         $cash_in_hand_ledger['transaction_type']="DEPOSITE";
         $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
         $cash_in_hand_ledger['balance_value']=$general_account->account_balance;
         $cash_in_hand_ledger['is_enable']=1;
         // $cash_in_hand_ledger['crated_by']=Auth::user()->id;
 
-         cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+        cash_in_hand_ledger::create($cash_in_hand_ledger->all());
 
-         $saving_deposit_base_ledger=$request;
-         $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
-         $saving_deposit_base_ledger['acccount_id']=$request->account_id;
-         $saving_deposit_base_ledger['transaction_type']="DEPOSITE";
-         $saving_deposit_base_ledger['transaction_value']=$request->transaction_value;
-         $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
-         $saving_deposit_base_ledger['is_enable']=1;
-         saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
+        $saving_deposit_base_ledger=$request;
+        $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
+        $saving_deposit_base_ledger['acccount_id']=$request->account_id;
+        $saving_deposit_base_ledger['transaction_type']="DEPOSITE";
+        $saving_deposit_base_ledger['transaction_value']=$request->transaction_value;
+        $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
+        $saving_deposit_base_ledger['is_enable']=1;
+        $saving_deposit_base_ledger['user_id']=Auth::user()->id;
+        $saving_deposit_base_ledger['transaction_date']=Carbon::today()->toDateString();
+
+        $saving_deposit_base_ledger['branch_balance']=
+        saving_deposit_base_ledger::where('user_id',Auth::user()->id)
+            // ->where('user_id',Auth::user()->id)
+            ->where('transaction_date',Carbon::today()->toDateString())
+            ->sum('transaction_value')+$request->transaction_value;
+        // $saving_deposit_base_ledger['transaction_date']=Carbon::today()->toDateString();
+        saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
+
+
         return response()->json($succsess);
 
 
@@ -158,16 +218,23 @@ class TransactionController extends Controller
     }
 
     public function transfer_shares(Request $request){
-        $seller = Member::where('customer_id', $request->seller_id)->first();
-        $seller->share_amount -= $request->n_of_shares_to_transfer;
-        $seller->save();
+        $seller=Member::where('customer_id',$request->seller_id)->first();
+        if($seller->share_amount>$request->n_of_shares_to_transfer){
 
+            $buyer=Member::where('customer_id',$request->buyer_id)->first();
+            $seller->share_amount-= $request->n_of_shares_to_transfer;
+            $buyer->share_amount += $request->n_of_shares_to_transfer;
+            $seller->save();
+            $buyer->save();
+            $response['seller_balance']=$seller->share_amount;
+            $response['buyer_balance']=$buyer->share_amount;
+            $response['msg']="Successfully Transfered";
+            return response()->json($response);
 
-        $buyer = Member::where('customer_id', $request->buyer_id)->first();
-        $buyer->share_amount += $request->n_of_shares_to_transfer;
-        $buyer->save();
-
-        return response()->json($request);
+        }else{
+            $response['msg']="Insufficient Share Balance";
+            return response()->json($response);
+        }
 
 
     }

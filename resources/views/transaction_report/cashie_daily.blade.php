@@ -115,6 +115,13 @@
                                                 <td></td>
                                             <th><?php echo number_format( $total_w , 2 , '.' , ',' ) ?></th>
                                             </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>අවසන් එකතුව</td>
+                                                <td></td>
+                                            <th><?php echo number_format( $total_d-$total_w , 2 , '.' , ',' ) ?></th>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -154,7 +161,7 @@
                                             <th></th>
                                         </thead>
                                         <tbody id="results_tbody">
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>

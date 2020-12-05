@@ -22,7 +22,7 @@
 
                         </div>
                     </div>
-                    <button class="btn fa fa-search btn-info btn"> &nbspFind</button>
+                    {{-- <button class="btn fa fa-search btn-info btn"> &nbspFind</button> --}}
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Account</label>
@@ -31,7 +31,8 @@
                             <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)">
                         </div>
                     </div>
-                    <button class="btn fa fa-search btn-info btn-sm"></button>
+                    <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal"
+                    href="#noticeModal"></a>
                 </div>
                 <div class="row">
                     <div class="col-sm-8 " style="margin-left: 90px">
@@ -71,7 +72,21 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="full_name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Customer ID</label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
                             <input type="text" class="form-control" name="customer_id" id="customer_id">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Account Number</label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
                             <input type="text" class="form-control" name="account_id" id="account_id">
                         </div>
                     </div>
@@ -162,7 +177,8 @@
                     </div>
                 </div>
                 <div class="ml-3">
-                    <button type="button" onclick="load_saving_details(customer_id.value)" href="" class="btn btn-warning"> Load Saving Details</button>
+                    <button type="button" onclick="load_saving_details(customer_id.value)" href=""
+                        class="btn btn-warning"> Load Saving Details</button>
                 </div>
                 <div>
                     <div class="material-datatables">
@@ -193,7 +209,8 @@
         </div>
     </div>
 </div>
-
+{{-- wild card model------------------------------------------------------------------ --}}
+@include('layouts.search_modal')
 {{-- </div>
 </div>
 </div> --}}
@@ -240,6 +257,7 @@
                 // console.log(amount)
                 // console.log(customer_id)
                 // console.log(account_id)
+                if(amount.value < account_balance.value){
                $.ajax({
                    type: 'GET',
                    url : '{{('/normalwithdraw')}}',
@@ -251,11 +269,14 @@
                        'transaction_type': 'on_test',
                     },
                     success: function(data){
-console.log(data)
+                     console.log(data)
                         account_balance.value=data.balance_amount
                         return Swal.fire('Withdrawal Successful')
                     }
                })
+            }else{
+                Swal.fire("Insufficient Balance")
+            }
            }
 
            function showCustomers(data){

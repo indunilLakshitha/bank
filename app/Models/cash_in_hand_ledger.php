@@ -17,5 +17,6 @@ class cash_in_hand_ledger extends Model
         'is_enable',
         'created_at',
         'updated_at',
+        'user_id',
     ];
 }

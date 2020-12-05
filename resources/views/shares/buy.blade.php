@@ -62,7 +62,7 @@
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Total Share Value Rs.<font color="red">*</font>
-                                </label>
+                            </label>
                             <div class="col-lg-3 col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <input type="text" id="share_cost" name="total_share_cost" class="form-control">
@@ -109,12 +109,12 @@
                 console.log(data);
                 share_amount.value=data.share_amount
                 swal({
-        title: "Success!",
-        text: "Total Shares are "+data.share_amount,
-        buttonsStyling: false,
-        confirmButtonClass: "btn btn-success",
-        type: "success"
-      }).catch(swal.noop)
+                        title: "Success!",
+                        text: "Total Shares are "+data.share_amount,
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-success",
+                        type: "success"
+                    }).catch(swal.noop)
 
             }
         })

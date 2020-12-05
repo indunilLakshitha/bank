@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="container-fluid">
-      {{-- <nav class="float-left">
+        {{-- <nav class="float-left">
         <ul>
           {{-- <li>
             <a href="https://www.creative-tim.com/">
@@ -24,14 +24,14 @@
           </li>
         </ul>
       </nav> --}}
-      <div class="copyright float-right" style="display: none;">
-        &copy;
-        <script>
-          document.write(new Date().getFullYear())
-        </script>, Autonomous Factory
-      </div>
+        <div class="copyright float-right" style="display: none;">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>, Autonomous Factory
+        </div>
     </div>
-  </footer>
+</footer>
 </div>
 </div>
 
@@ -79,9 +79,66 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src={{asset("mat_ui/js/material-dashboard.js?v=2.1.2")}} type="text/javascript"></script>
 <script src={{asset("mat_ui/demo/demo.js")}}></script>
+<script>
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    function validate_nic(nic, input){  // (this.value, this)
+            var pattern = /^([0-9]{9}[X|V]|[0-9]{12})$/gm
+
+            if(   nic.length == 10){
+                nic = Array.from(nic)
+
+                if(nic[9] == 'v'){
+                    nic[9] = 'V'
+                }
+                if(nic[9] == 'x'){
+                    nic[9] = 'X'
+                }
+                nic = nic.join('')
+                input.classList.remove('bg-warning')
+                console.log(nic);
+            }
+            nic.match(pattern) ? input.classList.remove('bg-warning') : input.classList.add('bg-warning')
+            input.value = nic
+        }
+
+         // ----------- CHECK NIC
+         function check_nic(nic,messageId){
+            messageId.classList.add('d-none')
+            sub_btn.disabled = false
+            $.ajax({
+                type: 'POST',
+                url: '{{('/checknic')}}',
+                data: {'nic': nic} ,
+                success: function(data){
+                    console.log(data);
+                    if(data === 'NIC already registered' ){
+                        messageId.classList.remove('d-none')
+                        sub_btn.disabled = true
+                    }
+                }
+            })
+        }
+
+         // ----------- validate contact no
+         function validate_contact(no,messageId){
+            messageId.classList.add('d-none')
+            sub_btn.disabled = false
+
+                    if(no.length !=10){
+                        messageId.classList.remove('d-none')
+                        sub_btn.disabled = true
+                    }
+        }
+
+</script>
+
 
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
   $().ready(function() {
     $sidebar = $('.sidebar');
 
@@ -252,7 +309,7 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
   // Javascript method's body can be found in assets/js/demos.js
   md.initDashboardPageCharts();
 
@@ -298,12 +355,11 @@ $(document).ready(function() {
         alert('You clicked on Like button');
       });
     });
-  </script>
+</script>
 
 {{-- auto cap --}}
 <script>
-
- function toCap(text, eleId){
+    function toCap(text, eleId){
 
      if(text === ''){
          return
@@ -324,7 +380,6 @@ $(document).ready(function() {
 
 {{-- open savings js --}}
 <script>
-
     function get_other_holder(identification_type_id, identification_number, other_holder_name){
         // console.log(other_holder_name);
         if(other_holder_name === ''){
@@ -390,6 +445,8 @@ $(document).ready(function() {
             data: {identification_type_id, identification_number},
             success: function(data){
                 console.log(data)
+                $('#noticeModal').modal('hide');
+
                 return set_cus_details(data)
             },
             error: function(data){

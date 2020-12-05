@@ -16,6 +16,9 @@ class saving_deposit_base_ledger extends Model
         'transaction_value',
         'balance_amount',
         'is_enable',
+        'branch_balance',
+        'user_id',
+        'transaction_date',
 
     ];
 }

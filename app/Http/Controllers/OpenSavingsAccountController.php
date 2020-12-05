@@ -103,9 +103,8 @@ class OpenSavingsAccountController extends Controller
     # MUST HAVE request->text  ---------------------------------------------------------
     public function search_by_full_name(Request $request)
     {
-        // return $request;
 
-        // SELECT customer_basic_data.*,branches.*,customer_status_dates.*,customer_basic_data.customer_id as org_id FROM customer_basic_data
+        // return response()->json($request);
 
         $branch_id = Auth::user()->branh_id;
         $data = DB::select("
@@ -117,12 +116,17 @@ class OpenSavingsAccountController extends Controller
             customer_basic_data.non_member,
             customer_status_dates.date_of_birth,
             branches.branch_code,
-            members.share_amount
+            members.share_amount,
+            account_general_information.account_balance,
+            account_general_information.account_number
 
         FROM customer_basic_data
 
         LEFT JOIN branches
         ON branches.id = customer_basic_data.branch_id
+
+        LEFT JOIN account_general_information
+        ON account_general_information.customer_id = customer_basic_data.customer_id
 
         LEFT JOIN customer_status_dates
         ON customer_status_dates.customer_id = customer_basic_data.customer_id
@@ -143,8 +147,7 @@ class OpenSavingsAccountController extends Controller
     {
         // return $request;
         $branch_id = Auth::user()->branh_id;
-        $data = DB::select("
-        SELECT
+        $sql = "SELECT DISTINCT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
             customer_basic_data.id,
@@ -152,24 +155,17 @@ class OpenSavingsAccountController extends Controller
             customer_basic_data.non_member,
             customer_status_dates.date_of_birth,
             branches.branch_code,
-            members.share_amount
-
+            members.share_amount,
+            account_general_information.account_balance,
+            account_general_information.account_number
         FROM customer_basic_data
-
-        LEFT JOIN branches
-        ON branches.id = customer_basic_data.branch_id
-
-        LEFT JOIN customer_status_dates
-        ON customer_status_dates.customer_id = customer_basic_data.customer_id
-
-        LEFT JOIN members
-        ON members.customer_id = customer_basic_data.customer_id
-
-        WHERE customer_basic_data.customer_id LIKE '%$request->text%'
-        AND customer_basic_data.is_enable = 1
-        AND customer_basic_data.status = 1
-        AND customer_basic_data.status = '$branch_id'
-        ");
+        LEFT JOIN branches ON branches.id = customer_basic_data.branch_id
+        LEFT JOIN account_general_information ON account_general_information.customer_id = customer_basic_data.customer_id
+        LEFT JOIN customer_status_dates ON customer_status_dates.customer_id = customer_basic_data.customer_id
+        LEFT JOIN members ON members.customer_id = customer_basic_data.customer_id
+        WHERE customer_basic_data.customer_id LIKE '%".$request->text."%' AND customer_basic_data.is_enable = 1
+        AND customer_basic_data.status != 3 AND customer_basic_data.branch_id = '".$branch_id."'";
+        $data = DB::select ($sql);
 
         return response()->json($data);
     }
@@ -483,7 +479,6 @@ class OpenSavingsAccountController extends Controller
             return view('savings.7_documents', compact('docs', 'account_id', 'customer_id', 'prod_id', 'docum','guard','nomin','acc_no'));
 
         }else if($nomin = $request->nomin ==1){
-
             $account_id = $request->account_id;
             $customer_id = $request->customer_id;
             $prod_id = $request->product_data_id;
@@ -492,9 +487,6 @@ class OpenSavingsAccountController extends Controller
             $docum = $request->docum;
             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
             return view('savings.9_nominee_instruction', compact('account_id', 'customer_id', 'prod_id',  'docum','guard','nomin','acc_no'));
-
-
-
         }else {
 
         }

@@ -12,6 +12,7 @@ use App\Models\CustomerStatusDates;
 use App\Models\PaymentLog;
 use App\Models\saving_deposit_base_ledger;
 use App\Models\TransactionData;
+use App\TransactionShare;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -20,52 +21,57 @@ use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Colombo');
+    }
     public function search(Request $request)
     {
         // return $request;
-        if(
-            $request->customer_id == null &&
-            $request->married_status_id == null &&
-            $request->religion_data_id == null &&
-            $request->expire_date == null &&
-            $request->race_id == null &&
-            $request->full_name == null &&
-            $request->identification_type_id == null &&
-            $request->identification_number == null
-        ){
-            $results = DB::select("
-            SELECT * FROM customer_status_dates
-
-            LEFT JOIN customer_basic_data
-            ON customer_basic_data.customer_id = customer_status_dates.customer_id
-
-            LEFT JOIN iedentification_types
-            ON iedentification_types.id = customer_basic_data.identification_type_id
-
-            ");
-        } else{
-
-            $results = DB::select("
-            SELECT * FROM customer_status_dates
-
-            LEFT JOIN customer_basic_data
-            ON customer_basic_data.customer_id = customer_status_dates.customer_id
-
-            LEFT JOIN iedentification_types
-            ON iedentification_types.id = customer_basic_data.identification_type_id
-
-            WHERE customer_status_dates.customer_id LIKE '%$request->customer_id%'
-            AND customer_status_dates.married_status_id LIKE '%$request->married_status_id%'
-            AND  customer_status_dates.religion_data_id LIKE '%$request->religion_data_id%'
-            AND  customer_status_dates.expire_date LIKE '%$request->expire_date%'
-            AND  customer_status_dates.race_id LIKE '%$request->race_id%'
-            AND customer_basic_data.full_name LIKE '%$request->full_name%'
-            AND customer_basic_data.identification_type_id LIKE '%$request->identification_type_id%'
-            AND customer_basic_data.identification_number LIKE '%$request->identification_number%'
-
-            ");
-
+        //dd($request->input());
+        $customer_id = $request->input('customer_id');
+        $identification_number = $request->input('identification_number');
+        $full_name = $request->input('full_name');
+        $religion_data_id = $request->input('religion_data_id');
+        $gender_id = $request->input('gender_id');
+        $married_status_id= $request->input('married_status_id');
+        $join_date= $request->input('join_date');
+        $for_verify= intval($request->input('for_verify'));
+        $sql = "SELECT cbd.`id`, cbd.`customer_id`, cbd.`customer_status_id`, cbd.`full_name`, cbd.`customer_status_id`,
+                `status`, cbd.`identification_number`, IF(`member` = 1, 'Member', 'Non Member') AS 'status'
+                FROM customer_status_dates AS csd
+                LEFT JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
+                WHERE cbd.`status` != 3 AND cbd.`status` != 0";
+        if($for_verify > 0){
+            $sql .= " AND cbd.`status` = 2 ";
         }
+        if($customer_id != null && $customer_id != ''){
+            $sql .= " AND cbd.`customer_id` LIKE '%".$customer_id."%'";
+        }
+        if($identification_number != null && $identification_number != ''){
+            $sql .= " AND cbd.`identification_number` LIKE '%".$identification_number."%'";
+        }
+        if($full_name != null && $full_name != ''){
+            $sql .= " AND cbd.`full_name` LIKE '%".$full_name."%'";
+        }
+        if($religion_data_id != null && $religion_data_id != ''){
+            $sql .= " AND csd.`religion_data_id` LIKE '%".$religion_data_id."%'";
+        }
+        if($gender_id != null && $gender_id != ''){
+            $sql .= " AND csd.`gender_id` LIKE '%".$gender_id."%'";
+        }
+        if($married_status_id != null && $married_status_id != ''){
+            $sql .= " AND csd.`married_status_id` LIKE '%".$married_status_id."%'";
+        }
+        if($join_date != null && $join_date != ''){
+            $sql .= " AND csd.`join_date` LIKE '%".$join_date."%'";
+        }
+        $user_data = Auth::user();
+        if(intval($user_data->roles[0]->id) != 1) {
+            $branch_id = $user_data->branh_id;
+            $sql .= " AND cbd.branch_id = ". $branch_id;
+        }
+        $results = DB::select($sql);
         return response()->json($results);
 
     }
@@ -95,12 +101,16 @@ class MemberController extends Controller
 
     public function member_creation(Request $request){
 
-        // return $request;
-        // return response()->json($request);
+        //-------------------------------------request parameters
+        // return $request->customer_id;
+        // return $request->share_amount/share count;
+        // return $request->share_value;
+        return response()->json('Member created');
 
-            $already_in = Member::where('customer_id', $request->customer_id)->first();
 
-            if($already_in){
+        $already_in = Member::where('customer_id', $request->customer_id)->first();
+
+        if($already_in){
                 return response()->json('Member already exists');
             }
 
@@ -111,7 +121,7 @@ class MemberController extends Controller
             $branch_id->non_member=0;
             $branch_id->member=1;
             $branch_id->save();
-            $mem->member_number= 'W'.Branch::find($branch_id->branch_id)->branch_code.$request->customer_id;
+            $mem->member_number= 'W-'.$request->customer_id;
 
             $mem->save();
 
@@ -119,9 +129,43 @@ class MemberController extends Controller
             $payment_log=$request;
             $payment_log['created_by']=Auth::user()->id;
             $payment_log['transaction_type']="DEPOSITE";
-            $payment_log['transaction_value']=$request->share_amount;
+            $payment_log['transaction_details']="Shares buy in member creation";
+            $payment_log['transaction_value']=$request->share_value;
+            $payment_log['transaction_code']="ST";
             $payment_log['payment_method_id']=1;
+            // $deposits_today=TransactionData::where()
             $transaction_data=TransactionData::create($payment_log->all());
+
+            $transaction_shares=$request;
+            $transaction_shares['member_id']=$mem->member_number;
+            $transaction_shares['transaction_type']="DEPOSITE";
+            $transaction_shares['transaction_code']="ST";
+            $transaction_shares['transaction_details']=$payment_log['transaction_details'];
+            $transaction_shares['customer_id']=$branch_id->customer_id;
+            $transaction_shares['branch_id']=$branch_id->branch_id;
+            $transaction_shares['is_enable']=1;
+            $transaction_shares['created_by']=Auth::user()->id;
+            $transaction_shares['transaction_value']= $request->share_amount;
+            $transaction_shares['balance_value']=$request->share_amount;
+            TransactionShare::create($transaction_shares->all());
+
+
+        $cash_in_hand_ledger=$request;
+        $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
+        $cash_in_hand_ledger['customer_id']=$request->customer_id;
+        $cash_in_hand_ledger['user_id']=Auth::user()->id;
+        $cash_in_hand_ledger['transaction_type']="DEPOSITE";
+        $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
+        $deposite_total=cash_in_hand_ledger::where('transaction_type','DEPOSITE')
+                                        ->where('user_id',Auth::user()->id)
+                                        ->sum('transaction_value');
+        $withdraw_total=cash_in_hand_ledger::where('transaction_type','WITHDRAW')
+                                        ->where('user_id',Auth::user()->id)
+                                        ->sum('transaction_value');
+        $cash_in_hand_ledger['balance_amount']=$deposite_total-$withdraw_total+$request->transaction_value;
+        $cash_in_hand_ledger['is_enable']=1;
+
+        cash_in_hand_ledger::create($cash_in_hand_ledger->all());
 
             $payment_log['transaction_data_id']=$transaction_data->id;
             // $payment_log['balance_amount']=$transaction_data->account_balance;
@@ -142,16 +186,7 @@ class MemberController extends Controller
 
             CashierDailyTransaction::create($cashie_daily_trancastion->all());
 
-            $cash_in_hand_ledger=$request;
-            $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
-            $cash_in_hand_ledger['customer_id']=$transaction_data->id;
-            $cash_in_hand_ledger['acccount_id']=$request->account_id;
-            $cash_in_hand_ledger['transaction_type']="DEPOSITE";
-            $cash_in_hand_ledger['transaction_value']=$request->share_amount;
-            // $cash_in_hand_ledger['balance_value']=$general_account->account_balance;
-            $cash_in_hand_ledger['is_enable']=1;
 
-             cash_in_hand_ledger::create($cash_in_hand_ledger->all());
 
 
              $saving_deposit_base_ledger=$request;
@@ -179,5 +214,7 @@ class MemberController extends Controller
 
         return response()->json('Nominee Removed');
     }
+
+
 
 }
