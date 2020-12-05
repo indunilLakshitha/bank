@@ -145,7 +145,7 @@
                                 <tbody id="results_tbody">
                                     <?php
                                     $sql = "SELECT cbd.`id`, cbd.`customer_id`, cbd.`customer_status_id`, cbd.`full_name`, cbd.`customer_status_id`,
-                                            `status`, cbd.`identification_number`, IF(`non_member` = 1, 'Non Member', 'Member') AS 'status'
+                                            `status`, cbd.`identification_number`, IF(`member` = 1, 'Member', 'Non Member') AS 'status'
                                             FROM customer_status_dates AS csd
                                             LEFT JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
                                             LEFT JOIN iedentification_types AS it ON it.id = cbd.identification_type_id
