@@ -131,7 +131,6 @@ function set_modal_serach_by_name_results(data){
     member_list.classList.remove('d-none')
     member_list.innerHTML = ''
 
-    customer_data = data
 
     data.forEach(i => {
 
@@ -173,7 +172,7 @@ function set_cus_details_from_modal(id){
                 }
 
 
-            
+
 
             if(document.querySelector('#account_id')){
                 account_balance.value = cus.account_balance
