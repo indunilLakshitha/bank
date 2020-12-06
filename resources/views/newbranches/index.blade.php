@@ -198,8 +198,7 @@
                                                 class="btn-sm btn-info btn-round">VIEW</a>
                                             <a href="" rel="tooltip" class="btn-sm btn-primary btn-round"><i
                                                     class="material-icons">edit</i></a>
-                                            <a href="" rel="tooltip" class="btn-sm btn-primary btn-round"><i
-                                                    class="material-icons">ENABLE</i></a>
+                                            <a href="" rel="tooltip" class="btn-sm btn-primary btn-round">ENABLE</a>
                                         </th>
                                     </tr>
                                     @endforeach

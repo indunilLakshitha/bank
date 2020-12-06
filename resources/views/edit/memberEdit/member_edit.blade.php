@@ -360,7 +360,11 @@
 
                         @endisset
                         <br>
+                        <div class="col-sm-8">
+                             <div class="form-group">
                         <button type="submit"  class="btn btn-primary float-right " >SAVE</button>
+                             </div>
+                        </div>
                          </form>
                         </div>
                     </div>
@@ -472,7 +476,9 @@
 
                         @endisset
                          <br>
+                        <div class="col-sm-7">
                         <button type="submit"  class="btn btn-primary float-right " >SAVE</button>
+                        </div>
                     </form>
                     {{-- Ends Private 1 --}}
                 </div>
@@ -616,7 +622,9 @@
 
                          @endisset
                          <br>
+                        <div class="col-sm-7">
                         <button type="submit"  class="btn btn-primary float-right " >SAVE</button>
+                        </div>
                     </form>
                     {{-- Ends Private 1 --}}
                </div>
@@ -691,7 +699,9 @@
                         </div>
                         @endisset
                          <br>
+                         <div class="col-sm-7">
                         <button type="submit"  class="btn btn-primary float-right " >SAVE</button>
+                        </div>
                     </form>
                  </div>
             </div>

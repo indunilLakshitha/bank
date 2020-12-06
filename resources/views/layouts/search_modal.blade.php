@@ -59,7 +59,7 @@
                                         <div class="form-group">
                                             <input oninput="
                                             // toCap(this.value, this.id),
-                                            get_modal_search_by_customer_id(this.value)" type="text"
+                                            get_modal_search_by_nic_id(this.value)" type="text"
                                                 class="form-control js-example-data-ajax"
                                                 placeholder="Enter Identification Number">
                                         </div>
@@ -89,55 +89,56 @@
 
     function get_modal_search_by_full_name(value){
         // console.log(is_customer_id_2);
-        console.log(value);
+        //console.log(value);
         if(value === ''){
             modal_serach_by_name_results_tbody.innerHTML = ''
-        }
-        $.ajax({
-        type: 'GET',
-        url: '{{('/search_by_full_name')}}',
-        data: {text:value} ,
-        success: function(data){
-            console.log(data);
-            if(document.querySelector('#meth')){
-                type = meth.value
-            }
-            // return set_modal_serach_by_name_results(data)
-            if(type=='share_transfer'){
-                console.log('share');
-                return set_modal_serach_by_name_results_for_share(data)
-            }else{
-
-                console.log(' no shares');
-                return set_modal_serach_by_name_results(data)
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '{{('/search_by_full_name')}}',
+                data: {text:value} ,
+                success: function(data){
+                    //console.log(data);
+                    return set_modal_serach_by_name_results(data)
                 }
+            })
         }
-    })
+
+
     }
 
     function get_modal_search_by_customer_id(value){
+        //console.log(value);
+        if(value === ''){
+            modal_serach_by_name_results_tbody.innerHTML = ''
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '{{('/search_by_customer_id')}}',
+                data: {text:value} ,
+                success: function(data){
+                    //console.log(data);
+                    return set_modal_serach_by_name_results(data)
+                }
+            })
+        }
+    }
+
+    function get_modal_search_by_nic_id(value){
         console.log(value);
         if(value === ''){
             modal_serach_by_name_results_tbody.innerHTML = ''
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '{{('/search_by_nic_id')}}',
+                data: {text:value} ,
+                success: function(data){
+                    //console.log(data);
+                    return set_modal_serach_by_name_results(data)
+                }
+            })
         }
-        $.ajax({
-        type: 'GET',
-        url: '{{('/search_by_customer_id')}}',
-        data: {text:value} ,
-        success: function(data){
-            console.log(data);
-            if(document.querySelector('#meth')){
-                type = meth.value
-            }
-            // if(type=='share_transfer'){
-
-                // return set_modal_serach_by_name_results_for_share(data)
-            // }else{
-
-                // return set_modal_serach_by_name_results(data)
-            // }
-        }
-    })
     }
 
 
@@ -191,6 +192,7 @@ function set_modal_serach_by_name_results_for_share(data){
             <td>${i.customer_id}</td>
             <td>${i.full_name}</td>
             <td>${i.identification_number}</td>
+            <td>${i.account_number}</td>
             <td>${member_status}</td>
             <td>
                 <button type="button"

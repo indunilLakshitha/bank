@@ -15,7 +15,7 @@
                     <label class="col-sm-2 col-form-label">CIF</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="customer_id">
+                            <input type="text" class="form-control" name="customer_id" id="customer_id">
                             <span class="bmd-help">Use Member Code To Search</span>
                         </div>
                     </div>
@@ -24,41 +24,27 @@
                     <label class="col-sm-2 col-form-label">Client Name</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="full_name">
+                            <input type="text" class="form-control" name="full_name" id="full_name">
+                            <span class="bmd-help">Use Client Full Name To Search</span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label">Identification Type</label>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-6 col-sm-3">
-                            @php
-                            $idtypes = Illuminate\Support\Facades\DB::table('iedentification_types')->get()
-                            @endphp
-                            <select name="oh_identification_type_id" id="oh_identification_type_id"
-                                class="form-control">
-                                <option value="">Select</option>
-                                @isset($idtypes)
-                                @foreach ($idtypes as $idtype)
-                                <option value="{{$idtype->id}}">
-                                    {{$idtype->identification_type}}
-                                    @endforeach
-                                    @endisset
-                            </select>
-                        </div>
-                        <div class="col-lg-5 col-md-6 col-sm-3 ml-5">
-                            <input type="text" class="form-control" name="identification_number"
-                                placeholder="Enter Identification No">
-
+                    <label class="col-sm-2 col-form-label">Identification Number</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="identification_number" id="identification_number">
+                            <span class="bmd-help">Use Client ID Number To Search</span>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Account No</label>
-                    <div class="col-lg-5 col-md-6 col-sm-3">
-                        <input type="text" class="form-control" name="account_number">
-
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="account_number" id="account_number">
+                            <span class="bmd-help">Use Client Account Number To Search</span>
+                        </div>
                     </div>
                 </div>
 
@@ -68,8 +54,6 @@
                     <div class="col-md-6">
                         <button onclick="search()" class="btn btn-fill btn-rose">SEARCH</button>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -104,7 +88,7 @@
                                 <tr>
                                     <td>{{$perm->account_number}}</td>
                                     <td>{{$perm->customer_id}}</td>
-                                    <td>{{$perm->name_in_use}}</td>
+                                    <td>{{$perm->full_name}}</td>
                                     <td>{{$perm->identification_number}}</td>
                                     <td><a href="{{url('/accountdetails/'.$perm->customer_id)}}" class="btn btn-sm btn-info">View</a></td>
                                     <td><a href="{{url('/customer_details/'.$perm->customer_id)}}" class="btn btn-sm btn-info">View</a></td>
@@ -132,17 +116,25 @@
 
 <script>
     function search(){
-    $.ajax({
-        type: 'POST',
-        url: '{{('/verification/search')}}',
-        data: new FormData(form) ,
-        processData: false,
-        contentType: false,
-        success: function(data){
-            console.log(data);
-            return show_data(data)
-        }
-    })
+        let customer_id = $("#customer_id").val();
+        let identification_number = $("#identification_number").val();
+        let full_name = $("#full_name").val();
+        let account_number = $("#account_number").val();
+        //alert(religion_data_id);
+        $.ajax({
+            type: 'POST',
+            url: '{{('/verification/search')}}',
+            data: {
+                "customer_id": customer_id,
+                "identification_number": identification_number,
+                "full_name": full_name,
+                "account_number": account_number,
+                "for_verify": 1,
+            },
+        }).done(function(data) {
+            //console.log(data);
+            return show_data(data);
+        });
     }
 
 
@@ -158,20 +150,18 @@
                 <td>${i.account_number}</td>
                 <td>${i.customer_id}</td>
                 <td>${i.full_name}</td>
-                <td>${i.identification_type}</td>
                 <td>${i.identification_number}</td>
-                <td></td>
-                <td><a href="/accountdetails/${i.customer_id}" class="btn btn-sm btn-primary">View</a></td>
-                <td><a href="/customer_details/${i.customer_id}" class="btn btn-sm btn-primary">View</a></td>
+                <td><a href="/accountdetails/${i.customer_id}" class="btn btn-sm btn-info">View</a></td>
+                <td><a href="/customer_details/${i.customer_id}" class="btn btn-sm btn-info">View</a></td>
                 <td>
                 <a href="/signature_verification/${i.account_number}" class="btn btn-sm btn-primary">Verify</a>
                 </td>
                 <td><a href="/document_verification/${i.account_number}" class="btn btn-sm btn-primary">Verify</a></td>
                 <td>
                     <button class="btn btn-sm btn-primary " onclick="check_approve('${i.account_number}')" >Approve</button>
-                    <button class="btn btn-sm btn-primary">Reject</button>
+                    <button class="btn btn-sm btn-danger">Reject</button>
                 </td>
-                
+
             </tr>
             `
             results_tbody.innerHTML += html

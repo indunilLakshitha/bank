@@ -654,7 +654,6 @@
                         </thead>
                         <tbody id="bene_body">
                             @isset($view_6)
-
                             @foreach($view_6 as $view_6_1)
                             <tr>
                                 <td>{{$view_6_1->asset_description}} </td>

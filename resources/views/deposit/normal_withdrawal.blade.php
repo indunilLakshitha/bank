@@ -46,6 +46,7 @@
                                                 <th>NAME</th>
                                                 <th>NIC</th>
                                                 <th>STATUS</th>
+                                                <th>IMAGE</th>
                                                 <th>ACTION</th>
                                             </thead>
                                             <tbody id="results_tbody">
@@ -58,6 +59,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-10">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <img  id="image" >
+                            </div>
+                        </div>
+                    </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Account Name</label>
                     <div class="col-sm-6">
@@ -89,9 +97,9 @@
                         <div class="row">
                             <div class="col-5">
                                 <div class="form-group">
-                                    <select name="payment_method_id" id="payment_method_id" class="form-control">
-                                        <option value="">Select </option>
-                                        @php
+                                    <select name="payment_method_id" readonly id="payment_method_id" class="form-control">
+                                        <option  value="1">Cash </option>
+                                        <!-- @php
                                         $payment_methods =
                                         Illuminate\Support\Facades\DB::table('payment_methods')->where('is_enable',1)->get();
                                         @endphp
@@ -100,7 +108,7 @@
                                         <option value="{{$payment_method->id}}">
                                             {{$payment_method->payment_method}}
                                             @endforeach
-                                            @endisset
+                                            @endisset -->
                                     </select>
                                 </div>
                             </div>
@@ -334,7 +342,9 @@ document.getElementById("imgg").appendChild(elem);
                         <th>${i.full_name}</th>
                         <th>${i.identification_number} </th>
                         <th>${i.is_enable}</th>
-                        <th><a  onclick="viewCustomer('${i.full_name}','${i.account_number}','${i.customer_id}','${i.account_balance}')" class="btn btn-primary"  >GET</a></th>
+                        <th><img src="{{env('IMAGE_LOCATION').'${i.sign_img}'}}" height="150px" width="150px" alt=""></th>
+
+                        <th><a  onclick="viewCustomer('${i.full_name}','${i.account_number}','${i.customer_id}','${i.sign_img}','${i.account_balance}')" class="btn btn-primary">GET</a></th>
                     </tr>
                     `
                     results_tbody.innerHTML += html
@@ -343,11 +353,18 @@ document.getElementById("imgg").appendChild(elem);
                 })
            }
 
-           function viewCustomer(name,account,id,balance){
+           function viewCustomer(name,account,id,sign,balance){
+            const signn = '/bank/public/images/';
+            console.log(signn);
             full_name.value = name
             account_id.value = account
             customer_id.value = id
             account_balance.value = balance
+            image.innerHTML = ''
+            html = `
+            <img src="'+signn+sign+'" height="150px" width="150px" alt="">
+            `
+                    image.innerHTML += html
            }
 
 

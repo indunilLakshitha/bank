@@ -21,7 +21,7 @@
                             <div class="pull-right col-2">
                                 <select name="type" class="form-control" id="type">
                                     <option value="" >--Select--</option>
-                                   
+
                                 </select>
                             </div>
                             <label >FROM:</label>
@@ -35,7 +35,14 @@
                             <label for="">USER:</label>
                             <div class="pull-right col-2">
                                 <select name="select_branch1" class="form-control" id="user">
-                                    <option value="" >--Select--</option>
+                                    <option value="">--Select--</option>
+                                    @isset($users)
+                                    @foreach ($users as $user)
+                                    @if(intval($user->status) == 1)
+                                    <option value="{{$user->id}}" >{{$user->employee_no}}</option>
+                                    @endif
+                                    @endforeach
+                                    @endisset
                                 </select>
                             </div>
                             <!-- <label for="">BRANCH:</label>

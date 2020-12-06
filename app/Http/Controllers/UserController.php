@@ -181,7 +181,13 @@ class UserController extends Controller
         $roles = Role::with('permissions')->where('status', 1)->get();
         // return $roles;
         $permissions = Permission::all();
-        return view('users.create', compact('permissions', 'roles'));
+
+        $user_data = Auth::user();
+        $default_branch_id = 0;
+        if(intval($user_data->roles[0]->id) != 1) {
+            $default_branch_id = intval($user_data->branh_id);
+        }
+        return view('users.create', compact('permissions', 'roles', 'default_branch_id'));
     }
 
     public function store(Request $request){
