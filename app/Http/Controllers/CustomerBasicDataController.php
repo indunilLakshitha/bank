@@ -37,7 +37,7 @@ class CustomerBasicDataController extends Controller
     // }
     public function insert(Request $request)
     {
-
+return $request;
         // $province='W';
         // $br_code = Branch::find($request->branch_id)->branch_code;
         $count=CustomerBasicData::where('branch_id',$request->branch_id)->count()+1;
@@ -71,6 +71,8 @@ class CustomerBasicDataController extends Controller
 
         $cbs = CustomerBasicData::create($request->all());
         $cbs->customer_id = $cus_id;
+        $cbs->epf_no = $request->epf_no;
+        $cbs->telephone_number = $request->contact_no;
         $cbs->is_enable = 1;
         $cbs->status = 2;
         $cbs->created_by = Auth::user()->name;

@@ -131,7 +131,7 @@
         contentType: false,
         success: function(data){
             console.log(data);
-            // return show_data(data)
+            return show_data(data)
         }
     })
     }

@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12 text-center">
         <!-- notice modal -->
-        <div class="modal fade" id="memberSearchModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        <div class="modal fade" id="mmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content " style="width: 800px;height: auto">
@@ -17,8 +17,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <input
-                                                oninput="toCap(this.value, this.id), get_modal_search_by_full_name(this.value)"
+                                            <input oninput="toCap(this.value, this.id), member_search_for_fd_byfname(this.value)"
                                                 type="text" class="form-control js-example-data-ajax"
                                                 id="client_full_name_search_modal" placeholder="Enter Full Name">
                                         </div>
@@ -27,8 +26,7 @@
                                         {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                        <button class="btn  btn-info btn"
-                                            onclick="member_list.innerHTML = null">
+                                        <button class="btn  btn-info btn" onclick="member_list.innerHTML = null">
                                             Clear Results </button>
 
                                     </div>
@@ -43,7 +41,7 @@
                                         <div class="form-group">
                                             <input oninput="
                                             // toCap(this.value, this.id),
-                                            get_modal_search_by_customer_id(this.value)" type="text"
+                                            get_member_fd(this.value)" type="text"
                                                 class="form-control js-example-data-ajax"
                                                 placeholder="Enter Customer ID">
                                         </div>
@@ -69,9 +67,9 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <button class="btn fa fa-search btn-info btn"
+                                        {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(identification_type_id.value, identification_number.value)">
-                                            &nbspSearch By ID</button>
+                                            &nbspSearch By ID</button> --}}
 
                                     </div>
                                 </div>
@@ -86,12 +84,12 @@
 </div>
 
 <script>
-    let customer_data;
+    let customer_d;
 
     // let is_customer_id_2 = false;
 
 
-    function get_modal_search_by_full_name(value){
+    function member_search_for_fd_byfname(value){
         // console.log(is_customer_id_2);
         console.log(value);
         if(value === ''){
@@ -102,13 +100,13 @@
         url: '{{('/search_by_full_name')}}',
         data: {text:value} ,
         success: function(data){
-            console.log(data);
-            return set_modal_serach_by_name_results(data)
+            // console.log(data);
+            return member_results_table_view(data)
         }
     })
     }
 
-    function get_modal_search_by_customer_id(value){
+    function get_member_fd(value){
         console.log(value);
         if(value === ''){
             member_list.innerHTML = ''
@@ -118,7 +116,7 @@
         url: '{{('/search_by_customer_id')}}',
         data: {text:value} ,
         success: function(data){
-            console.log(data);
+            // console.log(data);
 
             return set_modal_serach_by_name_results(data)
         }
@@ -126,11 +124,12 @@
     }
 
 
-function set_modal_serach_by_name_results(data){
-    console.log('inside setter -modal', data);
+function member_results_table_view(data){
+    // console.log('inside setter -modal', data);
     member_list.classList.remove('d-none')
     member_list.innerHTML = ''
 
+    customer_d = data
 
     data.forEach(i => {
 
@@ -146,43 +145,40 @@ function set_modal_serach_by_name_results(data){
                 onclick=
                 "
                 this.parentElement.parentElement.parentElement.classList.add('d-none'),
-                set_cus_details_from_modal('${i.id}')
+                set_member_fd('${i.id}')
                 "
                 class="btn btn-sm btn-primary">Select</button>
             </td>
         </tr>
         `
         member_list.innerHTML += html
-console.log('done')
+// console.log('done')
     })
 
 
 }
 
-function set_cus_details_from_modal(id){
-    console.log(id);
+function set_member_fd(x){
+    // console.log(x);
 
-    customer_data.filter(cus => {
-        if(cus.id === parseInt(id)){
-            console.log(cus);
+    customer_d.filter(cus => {
+        if(cus.id === parseInt(x)){
+            // console.log(cus);
 
 
                 if(document.querySelector('#customer_id')){
                 customer_id.value = cus.customer_id
+                getAccounts(cus.customer_id)
                 }
 
 
+<<<<<<< HEAD
 
+=======
+            $('#mmodel').modal('hide');
+>>>>>>> 55ead8c7ddb3cfaa83dd556e75c1d160bf481d94
 
-            if(document.querySelector('#account_id')){
-                account_balance.value = cus.account_balance
-            }
-            if(document.querySelector('#account_balance')){
-                account_id.value = cus.account_number
-            }
-            $('#memberSearchModel').modal('hide');
-             return console.log(cus);
-            //  console.log(full_name);
+            //  return console.log(cus);
         }
     })
 }

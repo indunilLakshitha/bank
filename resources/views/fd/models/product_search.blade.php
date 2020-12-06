@@ -29,7 +29,7 @@
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
                                                             <input type="text" class="form-control" id="product_c"
-                                                                oninput="get_modal_search_by_full_name(this.value)">
+                                                                oninput="search_by_product_id(this.value)">
                                                         </div>
                                                     </div>
                                                     <label class="col-sm-2 col-form-label">Name</label>
@@ -81,7 +81,7 @@
     // let is_customer_id_2 = false;
 
 
-    function get_modal_search_by_full_name(value){
+    function search_by_product_id(value){
         // console.log(is_customer_id_2);
         console.log(value);
         if(value === ''){
@@ -93,7 +93,7 @@
         data: {code:value} ,
         success: function(data){
             console.log(data);
-            return set_modal_serach_by_name_results(data)
+            return all_products_set(data)
         }
     })
     }
@@ -110,13 +110,13 @@
         success: function(data){
             console.log(data);
 
-            return set_modal_serach_by_name_results(data)
+            return all_products_set(data)
         }
     })
     }
 
 
-function set_modal_serach_by_name_results(data){
+function all_products_set(data){
     console.log('inside setter -modal', data);
     product_body.classList.remove('d-none')
     product_body.innerHTML = ''
@@ -135,7 +135,7 @@ console.log(i)
                 onclick=
                 "
                 this.parentElement.parentElement.parentElement.classList.add('d-none'),
-                set_cus_details_from_modal('${i.id}')
+                set_product_details('${i.id}')
                 "
                 class="btn btn-sm btn-primary">Select</button>
             </td>
@@ -148,7 +148,7 @@ console.log(i)
 
 }
 
-function set_cus_details_from_modal(id){
+function set_product_details(id){
     console.log(id);
 
     product_data.filter(cus => {

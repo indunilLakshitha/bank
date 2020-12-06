@@ -196,6 +196,14 @@
                         </li>
                     </ul>
                 </div>
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/verify">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal"> FD Account Verification</span>
+                            </a>
+                        </li>
+                    </ul>
             </li>
             {{-- @endcan --}}
             @can('withdrawal_deposites')
