@@ -106,41 +106,41 @@ class OpenSavingsAccountController extends Controller
 
         // return response()->json($request);
 
-        // $branch_id = Auth::user()->branh_id;
-        // $data = DB::select("
-        // SELECT DISTINCT
-        //     customer_basic_data.customer_id,
-        //     customer_basic_data.full_name,
-        //     customer_basic_data.id,
-        //     customer_basic_data.identification_number,
-        //     customer_basic_data.non_member,
-        //     customer_status_dates.date_of_birth,
-        //     branches.branch_code,
-        //     members.share_amount,
-        //     account_general_information.account_balance,
-        //     account_general_information.account_number
+        $branch_id = Auth::user()->branh_id;
+        $data = DB::select("
+        SELECT DISTINCT
+            customer_basic_data.customer_id,
+            customer_basic_data.full_name,
+            customer_basic_data.id,
+            customer_basic_data.identification_number,
+            customer_basic_data.non_member,
+            customer_status_dates.date_of_birth,
+            branches.branch_code,
+            members.share_amount,
+            account_general_information.account_balance,
+            account_general_information.account_number
 
-        // FROM customer_basic_data
+        FROM customer_basic_data
 
-        // LEFT JOIN branches
-        // ON branches.id = customer_basic_data.branch_id
+        LEFT JOIN branches
+        ON branches.id = customer_basic_data.branch_id
 
-        // LEFT JOIN account_general_information
-        // ON account_general_information.customer_id = customer_basic_data.customer_id
+        LEFT JOIN account_general_information
+        ON account_general_information.customer_id = customer_basic_data.customer_id
 
-        // LEFT JOIN customer_status_dates
-        // ON customer_status_dates.customer_id = customer_basic_data.customer_id
+        LEFT JOIN customer_status_dates
+        ON customer_status_dates.customer_id = customer_basic_data.customer_id
 
-        // LEFT JOIN members
-        // ON members.customer_id = customer_basic_data.customer_id
+        LEFT JOIN members
+        ON members.customer_id = customer_basic_data.customer_id
 
-        // WHERE customer_basic_data.full_name LIKE '%$request->text%'
-        // AND customer_basic_data.is_enable = 1
-        // AND customer_basic_data.status = 1
+        WHERE customer_basic_data.full_name LIKE '%$request->text%'
+        AND customer_basic_data.is_enable = 1
+        AND customer_basic_data.status = 1
 
-        // ");
+        ");
 
-        return response()->json($request);
+        return response()->json($data);
 
         // return response()->json($data);
     }

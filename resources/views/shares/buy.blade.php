@@ -17,24 +17,22 @@
                     </div>
                 </div>
                 <div class="card-body">
-
                     <div class="row">
                         <div class="col">
-                            <button class="btn fa fa-search btn-info float-right" data-toggle="modal"
-                                href="#noticeModal"> SEARCH</button>
                         </div>
                     </div>
                     <form id="form" method="POST">
                         @csrf
-                        {{-- <div class="tab-pane active" id="private_1"> --}}
-                        {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Customer ID<font color="red">*</font></label>
-                            <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <input name="customer_id" type="text" class="form-control" id="customer_id">
                                 </div>
                             </div>
+                            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></a>
+                            {{-- <a class="btn fa fa-search btn-info float-right" data-toggle="modal"
+                                href="#noticeModal"> SEARCH</a> --}}
                         </div>
 
                         @php

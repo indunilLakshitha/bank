@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12 text-center">
         <!-- notice modal -->
-        <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        <div class="modal fade" id="depositeModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content " style="width: 800px;height: auto">
@@ -59,7 +59,7 @@
                                         <div class="form-group">
                                             <input oninput="
                                             // toCap(this.value, this.id),
-                                            get_modal_search_by_customer_id(this.value)" type="text"
+                                            get_modal_search_by_nic(this.value)" type="text"
                                                 class="form-control js-example-data-ajax"
                                                 placeholder="Enter Identification Number">
                                         </div>
@@ -84,7 +84,6 @@
     let customer_data;
 
     let is_customer_id_2 = false;
-    let type;
 
 
     function get_modal_search_by_full_name(value){
@@ -95,22 +94,11 @@
         }
         $.ajax({
         type: 'GET',
-        url: '{{('/search_by_full_name')}}',
+        url: '{{('/search_by_full_name_for_dnw')}}',
         data: {text:value} ,
         success: function(data){
             console.log(data);
-            if(document.querySelector('#meth')){
-                type = meth.value
-            }
-            // return set_modal_serach_by_name_results(data)
-            if(type=='share_transfer'){
-                console.log('share');
-                return set_modal_serach_by_name_results_for_share(data)
-            }else{
-
-                console.log(' no shares');
-                return set_modal_serach_by_name_results(data)
-                }
+            return set_modal_serach_by_name_results(data)
         }
     })
     }
@@ -122,20 +110,28 @@
         }
         $.ajax({
         type: 'GET',
-        url: '{{('/search_by_customer_id')}}',
+        url: '{{('/search_by_cus_id_for_dnw')}}',
         data: {text:value} ,
         success: function(data){
             console.log(data);
-            if(document.querySelector('#meth')){
-                type = meth.value
-            }
-            // if(type=='share_transfer'){
 
-                // return set_modal_serach_by_name_results_for_share(data)
-            // }else{
+            return set_modal_serach_by_name_results(data)
+        }
+    })
+    }
+    function get_modal_search_by_nic(value){
+        console.log(value);
+        if(value === ''){
+            modal_serach_by_name_results_tbody.innerHTML = ''
+        }
+        $.ajax({
+        type: 'GET',
+        url: '{{('/search_by_nic_for_dnw')}}',
+        data: {text:value} ,
+        success: function(data){
+            console.log(data);
 
-                // return set_modal_serach_by_name_results(data)
-            // }
+            return set_modal_serach_by_name_results(data)
         }
     })
     }
@@ -147,11 +143,14 @@ function set_modal_serach_by_name_results(data){
     modal_serach_by_name_results_tbody.innerHTML = ''
 
     customer_data = data
+
     data.forEach(i => {
+
         let member_status = i.non_member===1 ? 'Non-Member' : 'member'
         let html = `
         <tr id='${i.id}'>
             <td>${i.customer_id}</td>
+            <td>${i.account_number}</td>
             <td>${i.full_name}</td>
             <td>${i.identification_number}</td>
             <td>${member_status}</td>
@@ -167,44 +166,6 @@ function set_modal_serach_by_name_results(data){
         </tr>
         `
         modal_serach_by_name_results_tbody.innerHTML += html
-
-
-    })
-
-
-}
-
-function set_modal_serach_by_name_results_for_share(data){
-
-    console.log('inside setter -modal', data);
-    modal_serach_by_name_results_tbody.classList.remove('d-none')
-    modal_serach_by_name_results_tbody.innerHTML = ''
-
-    customer_data = data
-    data.forEach(i => {
-        let member_status = i.non_member===1 ? 'Non-Member' : 'member'
-        if(member_status =='member'){
-
-
-        let html = `
-        <tr id='${i.id}'>
-            <td>${i.customer_id}</td>
-            <td>${i.full_name}</td>
-            <td>${i.identification_number}</td>
-            <td>${member_status}</td>
-            <td>
-                <button type="button"
-                onclick=
-                "
-                this.parentElement.parentElement.parentElement.classList.add('d-none'),
-                set_cus_details_from_modal('${i.id}')
-                "
-                class="btn btn-sm btn-primary">Select</button>
-            </td>
-        </tr>
-        `
-        modal_serach_by_name_results_tbody.innerHTML += html
-    }
 
     })
 
@@ -241,6 +202,14 @@ function set_cus_details_from_modal(id){
             if(document.querySelector('#share_amount')){
                 share_amount.value = cus.share_amount
             }
+            if(document.querySelector('#img_loc')){
+                console.log(cus.sign_img)
+                var imm=cus.sign_img
+                var loc = 'http://economiccoopbank.xyz/bank/public/images/'
+                img_loc.value = loc.concat(imm)
+                console.log(img_loc.value )
+
+            }
             // ---------------------------for deposites and withdrwals
             // if(document.querySelector('#full_name')){
             //     share_amount.value = cus.share_amount
@@ -254,7 +223,7 @@ function set_cus_details_from_modal(id){
             if(document.querySelector('#account_balance')){
                 account_balance.value = cus.account_balance
             }
-            $('#noticeModal').modal('hide');
+            $('#depositeModel').modal('hide');
              return console.log(cus);
             //  console.log(full_name);
         }

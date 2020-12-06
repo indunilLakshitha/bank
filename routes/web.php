@@ -481,5 +481,8 @@ Route::get('/verify','FdAccountController@verify');
 Route::get('/fd/view/{id}','FdAccountController@view');
 Route::get('/fd/verification/{id}','FdAccountController@verification');
 
-
+//------------------------------------------------------search model routes-----------
+Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');
+Route::get('/search_by_cus_id_for_dnw','SearchController@byCustomerIdForWnD');
+Route::get('/search_by_nic_for_dnw','SearchController@byNicForWnD');
 Auth::routes();
