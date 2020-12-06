@@ -304,6 +304,8 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/findmemberbyaccno', 'TransactionController@findMembersById');
     Route::get('/normalwithdraw', 'TransactionController@normalWithdraw');
     Route::get('/normaldeposite', 'TransactionController@normalDeposite');
+    Route::get('/findRange', 'TransactionController@findBtween');
+
 
     // ------------------------------------------------------------------------Account Categories------------
 

@@ -54,7 +54,7 @@ class TransactionController extends Controller
         // $request->payment_method_id
         // $request->transaction_type
         // $request->transaction_value
-        
+
         $payment_log=$request;
 
         $general_account=AccountGeneralInformation::where('account_number',$request->account_id)->first();
@@ -237,5 +237,26 @@ class TransactionController extends Controller
         }
 
 
+    }
+
+    public function findBtween(Request $request){
+
+
+        $request->a_id = "SPM001-00001-045";
+        if($request->from != 0){
+            $skip = $request->from - 1;
+            $take = $request->to - $skip;
+            $select = TransactionData::where('account_id',"SPM001-00001-045")->skip($skip)->take($take)->get();
+             return response()->json($select);
+        }else{
+            $skip = $request->from;
+            $take = $request->to - $skip;
+            $select = TransactionData::where('account_id',"SPM001-00001-045")->skip($skip)->take($take)->get();
+             return response()->json($select);
+        }
+
+        // $select = TransactionData::where('account_id',"SPM001-00001-045")->skip(2)->take(5)->get();
+
+        // return response()->json($select);
     }
 }

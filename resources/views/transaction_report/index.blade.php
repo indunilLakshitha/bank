@@ -65,6 +65,24 @@
                 </div>
             </div>
         </div>
+         <div class="row">
+            <label class="col-sm-2 col-form-label">From</label>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="from">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+         <label class="col-sm-2 col-form-label">To</label>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="to">
+                </div>
+            </div>
+            <button class="btn fa fa-search btn-info btn-sm" onclick="findBetw()"></button>
+        </div>
     </div>
 </div>
 <div class="card ">
@@ -221,6 +239,24 @@
             win.document.close();
             win.print();
         }
+
+        function findBetw(){
+                const a_id = document.querySelector('#account_id')
+                const from = document.querySelector('#from')
+                const to = document.querySelector('#to')
+                console.log(from.value)
+                console.log(to.value)
+               $.ajax({
+                   type: 'GET',
+                   url : '{{('/findRange')}}',
+                   data: {'acId': a_id.value,'from':from.value,'to':to.value},
+                    success: function(data){
+                        console.log(data)
+                        return showCustomers(data)
+
+                    }
+               })
+           }
 
         // $('button').on('click',function(){
         // printData();

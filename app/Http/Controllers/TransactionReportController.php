@@ -108,4 +108,6 @@ class TransactionReportController extends Controller
                 ->get();
         return response()->json($trn);
     }
+
+    
 }
