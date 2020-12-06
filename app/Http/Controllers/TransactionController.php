@@ -242,16 +242,15 @@ class TransactionController extends Controller
     public function findBtween(Request $request){
 
 
-        $request->a_id = "SPM001-00001-045";
         if($request->from != 0){
             $skip = $request->from - 1;
             $take = $request->to - $skip;
-            $select = TransactionData::where('account_id',"SPM001-00001-045")->skip($skip)->take($take)->get();
+            $select = TransactionData::where('account_id',$request->a_id)->skip($skip)->take($take)->get();
              return response()->json($select);
         }else{
             $skip = $request->from;
             $take = $request->to - $skip;
-            $select = TransactionData::where('account_id',"SPM001-00001-045")->skip($skip)->take($take)->get();
+            $select = TransactionData::where('account_id',$request->a_id)->skip($skip)->take($take)->get();
              return response()->json($select);
         }
 
