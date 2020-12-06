@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label">>ID Number</label>
+                    <label class="col-sm-2 col-form-label">ID Number</label>
                     <div class="col-sm-10">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Enter Identification No"
@@ -65,9 +65,9 @@
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
                                     <th>Customer Id </th>
-                                    <th>Name</th>
                                     <th>Full Name</th>
                                     <th>Identification No</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody id="results_tbody">
@@ -75,9 +75,9 @@
                                     @foreach ($membrs as $membr)
                                     <tr>
                                         <th>{{$membr->customer_id }}</th>
-                                        <th>{{$membr->name_in_use }}</th>
                                         <th>{{$membr->full_name }}</th>
                                         <th>{{$membr->identification_number }}</th>
+                                        <th>Non Member</th>
                                         <td class="td-actions text-right">
                                             <a href="{{url('/members/view/check/'.$membr->customer_id)}}" rel="tooltip"
                                                 class="btn btn-info btn-round">

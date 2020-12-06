@@ -326,9 +326,13 @@ return $request;
     }
 
      public function memberVerify(Request $request){
+         $user_data = Auth::user();
+         if(intval($user_data->roles[0]->id) != 1) {
+             $membrs = CustomerBasicData::where('status',2)->where('branch_id', '=', Auth::user()->branh_id)->get();
+         } else {
+             $membrs = CustomerBasicData::where('status',2)->get();
+         }
 
-
-        $membrs = CustomerBasicData::where('status',2)->get();
         return view('members.memberVerification',compact('membrs'));
     }
 
