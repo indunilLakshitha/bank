@@ -158,7 +158,21 @@ Route::group(['middleware' => 'isBlocked'], function () {
     });
     //savings index
     Route::get('/savings/view', function () {
-        return view('savings.index');
+        $sql = "
+                SELECT cbd.`id`, cbd.`customer_id`, cbd.`customer_status_id`, cbd.`full_name`, cbd.`customer_status_id`,
+                agi.`status`, cbd.`identification_number`, IF(`member` = 1, 'Member', 'Non Member') AS 'status', agi.`account_number`
+                FROM account_general_information AS agi
+                INNER JOIN customer_status_dates AS csd ON csd.customer_id = agi.customer_id
+                INNER JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
+                WHERE agi.`status` = 1
+                ";
+        $user_data = Auth::user();
+        if(intval($user_data->roles[0]->id) != 1) {
+            $branch_id = $user_data->branh_id;
+            $sql .= " AND cbd.branch_id = ". $branch_id;
+        }
+        $account = DB::select($sql);
+        return view('savings.index', compact('account'));
     });
     //-------------------------------------------------------------------------------------new saving account openning-------start
     Route::get('/late', function () {
@@ -205,6 +219,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/search_by_name', 'OpenSavingsAccountController@search_by_name');
     Route::get('/search_by_full_name', 'OpenSavingsAccountController@search_by_full_name');
     Route::get('/search_by_customer_id', 'OpenSavingsAccountController@search_by_customer_id');
+    Route::get('/search_by_nic_id', 'OpenSavingsAccountController@search_by_nic_id');
 
     Route::get('form/view', 'CustomerController@formView');
     Route::post('form/data', 'CustomerController@formData');

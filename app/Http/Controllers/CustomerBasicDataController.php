@@ -178,6 +178,11 @@ class CustomerBasicDataController extends Controller
         $idtypes = IedentificationType::all();
         $contacttypes = ContactType::all();
         $titles = CutomerTitle::all();
+        $user_data = Auth::user();
+        $default_branch_id = 0;
+        if(intval($user_data->roles[0]->id) != 1) {
+            $default_branch_id = intval($user_data->branh_id);
+        }
         return view('members.1_add', compact([
             'branches',
             'accountcategories',
@@ -187,6 +192,7 @@ class CustomerBasicDataController extends Controller
             'contacttypes',
             'cus_id',
             'titles',
+            'default_branch_id'
         ]));
     }
 

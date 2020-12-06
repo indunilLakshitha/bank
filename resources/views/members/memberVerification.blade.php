@@ -25,6 +25,7 @@
                     <div class="col-sm-10">
                         <div class="form-group">
                             <input type="text" class="form-control" name="full_name" id="full_name">
+                            <span class="bmd-help">Use Client Full Name To Search</span>
                         </div>
                     </div>
                 </div>
@@ -34,6 +35,7 @@
                     <div class="col-sm-10">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Enter Identification No" name="identification_number" id="identification_number">
+                            <span class="bmd-help">Use Client ID Number To Search</span>
                         </div>
                     </div>
                 </div>
@@ -129,7 +131,7 @@
                 "for_verify": 1,
             },
         }).done(function(data) {
-            console.log(data);
+            //console.log(data);
             return show_data(data);
         });
     }

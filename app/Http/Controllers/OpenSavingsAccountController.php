@@ -105,39 +105,23 @@ class OpenSavingsAccountController extends Controller
     {
 
         // return response()->json($request);
-
-        $branch_id = Auth::user()->branh_id;
-        $data = DB::select("
+        $sql = "
         SELECT DISTINCT
-            customer_basic_data.customer_id,
-            customer_basic_data.full_name,
-            customer_basic_data.id,
-            customer_basic_data.identification_number,
-            customer_basic_data.non_member,
-            customer_status_dates.date_of_birth,
-            branches.branch_code,
-            members.share_amount,
-            account_general_information.account_balance,
-            account_general_information.account_number
+            cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member,
+            csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
+        FROM customer_basic_data AS cbd
+        INNER JOIN branches AS b ON b.id = cbd.branch_id
+        INNER JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
+        INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+        LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
+        WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
 
-        FROM customer_basic_data
-
-        LEFT JOIN branches
-        ON branches.id = customer_basic_data.branch_id
-
-        LEFT JOIN account_general_information
-        ON account_general_information.customer_id = customer_basic_data.customer_id
-
-        LEFT JOIN customer_status_dates
-        ON customer_status_dates.customer_id = customer_basic_data.customer_id
-
-        LEFT JOIN members
-        ON members.customer_id = customer_basic_data.customer_id
-
-        WHERE full_name LIKE '%$request->text%'
-        AND customer_basic_data.is_enable = 1
-        AND customer_basic_data.status = 1
-        ");
+        $user_role_id = intval(Auth::user()->roles[0]->id);
+        $branch_id = Auth::user()->branh_id;
+        if($user_role_id != 1) {
+            $sql .= " cbd.branch_id = ". $branch_id;
+        }
+        $data = DB::select($sql);
 
         // return response()->json($request);
 
@@ -146,27 +130,46 @@ class OpenSavingsAccountController extends Controller
     public function search_by_customer_id(Request $request)
     {
         // return $request;
-        $branch_id = Auth::user()->branh_id;
-        $sql = "SELECT DISTINCT
-            customer_basic_data.customer_id,
-            customer_basic_data.full_name,
-            customer_basic_data.id,
-            customer_basic_data.identification_number,
-            customer_basic_data.non_member,
-            customer_status_dates.date_of_birth,
-            branches.branch_code,
-            members.share_amount,
-            account_general_information.account_balance,
-            account_general_information.account_number
-        FROM customer_basic_data
-        LEFT JOIN branches ON branches.id = customer_basic_data.branch_id
-        LEFT JOIN account_general_information ON account_general_information.customer_id = customer_basic_data.customer_id
-        LEFT JOIN customer_status_dates ON customer_status_dates.customer_id = customer_basic_data.customer_id
-        LEFT JOIN members ON members.customer_id = customer_basic_data.customer_id
-        WHERE customer_basic_data.customer_id LIKE '%".$request->text."%' AND customer_basic_data.is_enable = 1
-        AND customer_basic_data.status != 3 AND customer_basic_data.branch_id = '".$branch_id."'";
-        $data = DB::select ($sql);
+        $sql = "
+        SELECT DISTINCT
+            cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member,
+            csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
+        FROM customer_basic_data AS cbd
+        INNER JOIN branches AS b ON b.id = cbd.branch_id
+        INNER JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
+        INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+        LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
+        WHERE cbd.customer_id LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
 
+        $user_role_id = intval(Auth::user()->roles[0]->id);
+        $branch_id = Auth::user()->branh_id;
+        if ($user_role_id != 1) {
+            $sql .= " cbd.branch_id = " . $branch_id;
+        }
+        $data = DB::select($sql);
+        return response()->json($data);
+    }
+
+    public function search_by_nic_id(Request $request)
+    {
+        // return $request;
+        $sql = "
+        SELECT DISTINCT
+            cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member,
+            csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
+        FROM customer_basic_data AS cbd
+        INNER JOIN branches AS b ON b.id = cbd.branch_id
+        INNER JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
+        INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+        LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
+        WHERE cbd.identification_number LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
+
+        $user_role_id = intval(Auth::user()->roles[0]->id);
+        $branch_id = Auth::user()->branh_id;
+        if($user_role_id != 1) {
+            $sql .= " cbd.branch_id = ". $branch_id;
+        }
+        $data = DB::select($sql);
         return response()->json($data);
     }
 
