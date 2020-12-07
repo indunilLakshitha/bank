@@ -108,7 +108,7 @@ class OpenSavingsAccountController extends Controller
         //saving account open query
         if($req_type == 1 ) {
             $sql = "SELECT DISTINCT
-                        cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member,
+                        cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
                         csd.date_of_birth, b.branch_code, m.share_amount, 0.00 AS 'account_balance', '-' AS 'account_number'
                     FROM customer_basic_data AS cbd
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
@@ -117,7 +117,7 @@ class OpenSavingsAccountController extends Controller
                     WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
         } else {
             $sql = "SELECT DISTINCT
-            cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member,
+            cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
             csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
         FROM customer_basic_data AS cbd
         INNER JOIN branches AS b ON b.id = cbd.branch_id
@@ -177,7 +177,7 @@ class OpenSavingsAccountController extends Controller
         $req_type = intval($request->type);
         if($req_type == 1 ) {
             $sql = "SELECT DISTINCT
-                        cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member,
+                        cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
                         csd.date_of_birth, b.branch_code, m.share_amount, 0.00 AS 'account_balance', '-' AS 'account_number'
                     FROM customer_basic_data AS cbd
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
@@ -186,7 +186,7 @@ class OpenSavingsAccountController extends Controller
                     WHERE cbd.customer_id LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
         } else {
             $sql = "SELECT DISTINCT
-            cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member,
+            cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
             csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
         FROM customer_basic_data AS cbd
         INNER JOIN branches AS b ON b.id = cbd.branch_id
@@ -211,7 +211,7 @@ class OpenSavingsAccountController extends Controller
         $req_type = intval($request->type);
         if($req_type == 1 ) {
             $sql = "SELECT DISTINCT
-                        cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member,
+                        cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
                         csd.date_of_birth, b.branch_code, m.share_amount, 0.00 AS 'account_balance', '-' AS 'account_number'
                     FROM customer_basic_data AS cbd
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
@@ -220,7 +220,7 @@ class OpenSavingsAccountController extends Controller
                     WHERE cbd.identification_number LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
         } else {
             $sql = "SELECT DISTINCT
-                        cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member,
+                        cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
                         csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
                     FROM customer_basic_data AS cbd
                     INNER JOIN branches AS b ON b.id = cbd.branch_id

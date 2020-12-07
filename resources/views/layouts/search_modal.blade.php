@@ -184,10 +184,12 @@ function set_modal_serach_by_name_results_for_share(data){
 
     customer_data = data
     data.forEach(i => {
-        let member_status = i.non_member===1 ? 'Non-Member' : 'member'
-        if(member_status =='member'){
-
-
+        let member_status = 'Non-Member';
+        if(parseInt(i.member) == 1) {
+            member_status = 'member';
+        }
+        //let member_status = i.non_member===1 ? 'Non-Member' : 'member'
+        //if(member_status =='member'){
         let html = `
         <tr id='${i.id}'>
             <td>${i.customer_id}</td>
@@ -207,7 +209,7 @@ function set_modal_serach_by_name_results_for_share(data){
         </tr>
         `
         modal_serach_by_name_results_tbody.innerHTML += html
-    }
+    //}
 
     })
 
