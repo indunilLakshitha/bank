@@ -111,7 +111,7 @@ class OpenSavingsAccountController extends Controller
             csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
         FROM customer_basic_data AS cbd
         INNER JOIN branches AS b ON b.id = cbd.branch_id
-        INNER JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
+        LEFT JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
         INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
         LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
         WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
