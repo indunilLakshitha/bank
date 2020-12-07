@@ -184,7 +184,7 @@ function set_modal_serach_by_name_results_for_share(data){
 
     customer_data = data
     data.forEach(i => {
-        let member_status = i.non_member===1 ? 'Non-Member' : 'member'
+        let member_status = i.non_member == 0 ? 'Non-Member' : 'member'
         if(member_status =='member'){
 
 
