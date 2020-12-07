@@ -231,11 +231,12 @@ function set_cus_details_from_modal(id){
                 if(document.querySelector('#customer_id_2')){
                     customer_id_2.value = cus.customer_id
                 }
-            } else{
-                if(document.querySelector('#customer_id')){
-                customer_id.value = cus.customer_id
-                }
             }
+            // else{
+            //     if(document.querySelector('#customer_id')){
+            //     customer_id.value = cus.customer_id
+            //     }
+            // }
 
             if(document.querySelector('#full_name')){
                 full_name.value = cus.full_name
@@ -246,6 +247,9 @@ function set_cus_details_from_modal(id){
 
             if(document.querySelector('#customer_id')){
                 customer_id.value = cus.customer_id
+            }
+            if(document.querySelector('#identification_number')){
+                identification_number.value = cus.identification_number
             }
 
             if(document.querySelector('#dob')){

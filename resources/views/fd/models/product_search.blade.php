@@ -51,7 +51,7 @@
                                                         cellspacing="0" width="100%" style="width:100%">
                                                         <thead>
                                                             <th>Code</th>
-                                                            <th >Name</th>
+                                                            <th>Name</th>
                                                             <th>Int Min</th>
                                                             <th>Int Max</th>
                                                         </thead>
@@ -159,6 +159,9 @@ function set_product_details(id){
             }
             if(document.querySelector('#min_interest')){
                 min_interest.value = cus.from_value
+            }
+            if(document.querySelector('#set_interest')){
+                set_interest.value = cus.amount
             }
             if(document.querySelector('#sub_product')){
                 sub_product.value = cus.sub_account_description

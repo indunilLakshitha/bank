@@ -32,7 +32,7 @@
             <label class="col-sm-2 col-form-label">Member</label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="customer_id" name="customer_id" >
+                    <input type="text" class="form-control" id="customer_id" name="customer_id">
                 </div>
             </div>
             <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#mmodel"></a>
@@ -116,7 +116,7 @@
             <label class="col-sm-2 col-form-label">Starting Date</label>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <input type="date"  class="form-control" id="start_date" name="start_date">
+                    <input type="date" class="form-control" id="start_date" name="start_date">
                 </div>
             </div>
         </div>
@@ -193,7 +193,16 @@
                 </div>
             </div>
             {{-- <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></a> --}}
-            <a class="btn fa  btn-danger btn-sm form-control d-none" id="create" onclick="createFd()">CREATE</a>
+            {{-- <a class="btn fa  btn-danger btn-sm form-control " id="create" onclick="createFd()">CREATE</a> --}}
+        </div>
+        <div class="row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-4">
+                <div class="form-group">
+                        <a class="btn fa  btn-warning btn-sm form-control " id="create" onclick="createFd()">CREATE</a>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -245,7 +254,7 @@
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="material-datatables">
+                            <div class="material-datatables d-none" id=inv_table>
                                 <table id="datatables" class="table   table-bordered table-hover" cellspacing="0"
                                     width="100%" style="width:100%">
                                     <thead>
@@ -253,6 +262,7 @@
                                             <th>id</th>
                                             <th>Fd Account Id</th>
                                             <th>Customer Id</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="inv_list">
@@ -294,7 +304,7 @@
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="material-datatables">
+                                <div class="material-datatables " id="nomi_tble" >
                                     <table id="datatables" class="table   table-bordered table-hover" cellspacing="0"
                                         width="100%" style="width:100%">
                                         <thead>
@@ -310,7 +320,7 @@
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="material-datatables">
+                                <div class="material-datatables d-none" id="nomi_data">
                                     <table id="datatables" class="table   table-bordered table-hover" cellspacing="0"
                                         width="100%" style="width:100%">
                                         <thead>
@@ -339,9 +349,7 @@
 
 
 <script>
-
-
-function getAccounts(cus_id){
+    function getAccounts(cus_id){
 console.log(cus_id)
 
 saving_account_id.innerHTML = ''
@@ -377,13 +385,13 @@ function setSavings(data){
      console.log(interest)
     let min=min_interest.value
     let max=max_interest.value
-    if(min<interest<max){
+    // if(min<interest<max){
         create.classList.remove('d-none')
 
-    }else{
-        create.classList.add('d-none')
+    // }else{
+        // create.classList.add('d-none')
 
-    }
+    // }
 }
 
 
@@ -498,6 +506,7 @@ function set_investers(id){
 }
 function view_invester(data){
     console.log('inside setter invester', data);
+    inv_table.classList.remove('d-none')
     inv_list.classList.remove('d-none')
     inv_list.innerHTML = ''
 
@@ -505,7 +514,7 @@ function view_invester(data){
     data.forEach(i => {
 
         let html = `
-        <tr id='${i.id}'>
+        <tr><td> ${i.id}</td>
             <td>${i.fd_account_id}</td>
             <td>${i.customer_id}</td>
             <td>
@@ -513,7 +522,7 @@ function view_invester(data){
                 onclick=
                 "
                 this.parentElement.parentElement.parentElement.classList.add('d-none'),
-                set_investers('${i.id}')
+                remove_investor('${i.id}')
                 "
                 class="btn btn-sm btn-primary">REMOVE</button>
             </td>
@@ -544,6 +553,7 @@ console.log(nominee)
 }
 function get_nominee(data){
     console.log('inside setter -modal', data);
+    nomi_data.classList.remove('d-none')
     nominee_data.classList.remove('d-none')
     nominee_data.innerHTML = ''
 
@@ -609,7 +619,7 @@ function view_nominee(data){
                 onclick=
                 "
                 this.parentElement.parentElement.parentElement.classList.add('d-none'),
-                set_investers('${i.id}')
+                remove_nominees('${i.id}')
                 "
                 class="btn btn-sm btn-primary">REMOVE</button>
             </td>
@@ -619,6 +629,41 @@ function view_nominee(data){
 
     })
 
+
+}
+
+function remove_nominees(id){
+    console.log(id);
+    fdid=account_id.value
+    $.ajax({
+        type: 'GET',
+        url: '{{('/removenominee')}}',
+        data: {
+            text:id,
+            fdod:fdid
+        } ,
+        success: function(data){
+            console.log(data);
+            view_nominee(data)
+        }
+    })
+
+}
+function remove_investor(id){
+    console.log(id);
+    fdid=account_id.value
+    $.ajax({
+        type: 'GET',
+        url: '{{('/removeinvestor')}}',
+        data: {
+            text:id,
+            fdod:fdid
+        } ,
+        success: function(data){
+            console.log(data);
+            view_invester(data)
+        }
+    })
 
 }
 

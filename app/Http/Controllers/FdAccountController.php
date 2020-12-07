@@ -35,6 +35,7 @@ class FdAccountController extends Controller
         sub_accounts.*,
         intereset_type_data.from_value,
         intereset_type_data.to_value,
+        intereset_type_data.amount,
         deposite_types.deposite_type,
         fd_interest_types.fd_interest_type,
         fd_sub_accounts.deposite_type_id,
@@ -177,7 +178,20 @@ class FdAccountController extends Controller
         return redirect('/verify');
 
     }
+public function removeNominee(Request $request){
+    FdNominee::find($request->text)->delete();
 
+    $investers=FdNominee::where('fd_account_id',$request->fdod)->get();
+
+    return response()->json($investers);
+}
+public function removeInvestor(Request $request){
+
+    FdInvestor::find($request->text)->delete();
+
+    $investers=FdInvestor::where('fd_account_id',$request->fdod)->get();
+return response()->json($investers);
+}
 
 
 }
