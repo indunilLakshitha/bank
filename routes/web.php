@@ -492,6 +492,8 @@ Route::get('/findsavingaccounts','FdAccountController@findSavings');
 Route::get('/verify','FdAccountController@verify');
 Route::get('/fd/view/{id}','FdAccountController@view');
 Route::get('/fd/verification/{id}','FdAccountController@verification');
+Route::get('/removenominee','FdAccountController@removeNominee');
+Route::get('/removeinvestor','FdAccountController@removeInvestor');
 
 //------------------------------------------------------search model routes-----------
 Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');
