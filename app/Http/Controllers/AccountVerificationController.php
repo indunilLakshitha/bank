@@ -94,7 +94,7 @@ class AccountVerificationController extends Controller
 // End Comment
         $view_1 = AccountGeneralInformation::where('customer_id', $request->id)->first();
         $view_1_1 = CustomerBasicData::where('customer_id', $request->id)->first();
-        $view_2 = ProductData::where('account_id', $view_1->id)->first();
+         $view_2 = ProductData::where('account_id', $view_1->id)->first();
         $view_3 = Joinaccount::where('customer_id', $request->id)->first();
         $view_4 = DB::table('guardian_data')->where('customer_id', $request->customer_id)->get();
         $view_5 = ProductDocument::where('customer_id', $request->id)->get();
