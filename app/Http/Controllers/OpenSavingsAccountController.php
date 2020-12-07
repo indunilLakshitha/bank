@@ -161,7 +161,8 @@ class OpenSavingsAccountController extends Controller
                                     ->leftjoin('account_general_information','account_general_information.customer_id','customer_basic_data.customer_id')
                                    ->distinct('customer_basic_data.customer_id','customer_basic_data.full_name','customer_basic_data.id',
                                     'customer_basic_data.identification_number','customer_basic_data.non_member','customer_status_dates.date_of_birth',
-                                    'branches.branch_code')
+                                    'branches.branch_code','account_general_information.account_balance','account_general_information.account_number',
+                                    'account_general_information.account_balance','account_general_information.account_number')
                                     ->where('customer_basic_data.customer_id',$request->text)
                                     ->where('customer_basic_data.is_enable',1)
                                     ->where('customer_basic_data.status',1)

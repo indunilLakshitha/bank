@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12 text-center">
         <!-- notice modal -->
-        <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        <div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content " style="width: 800px;height: auto">
@@ -28,7 +28,7 @@
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
                                         <button class="btn  btn-info btn"
-                                            onclick="data_clear()">
+                                            onclick="modal_serach_by_name_results_tbody.innerHTML = null">
                                             Clear Results </button>
 
                                     </div>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="row ml-3">
-                            <label class="col-sm-2 col-form-label"> Customer Code</label>
+                            <label class="col-sm-2 col-form-label"> BP. Code</label>
                             <div class="col-sm-5">
                                 <div class="row">
                                     <div class="col">
@@ -44,8 +44,7 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_modal_search_by_customer_id(this.value)" type="text"
-                                                class="form-control js-example-data-ajax" id="customer_code_modal"
-                                                   name="customer_code_modal"
+                                                class="form-control js-example-data-ajax"
                                                 placeholder="Enter Customer ID">
                                         </div>
                                     </div>
@@ -60,8 +59,8 @@
                                         <div class="form-group">
                                             <input oninput="
                                             // toCap(this.value, this.id),
-                                            get_modal_search_by_nic_id(this.value)" type="text"
-                                                class="form-control js-example-data-ajax" name="id_number_modal" id="id_number_modal"
+                                            get_modal_search_by_customer_id(this.value)" type="text"
+                                                class="form-control js-example-data-ajax"
                                                 placeholder="Enter Identification Number">
                                         </div>
                                     </div>
@@ -85,61 +84,40 @@
     let customer_data;
 
     let is_customer_id_2 = false;
-    let type;
 
 
     function get_modal_search_by_full_name(value){
         // console.log(is_customer_id_2);
-        //console.log(value);
-        if(value === ''){
-            modal_serach_by_name_results_tbody.innerHTML = ''
-        } else {
-            $.ajax({
-                type: 'GET',
-                url: '{{('/search_by_full_name/1')}}',
-                data: {text:value} ,
-                success: function(data){
-                    //console.log(data);
-                    return set_modal_serach_by_name_results(data)
-                }
-            })
-        }
-
-
-    }
-
-    function get_modal_search_by_customer_id(value){
-        //console.log(value);
-        if(value === ''){
-            modal_serach_by_name_results_tbody.innerHTML = ''
-        } else {
-            $.ajax({
-                type: 'GET',
-                url: '{{('/search_by_customer_id/1')}}',
-                data: {text:value} ,
-                success: function(data){
-                    //console.log(data);
-                    return set_modal_serach_by_name_results(data)
-                }
-            })
-        }
-    }
-
-    function get_modal_search_by_nic_id(value){
         console.log(value);
         if(value === ''){
             modal_serach_by_name_results_tbody.innerHTML = ''
-        } else {
-            $.ajax({
-                type: 'GET',
-                url: '{{('/search_by_nic_id/1')}}',
-                data: {text:value} ,
-                success: function(data){
-                    //console.log(data);
-                    return set_modal_serach_by_name_results(data)
-                }
-            })
         }
+        $.ajax({
+        type: 'GET',
+        url: '{{('/search_by_full_name/mem')}}',
+        data: {text:value} ,
+        success: function(data){
+            console.log(data);
+            return set_modal_serach_by_name_results(data)
+        }
+    })
+    }
+
+    function get_modal_search_by_customer_id(value){
+        console.log(value);
+        if(value === ''){
+            modal_serach_by_name_results_tbody.innerHTML = ''
+        }
+        $.ajax({
+        type: 'GET',
+        url: '{{('/search_by_customer_id/mem')}}',
+        data: {text:value} ,
+        success: function(data){
+            console.log(data);
+
+            return set_modal_serach_by_name_results(data)
+        }
+    })
     }
 
 
@@ -149,12 +127,10 @@ function set_modal_serach_by_name_results(data){
     modal_serach_by_name_results_tbody.innerHTML = ''
 
     customer_data = data
+
     data.forEach(i => {
-        let member_status = 'Non-Member';
-        if(parseInt(i.member) == 1) {
-            member_status = 'member';
-        }
-        //let member_status = i.non_member===1 ? 'Non-Member' : 'member'
+
+        let member_status = i.non_member===1 ? 'Member' : 'Non-member'
         let html = `
         <tr id='${i.id}'>
             <td>${i.customer_id}</td>
@@ -174,47 +150,6 @@ function set_modal_serach_by_name_results(data){
         `
         modal_serach_by_name_results_tbody.innerHTML += html
 
-
-    })
-
-
-}
-
-function set_modal_serach_by_name_results_for_share(data){
-
-    console.log('inside setter -modal', data);
-    modal_serach_by_name_results_tbody.classList.remove('d-none')
-    modal_serach_by_name_results_tbody.innerHTML = ''
-
-    customer_data = data
-    data.forEach(i => {
-        let member_status = 'Non-Member';
-        if(parseInt(i.member) == 1) {
-            member_status = 'member';
-
-            //let member_status = i.non_member===1 ? 'Non-Member' : 'member'
-            //if(member_status =='member'){
-            let html = `
-            <tr id='${i.id}'>
-                <td>${i.customer_id}</td>
-                <td>${i.full_name}</td>
-                <td>${i.identification_number}</td>
-                <td>${i.account_number}</td>
-                <td>${member_status}</td>
-                <td>
-                    <button type="button"
-                    onclick=
-                    "
-                    this.parentElement.parentElement.parentElement.classList.add('d-none'),
-                    set_cus_details_from_modal('${i.id}')
-                    "
-                    class="btn btn-sm btn-primary">Select</button>
-                </td>
-            </tr>
-            `
-            modal_serach_by_name_results_tbody.innerHTML += html
-        }
-
     })
 
 
@@ -231,25 +166,17 @@ function set_cus_details_from_modal(id){
                 if(document.querySelector('#customer_id_2')){
                     customer_id_2.value = cus.customer_id
                 }
+            } else{
+                if(document.querySelector('#customer_id')){
+                customer_id.value = cus.customer_id
+                }
             }
-            // else{
-            //     if(document.querySelector('#customer_id')){
-            //     customer_id.value = cus.customer_id
-            //     }
-            // }
 
             if(document.querySelector('#full_name')){
                 full_name.value = cus.full_name
             }
             if(document.querySelector('#branch_code')){
                 branch_code.value = cus.branch_code
-            }
-
-            if(document.querySelector('#customer_id')){
-                customer_id.value = cus.customer_id
-            }
-            if(document.querySelector('#identification_number')){
-                identification_number.value = cus.identification_number
             }
 
             if(document.querySelector('#dob')){
@@ -266,23 +193,15 @@ function set_cus_details_from_modal(id){
             //     share_amount.value = cus.share_amount
             // }
             if(document.querySelector('#account_id')){
-                account_id.value = cus.account_number
-            }
-            if(document.querySelector('#account_balance')){
                 account_balance.value = cus.account_balance
             }
-            $('#noticeModal').modal('hide');
+            if(document.querySelector('#account_balance')){
+                account_id.value = cus.account_number
+            }
+            $('#memberModal').modal('hide');
              return console.log(cus);
             //  console.log(full_name);
         }
     })
-}
-
-function data_clear() {
-    $("#client_full_name_search_modal").val('');
-    $("#customer_code_modal").val('');
-    $("#id_number_modal").val('');
-    modal_serach_by_name_results_tbody.innerHTML = null;
-
 }
 </script>
