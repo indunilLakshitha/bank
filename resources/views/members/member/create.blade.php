@@ -28,7 +28,7 @@
                         <input type="hidden" class="form-control" id="customer_id" name="customer_id" readonly>
                     </div>
                 </div>
-                <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></a>
+                <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#memberModal"></a>
             </div>
             <div class="row">
                 <label class="col-sm-2 col-form-label">Allocated Shares</label>
@@ -67,7 +67,7 @@
 {{-- nominees modal --}}
 @include('layouts.search_nominees_modal')
 
-@include('layouts.search_modal')
+@include('layouts.member_search_model')
 
 
 <script>

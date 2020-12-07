@@ -143,6 +143,40 @@ class OpenSavingsAccountController extends Controller
 
         return response()->json($data);
     }
+    public function search_by_full_name_mem(Request $request)
+    {
+        $data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')
+                                    ->leftjoin('branches','branches.id','customer_basic_data.branch_id')
+                                    ->distinct('customer_basic_data.customer_id','customer_basic_data.full_name','customer_basic_data.id',
+                                    'customer_basic_data.identification_number','customer_basic_data.non_member','customer_status_dates.date_of_birth',
+                                    'branches.branch_code')
+                                    ->where('full_name',$request->text)
+                                    ->where('customer_basic_data.is_enable',1)
+                                    ->where('customer_basic_data.status',1)
+                                    ->where('member',0)
+                                    ->get();
+
+        return response()->json($data);
+    }
+
+    public function search_by_customer_id_mem(Request $request)
+    {
+
+        $data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')
+                                    ->leftjoin('branches','branches.id','customer_basic_data.branch_id')
+                                    ->leftjoin('account_general_information','account_general_information.customer_id','customer_basic_data.customer_id')
+                                   ->distinct('customer_basic_data.customer_id','customer_basic_data.full_name','customer_basic_data.id',
+                                    'customer_basic_data.identification_number','customer_basic_data.non_member','customer_status_dates.date_of_birth',
+                                    'branches.branch_code','account_general_information.account_balance','account_general_information.account_number',
+                                    'account_general_information.account_balance','account_general_information.account_number')
+                                    ->where('customer_basic_data.customer_id',$request->text)
+                                    ->where('customer_basic_data.is_enable',1)
+                                    ->where('customer_basic_data.status',1)
+                                    ->where('member',0)
+                                    ->get();
+
+        return response()->json($data);
+    }
     public function search_by_customer_id(Request $request)
     {
         // return $request;

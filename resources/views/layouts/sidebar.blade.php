@@ -615,10 +615,7 @@
                     </ul>
                 </div>
             </li>
-<<<<<<< HEAD
 
-=======
->>>>>>> ec5b685b04a92cba79a5ddff5cfcec98715d6936
         </ul>
     </div>
 </div>
