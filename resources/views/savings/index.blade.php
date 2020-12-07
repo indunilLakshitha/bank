@@ -24,33 +24,25 @@
                                 cellspacing="0" width="100%" style="width:100%">
                                 <thead>
                                     {{-- <th >ID </th> --}}
-                                    <th>Customer ID</th>
-                                    <th>Account Number</th>
-                                    <th>Description</th>
-                                    <th>Account Type</th>
-                                    <th>Branch ID</th>
+                                    <th>CIF</th>
+                                    <th>Full Name</th>
+                                    <th>Identification No</th>
+                                    <th>Account No </th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody id="results_tbody">
-                                   <?php $members=\App\Models\AccountGeneralInformation::all()?>
-                                   @isset($members)
-                                   @foreach ($members as $member)
-                                   <tr>
-                                    {{-- <th>{{$member->id}}</th> --}}
-                                    <th>{{$member->customer_id}} </th>
-                                    <th>{{$member->account_number}}</th>
-                                    <th>{{$member->account_description}}</th>
-                                    <th>{{$member->account_type_id}}</th>
-                                    <th>{{$member->branch_id}}</th>
-                                    <th><a href="/savings/account/{{$member->customer_id}}" class="btn btn-primary" >ACCOUNT</a>
-                                        <a href="/members/view/{{$member->customer_id}}" class="btn btn-primary" >General</a>
-                                    </th>
-                                   </tr>
+                                   @foreach ($account as $member)
+                                       <tr>
+                                            {{-- <th>{{$member->id}}</th> --}}
+                                            <th>{{$member->customer_id}} </th>
+                                            <th>{{$member->full_name}}</th>
+                                            <th>{{$member->identification_number}}</th>
+                                            <th>{{$member->account_number}}</th>
+                                            <th><a href="/savings/account/{{$member->customer_id}}" class="btn btn-primary" >ACCOUNT</a>
+                                                <a href="/members/view/{{$member->customer_id}}" class="btn btn-primary" >General</a>
+                                            </th>
+                                       </tr>
                                    @endforeach
-
-                                   @endisset
-
-
                                 </tbody>
                             </table>
                         </div>

@@ -37,7 +37,7 @@ class CustomerBasicDataController extends Controller
     // }
     public function insert(Request $request)
     {
-
+        //return $request;
         // $province='W';
         // $br_code = Branch::find($request->branch_id)->branch_code;
         $count=CustomerBasicData::where('branch_id',$request->branch_id)->count()+1;
@@ -71,6 +71,8 @@ class CustomerBasicDataController extends Controller
 
         $cbs = CustomerBasicData::create($request->all());
         $cbs->customer_id = $cus_id;
+        $cbs->epf_no = $request->epf_no;
+        $cbs->telephone_number = $request->contact_no;
         $cbs->is_enable = 1;
         $cbs->status = 2;
         $cbs->created_by = Auth::user()->name;
@@ -178,6 +180,11 @@ class CustomerBasicDataController extends Controller
         $idtypes = IedentificationType::all();
         $contacttypes = ContactType::all();
         $titles = CutomerTitle::all();
+        $user_data = Auth::user();
+        $default_branch_id = 0;
+        if(intval($user_data->roles[0]->id) != 1) {
+            $default_branch_id = intval($user_data->branh_id);
+        }
         return view('members.1_add', compact([
             'branches',
             'accountcategories',
@@ -187,6 +194,7 @@ class CustomerBasicDataController extends Controller
             'contacttypes',
             'cus_id',
             'titles',
+            'default_branch_id'
         ]));
     }
 
@@ -318,9 +326,13 @@ class CustomerBasicDataController extends Controller
     }
 
      public function memberVerify(Request $request){
+         $user_data = Auth::user();
+         if(intval($user_data->roles[0]->id) != 1) {
+             $membrs = CustomerBasicData::where('status',2)->where('branch_id', '=', Auth::user()->branh_id)->get();
+         } else {
+             $membrs = CustomerBasicData::where('status',2)->get();
+         }
 
-
-        $membrs = CustomerBasicData::where('status',2)->get();
         return view('members.memberVerification',compact('membrs'));
     }
 

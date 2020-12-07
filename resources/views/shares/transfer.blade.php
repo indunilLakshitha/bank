@@ -31,8 +31,8 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn fa fa-search btn-info float-right" data-toggle="modal"
-                                href="#noticeModal"> SEARCH Seller</button>
+                                <button type="button" class="btn fa fa-search btn-info " data-toggle="modal"
+                                href="#noticeModal">  Seller</button>
                             </div>
                         </div>
 
@@ -55,8 +55,8 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn fa fa-search btn-info float-right" data-toggle="modal"
-                                href="#buyer_modal"> SEARCH Buyer</button>
+                                <button type="button" class="btn fa fa-search btn-info " data-toggle="modal"
+                                href="#buyer_modal">  Buyer</button>
                             </div>
                         </div>
                         @php
@@ -219,7 +219,7 @@
                                         <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(identification_type_id.value, identification_number.value)">
                                             &nbspSearch By ID</button>
-
+<input type="hidden" value="share_transfer" id="meth">
                                     </div>
                                 </div>
                             </div>

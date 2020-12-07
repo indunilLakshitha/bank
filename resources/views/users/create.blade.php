@@ -46,15 +46,33 @@
                                         <label for="">Branch</label>
                                         <font color="red">*</font>
                                         <?php $branches=Illuminate\Support\Facades\DB::table('branches')->get(); ?>
-                                        <select name="branh_id" id="branh_id" class="ml-3 selectpicker"
-                                            data-style="select-with-transition">
-                                            <option value="">Select</option>
-                                            @isset($branches)
-                                                @foreach ($branches as $branch)
-                                                    <option value="{{$branch->id}}">{{$branch->branch_code .' - '.$branch->branch_name}}</option>
-                                                @endforeach
-                                            @endisset
-                                        </select>
+                                        @if(intval($default_branch_id) == 0)
+                                            <select name="branh_id" id="branh_id" class="form-control"
+                                                    data-style="select-with-transition" required>
+                                                <option value="">Select Branch</option>
+                                                @isset($branches)
+                                                    @foreach ($branches as $branch)
+                                                        @if(intval($branch->is_enable) == 1)
+                                                            <option value="{{$branch->id}}">
+                                                                {{$branch->branch_code.' - '.$branch->branch_name}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                @endisset
+
+                                            </select>
+                                        @else
+                                            <select name="branh_id" id="branh_id" class="form-control"
+                                                    data-style="select-with-transition" required>
+                                                @isset($branches)
+                                                    @foreach ($branches as $branch)
+                                                        @if(intval($branch->is_enable) == 1 && intval($default_branch_id) == intval($branch->id))
+                                                            <option value="{{$branch->id}}">
+                                                                {{$branch->branch_code.' - '.$branch->branch_name}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                @endisset
+                                            </select>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row">
