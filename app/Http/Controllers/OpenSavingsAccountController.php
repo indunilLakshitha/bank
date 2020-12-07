@@ -123,8 +123,6 @@ class OpenSavingsAccountController extends Controller
         }
         $data = DB::select($sql);
 
-        ");
-
         return response()->json($data);
 
         // return response()->json($data);
