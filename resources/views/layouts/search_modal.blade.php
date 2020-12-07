@@ -28,7 +28,7 @@
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
                                         <button class="btn  btn-info btn"
-                                            onclick="modal_serach_by_name_results_tbody.innerHTML = null">
+                                            onclick="data_clear()">
                                             Clear Results </button>
 
                                     </div>
@@ -44,7 +44,8 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_modal_search_by_customer_id(this.value)" type="text"
-                                                class="form-control js-example-data-ajax"
+                                                class="form-control js-example-data-ajax" id="customer_code_modal"
+                                                   name="customer_code_modal"
                                                 placeholder="Enter Customer ID">
                                         </div>
                                     </div>
@@ -60,7 +61,7 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_modal_search_by_nic_id(this.value)" type="text"
-                                                class="form-control js-example-data-ajax"
+                                                class="form-control js-example-data-ajax" name="id_number_modal" id="id_number_modal"
                                                 placeholder="Enter Identification Number">
                                         </div>
                                     </div>
@@ -95,7 +96,7 @@
         } else {
             $.ajax({
                 type: 'GET',
-                url: '{{('/search_by_full_name')}}',
+                url: '{{('/search_by_full_name/1')}}',
                 data: {text:value} ,
                 success: function(data){
                     //console.log(data);
@@ -114,7 +115,7 @@
         } else {
             $.ajax({
                 type: 'GET',
-                url: '{{('/search_by_customer_id')}}',
+                url: '{{('/search_by_customer_id/1')}}',
                 data: {text:value} ,
                 success: function(data){
                     //console.log(data);
@@ -131,7 +132,7 @@
         } else {
             $.ajax({
                 type: 'GET',
-                url: '{{('/search_by_nic_id')}}',
+                url: '{{('/search_by_nic_id/1')}}',
                 data: {text:value} ,
                 success: function(data){
                     //console.log(data);
@@ -261,5 +262,13 @@ function set_cus_details_from_modal(id){
             //  console.log(full_name);
         }
     })
+}
+
+function data_clear() {
+    $("#client_full_name_search_modal").val('');
+    $("#customer_code_modal").val('');
+    $("#id_number_modal").val('');
+    modal_serach_by_name_results_tbody.innerHTML = null;
+
 }
 </script>

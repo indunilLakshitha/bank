@@ -75,7 +75,7 @@
         // console.log(value);
         $.ajax({
         type: 'GET',
-        url: '{{('/search_by_full_name')}}',
+        url: '{{('/search_by_full_name/1')}}',
         data: {text:value} ,
         success: function(data){
             console.log(data);
