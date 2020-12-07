@@ -81,7 +81,7 @@
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">DOB</label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <input type="date" id="dob" name="dob" class="form-control">
                                     </div>
@@ -123,10 +123,11 @@
                             </div> -->
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Branch Code</label>
-                                <div class="col-sm-2">
+                                <label class="col-sm-2 col-form-label">Customer Code</label>
+                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="branch_code" name="branch_code">
+                                        <input type="text" class="form-control" id="customer_id" name="customer_id">
+                                        <input type="hidden" class="form-control" id="branch_code" name="branch_code">
                                     </div>
                                 </div>
                             </div>

@@ -244,6 +244,10 @@ function set_cus_details_from_modal(id){
                 branch_code.value = cus.branch_code
             }
 
+            if(document.querySelector('#customer_id')){
+                customer_id.value = cus.customer_id
+            }
+
             if(document.querySelector('#dob')){
                 dob.value = cus.date_of_birth
             }
