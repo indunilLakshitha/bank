@@ -54,7 +54,7 @@ class TransactionController extends Controller
         // $request->payment_method_id
         // $request->transaction_type
         // $request->transaction_value
-        
+
         $payment_log=$request;
 
         $general_account=AccountGeneralInformation::where('account_number',$request->account_id)->first();
@@ -238,4 +238,6 @@ class TransactionController extends Controller
 
 
     }
+
+
 }

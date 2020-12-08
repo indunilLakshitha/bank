@@ -25,10 +25,10 @@
             <label class="col-sm-2 col-form-label">Account</label>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)">
+                    <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)" >
                 </div>
             </div>
-            <button class="btn fa fa-search btn-info btn-sm"></button>
+            <button  class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></button>
         </div>
         <div class="row">
             {{-- <div class="col-sm-6 " style="margin-left: 260px">
@@ -56,7 +56,7 @@
             </div> --}}
         </div>
         <div class="row">
-            <label class="col-sm-2 col-form-label">Account Name</label>
+            <label class="col-sm-2 col-form-label">Customer Name</label>
             <div class="col-sm-6">
                 <div class="form-group">
                     <input type="text" class="form-control" id="full_name">
@@ -64,6 +64,24 @@
                     <input type="hidden" class="form-control" name="account_id" id="account_id">
                 </div>
             </div>
+        </div>
+         <div class="row">
+            <label class="col-sm-2 col-form-label">From</label>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <input type="date" class="form-control" id="from">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+         <label class="col-sm-2 col-form-label">To</label>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <input type="date" class="form-control" id="to">
+                </div>
+            </div>
+            <button class="btn fa fa-search btn-info btn-sm" onclick="findBetw()"></button>
         </div>
     </div>
 </div>
@@ -101,8 +119,10 @@
                                     <thead>
                                         <th>ID </th>
                                         <th>DATE</th>
+                                        <th>DETAILS</th>
                                         <th>WITHDRAWED</th>
                                         <th>DEPOSITED</th>
+                                        <th>BALANCE</th>
                                         <th><button class="btn fa fa-print btn-info btn-sm"
                                                 onclick="printData()"></button></th>
                                     </thead>
@@ -119,6 +139,7 @@
 
     </div>
 </div>
+@include('layouts.search_modal')
 
 
 <script type="text/javascript">
@@ -153,6 +174,9 @@
                     },
                     success: function(data){
                         console.log(data)
+                        full_name.value=data[0].full_name
+                        account_id.value=data[0].account_number
+
                         return showCustomers(data)
 
                     }
@@ -176,35 +200,44 @@
                     success: function(data){
 
                         account_balance.value=data.balance_amount
+
                         return Swal.fire('Withdrawal Successful')
                     }
                })
            }
 
            function showCustomers(data){
-            full_name.value=data[0].full_name
+               var x = 0;
                 results_tbody.innerHTML = ''
                 data.forEach(i => {
+                    if(i.transaction_type == "WITHDRAW"){
+                        var w = i.transaction_value;
+                    }else if(i.transaction_type == "DEPOSITE"){
+                         var d = i.transaction_value;
+                    }else{}
+
+                    x++
                     html = `
                     <tr>
-                        <th>${i.account_id}</th>
+                        <th>${x}</th>
                         <th>${i.created_at}</th>
-                        <th>${i.transaction_value} </th>
-                        <th>${i.transaction_value}</th>
+                        <th>${i.transaction_details} </th>
+                        <th>${w}</th>
+                        <th>${d}</th>
+                        <th>${i.balance_value}</th>
                     </tr>
                     `
                     results_tbody.innerHTML += html
-
                 })
-                html_2 = `
-                    <tr>
-                        <th>total</th>
-                        <th>${data[0].updated_at}</th>
-                        <th></th>
-                        <th>${data[0].account_balance}</th>
-                    </tr>
-                    `
-                    results_tbody.innerHTML += html_2
+                // html_2 = `
+                //     <tr>
+                //         <th>total</th>
+                //         <th>${data[0].updated_at}</th>
+                //         <th></th>
+                //         <th>${data[0].account_balance}</th>
+                //     </tr>
+                //     `
+                //     results_tbody.innerHTML += html_2
            }
 
            function viewCustomer(name,account,id,balance){
@@ -221,6 +254,25 @@
             win.document.close();
             win.print();
         }
+
+        function findBetw(){
+                const a_id = document.querySelector('#account_id')
+                const from = document.querySelector('#from')
+                const to = document.querySelector('#to')
+                console.log(from.value)
+                console.log(to.value)
+                console.log(a_id.value)
+               $.ajax({
+                   type: 'GET',
+                   url : '{{('/findRange')}}',
+                   data: {'acId': a_id.value,'from':from.value,'to':to.value},
+                    success: function(data){
+                        console.log(data)
+                        return showCustomers(data)
+
+                    }
+               })
+           }
 
         // $('button').on('click',function(){
         // printData();
