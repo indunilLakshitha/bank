@@ -219,8 +219,8 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/search_by_name', 'OpenSavingsAccountController@search_by_name');
     Route::get('/search_by_full_name', 'OpenSavingsAccountController@search_by_full_name');
     Route::get('/search_by_customer_id', 'OpenSavingsAccountController@search_by_customer_id');
-    Route::get('/search_by_customer_id/mem', 'OpenSavingsAccountController@search_by_customer_id_mem');
-    Route::get('/search_by_full_name/mem', 'OpenSavingsAccountController@search_by_full_name_mem');
+    Route::get('/search_by_customer_ids/mem', 'OpenSavingsAccountController@search_by_customer_id_mem');
+    Route::get('/search_by_full_names/mem', 'OpenSavingsAccountController@search_by_full_name_mem');
     Route::get('/search_by_full_name/{type}', 'OpenSavingsAccountController@search_by_full_name');
     Route::get('/search_by_customer_id/{type}', 'OpenSavingsAccountController@search_by_customer_id');
     Route::get('/search_by_nic_id/{type}', 'OpenSavingsAccountController@search_by_nic_id');
