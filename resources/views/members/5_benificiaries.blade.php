@@ -36,13 +36,14 @@
                             @csrf
                             <input type="hidden" name="product_data_id" value={{$prod_id}}>
                             <input type="hidden" name="account_id" value={{$account_id}}>
-                            <input type="hidden" name="customer_id" value={{$cus_id}}>
+                            <input type="hidden" name="customer_id" id="customer_id" value={{$cus_id}}>
                             <input type="hidden" name="account_number" value={{$acc_no}}>
                             <input type="hidden" name="$guard " value={{$guard}}>
                             <input type="hidden" name="nomin" value={{$nomin}}>
                             <input type="hidden" name="docum" value={{$docum}}>
                             <input type="hidden" name="benef" value={{$benef}}>
                             <div class="tab-pane active" id="private_1">
+                                @if($benef == 1)
                                 <h5 class="">Beneficiaries</h5>
                                 <div class="row">
                                 </div>
@@ -57,7 +58,7 @@
                                     </div>
                                     <div class="col">
                                         <a class="btn fa fa-search btn-info btn-sm float-right" data-toggle="modal"
-                                            onclick="is_customer_id_2 = false" href="#noticeModal">Search
+                                            onclick="is_customer_id = false" href="#noticeModal">Search
                                             Beneficiaries</a>
                                     </div>
                                 </div>
@@ -66,7 +67,10 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
+                                                <th>Customer ID</th>
                                                 <th>Beneficiary Name</th>
+                                                <th>NIC</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="bene_body">
@@ -74,6 +78,7 @@
                                     </table>
                                 </div>
                                 <br>
+                                @endif
                                 @if($guard == 1)
                                 <h5 class="">Guardians</h5>
                                 <div class="row">
@@ -82,8 +87,8 @@
                                         <input type="text" id="customer_id_2" readonly>
                                     </div>
                                     <div class="col-sm-2">
-                                        <button type="button" class="btn btn-sm btn-primary"
-                                            onclick="add_bene_guard('/guard', '{{$cus_id}}', customer_id_2.value)">ADD</button>
+                                        <button type="button"  class="btn btn-sm btn-primary"
+                                            onclick="add_bene_guard('/guard', customer_id_2.value)">ADD</button>
                                     </div>
                                     <div class="col">
                                         <a class="btn fa fa-search btn-info btn-sm float-right" data-toggle="modal"
@@ -142,8 +147,13 @@
 </div>
 @include('layouts.search_modal')
 <script>
-    function add_bene_guard(url, customer_i, id){
-c=customer_id.value
+    const c = document.querySelector('#customer_id').value;
+
+    function add_bene_guard(url,  id){
+        $( "#foo" ).one( "click", function() {
+onsole.log(c);
+console.log(id);
+
         $.ajax({
             type : 'GET',
             url,
@@ -161,7 +171,11 @@ c=customer_id.value
                         html = `
                         <tr>
                             <th> ${i} </th>
-                            <th> ${r.name_in_use} </th>
+                            <th> ${r.customer_id} </th>
+                            <th> ${r.full_name} </th>
+                            <th> ${r.identification_number} </th>
+                            <th> <button type="button" onclick="
+                delete_bene('${r.id}'), this.parentElement.parentElement.classList.add('d-none')" class="btn btn-sm btn-primary">Remove</button> </th>
                         </tr>
                         `
                         i++
@@ -177,7 +191,11 @@ c=customer_id.value
                         html = `
                         <tr>
                             <th> ${i} </th>
-                            <th> ${r.name_in_use} </th>
+                            <th> ${r.customer_id} </th>
+                            <th> ${r.full_name} </th>
+                            <th> ${r.identification_number} </th>
+                            <th> <button type="button" onclick="
+                delete_gurd('${r.id}'), this.parentElement.parentElement.classList.add('d-none')" class="btn btn-sm btn-primary">Remove</button> </th>
                         </tr>
                         `
                         i++
@@ -187,6 +205,32 @@ c=customer_id.value
 
             }
         })
+    }
+
+    function delete_bene(id){
+        // console.log(id);
+        $.ajax({
+        type: 'GET',
+        url: '{{('/delete_bene')}}',
+        data: {id} ,
+        success: function(data){
+            console.log(data);
+            return
+        }
+    })
+    }
+
+    function delete_gurd(id){
+        // console.log(id);
+        $.ajax({
+        type: 'GET',
+        url: '{{('/delete_gurd')}}',
+        data: {id} ,
+        success: function(data){
+            console.log(data);
+            return
+        }
+    })
     }
 
 

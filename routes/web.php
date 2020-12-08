@@ -241,6 +241,8 @@ Route::group(['middleware' => 'isBlocked'], function () {
     //bebeficiary and guardians
     Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
     Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
+    Route::get('/delete_bene', 'CustomerBasicDataController@delete_bene');
+    Route::get('/delete_gurd', 'CustomerBasicDataController@delete_gurd');
 
     //-------------------------------------------------------------------------------------new saving account openning-------end
 
