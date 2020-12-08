@@ -147,7 +147,7 @@ class OpenSavingsAccountController extends Controller
                                     ->where('full_name',$request->text)
                                     ->where('customer_basic_data.is_enable',1)
                                     ->where('customer_basic_data.status',1)
-                                    ->where('member',0)
+                                    ->where('non_member',0)
                                     ->get();
 
         return response()->json($data);
@@ -165,7 +165,7 @@ class OpenSavingsAccountController extends Controller
                                     ->where('customer_basic_data.customer_id',$request->text)
                                     ->where('customer_basic_data.is_enable',1)
                                     ->where('customer_basic_data.status',1)
-                                    ->where('member',0)
+                                    ->where('non_member',0)
                                     ->get();
 
         return response()->json($data);

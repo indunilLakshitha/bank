@@ -129,8 +129,11 @@ function set_modal_serach_by_name_results(data){
     customer_data = data
 
     data.forEach(i => {
-
-        let member_status = i.non_member===1 ? 'Member' : 'Non-member'
+let member_status = 'Non-Member';
+        if(parseInt(i.member) == 1) {
+            member_status = 'member';
+        }
+        //let member_status = i.non_member===1 ? 'Non-Member' : 'member'
         let html = `
         <tr id='${i.id}'>
             <td>${i.customer_id}</td>
