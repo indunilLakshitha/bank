@@ -150,7 +150,7 @@ class OpenSavingsAccountController extends Controller
     }
     public function search_by_full_name_mem(Request $request)
     {
-        /*$data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')
+        $data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')
                                     ->leftjoin('branches','branches.id','customer_basic_data.branch_id')
                                     ->distinct('customer_basic_data.customer_id','customer_basic_data.full_name','customer_basic_data.id',
                                     'customer_basic_data.identification_number','customer_basic_data.non_member','customer_status_dates.date_of_birth',
@@ -159,7 +159,7 @@ class OpenSavingsAccountController extends Controller
                                     ->where('customer_basic_data.is_enable',1)
                                     ->where('customer_basic_data.status',1)
                                     ->where('member',0)
-                                    ->get();*/
+                                    ->get();
         $sql = "";
 
         return response()->json($data);

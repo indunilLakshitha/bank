@@ -42,7 +42,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <input type="text" class="form-control" name="sub_product" id="sub_product">
-                    <input type="text" class="form-control" name="sub_product_id" id="sub_product_id">
+                    <input type="hodden" class="form-control" name="sub_product_id" id="sub_product_id">
                 </div>
             </div>
             <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#productSearchModel"></a>
@@ -85,7 +85,8 @@
             <label class="col-sm-2 col-form-label">Introducer</label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="introducer_id" id="introducer_id">
+                    <input type="hidden" class="form-control" name="introducer_id" id="introducer_id">
+                    <input type="text" class="form-control" name="introducer_name" id="introducer_name">
 
                 </div>
             </div>
@@ -199,7 +200,7 @@
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-4">
                 <div class="form-group">
-                        <a class="btn fa  btn-warning btn-sm form-control " id="create" onclick="createFd()">CREATE</a>
+                    <a class="btn fa  btn-warning btn-sm form-control " id="create" onclick="createFd()">CREATE</a>
 
                 </div>
             </div>
@@ -304,7 +305,7 @@
                     <div class="card-body ">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="material-datatables " id="nomi_tble" >
+                                <div class="material-datatables " id="nomi_tble">
                                     <table id="datatables" class="table   table-bordered table-hover" cellspacing="0"
                                         width="100%" style="width:100%">
                                         <thead>
