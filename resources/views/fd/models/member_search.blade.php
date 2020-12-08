@@ -17,7 +17,8 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <input oninput="toCap(this.value, this.id), member_search_for_fd_byfname(this.value)"
+                                            <input
+                                                oninput="toCap(this.value, this.id), member_search_for_fd_byfname(this.value)"
                                                 type="text" class="form-control js-example-data-ajax"
                                                 id="client_full_name_search_modal" placeholder="Enter Full Name">
                                         </div>

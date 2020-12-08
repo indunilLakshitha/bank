@@ -61,7 +61,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="interest_type" id="interest_type" readonly
+                                            <input type="text" name="interest_type_id" id="interest_type" readonly
                                                 class="form-control">
                                         </div>
                                     </div>

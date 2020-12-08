@@ -37,7 +37,7 @@ class CustomerBasicDataController extends Controller
     // }
     public function insert(Request $request)
     {
-return $request;
+        //return $request;
         // $province='W';
         // $br_code = Branch::find($request->branch_id)->branch_code;
         $count=CustomerBasicData::where('branch_id',$request->branch_id)->count()+1;
@@ -180,6 +180,11 @@ return $request;
         $idtypes = IedentificationType::all();
         $contacttypes = ContactType::all();
         $titles = CutomerTitle::all();
+        $user_data = Auth::user();
+        $default_branch_id = 0;
+        if(intval($user_data->roles[0]->id) != 1) {
+            $default_branch_id = intval($user_data->branh_id);
+        }
         return view('members.1_add', compact([
             'branches',
             'accountcategories',
@@ -189,6 +194,7 @@ return $request;
             'contacttypes',
             'cus_id',
             'titles',
+            'default_branch_id'
         ]));
     }
 
@@ -213,7 +219,7 @@ return $request;
     }
 
     public function guardianAjax(Request $request)
-    {
+    { return response()->json($request);
         $guardian = $request;
         $guardian['is_enable'] = 1;
         $guardian['created_by'] = Auth::user()->id;
@@ -233,7 +239,7 @@ return $request;
 
     public function viewMember(Request $request){
 
-         $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
+        $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
         $view_1_1 = CutomerMainType::where('customer_id',$request->id)->first();
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
@@ -320,9 +326,13 @@ return $request;
     }
 
      public function memberVerify(Request $request){
+         $user_data = Auth::user();
+         if(intval($user_data->roles[0]->id) != 1) {
+             $membrs = CustomerBasicData::where('status',2)->where('branch_id', '=', Auth::user()->branh_id)->get();
+         } else {
+             $membrs = CustomerBasicData::where('status',2)->get();
+         }
 
-
-        $membrs = CustomerBasicData::where('status',2)->get();
         return view('members.memberVerification',compact('membrs'));
     }
 

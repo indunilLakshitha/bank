@@ -31,8 +31,7 @@
                             <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)">
                         </div>
                     </div>
-                    <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal"
-                    href="#noticeModal"></a>
+                    <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#depositeModel"></a>
                 </div>
                 <div class="row">
                     <div class="col-sm-8 " style="margin-left: 90px">
@@ -71,7 +70,7 @@
                     <label class="col-sm-2 col-form-label">Account Name</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="full_name">
+                            <input type="text" readonly class="form-control" id="full_name">
                         </div>
                     </div>
                 </div>
@@ -79,7 +78,7 @@
                     <label class="col-sm-2 col-form-label">Customer ID</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="customer_id" id="customer_id">
+                            <input type="text" readonly class="form-control" name="customer_id" id="customer_id">
                         </div>
                     </div>
                 </div>
@@ -87,7 +86,7 @@
                     <label class="col-sm-2 col-form-label">Account Number</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="account_id" id="account_id">
+                            <input type="text" readonly class="form-control" name="account_id" id="account_id">
                         </div>
                     </div>
                 </div>
@@ -125,10 +124,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label"> Total Amount </label>
+                    <label class="col-sm-2 col-form-label"> Re-enter Amount Amount </label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" id="re_c" oninput="validateaount(this.value)">
                         </div>
                     </div>
                 </div>
@@ -158,7 +157,7 @@
 
                     <div class="col-6 text-right">
                         <a onclick="normalWithdraw(transaction_value.value,customer_id.value,account_id.value,payment_method_id.value)"
-                            class="btn btn-rose col-4 text-white" style="text-align: center">WITHDRAW</a>
+                            class="btn btn-rose col-4 text-white d-none" style="text-align: center" id="dep_btn">WITHDRAW</a>
                     </div>
                     <div class="col-1 text-right">
                         <button type="submit" class="btn ">Clear</button>
@@ -169,53 +168,105 @@
         </div>
     </div>
     <div class="col">
-        <div class="card ">
-            <div class="card-body ">
-                <div class="card-header card-header-rose card-header-text">
-                    <div class="card-text">
-                        <h4 class="card-title">Saving Details</h4>
+        <div class="row">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Saving Details</h4>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <button type="button" onclick="load_saving_details(customer_id.value)" href=""
+                            class="btn btn-warning"> Load Saving Details</button>
+                    </div>
+                    <div>
+                        <div class="material-datatables">
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+
+                                    <th># </th>
+                                    <th>A/C No </th>
+                                    <th>A/C Name </th>
+                                    <th>Balance(Cap.) </th>
+                                    <th>Balance </th>
+
+                                </thead>
+                                <tbody id="saving_details_tbody">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <tr class="d-none" id="shares_row">
+
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Signature Details</h4>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <button type="button" onclick="show_image()" class="btn btn-warning"> Load Signature
+                            </button>
+                    </div>
+                    <div>
+                        <input type="hidden" id="img_loc">
+                        <div class="col-sm-8">
+                            <div class="col-10" id="imgg">
+                                {{-- <div class="form-group">
+                                    @if(!empty(@isset($view_1->sign_img)))
+                                    <img src="{{env('IMAGE_LOCATION').$view_1->sign_img}}" height="300px"
+                                width="300px" alt="">
+                                @else
+                                <img src="/bank/public/images/default.png" height="100px" width="300px" alt="">
+                                @endif--}}
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="ml-3">
-                    <button type="button" onclick="load_saving_details(customer_id.value)" href=""
-                        class="btn btn-warning"> Load Saving Details</button>
-                </div>
-                <div>
-                    <div class="material-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
-                            width="100%" style="width:100%">
-                            <thead>
-
-                                <th># </th>
-                                <th>A/C No </th>
-                                <th>A/C Name </th>
-                                <th>Balance(Cap.) </th>
-                                <th>Balance </th>
-                                <th>Signature</th>
-                            </thead>
-                            <tbody id="saving_details_tbody">
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <table class="table">
-                    <tr class="d-none" id="shares_row">
-
-                    </tr>
-                </table>
-
             </div>
         </div>
     </div>
 </div>
 {{-- wild card model------------------------------------------------------------------ --}}
-@include('layouts.search_modal')
+@include('deposit.models.search_model_for_wnd')
 {{-- </div>
 </div>
 </div> --}}
 
 <script type="text/javascript">
+
+function show_image() {
+    var elem = document.createElement("img");
+    var im=img_loc.value
+elem.setAttribute("src",im);
+elem.setAttribute("height", "300");
+elem.setAttribute("width", "300");
+elem.setAttribute("alt", "signature");
+document.getElementById("imgg").appendChild(elem);
+}
+
+    function validateaount(amount){
+    let dep_amount= transaction_value.value
+    if(amount != dep_amount){
+        dep_btn.classList.add('d-none')
+    }else{
+        dep_btn.classList.remove('d-none')
+
+    }
+}
     $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -254,10 +305,10 @@
            }
             function normalWithdraw(amount,customer_id,account_id,payment_method_id){
 
-                // console.log(amount)
+                console.log(amount)
                 // console.log(customer_id)
                 // console.log(account_id)
-                if(amount.value < account_balance.value){
+                if(amount < account_balance.value){
                $.ajax({
                    type: 'GET',
                    url : '{{('/normalwithdraw')}}',
@@ -271,6 +322,8 @@
                     success: function(data){
                      console.log(data)
                         account_balance.value=data.balance_amount
+                        transaction_value.value=""
+                        re_c.value=""
                         return Swal.fire('Withdrawal Successful')
                     }
                })
