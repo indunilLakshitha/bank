@@ -65,7 +65,7 @@
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <label class="form-check-label-bold" style="background-color: #ffff00;">
-                                            @if(@isset($view_1_1->non_member) == 1)
+                                            @if(@isset($view_1_1->non_member) && intval($view_1_1->member)!= 1)
                                             <input name="customer_status_id" id="c" class="form-control"
                                                 value="NON MEMBER">
                                             @else
