@@ -33,7 +33,8 @@
                     <label class="col-sm-2 col-form-label">Identification Number</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="identification_number" id="identification_number">
+                            <input type="text" class="form-control" name="identification_number"
+                                id="identification_number">
                             <span class="bmd-help">Use Client ID Number To Search</span>
                         </div>
                     </div>
@@ -85,20 +86,25 @@
                                 </thead>
                                 <tbody id="results_tbody">
                                     @foreach ($permissions as $perm)
-                                <tr>
-                                    <td>{{$perm->account_number}}</td>
-                                    <td>{{$perm->customer_id}}</td>
-                                    <td>{{$perm->full_name}}</td>
-                                    <td>{{$perm->identification_number}}</td>
-                                    <td><a href="{{url('/accountdetails/'.$perm->customer_id)}}" class="btn btn-sm btn-info">View</a></td>
-                                    <td><a href="{{url('/customer_details/'.$perm->customer_id)}}" class="btn btn-sm btn-info">View</a></td>
-                                    <td><a href="{{url('/signature_verification/'.$perm->account_number)}}" class="btn btn-sm btn-primary">Verify</a></td>
-                                    <td><a href="{{url('/document_verification/'.$perm->account_number)}}" class="btn btn-sm btn-primary">Verify</a></td>
-                                    <td><button class="btn btn-sm btn-primary " id="{{$perm->account_number}}" onclick="check_approve(this.id)" >Approve</button>
-                                        <button class="btn btn-sm btn-danger">Reject</button>
-                                    </td>
+                                    <tr>
+                                        <td>{{$perm->account_number}}</td>
+                                        <td>{{$perm->customer_id}}</td>
+                                        <td>{{$perm->full_name}}</td>
+                                        <td>{{$perm->identification_number}}</td>
+                                        <td><a href="{{url('/accountdetails/'.$perm->customer_id)}}"
+                                                class="btn btn-sm btn-info">View</a></td>
+                                        <td><a href="{{url('/customer_details/'.$perm->customer_id)}}"
+                                                class="btn btn-sm btn-info">View</a></td>
+                                        <td><a href="{{url('/signature_verification/'.$perm->account_number)}}"
+                                                class="btn btn-sm btn-primary">Verify</a></td>
+                                        <td><a href="{{url('/document_verification/'.$perm->account_number)}}"
+                                                class="btn btn-sm btn-primary">Verify</a></td>
+                                        <td><button class="btn btn-sm btn-primary " id="{{$perm->account_number}}"
+                                                onclick="check_approve(this.id)">Approve</button>
+                                            <button class="btn btn-sm btn-danger">Reject</button>
+                                        </td>
 
-                                </tr>
+                                    </tr>
                                     @endforeach
 
 
@@ -210,4 +216,3 @@
     }
 </script>
 @endsection
-

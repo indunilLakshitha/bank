@@ -1,8 +1,3 @@
-{{-- <style>
-    .modal-content{
-        overflow-y: auto;
-    }
-</style> --}}
 <div class="row">
     <div class="col-md-12 text-center">
         <!-- notice modal -->
@@ -35,7 +30,7 @@
                                                     <label class="col-sm-2 col-form-label">Name</label>
                                                     <div class="col-sm-4">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" id="product_n">
+                                                            <input type="text" class="form-control" id="product_n"  oninput="search_by_product_name(this.value)">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -45,7 +40,6 @@
                                     <div class="card-body ">
                                         <div class="row">
                                             <div class="col-md-12">
-
                                                 <div class="material-datatables">
                                                     <table id="datatables" class="table   table-bordered table-hover"
                                                         cellspacing="0" width="100%" style="width:100%">
@@ -54,6 +48,7 @@
                                                             <th>Name</th>
                                                             <th>Int Min</th>
                                                             <th>Int Max</th>
+                                                            <th>Action</th>
                                                         </thead>
                                                         <tbody id="product_body">
 
@@ -63,7 +58,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -80,10 +74,9 @@
 
     // let is_customer_id_2 = false;
 
-
     function search_by_product_id(value){
         // console.log(is_customer_id_2);
-        console.log(value);
+        // console.log(value);
         if(value === ''){
             product_body.innerHTML = ''
         }
@@ -98,14 +91,14 @@
     })
     }
 
-    function get_modal_search_by_customer_id(value){
+    function search_by_product_name(value){
         console.log(value);
         if(value === ''){
             product_body.innerHTML = ''
         }
         $.ajax({
         type: 'GET',
-        url: '{{('/search_by_customer_id')}}',
+        url: '{{('/findproductbyname')}}',
         data: {text:value} ,
         success: function(data){
             console.log(data);
@@ -126,7 +119,8 @@ function all_products_set(data){
     data.forEach(i => {
 console.log(i)
         let html = `
-        <tr id='${i.id}'>
+        <tr>
+            <td>${i.schema_code}</td>
             <td>${i.sub_account_description}</td>
             <td>${i.from_value}</td>
             <td>${i.to_value}</td>

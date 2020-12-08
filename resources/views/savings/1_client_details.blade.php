@@ -276,7 +276,7 @@
             <div class="col-sm-5 checkbox-radios ml-3">
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" checked type="checkbox" name="has_atm" value="1">
+                        <input class="form-check-input" type="checkbox" name="has_atm" value="1">
                         ATM
                         <span class="form-check-sign">
                             <span class="check"></span>

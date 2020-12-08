@@ -196,7 +196,7 @@
                         </div>
                     </div>
                     <div class="ml-3">
-                        <button type="button" onclick="show_image()" class="btn btn-warning"> Load Signature
+                        <button type="button" onclick="show_image()" class="btn btn-warning" id="btn_img"> Load Signature
                             </button>
                     </div>
                     <div>
@@ -228,14 +228,15 @@
 
 <script type="text/javascript">
     function show_image() {
-    var elem = document.createElement("img");
-    var im=img_loc.value
-elem.setAttribute("src",im);
-elem.setAttribute("height", "300");
-elem.setAttribute("width", "300");
-elem.setAttribute("alt", "signature");
-document.getElementById("imgg").appendChild(elem);
-}
+        document.getElementById("btn_img").disabled = true;
+        let elem = document.createElement("img");
+        let im=img_loc.value
+        elem.setAttribute("src",im);
+        elem.setAttribute("height", "300");
+        elem.setAttribute("width", "300");
+        elem.setAttribute("alt", "signature");
+        document.getElementById("imgg").appendChild(elem);
+    }
 
     function validateaount(amount){
     let dep_amount= transaction_value.value
@@ -288,6 +289,7 @@ document.getElementById("imgg").appendChild(elem);
                 // console.log(amount)
                 // console.log(customer_id)
                 // console.log(account_id)
+                if(parseFloat(amount) > 0 ){
                $.ajax({
                    type: 'GET',
                    url : '{{('/normaldeposite')}}',
@@ -306,6 +308,7 @@ document.getElementById("imgg").appendChild(elem);
                         return Swal.fire('Deposite Successful')
                     }
                })
+                }
            }
 
            function showCustomers(data){

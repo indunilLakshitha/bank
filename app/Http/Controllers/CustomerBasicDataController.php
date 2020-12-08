@@ -222,7 +222,7 @@ class CustomerBasicDataController extends Controller
         return response()->json('del');
     }
     public function guardianAjax(Request $request)
-    {
+    { return response()->json($request);
         $guardian = $request;
         $guardian['is_enable'] = 1;
         $guardian['created_by'] = Auth::user()->id;
@@ -245,7 +245,7 @@ class CustomerBasicDataController extends Controller
 
     public function viewMember(Request $request){
 
-         $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
+        $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
         $view_1_1 = CutomerMainType::where('customer_id',$request->id)->first();
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
