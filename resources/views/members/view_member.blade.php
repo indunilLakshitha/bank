@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-3">
                         <div class="card-text">
-                            <a href="{{ URL::previous() }}" class="btn btn-warning">Back</a>
+                            <a href="{{url('members')}}" class="btn btn-warning">Back</a>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                                 <label class="col-sm-2 col-form-label">Member/Non-Member</label>
                                 <div class="col-sm-2">
                                     <label class="form-check-label-bold" style="background-color: #ffff00;">
-                                        @if($view_1->non_member=== '1')
+                                        @if(intval($view_1->member) == 0)
                                         <input name="customer_status_id" id="c" class="form-control" value="NON MEMBER">
                                         @else
                                         <input name="customer_status_id" id="c" class="form-control" value="MEMBER">

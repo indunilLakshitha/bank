@@ -260,6 +260,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     //---------------------------------------------withdrawal views------end
 
     Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
+    Route::get('/load_saving_details', 'WithdrawalController@load_saving_details');
     Route::get('/savings/generalinformation', 'SavingsController@generalInformation');
     Route::get('/savings/productdetails', 'SavingsController@productDetails');
     Route::get('/savings/jointacoount', 'SavingsController@jointAcoount');

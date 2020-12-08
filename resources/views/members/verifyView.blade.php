@@ -19,7 +19,7 @@
                     <div class="col-3">
                         <div class="col-9">
                             <div class="card-text">
-                                <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
+                                <a href="{{ url('members/verify') }}" class="btn btn-warning">Back</a>
                             </div>
                         </div>
                     </div>

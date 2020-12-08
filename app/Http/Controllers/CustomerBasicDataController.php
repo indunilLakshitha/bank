@@ -239,7 +239,7 @@ class CustomerBasicDataController extends Controller
 
     public function viewMember(Request $request){
 
-         $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
+        $view_1 = CustomerBasicData::where('customer_id',$request->id)->first();
         $view_1_1 = CutomerMainType::where('customer_id',$request->id)->first();
         $view_2 = CustomerStatusDates::where('customer_id',$request->id)->first();
         $view_3 = OccupationData::where('customer_id',$request->id)->first();
