@@ -271,6 +271,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/savings/correspondance', 'SavingsController@correspondance');
     Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
     Route::get('/savings/getsubdetails', 'SavingsController@getSubDetails');
+    Route::get('/accountreject/{id}', 'SavingsController@accountReject');
 
     // Add by Kanishka 19/11/2020
     Route::get('/savings/parameter', function () {
