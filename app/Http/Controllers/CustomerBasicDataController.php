@@ -211,13 +211,16 @@ class CustomerBasicDataController extends Controller
         $row->save();
 
         $data = DB::table('beneficiary_data')
-        ->where('beneficiary_data.customer_id', $benificiary->customer_id)
         ->leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'beneficiary_data.customer_id')
+        ->where('beneficiary_data.customer_id', $benificiary->customer_id)
         ->get();
         return response()->json(['bene', $data]);
 
     }
-
+    public function delete_bene(Request $request){
+        BeneficiaryData::find($request->id)->delete();
+        return response()->json('del');
+    }
     public function guardianAjax(Request $request)
     {
         $guardian = $request;
@@ -235,7 +238,10 @@ class CustomerBasicDataController extends Controller
         return response()->json(['guard', $data]);
     }
 
-
+    public function delete_gurd(Request $request){
+        CustomerAsset::find($request->id)->delete();
+        return response()->json('del');
+    }
 
     public function viewMember(Request $request){
 
