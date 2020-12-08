@@ -487,6 +487,7 @@ Route::post('/add_external_nominies','ExternalNomimiesController@add');
 //----------------------------------------FD account----------------------------
 Route::get('/fd','FdAccountController@index');
 Route::get('/findproduct','FdAccountController@findProduct');
+Route::get('/findproductbyname','FdAccountController@findProductByName');
 Route::post('/createfd','FdAccountController@createFd');
 Route::get('/findinvester','FdAccountController@findInvester');
 Route::get('/addinvester','FdAccountController@addInvester');
@@ -498,6 +499,9 @@ Route::get('/fd/view/{id}','FdAccountController@view');
 Route::get('/fd/verification/{id}','FdAccountController@verification');
 Route::get('/removenominee','FdAccountController@removeNominee');
 Route::get('/removeinvestor','FdAccountController@removeInvestor');
+Route::get('/findinstructorcfn','FdAccountController@findByFullName');
+Route::get('/findinstructorcid','FdAccountController@findByCid');
+Route::get('/findinstructornic','FdAccountController@findByNic');
 
 //------------------------------------------------------search model routes-----------
 Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');

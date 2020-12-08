@@ -288,6 +288,7 @@ document.getElementById("imgg").appendChild(elem);
                 // console.log(amount)
                 // console.log(customer_id)
                 // console.log(account_id)
+                if(parseFloat(amount) > 0 ){
                $.ajax({
                    type: 'GET',
                    url : '{{('/normaldeposite')}}',
@@ -306,6 +307,7 @@ document.getElementById("imgg").appendChild(elem);
                         return Swal.fire('Deposite Successful')
                     }
                })
+                }
            }
 
            function showCustomers(data){

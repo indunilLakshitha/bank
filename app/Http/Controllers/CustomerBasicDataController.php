@@ -219,7 +219,7 @@ class CustomerBasicDataController extends Controller
     }
 
     public function guardianAjax(Request $request)
-    {
+    { return response()->json($request);
         $guardian = $request;
         $guardian['is_enable'] = 1;
         $guardian['created_by'] = Auth::user()->id;
