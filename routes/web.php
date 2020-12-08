@@ -305,6 +305,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/normalwithdraw', 'TransactionController@normalWithdraw');
     Route::get('/normaldeposite', 'TransactionController@normalDeposite');
 
+
     // ------------------------------------------------------------------------Account Categories------------
 
     Route::resource('/accountCategory', 'AccountCategoryController');
@@ -384,6 +385,8 @@ Route::get('/CasHiNhanDbrancH','TransactionReportController@cashInHandBranch');
 Route::get('/cashInHand/user','TransactionReportController@getUserRep');
 Route::get('/CasHiNhanDbrancH/branch','TransactionReportController@getBranchRep');
 Route::get('/ReportOfTransactions/transactions','TransactionReportController@getTransactions');
+Route::get('/findRange', 'TransactionReportController@findBtween');
+
 
 
 // -------------------------------------------------------------FD-----------------------------------------
