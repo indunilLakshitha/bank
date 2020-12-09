@@ -32,47 +32,27 @@
                                 <span class="sidebar-normal"> All Users </span>
                             </a>
                         </li>
-
-
+                        {{-- @can('role_view') --}}
                         <li class="nav-item ">
                             <a class="nav-link" href="/roles/index">
                                 <span class="sidebar-mini"> <i class="material-icons">supervisor_account</i> </span>
                                 <span class="sidebar-normal"> Roles </span>
                             </a>
                         </li>
+                        {{-- @endcan
+                        @can('permission_view') --}}
+
                         <li class="nav-item ">
                             <a class="nav-link" href="/permissions/index">
                                 <span class="sidebar-mini"> <i class="material-icons">verified_user</i> </span>
                                 <span class="sidebar-normal"> Permissions </span>
                             </a>
                         </li>
+                        {{-- @endcan --}}
                     </ul>
                 </div>
             </li>
-            <li class="nav-item  ">
-                <a class="nav-link" data-toggle="collapse" href="#branchess">
-                    <i class="material-icons">account_box</i>
-                    <p> Branches
-                        <b class="caret"></b> </p>
-                </a>
-                <div class="collapse" id="branchess">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{url('/newbranchesadd')}}">
-                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
-                                <span class="sidebar-normal">Add Branches </span>
-                            </a>
-                        </li>
 
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{url('/newbranches')}}">
-                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
-                                <span class="sidebar-normal">View Branches </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
             <li class="nav-item  ">
                 <a class="nav-link" data-toggle="collapse" href="#members">
                     <i class="material-icons">account_box</i>
@@ -81,18 +61,21 @@
                 </a>
                 <div class="collapse" id="members">
                     <ul class="nav">
+
                         <li class="nav-item ">
                             <a class="nav-link" href="{{url('/members/add')}}">
                                 <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
                                 <span class="sidebar-normal">Add Customer </span>
                             </a>
                         </li>
+
                         <li class="nav-item ">
                             <a class="nav-link" href="/members/verify">
                                 <span class="sidebar-mini"> <i class="material-icons">verified</i> </span>
                                 <span class="sidebar-normal"> Customer Verification</span>
                             </a>
                         </li>
+
                         <li class="nav-item ">
                             <a class="nav-link" href="/members">
                                 <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
@@ -110,12 +93,17 @@
                 </a>
                 <div class="collapse" id="branchess">
                     <ul class="nav">
+                        @can('branches_add')
+
                         <li class="nav-item ">
                             <a class="nav-link" href="{{url('/newbranchesadd')}}">
                                 <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
                                 <span class="sidebar-normal">Add Branches </span>
                             </a>
                         </li>
+                        @endcan
+                        @can('branches_view')
+
 
                         <li class="nav-item ">
                             <a class="nav-link" href="{{url('/newbranches')}}">
@@ -123,12 +111,7 @@
                                 <span class="sidebar-normal">View Branches </span>
                             </a>
                         </li>
-                        <li>
-                            <a class="nav-link" href="{{url('/cashiercash')}}">
-                                <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
-                                <span class="sidebar-normal">Casier </span>
-                            </a>
-                        </li>
+                        @endcan
                     </ul>
                 </div>
             </li>
@@ -167,18 +150,10 @@
                         </li>
                         @endcan
 
-                        {{-- <li class="nav-item ">
-                            <a class="nav-link" href="/savings/approve">
-                                <span class="sidebar-mini"> <i class="material-icons">supervisor_account</i> </span>
-                                <span class="sidebar-normal"> Account Approval </span>
-                            </a>
-                        </li> --}}
-
                     </ul>
                 </div>
             </li>
             @endcan
-            {{-- @can('savings_account_veiw') --}}
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#fd">
                     <i class="material-icons">account_balance</i>
@@ -187,6 +162,8 @@
                     </p>
                 </a>
                 <div class="collapse" id="fd">
+                    @can('fd_opening')
+
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="{{url('/fd')}}">
@@ -195,6 +172,9 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('fd_verification')
+
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/verify">
@@ -203,9 +183,9 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
                 </div>
             </li>
-            {{-- @endcan --}}
             @can('withdrawal_deposites')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#diposits">
@@ -281,43 +261,7 @@
                 </div>
             </li>
             @endcan
-            {{-- <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#parameters">
-                    <i class="material-icons">request_quote</i>
-                    <p> Parameters
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="parameters">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/savings/parameter">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Savings Account Parameters</span>
-                            </a>
-                        </li>
 
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/savings/schemeParameters">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Interest Scheme Parameters</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/savings/savingsSchemeParameters">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Saving Scheme Parameters</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/savings/otherViews">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Other Views</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li> --}}
             @can('transaction_report')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#transaction_report">
@@ -356,14 +300,6 @@
                             <a class="nav-link" href="/ReportOfTransactions">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal">Report</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/CasHiNhanDbrancH">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Cash In Hand 2</span>
                             </a>
                         </li>
                     </ul>
@@ -424,6 +360,8 @@
                     </p>
                 </a>
                 <div class="collapse" id="share">
+                    @can('share_buy')
+
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="{{route('shares.buy')}}">
@@ -432,6 +370,9 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('share_transfer')
+
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="{{route('shares.transfer')}}">
@@ -440,6 +381,9 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('share_history')
+
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="{{route('shares.history')}}">
@@ -448,9 +392,10 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
                 </div>
             </li>
-            {{-- @can('configurations')
+            @can('configurations')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#dataAdd">
                     <i class="material-icons">build</i>
@@ -539,91 +484,38 @@
                                 <span class="sidebar-normal">Married Statuses</span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" data-toggle="collapse" href="#dataAdd">
+                                <i class="material-icons"></i>
+                                <p>
+                                    <b class="caret"></b>
+                                </p>
+                            </a>
+                            <div class="collapse" id="">
+                                <ul class="nav">
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="/accountCategory">
+                                            <span class="sidebar-mini"> <i class="material-icons">settings</i> </span>
+                                            <span class="sidebar-normal"></span>
+                                        </a>
+                                    </li>
 
-                    </ul>
-                </div>
-            </li>
-            @endcan --}}
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#aaa">
-                    <i class="material-icons">build</i>
-                    <p> Configurations
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="aaa">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/accountCategory">
-                                <span class="sidebar-mini"> <i class="material-icons">settings</i></span>
-                                <span class="sidebar-normal">testing</span>
-                            </a>
-                        </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="/accountType">
+                                            <span class="sidebar-mini"> <i class="material-icons">request_quote</i>
+                                            </span>
+                                            <span class="sidebar-normal"></span>
+                                        </a>
+                                    </li>
 
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/fdFindBussPrtn">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Find Partner</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/fdMemCreation">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Member Creation</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/fdFindProd">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Find Produtc</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/fdFindInter">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Find Interducer</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/fdWithdReq">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Withdrawal Request</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/fdInvestNomi">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Investor Nominee</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/fdNomSlctGrp">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Nominee Select</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/fdWithdReq">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Withdrawal Request</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/branchCashInOut1">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Branch Cash In-out 1</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/branchCashInOut2">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i></span>
-                                <span class="sidebar-normal">Branch Cash In-out 2</span>
-                            </a>
+
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </li>
-
         </ul>
+        @endcan
     </div>
 </div>
