@@ -142,14 +142,20 @@ Route::group(['middleware' => 'isBlocked'], function () {
     // });
     //-------------------------------------------------account verification view
     Route::get('/savings/verification', function () {
-        $permissions = DB::select("
-                SELECT * FROM account_general_information
-                LEFT JOIN customer_basic_data
-                ON customer_basic_data.customer_id = account_general_information.customer_id
-                LEFT JOIN iedentification_types
-                ON iedentification_types.id = customer_basic_data.identification_type_id
-                WHERE account_general_information.status LIKE '2'
-                ");
+        $sql = "
+        SELECT * FROM account_general_information
+        LEFT JOIN customer_basic_data
+        ON customer_basic_data.customer_id = account_general_information.customer_id
+        LEFT JOIN iedentification_types
+        ON iedentification_types.id = customer_basic_data.identification_type_id
+        WHERE account_general_information.status LIKE '2'
+        ";
+            $user_data = Auth::user();
+            if(intval($user_data->roles[0]->id) != 1) {
+                $branch_id = $user_data->branh_id;
+                $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
+}
+        $permissions = DB::select($sql);
         return view('savings.verification', compact('permissions'));
     });
     //-------------------------------------------------account approval view(disabled)
