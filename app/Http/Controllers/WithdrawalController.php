@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Member;
 use App\Models\AccountGeneralInformation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WithdrawalController extends Controller
 {
@@ -12,6 +13,9 @@ class WithdrawalController extends Controller
 
         $accs = AccountGeneralInformation::where('customer_id', $request->id)->get();
         $shares = Member::where('customer_id',  $request->id)->first();
-        return response()->json(compact('accs', 'shares'));
+        $settings=DB::table('setting_data')->where('id',2)->get();
+        $share_amount=$settings[0]->unit_share_price*$shares->share_amount;
+        return response()->json($settings);
+        return response()->json(compact('accs', 'shares','share_amount'));
     }
 }

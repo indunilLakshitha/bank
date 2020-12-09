@@ -125,7 +125,7 @@ class OpenSavingsAccountController extends Controller
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
                     INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
-                    WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1";
+                    WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1 AND cbd.member != 1";
         } else {
             $sql = "SELECT DISTINCT
             cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
@@ -207,7 +207,7 @@ class OpenSavingsAccountController extends Controller
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
                     INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
-                    WHERE cbd.customer_id LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1";
+                    WHERE cbd.customer_id LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1 AND cbd.member != 1";
         } else {
             $sql = "SELECT DISTINCT
             cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
@@ -253,7 +253,7 @@ class OpenSavingsAccountController extends Controller
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
                     INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
-                    WHERE cbd.identification_number LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1";
+                    WHERE cbd.identification_number LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1 AND cbd.member != 1";
         } else {
             $sql = "SELECT DISTINCT
                         cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,

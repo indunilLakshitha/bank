@@ -461,7 +461,7 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
     Route::get('/member', 'MemberController@create');
     Route::post('/member_creation', 'MemberController@member_creation');
     Route::get('/add_nominee_member_creation', 'MemberController@add_nominee_member_creation');
-    Route::get('/remove_nominee_member_creation', 'MemberController@remove_nominee_member_creation');
+    Route::get('/remove_ext_nominee_member_creation', 'ExternalNomimiesController@remove_ext_nominee_member_creation');
 
 Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
 Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');

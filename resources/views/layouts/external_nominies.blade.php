@@ -44,12 +44,15 @@
                                 <div class="form-group">
                                     <select name="relation_type" id="relation_type" class="form-control"
                                             data-style="select-with-transition" required>
-
                                             <option value="Mother">Mother</option>
                                             <option value="Father">Father</option>
+                                            <option value="Wife">Wife</option>
+                                            <option value="Husband">Husband</option>
+                                            <option value="Sister">Sister</option>
+                                            <option value="Husband">Brother</option>
                                             <option value="Son">Son</option>
                                             <option value="Daughter">Daughter</option>
-
+                                            <option value="Other">Other</option>
                                         </select>
                                 </div>
                             </div>
@@ -104,7 +107,7 @@
 
             </div>
             <div class="modal-footer">
-                <a onclick="addExternal()" class="btn btn-rose" data-dismiss="modal">Add</a>
+                <a onclick="addExternal()" class="btn btn-rose" >Add</a>
                 <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -142,6 +145,10 @@
                     icon: 'success',
                     timer: 20000
                 })
+                cus_name.value=''
+                contact_no.value=''
+                address.value=''
+                nic.value=''
             // .then((value)=>{
                     return show_ext_nominees(data)
                     // })
@@ -170,7 +177,7 @@
           onclick=
           "
           this.parentElement.parentElement.classList.add('d-none'),
-          remove_nominee('${i.id}')
+          remove_ext_nominee('${i.id}')
           "
           class="btn btn-sm btn-primary">Remove</button>
       </td>
@@ -182,10 +189,10 @@
 }
 
 
-  function remove_nominee(id){
+  function remove_ext_nominee(id){
       $.ajax({
           type: 'GET',
-          url: '{{('/remove_nominee_member_creation')}}',
+          url: '{{('/remove_ext_nominee_member_creation')}}',
           data: {
              id
           },
