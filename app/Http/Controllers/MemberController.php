@@ -41,7 +41,7 @@ class MemberController extends Controller
                 `status`, cbd.`identification_number`, IF(`member` = 1, 'Member', 'Non Member') AS 'status'
                 FROM customer_status_dates AS csd
                 LEFT JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
-                WHERE cbd.`status` != 3 AND cbd.`status` != 0";
+                WHERE cbd.`status` = 1";
         if($for_verify > 0){
             $sql .= " AND cbd.`status` = 2 ";
         }
@@ -77,18 +77,39 @@ class MemberController extends Controller
     }
 
     public function VerificationSearch(Request $request){
-        $results = DB::select("
-            SELECT * FROM account_general_information
-            LEFT JOIN customer_basic_data
-            ON customer_basic_data.customer_id = account_general_information.customer_id
-            LEFT JOIN iedentification_types
-            ON iedentification_types.id = customer_basic_data.identification_type_id
-            WHERE customer_basic_data.customer_id LIKE '%$request->customer_id%'
-            AND customer_basic_data.full_name LIKE '%$request->full_name%'
-            AND customer_basic_data.identification_type_id LIKE '%$request->identification_type_id%'
-            AND account_general_information.account_number LIKE '%$request->account_number%'
-            AND account_general_information.status LIKE '2'
-            ");
+        $customer_id = $request->input('customer_id');
+        $identification_number = $request->input('identification_number');
+        $full_name = $request->input('full_name');
+        $account_number = $request->input('account_number');
+        $for_verify= intval($request->input('for_verify'));
+        $sql = "SELECT cbd.`id`, cbd.`customer_id`, cbd.`customer_status_id`, cbd.`full_name`, cbd.`customer_status_id`,
+                agi.`status`, cbd.`identification_number`, IF(`member` = 1, 'Member', 'Non Member') AS 'status', agi.`account_number`
+                FROM account_general_information AS agi
+                INNER JOIN customer_status_dates AS csd ON csd.customer_id = agi.customer_id
+                INNER JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
+                WHERE cbd.`status` = 2";
+
+        if($for_verify > 0){
+            $sql .= " AND agi.`status` = 2 ";
+        }
+        if($customer_id != null && $customer_id != ''){
+            $sql .= " AND cbd.`customer_id` LIKE '%".$customer_id."%'";
+        }
+        if($identification_number != null && $identification_number != ''){
+            $sql .= " AND cbd.`identification_number` LIKE '%".$identification_number."%'";
+        }
+        if($full_name != null && $full_name != ''){
+            $sql .= " AND cbd.`full_name` LIKE '%".$full_name."%'";
+        }
+        if($account_number != null && $account_number != ''){
+            $sql .= " AND agi.`account_number` LIKE '%".$account_number."%'";
+        }
+        $user_data = Auth::user();
+        if(intval($user_data->roles[0]->id) != 1) {
+            $branch_id = $user_data->branh_id;
+            $sql .= " AND cbd.branch_id = ". $branch_id;
+        }
+        $results = DB::select($sql);
 
         return response()->json($results);
     }

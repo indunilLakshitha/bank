@@ -195,7 +195,6 @@
                             </a>
                         </li>
                     </ul>
-                </div>
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/verify">
@@ -204,6 +203,7 @@
                             </a>
                         </li>
                     </ul>
+                </div>
             </li>
             {{-- @endcan --}}
             @can('withdrawal_deposites')
@@ -623,6 +623,7 @@
                     </ul>
                 </div>
             </li>
+
         </ul>
     </div>
 </div>

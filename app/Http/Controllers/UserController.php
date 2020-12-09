@@ -181,12 +181,18 @@ class UserController extends Controller
         $roles = Role::with('permissions')->where('status', 1)->get();
         // return $roles;
         $permissions = Permission::all();
-        return view('users.create', compact('permissions', 'roles'));
+
+        $user_data = Auth::user();
+        $default_branch_id = 0;
+        if(intval($user_data->roles[0]->id) != 1) {
+            $default_branch_id = intval($user_data->branh_id);
+        }
+        return view('users.create', compact('permissions', 'roles', 'default_branch_id'));
     }
 
     public function store(Request $request){
         //check employee number existing
-        $employee_no = intval($request->input('employee_no'));
+        $employee_no = $request->input('employee_no');
         $email_address= $request->input('email');
         $user_password = $request->input('password');
         $user_confirm_password = $request->input('confirm_password');

@@ -35,6 +35,7 @@ class FdAccountController extends Controller
         sub_accounts.*,
         intereset_type_data.from_value,
         intereset_type_data.to_value,
+        intereset_type_data.amount,
         deposite_types.deposite_type,
         fd_interest_types.fd_interest_type,
         fd_sub_accounts.deposite_type_id,
@@ -57,7 +58,45 @@ class FdAccountController extends Controller
         LEFT JOIN fd_interest_types
         ON fd_interest_types.id = fd_sub_accounts.fd_interest_type_id
 
-        WHERE sub_accounts.id LIKE '%$request->code%'
+        WHERE sub_accounts.schema_code LIKE '%$request->code%'
+        AND sub_accounts.is_enable = 1
+        ");
+        return response()->json($product_details);
+    }
+
+    public function findProductByName(Request $request){
+        // return response()->json($request);
+
+        $product_details=$data = DB::select("
+        SELECT DISTINCT
+
+        sub_accounts.*,
+        intereset_type_data.from_value,
+        intereset_type_data.to_value,
+        intereset_type_data.amount,
+        deposite_types.deposite_type,
+        fd_interest_types.fd_interest_type,
+        fd_sub_accounts.deposite_type_id,
+        fd_sub_accounts.fd_interest_type_id
+
+        FROM sub_accounts
+
+        LEFT JOIN intereset_schemas
+        ON intereset_schemas.sub_account_id = sub_accounts.id
+
+        LEFT JOIN intereset_type_data
+        ON intereset_type_data.interest_schema_id = intereset_schemas.id
+
+        LEFT JOIN fd_sub_accounts
+        ON fd_sub_accounts.sub_account_id = sub_accounts.id
+
+        LEFT JOIN deposite_types
+        ON deposite_types.id = fd_sub_accounts.deposite_type_id
+
+        LEFT JOIN fd_interest_types
+        ON fd_interest_types.id = fd_sub_accounts.fd_interest_type_id
+
+        WHERE sub_accounts.sub_account_description LIKE '%$request->code%'
         AND sub_accounts.is_enable = 1
         ");
         return response()->json($product_details);
@@ -177,7 +216,34 @@ class FdAccountController extends Controller
         return redirect('/verify');
 
     }
+public function removeNominee(Request $request){
+    FdNominee::find($request->text)->delete();
 
+    $investers=FdNominee::where('fd_account_id',$request->fdod)->get();
+
+    return response()->json($investers);
+}
+public function removeInvestor(Request $request){
+
+    FdInvestor::find($request->text)->delete();
+
+    $investers=FdInvestor::where('fd_account_id',$request->fdod)->get();
+return response()->json($investers);
+}
+
+
+public function findByFullName(Request $request){
+    // return response()->json($request);
+    $product_details=$data = DB::select("
+    SELECT DISTINCT *
+
+    FROM users
+
+    WHERE users.name LIKE '%$request->text%'
+    AND users.status = 1
+    ");
+    return response()->json($product_details);
+}
 
 
 }

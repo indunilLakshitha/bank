@@ -1,8 +1,4 @@
-{{-- <style>
-    .modal-content{
-        overflow-y: auto;
-    }
-</style> --}}
+
 <div class="row">
     <div class="col-md-12 text-center">
         <!-- notice modal -->
@@ -24,13 +20,9 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        {{-- <button class="btn fa fa-search btn-info btn"
-                                            onclick="get_cus_details(client_full_name.value)">
-                                            &nbspType in to search By Full Name</button> --}}
                                         <button class="btn  btn-info btn"
                                             onclick="introducer_body.innerHTML = null">
                                             Clear Results </button>
-
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +48,6 @@
                                 <tbody id="introducer_body" class="d-none"></tbody>
                             </table>
                         </div>
-
                         <div class="row mb-5 ml-3">
                             <label class="col-sm-2 col-form-label ">ID Number</label>
                             <div class="col-sm-10">
@@ -65,14 +56,12 @@
                                         <div class="form-group">
                                             <input type="text" name="identification_number" id="identification_number"
                                                 class="form-control" placeholder="">
-
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(identification_type_id.value, identification_number.value)">
                                             &nbspSearch By ID</button>
-
                                     </div>
                                 </div>
                             </div>
@@ -93,13 +82,13 @@
 
     function get_modal_search_by_full_name(value){
         // console.log(is_customer_id_2);
-        console.log(value);
+        console.log('sss',value);
         if(value === ''){
             introducer_body.innerHTML = ''
         }
         $.ajax({
         type: 'GET',
-        url: '{{('/search_by_full_name')}}',
+        url: '{{('/findinstructorcfn')}}',
         data: {text:value} ,
         success: function(data){
             console.log(data);
@@ -138,10 +127,10 @@ function set_modal_serach_by_name_results(data){
         let member_status = i.non_member===1 ? 'Member' : 'Non-member'
         let html = `
         <tr id='${i.id}'>
-            <td>${i.customer_id}</td>
-            <td>${i.full_name}</td>
-            <td>${i.identification_number}</td>
-            <td>${member_status}</td>
+            <td>${i.email}</td>
+            <td>${i.name}</td>
+            <td>${i.nic}</td>
+            <td>${i.mobile_number}</td>
             <td>
                 <button type="button"
                 onclick=
@@ -168,7 +157,10 @@ function set_cus_details_from_modal(id){
             console.log(cus);
 
             if(document.querySelector('#introducer_id')){
-                    introducer_id.value = cus.customer_id
+                    introducer_id.value = cus.id
+            }
+            if(document.querySelector('#introducer_name')){
+                introducer_name.value = cus.name
             }
             if(document.querySelector('#full_name')){
                 full_name.value = cus.full_name
