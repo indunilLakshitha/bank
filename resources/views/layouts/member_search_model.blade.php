@@ -151,7 +151,10 @@
 
         data.forEach(i => {
 
-            let member_status = i.non_member===1 ? 'Member' : 'Non-member'
+            let member_status = 'Non-member'
+            if(parseInt(i.member) == 1) {
+                member_status = "Member"
+            }
             let html = `
             <tr id='${i.id}'>
                 <td>${i.customer_id}</td>
