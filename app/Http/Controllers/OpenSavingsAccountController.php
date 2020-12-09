@@ -112,12 +112,12 @@ class OpenSavingsAccountController extends Controller
                         csd.date_of_birth, b.branch_code, m.share_amount, 0.00 AS 'account_balance', '-' AS 'account_number'
                     FROM customer_basic_data AS cbd
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
-                    INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+                    LEFT JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
                     WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
         }
         //become member
-        if($req_type == 2 ) {
+        else if($req_type == 2 ) {
             $sql = "SELECT DISTINCT
                         cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
                         csd.date_of_birth, b.branch_code, m.share_amount, 0.00 AS 'account_balance', '-' AS 'account_number'
@@ -140,7 +140,7 @@ class OpenSavingsAccountController extends Controller
         $user_role_id = intval(Auth::user()->roles[0]->id);
         $branch_id = Auth::user()->branh_id;
         if($user_role_id != 1) {
-            $sql .= " cbd.branch_id = ". $branch_id;
+            $sql .= " AND cbd.branch_id = ". $branch_id;
         }
         $data = DB::select($sql);
 
@@ -194,12 +194,12 @@ class OpenSavingsAccountController extends Controller
                         csd.date_of_birth, b.branch_code, m.share_amount, 0.00 AS 'account_balance', '-' AS 'account_number'
                     FROM customer_basic_data AS cbd
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
-                    INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+                    LEFT JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
                     WHERE cbd.customer_id LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
         }
         //become member
-        if($req_type == 2 ) {
+        else if($req_type == 2 ) {
             $sql = "SELECT DISTINCT
                         cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
                         csd.date_of_birth, b.branch_code, m.share_amount, 0.00 AS 'account_balance', '-' AS 'account_number'
@@ -223,7 +223,7 @@ class OpenSavingsAccountController extends Controller
         $user_role_id = intval(Auth::user()->roles[0]->id);
         $branch_id = Auth::user()->branh_id;
         if ($user_role_id != 1) {
-            $sql .= " cbd.branch_id = " . $branch_id;
+            $sql .= " AND cbd.branch_id = " . $branch_id;
         }
         $data = DB::select($sql);
         return response()->json($data);
@@ -240,12 +240,12 @@ class OpenSavingsAccountController extends Controller
                         csd.date_of_birth, b.branch_code, m.share_amount, 0.00 AS 'account_balance', '-' AS 'account_number'
                     FROM customer_basic_data AS cbd
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
-                    INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+                    LEFT JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
                     WHERE cbd.identification_number LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
         }
         //become member
-        if($req_type == 2 ) {
+        else if($req_type == 2 ) {
             $sql = "SELECT DISTINCT
                         cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
                         csd.date_of_birth, b.branch_code, m.share_amount, 0.00 AS 'account_balance', '-' AS 'account_number'
@@ -269,7 +269,7 @@ class OpenSavingsAccountController extends Controller
         $user_role_id = intval(Auth::user()->roles[0]->id);
         $branch_id = Auth::user()->branh_id;
         if($user_role_id != 1) {
-            $sql .= " cbd.branch_id = ". $branch_id;
+            $sql .= " AND cbd.branch_id = ". $branch_id;
         }
         $data = DB::select($sql);
         return response()->json($data);

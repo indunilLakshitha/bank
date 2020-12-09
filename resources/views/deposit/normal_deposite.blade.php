@@ -84,7 +84,7 @@
                             <div class="col-5">
                                 <div class="form-group">
                                     <select name="payment_method_id" id="payment_method_id" class="form-control">
-                                        <option value="">Select </option>
+                                        <!--option value="">Select </option-->
                                         @php
                                         $payment_methods =
                                         Illuminate\Support\Facades\DB::table('payment_methods')->where('is_enable',1)->get();
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label">Deposite Amount</label>
+                    <label class="col-sm-2 col-form-label">Deposit Amount</label>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="transaction_value"
@@ -145,7 +145,7 @@
 
                     <div class="col-6 text-right">
                         <a onclick="normalWithdraw(transaction_value.value,customer_id.value,account_id.value,payment_method_id.value)"
-                            class="btn btn-rose col-4 text-white d-none" id="dep_btn">DEPOSITE</a>
+                            class="btn btn-rose col-4 text-white d-none" id="dep_btn">DEPOSIT</a>
                     </div>
                     <div class="col-1 text-right">
                         <button type="submit" class="btn ">Clear</button>
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                     <div class="ml-3">
-                        <button type="button" onclick="show_image()" class="btn btn-warning"> Load Signature
+                        <button type="button" onclick="show_image()" class="btn btn-warning" id="btn_img"> Load Signature
                             </button>
                     </div>
                     <div>
@@ -228,14 +228,15 @@
 
 <script type="text/javascript">
     function show_image() {
-    var elem = document.createElement("img");
-    var im=img_loc.value
-elem.setAttribute("src",im);
-elem.setAttribute("height", "300");
-elem.setAttribute("width", "300");
-elem.setAttribute("alt", "signature");
-document.getElementById("imgg").appendChild(elem);
-}
+        document.getElementById("btn_img").disabled = true;
+        let elem = document.createElement("img");
+        let im=img_loc.value
+        elem.setAttribute("src",im);
+        elem.setAttribute("height", "300");
+        elem.setAttribute("width", "300");
+        elem.setAttribute("alt", "signature");
+        document.getElementById("imgg").appendChild(elem);
+    }
 
     function validateaount(amount){
     let dep_amount= transaction_value.value
@@ -304,7 +305,7 @@ document.getElementById("imgg").appendChild(elem);
                         account_balance.value=data.balance_amount
                         transaction_value.value=""
                         re_c.value=""
-                        return Swal.fire('Deposite Successful')
+                        return Swal.fire('Deposit Successful')
                     }
                })
                 }
