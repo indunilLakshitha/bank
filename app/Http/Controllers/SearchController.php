@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\DB;
 class SearchController extends Controller
 {
     public function byNameForWnD(Request $request){
-        $branch_id = Auth::user()->branh_id;
-        $data = DB::select("
+        //$branch_id = Auth::user()->branh_id;
+        $sql = "
         SELECT DISTINCT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
@@ -36,7 +36,14 @@ class SearchController extends Controller
         AND account_general_information.status = 1
         AND account_general_information.is_enable = 1
 
-        ");
+        ";
+        $user_role_id = intval(Auth::user()->roles[0]->id);
+        $branch_id = Auth::user()->branh_id;
+        if($user_role_id != 1) {
+            $sql .= " AND cbd.branch_id = ". $branch_id;
+        }
+        $data = DB::select($sql);
+
             return response()->json($data);
     }
 

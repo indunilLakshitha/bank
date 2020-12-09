@@ -19,7 +19,7 @@ class MainBranchController extends Controller
     }
     public function add(){
          $branches=Branch::where('is_enable',1)->get();
-        $contacttypes=ContactType::all();
+        $contacttypes=ContactType::where('is_enable',1)->get();
 
         return view('newbranches.1_add',compact('branches','contacttypes'));
     }
