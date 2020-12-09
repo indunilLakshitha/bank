@@ -104,7 +104,7 @@
 
             </div>
             <div class="modal-footer">
-                <a onclick="addExternal()" class="btn btn-rose" data-dismiss="modal">Add</a>
+                <a onclick="addExternal()" class="btn btn-rose" >Add</a>
                 <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -170,7 +170,7 @@
           onclick=
           "
           this.parentElement.parentElement.classList.add('d-none'),
-          remove_nominee('${i.id}')
+          remove_ext_nominee('${i.id}')
           "
           class="btn btn-sm btn-primary">Remove</button>
       </td>
@@ -182,10 +182,10 @@
 }
 
 
-  function remove_nominee(id){
+  function remove_ext_nominee(id){
       $.ajax({
           type: 'GET',
-          url: '{{('/remove_nominee_member_creation')}}',
+          url: '{{('/remove_ext_nominee_member_creation')}}',
           data: {
              id
           },

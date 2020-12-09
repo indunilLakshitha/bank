@@ -461,7 +461,7 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
     Route::get('/member', 'MemberController@create');
     Route::post('/member_creation', 'MemberController@member_creation');
     Route::get('/add_nominee_member_creation', 'MemberController@add_nominee_member_creation');
-    Route::get('/remove_nominee_member_creation', 'MemberController@remove_nominee_member_creation');
+    Route::get('/remove_ext_nominee_member_creation', 'ExternalNomimiesController@remove_ext_nominee_member_creation');
 
 Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
 Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
@@ -515,4 +515,10 @@ Route::get('/findinstructornic','FdAccountController@findByNic');
 Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');
 Route::get('/search_by_cus_id_for_dnw','SearchController@byCustomerIdForWnD');
 Route::get('/search_by_nic_for_dnw','SearchController@byNicForWnD');
+
+
+
+//====================printing================================
+Route::get('/receipt/{id}', 'PrintController@receipt');
+Route::get('/passbook-front/{id}', 'PrintController@passbookFront');
 Auth::routes();
