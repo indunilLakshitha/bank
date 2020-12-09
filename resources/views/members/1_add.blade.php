@@ -121,7 +121,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         @if(intval($default_branch_id) == 0)
-                                            <select name="branch_id" id="" class="form-control"
+                                            <select name="branch_id" id="branch_id" class="form-control"
                                                 data-style="select-with-transition" required>
                                                 <option value="">Select Branch</option>
                                                 @isset($branches)
@@ -227,7 +227,7 @@
                                     </label>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <select name="account_category_id" id="" class="form-control"
+                                        <select name="account_category_id" id="account_category_id" class="form-control"
                                             data-style="select-with-transition" required>
                                             <option value="">Select Account Category</option>
                                             @isset($accountcategories)
@@ -323,7 +323,7 @@
                                         </div>
                                         <div class="col-lg-4 col-md-2 col-sm-2">
                                             <div class="form-group">
-                                                <input type="text" name="identification_number" class="form-control" oninput="check_nic(this.value,guradian_nic_message)"
+                                                <input type="text" name="identification_number" id="identification_number" class="form-control" oninput="check_nic(this.value,guradian_nic_message)"
                                                     >
                                                     <a id="guradian_nic_message" class="d-none btn btn-danger">Already registered</a>
 
@@ -422,65 +422,15 @@
 </div>
 
 <script>
-
-
-document.getElementById('sign_img')[0].addEventListener('change', function(event) {
-  var file = event.target.files[0];
-  var fileReader = new FileReader();
-  if (file.type.match('image')) {
-    fileReader.onload = function() {
-      var img = document.createElement('img');
-      img.src = fileReader.result;
-      document.getElementById('img_view')[0].appendChild(img);
-    };
-    fileReader.readAsDataURL(file);
-  } else {
-    fileReader.onload = function() {
-      var blob = new Blob([fileReader.result], {type: file.type});
-      var url = URL.createObjectURL(blob);
-      var video = document.createElement('video');
-      var timeupdate = function() {
-        if (snapImage()) {
-          video.removeEventListener('timeupdate', timeupdate);
-          video.pause();
-        }
-      };
-      video.addEventListener('loadeddata', function() {
-        if (snapImage()) {
-          video.removeEventListener('timeupdate', timeupdate);
-        }
-      });
-      var snapImage = function() {
-        var canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-        var image = canvas.toDataURL();
-        var success = image.length > 100000;
-        if (success) {
-          var img = document.createElement('img');
-          img.src = image;
-          document.getElementById('img_view')[0].appendChild(img);
-          URL.revokeObjectURL(url);
-        }
-        return success;
-      };
-      video.addEventListener('timeupdate', timeupdate);
-      video.preload = 'metadata';
-      video.src = url;
-      // Load video in Safari / IE11
-      video.muted = true;
-      video.playsInline = true;
-      video.play();
-    };
-    fileReader.readAsArrayBuffer(file);
-  }
-});
     function validate_form(){
 
             if(!sign_img.files[0]) {
                 // console.log(img_1.files[0]);
                 return Swal.fire('Please upload Signature Image')
+            }
+            if(contact_type_id.value=='' || identification_number.value=='' || account_category_id.value=='' ||branch_id.value=='' ) {
+                // console.log(img_1.files[0]);
+                return Swal.fire('Please Fill all the details')
             }
             return form.submit()
         }

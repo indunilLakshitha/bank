@@ -80,7 +80,7 @@
                           <i class="material-icons">email</i>
                         </span>
                       </div>
-                      <input type="email" name="email"  class="form-control" placeholder="Email...">
+                      <input type="text" name="email"  class="form-control" placeholder="Username...">
                     </div>
                   </span>
                   <span class="bmd-form-group">

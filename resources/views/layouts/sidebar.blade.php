@@ -162,7 +162,7 @@
                     </p>
                 </a>
                 <div class="collapse" id="fd">
-                    @can('fd_opening')
+                    {{-- @can('fd_opening') --}}
 
                     <ul class="nav">
                         <li class="nav-item ">
@@ -172,7 +172,7 @@
                             </a>
                         </li>
                     </ul>
-                    @endcan
+                    {{-- @endcan --}}
                     @can('fd_verification')
 
                     <ul class="nav">

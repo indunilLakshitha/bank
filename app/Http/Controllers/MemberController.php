@@ -220,7 +220,8 @@ class MemberController extends Controller
             //  $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
              $saving_deposit_base_ledger['is_enable']=1;
              saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
-            return response()->json('Member created');
+             $reply='Member '.$mem->member_number.' created';
+            return response()->json($reply);
 
     }
 
@@ -236,7 +237,6 @@ class MemberController extends Controller
         MemberCreationNominee::find($request->id)->delete();
 
         return response()->json('Nominee Removed');
-
 
     }
 

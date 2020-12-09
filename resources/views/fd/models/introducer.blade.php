@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-md-12 text-center">
         <!-- notice modal -->
@@ -20,8 +19,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <button class="btn  btn-info btn"
-                                            onclick="introducer_body.innerHTML = null">
+                                        <button class="btn  btn-info btn" onclick="introducer_body.innerHTML = null">
                                             Clear Results </button>
                                     </div>
                                 </div>

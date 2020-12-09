@@ -239,7 +239,7 @@ public function findByFullName(Request $request){
 
     FROM users
 
-    WHERE users.name LIKE '%$request->text%'
+    WHERE users.email LIKE '%$request->text%'
     AND users.status = 1
     ");
     return response()->json($product_details);

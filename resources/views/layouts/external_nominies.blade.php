@@ -44,12 +44,15 @@
                                 <div class="form-group">
                                     <select name="relation_type" id="relation_type" class="form-control"
                                             data-style="select-with-transition" required>
-
                                             <option value="Mother">Mother</option>
                                             <option value="Father">Father</option>
+                                            <option value="Wife">Wife</option>
+                                            <option value="Husband">Husband</option>
+                                            <option value="Sister">Sister</option>
+                                            <option value="Husband">Brother</option>
                                             <option value="Son">Son</option>
                                             <option value="Daughter">Daughter</option>
-
+                                            <option value="Other">Other</option>
                                         </select>
                                 </div>
                             </div>
@@ -142,6 +145,10 @@
                     icon: 'success',
                     timer: 20000
                 })
+                cus_name.value=''
+                contact_no.value=''
+                address.value=''
+                nic.value=''
             // .then((value)=>{
                     return show_ext_nominees(data)
                     // })
