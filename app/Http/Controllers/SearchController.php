@@ -43,8 +43,7 @@ class SearchController extends Controller
             $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
         }
         $data = DB::select($sql);
-
-            return response()->json($data);
+        return response()->json($data);
     }
 
     public function byCustomerIdForWnD(Request $request)

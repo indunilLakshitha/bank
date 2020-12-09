@@ -65,7 +65,7 @@ class FdAccountController extends Controller
     }
 
     public function findProductByName(Request $request){
-        // return response()->json($request);
+        //  return response()->json($request);
 
         $product_details=$data = DB::select("
         SELECT DISTINCT
@@ -96,7 +96,7 @@ class FdAccountController extends Controller
         LEFT JOIN fd_interest_types
         ON fd_interest_types.id = fd_sub_accounts.fd_interest_type_id
 
-        WHERE sub_accounts.sub_account_description LIKE '%$request->code%'
+        WHERE sub_accounts.sub_account_description LIKE '%$request->text%'
         AND sub_accounts.is_enable = 1
         ");
         return response()->json($product_details);
