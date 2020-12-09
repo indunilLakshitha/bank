@@ -38,7 +38,8 @@
                                 <label class="col-sm-2 col-form-label">Branch Name  <font color="red">*</font></label>
                                 <div class="col-lg-6 col-md-4 col-sm-4">
                                     <div class="form-group">
-                                        <input name="name_in_use" type="text" class="form-control" required>
+                                        <input name="name_in_use" type="text" class="form-control" oninput="full_name.value=this.value"required>
+                                        <input name="full_name" type="hidden" id="full_name"  class="form-control" required>
                                     </div>
                                 </div>
                             </div>

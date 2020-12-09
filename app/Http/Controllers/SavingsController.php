@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountGeneralInformation;
 use Illuminate\Http\Request;
 use App\Models\IedentificationType;
 use App\Models\SubAccount;
@@ -98,5 +99,11 @@ class SavingsController extends Controller
         ->select('intereset_schemas.*','intereset_type_data.*','sub_accounts.*','interest_types.*','currencies.*','transaction_schemas.*','deposite_modes.*')
         ->get();
         return response()->json($subaccountdetails);
+    }
+
+    public function accountReject($id){
+        AccountGeneralInformation::where('account_number',$id)->update(['status'=>'0']);
+        return redirect()->back();
+
     }
 }
