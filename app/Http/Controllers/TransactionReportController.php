@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountGeneralInformation;
+use App\Models\AuthorizedOfficer;
 use App\Models\CashierDailyTransaction;
 use App\Models\TransactionData;
 use App\User;
@@ -57,34 +58,73 @@ class TransactionReportController extends Controller
 
 
         $data = array(0,0,0,0,0,0,0);
-
+        if(!empty($request->user)){
         $t_in = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
-                ->where('is_intern_transaction',1)
+                // ->where('is_intern_transaction',1)
                 ->sum('transaction_value');
 
         $t_out = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','WITHDRAW')
-                ->where('is_intern_transaction',1)
+                // ->where('is_intern_transaction',1)
                 ->sum('transaction_value');
         $reci = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
-                ->where('is_intern_transaction',0)
+                // ->where('is_intern_transaction',0)
                 ->sum('transaction_value');
         $paym = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','WITHDRAW')
-                ->where('is_intern_transaction',0)
+                // ->where('is_intern_transaction',0)
                 ->sum('transaction_value');
         $depo = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
-                ->where('is_intern_transaction',2)
+                // ->where('is_intern_transaction',2)
                 ->sum('transaction_value');
         $withd = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                // ->where('is_intern_transaction',2)
+                ->sum('transaction_value');
+
+        $bal = ($t_in + $reci +$depo ) - ($t_out + $paym +$withd);
+        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal];
+
+        return response()->json(['DATA' => $data]);
+        }
+        else if(!empty($request->branch)){
+            $branch_users = User::select('id')->where('branh_id',Auth::user()->branh_id)->get();
+            $t_in = TransactionData::where('created_by',$branch_users)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',1)
+                ->sum('transaction_value');
+
+        $t_out = TransactionData::where('created_by',$branch_users)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',1)
+                ->sum('transaction_value');
+        $reci = TransactionData::where('created_by',$branch_users)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',0)
+                ->sum('transaction_value');
+        $paym = TransactionData::where('created_by',$branch_users)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',0)
+                ->sum('transaction_value');
+        $depo = TransactionData::where('created_by',$branch_users)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',2)
+                ->sum('transaction_value');
+        $withd = TransactionData::where('created_by',$branch_users)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','WITHDRAW')
                 ->where('is_intern_transaction',2)
@@ -94,7 +134,46 @@ class TransactionReportController extends Controller
         $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal];
 
         return response()->json(['DATA' => $data]);
-        // return response()->json(['DATA' => $data]);
+        }
+        else{
+            
+            $t_in = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',1)
+                ->sum('transaction_value');
+
+        $t_out = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',1)
+                ->sum('transaction_value');
+        $reci = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',0)
+                ->sum('transaction_value');
+        $paym = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',0)
+                ->sum('transaction_value');
+        $depo = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',2)
+                ->sum('transaction_value');
+        $withd = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',2)
+                ->sum('transaction_value');
+
+        $bal = ($t_in + $reci +$depo ) - ($t_out + $paym +$withd);
+        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal];
+
+        return response()->json(['DATA' => $data]);
+        }
     }
 
     public function getBranchRep(Request $request){
@@ -104,13 +183,16 @@ class TransactionReportController extends Controller
 
     public function getTransactions(Request $request){
 
+        $id =Auth::user()->id;
+        if(!empty($request->user)){
+            if($request->type == "ALL"){
 
-        if($request->type == "ALL"){
         $trn = DB::table('transaction_data')
                 ->leftJoin('customer_basic_data','transaction_data.customer_id','=','customer_basic_data.customer_id')
                 ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
                 ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
                 ->leftJoin('users','transaction_data.created_by','=','users.id')
+                ->where('transaction_data.created_by',$request->user)
                 ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
                 ->get();
         return response()->json($trn);
@@ -121,6 +203,7 @@ class TransactionReportController extends Controller
                 ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
                 ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
                 ->leftJoin('users','transaction_data.created_by','=','users.id')
+                ->where('transaction_data.created_by',$request->user)
                 ->where('transaction_data.transaction_type','DEPOSITE')
                 ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
                 ->get();
@@ -132,11 +215,51 @@ class TransactionReportController extends Controller
                 ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
                 ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
                 ->leftJoin('users','transaction_data.created_by','=','users.id')
+                ->where('transaction_data.created_by',$request->user)
                 ->where('transaction_data.transaction_type','WITHDRAW')
                 ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
                 ->get();
         return response()->json($trn);
         }
+
+        }else{
+        if($request->type == "ALL"){
+
+        $trn = DB::table('transaction_data')
+                ->leftJoin('customer_basic_data','transaction_data.customer_id','=','customer_basic_data.customer_id')
+                ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
+                ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
+                ->leftJoin('users','transaction_data.created_by','=','users.id')
+                ->where('transaction_data.created_by',$id)
+                ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                ->get();
+        return response()->json($trn);
+        }else if($request->type == "DEPOSITED"){
+
+             $trn = DB::table('transaction_data')
+                ->leftJoin('customer_basic_data','transaction_data.customer_id','=','customer_basic_data.customer_id')
+                ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
+                ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
+                ->leftJoin('users','transaction_data.created_by','=','users.id')
+                ->where('transaction_data.created_by',$id)
+                ->where('transaction_data.transaction_type','DEPOSITE')
+                ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                ->get();
+        return response()->json($trn);
+        }else if($request->type == "WITHDRAWED"){
+
+             $trn = DB::table('transaction_data')
+                ->leftJoin('customer_basic_data','transaction_data.customer_id','=','customer_basic_data.customer_id')
+                ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
+                ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
+                ->leftJoin('users','transaction_data.created_by','=','users.id')
+                ->where('transaction_data.created_by',$id)
+                ->where('transaction_data.transaction_type','WITHDRAW')
+                ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                ->get();
+        return response()->json($trn);
+        }
+    }
     }
 
     public function findBtween(Request $request){

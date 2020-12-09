@@ -313,7 +313,11 @@ class OpenSavingsAccountController extends Controller
     public function product_details(Request $request)
     {
         $prod_data = ProductData::create($request->all());
-
+        $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
+        $cbs = CustomerBasicData::where('customer_id',$customer_id);
+        if($cbs->customer_status_id == 1){
+            $prod_data->is_intern_account = 1;
+        }
 
         $product_type=ProductType::where('id',$prod_data->product_type_id)->first();
 
@@ -322,7 +326,7 @@ class OpenSavingsAccountController extends Controller
          $request->session()->put('is_nominies_required',$product_type->is_nominies_required);
          $request->session()->put('is_documents_required',$product_type->is_documents_required);
 
-        $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
+
         $prod_id = $prod_data->id;
         $account_id = $request->account_id;
 

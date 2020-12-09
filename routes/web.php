@@ -449,8 +449,9 @@ Route::get('/findRange', 'TransactionReportController@findBtween');
     Route::get('/branchCashInOut2', 'BranchCashInOutController@index2');
     Route::get('/branchCashInOut1', 'BranchCashInOutController@index1');
 
-    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@submit1');
-    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@submit2');
+    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@cashiarGive');
+    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@cashiarIn');
+    Route::get('/branchCashInOut1/getCashiar', 'BranchCashInOutController@getCashiar');
 
 
     //------------------------------------------------------------------transaction report end-------------------

@@ -74,6 +74,7 @@ class CustomerBasicDataController extends Controller
         $cbs->epf_no = $request->epf_no;
         $cbs->telephone_number = $request->contact_no;
         $cbs->is_enable = 1;
+        $cbs->customer_status_id = 1;
         $cbs->status = 2;
         $cbs->created_by = Auth::user()->name;
         if ($request->file('sign_img')) {

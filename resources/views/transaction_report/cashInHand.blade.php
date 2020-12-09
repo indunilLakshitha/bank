@@ -151,6 +151,7 @@ background:#eee;
                             <div class="pull-right col-2" value="">
                                 <input type="date" class="form-control datepicke" id="dateTo">
                             </div>
+                            @can('create_roles')
                             <label for="">USER:</label>
                             <div class="pull-right col-2">
                                 <select name="select_branch1" class="form-control" id="user">
@@ -164,7 +165,7 @@ background:#eee;
                                     @endisset
                                 </select>
                             </div>
-                            @can('create_roles')
+
                             <label for="">BRANCH:</label>
                             <div class="col-1">
                                 <input class="form-check" type="checkbox" value="1" id="branch">
@@ -173,6 +174,18 @@ background:#eee;
                             </span>
                             </div>
                             @endcan
+                            @can('transaction_report')
+                                <select name="select_branch1" hidden class="form-control" id="user">
+                                    <option value="" >--Select--</option>
+                                </select>
+
+                            <div class="col-1">
+                                <input class="form-check" hidden type="checkbox" value="" id="branch">
+
+                            </span>
+                            </div>
+                            @endcan
+
                         <div class=" col-1 ">
                             <button type="button"  onclick="search(this)" class="btn btn-info" id="search">Search</button>
                         </div>
@@ -247,9 +260,8 @@ background:#eee;
 
 
             <div class="col-xs-6 margintop text-right">
-				<a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
-                <a href="javascript:;" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-file t-plus-1 text-danger fa-fw fa-lg"></i> Export as PDF</a>			</div>
-		  </div>
+
+        </div>
 		</div>
 	</div>
 </div>
@@ -264,14 +276,16 @@ function search(){
         const from = document.querySelector('#dateFrom');
         const to = document.querySelector('#dateTo');
         const user = document.querySelector('#user');
+        const branch = document.querySelector('#branch');
         console.log(from.value);
         console.log(dateTo.value);
         console.log(user.value);
+        console.log(branch.value);
 
         $.ajax({
             type: 'GET',
             url: '{{('/cashInHand/user')}}',
-            data: {'from':from.value,'to':to.value,'user':user.value},
+            data: {'from':from.value,'to':to.value,'user':user.value,'branch':branch.value},
 
             success: function(data){
                 console.log(data)
@@ -341,9 +355,7 @@ function search(){
                                 document.querySelector('#cashInHand').innerHTML += html
 
             },
-            error: function(data){
-                console.log(data)
-            }
+
 
         })
     }

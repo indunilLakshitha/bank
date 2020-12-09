@@ -15,7 +15,8 @@
                 <label class="col-sm-2 col-form-label">Branch</label>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input  type="text" class="form-control" name="branch" id="branch">
+                        <input  type="text" readonly placeholder="{{$branch->branch_name}}"  class="form-control" name="branch" id="branch">
+                        <input  type="text" readonly value="{{$branch->id}}" hidden class="form-control" name="branch_id" id="branch_id">
                     </div>
                 </div>
 
@@ -24,7 +25,7 @@
                 <label class="col-sm-2 col-form-label">Branch Name</font></label>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select name="" id="b_name" name="b_name" class="form-control" data-style="select-with-transition" >
+                        <select id="b_name" onclick="cashi()" name="b_name" required class="form-control" data-style="select-with-transition" >
                         <option value="">--Select--</option>
                         @isset($branches)
                         @foreach ($branches as $branche)
@@ -41,7 +42,7 @@
                 <label class="col-sm-2 col-form-label">Branch Account</font></label>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select name="" id="" class="form-control" data-style="select-with-transition" >
+                        <select name="account_id" id="account_id" required class="form-control" data-style="select-with-transition" >
                         <option value="">Select</option>
                         <option value=""></option>
                         </select>
@@ -55,9 +56,8 @@
                 <label class="col-sm-2 col-form-label">Cashiar Select</font></label>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select name="" id="cashiar" name="cashiar" class="form-control" data-style="select-with-transition" >
+                        <select id="cashiar" name="cashiar" required class="form-control" data-style="select-with-transition" >
                         <option value="">Select</option>
-                        <option value=""></option>
                         </select>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 <label class="col-sm-2 col-form-label">Tansaction Type</font></label>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select name="" id="" name="transaction_type" class="form-control" data-style="select-with-transition" >
+                        <select id="transaction_type" required name="transaction_type" class="form-control" data-style="select-with-transition" >
                         <option value="">Select</option>
                         <option value="1">IN</option>
                         <option value="0">OUT</option>
@@ -81,7 +81,7 @@
                 <label class="col-sm-2 col-form-label">Tansaction Amount</label>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input type="text" name="transaction_amount" class="form-control" >
+                        <input type="text" name="transaction_value" required class="form-control" >
                     </div>
                 </div>
             </div>
@@ -111,6 +111,10 @@ $.ajaxSetup({
 });
 
 function submit(){
+const type = document.querySelector('#transaction_type').value;
+console.log(type)
+
+    if(type == 0){
         $.ajax({
         type: 'POST',
         url: '{{('/branchCashInOut1/submit1')}}',
@@ -121,11 +125,56 @@ function submit(){
             console.log(data);
             if(data == 'Success'){
 
-               return Swal.fire('Successful')
+               return Swal.fire('Successfully Out')
 
             }else {
 
             }
+
+        }
+    })
+    }else if(type == 1){
+        $.ajax({
+        type: 'POST',
+        url: '{{('/branchCashInOut1/submit2')}}',
+        data: new FormData(In),
+        processData: false,
+    contentType: false,
+        success: function(data){
+            console.log(data);
+            if(data == 'Success'){
+
+               return Swal.fire('Successfully In')
+
+            }else {
+
+            }
+
+        }
+    })
+
+    }
+}
+
+function cashi(){
+const b_id = document.querySelector('#b_name').value;
+console.log(b_id)
+
+    $.ajax({
+        type: 'GET',
+        url: '{{('/branchCashInOut1/getCashiar')}}',
+        data: {'branchId':b_id},
+        success: function(data){
+            console.log(data);
+            cashiar.innerHTML = `
+            <select name="" id="cashiar" name="cashiar" class="form-control" data-style="select-with-transition" >
+            `
+            data.forEach(record => {
+            html = `
+            <option  value="${record.id}">${record.employee_no}</option>
+            `
+            cashiar.innerHTML += html
+            })
 
         }
     })

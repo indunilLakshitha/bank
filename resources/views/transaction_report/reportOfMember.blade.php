@@ -34,6 +34,7 @@
                             <div class="pull-right col-2" value="">
                                 <input type="date" class="form-control datepicke" required id="dateTo">
                             </div>
+                            @can('create_roles')
                             <label for="">USER:</label>
                             <div class="pull-right col-2">
                                 <select name="user" class="form-control" required id="user">
@@ -47,6 +48,7 @@
                                     @endisset
                                 </select>
                             </div>
+                            @endcan
                             <!-- <label for="">BRANCH:</label>
                             <div class="col-1">
                                 <input class="form-check" type="checkbox" value="">
@@ -114,10 +116,7 @@
             to.focus();
             return false;
         }
-        else if(user.value == ""){
-            user.focus();
-            return false;
-        }else{}
+        else{}
         $.ajax({
             type: 'GET',
             url: '{{('/ReportOfTransactions/transactions')}}',
