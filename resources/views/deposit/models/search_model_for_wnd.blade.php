@@ -28,7 +28,7 @@
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
                                         <button class="btn  btn-info btn"
-                                            onclick="modal_serach_by_name_results_tbody.innerHTML = null">
+                                            onclick="data_clear()">
                                             Clear Results </button>
 
                                     </div>
@@ -44,8 +44,8 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_modal_search_by_customer_id(this.value)" type="text"
-                                                class="form-control js-example-data-ajax"
-                                                placeholder="Enter Customer ID">
+                                                class="form-control js-example-data-ajax" name="customer_code_modal"
+                                                id="customer_code_modal" placeholder="Enter Customer ID">
                                         </div>
                                     </div>
                                 </div>
@@ -60,8 +60,8 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_modal_search_by_nic(this.value)" type="text"
-                                                class="form-control js-example-data-ajax"
-                                                placeholder="Enter Identification Number">
+                                                class="form-control js-example-data-ajax" name="id_number_modal"
+                                                id="id_number_modal" placeholder="Enter Identification Number">
                                         </div>
                                     </div>
                                 </div>
@@ -88,52 +88,53 @@
 
     function get_modal_search_by_full_name(value){
         // console.log(is_customer_id_2);
-        console.log(value);
+        //console.log(value);
         if(value === ''){
             modal_serach_by_name_results_tbody.innerHTML = ''
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '{{('/search_by_full_name_for_dnw')}}',
+                data: {text:value} ,
+                success: function(data){
+                    //console.log(data);
+                    return set_modal_serach_by_name_results(data)
+                }
+            })
         }
-        $.ajax({
-        type: 'GET',
-        url: '{{('/search_by_full_name_for_dnw')}}',
-        data: {text:value} ,
-        success: function(data){
-            console.log(data);
-            return set_modal_serach_by_name_results(data)
-        }
-    })
     }
 
     function get_modal_search_by_customer_id(value){
-        console.log(value);
+        //console.log(value);
         if(value === ''){
             modal_serach_by_name_results_tbody.innerHTML = ''
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '{{('/search_by_cus_id_for_dnw')}}',
+                data: {text:value} ,
+                success: function(data){
+                    //console.log(data);
+                    return set_modal_serach_by_name_results(data)
+                }
+            })
         }
-        $.ajax({
-        type: 'GET',
-        url: '{{('/search_by_cus_id_for_dnw')}}',
-        data: {text:value} ,
-        success: function(data){
-            console.log(data);
-
-            return set_modal_serach_by_name_results(data)
-        }
-    })
     }
     function get_modal_search_by_nic(value){
-        console.log(value);
+        //console.log(value);
         if(value === ''){
             modal_serach_by_name_results_tbody.innerHTML = ''
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '{{('/search_by_nic_for_dnw')}}',
+                data: {text:value} ,
+                success: function(data){
+                    //console.log(data);
+                    return set_modal_serach_by_name_results(data)
+                }
+            })
         }
-        $.ajax({
-        type: 'GET',
-        url: '{{('/search_by_nic_for_dnw')}}',
-        data: {text:value} ,
-        success: function(data){
-            console.log(data);
-
-            return set_modal_serach_by_name_results(data)
-        }
-    })
     }
 
 
@@ -228,5 +229,12 @@ function set_cus_details_from_modal(id){
             //  console.log(full_name);
         }
     })
+}
+function data_clear() {
+    $("#client_full_name_search_modal").val('');
+    $("#customer_code_modal").val('');
+    $("#id_number_modal").val('');
+    modal_serach_by_name_results_tbody.innerHTML = null;
+
 }
 </script>

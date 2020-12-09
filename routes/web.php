@@ -142,14 +142,20 @@ Route::group(['middleware' => 'isBlocked'], function () {
     // });
     //-------------------------------------------------account verification view
     Route::get('/savings/verification', function () {
-        $permissions = DB::select("
-                SELECT * FROM account_general_information
-                LEFT JOIN customer_basic_data
-                ON customer_basic_data.customer_id = account_general_information.customer_id
-                LEFT JOIN iedentification_types
-                ON iedentification_types.id = customer_basic_data.identification_type_id
-                WHERE account_general_information.status LIKE '2'
-                ");
+        $sql = "
+        SELECT * FROM account_general_information
+        LEFT JOIN customer_basic_data
+        ON customer_basic_data.customer_id = account_general_information.customer_id
+        LEFT JOIN iedentification_types
+        ON iedentification_types.id = customer_basic_data.identification_type_id
+        WHERE account_general_information.status LIKE '2'
+        ";
+            $user_data = Auth::user();
+            if(intval($user_data->roles[0]->id) != 1) {
+                $branch_id = $user_data->branh_id;
+                $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
+}
+        $permissions = DB::select($sql);
         return view('savings.verification', compact('permissions'));
     });
     //-------------------------------------------------account approval view(disabled)
@@ -219,8 +225,8 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/search_by_name', 'OpenSavingsAccountController@search_by_name');
     Route::get('/search_by_full_name', 'OpenSavingsAccountController@search_by_full_name');
     Route::get('/search_by_customer_id', 'OpenSavingsAccountController@search_by_customer_id');
-    Route::get('/search_by_customer_id/mem', 'OpenSavingsAccountController@search_by_customer_id_mem');
-    Route::get('/search_by_full_name/mem', 'OpenSavingsAccountController@search_by_full_name_mem');
+    Route::get('/search_by_customer_ids/mem', 'OpenSavingsAccountController@search_by_customer_id_mem');
+    Route::get('/search_by_full_names/mem', 'OpenSavingsAccountController@search_by_full_name_mem');
     Route::get('/search_by_full_name/{type}', 'OpenSavingsAccountController@search_by_full_name');
     Route::get('/search_by_customer_id/{type}', 'OpenSavingsAccountController@search_by_customer_id');
     Route::get('/search_by_nic_id/{type}', 'OpenSavingsAccountController@search_by_nic_id');
@@ -260,6 +266,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     //---------------------------------------------withdrawal views------end
 
     Route::get('/savings/clientdetails', 'SavingsController@clientDetails');
+    Route::get('/load_saving_details', 'WithdrawalController@load_saving_details');
     Route::get('/savings/generalinformation', 'SavingsController@generalInformation');
     Route::get('/savings/productdetails', 'SavingsController@productDetails');
     Route::get('/savings/jointacoount', 'SavingsController@jointAcoount');
@@ -271,6 +278,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/savings/correspondance', 'SavingsController@correspondance');
     Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
     Route::get('/savings/getsubdetails', 'SavingsController@getSubDetails');
+    Route::get('/accountreject/{id}', 'SavingsController@accountReject');
 
     // Add by Kanishka 19/11/2020
     Route::get('/savings/parameter', function () {
@@ -487,6 +495,7 @@ Route::post('/add_external_nominies','ExternalNomimiesController@add');
 //----------------------------------------FD account----------------------------
 Route::get('/fd','FdAccountController@index');
 Route::get('/findproduct','FdAccountController@findProduct');
+Route::get('/findproductbyname','FdAccountController@findProductByName');
 Route::post('/createfd','FdAccountController@createFd');
 Route::get('/findinvester','FdAccountController@findInvester');
 Route::get('/addinvester','FdAccountController@addInvester');
@@ -498,6 +507,9 @@ Route::get('/fd/view/{id}','FdAccountController@view');
 Route::get('/fd/verification/{id}','FdAccountController@verification');
 Route::get('/removenominee','FdAccountController@removeNominee');
 Route::get('/removeinvestor','FdAccountController@removeInvestor');
+Route::get('/findinstructorcfn','FdAccountController@findByFullName');
+Route::get('/findinstructorcid','FdAccountController@findByCid');
+Route::get('/findinstructornic','FdAccountController@findByNic');
 
 //------------------------------------------------------search model routes-----------
 Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');

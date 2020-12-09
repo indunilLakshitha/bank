@@ -30,5 +30,10 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('customer/manage', 'CustomerController@manageCustomer');
     Route::post('customer/all', 'CustomerController@getAllCustomer');
 
+    //latest transaction details
+    Route::post('latest/transactions','LatestTransactionApiController@latestTransactions');
+    Route::get('today/transactions/{id}','LatestTransactionApiController@todayTransactions');
+    Route::get('customer/{id}','CustomerApiController@viewCustomer');
+
 
 });
