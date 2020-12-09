@@ -153,7 +153,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
         $user_data = Auth::user();
         if(intval($user_data->roles[0]->id) != 1) {
             $branch_id = $user_data->branh_id;
-            $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
+            $sql .= " AND cbd.branch_id = ". $branch_id;
         }
         $permissions = DB::select($sql);
         return view('savings.verification', compact('permissions'));
@@ -175,7 +175,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
         $user_data = Auth::user();
         if(intval($user_data->roles[0]->id) != 1) {
             $branch_id = $user_data->branh_id;
-            $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
+            $sql .= " AND cbd.branch_id = ". $branch_id;
         }
         $account = DB::select($sql);
         return view('savings.index', compact('account'));
