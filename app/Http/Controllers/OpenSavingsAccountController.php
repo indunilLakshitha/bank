@@ -316,9 +316,10 @@ class OpenSavingsAccountController extends Controller
     {
         $prod_data = ProductData::create($request->all());
         $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
-        $cbs = CustomerBasicData::where('customer_id',$customer_id);
+        $cbs = CustomerBasicData::where('customer_id',$customer_id)->first();
         if($cbs->customer_status_id == 1){
-            $prod_data->is_intern_account = 1;
+            $prod_data['is_intern_account'] = 1;
+            $prod_data->save();
         }
 
         $product_type=SubAccount::where('id',$prod_data->product_type_id)->first();
