@@ -9,6 +9,7 @@ use App\Models\Branch;
 use App\Models\CashierDailyTransaction;
 use App\Models\CustomerBasicData;
 use App\Models\CustomerStatusDates;
+use App\Models\ExternalNomimies;
 use App\Models\PaymentLog;
 use App\Models\saving_deposit_base_ledger;
 use App\Models\TransactionData;
@@ -234,8 +235,8 @@ class MemberController extends Controller
         MemberCreationNominee::find($request->id)->delete();
 
         return response()->json('Nominee Removed');
+
+
     }
-
-
 
 }

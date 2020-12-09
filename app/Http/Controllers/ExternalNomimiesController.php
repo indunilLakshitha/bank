@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ExternalNomimiesController extends Controller
 {
     public function add(Request $request){
-
+// return response()->json($request);
         $nominie=$request;
 
         $mem=Member::where('customer_id',$request->customer_id)->first();
@@ -23,4 +23,12 @@ class ExternalNomimiesController extends Controller
         return response()->json($nominies);
 
     }
+
+
+public function remove_ext_nominee_member_creation(Request $request){
+    // return response()->json($request);
+    ExternalNomimies::find($request->id)->delete();
+
+    return response()->json('Nominee Removed');
+}
 }
