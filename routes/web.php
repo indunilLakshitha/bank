@@ -247,7 +247,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     //bebeficiary and guardians
     Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
     Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
-    Route::get('/delete_bene', 'CustomerBasicDataController@delete_bene');
+    Route::post('/delete_bene', 'CustomerBasicDataController@delete_bene');
     Route::get('/delete_gurd', 'CustomerBasicDataController@delete_gurd');
 
     //-------------------------------------------------------------------------------------new saving account openning-------end
@@ -455,7 +455,7 @@ Route::get('/findRange', 'TransactionReportController@findBtween');
     Route::get('/branchCashInOut2', 'BranchCashInOutController@index2');
     Route::get('/branchCashInOut1', 'BranchCashInOutController@index1');
 
-    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@cashiarGive');
+    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@cashiarOut');
     Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@cashiarIn');
     Route::get('/branchCashInOut1/getCashiar', 'BranchCashInOutController@getCashiar');
 

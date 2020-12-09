@@ -126,7 +126,7 @@ class MemberController extends Controller
         // return $request->customer_id;
         // return $request->share_amount/share count;
         // return $request->share_value;
-        return response()->json('Member created');
+        // return response()->json('Member created');
 
 
         $already_in = Member::where('customer_id', $request->customer_id)->first();

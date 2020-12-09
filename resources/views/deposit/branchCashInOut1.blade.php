@@ -9,7 +9,7 @@
                     <h4 class="card-title">Branch Cash In-Out 1</h4>
                 </div>
             </div>
-            <form id="In">
+            <form id="In"  method="POST">
             @csrf
             <div class="row">
                 <label class="col-sm-2 col-form-label">Branch</label>
@@ -42,9 +42,15 @@
                 <label class="col-sm-2 col-form-label">Branch Account</font></label>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select name="account_id" id="account_id" required class="form-control" data-style="select-with-transition" >
+                        <select name="branch_account_id" id="branch_account_id" required class="form-control" data-style="select-with-transition" >
                         <option value="">Select</option>
-                        <option value=""></option>
+                        @isset($branch_acc)
+                        @foreach ($branch_acc as $branch_ac)
+                        @if(intval($branch_ac->is_enable) == 1)
+                        <option value="{{$branch_ac->account_number}}">{{$branch_ac->account_number}}</option>
+                        @endif
+                        @endforeach
+                        @endisset
                         </select>
                     </div>
                 </div>
@@ -56,7 +62,7 @@
                 <label class="col-sm-2 col-form-label">Cashiar Select</font></label>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select id="cashiar" name="cashiar" required class="form-control" data-style="select-with-transition" >
+                        <select id="cashier_id" name="cashier_id" required class="form-control" data-style="select-with-transition" >
                         <option value="">Select</option>
                         </select>
                     </div>
@@ -120,7 +126,7 @@ console.log(type)
         url: '{{('/branchCashInOut1/submit1')}}',
         data: new FormData(In),
         processData: false,
-    contentType: false,
+        contentType: false,
         success: function(data){
             console.log(data);
             if(data == 'Success'){
@@ -134,12 +140,14 @@ console.log(type)
         }
     })
     }else if(type == 1){
+        console.log(type)
+
         $.ajax({
         type: 'POST',
-        url: '{{('/branchCashInOut1/submit2')}}',
+        url: '{{('/branchCashInOut2/submit2')}}',
         data: new FormData(In),
         processData: false,
-    contentType: false,
+        contentType: false,
         success: function(data){
             console.log(data);
             if(data == 'Success'){
@@ -166,14 +174,14 @@ console.log(b_id)
         data: {'branchId':b_id},
         success: function(data){
             console.log(data);
-            cashiar.innerHTML = `
-            <select name="" id="cashiar" name="cashiar" class="form-control" data-style="select-with-transition" >
+            cashier_id.innerHTML = `
+            <select name="" id="cashier_id" name="cashier_id" class="form-control" data-style="select-with-transition" >
             `
             data.forEach(record => {
             html = `
             <option  value="${record.id}">${record.employee_no}</option>
             `
-            cashiar.innerHTML += html
+            cashier_id.innerHTML += html
             })
 
         }

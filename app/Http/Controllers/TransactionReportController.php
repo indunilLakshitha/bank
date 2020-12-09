@@ -136,8 +136,8 @@ class TransactionReportController extends Controller
         return response()->json(['DATA' => $data]);
         }
         else{
-            
-            $t_in = TransactionData::where('created_by',Auth::user()->id)
+
+        $t_in = TransactionData::where('created_by',Auth::user()->id)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
                 ->where('is_intern_transaction',1)
