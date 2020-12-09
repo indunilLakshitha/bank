@@ -503,4 +503,10 @@ Route::get('/removeinvestor','FdAccountController@removeInvestor');
 Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');
 Route::get('/search_by_cus_id_for_dnw','SearchController@byCustomerIdForWnD');
 Route::get('/search_by_nic_for_dnw','SearchController@byNicForWnD');
+
+
+
+//====================printing================================
+Route::get('/receipt/{id}', 'PrintController@receipt');
+Route::get('/passbook-front/{id}', 'PrintController@passbookFront');
 Auth::routes();
