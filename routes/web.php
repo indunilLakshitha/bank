@@ -333,6 +333,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/normalwithdraw', 'TransactionController@normalWithdraw');
     Route::get('/normaldeposite', 'TransactionController@normalDeposite');
 
+
     // ------------------------------------------------------------------------Account Categories------------
 
     Route::resource('/accountCategory', 'AccountCategoryController');
@@ -412,6 +413,8 @@ Route::get('/CasHiNhanDbrancH','TransactionReportController@cashInHandBranch');
 Route::get('/cashInHand/user','TransactionReportController@getUserRep');
 Route::get('/CasHiNhanDbrancH/branch','TransactionReportController@getBranchRep');
 Route::get('/ReportOfTransactions/transactions','TransactionReportController@getTransactions');
+Route::get('/findRange', 'TransactionReportController@findBtween');
+
 
 
 // -------------------------------------------------------------FD-----------------------------------------
@@ -452,8 +455,9 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
     Route::get('/branchCashInOut2', 'BranchCashInOutController@index2');
     Route::get('/branchCashInOut1', 'BranchCashInOutController@index1');
 
-    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@submit1');
-    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@submit2');
+    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@cashiarGive');
+    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@cashiarIn');
+    Route::get('/branchCashInOut1/getCashiar', 'BranchCashInOutController@getCashiar');
 
 
     //------------------------------------------------------------------transaction report end-------------------

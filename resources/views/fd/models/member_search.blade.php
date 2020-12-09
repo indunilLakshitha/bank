@@ -173,7 +173,11 @@ function set_member_fd(x){
                 }
 
 
+<<<<<<< HEAD
+
+=======
             $('#mmodel').modal('hide');
+>>>>>>> 55ead8c7ddb3cfaa83dd556e75c1d160bf481d94
 
             //  return console.log(cus);
         }

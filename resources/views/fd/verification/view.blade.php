@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
-{{-- <form method="get" action="/" class="form-horizontal"> --}}
 @isset($fD)
-<div class="card ">
+<div class="card col-10 ">
     <div class="card-body ">
+         <div class="card-body mt-2 mb-2" style="border: solid">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
-                <h4 class="card-title">Fix Deposit Account Creation</h4>
+                <h4 class="card-title">Fix Deposit Details</h4>
             </div>
         </div>
 
@@ -87,13 +87,13 @@
                 </div>
                 @endisset
             </div>
-            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#introducerSearchModel"></a>
+
         </div>
     </div>
+    </div>
 </div>
-{{-- </form> --}}
-{{-- <form method="get" action="/" class="form-horizontal"> --}}
-<div class="card col-6">
+<div class="card col-10 ">
+    <div class="card-body ">
     <div class="card-body mt-2 mb-2" style="border: solid">
         {{-- <div class="card-header card-header-rose card-header-text">
                 <div class="card-text">
@@ -175,18 +175,16 @@
                     <input type="text" class="form-control" vlue="{{$fD->saving_account_id}}">
                 </div>
             </div>
-            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#introducerSearchModel"></a>
-            <a class="btn fa  btn-danger btn-sm form-control d-none" id="create" >CREATE</a>
+
         </div>
     </div>
 </div>
-{{-- </form> --}}
+</div>
 @foreach($fd_ins as $fd_in)
     @if(!empty($fd_in))
-<div class="row d-none">
-    <div class="col">
-        <div class="card ">
-            <div class="card-body ">
+<div class="card col-10 ">
+    <div class="card-body ">
+         <div class="card-body mt-2 mb-2" style="border: solid">
                 <div class="card-header card-header-rose card-header-text">
                     <div class="card-text">
                         <h4 class="card-title">Investor</h4>
@@ -258,9 +256,9 @@
     @endforeach
     @foreach($fd_ns as $fd_n)
     @if(!empty($fd_n))
-    <div class="col">
-        <div class="card ">
-            <div class="card-body ">
+<div class="card col-10 ">
+    <div class="card-body ">
+         <div class="card-body mt-2 mb-2" style="border: solid">
                 <div class="card-header card-header-rose card-header-text">
                     <div class="card-text">
                         <h4 class="card-title">Nominee</h4>
