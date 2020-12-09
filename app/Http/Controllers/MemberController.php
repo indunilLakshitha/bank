@@ -9,6 +9,7 @@ use App\Models\Branch;
 use App\Models\CashierDailyTransaction;
 use App\Models\CustomerBasicData;
 use App\Models\CustomerStatusDates;
+use App\Models\ExternalNomimies;
 use App\Models\PaymentLog;
 use App\Models\saving_deposit_base_ledger;
 use App\Models\TransactionData;
@@ -126,8 +127,9 @@ class MemberController extends Controller
         // return $request->customer_id;
         // return $request->share_amount/share count;
         // return $request->share_value;
-        return response()->json('Member created');
-
+        // return response()->json('Member created');
+        $shareva=DB::table('setting_data')->where('id',2)->get();
+// return response()->json($shareva);
 
         $already_in = Member::where('customer_id', $request->customer_id)->first();
 
@@ -151,7 +153,7 @@ class MemberController extends Controller
             $payment_log['created_by']=Auth::user()->id;
             $payment_log['transaction_type']="DEPOSITE";
             $payment_log['transaction_details']="Shares buy in member creation";
-            $payment_log['transaction_value']=$request->share_value;
+            $payment_log['transaction_value']=$shareva[0]->setting_data*$request->share_amount;
             $payment_log['transaction_code']="ST";
             $payment_log['payment_method_id']=1;
             // $deposits_today=TransactionData::where()
@@ -166,7 +168,7 @@ class MemberController extends Controller
             $transaction_shares['branch_id']=$branch_id->branch_id;
             $transaction_shares['is_enable']=1;
             $transaction_shares['created_by']=Auth::user()->id;
-            $transaction_shares['transaction_value']= $request->share_amount;
+            $transaction_shares['transaction_value']= $request->share_amount*$shareva[0]->setting_data;
             $transaction_shares['balance_value']=$request->share_amount;
             TransactionShare::create($transaction_shares->all());
 
@@ -234,8 +236,8 @@ class MemberController extends Controller
         MemberCreationNominee::find($request->id)->delete();
 
         return response()->json('Nominee Removed');
+
+
     }
-
-
 
 }

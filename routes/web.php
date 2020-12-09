@@ -143,18 +143,18 @@ Route::group(['middleware' => 'isBlocked'], function () {
     //-------------------------------------------------account verification view
     Route::get('/savings/verification', function () {
         $sql = "
-                    SELECT * FROM account_general_information
-                    LEFT JOIN customer_basic_data
-                    ON customer_basic_data.customer_id = account_general_information.customer_id
-                    LEFT JOIN iedentification_types
-                    ON iedentification_types.id = customer_basic_data.identification_type_id
-                    WHERE account_general_information.status = '2'
-                ";
-        $user_data = Auth::user();
-        if(intval($user_data->roles[0]->id) != 1) {
-            $branch_id = $user_data->branh_id;
-            $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
-        }
+        SELECT * FROM account_general_information
+        LEFT JOIN customer_basic_data
+        ON customer_basic_data.customer_id = account_general_information.customer_id
+        LEFT JOIN iedentification_types
+        ON iedentification_types.id = customer_basic_data.identification_type_id
+        WHERE account_general_information.status LIKE '2'
+        ";
+            $user_data = Auth::user();
+            if(intval($user_data->roles[0]->id) != 1) {
+                $branch_id = $user_data->branh_id;
+                $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
+}
         $permissions = DB::select($sql);
         return view('savings.verification', compact('permissions'));
     });
@@ -175,7 +175,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
         $user_data = Auth::user();
         if(intval($user_data->roles[0]->id) != 1) {
             $branch_id = $user_data->branh_id;
-            $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
+            $sql .= " AND cbd.branch_id = ". $branch_id;
         }
         $account = DB::select($sql);
         return view('savings.index', compact('account'));
@@ -247,8 +247,6 @@ Route::group(['middleware' => 'isBlocked'], function () {
     //bebeficiary and guardians
     Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
     Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
-    Route::get('/delete_bene', 'CustomerBasicDataController@delete_bene');
-    Route::get('/delete_gurd', 'CustomerBasicDataController@delete_gurd');
 
     //-------------------------------------------------------------------------------------new saving account openning-------end
 
@@ -280,6 +278,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/savings/correspondance', 'SavingsController@correspondance');
     Route::get('/savings/authorizedofficer', 'SavingsController@authorizedOfficer');
     Route::get('/savings/getsubdetails', 'SavingsController@getSubDetails');
+    Route::get('/accountreject/{id}', 'SavingsController@accountReject');
 
     // Add by Kanishka 19/11/2020
     Route::get('/savings/parameter', function () {
@@ -332,7 +331,6 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/findmemberbyaccno', 'TransactionController@findMembersById');
     Route::get('/normalwithdraw', 'TransactionController@normalWithdraw');
     Route::get('/normaldeposite', 'TransactionController@normalDeposite');
-
 
     // ------------------------------------------------------------------------Account Categories------------
 
@@ -413,8 +411,6 @@ Route::get('/CasHiNhanDbrancH','TransactionReportController@cashInHandBranch');
 Route::get('/cashInHand/user','TransactionReportController@getUserRep');
 Route::get('/CasHiNhanDbrancH/branch','TransactionReportController@getBranchRep');
 Route::get('/ReportOfTransactions/transactions','TransactionReportController@getTransactions');
-Route::get('/findRange', 'TransactionReportController@findBtween');
-
 
 
 // -------------------------------------------------------------FD-----------------------------------------
@@ -455,9 +451,8 @@ Route::get('/findRange', 'TransactionReportController@findBtween');
     Route::get('/branchCashInOut2', 'BranchCashInOutController@index2');
     Route::get('/branchCashInOut1', 'BranchCashInOutController@index1');
 
-    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@cashiarGive');
-    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@cashiarIn');
-    Route::get('/branchCashInOut1/getCashiar', 'BranchCashInOutController@getCashiar');
+    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@submit1');
+    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@submit2');
 
 
     //------------------------------------------------------------------transaction report end-------------------
@@ -466,7 +461,7 @@ Route::get('/findRange', 'TransactionReportController@findBtween');
     Route::get('/member', 'MemberController@create');
     Route::post('/member_creation', 'MemberController@member_creation');
     Route::get('/add_nominee_member_creation', 'MemberController@add_nominee_member_creation');
-    Route::get('/remove_nominee_member_creation', 'MemberController@remove_nominee_member_creation');
+    Route::get('/remove_ext_nominee_member_creation', 'ExternalNomimiesController@remove_ext_nominee_member_creation');
 
 Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
 Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
@@ -520,4 +515,10 @@ Route::get('/findinstructornic','FdAccountController@findByNic');
 Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');
 Route::get('/search_by_cus_id_for_dnw','SearchController@byCustomerIdForWnD');
 Route::get('/search_by_nic_for_dnw','SearchController@byNicForWnD');
+
+
+
+//====================printing================================
+Route::get('/receipt/{id}', 'PrintController@receipt');
+Route::get('/passbook-front/{id}', 'PrintController@passbookFront');
 Auth::routes();
