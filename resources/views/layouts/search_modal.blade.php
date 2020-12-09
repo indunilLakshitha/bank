@@ -83,11 +83,8 @@
 
 <script>
     let customer_data;
-
     let is_customer_id_2 = false;
     let type;
-
-
     function get_modal_search_by_full_name(value){
         // console.log(is_customer_id_2);
         //console.log(value);
@@ -104,10 +101,7 @@
                 }
             })
         }
-
-
     }
-
     function get_modal_search_by_customer_id(value){
         //console.log(value);
         if(value === ''){
@@ -124,7 +118,6 @@
             })
         }
     }
-
     function get_modal_search_by_nic_id(value){
         console.log(value);
         if(value === ''){
@@ -141,13 +134,10 @@
             })
         }
     }
-
-
 function set_modal_serach_by_name_results(data){
     console.log('inside setter -modal', data);
     modal_serach_by_name_results_tbody.classList.remove('d-none')
     modal_serach_by_name_results_tbody.innerHTML = ''
-
     customer_data = data
     data.forEach(i => {
         let member_status = 'Non-Member';
@@ -173,25 +163,17 @@ function set_modal_serach_by_name_results(data){
         </tr>
         `
         modal_serach_by_name_results_tbody.innerHTML += html
-
-
     })
-
-
 }
-
 function set_modal_serach_by_name_results_for_share(data){
-
     console.log('inside setter -modal', data);
     modal_serach_by_name_results_tbody.classList.remove('d-none')
     modal_serach_by_name_results_tbody.innerHTML = ''
-
     customer_data = data
     data.forEach(i => {
         let member_status = 'Non-Member';
         if(parseInt(i.member) == 1) {
             member_status = 'member';
-
             //let member_status = i.non_member===1 ? 'Non-Member' : 'member'
             //if(member_status =='member'){
             let html = `
@@ -214,19 +196,13 @@ function set_modal_serach_by_name_results_for_share(data){
             `
             modal_serach_by_name_results_tbody.innerHTML += html
         }
-
     })
-
-
 }
-
 function set_cus_details_from_modal(id){
     console.log(id);
-
     customer_data.filter(cus => {
         if(cus.id === parseInt(id)){
             console.log(cus);
-
             if(is_customer_id_2){
                 if(document.querySelector('#customer_id_2')){
                     customer_id_2.value = cus.customer_id
@@ -277,12 +253,10 @@ function set_cus_details_from_modal(id){
         }
     })
 }
-
 function data_clear() {
     $("#client_full_name_search_modal").val('');
     $("#customer_code_modal").val('');
     $("#id_number_modal").val('');
     modal_serach_by_name_results_tbody.innerHTML = null;
-
 }
 </script>

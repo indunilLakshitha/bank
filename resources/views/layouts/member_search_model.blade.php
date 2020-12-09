@@ -149,27 +149,30 @@
 
         customer_data = data
 
-        data.forEach(i => {
-
-            let member_status = i.non_member===1 ? 'Member' : 'Non-member'
-            let html = `
-            <tr id='${i.id}'>
-                <td>${i.customer_id}</td>
-                <td>${i.full_name}</td>
-                <td>${i.identification_number}</td>
-                <td>${member_status}</td>
-                <td>
-                    <button type="button"
-                    onclick=
-                    "
-                    this.parentElement.parentElement.parentElement.classList.add('d-none'),
-                    set_cus_details_from_modal('${i.id}')
-                    "
-                    class="btn btn-sm btn-primary">Select</button>
-                </td>
-            </tr>
-            `
-            modal_serach_by_name_results_tbody.innerHTML += html
+    data.forEach(i => {
+let member_status = 'Non-Member';
+        if(parseInt(i.member) == 1) {
+            member_status = 'member';
+        }
+        //let member_status = i.non_member===1 ? 'Non-Member' : 'member'
+        let html = `
+        <tr id='${i.id}'>
+            <td>${i.customer_id}</td>
+            <td>${i.full_name}</td>
+            <td>${i.identification_number}</td>
+            <td>${member_status}</td>
+            <td>
+                <button type="button"
+                onclick=
+                "
+                this.parentElement.parentElement.parentElement.classList.add('d-none'),
+                set_cus_details_from_modal('${i.id}')
+                "
+                class="btn btn-sm btn-primary">Select</button>
+            </td>
+        </tr>
+        `
+        modal_serach_by_name_results_tbody.innerHTML += html
 
         })
 
