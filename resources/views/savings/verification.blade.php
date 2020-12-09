@@ -101,7 +101,8 @@
                                                 class="btn btn-sm btn-primary">Verify</a></td>
                                         <td><button class="btn btn-sm btn-primary " id="{{$perm->account_number}}"
                                                 onclick="check_approve(this.id)">Approve</button>
-                                            <button class="btn btn-sm btn-danger">Reject</button>
+                                            <a class="btn btn-sm btn-danger"
+                                                href="{{url('/accountreject/'.$perm->account_number)}}">Reject</a>
                                         </td>
 
                                     </tr>

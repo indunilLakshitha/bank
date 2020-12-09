@@ -46,7 +46,7 @@
                                 {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                <a class="btn  btn-info btn"data-toggle="modal" href="#exxternal_nominee">
+                                <a class="btn  btn-info btn" data-toggle="modal" href="#exxternal_nominee">
                                     External </a>
 
                             </div>
