@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\cash_in_hand_ledger;
 use App\Models\AccountGeneralInformation;
 use App\Models\AuthorizedOfficer;
 use App\Models\CashierDailyTransaction;
@@ -57,48 +58,57 @@ class TransactionReportController extends Controller
     public function getUserRep(Request $request){
 
 
-        $data = array(0,0,0,0,0,0,0);
+        $data = array(0,0,0,0,0,0,0,0);
         if(!empty($request->user)){
+
+        $open_hand = cash_in_hand_ledger::where('user_id',$request->user)
+            ->where('created_at',Carbon::yesterday()->toDateString())
+            ->orderBy('id', 'desc')
+            ->first('balance_amount');
         $t_in = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
-                // ->where('is_intern_transaction',1)
+                ->where('is_intern_transaction',1)
                 ->sum('transaction_value');
 
         $t_out = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','WITHDRAW')
-                // ->where('is_intern_transaction',1)
+                ->where('is_intern_transaction',1)
                 ->sum('transaction_value');
         $reci = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
-                // ->where('is_intern_transaction',0)
+                ->where('is_intern_transaction',0)
                 ->sum('transaction_value');
         $paym = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','WITHDRAW')
-                // ->where('is_intern_transaction',0)
+                ->where('is_intern_transaction',0)
                 ->sum('transaction_value');
         $depo = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
-                // ->where('is_intern_transaction',2)
+                ->where('is_intern_transaction',2)
                 ->sum('transaction_value');
         $withd = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','WITHDRAW')
-                // ->where('is_intern_transaction',2)
+                ->where('is_intern_transaction',2)
                 ->sum('transaction_value');
 
         $bal = ($t_in + $reci +$depo ) - ($t_out + $paym +$withd);
-        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal];
+        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal,$open_hand];
 
         return response()->json(['DATA' => $data]);
         }
         else if(!empty($request->branch)){
-            $branch_users = User::select('id')->where('branh_id',Auth::user()->branh_id)->get();
-            $t_in = TransactionData::where('created_by',$branch_users)
+        $branch_users = User::where('branh_id',Auth::user()->branh_id)->get();
+        $open_hand = cash_in_hand_ledger::where('user_id',$request->user)
+            ->where('created_at',Carbon::yesterday()->toDateString())
+            ->orderBy('id', 'desc')
+            ->first('balance_amount');
+        $t_in = TransactionData::where('created_by',$branch_users)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
                 ->where('is_intern_transaction',1)
@@ -106,7 +116,7 @@ class TransactionReportController extends Controller
 
         $t_out = TransactionData::where('created_by',$branch_users)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
-                ->where('transaction_type','WITHDRAW')
+                ->where('id','WITHDRAW')
                 ->where('is_intern_transaction',1)
                 ->sum('transaction_value');
         $reci = TransactionData::where('created_by',$branch_users)
@@ -131,12 +141,15 @@ class TransactionReportController extends Controller
                 ->sum('transaction_value');
 
         $bal = ($t_in + $reci +$depo ) - ($t_out + $paym +$withd);
-        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal];
+        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal,$open_hand];
 
         return response()->json(['DATA' => $data]);
         }
         else{
-
+            $open_hand = cash_in_hand_ledger::where('user_id',$request->user)
+            ->where('created_at',Carbon::yesterday()->toDateString())
+            ->orderBy('id', 'desc')
+            ->first('balance_amount');
         $t_in = TransactionData::where('created_by',Auth::user()->id)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
@@ -170,7 +183,7 @@ class TransactionReportController extends Controller
                 ->sum('transaction_value');
 
         $bal = ($t_in + $reci +$depo ) - ($t_out + $paym +$withd);
-        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal];
+        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal,$open_hand];
 
         return response()->json(['DATA' => $data]);
         }

@@ -72,7 +72,7 @@ class BranchCashInOutController extends Controller
         CashierDailyTransaction::where('branch_id',$request->cashier_id)
             // ->where('user_id',Auth::user()->id)
             ->where('transaction_date',Carbon::today()->toDateString())
-            ->sum('transaction_amount')+$request->transaction_value;
+            ->sum('transaction_amount')-$request->transaction_value;
         $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
 
         $cashie_daily = CashierDailyTransaction::create($cashie_daily_trancastion->all());
@@ -104,7 +104,7 @@ class BranchCashInOutController extends Controller
         saving_deposit_base_ledger::where('user_id',$request->cashier_id)
             // ->where('user_id',Auth::user()->id)
             ->where('transaction_date',Carbon::today()->toDateString())
-            ->sum('transaction_value')+$request->transaction_value;
+            ->sum('transaction_value')-$request->transaction_value;
         // $saving_deposit_base_ledger['transaction_date']=Carbon::today()->toDateString();
         saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
 

@@ -2,15 +2,18 @@
 
 
 @section('content')
-    <div class="card ">
-        <div class="card-body ">
-            <div class="card-header card-header-rose card-header-text">
+   <div class="content">
+    <div class="container-fluid">
+        <div class="col-md-12 col-10 mr-auto ml-auto">
+            <div class="card " style="border: solid">
+            <div class="card-header  card-header-rose card-header-text">
                 <div class="card-text">
-                    <h4 class="card-title">Branch Cash In-Out 1</h4>
+                    <h4 class="card-title">Branch Cash In-Out </h4>
                 </div>
             </div>
             <form id="In"  method="POST">
             @csrf
+            <div class="card col-10">
             <div class="row">
                 <label class="col-sm-2 col-form-label">Branch</label>
                 <div class="col-sm-3">
@@ -94,7 +97,7 @@
 
 
 
-        </div>
+            </div>
 
 </form>
             <div class="row">
@@ -107,7 +110,8 @@
 
     </div>
     </div>
-
+</div>
+</div>
 <script>
 
 $.ajaxSetup({
@@ -131,7 +135,7 @@ console.log(type)
             console.log(data);
             if(data == 'Success'){
 
-               return Swal.fire('Successfully Out')
+               return Swal.fire('Cash Transfer Successful ')
 
             }else {
 
@@ -152,7 +156,7 @@ console.log(type)
             console.log(data);
             if(data == 'Success'){
 
-               return Swal.fire('Successfully In')
+               return Swal.fire('Cash Transfer Successful')
 
             }else {
 

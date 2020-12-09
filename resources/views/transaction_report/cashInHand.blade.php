@@ -303,7 +303,7 @@ function search(){
                                 <tbody>
                                     <tr>
                                     <td class="table-info">OPEN</td>
-                                    <td class="table-info text-center" >0.00</td>
+                                    <td class="table-info text-center" >${data.DATA[7]}</td>
                                     <td class="table-info text-center" >0.00</td>
                                     </tr>
                                     <tr>
