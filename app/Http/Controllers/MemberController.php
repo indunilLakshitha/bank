@@ -42,9 +42,11 @@ class MemberController extends Controller
                 `status`, cbd.`identification_number`, IF(`member` = 1, 'Member', 'Non Member') AS 'status'
                 FROM customer_status_dates AS csd
                 LEFT JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
-                WHERE cbd.`status` = 1";
+                WHERE ";
         if($for_verify > 0){
-            $sql .= " AND cbd.`status` = 2 ";
+            $sql .= "  cbd.`status` = 2 ";
+        } else {
+            $sql .= "  cbd.`status` = 1 ";
         }
         if($customer_id != null && $customer_id != ''){
             $sql .= " AND cbd.`customer_id` LIKE '%".$customer_id."%'";

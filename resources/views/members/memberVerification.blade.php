@@ -142,8 +142,8 @@ data.forEach(i => {
 html = `
 <tr>
 <th>${i.customer_id} </th>
-<th>${i.identification_number} </th>
 <th>${i.full_name}</th>
+<th>${i.identification_number} </th>
 <th>${i.status}</th>
 <th>
 <a href="/members/view/check/${i.customer_id}" class="btn btn-primary" >Check</a>
