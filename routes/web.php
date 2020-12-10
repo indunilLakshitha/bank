@@ -515,6 +515,8 @@ Route::post('/addextnmnfd','FdAccountController@addExtNmnFd');
 Route::get('/approved','FdAccountController@approved');
 Route::get('/members_for_share_buy','FdAccountController@membersForShareBuy');
 Route::get('/member_for_fd','FdAccountController@memberForfd');
+Route::get('/fd_member_for_wnd','FdAccountController@fdMembersForWnD');
+Route::get('/normaldepositefd','FdAccountController@fdDeposite');
 
 //------------------------------------------------------search model routes-----------
 Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');

@@ -19,8 +19,8 @@
                                         <div class="form-group">
                                             <input
                                                 oninput="toCap(this.value, this.id), member_search_for_fd_byfname(this.value)"
-                                                type="text" class="form-control js-example-data-ajax"
-                                                id="mmodel" placeholder="Enter Full Name">
+                                                type="text" class="form-control js-example-data-ajax" id="mmodel"
+                                                placeholder="Enter Full Name">
                                         </div>
                                     </div>
                                     <div class="col">
@@ -63,7 +63,8 @@
                                     <div class="col-7">
                                         <div class="form-group">
                                             <input type="text" name="identification_number" id="identification_number"
-                                                class="form-control" placeholder="" oninput="get_member_fd_by_nic(this.value)">
+                                                class="form-control" placeholder=""
+                                                oninput="get_member_fd_by_nic(this.value)">
 
                                         </div>
                                     </div>
@@ -119,7 +120,7 @@
         success: function(data){
             // console.log(data);
 
-            return set_modal_serach_by_name_results(data)
+            return member_results_table_view(data)
         }
     })
     }
@@ -135,7 +136,7 @@
         success: function(data){
             // console.log(data);
 
-            return set_modal_serach_by_name_results(data)
+            return member_results_table_view(data)
         }
     })
     }
@@ -150,7 +151,7 @@ function member_results_table_view(data){
 
     data.forEach(i => {
 
-        let member_status = i.member===1 ? 'Member' : 'Non-member'
+        let member_status = i.member=="1" ? 'Member' : 'Non-member'
         let html = `
         <tr id='${i.id}'>
             <td>${i.customer_id}</td>
