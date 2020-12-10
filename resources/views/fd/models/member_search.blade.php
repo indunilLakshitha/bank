@@ -150,7 +150,7 @@ function member_results_table_view(data){
 
     data.forEach(i => {
 
-        let member_status = i.non_member===1 ? 'Member' : 'Non-member'
+        let member_status = i.member===1 ? 'Member' : 'Non-member'
         let html = `
         <tr id='${i.id}'>
             <td>${i.customer_id}</td>

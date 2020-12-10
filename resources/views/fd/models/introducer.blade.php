@@ -13,13 +13,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <input
-                                                oninput="toCap(this.value, this.id), get_modal_search_by_full_name(this.value)"
+                                                oninput="toCap(this.value, this.id), get_modal_search_by_full_n(this.value)"
                                                 type="text" class="form-control js-example-data-ajax"
                                                 id="client_full_name_search_modal" placeholder="Enter Username">
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <button class="btn  btn-info btn" onclick="introducer_body.innerHTML = null">
+                                        <button class="btn  btn-info btn" onclick="introducer_bod.innerHTML = null">
                                             Clear Results </button>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                         </div> --}}
                         <div class="row">
                             <table class="table">
-                                <tbody id="introducer_body" class="d-none"></tbody>
+                                <tbody id="introducer_bod" class="d-none"></tbody>
                             </table>
                         </div>
                         {{-- <div class="row mb-5 ml-3">
@@ -78,11 +78,11 @@
     let is_customer_id_2 = false;
 
 
-    function get_modal_search_by_full_name(value){
+    function get_modal_search_by_full_n(value){
         // console.log(is_customer_id_2);
         console.log('sss',value);
         if(value === ''){
-            introducer_body.innerHTML = ''
+            introducer_bod.innerHTML = ''
         }
         $.ajax({
         type: 'GET',
@@ -90,7 +90,7 @@
         data: {text:value} ,
         success: function(data){
             console.log(data);
-            return set_modal_serach_by_name_results(data)
+            return set_modal_serach_by_name_resu(data)
         }
     })
     }
@@ -98,7 +98,7 @@
     function get_modal_search_by_customer_id(value){
         console.log(value);
         if(value === ''){
-            introducer_body.innerHTML = ''
+            introducer_bod.innerHTML = ''
         }
         $.ajax({
         type: 'GET',
@@ -107,16 +107,16 @@
         success: function(data){
             console.log(data);
 
-            return set_modal_serach_by_name_results(data)
+            return set_modal_serach_by_name_resu(data)
         }
     })
     }
 
 
-function set_modal_serach_by_name_results(data){
+function set_modal_serach_by_name_resu(data){
     console.log('inside setter -modal', data);
-    introducer_body.classList.remove('d-none')
-    introducer_body.innerHTML = ''
+    introducer_bod.classList.remove('d-none')
+    introducer_bod.innerHTML = ''
 
     customer_data = data
 
@@ -134,20 +134,20 @@ function set_modal_serach_by_name_results(data){
                 onclick=
                 "
                 this.parentElement.parentElement.parentElement.classList.add('d-none'),
-                set_cus_details_from_modal('${i.id}')
+                set_cus_details_from_moda('${i.id}')
                 "
                 class="btn btn-sm btn-primary">Select</button>
             </td>
         </tr>
         `
-        introducer_body.innerHTML += html
+        introducer_bod.innerHTML += html
 
     })
 
 
 }
 
-function set_cus_details_from_modal(id){
+function set_cus_details_from_moda(id){
     console.log(id);
 
     customer_data.filter(cus => {

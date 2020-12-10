@@ -36,7 +36,7 @@
                     <input type="text" class="form-control" readonly id="customer_id" name="customer_id">
                 </div>
             </div>
-            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#mmodel"></a>
+            <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></a>
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Product</label>
@@ -204,7 +204,8 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <a class="btn fa  btn-primary btn-sm form-control " id="btn_cr" onclick="createFd()">CREATE</a>
-                    <a class="btn fa  btn-warning btn-sm form-control " id="btn_subm" onclick="clearAll()" >SUBMIT & FINISH</a>
+                    <a class="btn fa  btn-warning btn-sm form-control " id="btn_subm" onclick="clearAll()">SUBMIT &
+                        FINISH</a>
 
                 </div>
             </div>
@@ -213,7 +214,7 @@
 </div>
 {{-- </form> --}}
 <div class="row d-none" id="inv_view">
-{{-- <div class="row " id="inv"> --}}
+    {{-- <div class="row " id="inv"> --}}
     <div class="col">
         <div class="card ">
             <div class="card-body ">
@@ -347,12 +348,12 @@
         </div>
     </div>
 </div>
-@include('fd.models.member_search')
+{{-- @include('fd.models.member_search') --}}
 @include('fd.models.product_search')
 @include('fd.models.introducer')
 @include('fd.models.ext_inv')
 @include('fd.models.ext_nom')
-{{-- @include('layouts.search_modal') --}}
+@include('fd.models.search_modal')
 
 
 <script>
