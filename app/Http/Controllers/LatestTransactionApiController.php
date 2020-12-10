@@ -89,7 +89,7 @@ class LatestTransactionApiController extends Controller
                     FROM `palmtop_transaction_data` AS ptd
                     INNER JOIN `branches` AS b ON b.`id` = ptd.`branch_id`
                     WHERE ptd.`branch_id` = ".$branch_id." AND ptd.`created_by` = ".$user_id."
-                    GROUP BY ptd.`updated_at`";
+                    GROUP BY ptd.`updated_at`, b.`branch_code`, b.`branch_name` ";
             $transaction['status'] = 'succeed';
             $transaction['data'] = 'Customer transaction pass correctly';
             $transaction['output'] = DB::select($sql);

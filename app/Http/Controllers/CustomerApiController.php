@@ -45,6 +45,8 @@ class CustomerApiController extends Controller
             $customer['status'] = 'succeed';
             $customer['data'] = 'Customer data pass correctly';
             $customer['output'] =CustomerBasicData::leftjoin('account_general_information','account_general_information.customer_id','customer_basic_data.customer_id')
+                                    ->leftjoin('contact_data','contact_data.customer_id','customer_basic_data.customer_id')
+                                    ->leftjoin('address_data','address_data.customer_id','customer_basic_data.customer_id')
                                     ->where('customer_basic_data.customer_id',$customer_id)->first();
         return response()->json($customer);
         } catch (\Exception $e) {
