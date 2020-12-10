@@ -236,6 +236,7 @@ return response()->json($investers);
 
 public function findByFullName(Request $request){
     // return response()->json($request);
+
     $product_details=$data = DB::select("
     SELECT DISTINCT *
 
@@ -267,6 +268,18 @@ public function approved(){
                                         ->get();
 
     return view('fd.approved',compact('accounts'));
+}
+public function membersForShareBuy(Request $request){
+    $data = CustomerBasicData::leftjoin('members','members.customer_id','customer_basic_data.customer_id')
+    ->distinct('customer_basic_data.customer_id','customer_basic_data.full_name','customer_basic_data.id',
+    'customer_basic_data.identification_number','members.share_amount')
+    ->where('full_name','LIKE','%'.$request->text.'%')
+    ->where('customer_basic_data.is_enable',1)
+    ->where('customer_basic_data.status',1)
+    ->where('non_member',0)
+    ->get();
+
+return response()->json($data);
 }
 
 

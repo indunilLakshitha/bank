@@ -93,7 +93,7 @@
 </div>
 
 
-@include('layouts.search_modal')
+@include('shares.wcarts.member_search')
 
 <script>
     function buy_shares(){
