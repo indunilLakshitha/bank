@@ -16,15 +16,18 @@ class MainBranchController extends Controller
     public function index(){
 
         return view('newbranches.index');
+
     }
     public function add(){
-         $branches=Branch::where('is_enable',1)->get();
-        $contacttypes=ContactType::where('is_enable',1)->get();
 
+        $branches=Branch::where('is_enable',1)->get();
+        $contacttypes=ContactType::where('is_enable',1)->get();
         return view('newbranches.1_add',compact('branches','contacttypes'));
+
     }
 
     public function store(Request $request){
+
         $branche=  CustomerBasicData::create($request->all());
         $count=count(CustomerBasicData::all())+1;
         $cus_count = '0000' .$count ;
@@ -39,6 +42,7 @@ class MainBranchController extends Controller
         $address['customer_id']=$branche->customer_id;
          AddressData::create($address->all());
         return redirect()->route('newbranches.index');
+        
     }
 
 

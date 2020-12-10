@@ -31,7 +31,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <input oninput="toCap(this.value, this.id)" type="text"
-                                        class="form-control " id="custname" name="name"
+                                        class="form-control " id="custname_nm" name="name"
                                         placeholder="Enter Full Name">
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <select name="relation_type" id="relation" class="form-control"
+                                    <select name="relation_type" id="relation_nm" class="form-control"
                                         data-style="select-with-transition" >
                                         <option value="Mother">Mother</option>
                                         <option value="Father">Father</option>
@@ -69,7 +69,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <input class="form-control " name="contact_no" id="contact_no"
+                                    <input class="form-control " name="contact_no" id="contact_no_nm"
                                         type="text">
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <input class="form-control " name="address" id="address"
+                                    <input class="form-control " name="address" id="address_nm"
                                         type="text">
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <input class="form-control " name="nic" id="nic" type="text">
+                                    <input class="form-control " name="nic" id="nic_nm" type="text">
                                 </div>
                             </div>
                         </div>
@@ -141,9 +141,10 @@
                     icon: 'success',
                     timer: 20000
                 })
-                custname.value=''
-                address.value=''
-                nic.value=''
+                custname_nm.value=''
+                address_nm.value=''
+                nic_nm.value=''
+                contact_no_nm.value=''
                     return show_ext_nmn(data)
 
 

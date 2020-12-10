@@ -28,10 +28,13 @@ class PermissionController extends Controller
     //--------------------------------RETURN TO PERMISSION CREATE VIEW---------------------
     public function store(Request $request)
     {
-     //return $request;
+    //  return $request;
         try{
 
-             $permission = Permission::create(['name' => $request->permission_name,'view_name'=>$request->view_name]);
+             $permission = Permission::create([
+                 'name' => $request->permission_name,
+                 'view_name'=>$request->view_name
+                ]);
 
             foreach($request->roles as $role_name){
                 $role = Role::findByName($role_name);

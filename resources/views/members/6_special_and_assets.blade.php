@@ -33,7 +33,7 @@
                                 <label class="col-sm-2 col-form-label">Special Information</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
-                                        <textarea name="special_information" id="" cols="70" rows="10"></textarea>
+                                        <textarea name="special_information" id="special_info" cols="70" rows="10"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -155,6 +155,11 @@
             `
             assets_tbody.innerHTML += html
         })
+
+        special_info.value=''
+        item.value=''
+        value.value=''
+
 
     }
 

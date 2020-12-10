@@ -26,7 +26,7 @@
     <span> {{session('error')}} </span>
 </div> --}}
     <script>
-         Swal.fire(session('error'))
+         Swal.fire('{{session('error')}}')
     </script>
 @endif
 
@@ -49,4 +49,3 @@
         return Swal.fire("{{$error}}")
     </script>
 @endif --}}
-
