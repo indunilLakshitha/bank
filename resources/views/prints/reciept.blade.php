@@ -11,8 +11,13 @@
     <br><br><br><br><br><br><br><br><br><br><br><br>
     {{ $data[0]->created_at }} <br>
     {{ $data[0]->customer_id }}
-    {{ $data[0]->short_name }} <br>
-    {{ $data[0]->account_type }}
+    {{ $data[0]->full_name }}<br>
+    {{ $data[0]->account_number }}
+    Normal Savings
+    CASH <br>
+    {{ $data[0]->transaction_value }}
+    {{ $amountSpell}} <br>
+    {{-- {{ $data[0]->account_type }} --}}
 </body>
 
 </html>
