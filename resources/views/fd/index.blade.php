@@ -107,7 +107,7 @@
 
         <div class="row">
             <label class="col-sm-2 col-form-label">Deposit Value</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <input type="text" class="form-control" id="deposite_amount" name="deposite_amount">
                 </div>
@@ -116,7 +116,7 @@
         <div class="row">
 
             <label class="col-sm-2 col-form-label">Starting Date</label>
-            <div class="col-sm-3">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <input type="date" class="form-control" id="start_date" name="start_date"
                         value="<?php echo date("Y-m-d"); ?>">
@@ -125,7 +125,7 @@
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Deposit Type</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="deposite_type_id" id="deposite_type_id">
                     <input type="text" readonly class="form-control" name="deposite_type" id="deposite_type">
@@ -134,7 +134,7 @@
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Int Type</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="fd_interest_type_id" id="fd_interest_type_id">
                     <input type="text" readonly class="form-control" name="fd_interest_type" id="fd_interest_type">
@@ -143,7 +143,7 @@
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">No of Period</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <select name="deposite_period_id" id="deposite_period_id" class="form-control"
                         oninput="calDuration(this.value)">
@@ -166,7 +166,7 @@
 
         <div class="row">
             <label class="col-sm-2 col-form-label">Expired Date</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <input type="text" placeholder="" readonly id="close_date" name="close_date" class="form-control">
                 </div>
@@ -174,7 +174,7 @@
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Auto Renew</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     {{-- <input type="text" class="form-control" id="is_auto_renew"> --}}
                     <select name="is_auto_renew" id="is_auto_renew" class="form-control">
@@ -364,7 +364,7 @@ var date_ob = new Date(ts_ms);
 var date = ("0" + date_ob.getDate()).slice(-2);
 var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 var year = date_ob.getFullYear();
-var datee=  date+"/"+month+"/"+"/"+year
+var datee=  date+"/"+month+"/"+year
 console.log(date_ob.toDateString())
 
 close_date.value=datee
