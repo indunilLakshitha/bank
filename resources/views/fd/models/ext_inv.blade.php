@@ -21,6 +21,8 @@
           href="#noticeModal"> SEARCH Nominees</button>
               </div>
           </div> --}}
+          <form id="form">
+              @csrf
                 <div class="row mt-5">
                     <label class="col-sm-2 col-form-label"> Client Full Name</label>
                     <div class="col-sm-10">
@@ -106,6 +108,7 @@
 
 
             </div>
+        </form>
             <div class="modal-footer">
                 <a onclick="addExtinv()" class="btn btn-rose">Add</a>
                 <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
@@ -127,15 +130,9 @@
       $.ajax({
           type: 'POST',
           url: '{{('/addextinvfd')}}',
-          data: {
-            'account_id':account_id,
-            'name':na,
-            'address':addr,
-            'contact_no':con,
-            'nic':nicc,
-            'relation_type':relation
-
-          },
+          data:new FormData(form),
+        contentType: false,
+        processData: false,
           success: function(data){
               console.log(data)
               Swal.fire({
