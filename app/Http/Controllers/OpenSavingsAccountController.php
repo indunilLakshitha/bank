@@ -360,7 +360,7 @@ class OpenSavingsAccountController extends Controller
 
     public function product_details(Request $request)
     {
-        $prod_data = ProductData::create($request->all());
+       return $prod_data = ProductData::create($request->all());
         $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
         $cbs = CustomerBasicData::where('customer_id',$customer_id)->first();
         if($cbs->customer_status_id == 1){
@@ -399,7 +399,6 @@ class OpenSavingsAccountController extends Controller
               $cus_id = substr($cus_count, -3);
                $account_number=$customer_id.'-'.$cus_id;
             //    $account_number=$branch_code[0]->branch_code.'-'.$cus_id;
-
             AccountGeneralInformation::where('id', $account_id)->update(['status' => '2','account_number'=>$account_number]);
 
             $acc_no = ModelsAccountGeneralInformation::find($account_id)->account_number;
