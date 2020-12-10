@@ -148,6 +148,19 @@ class OpenSavingsAccountController extends Controller
 
         // return response()->json($data);
     }
+     public function search_by_full_name_trs(Request $request)
+    {
+        $data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')
+                                    ->leftjoin('transaction_data','transaction_data.customer_id','customer_basic_data.customer_id')
+                                    ->distinct('customer_basic_data.customer_id','customer_basic_data.full_name','customer_basic_data.id',
+                                    'customer_basic_data.identification_number','customer_basic_data.non_member')
+                                    ->where('full_name',$request->text)
+                                    ->where('customer_basic_data.is_enable',1)
+                                    ->where('customer_basic_data.status',1)
+                                    ->get();
+
+        return response()->json($data);
+    }
     public function search_by_full_name_mem(Request $request)
     {
         $data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')

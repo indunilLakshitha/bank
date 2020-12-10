@@ -230,6 +230,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/search_by_full_name/{type}', 'OpenSavingsAccountController@search_by_full_name');
     Route::get('/search_by_customer_id/{type}', 'OpenSavingsAccountController@search_by_customer_id');
     Route::get('/search_by_nic_id/{type}', 'OpenSavingsAccountController@search_by_nic_id');
+    Route::get('/search_by_full_name/trn', 'OpenSavingsAccountController@search_by_full_name_trs');
 
     Route::get('form/view', 'CustomerController@formView');
     Route::post('form/data', 'CustomerController@formData');
@@ -413,6 +414,8 @@ Route::get('/CasHiNhanDbrancH','TransactionReportController@cashInHandBranch');
 Route::get('/cashInHand/user','TransactionReportController@getUserRep');
 Route::get('/CasHiNhanDbrancH/branch','TransactionReportController@getBranchRep');
 Route::get('/ReportOfTransactions/transactions','TransactionReportController@getTransactions');
+Route::get('/findRange', 'TransactionReportController@findBtween');
+
 
 
 // -------------------------------------------------------------FD-----------------------------------------
