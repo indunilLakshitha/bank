@@ -20,21 +20,24 @@
                         <label for="">TYPE:</label>
                             <div class="pull-right col-2">
                                 <select name="type" class="form-control" id="type">
-                                    <option value="" >--Select--</option>
+                                    <option value="ALL" >ALL</option>
+                                    <option value="DEPOSITED" >DEPOSITED</option>
+                                    <option value="WITHDRAWED" >WITHDRAWED</option>
 
                                 </select>
                             </div>
                             <label >FROM:</label>
                             <div class="pull-right col-2">
-                                <input type="date" class="form-control datepicke" id="dateFrom">
+                                <input type="date" class="form-control datepicke" required id="dateFrom">
                             </div>
                             <label for="">TO:</label>
                             <div class="pull-right col-2" value="">
-                                <input type="date" class="form-control datepicke" id="dateTo">
+                                <input type="date" class="form-control datepicke" required id="dateTo">
                             </div>
+                            @can('create_roles')
                             <label for="">USER:</label>
                             <div class="pull-right col-2">
-                                <select name="select_branch1" class="form-control" id="user">
+                                <select name="user" class="form-control" required id="user">
                                     <option value="">--Select--</option>
                                     @isset($users)
                                     @foreach ($users as $user)
@@ -45,6 +48,7 @@
                                     @endisset
                                 </select>
                             </div>
+                            @endcan
                             <!-- <label for="">BRANCH:</label>
                             <div class="col-1">
                                 <input class="form-check" type="checkbox" value="">
@@ -105,6 +109,14 @@
         console.log(dateTo.value);
         console.log(user.value);
         console.log(type.value);
+        if(from.value == ""){
+            from.focus();
+            return false;
+        }else if(to.value == ""){
+            to.focus();
+            return false;
+        }
+        else{}
         $.ajax({
             type: 'GET',
             url: '{{('/ReportOfTransactions/transactions')}}',
@@ -134,7 +146,7 @@
                 <td>0.00</td>
                 <td>0.00</td>
                 <td>0.00</td>
-                <td>${i.transaction_value}</td>
+                <td>${i.balance_value}</td>
                 <td>${i.employee_no}</td>
 
 

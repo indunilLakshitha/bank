@@ -192,7 +192,7 @@ class UserController extends Controller
 
     public function store(Request $request){
         //check employee number existing
-        $employee_no = intval($request->input('employee_no'));
+        $employee_no = $request->input('employee_no');
         $email_address= $request->input('email');
         $user_password = $request->input('password');
         $user_confirm_password = $request->input('confirm_password');

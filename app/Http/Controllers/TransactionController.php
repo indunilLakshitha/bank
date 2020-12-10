@@ -54,7 +54,7 @@ class TransactionController extends Controller
         // $request->payment_method_id
         // $request->transaction_type
         // $request->transaction_value
-        
+
         $payment_log=$request;
 
         $general_account=AccountGeneralInformation::where('account_number',$request->account_id)->first();
@@ -63,6 +63,7 @@ class TransactionController extends Controller
 
         $payment_log['created_by']=Auth::user()->id;
         $payment_log['transaction_type']="WITHDRAW";
+        $payment_log['is_intern_transaction']=0;
         $payment_log['balance_value']= $general_account->account_balance;
 
         $transaction_data=TransactionData::create($payment_log->all());
@@ -152,6 +153,7 @@ class TransactionController extends Controller
 
         $payment_log['created_by']=Auth::user()->id;
         $payment_log['transaction_type']="DEPOSITE";
+        $payment_log['is_intern_transaction']=0;
         $payment_log['balance_value']= $general_account->account_balance;
 
         $transaction_data=TransactionData::create($payment_log->all());
@@ -238,4 +240,6 @@ class TransactionController extends Controller
 
 
     }
+
+
 }

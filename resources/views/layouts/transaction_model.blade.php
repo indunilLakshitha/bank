@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12 text-center">
         <!-- notice modal -->
-        <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content " style="width: 800px;height: auto">
@@ -27,7 +27,8 @@
                                         {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                        <button class="btn  btn-info btn" onclick="data_clear()">
+                                        <button class="btn  btn-info btn"
+                                            onclick="data_clear()">
                                             Clear Results </button>
 
                                     </div>
@@ -44,7 +45,8 @@
                                             // toCap(this.value, this.id),
                                             get_modal_search_by_customer_id(this.value)" type="text"
                                                 class="form-control js-example-data-ajax" id="customer_code_modal"
-                                                name="customer_code_modal" placeholder="Enter Customer ID">
+                                                   name="customer_code_modal"
+                                                placeholder="Enter Customer ID">
                                         </div>
                                     </div>
                                 </div>
@@ -59,8 +61,8 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_modal_search_by_nic_id(this.value)" type="text"
-                                                class="form-control js-example-data-ajax" name="id_number_modal"
-                                                id="id_number_modal" placeholder="Enter Identification Number">
+                                                class="form-control js-example-data-ajax" name="id_number_modal" id="id_number_modal"
+                                                placeholder="Enter Identification Number">
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +93,7 @@
         } else {
             $.ajax({
                 type: 'GET',
-                url: '{{('/search_by_full_name/1')}}',
+                url: '{{('/search_by_full_name/trn')}}',
                 data: {text:value} ,
                 success: function(data){
                     //console.log(data);
@@ -145,7 +147,7 @@ function set_modal_serach_by_name_results(data){
         //let member_status = i.non_member===1 ? 'Non-Member' : 'member'
         let html = `
         <tr id='${i.id}'>
-            <td>${i.customer_id}</td>
+            <td>${i.account_number}</td>
             <td>${i.full_name}</td>
             <td>${i.identification_number}</td>
             <td>${member_status}</td>
@@ -176,7 +178,7 @@ function set_modal_serach_by_name_results_for_share(data){
             //if(member_status =='member'){
             let html = `
             <tr id='${i.id}'>
-                <td>${i.customer_id}</td>
+                <td>${i.account_number}</td>
                 <td>${i.full_name}</td>
                 <td>${i.identification_number}</td>
                 <td>${i.account_number}</td>
@@ -245,7 +247,7 @@ function set_cus_details_from_modal(id){
             if(document.querySelector('#account_balance')){
                 account_balance.value = cus.account_balance
             }
-            $('#noticeModal').modal('hide');
+            $('#transactionModal').modal('hide');
              return console.log(cus);
             //  console.log(full_name);
         }

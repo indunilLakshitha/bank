@@ -42,7 +42,7 @@ class MemberController extends Controller
                 `status`, cbd.`identification_number`, IF(`member` = 1, 'Member', 'Non Member') AS 'status'
                 FROM customer_status_dates AS csd
                 LEFT JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
-                WHERE cbd.`status` != 3 AND cbd.`status` != 0";
+                WHERE cbd.`status` = 1";
         if($for_verify > 0){
             $sql .= " AND cbd.`status` = 2 ";
         }
@@ -88,7 +88,7 @@ class MemberController extends Controller
                 FROM account_general_information AS agi
                 INNER JOIN customer_status_dates AS csd ON csd.customer_id = agi.customer_id
                 INNER JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
-                WHERE cbd.`status` != 3 AND cbd.`status` != 0";
+                WHERE cbd.`status` = 2";
 
         if($for_verify > 0){
             $sql .= " AND agi.`status` = 2 ";
