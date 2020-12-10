@@ -52,8 +52,8 @@ class TransactionReportController extends Controller
     }
 
     public function cashInHandBranch(){
-
-        return view('transaction_report.cashInHandBranch');
+        $users = User::where('branh_id',Auth::user()->branh_id)->get();
+        return view('transaction_report.cashInHandBranch',compact('users'));
     }
 
     public function getUserRep(Request $request){
@@ -248,7 +248,193 @@ class TransactionReportController extends Controller
 
     public function getBranchRep(Request $request){
 
-        return response()->json($request);
+       $yesterday = Carbon::yesterday()->toDateString();
+
+        $data = array(0,0,0,0,0,0,0,0);
+        if(!empty($request->user)){
+
+        $r = cash_in_hand_ledger::where('user_id',$request->user)
+            ->whereDate('created_at',$yesterday)
+            ->orderBy('id', 'desc')
+            ->first('balance_amount');
+        $open_hand = $r->balance_amount;
+
+        $t_in = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',1)
+                ->sum('transaction_value');
+
+        $t_out = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',1)
+                ->sum('transaction_value');
+        $reci = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',0)
+                ->sum('transaction_value');
+        $paym = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',0)
+                ->sum('transaction_value');
+        $depo = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',2)
+                ->sum('transaction_value');
+        $withd = TransactionData::where('created_by',$request->user)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',2)
+                ->sum('transaction_value');
+
+        $bal = ($t_in + $reci +$depo ) - ($t_out + $paym +$withd);
+        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal,$open_hand];
+
+        return response()->json(['DATA' => $data]);
+        }
+        else if(!empty($request->branch)){
+            $cal = 0;
+            $id=0;
+        $users = User::leftjoin('cash_in_hand_ledgers','cash_in_hand_ledgers.user_id','users.id')
+                            ->where('branh_id',Auth::user()->branh_id)
+                            ->whereDate('cash_in_hand_ledgers.created_at',$yesterday)
+                            // ->groupBy('cash_in_hand_ledgers')
+                            ->orderBy('cash_in_hand_ledgers.id', 'desc')
+                            ->get();
+
+        foreach($users as $user){
+
+            if($id != $user->user_id){
+            $cal = $cal + $user->balance_amount;
+            }
+            $id = $user->user_id;
+        }
+        // $r =cash_in_hand_ledger::where('user_id',$request->user)
+        //     ->orderBy('id', 'desc')
+        //     ->first('balance_amount');
+        $open_hand = $cal;
+
+        $t_in = User::leftjoin('transaction_data','transaction_data.created_by','users.id')
+                            ->where('branh_id',Auth::user()->branh_id)
+                            ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                            ->where('transaction_data.is_intern_transaction',1)
+                            ->where('transaction_data.transaction_type','DEPOSITE')
+                            ->sum('transaction_data.transaction_value');
+
+        // $t_in = TransactionData::where('created_by',$branch_users)
+        //         ->whereBetween('created_at',[date($request->from),date($request->to)])
+        //         ->where('transaction_type','DEPOSITE')
+        //         ->where('is_intern_transaction',1)
+        //         ->sum('transaction_value');
+        $t_out = User::leftjoin('transaction_data','transaction_data.created_by','users.id')
+                            ->where('branh_id',Auth::user()->branh_id)
+                            ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                            ->where('transaction_data.is_intern_transaction',1)
+                            ->where('transaction_data.transaction_type','WITHDRAW')
+                            ->sum('transaction_data.transaction_value');
+
+        // $t_out = TransactionData::where('created_by',$branch_users)
+        //         ->whereBetween('created_at',[date($request->from),date($request->to)])
+        //         ->where('id','WITHDRAW')
+        //         ->where('is_intern_transaction',1)
+        //         ->sum('transaction_value');
+        $reci = User::leftjoin('transaction_data','transaction_data.created_by','users.id')
+                            ->where('branh_id',Auth::user()->branh_id)
+                            ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                            ->where('transaction_data.is_intern_transaction',0)
+                            ->where('transaction_data.transaction_type','DEPOSITE')
+                            ->sum('transaction_data.transaction_value');
+
+        // $reci = TransactionData::where('created_by',$branch_users)
+        //         ->whereBetween('created_at',[date($request->from),date($request->to)])
+        //         ->where('transaction_type','DEPOSITE')
+        //         ->where('is_intern_transaction',0)
+        //         ->sum('transaction_value');
+        $paym = User::leftjoin('transaction_data','transaction_data.created_by','users.id')
+                            ->where('branh_id',Auth::user()->branh_id)
+                            ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                            ->where('transaction_data.is_intern_transaction',0)
+                            ->where('transaction_data.transaction_type','WITHDRAW')
+                            ->sum('transaction_data.transaction_value');
+        // $paym = TransactionData::where('created_by',$branch_users)
+        //         ->whereBetween('created_at',[date($request->from),date($request->to)])
+        //         ->where('transaction_type','WITHDRAW')
+        //         ->where('is_intern_transaction',0)
+        //         ->sum('transaction_value');
+        $depo = User::leftjoin('transaction_data','transaction_data.created_by','users.id')
+                            ->where('branh_id',Auth::user()->branh_id)
+                            ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                            ->where('transaction_data.is_intern_transaction',2)
+                            ->where('transaction_data.transaction_type','DEPOSITE')
+                            ->sum('transaction_data.transaction_value');
+        // $depo = TransactionData::where('created_by',$branch_users)
+        //         ->whereBetween('created_at',[date($request->from),date($request->to)])
+        //         ->where('transaction_type','DEPOSITE')
+        //         ->where('is_intern_transaction',2)
+        //         ->sum('transaction_value');
+        $withd = User::leftjoin('transaction_data','transaction_data.created_by','users.id')
+                            ->where('branh_id',Auth::user()->branh_id)
+                            ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
+                            ->where('transaction_data.is_intern_transaction',2)
+                            ->where('transaction_data.transaction_type','WITHDRAW')
+                            ->sum('transaction_data.transaction_value');
+        // $withd = TransactionData::where('created_by',$branch_users)
+        //         ->whereBetween('created_at',[date($request->from),date($request->to)])
+        //         ->where('transaction_type','WITHDRAW')
+        //         ->where('is_intern_transaction',2)
+        //         ->sum('transaction_value');
+
+        $bal = ($t_in + $reci +$depo ) - ($t_out + $paym +$withd);
+        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal,$open_hand];
+
+        return response()->json(['DATA' => $data]);
+        }
+        else{
+        $r = cash_in_hand_ledger::where('user_id',Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->first('balance_amount');
+        $open_hand = $r->balance_amount;
+        $t_in = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',1)
+                ->sum('transaction_value');
+
+        $t_out = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',1)
+                ->sum('transaction_value');
+        $reci = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',0)
+                ->sum('transaction_value');
+        $paym = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',0)
+                ->sum('transaction_value');
+        $depo = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','DEPOSITE')
+                ->where('is_intern_transaction',2)
+                ->sum('transaction_value');
+        $withd = TransactionData::where('created_by',Auth::user()->id)
+                ->whereBetween('created_at',[date($request->from),date($request->to)])
+                ->where('transaction_type','WITHDRAW')
+                ->where('is_intern_transaction',2)
+                ->sum('transaction_value');
+
+        $bal = ($t_in + $reci +$depo ) - ($t_out + $paym +$withd);
+        $data = [$t_in,$t_out,$reci,$paym,$depo,$withd,$bal,$open_hand];
+
+        return response()->json(['DATA' => $data]);
+        }
     }
 
     public function getTransactions(Request $request){

@@ -151,12 +151,21 @@ background:#eee;
                             <div class="pull-right col-2" value="">
                                 <input type="date" class="form-control datepicke" id="dateTo">
                             </div>
+                            @can('delete_roles')
                             <label for="">USER:</label>
                             <div class="pull-right col-2">
                                 <select name="select_branch1" class="form-control" id="user">
                                     <option value="" >--Select--</option>
+                                    @isset($users)
+                                    @foreach ($users as $user)
+                                    @if(intval($user->status) == 1)
+                                    <option value="{{$user->id}}" >{{$user->email}}</option>
+                                    @endif
+                                    @endforeach
+                                    @endisset
                                 </select>
                             </div>
+
                             <label for="">BRANCH:</label>
                             <div class="col-1">
                                 <input class="form-check" type="checkbox" value="1" id="branch">
@@ -164,6 +173,18 @@ background:#eee;
                                 <span class="check"></span>
                             </span>
                             </div>
+                            @endcan
+                            @can('member_add')
+                                <select name="select_branch1" hidden class="form-control" id="user">
+                                    <option value="" >--Select--</option>
+                                </select>
+
+                            <div class="col-1">
+                                <input class="form-check" hidden type="checkbox" value="" id="branch">
+
+                            </span>
+                            </div>
+                            @endcan
                         <div class=" col-1 ">
                             <button type="button"  onclick="search(this)" class="btn btn-info" id="search">Search</button>
                         </div>
@@ -172,8 +193,8 @@ background:#eee;
             </div>
 
 			<div class="row table-row">
-				<table class="table table-striped">
-			      <thead>
+				<table class="table table-striped" id="cashInHand">
+			      {{-- <thead>
 			        <tr>
 			          <th class="text-center" style="width:30%">USER</th>
 			          <th class="text-center" style="width:15%">CASH</th>
@@ -262,16 +283,14 @@ background:#eee;
                       <td class="table-success text-center ">0.00</td>
 			          <td class="table-success text-center ">0.00</td>
 			        </tr>
-			       </tbody>
+			       </tbody> --}}
 			    </table>
 
 			</div>
 
 
             <div class="col-xs-6 margintop text-right">
-				<a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
-                <a href="javascript:;" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-file t-plus-1 text-danger fa-fw fa-lg"></i> Export as PDF</a>			</div>
-		  </div>
+				</div>
 		</div>
 	</div>
 </div>
@@ -286,18 +305,114 @@ function search(){
         const from = document.querySelector('#dateFrom');
         const to = document.querySelector('#dateTo');
         const user = document.querySelector('#user');
+        const branch = document.querySelector('#branch');
         console.log(from.value);
         console.log(dateTo.value);
         console.log(user.value);
+        console.log(branch.value);
 
         $.ajax({
             type: 'GET',
             url: '{{('/CasHiNhanDbrancH/branch')}}',
-            data: {'from':from.value,'to':to.value,'user':user.value},
-            processData: false,
-            contentType: false,
+            data: {'from':from.value,'to':to.value,'user':user.value,'branch':branch.value},
+
             success: function(data){
                 console.log(data)
+                document.querySelector('#cashInHand').innerHTML = `
+                <thead>
+			        <tr>
+			          <th class="text-center" style="width:30%">USER</th>
+			          <th class="text-center" style="width:15%">CASH</th>
+                      <th class="text-center" style="width:15%">CHEQUES</th>
+                      <th class="text-center" style="width:15%">PETTY CASH</th>
+			          <th class="text-center" style="width:15%">TOTAL</th>
+			        </tr>
+                  </thead>`
+                  html =
+                                `
+                                <tbody>
+			        <tr>
+			          <td class="table-info">OPEN IN HAND</td>
+			          <td class="table-info text-center" >${data.DATA[7]}</td>
+                      <td class="table-info text-center" >0.00</td>
+                      <td class="table-info text-center" >0.00</td>
+                      <td class="table-info text-center" >${data.DATA[7]}</td>
+
+                    </tr>
+                    <tr>
+			          <td></td>
+			          <td></td>
+                      <td></td>
+                      <td></td>
+			          <td></td>
+                    </tr>
+                    <tr>
+			          <td>INT. TRANSFER OUT</td>
+			          <td class="text-center">(${data.DATA[1]})</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+			          <td class="text-center">(${data.DATA[1]})</td>
+                    </tr>
+                    <tr>
+			          <td></td>
+			          <td></td>
+                      <td></td>
+                      <td></td>
+			          <td></td>
+                    </tr>
+                    <tr>
+			          <td>RECIPT</td>
+			          <td class="text-center">${data.DATA[2]}</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+			          <td class="text-center">0.00</td>
+                    </tr>
+                    <tr>
+			          <td>PAYMENT</td>
+			          <td class="text-center">(${data.DATA[3]})</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+			          <td class="text-center">(${data.DATA[3]})</td>
+                    </tr>
+                    <tr>
+			          <td>CASH DEPOSIT</td>
+			          <td class="text-center">${data.DATA[4]}</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+			          <td class="text-center">${data.DATA[4]}</td>
+                    </tr>
+			        <tr>
+			          <td>INT. TRANSFER IN</td>
+			          <td class="text-center">${data.DATA[0]}</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+			          <td class="text-center">${data.DATA[0]}</td>
+                    </tr>
+                    <tr>
+			          <td >CASH WITHDROWEL</td>
+			          <td class="text-center">(${data.DATA[5]})</td>
+                      <td class="text-center">0.00</td>
+                      <td class="text-center">0.00</td>
+			          <td class="text-center">(${data.DATA[5]})</td>
+                    </tr>
+                    <tr>
+			          <td ></td>
+			          <td ></td>
+                      <td ></td>
+                      <td ></td>
+			          <td ></td>
+                    </tr>
+
+                    <tr class="invoice-total" >
+			          <td class="table-success">CLOSING IN HAND</td>
+			          <td class="table-success text-center ">${data.DATA[6]}</td>
+                      <td class="table-success text-center ">0.00</td>
+                      <td class="table-success text-center ">0.00</td>
+			          <td class="table-success text-center ">${data.DATA[6]}</td>
+			        </tr>
+			       </tbody>
+                                `
+                  document.querySelector('#cashInHand').innerHTML += html
 
             },
             error: function(data){

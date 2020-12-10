@@ -103,7 +103,7 @@
                         </li>
                         @endcan
                         @can('branches_view')
-                        
+
 
                         <li class="nav-item ">
                             <a class="nav-link" href="{{url('/newbranches')}}">
@@ -297,9 +297,25 @@
                     </ul>
                     <ul class="nav">
                         <li class="nav-item ">
+                            <a class="nav-link" href="/cashInHand">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Cash In Hand</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/CasHiNhanDbrancH">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Cash In Hand (Branch)</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
                             <a class="nav-link" href="/ReportOfTransactions">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Report</span>
+                                <span class="sidebar-normal">Transactions Report</span>
                             </a>
                         </li>
                     </ul>
