@@ -59,14 +59,16 @@ class TransactionReportController extends Controller
     public function getUserRep(Request $request){
         $yesterday = Carbon::yesterday()->toDateString();
 
+        $open_hand = 0;
         $data = array(0,0,0,0,0,0,0,0);
         if(!empty($request->user)){
-
+        $check = cash_in_hand_ledger::where('user_id',$request->user)->first();
+        if(!empty($check)){
         $r = cash_in_hand_ledger::where('user_id',$request->user)
             ->whereDate('created_at',$yesterday)
             ->orderBy('id', 'desc')
             ->first('balance_amount');
-        $open_hand = $r->balance_amount;
+        $open_hand = $r->balance_amount;}
 
         $t_in = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
@@ -249,15 +251,16 @@ class TransactionReportController extends Controller
     public function getBranchRep(Request $request){
 
        $yesterday = Carbon::yesterday()->toDateString();
-
+        $open_hand = 0;
         $data = array(0,0,0,0,0,0,0,0);
         if(!empty($request->user)){
-
+        $check = cash_in_hand_ledger::where('user_id',$request->user)->first();
+        if(!empty($check)){
         $r = cash_in_hand_ledger::where('user_id',$request->user)
             ->whereDate('created_at',$yesterday)
             ->orderBy('id', 'desc')
             ->first('balance_amount');
-        $open_hand = $r->balance_amount;
+        $open_hand = $r->balance_amount;}
 
         $t_in = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
