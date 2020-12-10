@@ -24,7 +24,7 @@
                         {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
                         <div class="row">
                             <label class="col-sm-2 col-form-label"> Name of Seller<font color="red">*</font></label>
-                            <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="col-lg-4 col-md-3 col-sm-3">
                                 <div class="form-group">
                                     <input  id="full_name" type="text" class="form-control">
                                     <input name="seller_id" id="customer_id" type="hidden" class="form-control">
@@ -32,7 +32,7 @@
                             </div>
                             <div class="col">
                                 <button type="button" class="btn fa fa-search btn-info " data-toggle="modal"
-                                href="#noticeModal">  Seller</button>
+                                href="#shareModal">  Seller</button>
                             </div>
                         </div>
 
@@ -48,7 +48,7 @@
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Name of Buyer<font color="red">*</font>
                                 </label>
-                            <div class="col-lg-3 col-md-2 col-sm-2">
+                            <div class="col-lg-4 col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <input  id="buyer_name" type="text" class="form-control">
                                     <input name="buyer_id" id="buyer_id" type="hidden" class="form-control">
@@ -231,7 +231,7 @@
         <!-- end notice modal -->
     </div>
 </div>
-@include('layouts.search_modal')
+@include('layouts.share_model')
 
 <script>
 
@@ -244,7 +244,7 @@
         }
         $.ajax({
         type: 'GET',
-        url: '{{('/search_by_full_name')}}',
+        url: '{{('/search_by_full_name/3')}}',
         data: {text:value} ,
         success: function(data){
             console.log(data);
@@ -278,10 +278,15 @@ function set_modal_serach_by_name_results_buyer(data){
     buyer_data = data
 
     data.forEach(i => {
+        let member_status = 'Non-Member';
+        if(parseInt(i.member) == 1) {
+            member_status = 'member';
         let html = `
         <tr id='${i.id}' >
             <td>${i.customer_id}</td>
         <td>${i.full_name}</td>
+        <td>${i.identification_number}</td>
+        <td>${member_status}</td>
         <td>
             <button type="button"
             onclick=
@@ -294,6 +299,7 @@ function set_modal_serach_by_name_results_buyer(data){
         </tr>
         `
         modal_serach_by_name_results_tbody_buyer.innerHTML += html
+    }
     })
 
 
@@ -307,6 +313,7 @@ function set_cus_details_from_modal_buyer(id){
 
             buyer_name.value = cus.full_name
             buyer_id.value = cus.customer_id
+            $('#buyer_modal').modal('hide');
              return console.log(cus);
             //  console.log(full_name);
         }

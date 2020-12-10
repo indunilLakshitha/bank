@@ -387,7 +387,6 @@
                     </p>
                 </a>
                 <div class="collapse" id="share">
-                    {{-- @can('share_buy') --}}
 
                     <ul class="nav">
                         <li class="nav-item ">
@@ -397,8 +396,6 @@
                             </a>
                         </li>
                     </ul>
-                    {{-- @endcan --}}
-                    @can('share_transfer')
 
                     <ul class="nav">
                         <li class="nav-item ">
@@ -408,7 +405,7 @@
                             </a>
                         </li>
                     </ul>
-                    @endcan
+
                     @can('share_history')
 
                     <ul class="nav">

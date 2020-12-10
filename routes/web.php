@@ -37,7 +37,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
         Route::get('/dashboard', 'DashboardController@index');
 
         //perm for roles
-        Route::group(['middleware' => ['permission:view_roles']], function () {
+       // Route::group(['middleware' => ['permission:view_roles']], function () {
 
             //roles/index
             Route::get('/roles/index', 'RoleController@index');
@@ -60,10 +60,10 @@ Route::group(['middleware' => 'isBlocked'], function () {
                 Route::get('chnage_role_status', 'RoleController@chnage_role_status');
 
             });
-        });
-
+      //  });
+//
         //perm for perms
-        Route::group(['middleware' => ['permission:view_permissions']], function () {
+      //  Route::group(['middleware' => ['permission:view_permissions']], function () {
 
             //perms/index
             Route::get('/permissions/index', 'PermissionController@index');
@@ -85,7 +85,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
                 Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
             });
 
-        });
+      //  });
 
         #view all users
         Route::get('/users/index', 'UserController@index');
@@ -230,6 +230,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/search_by_full_name/{type}', 'OpenSavingsAccountController@search_by_full_name');
     Route::get('/search_by_customer_id/{type}', 'OpenSavingsAccountController@search_by_customer_id');
     Route::get('/search_by_nic_id/{type}', 'OpenSavingsAccountController@search_by_nic_id');
+Route::get('/search_by_full_name/trns', 'OpenSavingsAccountController@search_by_full_name_trs');
 
     Route::get('form/view', 'CustomerController@formView');
     Route::post('form/data', 'CustomerController@formData');
@@ -325,6 +326,8 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/other_holder_sign', 'AccountVerificationController@other_holder_sign');
     Route::get('/approve_check', 'AccountVerificationController@approve_check');
     Route::get('/approve_done', 'AccountVerificationController@approve_done');
+    Route::get('/remove_ext_nominee_member_creation', 'ExternalNomimiesController@remove_ext_nominee_member_creation');
+Route::get('/approved','FdAccountController@approved');
 
     //-------------------------------------------------------------------------------Transactions------start
     Route::get('/findmember', 'TransactionController@findMembers');
@@ -411,6 +414,7 @@ Route::get('/CasHiNhanDbrancH','TransactionReportController@cashInHandBranch');
 Route::get('/cashInHand/user','TransactionReportController@getUserRep');
 Route::get('/CasHiNhanDbrancH/branch','TransactionReportController@getBranchRep');
 Route::get('/ReportOfTransactions/transactions','TransactionReportController@getTransactions');
+Route::get('/findRange', 'TransactionReportController@findBtween');
 
 
 // -------------------------------------------------------------FD-----------------------------------------
@@ -451,8 +455,9 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
     Route::get('/branchCashInOut2', 'BranchCashInOutController@index2');
     Route::get('/branchCashInOut1', 'BranchCashInOutController@index1');
 
-    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@submit1');
-    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@submit2');
+    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@cashiarOut');
+    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@cashiarIn');
+   Route::get('/branchCashInOut1/getCashiar', 'BranchCashInOutController@getCashiar');
 
 
     //------------------------------------------------------------------transaction report end-------------------
@@ -461,7 +466,7 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
     Route::get('/member', 'MemberController@create');
     Route::post('/member_creation', 'MemberController@member_creation');
     Route::get('/add_nominee_member_creation', 'MemberController@add_nominee_member_creation');
-    Route::get('/remove_ext_nominee_member_creation', 'ExternalNomimiesController@remove_ext_nominee_member_creation');
+    Route::get('/remove_nominee_member_creation', 'MemberController@remove_nominee_member_creation');
 
 Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
 Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
@@ -512,19 +517,19 @@ Route::get('/findinstructorcid','FdAccountController@findByCid');
 Route::get('/findinstructornic','FdAccountController@findByNic');
 Route::post('/addextinvfd','FdAccountController@addExtInvFd');
 Route::post('/addextnmnfd','FdAccountController@addExtNmnFd');
-Route::get('/approved','FdAccountController@approved');
 Route::get('/members_for_share_buy','FdAccountController@membersForShareBuy');
+
+
 
 //------------------------------------------------------search model routes-----------
 Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');
 Route::get('/search_by_cus_id_for_dnw','SearchController@byCustomerIdForWnD');
 Route::get('/search_by_nic_for_dnw','SearchController@byNicForWnD');
 
-
-
 //====================printing================================
 Route::get('/receipt/{id}', 'PrintController@receipt');
 Route::get('/passbook-front/{id}', 'PrintController@passbookFront');
 Route::get('/FDreceipt/{id}', 'PrintController@FDreceipt');
+
 Route::get('/passbook-back', 'PrintController@passbookBack');
 Auth::routes();

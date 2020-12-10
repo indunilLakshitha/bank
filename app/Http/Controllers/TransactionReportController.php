@@ -6,6 +6,7 @@ use App\cash_in_hand_ledger;
 use App\Models\AccountGeneralInformation;
 use App\Models\AuthorizedOfficer;
 use App\Models\CashierDailyTransaction;
+use App\Models\CustomerBasicData;
 use App\Models\TransactionData;
 use App\User;
 use Carbon\Carbon;
@@ -41,6 +42,7 @@ class TransactionReportController extends Controller
 
     public function cashInHand(){
 
+        // if(Auth::user()->hasRole('writer'))
         $users = User::where('branh_id',Auth::user()->branh_id)->get();
         return view('transaction_report.cashInHand',compact('users'));
     }
@@ -57,20 +59,22 @@ class TransactionReportController extends Controller
     }
 
     public function getUserRep(Request $request){
-        $yesterday = Carbon::yesterday()->toDateString();
 
-        $open_hand = 0;
+        $mydate =$request->to;
+        $daystosum = '1';
+        $datesum = date('Y-m-d', strtotime($mydate.' + '.$daystosum.' days'));
+        $request->to = $datesum;
         $data = array(0,0,0,0,0,0,0,0);
         if(!empty($request->user)){
-            $check = cash_in_hand_ledger::where('user_id',$request->user)->first();
-            if(!empty($check)){
-                $r = cash_in_hand_ledger::where('user_id',$request->user)
-                    ->whereDate('created_at',$yesterday)
-                    ->orderBy('id', 'desc')
-                    ->first('balance_amount');
-                $open_hand = $r->balance_amount;}
+        $check = cash_in_hand_ledger::where('user_id',$request->user)->first();
+        if(!empty($check)){
+        $r = cash_in_hand_ledger::where('user_id',$request->user)
+            ->whereDate('created_at',$yesterday)
+            ->orderBy('id', 'desc')
+            ->first('balance_amount');
+        $open_hand = $r->balance_amount;}
 
-            $t_in = TransactionData::where('created_by',$request->user)
+        $t_in = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
                 ->where('is_intern_transaction',1)
@@ -250,19 +254,23 @@ class TransactionReportController extends Controller
 
     public function getBranchRep(Request $request){
 
+       $mydate =$request->to;
+        $daystosum = '1';
+        $datesum = date('Y-m-d', strtotime($mydate.' + '.$daystosum.' days'));
+        $request->to = $datesum;
         $yesterday = Carbon::yesterday()->toDateString();
         $open_hand = 0;
         $data = array(0,0,0,0,0,0,0,0);
         if(!empty($request->user)){
-            $check = cash_in_hand_ledger::where('user_id',$request->user)->first();
-            if(!empty($check)){
-                $r = cash_in_hand_ledger::where('user_id',$request->user)
-                    ->whereDate('created_at',$yesterday)
-                    ->orderBy('id', 'desc')
-                    ->first('balance_amount');
-                $open_hand = $r->balance_amount;}
+        $check = cash_in_hand_ledger::where('user_id',$request->user)->first();
+        if(!empty($check)){
+        $r = cash_in_hand_ledger::where('user_id',$request->user)
+            ->whereDate('created_at',$yesterday)
+            ->orderBy('id', 'desc')
+            ->first('balance_amount');
+        $open_hand = $r->balance_amount;}
 
-            $t_in = TransactionData::where('created_by',$request->user)
+        $t_in = TransactionData::where('created_by',$request->user)
                 ->whereBetween('created_at',[date($request->from),date($request->to)])
                 ->where('transaction_type','DEPOSITE')
                 ->where('is_intern_transaction',1)
@@ -441,8 +449,10 @@ class TransactionReportController extends Controller
     }
 
     public function getTransactions(Request $request){
-
-        $id =Auth::user()->id;
+        $mydate =$request->to;
+        $daystosum = '1';
+        $datesum = date('Y-m-d', strtotime($mydate.' + '.$daystosum.' days'));
+        $request->to = $datesum;
         if(!empty($request->user)){
             if($request->type == "ALL"){
 
@@ -481,50 +491,17 @@ class TransactionReportController extends Controller
                 return response()->json($trn);
             }
 
-        }else{
-            if($request->type == "ALL"){
-
-                $trn = DB::table('transaction_data')
-                    ->leftJoin('customer_basic_data','transaction_data.customer_id','=','customer_basic_data.customer_id')
-                    ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
-                    ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
-                    ->leftJoin('users','transaction_data.created_by','=','users.id')
-                    ->where('transaction_data.created_by',$id)
-                    ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
-                    ->get();
-                return response()->json($trn);
-            }else if($request->type == "DEPOSITED"){
-
-                $trn = DB::table('transaction_data')
-                    ->leftJoin('customer_basic_data','transaction_data.customer_id','=','customer_basic_data.customer_id')
-                    ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
-                    ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
-                    ->leftJoin('users','transaction_data.created_by','=','users.id')
-                    ->where('transaction_data.created_by',$id)
-                    ->where('transaction_data.transaction_type','DEPOSITE')
-                    ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
-                    ->get();
-                return response()->json($trn);
-            }else if($request->type == "WITHDRAWED"){
-
-                $trn = DB::table('transaction_data')
-                    ->leftJoin('customer_basic_data','transaction_data.customer_id','=','customer_basic_data.customer_id')
-                    ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
-                    ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
-                    ->leftJoin('users','transaction_data.created_by','=','users.id')
-                    ->where('transaction_data.created_by',$id)
-                    ->where('transaction_data.transaction_type','WITHDRAW')
-                    ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
-                    ->get();
-                return response()->json($trn);
-            }
-        }
+        }else{}
     }
-
     public function findBtween(Request $request){
 
+        $mydate =$request->to;
+        $daystosum = '1';
+        $datesum = date('Y-m-d', strtotime($mydate.' + '.$daystosum.' days'));
+        $request->to = $datesum;
 
-        if($request->from != 0){
+        if(!empty($request->from)){
+            if($request->from != 0){
             // $skip = $request->from - 1;
             // $take = $request->to - $skip;
             $select = TransactionData::leftjoin('payment_methods','payment_methods.id','transaction_data.payment_method_id')
@@ -537,6 +514,19 @@ class TransactionReportController extends Controller
             $select = TransactionData::where('account_id',$request->acIdk)->whereBetween('created_at',[date($request->from),date($request->to)])->get();
             return response()->json($select);
         }
+
+        }else{
+            $transactions= AccountGeneralInformation::leftjoin('customer_basic_data','customer_basic_data.customer_id','account_general_information.customer_id')
+            ->leftjoin('transaction_data','transaction_data.account_id','account_general_information.account_number')
+            ->leftjoin('payment_methods', 'payment_methods.id', 'transaction_data.payment_method_id')
+            ->select('account_general_information.account_number','account_general_information.account_balance','customer_basic_data.*','transaction_data.*', 'payment_methods.*','transaction_data.created_at')
+            ->where('account_general_information.customer_id',$request->c_id)
+            //  ->where('account_general_information.status',1)
+            ->get();
+        return response()->json($transactions);
+        }
+
+
 
         // $select = TransactionData::where('account_id',"SPM001-00001-045")->skip(2)->take(5)->get();
 

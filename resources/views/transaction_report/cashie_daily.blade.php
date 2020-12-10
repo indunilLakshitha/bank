@@ -63,13 +63,7 @@
                                             @endif
                                             @endforeach
                                             @endisset
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>එකතුව</td>
-                                                <td></td>
-                                            <th><?php echo number_format( $total_d , 2 , '.' , ',' ) ?></th>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -108,20 +102,7 @@
                                             @endif
                                             @endforeach
                                             @endisset
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>එකතුව</td>
-                                                <td></td>
-                                            <th><?php echo number_format( $total_w , 2 , '.' , ',' ) ?></th>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>අවසන් එකතුව</td>
-                                                <td></td>
-                                            <th><?php echo number_format( $total_d-$total_w , 2 , '.' , ',' ) ?></th>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -139,11 +120,13 @@
                                     <table id="" class="table table-striped table-no-bordered table-hover"
                                         cellspacing="0" width="100%" style="width:100%">
                                         <thead>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>එකතුව</td>
+                                                <td></td>
+                                            <th><?php echo number_format( $total_d , 2 , '.' , ',' ) ?></th>
+                                            </tr>
                                         </thead>
 
                                     </table>
@@ -154,11 +137,20 @@
                                     <table id="" class="table table-striped table-no-bordered table-hover"
                                         cellspacing="0" width="100%" style="width:100%">
                                         <thead>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>එකතුව</td>
+                                                <td></td>
+                                            <th><?php echo number_format( $total_w , 2 , '.' , ',' ) ?></th>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>අවසන් එකතුව</td>
+                                                <td></td>
+                                            <th><?php echo number_format( $total_d-$total_w , 2 , '.' , ',' ) ?></th>
+                                            </tr>
                                         </thead>
                                         <tbody id="results_tbody">
 
