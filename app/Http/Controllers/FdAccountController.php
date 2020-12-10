@@ -236,15 +236,20 @@ return response()->json($investers);
 
 public function findByFullName(Request $request){
     // return response()->json($request);
-
-    $product_details=$data = DB::select("
+    $sql= "
     SELECT DISTINCT *
 
     FROM users
 
     WHERE users.name LIKE '%$request->text%'
     AND users.status = 1
-    ");
+    ";
+    /*$user_role_id = intval(Auth::user()->roles[0]->id);
+    $branch_id = Auth::user()->branh_id;
+    if($user_role_id != 1) {
+        $sql .= " AND users.branh_id = ". $branch_id;
+    }*/
+    $product_details=$data = DB::select($sql);
     return response()->json($product_details);
 }
 
