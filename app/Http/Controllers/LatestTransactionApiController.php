@@ -81,4 +81,23 @@ class LatestTransactionApiController extends Controller
 
 
     }
+    public function getCollectionSummary(Request $request){
+        try {
+            $branch_id= isset($request->branch_id)?intval($request->branch_id):0;
+            $user_id = isset($request->user_id)?intval($request->user_id):0;
+            $sql = "SELECT ptd.`updated_at` AS 'transaction_date', SUM(ptd.`transaction_value`) AS 'total_value', COUNT(ptd.`id`) AS 'count_value', CONCAT(b.`branch_code`, ' - ', b.`branch_name` ) AS 'branch'
+                    FROM `palmtop_transaction_data` AS ptd
+                    INNER JOIN `branches` AS b ON b.`id` = ptd.`branch_id`
+                    WHERE ptd.`branch_id` = ".$branch_id." AND ptd.`created_by` = ".$user_id."
+                    GROUP BY ptd.`updated_at`";
+            $transaction['status'] = 'succeed';
+            $transaction['data'] = 'Customer transaction pass correctly';
+            $transaction['output'] = DB::select($sql);
+        } catch (\Exception $e) {
+            $transaction['status'] = 'failed';
+            $transaction['data'] = 'Customer transaction pass error';
+            $transaction['output'] = array();
+        }
+        return response()->json($transaction);
+    }
 }

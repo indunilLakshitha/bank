@@ -42,7 +42,7 @@
                                                 <a href="/passbook-front/{{$member->account_number}}" class="btn fa fa-print btn-info btn-sm" ></a>
                                                 <a href="/passbook-back" class="btn fa fa-print btn-info btn-sm" ></a>
                                                 <a href="/savings/account/{{$member->customer_id}}" class="btn btn-primary" >ACCOUNT</a>
-                                                <a href="/members/view/{{$member->customer_id}}" class="btn btn-primary" >General</a>
+                                                <a href="/members/view/{{$member->customer_id}}?url=2" class="btn btn-primary" >General</a>
                                             </th>
                                        </tr>
                                    @endforeach
