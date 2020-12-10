@@ -230,6 +230,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
     Route::get('/search_by_full_name/{type}', 'OpenSavingsAccountController@search_by_full_name');
     Route::get('/search_by_customer_id/{type}', 'OpenSavingsAccountController@search_by_customer_id');
     Route::get('/search_by_nic_id/{type}', 'OpenSavingsAccountController@search_by_nic_id');
+    Route::get('/search_by_full_name/trn', 'OpenSavingsAccountController@search_by_full_name_trs');
 
     Route::get('form/view', 'CustomerController@formView');
     Route::post('form/data', 'CustomerController@formData');
@@ -247,6 +248,8 @@ Route::group(['middleware' => 'isBlocked'], function () {
     //bebeficiary and guardians
     Route::get('/bene', 'CustomerBasicDataController@beneficiariesAjax');
     Route::get('/guard', 'CustomerBasicDataController@guardianAjax');
+    Route::post('/delete_bene', 'CustomerBasicDataController@delete_bene');
+    Route::get('/delete_gurd', 'CustomerBasicDataController@delete_gurd');
 
     //-------------------------------------------------------------------------------------new saving account openning-------end
 
@@ -411,6 +414,8 @@ Route::get('/CasHiNhanDbrancH','TransactionReportController@cashInHandBranch');
 Route::get('/cashInHand/user','TransactionReportController@getUserRep');
 Route::get('/CasHiNhanDbrancH/branch','TransactionReportController@getBranchRep');
 Route::get('/ReportOfTransactions/transactions','TransactionReportController@getTransactions');
+Route::get('/findRange', 'TransactionReportController@findBtween');
+
 
 
 // -------------------------------------------------------------FD-----------------------------------------
@@ -451,8 +456,9 @@ Route::get('/ReportOfTransactions/transactions','TransactionReportController@get
     Route::get('/branchCashInOut2', 'BranchCashInOutController@index2');
     Route::get('/branchCashInOut1', 'BranchCashInOutController@index1');
 
-    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@submit1');
-    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@submit2');
+    Route::post('/branchCashInOut1/submit1', 'BranchCashInOutController@cashiarOut');
+    Route::post('/branchCashInOut2/submit2', 'BranchCashInOutController@cashiarIn');
+    Route::get('/branchCashInOut1/getCashiar', 'BranchCashInOutController@getCashiar');
 
 
     //------------------------------------------------------------------transaction report end-------------------
@@ -510,6 +516,9 @@ Route::get('/removeinvestor','FdAccountController@removeInvestor');
 Route::get('/findinstructorcfn','FdAccountController@findByFullName');
 Route::get('/findinstructorcid','FdAccountController@findByCid');
 Route::get('/findinstructornic','FdAccountController@findByNic');
+Route::post('/addextinvfd','FdAccountController@addExtInvFd');
+Route::post('/addextnmnfd','FdAccountController@addExtNmnFd');
+Route::get('/approved','FdAccountController@approved');
 
 //------------------------------------------------------search model routes-----------
 Route::get('/search_by_full_name_for_dnw','SearchController@byNameForWnD');
@@ -521,4 +530,6 @@ Route::get('/search_by_nic_for_dnw','SearchController@byNicForWnD');
 //====================printing================================
 Route::get('/receipt/{id}', 'PrintController@receipt');
 Route::get('/passbook-front/{id}', 'PrintController@passbookFront');
+Route::get('/FDreceipt/{id}', 'PrintController@FDreceipt');
+Route::get('/passbook-back', 'PrintController@passbookBack');
 Auth::routes();

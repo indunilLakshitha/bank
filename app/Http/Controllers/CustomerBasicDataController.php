@@ -222,7 +222,7 @@ class CustomerBasicDataController extends Controller
         return response()->json('del');
     }
     public function guardianAjax(Request $request)
-    { return response()->json($request);
+    {
         $guardian = $request;
         $guardian['is_enable'] = 1;
         $guardian['created_by'] = Auth::user()->id;
@@ -234,13 +234,14 @@ class CustomerBasicDataController extends Controller
         $data = DB::table('guardian_data')
             ->where('guardian_data.customer_id', $request->customer_id)
             ->leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'guardian_data.guardian_id')
+            ->select('customer_basic_data.customer_id','guardian_data.id','customer_basic_data.identification_number','customer_basic_data.full_name')
             ->get();
         return response()->json(['guard', $data]);
     }
 
     public function delete_gurd(Request $request){
-        CustomerAsset::find($request->id)->delete();
-        return response()->json('del');
+        $del=GuardianData::where('id',$request->id)->delete();
+        return response()->json('deleted');
     }
 
     public function viewMember(Request $request){
@@ -358,7 +359,7 @@ class CustomerBasicDataController extends Controller
     public function verification(Request $request){
 
         $verify = CustomerBasicData::where('customer_id',$request->id)->first();
-        $verify->status = 1;
+        $verify['status'] = 1;
         $verify->save();
         return Redirect::to('/members/verify');
     }

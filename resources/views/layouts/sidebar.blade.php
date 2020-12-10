@@ -162,7 +162,7 @@
                     </p>
                 </a>
                 <div class="collapse" id="fd">
-                    @can('fd_opening')
+                    {{-- @can('fd_opening') --}}
 
                     <ul class="nav">
                         <li class="nav-item ">
@@ -172,7 +172,7 @@
                             </a>
                         </li>
                     </ul>
-                    @endcan
+                    {{-- @endcan --}}
                     @can('fd_verification')
 
                     <ul class="nav">
@@ -184,6 +184,17 @@
                         </li>
                     </ul>
                     @endcan
+                    {{-- @can('fd_index')/ --}}
+
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/approved">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal"> FD Accounts</span>
+                            </a>
+                        </li>
+                    </ul>
+                    {{-- @endcan --}}
                 </div>
             </li>
             @can('withdrawal_deposites')
@@ -297,9 +308,25 @@
                     </ul>
                     <ul class="nav">
                         <li class="nav-item ">
+                            <a class="nav-link" href="/cashInHand">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Cash In Hand</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/CasHiNhanDbrancH">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Cash In Hand (Branch)</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
                             <a class="nav-link" href="/ReportOfTransactions">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Report</span>
+                                <span class="sidebar-normal">Transactions Report</span>
                             </a>
                         </li>
                     </ul>

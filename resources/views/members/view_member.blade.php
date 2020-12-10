@@ -151,7 +151,7 @@
                                 <label class="col-sm-2 col-form-label">EPF No</label>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                    <input type="text" name="short_name" class="form-control" value="{{$view_1->epf_no}}">
+                                    <input type="text" name="epf_no" class="form-control" value="{{isset($view_1->epf_no)?$view_1->epf_no:''}}">
                                     </div>
                                 </div>
                             </div>

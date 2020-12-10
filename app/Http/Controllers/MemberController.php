@@ -199,7 +199,7 @@ class MemberController extends Controller
             $cashie_daily_trancastion['transaction_type']="DEPOSITE";
             $cashie_daily_trancastion['transaction_id']=$transaction_data->id;
             // $cashie_daily_trancastion['account_number']=$request->account_id;
-            $cashie_daily_trancastion['transaction_amount']=$request->share_amount;
+            $cashie_daily_trancastion['transaction_amount']=$request->share_amount*$shareva[0]->setting_data;
             // $cashie_daily_trancastion['balance_value']=$general_account->account_balance;
             $cashie_daily_trancastion['is_enable']=1;
             $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
@@ -216,11 +216,12 @@ class MemberController extends Controller
              $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
              $saving_deposit_base_ledger['acccount_id']=$request->account_id;
              $saving_deposit_base_ledger['transaction_type']="DEPOSITE";
-             $saving_deposit_base_ledger['transaction_value']=$request->share_amount;
+             $saving_deposit_base_ledger['transaction_value']=$request->share_amount*$shareva[0]->setting_data;
             //  $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
              $saving_deposit_base_ledger['is_enable']=1;
              saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
-            return response()->json('Member created');
+             $reply='Member '.$mem->member_number.' created';
+            return response()->json($reply);
 
     }
 
@@ -236,7 +237,6 @@ class MemberController extends Controller
         MemberCreationNominee::find($request->id)->delete();
 
         return response()->json('Nominee Removed');
-
 
     }
 
