@@ -32,7 +32,7 @@
                             </div>
                             <div class="col">
                                 <button type="button" class="btn fa fa-search btn-info " data-toggle="modal"
-                                href="#noticeModal">  Seller</button>
+                                href="#shareModal">  Seller</button>
                             </div>
                         </div>
 
@@ -231,7 +231,7 @@
         <!-- end notice modal -->
     </div>
 </div>
-@include('layouts.search_modal')
+@include('layouts.share_model')
 
 <script>
 
