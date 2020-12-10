@@ -24,7 +24,8 @@
             <label class="col-sm-2 col-form-label">Opaning Date</label>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <input type="date" class="form-control" readonly id="open_date" value="<?php echo date("Y-m-d"); ?>">
+                    <input type="date" class="form-control" readonly id="open_date"
+                        value="<?php echo date("Y-m-d"); ?>">
                 </div>
             </div>
         </div>
@@ -117,7 +118,8 @@
             <label class="col-sm-2 col-form-label">Starting Date</label>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <input type="date" class="form-control" id="start_date" name="start_date" value="<?php echo date("Y-m-d"); ?>">
+                    <input type="date" class="form-control" id="start_date" name="start_date"
+                        value="<?php echo date("Y-m-d"); ?>">
                 </div>
             </div>
         </div>
@@ -143,7 +145,8 @@
             <label class="col-sm-2 col-form-label">No of Period</label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <select name="deposite_period_id" id="deposite_period_id" class="form-control" oninput="calDuration(this.value)">
+                    <select name="deposite_period_id" id="deposite_period_id" class="form-control"
+                        oninput="calDuration(this.value)">
                         <option value="0" selected>Select </option>
                         @isset($deposite_periods)
                         @foreach ($deposite_periods as $deposite_period)
@@ -223,7 +226,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="inv" oninput="findInvester(this.value)">
-                            <input type="hidden" class="form-control" id="account_id">
+                            <input type="text" class="form-control" id="account_id">
                         </div>
                     </div>
                     <a class="btn fa fa-plus btn-sm btn-info btn" data-toggle="modal" href="#ext_inv"></a>
@@ -352,7 +355,6 @@
 
 
 <script>
-
     function calDuration(period){
         var today = new Date();
 var end=today.setDate(today.getDate() + (parseInt(period)*30));
@@ -441,6 +443,9 @@ function createFd(){
                 success: function(data){
                     console.log(data);
                     account_id.value=data.account_id
+                    // idd.value=data.account_id
+                    external_account_id.value=data.account_id
+                    nominee_account_id.value=data.account_id
                     // inv.classList.remove('d-none')
                     swal({
                         title: "Success! FD Account Created",

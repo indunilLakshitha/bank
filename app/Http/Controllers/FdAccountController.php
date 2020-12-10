@@ -8,6 +8,8 @@ use App\Models\CustomerBasicData;
 use App\Models\DepositePeriod;
 use App\Models\DepositeType;
 use App\Models\FdAccountGeneralInformation;
+use App\Models\FdExternalInvestore;
+use App\Models\FdExternalNominee;
 use App\Models\FdInterestType;
 use App\Models\FdInvestor;
 use App\Models\FdNominee;
@@ -247,10 +249,16 @@ public function findByFullName(Request $request){
 
 public function addExtInvFd(Request $request){
 
-return response()->json($request);
+    $investor = $request;
+    FdExternalInvestore::create($request->all());
+    $ext_inves=FdExternalInvestore::where('account_id',$request->account_id)->get();
+return response()->json($ext_inves);
 }
 public function addExtNmnFd(Request $request){
-return response()->json($request);
+    $investor = $request;
+    FdExternalNominee::create($request->all());
+    $ext_inves=FdExternalNominee::where('account_id',$request->account_id)->get();
+return response()->json($ext_inves);
 }
 
 public function approved(){

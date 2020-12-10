@@ -114,7 +114,7 @@ class OpenSavingsAccountController extends Controller
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
                     LEFT JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
-                    WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
+                    WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1";
         }
         //become member
         else if($req_type == 2 ) {
@@ -399,8 +399,8 @@ class OpenSavingsAccountController extends Controller
                $account_number=$customer_id.'-'.$cus_id;
 
             AccountGeneralInformation::where('id', $account_id)->update(['status' => '2','account_number'=>$account_number]);
-
-            return redirect('/savings/open')->with('success','Account Created Successsfully');
+$msg='Account Created Successsfully '.$account_number;
+            return redirect('/savings/open')->with('success',$msg);
         }
 
     }
