@@ -43,7 +43,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <input type="text" class="form-control" readonly name="sub_product" id="sub_product">
-                    <input type="hodden" class="form-control" name="sub_product_id" id="sub_product_id">
+                    <input type="hidden" class="form-control" name="sub_product_id" id="sub_product_id">
                 </div>
             </div>
             <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#productSearchModel"></a>
@@ -203,7 +203,8 @@
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <a class="btn fa  btn-warning btn-sm form-control " id="create" onclick="createFd()">CREATE</a>
+                    <a class="btn fa  btn-primary btn-sm form-control " id="btn_cr" onclick="createFd()">CREATE</a>
+                    <a class="btn fa  btn-warning btn-sm form-control " id="btn_subm" onclick="clearAll()" >SUBMIT & FINISH</a>
 
                 </div>
             </div>
@@ -211,8 +212,8 @@
     </div>
 </div>
 {{-- </form> --}}
-{{-- <div class="row d-none" id="inv"> --}}
-<div class="row " id="inv">
+<div class="row d-none" id="inv_view">
+{{-- <div class="row " id="inv"> --}}
     <div class="col">
         <div class="card ">
             <div class="card-body ">
@@ -226,7 +227,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="inv" oninput="findInvester(this.value)">
-                            <input type="text" class="form-control" id="account_id">
+                            <input type="hidden" class="form-control" id="account_id">
                         </div>
                     </div>
                     <a class="btn fa fa-plus btn-sm btn-info btn" data-toggle="modal" href="#ext_inv"></a>
@@ -415,6 +416,11 @@ function setSavings(data){
     // }
 }
 
+function clearAll(){
+
+    window.location = '/fd';
+}
+
 
 function createFd(){
     $.ajax({
@@ -446,7 +452,8 @@ function createFd(){
                     // idd.value=data.account_id
                     external_account_id.value=data.account_id
                     nominee_account_id.value=data.account_id
-                    // inv.classList.remove('d-none')
+                    inv_view.classList.remove('d-none')
+                    btn_cr.classList.add('d-none')
                     swal({
                         title: "Success! FD Account Created",
                         text: "You Can Add Nominees and Investores for "+data.account_id,

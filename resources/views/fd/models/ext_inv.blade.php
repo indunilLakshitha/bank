@@ -142,6 +142,7 @@
                 custname.value=''
                 address.value=''
                 nic.value=''
+                contact_no.value=''
                     return show_ext_inv(data)
 
 

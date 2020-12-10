@@ -282,10 +282,38 @@ public function membersForShareBuy(Request $request){
     ->where('customer_basic_data.is_enable',1)
     ->where('customer_basic_data.status',1)
     ->where('non_member',0)
+    ->where('branch_id',Auth::user()->branh_id)
     ->get();
 
 return response()->json($data);
 }
 
+public function memberForfd(Request $request){
+    // return response()->json($request);
 
+    if($request->type=="cfn"){
+        $data=CustomerBasicData::where('full_name', 'LIKE', '%' . $request->text . '%')
+        ->where('branch_id',Auth::user()->branh_id)
+        ->where('is_enable','1')
+        ->where('status','1')
+        ->get();
+        return response()->json($data);
+    }else if($request->type=="cid"){
+        $data=CustomerBasicData::where('customer_id', 'LIKE', '%' . $request->text . '%')
+        ->where('branch_id',Auth::user()->branh_id)
+        ->where('is_enable','1')
+        ->where('status','1')
+        ->get();
+        return response()->json($data);
+    }else{
+        $data=CustomerBasicData::where('identification_number', 'LIKE', '%' . $request->text . '%')
+        ->where('branch_id',Auth::user()->branh_id)
+        ->where('is_enable','1')
+        ->where('status','1')
+        ->get();
+        return response()->json($data);
+    }
+
+
+}
 }

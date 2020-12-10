@@ -7,7 +7,7 @@
                 <div class="modal-content " style="width: 800px;height: auto">
                     <div>
                         <div class="row mt-5 ml-3">
-                            <label class="col-sm-2 col-form-label"> Client Full Name</label>
+                            <label class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
                                 <div class="row">
                                     <div class="col">
@@ -15,7 +15,7 @@
                                             <input
                                                 oninput="toCap(this.value, this.id), get_modal_search_by_full_name(this.value)"
                                                 type="text" class="form-control js-example-data-ajax"
-                                                id="client_full_name_search_modal" placeholder="Enter Full Name">
+                                                id="client_full_name_search_modal" placeholder="Enter Username">
                                         </div>
                                     </div>
                                     <div class="col">
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row ml-3">
+                        {{-- <div class="row ml-3">
                             <label class="col-sm-2 col-form-label"> Customer ID</label>
                             <div class="col-sm-5">
                                 <div class="row">
@@ -40,13 +40,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <table class="table">
                                 <tbody id="introducer_body" class="d-none"></tbody>
                             </table>
                         </div>
-                        <div class="row mb-5 ml-3">
+                        {{-- <div class="row mb-5 ml-3">
                             <label class="col-sm-2 col-form-label ">ID Number</label>
                             <div class="col-sm-10">
                                 <div class="row">
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
