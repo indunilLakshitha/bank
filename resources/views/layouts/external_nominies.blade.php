@@ -43,17 +43,17 @@
                             <div class="col">
                                 <div class="form-group">
                                     <select name="relation_type" id="relation_type" class="form-control"
-                                            data-style="select-with-transition" required>
-                                            <option value="Mother">Mother</option>
-                                            <option value="Father">Father</option>
-                                            <option value="Wife">Wife</option>
-                                            <option value="Husband">Husband</option>
-                                            <option value="Sister">Sister</option>
-                                            <option value="Husband">Brother</option>
-                                            <option value="Son">Son</option>
-                                            <option value="Daughter">Daughter</option>
-                                            <option value="Other">Other</option>
-                                        </select>
+                                        data-style="select-with-transition" required>
+                                        <option value="Mother">Mother</option>
+                                        <option value="Father">Father</option>
+                                        <option value="Wife">Wife</option>
+                                        <option value="Husband">Husband</option>
+                                        <option value="Sister">Sister</option>
+                                        <option value="Husband">Brother</option>
+                                        <option value="Son">Son</option>
+                                        <option value="Daughter">Daughter</option>
+                                        <option value="Other">Other</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -107,7 +107,7 @@
 
             </div>
             <div class="modal-footer">
-                <a onclick="addExternal()" class="btn btn-rose" >Add</a>
+                <a onclick="addExternal()" class="btn btn-rose">Add</a>
                 <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
             </div>
         </div>

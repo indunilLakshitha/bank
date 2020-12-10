@@ -135,7 +135,7 @@
 
                                             </select>
                                         @else
-                                            <select name="branch_id" id="" class="form-control"
+                                            <select name="branch_id" id="branch_id" class="form-control"
                                                     data-style="select-with-transition" required>
                                                 @isset($branches)
                                                     @foreach ($branches as $branch)

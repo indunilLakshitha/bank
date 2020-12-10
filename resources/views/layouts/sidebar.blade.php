@@ -184,6 +184,17 @@
                         </li>
                     </ul>
                     @endcan
+                    {{-- @can('fd_index')/ --}}
+
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/approved">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal"> FD Accounts</span>
+                            </a>
+                        </li>
+                    </ul>
+                    {{-- @endcan --}}
                 </div>
             </li>
             @can('withdrawal_deposites')
