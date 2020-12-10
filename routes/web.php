@@ -516,7 +516,8 @@ Route::get('/removeinvestor','FdAccountController@removeInvestor');
 Route::get('/findinstructorcfn','FdAccountController@findByFullName');
 Route::get('/findinstructorcid','FdAccountController@findByCid');
 Route::get('/findinstructornic','FdAccountController@findByNic');
-Route::post('/addextinvfd','FdAccountController@addExtInvFd');
+Route::post('/addextinvfd','FdAccountController@
+');
 Route::post('/addextnmnfd','FdAccountController@addExtNmnFd');
 Route::get('/approved','FdAccountController@approved');
 

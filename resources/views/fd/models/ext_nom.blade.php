@@ -21,6 +21,9 @@
           href="#noticeModal"> SEARCH Nominees</button>
               </div>
           </div> --}}
+          <form action="" id="nominee_form">
+              @csrf
+              <input type="hidden" name="account_id" id="nominee_account_id">
                 <div class="row mt-5">
                     <label class="col-sm-2 col-form-label"> Client Full Name</label>
                     <div class="col-sm-10">
@@ -28,7 +31,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <input oninput="toCap(this.value, this.id)" type="text"
-                                        class="form-control " id="custname" name="custname"
+                                        class="form-control " id="custname" name="name"
                                         placeholder="Enter Full Name">
                                 </div>
                             </div>
@@ -42,7 +45,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <select name="relation" id="relation" class="form-control"
+                                    <select name="relation_type" id="relation" class="form-control"
                                         data-style="select-with-transition" >
                                         <option value="Mother">Mother</option>
                                         <option value="Father">Father</option>
@@ -103,6 +106,7 @@
                         <tbody id="show_ext_nm_tbody" class="d-none"></tbody>
                     </table>
                 </div>
+            </form>
 
 
             </div>
@@ -117,24 +121,18 @@
 
 <script>
     function addExtNmn(){
-    customer=customer_id.value
-    na=custname.value
-    addr=address.value
-    nicc=nic.value
-    relation=relation.value
-    con=contact_no.value
+    // customer=customer_id.value
+    // na=custname.value
+    // addr=address.value
+    // nicc=nic.value
+    // relation=relation.value
+    // con=contact_no.value
       $.ajax({
           type: 'POST',
           url: '{{('/addextnmnfd')}}',
-          data: {
-            'account_id':account_id,
-            'name':na,
-            'address':addr,
-            'contact_no':con,
-            'nic':nicc,
-            'relation_type':relation
-
-          },
+          data: new FormData(nominee_form),
+          contentType: false,
+          processData: false,
           success: function(data){
               console.log(data)
               Swal.fire({
@@ -143,8 +141,7 @@
                     icon: 'success',
                     timer: 20000
                 })
-                cus_name.value=''
-                contact_no.value=''
+                custname.value=''
                 address.value=''
                 nic.value=''
                     return show_ext_nmn(data)
