@@ -41,6 +41,7 @@ class TransactionReportController extends Controller
 
     public function cashInHand(){
 
+        // if(Auth::user()->hasRole('writer'))
         $users = User::where('branh_id',Auth::user()->branh_id)->get();
         return view('transaction_report.cashInHand',compact('users'));
     }
@@ -57,9 +58,11 @@ class TransactionReportController extends Controller
     }
 
     public function getUserRep(Request $request){
-        $yesterday = Carbon::yesterday()->toDateString();
 
-        $open_hand = 0;
+        $mydate =$request->to;
+        $daystosum = '1';
+        $datesum = date('Y-m-d', strtotime($mydate.' + '.$daystosum.' days'));
+        $request->to = $datesum;
         $data = array(0,0,0,0,0,0,0,0);
         if(!empty($request->user)){
         $check = cash_in_hand_ledger::where('user_id',$request->user)->first();
@@ -250,7 +253,11 @@ class TransactionReportController extends Controller
 
     public function getBranchRep(Request $request){
 
-       $yesterday = Carbon::yesterday()->toDateString();
+       $mydate =$request->to;
+        $daystosum = '1';
+        $datesum = date('Y-m-d', strtotime($mydate.' + '.$daystosum.' days'));
+        $request->to = $datesum;
+        $yesterday = Carbon::yesterday()->toDateString();
         $open_hand = 0;
         $data = array(0,0,0,0,0,0,0,0);
         if(!empty($request->user)){
@@ -441,8 +448,10 @@ class TransactionReportController extends Controller
     }
 
     public function getTransactions(Request $request){
-
-        $id =Auth::user()->id;
+        $mydate =$request->to;
+        $daystosum = '1';
+        $datesum = date('Y-m-d', strtotime($mydate.' + '.$daystosum.' days'));
+        $request->to = $datesum;
         if(!empty($request->user)){
             if($request->type == "ALL"){
 
@@ -489,7 +498,7 @@ class TransactionReportController extends Controller
                 ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
                 ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
                 ->leftJoin('users','transaction_data.created_by','=','users.id')
-                ->where('transaction_data.created_by',$id)
+                ->where('transaction_data.created_by',Auth::user()->id)
                 ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
                 ->get();
         return response()->json($trn);
@@ -500,7 +509,7 @@ class TransactionReportController extends Controller
                 ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
                 ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
                 ->leftJoin('users','transaction_data.created_by','=','users.id')
-                ->where('transaction_data.created_by',$id)
+                ->where('transaction_data.created_by',Auth::user()->id)
                 ->where('transaction_data.transaction_type','DEPOSITE')
                 ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
                 ->get();
@@ -512,7 +521,7 @@ class TransactionReportController extends Controller
                 ->leftJoin('account_general_information','transaction_data.customer_id','=','account_general_information.customer_id')
                 ->leftJoin('account_types','account_general_information.account_type_id','=','account_types.id')
                 ->leftJoin('users','transaction_data.created_by','=','users.id')
-                ->where('transaction_data.created_by',$id)
+                ->where('transaction_data.created_by',Auth::user()->id)
                 ->where('transaction_data.transaction_type','WITHDRAW')
                 ->whereBetween('transaction_data.created_at',[date($request->from),date($request->to)])
                 ->get();
@@ -523,7 +532,10 @@ class TransactionReportController extends Controller
 
     public function findBtween(Request $request){
 
-
+        $mydate =$request->to;
+        $daystosum = '1';
+        $datesum = date('Y-m-d', strtotime($mydate.' + '.$daystosum.' days'));
+        $request->to = $datesum;
         if($request->from != 0){
             // $skip = $request->from - 1;
             // $take = $request->to - $skip;

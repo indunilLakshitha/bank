@@ -281,7 +281,7 @@ class CustomerBasicDataController extends Controller
     {
 
         $customer = CustomerBasicData::where('customer_id', $request->customer_id)->first();
-
+        $customer['status']=2;
         $customer->update($request->all());
 
         return Redirect::to('/members/edit/' . $request->customer_id);
@@ -292,7 +292,7 @@ class CustomerBasicDataController extends Controller
     {
 
         $customer = CustomerStatusDates::where('customer_id', $request->customer_id)->first();
-
+        $customer['status']=2;
         $customer->update($request->all());
 
         return Redirect::to('/members/edit/' . $request->customer_id);
@@ -303,7 +303,7 @@ class CustomerBasicDataController extends Controller
     {
 
         $customer = OccupationData::where('customer_id', $request->customer_id)->first();
-
+        $customer['status']=2;
         $customer->update($request->all());
 
         return Redirect::to('/members/edit/' . $request->customer_id);
@@ -314,7 +314,7 @@ class CustomerBasicDataController extends Controller
     {
 
         $customer = OtherSocietyData::where('customer_id', $request->customer_id)->first();
-
+        $customer['status']=2;
         $customer->update($request->all());
 
         return Redirect::to('/members/edit/' . $request->customer_id);
@@ -325,7 +325,7 @@ class CustomerBasicDataController extends Controller
     {
 
         $customer = CustomerAsset::where('customer_id', $request->customer_id)->first();
-
+        $customer['status']=2;
         $customer->update($request->all());
 
         return Redirect::to('/members/edit/' . $request->customer_id);

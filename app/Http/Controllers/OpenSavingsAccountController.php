@@ -145,7 +145,7 @@ class OpenSavingsAccountController extends Controller
             INNER JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
             INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
             LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
-            WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 1 AND cbd.member == 1";
+            WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 1 AND cbd.member = 1";
         }
         $user_role_id = intval(Auth::user()->roles[0]->id);
         $branch_id = Auth::user()->branh_id;

@@ -93,7 +93,7 @@
         } else {
             $.ajax({
                 type: 'GET',
-                url: '{{('/search_by_full_name/trn')}}',
+                url: '{{('/search_by_full_name/trns')}}',
                 data: {text:value} ,
                 success: function(data){
                     //console.log(data);

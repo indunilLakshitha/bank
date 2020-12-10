@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-3">
                         <div class="card-text">
-                            <a href="{{url('members')}}" class="btn btn-warning">Back</a>
+                            <a href="{{ url()->previous() }}" class="btn btn-warning">Back</a>
                         </div>
                     </div>
                 </div>
