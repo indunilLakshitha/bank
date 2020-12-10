@@ -61,7 +61,9 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="text" name="interest_type_id" id="interest_type" readonly
+                                            <input type="text" name="interest_type" id="interest_type"  readonly
+                                                class="form-control">
+                                                <input type="text" name="interest_type_id" id="interest_type_id" hidden readonly
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -178,6 +180,7 @@ dataType: 'JSON',
 success: function (data) {
     console.log(data);
     interest_type.value=data[0].interest_type
+    interest_type_id.value=data[0].interest_type_id
     interest_rate.value=data[0].amount
     currency.value=data[0].currency_name
     currency_id.value=data[0].currency_id
@@ -186,7 +189,6 @@ success: function (data) {
     minimum_balance.value=data[0].minimum_balance_activate
     deposite_mode.value=data[0].deposite_mode
     deposite_mode_id.value=data[0].deposite_mode_id
-
 
 }
 })

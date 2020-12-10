@@ -128,14 +128,14 @@ class OpenSavingsAccountController extends Controller
                     WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1 AND cbd.member != 1";
         } else {
             $sql = "SELECT DISTINCT
-            cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
-            csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
-        FROM customer_basic_data AS cbd
-        INNER JOIN branches AS b ON b.id = cbd.branch_id
-        INNER JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
-        INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
-        LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
-        WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
+                cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
+                csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
+            FROM customer_basic_data AS cbd
+            INNER JOIN branches AS b ON b.id = cbd.branch_id
+            INNER JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
+            INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+            LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
+            WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
         }
         $user_role_id = intval(Auth::user()->roles[0]->id);
         $branch_id = Auth::user()->branh_id;
@@ -148,6 +148,19 @@ class OpenSavingsAccountController extends Controller
 
         // return response()->json($data);
     }
+     public function search_by_full_name_trs(Request $request)
+    {
+        $data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')
+                                    ->leftjoin('transaction_data','transaction_data.customer_id','customer_basic_data.customer_id')
+                                    ->distinct('customer_basic_data.customer_id','customer_basic_data.full_name','customer_basic_data.id',
+                                    'customer_basic_data.identification_number','customer_basic_data.non_member')
+                                    ->where('full_name',$request->text)
+                                    ->where('customer_basic_data.is_enable',1)
+                                    ->where('customer_basic_data.status',1)
+                                    ->get();
+
+        return response()->json($data);
+    }
     public function search_by_full_name_mem(Request $request)
     {
         $data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')
@@ -158,7 +171,7 @@ class OpenSavingsAccountController extends Controller
                                     ->where('full_name',$request->text)
                                     ->where('customer_basic_data.is_enable',1)
                                     ->where('customer_basic_data.status',1)
-                                    ->where('member',0)
+                                    ->where('non_member',0)
                                     ->get();
         $sql = "";
 
@@ -173,12 +186,11 @@ class OpenSavingsAccountController extends Controller
                                     ->leftjoin('account_general_information','account_general_information.customer_id','customer_basic_data.customer_id')
                                    ->distinct('customer_basic_data.customer_id','customer_basic_data.full_name','customer_basic_data.id',
                                     'customer_basic_data.identification_number','customer_basic_data.non_member','customer_status_dates.date_of_birth',
-                                    'branches.branch_code','account_general_information.account_balance','account_general_information.account_number',
-                                    'account_general_information.account_balance','account_general_information.account_number')
+                                    'branches.branch_code')
                                     ->where('customer_basic_data.customer_id',$request->text)
                                     ->where('customer_basic_data.is_enable',1)
                                     ->where('customer_basic_data.status',1)
-                                    ->where('member',0)
+                                    ->where('non_member',0)
                                     ->get();
 
         return response()->json($data);
@@ -316,7 +328,12 @@ class OpenSavingsAccountController extends Controller
     public function product_details(Request $request)
     {
         $prod_data = ProductData::create($request->all());
-
+        $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
+        $cbs = CustomerBasicData::where('customer_id',$customer_id)->first();
+        if($cbs->customer_status_id == 1){
+            $prod_data['is_intern_account'] = 1;
+            $prod_data->save();
+        }
 
         $product_type=SubAccount::where('id',$prod_data->product_type_id)->first();
 
@@ -325,7 +342,7 @@ class OpenSavingsAccountController extends Controller
          $request->session()->put('is_nominies_required',$product_type->is_nominies_required);
          $request->session()->put('is_documents_required',$product_type->is_documents_required);
 
-        $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
+
         $prod_id = $prod_data->id;
          $account_id = $request->account_id;
 

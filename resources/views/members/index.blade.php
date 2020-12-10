@@ -149,7 +149,7 @@
                                             FROM customer_status_dates AS csd
                                             LEFT JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
                                             LEFT JOIN iedentification_types AS it ON it.id = cbd.identification_type_id
-                                            WHERE `status` != 3 ";
+                                            WHERE `status` = 1 ";
                                     $user_data = Auth::user();
                                     if(intval($user_data->roles[0]->id) != 1) {
                                         $branch_id = $user_data->branh_id;

@@ -48,6 +48,7 @@ class BranchController extends Controller
         $branch['is_enable'] = 1;
         $branch['created_by'] = Auth::user()->id;
         $branch['updated_by'] = Auth::user()->id;
+        
         Branch::create($branch->all());
         return redirect()->route('branches.index')
             ->with('success', 'Branch created successfully.');
