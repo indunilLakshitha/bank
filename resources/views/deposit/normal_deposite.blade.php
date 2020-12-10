@@ -196,8 +196,9 @@
                         </div>
                     </div>
                     <div class="ml-3">
-                        <button type="button" onclick="show_image()" class="btn btn-warning" id="btn_img"> Load Signature
-                            </button>
+                        <button type="button" onclick="show_image()" class="btn btn-warning" id="btn_img"> Load
+                            Signature
+                        </button>
                     </div>
                     <div>
                         <input type="hidden" id="img_loc">
@@ -376,8 +377,8 @@
                         <th></th>
                         <th></th>
                         <th>Shares Amount</th>
-                        <th></th>
                         <th>${data.shares.share_amount}</th>
+                        <th>${data.share_amount}</th>
                     </tr>
                 `
                 saving_details_tbody.innerHTML += html

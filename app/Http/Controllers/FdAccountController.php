@@ -245,5 +245,21 @@ public function findByFullName(Request $request){
     return response()->json($product_details);
 }
 
+public function addExtInvFd(Request $request){
+
+return response()->json($request);
+}
+public function addExtNmnFd(Request $request){
+return response()->json($request);
+}
+
+public function approved(){
+    $accounts=FdAccountGeneralInformation::leftjoin('customer_basic_data','customer_basic_data.customer_id','fd_account_general_information.customer_id')
+                                        ->select('customer_basic_data.*','fd_account_general_information.*','fd_account_general_information.id as fd_id')
+                                        ->get();
+
+    return view('fd.approved',compact('accounts'));
+}
+
 
 }
