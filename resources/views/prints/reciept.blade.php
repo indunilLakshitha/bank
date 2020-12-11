@@ -17,7 +17,9 @@
     CASH <br>
     {{ $trans->transaction_value }}
     {{ $amountSpell}} <br>
-    {{ $trans->transaction_type }}
+    {{ $trans->transaction_type }}<br>
+    cashier:
+    {{ Auth::user()->name }}
 </body>
 
 </html>
