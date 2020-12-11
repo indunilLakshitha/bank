@@ -14,6 +14,7 @@ class ExternalNomimiesController extends Controller
 
         $mem=Member::where('customer_id',$request->customer_id)->first();
         $nominie['member_id']=$mem->member_number;
+        $nominie['relation_type']=$request->relation_type;
         $nominie['contact_no']=$request->contact_no;
         $nominie['nic']=$request->nic;
         $nominie['address']=$request->address;

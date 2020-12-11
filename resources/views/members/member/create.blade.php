@@ -123,6 +123,7 @@ function submit_form(){
         success: function(data){
             console.log(data);
             if(data === 'Member already exists'){
+
                 return Swal.fire(data)
             } else{
 

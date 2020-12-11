@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class MemberCreationNominee extends Model
 {
-    protected $fillable = ['member_id', 'nominee_id'];
+    protected $fillable = ['member_id', 'nominee_id','relation_type'];
 }

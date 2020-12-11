@@ -205,7 +205,10 @@ class FdAccountController extends Controller
 
         $fd_ins = FdInvestor::where('fd_account_id',$request->id)->get();
         $fd_ns = FdNominee::where('fd_account_id',$request->id)->get();
-         return view('fd.verification.view',compact('branch','fD','deposite_types','interest_types','deposite_periods','fd_ins','fd_ns'));
+        $ex_ns = FdExternalNominee::where('account_id',$request->id)->get();
+        $ex_is = FdExternalInvestore::where('account_id',$request->id)->get();
+        
+         return view('fd.verification.view',compact('ex_ns','ex_is','branch','fD','deposite_types','interest_types','deposite_periods','fd_ins','fd_ns'));
 
     }
 

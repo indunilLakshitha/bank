@@ -131,5 +131,9 @@
         </div>
     </div>
 </div>
-
+<script>
+     $('.date').datepicker({
+                format: 'dd-mm-yyyy'
+            });
+</script>
 @endsection
