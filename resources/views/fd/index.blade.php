@@ -24,7 +24,8 @@
             <label class="col-sm-2 col-form-label">Opaning Date</label>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <input type="date" class="form-control" id="open_date">
+                    <input type="date" class="form-control" readonly id="open_date"
+                        value="<?php echo date("Y-m-d"); ?>">
                 </div>
             </div>
         </div>
@@ -32,17 +33,18 @@
             <label class="col-sm-2 col-form-label">Member</label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="customer_id" name="customer_id">
+                    <input type="text" class="form-control" readonly id="customer_id" name="customer_id">
                 </div>
             </div>
+            {{-- <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></a> --}}
             <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#mmodel"></a>
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Product</label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="sub_product" id="sub_product">
-                    <input type="hodden" class="form-control" name="sub_product_id" id="sub_product_id">
+                    <input type="text" class="form-control" readonly name="sub_product" id="sub_product">
+                    <input type="hidden" class="form-control" name="sub_product_id" id="sub_product_id">
                 </div>
             </div>
             <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#productSearchModel"></a>
@@ -51,7 +53,7 @@
             <label class="col-sm-2 col-form-label">Interest Rate</label>
             <div class="col-sm-2">
                 <div class="form-group">
-                    <input type="text" placeholder="Interest (%)" class="form-control" id="set_interest"
+                    <input type="text" placeholder="Interest (%)" readonly class="form-control" id="set_interest"
                         name="set_interest" oninput="calInterest(this.value)">
                 </div>
             </div>
@@ -106,7 +108,7 @@
 
         <div class="row">
             <label class="col-sm-2 col-form-label">Deposit Value</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <input type="text" class="form-control" id="deposite_amount" name="deposite_amount">
                 </div>
@@ -115,15 +117,16 @@
         <div class="row">
 
             <label class="col-sm-2 col-form-label">Starting Date</label>
-            <div class="col-sm-3">
+            <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="date" class="form-control" id="start_date" name="start_date">
+                    <input type="date" class="form-control" id="start_date" name="start_date"
+                        value="<?php echo date("Y-m-d"); ?>">
                 </div>
             </div>
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Deposit Type</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="deposite_type_id" id="deposite_type_id">
                     <input type="text" readonly class="form-control" name="deposite_type" id="deposite_type">
@@ -132,7 +135,7 @@
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Int Type</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="fd_interest_type_id" id="fd_interest_type_id">
                     <input type="text" readonly class="form-control" name="fd_interest_type" id="fd_interest_type">
@@ -141,14 +144,15 @@
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">No of Period</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
-                    <select name="deposite_period_id" id="deposite_period_id" class="form-control">
+                    <select name="deposite_period_id" id="deposite_period_id" class="form-control"
+                        oninput="calDuration(this.value)">
                         <option value="0" selected>Select </option>
                         @isset($deposite_periods)
                         @foreach ($deposite_periods as $deposite_period)
 
-                        <option value="{{$deposite_period->deposite_period_id}}" selected>
+                        <option value="{{$deposite_period->deposite_period}}" selected>
                             {{$deposite_period->deposite_period}} </option>
                         @endforeach
 
@@ -163,15 +167,15 @@
 
         <div class="row">
             <label class="col-sm-2 col-form-label">Expired Date</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="date" placeholder="" id="close_date" class="form-control">
+                    <input type="text" placeholder="" readonly id="close_date" name="close_date" class="form-control">
                 </div>
             </div>
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Auto Renew</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="form-group">
                     {{-- <input type="text" class="form-control" id="is_auto_renew"> --}}
                     <select name="is_auto_renew" id="is_auto_renew" class="form-control">
@@ -200,7 +204,9 @@
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <a class="btn fa  btn-warning btn-sm form-control " id="create" onclick="createFd()">CREATE</a>
+                    <a class="btn fa  btn-primary btn-sm form-control " id="btn_cr" onclick="createFd()">CREATE</a>
+                    <a class="btn fa  btn-warning btn-sm form-control " id="btn_subm" onclick="clearAll()">SUBMIT &
+                        FINISH</a>
 
                 </div>
             </div>
@@ -208,8 +214,8 @@
     </div>
 </div>
 {{-- </form> --}}
-{{-- <div class="row d-none" id="inv"> --}}
-<div class="row " id="inv">
+<div class="row d-none" id="inv_view">
+    {{-- <div class="row " id="inv"> --}}
     <div class="col">
         <div class="card ">
             <div class="card-body ">
@@ -222,11 +228,11 @@
                     <label class="col-sm-2 col-form-label">Investor Name</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="meber" oninput="findInvester(this.value)">
+                            <input type="text" class="form-control" id="inv" oninput="findInvester(this.value)">
                             <input type="hidden" class="form-control" id="account_id">
                         </div>
                     </div>
-                    {{-- <button class="btn fa fa-search btn-sm btn-info btn"></button> --}}
+                    <a class="btn fa fa-plus btn-sm btn-info btn" data-toggle="modal" href="#ext_inv"></a>
                 </div>
                 <div class="row">
 
@@ -288,10 +294,10 @@
                     <label class="col-sm-2 col-form-label">Nominee Name</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="meber" oninput="findNominee(this.value)">
+                            <input type="text" class="form-control" id="nmn" oninput="findNominee(this.value)">
                         </div>
                     </div>
-                    {{-- <button class="btn fa fa-search btn-sm btn-info btn"></button> --}}
+                    <a class="btn fa fa-plus btn-sm btn-info btn" data-toggle="modal" href="#ext_nmn"></a>
                 </div>
                 {{-- <div class="row">
                     <div class="col-5 text-right">
@@ -346,10 +352,27 @@
 @include('fd.models.member_search')
 @include('fd.models.product_search')
 @include('fd.models.introducer')
-{{-- @include('layouts.search_modal') --}}
+@include('fd.models.ext_inv')
+@include('fd.models.ext_nom')
+{{-- @include('fd.models.search_modal') --}}
 
 
 <script>
+    function calDuration(period){
+        var today = new Date();
+var end=today.setDate(today.getDate() + (parseInt(period)*30));
+var ts_ms = end;
+var date_ob = new Date(ts_ms);
+
+var date = ("0" + date_ob.getDate()).slice(-2);
+var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+var year = date_ob.getFullYear();
+var datee=  date+"/"+month+"/"+year
+console.log(date_ob.toDateString())
+
+close_date.value=datee
+
+    }
     function getAccounts(cus_id){
 console.log(cus_id)
 
@@ -387,12 +410,17 @@ function setSavings(data){
     let min=min_interest.value
     let max=max_interest.value
     // if(min<interest<max){
-        create.classList.remove('d-none')
+        //create.classList.remove('d-none')
 
     // }else{
         // create.classList.add('d-none')
 
     // }
+}
+
+function clearAll(){
+
+    window.location = '/fd';
 }
 
 
@@ -423,7 +451,11 @@ function createFd(){
                 success: function(data){
                     console.log(data);
                     account_id.value=data.account_id
-                    inv.classList.remove('d-none')
+                    // idd.value=data.account_id
+                    external_account_id.value=data.account_id
+                    nominee_account_id.value=data.account_id
+                    inv_view.classList.remove('d-none')
+                    btn_cr.classList.add('d-none')
                     swal({
                         title: "Success! FD Account Created",
                         text: "You Can Add Nominees and Investores for "+data.account_id,

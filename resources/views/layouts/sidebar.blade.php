@@ -26,21 +26,23 @@
                 </a>
                 <div class="collapse" id="pagesExamples">
                     <ul class="nav">
+                        @can('view_users')
                         <li class="nav-item ">
                             <a class="nav-link" href="/users/index">
                                 <span class="sidebar-mini"> <i class="material-icons">supervised_user_circle</i> </span>
                                 <span class="sidebar-normal"> All Users </span>
                             </a>
                         </li>
-                        {{-- @can('role_view') --}}
+                        @endcan
+                        @can('role_view')
                         <li class="nav-item ">
                             <a class="nav-link" href="/roles/index">
                                 <span class="sidebar-mini"> <i class="material-icons">supervisor_account</i> </span>
                                 <span class="sidebar-normal"> Roles </span>
                             </a>
                         </li>
-                        {{-- @endcan
-                        @can('permission_view') --}}
+                        @endcan
+                        @can('permission_view')
 
                         <li class="nav-item ">
                             <a class="nav-link" href="/permissions/index">
@@ -48,7 +50,7 @@
                                 <span class="sidebar-normal"> Permissions </span>
                             </a>
                         </li>
-                        {{-- @endcan --}}
+                        @endcan
                     </ul>
                 </div>
             </li>
@@ -62,20 +64,22 @@
                 <div class="collapse" id="members">
                     <ul class="nav">
 
+                        @can('customer_add')
                         <li class="nav-item ">
                             <a class="nav-link" href="{{url('/members/add')}}">
                                 <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
                                 <span class="sidebar-normal">Add Customer </span>
                             </a>
                         </li>
-
+                        @endcan
+                        @can('customer_verification')
                         <li class="nav-item ">
                             <a class="nav-link" href="/members/verify">
                                 <span class="sidebar-mini"> <i class="material-icons">verified</i> </span>
                                 <span class="sidebar-normal"> Customer Verification</span>
                             </a>
                         </li>
-
+                        @endcan
                         <li class="nav-item ">
                             <a class="nav-link" href="/members">
                                 <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
@@ -94,7 +98,6 @@
                 <div class="collapse" id="branchess">
                     <ul class="nav">
                         @can('branches_add')
-
                         <li class="nav-item ">
                             <a class="nav-link" href="{{url('/newbranchesadd')}}">
                                 <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
@@ -103,8 +106,6 @@
                         </li>
                         @endcan
                         @can('branches_view')
-
-
                         <li class="nav-item ">
                             <a class="nav-link" href="{{url('/newbranches')}}">
                                 <span class="sidebar-mini"> <i class="material-icons">zoom_in</i> </span>
@@ -163,7 +164,6 @@
                 </a>
                 <div class="collapse" id="fd">
                     @can('fd_opening')
-
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="{{url('/fd')}}">
@@ -174,12 +174,22 @@
                     </ul>
                     @endcan
                     @can('fd_verification')
-
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/verify">
                                 <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
                                 <span class="sidebar-normal"> FD Account Verification</span>
+                            </a>
+                        </li>
+                    </ul>
+                    @endcan
+                    @can('fd_index')
+
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/approved">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal"> FD Accounts</span>
                             </a>
                         </li>
                     </ul>
@@ -249,12 +259,7 @@
                                 <span class="sidebar-normal">Branch Cash In-out</span>
                             </a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/branchCashInOut2">
-                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
-                                <span class="sidebar-normal">Branch Cash In-out</span>
-                            </a>
-                        </li>
+
 
 
                     </ul>
@@ -262,7 +267,7 @@
             </li>
             @endcan
 
-            @can('transaction_report')
+
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#transaction_report">
                     <i class="material-icons">grading</i>
@@ -270,6 +275,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
+                @can('transaction_report')
                 <div class="collapse" id="transaction_report">
                     <ul class="nav">
                         <li class="nav-item ">
@@ -279,6 +285,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('cashier_report')
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/creport">
@@ -287,6 +295,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('cash_in_hand_report')
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/cashInHand">
@@ -295,6 +305,18 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('cash_in_handa_branch_report')
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/CasHiNhanDbrancH">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Cash In Hand (Branch)</span>
+                            </a>
+                        </li>
+                    </ul>
+                    @endcan
+                    @can('report_of_transaction')
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/ReportOfTransactions">
@@ -361,7 +383,6 @@
                 </a>
                 <div class="collapse" id="share">
                     @can('share_buy')
-
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="{{route('shares.buy')}}">

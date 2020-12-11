@@ -149,6 +149,9 @@
                     </div>
                     <div class="col-1 text-right">
                         <button type="submit" class="btn ">Clear</button>
+                        <a class="btn fa fa-print btn-info btn-sm"
+                            onclick="window.location = '/receipt/'+account_id.value"></a>
+
                     </div>
                 </div>
 
@@ -196,8 +199,9 @@
                         </div>
                     </div>
                     <div class="ml-3">
-                        <button type="button" onclick="show_image()" class="btn btn-warning" id="btn_img"> Load Signature
-                            </button>
+                        <button type="button" onclick="show_image()" class="btn btn-warning" id="btn_img"> Load
+                            Signature
+                        </button>
                     </div>
                     <div>
                         <input type="hidden" id="img_loc">
@@ -351,7 +355,7 @@
             success: function(data){
                 console.log(data);
 
-                let i=0
+                let i=1
                 saving_details_tbody.innerHTML = ''
 
                 data.accs.forEach(acc => {
@@ -376,8 +380,8 @@
                         <th></th>
                         <th></th>
                         <th>Shares Amount</th>
-                        <th></th>
                         <th>${data.shares.share_amount}</th>
+                        <th>${data.share_amount}</th>
                     </tr>
                 `
                 saving_details_tbody.innerHTML += html

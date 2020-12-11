@@ -8574,7 +8574,7 @@ a.text-dark:focus {
 }
 .btn.btn-primary {
     color: #fff;
-    background-color: #050030;
+    background-color: #9124a3;
     border-color: #9c27b0;
     box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14),
         0 3px 1px -2px rgba(156, 39, 176, 0.2),
@@ -8582,7 +8582,7 @@ a.text-dark:focus {
 }
 .btn.btn-primary:hover {
     color: #fff;
-    background-color: #9124a3;
+    background-color: #701c7e;
     border-color: #701c7e;
 }
 .btn.btn-primary:focus,

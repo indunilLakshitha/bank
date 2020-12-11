@@ -150,8 +150,7 @@
     const c = document.querySelector('#customer_id').value;
 
     function add_bene_guard(url,  id){
-        $( "#foo" ).one( "click", function() {
-onsole.log(c);
+console.log(c);
 console.log(id);
 
         $.ajax({
@@ -221,11 +220,11 @@ console.log(id);
     }
 
     function delete_gurd(id){
-        // console.log(id);
+        console.log(id);
         $.ajax({
         type: 'GET',
         url: '{{('/delete_gurd')}}',
-        data: {id} ,
+        data: {'id':id} ,
         success: function(data){
             console.log(data);
             return

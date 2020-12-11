@@ -60,12 +60,12 @@
                     </div>
                 </div>
                 <div class="col-sm-10">
-                        <div class="col-5">
-                            <div class="form-group">
-                                <img  id="image" >
-                            </div>
+                    <div class="col-5">
+                        <div class="form-group">
+                            <img id="image">
                         </div>
                     </div>
+                </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Account Name</label>
                     <div class="col-sm-6">
@@ -97,8 +97,9 @@
                         <div class="row">
                             <div class="col-5">
                                 <div class="form-group">
-                                    <select name="payment_method_id" readonly id="payment_method_id" class="form-control">
-                                        <option  value="1">Cash </option>
+                                    <select name="payment_method_id" readonly id="payment_method_id"
+                                        class="form-control">
+                                        <option value="1">Cash </option>
                                         <!-- @php
                                         $payment_methods =
                                         Illuminate\Support\Facades\DB::table('payment_methods')->where('is_enable',1)->get();
@@ -157,7 +158,8 @@
 
                     <div class="col-6 text-right">
                         <a onclick="normalWithdraw(transaction_value.value,customer_id.value,account_id.value,payment_method_id.value)"
-                            class="btn btn-rose col-4 text-white d-none" style="text-align: center" id="dep_btn">WITHDRAW</a>
+                            class="btn btn-rose col-4 text-white d-none" style="text-align: center"
+                            id="dep_btn">WITHDRAW</a>
                     </div>
                     <div class="col-1 text-right">
                         <button type="submit" class="btn ">Clear</button>
@@ -218,7 +220,7 @@
                     </div>
                     <div class="ml-3">
                         <button type="button" onclick="show_image()" class="btn btn-warning"> Load Signature
-                            </button>
+                        </button>
                     </div>
                     <div>
                         <input type="hidden" id="img_loc">
@@ -247,8 +249,7 @@
 </div> --}}
 
 <script type="text/javascript">
-
-function show_image() {
+    function show_image() {
     var elem = document.createElement("img");
     var im=img_loc.value
 elem.setAttribute("src",im);
@@ -404,8 +405,8 @@ document.getElementById("imgg").appendChild(elem);
                         <th></th>
                         <th></th>
                         <th>Shares Amount</th>
-                        <th></th>
                         <th>${data.shares.share_amount}</th>
+                        <th>${data.share_amount}</th>
                     </tr>
                 `
                 saving_details_tbody.innerHTML += html

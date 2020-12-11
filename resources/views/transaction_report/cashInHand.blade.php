@@ -151,7 +151,7 @@ background:#eee;
                             <div class="pull-right col-2" value="">
                                 <input type="date" class="form-control datepicke" id="dateTo">
                             </div>
-                            @can('create_roles')
+                            @can('delete_roles')
                             <label for="">USER:</label>
                             <div class="pull-right col-2">
                                 <select name="select_branch1" class="form-control" id="user">
@@ -159,7 +159,7 @@ background:#eee;
                                     @isset($users)
                                     @foreach ($users as $user)
                                     @if(intval($user->status) == 1)
-                                    <option value="{{$user->id}}" >{{$user->employee_no}}</option>
+                                    <option value="{{$user->id}}" >{{$user->email}}</option>
                                     @endif
                                     @endforeach
                                     @endisset
@@ -174,7 +174,7 @@ background:#eee;
                             </span>
                             </div>
                             @endcan
-                            @can('transaction_report')
+                            @can('member_add')
                                 <select name="select_branch1" hidden class="form-control" id="user">
                                     <option value="" >--Select--</option>
                                 </select>
@@ -303,7 +303,7 @@ function search(){
                                 <tbody>
                                     <tr>
                                     <td class="table-info">OPEN</td>
-                                    <td class="table-info text-center" >0.00</td>
+                                    <td class="table-info text-center" >${data.DATA[7]}</td>
                                     <td class="table-info text-center" >0.00</td>
                                     </tr>
                                     <tr>

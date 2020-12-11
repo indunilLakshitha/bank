@@ -93,7 +93,7 @@
                                         <td>{{$perm->identification_number}}</td>
                                         <td><a href="{{url('/accountdetails/'.$perm->customer_id)}}"
                                                 class="btn btn-sm btn-info">View</a></td>
-                                        <td><a href="{{url('/customer_details/'.$perm->customer_id)}}"
+                                        <td><a href="{{url('/customer_details/'.$perm->customer_id.'?url=1')}}"
                                                 class="btn btn-sm btn-info">View</a></td>
                                         <td><a href="{{url('/signature_verification/'.$perm->account_number)}}"
                                                 class="btn btn-sm btn-primary">Verify</a></td>
