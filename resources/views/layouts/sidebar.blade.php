@@ -113,6 +113,12 @@
                             </a>
                         </li>
                         @endcan
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut1">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -253,13 +259,14 @@
                             </a>
                         </li>
                         @endcan
-                        <li class="nav-item ">
+                        <!--li class="nav-item ">
                             <a class="nav-link" href="/branchCashInOut1">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut2">
                                 <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
                                 <span class="sidebar-normal">Branch Cash In-out</span>
                             </a>
-                        </li>
-
+                        </li-->
 
 
                     </ul>

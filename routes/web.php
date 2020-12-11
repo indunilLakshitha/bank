@@ -467,6 +467,7 @@ Route::get('/findRange', 'TransactionReportController@findBtween');
     Route::post('/member_creation', 'MemberController@member_creation');
     Route::get('/add_nominee_member_creation', 'MemberController@add_nominee_member_creation');
     Route::get('/remove_nominee_member_creation', 'MemberController@remove_nominee_member_creation');
+    Route::get('/close', 'MemberController@close');
 
 Route::get('/sharebuy','ShareController@buyview')->name('shares.buy');
 Route::get('/sharetransfer','ShareController@transferview')->name('shares.transfer');
