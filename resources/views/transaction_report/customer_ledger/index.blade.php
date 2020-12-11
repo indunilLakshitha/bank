@@ -87,12 +87,13 @@
                                 <table id="table" class="table table-striped table-no-bordered table-hover"
                                     cellspacing="0" width="100%" style="width:100%">
                                     <thead>
-                                        <th>ID </th>
-                                        <th>DATE</th>
-                                        <th>DETAILS</th>
-                                        <th>WITHDRAWED</th>
-                                        <th>DEPOSITED</th>
-                                        <th>BALANCE</th>
+                                        <th id="account_id_inside_table"></th>
+                                        <th></th>
+                                        <th>CAPITAL</th>
+                                        <th>INTEREST</th>
+                                        <th>OTHER</th>
+                                        <th></th>
+                                        <th></th>
                                         <th><button class="btn fa fa-print btn-info btn-sm"
                                                 onclick="printData()"></button></th>
                                     </thead>
@@ -136,7 +137,7 @@
             processData: false,
             success: function(data) {
                 console.log(data)
-                // return showCustomers(data)
+                return showCustomers(data)
             }
         })
 
@@ -198,17 +199,21 @@
             } else {}
 
             x++
+
+            i.transaction_value = i.transaction_type== "WITHDRAW" ? `(${i.transaction_value})` : i.transaction_value
             html = `
                     <tr>
-                        <th>${x}</th>
+                        <th>${i.transaction_details}</th>
                         <th>${i.created_at}</th>
-                        <th>${i.payment_method} </th>
-                        <th>${w}</th>
-                        <th>${d}</th>
-                        <th>${i.balance_value}</th>
+                        <th>${i.transaction_value} </th>
+                        <th>0.00</th>
+                        <th>0.00</th>
+                        <th>${i.transaction_value}</th>
+                        <th>${i.created_at}</th>
                     </tr>
                     `
             results_tbody.innerHTML += html
+            account_id_inside_table.textContent = `${i.account_id}`
         })
         // html_2 = `
         //     <tr>
