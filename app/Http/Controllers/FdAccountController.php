@@ -348,7 +348,83 @@ if($user->roles[0]->id=='1'){
 }
 
 public function fdMembersForWnD(Request $request){
-    $sql = "
+    if($request->type=="nic"){
+        $sql = "
+        SELECT DISTINCT
+            customer_basic_data.customer_id,
+            customer_basic_data.full_name,
+            customer_basic_data.id,
+            customer_basic_data.identification_number,
+            customer_basic_data.non_member,
+            customer_basic_data.sign_img,
+            fd_account_general_information.deposited,
+
+            fd_account_general_information.account_id,
+            fd_account_general_information.deposite_amount
+
+        FROM customer_basic_data
+
+
+
+                 JOIN fd_account_general_information
+        ON fd_account_general_information.customer_id = customer_basic_data.customer_id
+
+
+        WHERE customer_basic_data.identification_number LIKE '%$request->text%'
+        AND customer_basic_data.is_enable = 1
+        AND customer_basic_data.status = 1
+        AND fd_account_general_information.status = 1
+        AND fd_account_general_information.is_enable = 1
+        AND fd_account_general_information.deposited = 0
+
+        ";
+        $user_role_id = intval(Auth::user()->roles[0]->id);
+        $branch_id = Auth::user()->branh_id;
+        if($user_role_id != 1) {
+            $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
+        }
+        $data = DB::select($sql);
+    return response()->json($data);
+    }
+    else if($request->type=="cid"){
+        $sql = "
+        SELECT DISTINCT
+            customer_basic_data.customer_id,
+            customer_basic_data.full_name,
+            customer_basic_data.id,
+            customer_basic_data.identification_number,
+            customer_basic_data.non_member,
+            customer_basic_data.sign_img,
+            fd_account_general_information.deposited,
+
+            fd_account_general_information.account_id,
+            fd_account_general_information.deposite_amount
+
+        FROM customer_basic_data
+
+
+
+                 JOIN fd_account_general_information
+        ON fd_account_general_information.customer_id = customer_basic_data.customer_id
+
+
+        WHERE customer_basic_data.customer_id LIKE '%$request->text%'
+        AND customer_basic_data.is_enable = 1
+        AND customer_basic_data.status = 1
+        AND fd_account_general_information.status = 1
+        AND fd_account_general_information.is_enable = 1
+        AND fd_account_general_information.deposited = 0
+
+        ";
+        $user_role_id = intval(Auth::user()->roles[0]->id);
+        $branch_id = Auth::user()->branh_id;
+        if($user_role_id != 1) {
+            $sql .= " AND customer_basic_data.branch_id = ". $branch_id;
+        }
+        $data = DB::select($sql);
+    return response()->json($data);
+    }else{
+        $sql = "
         SELECT DISTINCT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
@@ -374,6 +450,7 @@ public function fdMembersForWnD(Request $request){
         AND customer_basic_data.status = 1
         AND fd_account_general_information.status = 1
         AND fd_account_general_information.is_enable = 1
+        AND fd_account_general_information.deposited = 0
 
         ";
         $user_role_id = intval(Auth::user()->roles[0]->id);
@@ -383,6 +460,8 @@ public function fdMembersForWnD(Request $request){
         }
         $data = DB::select($sql);
     return response()->json($data);
+    }
+
 
 }
 

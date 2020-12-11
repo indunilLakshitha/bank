@@ -44,7 +44,7 @@
                                         <div class="form-group">
                                             <input oninput="
                                             // toCap(this.value, this.id),
-                                            get_modal_search_by_customer_id(this.value)" type="text"
+                                            get_modal_search_by_full_name(this.value,'cid')" type="text"
                                                 class="form-control js-example-data-ajax" name="customer_code_modal"
                                                 id="customer_code_modal" placeholder="Enter Customer ID">
                                         </div>
@@ -60,7 +60,7 @@
                                         <div class="form-group">
                                             <input oninput="
                                             // toCap(this.value, this.id),
-                                            get_modal_search_by_nic(this.value)" type="text"
+                                            get_modal_search_by_full_name(this.value,'nic')" type="text"
                                                 class="form-control js-example-data-ajax" name="id_number_modal"
                                                 id="id_number_modal" placeholder="Enter Identification Number">
                                         </div>

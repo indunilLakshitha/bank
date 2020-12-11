@@ -149,8 +149,8 @@
                     </div>
                     <div class="col-1 text-right">
                         <button type="submit" class="btn ">Clear</button>
-                        <a class="btn fa fa-print btn-info btn-sm"
-                            onclick="window.location = '/receipt/'+account_id.value"></a>
+                        {{-- <a class="btn fa fa-print btn-info btn-sm"
+                            onclick="window.location = '/receipt/'+account_id.value"></a> --}}
 
                     </div>
                 </div>
