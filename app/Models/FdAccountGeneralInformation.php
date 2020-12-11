@@ -30,5 +30,9 @@ class FdAccountGeneralInformation extends Model
 'is_enable',
 'created_by',
 'updated_by',
+'status',
+'is_print_enabled',
+'deposited',
+'print_count',
    ];
 }
