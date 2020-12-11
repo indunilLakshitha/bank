@@ -2,25 +2,15 @@
 
 
 @section('content')
-{{-- <form method="get" action="/" class="form-horizontal"> --}}
 <div class="card ">
     <div class="card-body ">
         <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
-                <h4 class="card-title">Transaction Report</h4>
+                <h4 class="card-title">Ledger Report</h4>
             </div>
         </div>
 
-        {{-- <div class="row">
-                <label class="col-sm-2 col-form-label">Member</label>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="member" oninput="getCustomers(this.value)">
 
-                    </div>
-                </div>
-                <button class="btn fa fa-search btn-info btn"> &nbspFind</button>
-            </div> --}}
         <div class="row">
             <label class="col-sm-2 col-form-label">Account</label>
             <div class="col-sm-6">
@@ -31,29 +21,7 @@
             <button class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#transactionModal"></button>
         </div>
         <div class="row">
-            {{-- <div class="col-sm-6 " style="margin-left: 260px">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="table">
-                                <table id="table" class="table table-striped table-no-bordered table-hover"
-                                    cellspacing="0" width="100%" style="width:100%">
-                                    <thead>
-                                        <th>ID </th>
-                                        <th>NAME</th>
-                                        <th>NIC</th>
-                                        <th>STATUS</th>
-                                        <th>ACTION</th>
-                                    </thead>
-                                    <tbody id="results_tbody">
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
         <div class="row">
             <label class="col-sm-2 col-form-label">Customer Name</label>
@@ -65,6 +33,9 @@
             </div>
             <button class="btn fa fa-search btn-info btn-sm" onclick="getCustomersByAcoountId()"></button>
         </div>
+
+        <form action="" id="to_send_form">
+            @csrf
         <div class="row">
             <label class="col-sm-2 col-form-label">Account Name</label>
             <div class="col-sm-6">
@@ -77,7 +48,7 @@
             <label class="col-sm-2 col-form-label">From</label>
             <div class="col-sm-2">
                 <div class="form-group">
-                    <input type="date" class="form-control" id="from">
+                    <input type="date" class="form-control" id="from" name="from">
                 </div>
             </div>
         </div>
@@ -86,11 +57,12 @@
             <label class="col-sm-2 col-form-label">To</label>
             <div class="col-sm-2">
                 <div class="form-group">
-                    <input type="date" class="form-control" id="to">
+                    <input type="date" class="form-control" id="to" name="to">
                 </div>
             </div>
-            <button class="btn fa fa-search btn-info btn-sm" onclick="findBetw()"></button>
         </div>
+    </form>
+    <button class="btn fa fa-search btn-info btn-sm" onclick="getReport()"></button>
     </div>
 </div>
 <div class="card ">
@@ -99,18 +71,8 @@
 
         </div>
 
-        {{-- <div class="row">
-                <label class="col-sm-2 col-form-label">Member</label>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="member" oninput="getCustomers(this.value)">
 
-                    </div>
-                </div>
-                <button class="btn fa fa-search btn-info btn"> &nbspFind</button>
-            </div> --}}
         <div class="row">
-            {{-- <label class="col-sm-2 col-form-label">Account</label> --}}
             <div class="col-sm-6">
 
             </div>
@@ -157,21 +119,29 @@
         }
     });
 
-    function getCustomers(name) {
+    function getReport(){
 
-        // console.log(name)
-        $.ajax({
-            type: 'GET',
-            url: '{{('/findmember')}}',
-            data: {
-                'name': name,
-            },
+        // var customer_id=customer_id.value
+    // const account_id= document.querySelector('#acccount_id').value
+    // const from= document.querySelector('#from').value
+    // const to= document.querySelector('#to').value
+
+
+
+    $.ajax({
+            type: 'POST',
+            url: '{{('/getledger')}}',
+            data: new FormData(to_send_form),
+            contentType: false,
+            processData: false,
             success: function(data) {
-                // console.log(data)
-                return showCustomers(data)
+                console.log(data)
+                // return showCustomers(data)
             }
         })
-    }
+
+}
+
 
     function getCustomersByAcoountId() {
         const c_id = document.querySelector('#customer_id');
@@ -195,9 +165,7 @@
 
     function normalWithdraw(amount, customer_id, account_id, payment_method_id) {
 
-        // console.log(amount)
-        // console.log(customer_id)
-        // console.log(account_id)
+
         $.ajax({
             type: 'GET',
             url: '{{(' / normaldeposite ')}}',

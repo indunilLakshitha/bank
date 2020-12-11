@@ -542,6 +542,23 @@ class TransactionReportController extends Controller
 
         // return response()->json($select);
     }
+public function customerLedger(){
+    return view('transaction_report.customer_ledger.index');
+}
 
+public function ledgerDetails(Request $request){
+if($request->from == null){
+    $data=TransactionData::where('account_id',$request->account_id)
+                        ->get();
+}else{
+    // $data=TransactionData::where('account_id',$request->account_id)
+    //                     ->where('')
+    //                     ->get();
+
+    $data = DB::select('select * from users where active = ?', [1]);
+}
+return response()->json($request);
+
+}
 
 }

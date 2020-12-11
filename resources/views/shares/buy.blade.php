@@ -21,7 +21,7 @@
                         <div class="col">
                         </div>
                     </div>
-                    <form id="form" method="POST">
+                    <form id="form1" method="POST">
                         @csrf
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Customer ID<font color="red">*</font></label>
@@ -100,11 +100,13 @@
             $.ajax({
             type: 'POST',
             url: '{{('/buy_shares')}}',
-            data: new FormData(form) ,
+            data: new FormData(form1) ,
             processData: false,
             contentType: false,
             success: function(data){
                 console.log(data);
+                form1.reset();
+
                 share_amount.value=data.share_amount
                 swal({
                         title: "Success!",

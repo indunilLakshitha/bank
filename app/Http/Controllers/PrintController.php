@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FdAccountGeneralInformation;
 use App\Models\TransactionData;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use NumberFormatter;
@@ -74,7 +75,13 @@ class PrintController extends Controller
                 $pdf = PDF::loadView('prints.FDreceipt', compact('accounts','amountSpell'))->setPaper('a4', 'portrait');
                 $fileName = $accounts[0]->account_number;
                 FdAccountGeneralInformation::where('fd_account_general_information.account_id', $id)->update(['is_print_enabled'=>0]);
-                return $pdf->stream($fileName . '.pdf');
+               return  $pdf->stream($fileName . '.pdf', array("Attachment" => false));
+            // $file=$fileName.'.pdf';
+            // return new Response($pdf, 200, [
+            //     'Content-Type' => 'application/pdf',
+            //    'Content-Disposition' =>  'inline; filename='$file'',
+            //  ]);
+                //  exit(0);
             }
 return redirect()->back();
     }

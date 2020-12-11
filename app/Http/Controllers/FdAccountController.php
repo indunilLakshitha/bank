@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\cash_in_hand_ledger;
 use App\Models\AccountGeneralInformation;
 use App\Models\Branch;
+use App\Models\CashierDailyTransaction;
 use App\Models\CustomerBasicData;
 use App\Models\DepositePeriod;
 use App\Models\DepositeType;
@@ -15,6 +16,7 @@ use App\Models\FdInterestType;
 use App\Models\FdInvestor;
 use App\Models\FdNominee;
 use App\Models\SubAccount;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -201,17 +203,24 @@ class FdAccountController extends Controller
     }
     public function view(Request $request){
 
-        $branch=Branch::where('id',Auth::user()->branh_id)->first();
-         $deposite_types=DepositeType::where('is_enable',1)->get();
-         $interest_types=FdInterestType::where('is_enable',1)->get();
-         $deposite_periods=DepositePeriod::where('is_enable',1)->get();
-         $fD = FdAccountGeneralInformation::leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'fd_account_general_information.customer_id')
+        // $branch=Branch::where('id',Auth::user()->branh_id)->first();
+        //  $deposite_types=DepositeType::where('is_enable',1)->get();
+        //  $interest_types=FdInterestType::where('is_enable',1)->get();
+        //  $deposite_periods=DepositePeriod::where('is_enable',1)->get();
+          $fD = FdAccountGeneralInformation::leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'fd_account_general_information.customer_id')
                                         ->leftjoin('branches', 'branches.id', 'fd_account_general_information.branch_id')
+                                        ->leftjoin('deposite_types', 'deposite_types.id', 'fd_account_general_information.deposite_type_id')
+                                        ->leftjoin('fd_interest_types', 'fd_interest_types.id', 'fd_account_general_information.fd_interest_type_id')
+                                        ->leftjoin('deposite_periods', 'deposite_periods.id', 'fd_account_general_information.deposite_period_id')
+                                        ->leftjoin('sub_accounts', 'sub_accounts.id', 'fd_account_general_information.sub_product_id')
+                                        ->leftjoin('users', 'users.id', 'fd_account_general_information.introducer_id')
                                         ->where('fd_account_general_information.account_id',$request->id)->first();
 
         $fd_ins = FdInvestor::where('fd_account_id',$request->id)->get();
         $fd_ns = FdNominee::where('fd_account_id',$request->id)->get();
-         return view('fd.verification.view',compact('branch','fD','deposite_types','interest_types','deposite_periods','fd_ins','fd_ns'));
+         $external_nominees =  FdExternalNominee::where('account_id',$request->id)->get();
+        $external_investores = FdExternalInvestore::where('account_id',$request->id)->get();
+         return view('fd.verification.view',compact('fD','fd_ins','fd_ns','external_nominees','external_investores'));
 
     }
 
@@ -274,9 +283,21 @@ return response()->json($ext_inves);
 }
 
 public function approved(){
-    $accounts=FdAccountGeneralInformation::leftjoin('customer_basic_data','customer_basic_data.customer_id','fd_account_general_information.customer_id')
-                                        ->select('customer_basic_data.*','fd_account_general_information.*','fd_account_general_information.id as fd_id')
-                                        ->get();
+        $user_role_id = intval(Auth::user()->roles[0]->id);
+        if($user_role_id != 1) {
+            $accounts=FdAccountGeneralInformation::leftjoin('customer_basic_data','customer_basic_data.customer_id','fd_account_general_information.customer_id')
+            ->select('customer_basic_data.*','fd_account_general_information.*','fd_account_general_information.id as fd_id')
+            ->where('fd_account_general_information.status','1')
+            ->where('customer_basic_data.branch_id',Auth::user()->branh_id)
+            ->get();
+        }else {
+            $accounts=FdAccountGeneralInformation::leftjoin('customer_basic_data','customer_basic_data.customer_id','fd_account_general_information.customer_id')
+            ->select('customer_basic_data.*','fd_account_general_information.*','fd_account_general_information.id as fd_id')
+            ->where('fd_account_general_information.status','1')
+            // ->status('branch_id',Auth::user()->branh_id)
+            ->get();
+        }
+
 
     return view('fd.approved',compact('accounts'));
 }
@@ -483,11 +504,32 @@ public function fdDeposite(Request $request){
         $cash_in_hand_ledger['is_enable']=1;
         // $cash_in_hand_ledger['crated_by']=Auth::user()->id;
 
-        cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+        $c_in_hyand=cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+        $c_in_hyand->branch_balance+=$request->transaction_value;
+        $c_in_hyand->save();
+
+        $cashie_daily_trancastion=$request;
+        $cashie_daily_trancastion['user_id']=Auth::user()->id;
+        $cashie_daily_trancastion['transaction_type']="DEPOSITE";
+        // $cashie_daily_trancastion['transaction_id']=$transaction_data->id;
+        $cashie_daily_trancastion['account_number']=$request->account_id;
+        $cashie_daily_trancastion['transaction_amount']=$request->transaction_value;
+        $cashie_daily_trancastion['balance_value']=$c_in_hyand->branch_balance;
+        $cashie_daily_trancastion['transaction_code']="testing";
+        $cashie_daily_trancastion['is_enable']=1;
+        $cashie_daily_trancastion['branch_id']=Auth::user()->branh_id;
+        $cashie_daily_trancastion['branch_balance']=
+        CashierDailyTransaction::where('branch_id',Auth::user()->branh_id)
+            // ->where('user_id',Auth::user()->id)
+            ->where('transaction_date',Carbon::today()->toDateString())
+            ->sum('transaction_amount')+$request->transaction_value;
+        $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
+
+        CashierDailyTransaction::create($cashie_daily_trancastion->all());
     return response()->json($request);
 }
 public function enableFdPrint($id){
     FdAccountGeneralInformation::where('fd_account_general_information.account_id', $id)->update(['is_print_enabled'=>1]);
-return redirect()->back();
+    return redirect()->back();
 }
 }

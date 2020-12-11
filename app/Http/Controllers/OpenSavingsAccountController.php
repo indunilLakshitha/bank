@@ -360,7 +360,7 @@ class OpenSavingsAccountController extends Controller
 
     public function product_details(Request $request)
     {
-       return $prod_data = ProductData::create($request->all());
+        $prod_data = ProductData::create($request->all());
         $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
         $cbs = CustomerBasicData::where('customer_id',$customer_id)->first();
         if($cbs->customer_status_id == 1){

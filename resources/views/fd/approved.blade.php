@@ -42,12 +42,14 @@
                                         <th>
                                             <a href="/FDreceipt/{{$member->account_id}}"
                                                 class="btn fa fa-print btn-info btn-sm"></a>
-                                                @role('Super Admin')
-                                                @if($member->is_print_enabled!=0)
+                                            @role('Super Admin')
+                                            @if($member->is_print_enabled!=0)
                                             <a href="/enablefdprint/{{$member->account_id}}"
                                                 class="btn btn-info btn-sm">enable print</a>
-                                                @endif
-                                                @endrole
+                                            @endif
+                                            @endrole
+                                            <a href="{{url('/fd/view/'.$member->account_id)}}"
+                                                class="btn btn-info btn-sm">VIEW</a>
                                             {{-- <a href="/savings/account/{{$member->customer_id}}" class="btn
                                             btn-primary" >ACCOUNT</a> --}}
                                             {{-- <a href="/members/view/{{$member->customer_id}}" class="btn

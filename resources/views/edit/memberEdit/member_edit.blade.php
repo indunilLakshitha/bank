@@ -117,14 +117,15 @@
                                     <select name="branch_id" class="selectpicker" data-style="select-with-transition">
                                             @isset($branchesAll,$view_1)
                                                 @foreach ($branchesAll as $branch)
-                                                    <option value="{{$branch->id}}" <?php echo($branch->branch_id == $view_1->branch_id ? 'selected' : '' ) ?> >{{$branch->branch_name}}</option>
+                                                    <option value="{{$branch->id}}"
+                                                        <?php echo($branch->branch_id == $view_1->branch_id ? 'selected' : '' ) ?> >
+                                                        {{$branch->branch_name}}
+                                                    </option>
                                                 @endforeach
                                             @endisset
                                     </select>
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <label class="col-sm-3 col-form-label label-checkbox">Type(s)</label>
                                 <div class="col-sm-6 checkbox-radios">

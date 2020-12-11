@@ -27,7 +27,7 @@
                                         {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                        <button class="btn  btn-info btn" onclick="member_list.innerHTML = null">
+                                        <button class="btn  btn-info btn" onclick="member_list.innerHTML = null,clearr()">
                                             Clear Results </button>
 
                                     </div>
@@ -43,18 +43,14 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_member_fd(this.value)" type="text"
-                                                class="form-control js-example-data-ajax"
+                                                class="form-control js-example-data-ajax" id="cc"
                                                 placeholder="Enter Customer ID">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <table class="table">
-                                <tbody id="member_list" class="d-none"></tbody>
-                            </table>
-                        </div>
+
 
                         <div class="row mb-5 ml-3">
                             <label class="col-sm-2 col-form-label ">ID Number</label>
@@ -77,6 +73,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <table class="table">
+                                <tbody id="member_list" class="d-none"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,7 +90,12 @@
     let customer_d;
 
     // let is_customer_id_2 = false;
-
+function clearr(){
+    console.log('dsad')
+    mmodel.value=null
+    cc.value=null
+    identification_number=null
+}
 
     function member_search_for_fd_byfname(value){
         // console.log(is_customer_id_2);

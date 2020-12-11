@@ -275,7 +275,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                @can('transaction_report')
+                {{-- @can('transaction_report') --}}
                 <div class="collapse" id="transaction_report">
                     <ul class="nav">
                         <li class="nav-item ">
@@ -285,7 +285,7 @@
                             </a>
                         </li>
                     </ul>
-                    @endcan
+                    {{-- @endcan --}}
                     @can('cashier_report')
                     <ul class="nav">
                         <li class="nav-item ">
@@ -316,7 +316,7 @@
                         </li>
                     </ul>
                     @endcan
-                    @can('report_of_transaction')
+                    {{-- @can('report_of_transaction') --}}
                     <ul class="nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/ReportOfTransactions">
@@ -325,9 +325,17 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/customerledger">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Customer Ledger</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </li>
-            @endcan
+            {{-- @endcan --}}
             @can('sub_accounts')
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#schema">

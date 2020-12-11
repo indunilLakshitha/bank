@@ -8,25 +8,25 @@
             <div class="card-header card-header-success card-header-icon">
 
                 <div class="col-3">
-                        <div class="card-header card-header-rose card-header-text">
-                            <div class="card-text">
-                                <h4 class="card-title">Report</h4>
-                            </div>
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Report</h4>
                         </div>
                     </div>
+                </div>
                 <div class="card">
-                <div class="card-body ">
-                    <div class="row">
-                        <label for="">TYPE:</label>
+                    <div class="card-body ">
+                        <div class="row">
+                            <label for="">TYPE:</label>
                             <div class="pull-right col-2">
                                 <select name="type" class="form-control" id="type">
-                                    <option value="ALL" >ALL</option>
-                                    <option value="DEPOSITED" >DEPOSITED</option>
-                                    <option value="WITHDRAWED" >WITHDRAWED</option>
+                                    <option value="ALL">ALL</option>
+                                    <option value="DEPOSITED">DEPOSITED</option>
+                                    <option value="WITHDRAWED">WITHDRAWED</option>
 
                                 </select>
                             </div>
-                            <label >FROM:</label>
+                            <label>FROM:</label>
                             <div class="pull-right col-2">
                                 <input type="date" class="form-control datepicke" required id="dateFrom">
                             </div>
@@ -42,7 +42,7 @@
                                     @isset($users)
                                     @foreach ($users as $user)
                                     @if(intval($user->status) == 1)
-                                    <option value="{{$user->id}}" >{{$user->employee_no}}</option>
+                                    <option value="{{$user->id}}">{{$user->employee_no}}</option>
                                     @endif
                                     @endforeach
                                     @endisset
@@ -57,7 +57,8 @@
                             </span>
                             </div> -->
                             <div class=" col-1 ">
-                                <button type="button"  onclick="search(this)" class="btn btn-info" id="search">Search</button>
+                                <button type="button" onclick="search(this)" class="btn btn-info"
+                                    id="search">Search</button>
                             </div>
                         </div>
                     </div>
@@ -70,8 +71,8 @@
                     <div class="col-md-12">
 
                         <div class="material-datatables">
-                            <table id="datatables" class="table   table-bordered table-hover"
-                                cellspacing="0" width="100%" style="width:100%">
+                            <table id="datatables" class="table   table-bordered table-hover" cellspacing="0"
+                                width="100%" style="width:100%">
                                 <thead>
                                     <th>BP. Code</th>
                                     <th>BP. Name </th>
@@ -99,7 +100,7 @@
     </div>
 </div>
 <script>
-   function search(){
+    function search(){
         const from = document.querySelector('#dateFrom');
         const to = document.querySelector('#dateTo');
         const user = document.querySelector('#user');
