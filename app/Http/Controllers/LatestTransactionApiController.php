@@ -89,7 +89,7 @@ class LatestTransactionApiController extends Controller
                     FROM `palmtop_transaction_data` AS ptd
                     INNER JOIN `branches` AS b ON b.`id` = ptd.`branch_id`
                     WHERE ptd.`branch_id` = ".$branch_id." AND ptd.`created_by` = ".$user_id."
-                    GROUP BY ptd.`updated_at`";
+                    GROUP BY ptd.`updated_at`, b.`branch_code`, b.`branch_name` ";
             $transaction['status'] = 'succeed';
             $transaction['data'] = 'Customer transaction pass correctly';
             $transaction['output'] = DB::select($sql);
@@ -97,6 +97,75 @@ class LatestTransactionApiController extends Controller
             $transaction['status'] = 'failed';
             $transaction['data'] = 'Customer transaction pass error';
             $transaction['output'] = array();
+        }
+        return response()->json($transaction);
+    }
+
+    public function addTransaction(Request $request) {
+        try {
+            $date = date('Y-m-d');
+            $date_time = date('Y-m-d H:i:s');
+            $branch_id= isset($request->branch_id)?intval($request->branch_id):0;
+            $user_id = isset($request->user_id)?intval($request->user_id):0;
+            $customer_id= isset($request->customer_id)?$request->customer_id:'';
+            $account_id = isset($request->account_id)?$request->account_id:'';
+            $deposit_type = isset($request->deposit_type)?$request->deposit_type:'';
+            $amount = isset($request->amount)?doubleval($request->amount):0.00;
+            $payment_method_id = 1;
+            //add palmtop transaction data
+            $id = DB::table('palmtop_transaction_data')->insertGetId([
+                    'payment_method_id' => $payment_method_id,
+                    'branch_id' => $branch_id,
+                    'customer_id' => $customer_id,
+                    'account_id' => $account_id,
+                    'transaction_type' => $deposit_type,
+                    'transaction_value' => $amount,
+                    'is_enable' => 1,
+                    'status' => 0,
+                    'created_by' => $user_id,
+                    'updated_by' => $user_id,
+                    'created_at' => $user_id,
+                    'updated_at' => $user_id,
+                ]);
+            $invoice_number = 'INV'.sprintf('%04u', $user_id).sprintf('%06u', $id);
+            //add palmtop transaction invoice number
+            DB::table('palmtop_transaction_data')
+            ->where('branch_id', $branch_id)
+            ->where('customer_id', $customer_id)
+            ->where('account_id', $account_id)
+            ->where('id', $id)
+            ->update(['invoice_number' => $invoice_number]);
+
+            //Get last transaction balance
+            $get_balance = DB::table('palmtop_payment_logs')
+                            ->where('branch_id', $branch_id)
+                            ->where('customer_id', $customer_id)
+                            ->where('account_id', $account_id)
+                            ->select('balance_amount');
+            $balance_amount = isset($get_balance[0])?doubleval($get_balance[0]->balance_amount):0.00;
+            $new_balance_amount = number_format($balance_amount + $amount,2,'.','');
+
+            DB::table('palmtop_payment_logs')->insertGetId([
+                'customer_id' => $customer_id,
+                'branch_id' => $branch_id,
+                'account_id' => $account_id,
+                'transaction_data_id' => $id,
+                'transaction_type' => $deposit_type,
+                'transaction_value' => $amount,
+                'balance_amount' => $new_balance_amount,
+                'is_enable' => 1,
+                'status' => 1,
+                'created_by' => $user_id,
+                'updated_by' => $user_id,
+                'created_at' => $date_time,
+                'updated_at' => $date,
+            ]);
+
+            $transaction['status'] = 'succeed';
+            $transaction['data'] = 'Customer transaction pass correctly.('.$invoice_number.')';
+        } catch (\Exception $e) {
+            $transaction['status'] = 'failed';
+            $transaction['data'] = 'Customer transaction pass error';
         }
         return response()->json($transaction);
     }
