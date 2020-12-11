@@ -34,7 +34,7 @@ class ShareController extends Controller
 
     public function buy_shares(Request $request){
 
-       
+
         if(Member::where('customer_id',$request->customer_id)->first()){
             $mem=Member::where('customer_id',$request->customer_id)->first();
             $mem->share_amount+=$request->n_of_shares;
@@ -56,6 +56,7 @@ class ShareController extends Controller
             $transaction_shares['transaction_code']="ST";
             $transaction_shares['transaction_details']=$payment_log['transaction_details'];
             $transaction_shares['customer_id']=$request->customer_id;
+            $transaction_shares['customer_id']=$request->account_id;
             $transaction_shares['branch_id']=$customer->branch_id;
             $transaction_shares['is_enable']=1;
             $transaction_shares['created_by']=Auth::user()->id;
