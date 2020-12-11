@@ -141,9 +141,11 @@ class LatestTransactionApiController extends Controller
                             ->where('branch_id', $branch_id)
                             ->where('customer_id', $customer_id)
                             ->where('account_id', $account_id)
-                            ->select('balance_amount');
+                            ->select('balance_amount')
+                            ->latest()
+                            ->limit(1);
             $balance_amount = isset($get_balance[0])?doubleval($get_balance[0]->balance_amount):0.00;
-            $new_balance_amount = number_format($balance_amount + $amount,2,'.','');
+            $new_balance_amount = number_format(($balance_amount + $amount),2,'.','');
 
             DB::table('palmtop_payment_logs')->insertGetId([
                 'customer_id' => $customer_id,
