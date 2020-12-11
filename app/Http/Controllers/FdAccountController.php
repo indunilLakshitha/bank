@@ -489,4 +489,8 @@ public function fdDeposite(Request $request){
         cash_in_hand_ledger::create($cash_in_hand_ledger->all());
     return response()->json($request);
 }
+public function enableFdPrint($id){
+    FdAccountGeneralInformation::where('fd_account_general_information.account_id', $id)->update(['is_print_enabled'=>1]);
+return redirect()->back();
+}
 }

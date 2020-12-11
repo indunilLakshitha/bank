@@ -68,11 +68,15 @@ class PrintController extends Controller
             ->select('customer_basic_data.*', 'fd_account_general_information.*', 'fd_account_general_information.id as fd_id')
             ->where('fd_account_general_information.account_id', $id)
             ->get();
-        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $amountSpell = ucwords($digit->format($accounts[0]->deposite_amount));
-        $pdf = PDF::loadView('prints.FDreceipt', compact('accounts','amountSpell'))->setPaper('a4', 'portrait');
-        $fileName = $accounts[0]->account_number;
-        return $pdf->stream($fileName . '.pdf');
+            if($accounts[0]->is_print_enabled=="1"){
+                $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+                $amountSpell = ucwords($digit->format($accounts[0]->deposite_amount));
+                $pdf = PDF::loadView('prints.FDreceipt', compact('accounts','amountSpell'))->setPaper('a4', 'portrait');
+                $fileName = $accounts[0]->account_number;
+                FdAccountGeneralInformation::where('fd_account_general_information.account_id', $id)->update(['is_print_enabled'=>0]);
+                return $pdf->stream($fileName . '.pdf');
+            }
+return redirect()->back();
     }
 
     public function passbookBack()
