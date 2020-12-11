@@ -3,26 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\FdAccountGeneralInformation;
+use App\Models\TransactionData;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use NumberFormatter;
 use PDF;
 
 class PrintController extends Controller
 {
+    public function __construct()
+    {
+
+        date_default_timezone_set('Asia/Colombo');
+
+    }
     public function receipt($id)
     {
-        $data = DB::table('account_general_information')
+         $data = DB::table('account_general_information')
             ->leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'account_general_information.customer_id')
             ->leftjoin('transaction_data', 'transaction_data.account_id', 'account_general_information.account_number')
             ->where('account_general_information.account_number', $id)
+            // ->where('transaction_data.created_by',Auth::user()->id)
             ->select('customer_basic_data.created_at', 'customer_basic_data.customer_id',
                     'customer_basic_data.short_name', 'account_general_information.account_number',
-                    'transaction_data.transaction_value','customer_basic_data.full_name'
-                    )
+                    'customer_basic_data.full_name'
+            )
             ->get();
+         $trans=TransactionData::where('created_by',Auth::user()->id)->where('account_id',$id)->orderBy('id','desc')->first();
             $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-            $amountSpell = ucwords($digit->format($data[0]->transaction_value));
-             $pdf = PDF::loadView('prints.reciept', compact('data','amountSpell'))->setPaper('a4', 'portrait');
+            $amountSpell = ucwords($digit->format($trans->transaction_value));
+             $pdf = PDF::loadView('prints.reciept', compact('data','amountSpell','trans'))->setPaper('a4', 'portrait');
         $fileName = $data[0]->short_name;
         return $pdf->stream($fileName . '.pdf');
 
