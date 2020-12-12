@@ -584,6 +584,7 @@ class TransactionReportController extends Controller
 
         }
     }
+
     public function findBtween(Request $request){
 
         $mydate =$request->to;
@@ -628,6 +629,30 @@ class TransactionReportController extends Controller
 
         // return response()->json($select);
     }
+    public function customerLedger()
+    {
+        return view('transaction_report.customer_ledger.index');
+    }
 
+    public function ledgerDetails(Request $request)
+    {
+        if ($request->from == null && $request->to == null) {
+            $data = TransactionData::where('account_id', $request->account_id)
+                ->get();
+        } else {
+            // $data=TransactionData::where('account_id',$request->account_id)
+            //                     ->where('')
+            //                     ->get();
+
+            $data = DB::select("
+            SELECT * FROM transaction_data
+            WHERE
+                created_at BETWEEN '$request->from' AND  '$request->to'
+            AND
+                account_id = '$request->account_id'
+            ");
+        }
+        return response()->json($data);
+    }
 
 }

@@ -15,9 +15,11 @@
     {{ $data[0]->account_number }}
     Normal Savings
     CASH <br>
-    {{ $data[0]->transaction_value }}
+    {{ $trans->transaction_value }}
     {{ $amountSpell}} <br>
-    {{-- {{ $data[0]->account_type }} --}}
+    {{ $trans->transaction_type }}<br>
+    cashier:
+    {{ Auth::user()->name }}
 </body>
 
 </html>

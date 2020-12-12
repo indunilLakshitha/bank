@@ -37,7 +37,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
         Route::get('/dashboard', 'DashboardController@index');
 
         //perm for roles
-       // Route::group(['middleware' => ['permission:view_roles']], function () {
+        Route::group(['middleware' => ['permission:view_roles']], function () {
 
             //roles/index
             Route::get('/roles/index', 'RoleController@index');
@@ -60,10 +60,10 @@ Route::group(['middleware' => 'isBlocked'], function () {
                 Route::get('chnage_role_status', 'RoleController@chnage_role_status');
 
             });
-      //  });
-//
+        });
+
         //perm for perms
-      //  Route::group(['middleware' => ['permission:view_permissions']], function () {
+        Route::group(['middleware' => ['permission:view_permissions']], function () {
 
             //perms/index
             Route::get('/permissions/index', 'PermissionController@index');
@@ -85,7 +85,7 @@ Route::group(['middleware' => 'isBlocked'], function () {
                 Route::get('/permissions/delete/{id}', 'PermissionController@destroy');
             });
 
-      //  });
+        });
 
         #view all users
         Route::get('/users/index', 'UserController@index');
@@ -466,6 +466,7 @@ Route::get('/findRange', 'TransactionReportController@findBtween');
     Route::get('/member', 'MemberController@create');
     Route::post('/member_creation', 'MemberController@member_creation');
     Route::get('/add_nominee_member_creation', 'MemberController@add_nominee_member_creation');
+    Route::get('/remove_ext_nominee_member_creation', 'ExternalNomimiesController@remove_ext_nominee_member_creation');
     Route::get('/remove_nominee_member_creation', 'MemberController@remove_nominee_member_creation');
     Route::get('/close', 'MemberController@close');
 
@@ -518,7 +519,14 @@ Route::get('/findinstructorcid','FdAccountController@findByCid');
 Route::get('/findinstructornic','FdAccountController@findByNic');
 Route::post('/addextinvfd','FdAccountController@addExtInvFd');
 Route::post('/addextnmnfd','FdAccountController@addExtNmnFd');
+Route::get('/approved','FdAccountController@approved');
 Route::get('/members_for_share_buy','FdAccountController@membersForShareBuy');
+Route::get('/member_for_fd','FdAccountController@memberForfd');
+Route::get('/fd_member_for_wnd','FdAccountController@fdMembersForWnD');
+Route::get('/normaldepositefd','FdAccountController@fdDeposite');
+Route::get('/enablefdprint/{id}','FdAccountController@enableFdPrint');
+Route::get('/customerledger','TransactionReportController@customerLedger');
+Route::post('/getledger','TransactionReportController@ledgerDetails');
 
 
 
@@ -533,4 +541,11 @@ Route::get('/passbook-front/{id}', 'PrintController@passbookFront');
 Route::get('/FDreceipt/{id}', 'PrintController@FDreceipt');
 
 Route::get('/passbook-back', 'PrintController@passbookBack');
+
+
+//----------------------------------------------------------palmtop and branch transactions-----------------
+Route::get('/bankvsheadoffice','BranchvsHqTransferController@index');
+Route::post('/bankvsheadoffice/transfer','BranchvsHqTransferController@transfer');
+Route::get('/frompalmtop','BranchvsHqTransferController@palmtop');
+Route::post('/submit_palmtop_data','PalmtopTransferController@submit_palmtop_data');
 Auth::routes();

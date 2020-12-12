@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Member/Non-Member</label>
+                                <label class="col-sm-2 col-form-label">Customer Status</label>
                                 <div class="col-sm-2">
                                     <label class="form-check-label-bold" style="background-color: #ffff00;">
                                         @if(intval($view_1->member) == 0)
@@ -66,7 +66,7 @@
                                         @else
                                         <input name="customer_status_id" id="c" class="form-control" value="MEMBER">
                                         @endif
-                                    </label> -
+                                    </label>
                                 </div>
                             </div>
                             <div class="row">

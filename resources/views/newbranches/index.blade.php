@@ -177,13 +177,26 @@
                                     <th>ACTION</th>
                                 </thead>
                                 <tbody id="results_tbody">
+                                    @role('Super Admin')
                                     <?php
-                                     $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')
-                                     ->where('customer_basic_data.status','1')
-                                     ->where('customer_basic_data.account_category_id','1')
-                                     ->where('branch_id',Auth::user()->branh_id)
-                                     ->get();
+                                    $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')
+                                    ->where('customer_basic_data.status','1')
+                                    ->where('customer_basic_data.account_category_id','1')
+                                    // ->where('branch_id',Auth::user()->branh_id)
+                                    ->get();
+
+                                    // echo "super"
+                                   ?>
+                                    @else
+                                    <?php
+                                        $members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')
+                                        ->where('customer_basic_data.status','1')
+                                        ->where('customer_basic_data.account_category_id','1')
+                                        ->where('branch_id',Auth::user()->branh_id)
+                                        ->get();
+                                        // echo "other"
                                     ?>
+                                    @endrole
                                     @isset($members)
                                     @foreach ($members as $member)
                                     <tr>

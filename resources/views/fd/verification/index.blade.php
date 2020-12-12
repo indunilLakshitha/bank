@@ -50,7 +50,9 @@
                                         <th><a href="{{url('/fd/view/'.$member->account_id)}}" rel="tooltip"
                                                 class="btn btn-sm btn-info btn-round">VIEW</a>
                                             <a href="{{url('/fd/verification/'.$member->account_id)}}" rel="tooltip"
-                                                class="btn btn-sm btn-primary btn-round"><i class="material-icons">check</i> <span class="mx-1">Verify</span></a>
+                                                class="btn btn-sm btn-primary btn-round"><i
+                                                    class="material-icons">check</i> <span
+                                                    class="mx-1">Verify</span></a>
                                         </th>
                                     </tr>
                                     @endforeach

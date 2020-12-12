@@ -126,7 +126,9 @@ class OpenSavingsAccountController extends Controller
                     INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
                     WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1 AND cbd.member != 1";
-        } else if ($req_type == 3 ){
+        }
+        //only member
+        else if($req_type == 3 ) {
             $sql = "SELECT DISTINCT
                 cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
                 csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
@@ -152,10 +154,10 @@ class OpenSavingsAccountController extends Controller
                 csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
             FROM customer_basic_data AS cbd
             INNER JOIN branches AS b ON b.id = cbd.branch_id
-            INNER JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
+            LEFT JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
             INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
             LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
-            WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 1";
+            WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1";
         }
         $user_role_id = intval(Auth::user()->roles[0]->id);
         $branch_id = Auth::user()->branh_id;
@@ -170,10 +172,10 @@ class OpenSavingsAccountController extends Controller
     }
      public function search_by_full_name_trs(Request $request)
     {
-       $data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')
+        $data = CustomerBasicData::leftjoin('customer_status_dates','customer_status_dates.customer_id','customer_basic_data.customer_id')
                                     ->leftjoin('transaction_data','transaction_data.customer_id','customer_basic_data.customer_id')
                                     ->distinct('customer_basic_data.customer_id','customer_basic_data.full_name','customer_basic_data.id',
-                                    'customer_basic_data.identification_number','customer_basic_data.non_member','transaction_data.*')
+                                    'customer_basic_data.identification_number','customer_basic_data.non_member')
                                     ->where('full_name',$request->text)
                                     ->where('customer_basic_data.is_enable',1)
                                     ->where('customer_basic_data.status',1)
@@ -193,6 +195,7 @@ class OpenSavingsAccountController extends Controller
                                     ->where('customer_basic_data.status',1)
                                     ->where('non_member',0)
                                     ->get();
+        $sql = "";
 
         return response()->json($data);
     }

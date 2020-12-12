@@ -38,6 +38,8 @@ class CustomerBasicData extends Model
         'fax_number',
         'email_address',
         'status',
-        'epf_no'
+        'epf_no',
+        'is_hq',
+        'is_branch',
     ];
 }

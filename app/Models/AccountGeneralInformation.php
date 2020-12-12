@@ -32,7 +32,9 @@ class AccountGeneralInformation extends Model
         'sign_status',
         'customer_rating ',
         'has_account_statement ',
-        'branch_id'
+        'branch_id',
+        'is_hq',
+        'is_branch'
 
     ];
 }

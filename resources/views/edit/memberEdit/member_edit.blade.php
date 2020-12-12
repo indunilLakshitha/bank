@@ -135,8 +135,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <label class="col-sm-3 col-form-label label-checkbox">Type(s)</label>
                                 <div class="col-sm-6 checkbox-radios">

@@ -19,15 +19,15 @@
                                         <div class="form-group">
                                             <input
                                                 oninput="toCap(this.value, this.id), member_search_for_fd_byfname(this.value)"
-                                                type="text" class="form-control js-example-data-ajax"
-                                                id="client_full_name_search_modal" placeholder="Enter Full Name">
+                                                type="text" class="form-control js-example-data-ajax" id="mmodel"
+                                                placeholder="Enter Full Name">
                                         </div>
                                     </div>
                                     <div class="col">
                                         {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                        <button class="btn  btn-info btn" onclick="member_list.innerHTML = null">
+                                        <button class="btn  btn-info btn" onclick="member_list.innerHTML = null,clearr()">
                                             Clear Results </button>
 
                                     </div>
@@ -43,18 +43,14 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_member_fd(this.value)" type="text"
-                                                class="form-control js-example-data-ajax"
+                                                class="form-control js-example-data-ajax" id="cc"
                                                 placeholder="Enter Customer ID">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <table class="table">
-                                <tbody id="member_list" class="d-none"></tbody>
-                            </table>
-                        </div>
+
 
                         <div class="row mb-5 ml-3">
                             <label class="col-sm-2 col-form-label ">ID Number</label>
@@ -63,7 +59,8 @@
                                     <div class="col-7">
                                         <div class="form-group">
                                             <input type="text" name="identification_number" id="identification_number"
-                                                class="form-control" placeholder="">
+                                                class="form-control" placeholder=""
+                                                oninput="get_member_fd_by_nic(this.value)">
 
                                         </div>
                                     </div>
@@ -75,6 +72,11 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <table class="table">
+                                <tbody id="member_list" class="d-none"></tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -88,7 +90,12 @@
     let customer_d;
 
     // let is_customer_id_2 = false;
-
+function clearr(){
+    console.log('dsad')
+    mmodel.value=null
+    cc.value=null
+    identification_number=null
+}
 
     function member_search_for_fd_byfname(value){
         // console.log(is_customer_id_2);
@@ -98,10 +105,10 @@
         }
         $.ajax({
         type: 'GET',
-        url: '{{('/search_by_full_name')}}',
-        data: {text:value} ,
+        url: '{{('/member_for_fd')}}',
+        data: {text:value,type:'cfn'} ,
         success: function(data){
-            // console.log(data);
+            console.log(data);
             return member_results_table_view(data)
         }
     })
@@ -114,12 +121,28 @@
         }
         $.ajax({
         type: 'GET',
-        url: '{{('/search_by_customer_id')}}',
-        data: {text:value} ,
+        url: '{{('/member_for_fd')}}',
+        data: {text:value,type:'cid'} ,
         success: function(data){
             // console.log(data);
 
-            return set_modal_serach_by_name_results(data)
+            return member_results_table_view(data)
+        }
+    })
+    }
+    function get_member_fd_by_nic(value){
+        console.log(value);
+        if(value === ''){
+            member_list.innerHTML = ''
+        }
+        $.ajax({
+        type: 'GET',
+        url: '{{('/member_for_fd')}}',
+        data: {text:value,type:'nic'} ,
+        success: function(data){
+            // console.log(data);
+
+            return member_results_table_view(data)
         }
     })
     }
@@ -134,7 +157,7 @@ function member_results_table_view(data){
 
     data.forEach(i => {
 
-        let member_status = i.non_member===1 ? 'Member' : 'Non-member'
+        let member_status = i.member=="1" ? 'Member' : 'Non-member'
         let html = `
         <tr id='${i.id}'>
             <td>${i.customer_id}</td>
@@ -173,11 +196,7 @@ function set_member_fd(x){
                 }
 
 
-<<<<<<< HEAD
-
-=======
             $('#mmodel').modal('hide');
->>>>>>> 55ead8c7ddb3cfaa83dd556e75c1d160bf481d94
 
             //  return console.log(cus);
         }

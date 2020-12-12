@@ -14,7 +14,7 @@ class SearchController extends Controller
         SELECT DISTINCT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
-            customer_basic_data.id,
+            account_general_information.id,
             customer_basic_data.identification_number,
             customer_basic_data.non_member,
             customer_basic_data.sign_img,
@@ -53,7 +53,7 @@ class SearchController extends Controller
         SELECT DISTINCT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
-            customer_basic_data.id,
+            account_general_information.id,
             customer_basic_data.identification_number,
             customer_basic_data.sign_img,
             customer_basic_data.non_member,
@@ -90,7 +90,7 @@ class SearchController extends Controller
         SELECT DISTINCT
             customer_basic_data.customer_id,
             customer_basic_data.full_name,
-            customer_basic_data.id,
+            account_general_information.id,
             customer_basic_data.identification_number,
             customer_basic_data.non_member,
             account_general_information.account_balance,
