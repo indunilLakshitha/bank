@@ -29,20 +29,22 @@ class MainBranchController extends Controller
     public function store(Request $request){
 
         $branche=  CustomerBasicData::create($request->all());
-        $count=count(CustomerBasicData::all())+1;
+        $count=count(CustomerBasicData::where('branch_id',$request->branch_id)->get())+1;
         $cus_count = '0000' .$count ;
-         $cus_id = substr($cus_count, -3);
+         $cus_ = substr($cus_count, -3);
+         $cus_id = 'B-'.$cus_;
         $branche->customer_id=$cus_id;
         $branche->is_enable=1;
         $branche->customer_status_id = 1;
         $branche->status=1;
+        $branche->is_branch=1;
         $branche->save();
 
         $address=$request;
         $address['customer_id']=$branche->customer_id;
          AddressData::create($address->all());
         return redirect()->route('newbranches.index');
-        
+
     }
 
 

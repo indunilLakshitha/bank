@@ -244,7 +244,6 @@
                             </a>
                         </li>
                         @endcan
-
                         @can('fd_withdrawal')
                         <li class="nav-item ">
                             <a class="nav-link" href="/deposits/fd-with">
@@ -259,9 +258,6 @@
                                 <span class="sidebar-normal">Branch Cash In-out</span>
                             </a>
                         </li>
-
-
-
                     </ul>
                 </div>
             </li>
@@ -332,6 +328,32 @@
                                 <span class="sidebar-normal">Customer Ledger</span>
                             </a>
                         </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#schema">
+                    <i class="material-icons">book_online</i>
+                    <p> Transfers
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="schema">
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/bankvsheadoffice">
+                                <span class="sidebar-mini"> <i class="material-icons">api</i> </span>
+                                <span class="sidebar-normal">Branch vs HQ</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/frompalmtop">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">From Palmtop</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </li>
