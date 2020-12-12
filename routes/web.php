@@ -533,4 +533,9 @@ Route::get('/receipt/{id}', 'PrintController@receipt');
 Route::get('/passbook-front/{id}', 'PrintController@passbookFront');
 Route::get('/FDreceipt/{id}', 'PrintController@FDreceipt');
 Route::get('/passbook-back', 'PrintController@passbookBack');
+
+
+//----------------------------------------------------------palmtop and branch transactions-----------------
+Route::get('/bankvsheadoffice','BranchvsHqTransferController@index');
+Route::get('/frompalmtop','BranchvsHqTransferController@palmtop');
 Auth::routes();
