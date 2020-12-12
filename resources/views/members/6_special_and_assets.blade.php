@@ -59,14 +59,14 @@
                             <label class="col-sm-2 col-form-label">Item</label>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" name="asset_description" id="item" class="form-control">
+                                    <input type="text" required name="asset_description" id="item" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Value(Rs.)</label>
                             <div class="col-sm-3">
-                                <input type="number" name="asset_qty" id="value" class="form-control">
+                                <input type="number" required name="asset_qty" id="value" class="form-control">
                             </div>
                             {{-- <div class="col-sm-3">
                                     <select name="" id="" class="form-control">
@@ -122,6 +122,14 @@
         // </td>
         // </tr>
         // `
+        if(item.value == ""){
+            item.focus();
+            return false;
+        }else if(value.value == ""){
+            value.focus();
+            return false;
+        }
+        else{}
 
         $.ajax({
         type: 'POST',

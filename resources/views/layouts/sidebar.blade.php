@@ -112,7 +112,14 @@
                                 <span class="sidebar-normal">View Branches </span>
                             </a>
                         </li>
+
                         @endcan
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/branchCashInOut1">
+                                <span class="sidebar-mini"> <i class="material-icons">request_quote</i> </span>
+                                <span class="sidebar-normal">Branch Cash In-out</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -413,25 +420,25 @@
                 </a>
                 <div class="collapse" id="share">
                     @can('share_buy')
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{route('shares.buy')}}">
-                                <span class="sidebar-mini"> <i class="material-icons">shopping_cart</i> </span>
-                                <span class="sidebar-normal">Share Buy</span>
-                            </a>
-                        </li>
-                    </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{route('shares.buy')}}">
+                                    <span class="sidebar-mini"> <i class="material-icons">shopping_cart</i> </span>
+                                    <span class="sidebar-normal">Share Buy</span>
+                                </a>
+                            </li>
+                        </ul>
                     @endcan
                     @can('share_transfer')
 
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{route('shares.transfer')}}">
-                                <span class="sidebar-mini"> <i class="material-icons">cached</i> </span>
-                                <span class="sidebar-normal">Share Transfer</span>
-                            </a>
-                        </li>
-                    </ul>
+                        <ul class="nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{route('shares.transfer')}}">
+                                    <span class="sidebar-mini"> <i class="material-icons">cached</i> </span>
+                                    <span class="sidebar-normal">Share Transfer</span>
+                                </a>
+                            </li>
+                        </ul>
                     @endcan
                     @can('share_history')
 

@@ -128,12 +128,35 @@
                         <div class="row">
                             <div class="col-7">
                                 <div class="form-group">
-                                    <input type="text" readonly id="nominee_id" class="form-control">
+                                    <input type="text" required readonly id="nominee_id" class="form-control">
                                 </div>
                             </div>
+
+                        </div>
+                    </div>
+                    <label class="col-sm-2 col-form-label">Relationship</label>
+                    <div class="col-sm-10">
+                        <div class="row">
                             <div class="col-4">
+                                <div class="form-group">
+                                    <select name="relation_type" id="relation_type" class="form-control"
+                                        data-style="select-with-transition" required>
+                                        <option value="">select</option>
+                                        <option value="Mother">Mother</option>
+                                        <option value="Father">Father</option>
+                                        <option value="Wife">Wife</option>
+                                        <option value="Husband">Husband</option>
+                                        <option value="Sister">Sister</option>
+                                        <option value="Brother">Brother</option>
+                                        <option value="Son">Son</option>
+                                        <option value="Daughter">Daughter</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+ <div class="col-4">
                                 <button class="btn btn-primary btn"
-                                    onclick="add_nominee(nominee_id.value, customer_id.value)">
+                                    onclick="add_nominee(nominee_id.value, customer_id.value,relation_type.value)">
                                     Add Nominee</button>
 
                             </div>
@@ -148,7 +171,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
+                <a type="button" onclick="close()" class="btn btn-rose" data-dismiss="modal">Close</a>
             </div>
         </div>
     </div>
@@ -231,14 +254,15 @@ function nominees_set_cus_details_from_modal(id){
     })
 }
 
-function add_nominee(nominee_id, member_id){
-    //  console.log(member_id);
+function add_nominee(nominee_id, member_id,relation_type){
+     console.log(relation_type);
         $.ajax({
             type: 'GET',
             url: '{{('/add_nominee_member_creation')}}',
             data: {
                 nominee_id,
-                member_id
+                member_id,
+                relation_type
             },
             success: function(data){
                 console.log(data)
@@ -260,6 +284,7 @@ function add_nominee(nominee_id, member_id){
         let html = `
         <tr id='${i.id}' >
             <td>${i.nominee_id}</td>
+            <td>${i.relation_type}</td>
         <td>
             <button type="button"
             onclick=
@@ -281,6 +306,22 @@ function add_nominee(nominee_id, member_id){
         $.ajax({
             type: 'GET',
             url: '{{('/remove_nominee_member_creation')}}',
+            data: {
+               id
+            },
+            success: function(data){
+                console.log(data)
+                return
+
+            },
+
+        })
+    }
+     function close(){
+
+       $.ajax({
+            type: 'GET',
+            url: '{{('/close')}}',
             data: {
                id
             },

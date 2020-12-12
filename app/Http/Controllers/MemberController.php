@@ -241,5 +241,11 @@ class MemberController extends Controller
         return response()->json('Nominee Removed');
 
     }
+    public function close(Request $request){
+        MemberCreationNominee::find($request->id)->delete();
+
+        return redirect('/member');
+
+    }
 
 }

@@ -18,6 +18,7 @@ class TransactionData extends Model
                             'updated_by',
                             'created_at',
                             'updated_at',
+                            'is_intern_transaction',
                             'balance_value'
                         ];
 }

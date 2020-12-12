@@ -49,7 +49,7 @@
                                         <option value="Wife">Wife</option>
                                         <option value="Husband">Husband</option>
                                         <option value="Sister">Sister</option>
-                                        <option value="Husband">Brother</option>
+                                        <option value="Brother">Brother</option>
                                         <option value="Son">Son</option>
                                         <option value="Daughter">Daughter</option>
                                         <option value="Other">Other</option>
@@ -98,6 +98,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                <a onclick="addExternal()" class="btn btn-rose">Add</a>
+                <a href="/member" type="button" class="btn btn-rose" data-dismiss="modal">Done</a>
+            </div>
                 <div class="row">
                     <table class="table">
                         <tbody id="show_ext_nominees_tbody" class="d-none"></tbody>
@@ -106,10 +110,7 @@
 
 
             </div>
-            <div class="modal-footer">
-                <a onclick="addExternal()" class="btn btn-rose">Add</a>
-                <button type="button" class="btn btn-rose" data-dismiss="modal">Close</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -122,7 +123,8 @@
     console.log(cus_name.value);
     addr=address.value
     nicc=nic.value
-    relation_type=relation_type.value
+    $( "#relation_type option:selected" ).text();
+    var relation_type = document.querySelector('#relation_type');
    con=contact_no.value
       $.ajax({
           type: 'POST',
@@ -133,7 +135,7 @@
             'address':addr,
             'contact_no':con,
             'nic':nicc,
-            'relation_type':relation_type
+            'relation_type':relation_type.value
 
 
           },

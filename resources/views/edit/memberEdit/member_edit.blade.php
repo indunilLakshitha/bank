@@ -303,6 +303,19 @@
                                     @endisset
                                 </div>
                             </div>
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label">EPF No</label>
+                                <div class="col-sm-6">
+                                    @isset($view_1->epf_no)
+                                    <div class="form-group">
+                                        <div class="col-sm-10">
+                                            <input type="text" name="epf_no"  class="form-control" value="{{ $view_1->epf_no}}">
+                                        </div>
+                                    </div>
+                                    @endisset
+                                </div>
+
+                            </div>
 
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Telephone No</label>
@@ -562,6 +575,7 @@
 </div>
     </div>
 </div> -->
+
 @if(!empty($view_4))
    <div class="card col-10 " style="border: solid">
 <div class="card">
@@ -667,7 +681,7 @@
                                 <label class="col-sm-3 col-form-label">Special Information</label>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <textarea name="asset_description"  id="" cols="30" rows="12" placeholder="{{ isset($view_6->asset_description)?$view_6->asset_description:''}}"></textarea>
+                                        <textarea name="asset_description"  id="" cols="30" rows="12" placeholder="{{ isset($view_6->special_information)?$view_6->asset_description:''}}"></textarea>
                                     </div>
                                 </div>
                             </div>

@@ -34,28 +34,41 @@
                             <div class="pull-right col-2" value="">
                                 <input type="date" class="form-control datepicke" required id="dateTo">
                             </div>
-                            @can('create_roles')
+                            @hasanyrole('Super Admin|Manager')
                             <label for="">USER:</label>
                             <div class="pull-right col-2">
-                                <select name="user" class="form-control" required id="user">
-                                    <option value="">--Select--</option>
+                                <select name="select_branch1" class="form-control" id="user">
+                                    <option value="" >--Select--</option>
                                     @isset($users)
                                     @foreach ($users as $user)
                                     @if(intval($user->status) == 1)
-                                    <option value="{{$user->id}}">{{$user->employee_no}}</option>
+                                        <option value="{{$user->id}}">{{$user->employee_no}}</option>
+                                        <option value="{{$user->id}}" >{{$user->email}}</option>
                                     @endif
                                     @endforeach
                                     @endisset
                                 </select>
                             </div>
-                            @endcan
-                            <!-- <label for="">BRANCH:</label>
+
+                            <label for="">BRANCH:</label>
                             <div class="col-1">
-                                <input class="form-check" type="checkbox" value="">
+                                <input class="form-check" type="checkbox" value="1" id="branch">
                                 <span class="form-check-sign">
                                 <span class="check"></span>
                             </span>
-                            </div> -->
+                            </div>
+                            @else
+
+                                <select name="select_branch1" hidden class="form-control" id="user">
+                                    <option value="" >--Select--</option>
+                                </select>
+
+                            <div class="col-1">
+                                <input class="form-check" hidden type="checkbox" value="" id="branch">
+
+                            </span>
+                            </div>
+                            @endhasanyrole
                             <div class=" col-1 ">
                                 <button type="button" onclick="search(this)" class="btn btn-info"
                                     id="search">Search</button>
@@ -132,7 +145,7 @@
     }
 
     function show_data(data){
-
+//console.log(data)
         datatables_body.innerHTML = ''
 
         data.forEach(i => {
@@ -141,7 +154,7 @@
                 <td>${i.customer_id}</td>
                 <td>${i.name_in_use}</td>
                 <td>${i.account_number}</td>
-                <td>${i.account_type}</td>
+                <td>${i.full_name}</td>
                 <td>${i.transaction_value}</td>
                 <td>0.00</td>
                 <td>0.00</td>

@@ -13,7 +13,7 @@ class CustomerAsset extends Model
         'is_enable',
         'created_by',
         'updated_by',
-        '',
+        'special_information',
         '',
         '',
         '',

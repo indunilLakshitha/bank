@@ -28,6 +28,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <input name="customer_id" type="text" class="form-control" id="customer_id">
+                                    <input name="account_id" hidden type="text" class="form-control" id="account_id">
                                 </div>
                             </div>
                             <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#noticeModal"></a>
