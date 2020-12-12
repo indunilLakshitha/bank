@@ -407,7 +407,6 @@
                                     <span class="fileinput-new">Choose File</span>
                                     <input type="file" name="sign_img" id="sign_img" />
                                     <div id="img_view"></div>
-                                    <img src="{{env('IMAGE_LOCATION').$cus->sign_img}}" alt="user_auth" class="user-auth-img img-circle"/>
 
                                     <span class="user-online-status">
                                     </span>

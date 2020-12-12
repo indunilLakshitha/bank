@@ -61,6 +61,7 @@
                 <div class="form-group">
                     <input type="text" readonly class="form-control"  id="full_name">
                     <input type="text" hidden class="form-control"  name="customer_id"  id="customer_id">
+                    <input type="text" hidden class="form-control" readonly name="account_id" id="account_id">
                 </div>
             </div>
             {{-- <button class="btn fa fa-search btn-info btn-sm" onclick="getCustomersByAcoountId()"></button> --}}

@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col">
                             <a  rel="tooltip" class="btn btn-sm btn-primary btn-round pull-left">
-                                <i class="material-icons">add</i> <span class="mx-1">ගෙවීම්</span>
+                                <i class="material-icons">add</i> <span class="mx-1">ලැබීම්</span>
                             </a>
                         </div>
                         <div class="col">

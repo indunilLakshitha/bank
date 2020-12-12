@@ -93,7 +93,7 @@
         } else {
             $.ajax({
                 type: 'GET',
-                url: '{{('/search_by_full_name/trn')}}',
+                url: '{{('/search_by_full_name/4')}}',
                 data: {text:value} ,
                 success: function(data){
                     //console.log(data);
@@ -109,7 +109,7 @@
         } else {
             $.ajax({
                 type: 'GET',
-                url: '{{('/search_by_customer_id/1')}}',
+                url: '{{('/search_by_customer_id/4')}}',
                 data: {text:value} ,
                 success: function(data){
                     //console.log(data);
@@ -125,7 +125,7 @@
         } else {
             $.ajax({
                 type: 'GET',
-                url: '{{('/search_by_nic_id/1')}}',
+                url: '{{('/search_by_nic_id/4')}}',
                 data: {text:value} ,
                 success: function(data){
                     //console.log(data);

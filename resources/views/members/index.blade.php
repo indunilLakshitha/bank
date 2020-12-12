@@ -149,13 +149,14 @@
                                             FROM customer_status_dates AS csd
                                             LEFT JOIN customer_basic_data AS cbd ON cbd.customer_id = csd.customer_id
                                             LEFT JOIN iedentification_types AS it ON it.id = cbd.identification_type_id
-                                            WHERE `status` = 1 ";
-                                    $user_data = Auth::user();
-                                    if(intval($user_data->roles[0]->id) != 1) {
-                                        $branch_id = $user_data->branh_id;
-                                        $sql .= " AND cbd.branch_id = ". $branch_id;
-                                    }
-                                    $members = DB::select($sql);
+                                            WHERE `status` = 1
+                                            WHERE  `is_enable` = 1";
+                                    // $user = Auth::user();
+                                    // if(intval($user->roles[0]->id) != 1) {
+                                    //     $branch_id = $user->branh_id;
+                                    //     $sql .= " AND cbd.branch_id = ". $branch_id;
+                                    // }
+                                    // $members = DB::select($sql);
                                      /*$members=\App\Models\CustomerBasicData::leftjoin('iedentification_types', 'iedentification_types.id', 'customer_basic_data.identification_type_id')
                                      ->where('customer_basic_data.status','1')
                                      ->where('branch_id',Auth::user()->branh_id)

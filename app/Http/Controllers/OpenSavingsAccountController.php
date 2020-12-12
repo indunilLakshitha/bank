@@ -136,8 +136,18 @@ class OpenSavingsAccountController extends Controller
             INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
             LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
             WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status != 3";
-        }else{
+        } else if ($req_type == 4 ){
             $sql = "SELECT DISTINCT
+                cbd.customer_id, cbd.full_name, agi.id, cbd.identification_number, cbd.non_member, cbd.member,
+                csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
+            FROM customer_basic_data AS cbd
+            INNER JOIN branches AS b ON b.id = cbd.branch_id
+            LEFT JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
+            INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+            LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
+            WHERE cbd.full_name LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1";
+        }else{
+             $sql = "SELECT DISTINCT
                 cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
                 csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
             FROM customer_basic_data AS cbd
@@ -240,9 +250,19 @@ class OpenSavingsAccountController extends Controller
                     INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
                     WHERE cbd.customer_id LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1 AND cbd.member = 1";
-        } else {
+        } else if($req_type == 4 ){
             $sql = "SELECT DISTINCT
-            cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
+            cbd.customer_id, cbd.full_name, cbd.identification_number ,agi.id,cbd.non_member, cbd.member,
+            csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
+        FROM customer_basic_data AS cbd
+        INNER JOIN branches AS b ON b.id = cbd.branch_id
+        LEFT JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
+        INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+        LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
+        WHERE cbd.customer_id LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1";
+        }else{
+            $sql = "SELECT DISTINCT
+            cbd.customer_id, cbd.full_name, cbd.identification_number ,agi.id,cbd.non_member, cbd.member,
             csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
         FROM customer_basic_data AS cbd
         INNER JOIN branches AS b ON b.id = cbd.branch_id
@@ -297,9 +317,19 @@ class OpenSavingsAccountController extends Controller
                     INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
                     LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
                     WHERE cbd.identification_number LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1 AND cbd.member = 1";
-        } else {
+        } else if($req_type == 4 ){
             $sql = "SELECT DISTINCT
-                        cbd.customer_id, cbd.full_name, cbd.id, cbd.identification_number, cbd.non_member, cbd.member,
+                        cbd.customer_id, cbd.full_name, agi.id, cbd.identification_number, cbd.non_member, cbd.member,
+                        csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
+                    FROM customer_basic_data AS cbd
+                    INNER JOIN branches AS b ON b.id = cbd.branch_id
+                    LEFT JOIN account_general_information AS agi ON agi.customer_id = cbd.customer_id
+                    INNER JOIN customer_status_dates AS csd ON csd.customer_id = cbd.customer_id
+                    LEFT JOIN members AS m ON m.customer_id = cbd.customer_id
+                    WHERE cbd.identification_number LIKE '%$request->text%' AND cbd.is_enable = 1 AND cbd.status = 1";
+        }else{
+            $sql = "SELECT DISTINCT
+                        cbd.customer_id, cbd.full_name, agi.id, cbd.identification_number, cbd.non_member, cbd.member,
                         csd.date_of_birth, b.branch_code, m.share_amount, agi.account_balance, agi.account_number
                     FROM customer_basic_data AS cbd
                     INNER JOIN branches AS b ON b.id = cbd.branch_id
@@ -358,7 +388,7 @@ class OpenSavingsAccountController extends Controller
 
     public function product_details(Request $request)
     {
-       return $prod_data = ProductData::create($request->all());
+        $prod_data = ProductData::create($request->all());
         $customer_id = AccountGeneralInformation::find($request->account_id)->customer_id;
         $cbs = CustomerBasicData::where('customer_id',$customer_id)->first();
         if($cbs->customer_status_id == 1){
