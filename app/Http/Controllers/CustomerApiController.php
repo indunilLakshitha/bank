@@ -20,10 +20,10 @@ class CustomerApiController extends Controller
             $search_data = isset($request->search_data)?intval($request->search_data):'';
 
             $sql = "SELECT cbd.`id`, cbd.`customer_id`,cbd.`full_name`, cbd.`identification_number`, agi.`account_number`,agi.`account_balance`,
-                agi.`plam_top_balance`
-                FROM `customer_basic_data` AS cbd
-                INNER JOIN `account_general_information` AS agi ON agi.`customer_id` = cbd.`customer_id`
-                WHERE cbd.`branch_id` = ".$branch_id." AND cbd.`is_enable` = 1 AND cbd.`status` < 2 AND agi.`status` = 1 AND agi.`is_enable` = 1";
+                    agi.`plam_top_balance`
+                    FROM `customer_basic_data` AS cbd
+                    INNER JOIN `account_general_information` AS agi ON agi.`customer_id` = cbd.`customer_id`
+                    WHERE cbd.`branch_id` = ".$branch_id." AND cbd.`is_enable` = 1 AND cbd.`status` < 2 AND agi.`status` = 1 AND agi.`is_enable` = 1";
             if($search_data != '' && $search_data != null){
                 $sql .= "(cbd.`full_name` LIKE '%".$search_data."%' OR agi.`account_number` LIKE '%".$search_data."%' )";
             }
