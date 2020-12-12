@@ -93,6 +93,24 @@ class LatestTransactionApiController extends Controller
             $transaction['status'] = 'succeed';
             $transaction['data'] = 'Customer transaction pass correctly';
             $transaction['output'] = DB::select($sql);
+            //dd(sizeof($transaction['output']),$transaction['output']);
+            $pro = 0;
+            //$data = array();
+            foreach($transaction['output'] AS $tran){
+                //dd($tran->transaction_date);
+                $transaction_date = $tran->transaction_date;
+                $sql1 = "SELECT cbd.`full_name`, ptd.`customer_id`, ptd.`account_id`, ptd.`transaction_value`,  ptd.`created_at`, ptd.`invoice_number`,
+                        ptd.`status`,IF(ptd.`status` = 1, 'Transaction Completed', IF(ptd.`status` = 0, 'Pending Transaction', 'Transaction Decliend')) AS 'status'
+                        FROM `palmtop_transaction_data` AS ptd
+                        INNER JOIN `customer_basic_data` AS cbd ON cbd.`customer_id` = ptd.`customer_id`
+                        WHERE ptd.`is_enable` = 1 AND ptd.`created_by` = ".$user_id."
+                        AND ptd.`updated_at` = '".$transaction_date."'";
+                $transaction['output'][$pro]->data = DB::select($sql1);
+                //$data[$pro]['date'] = $transaction_date;
+                $pro++;
+            }
+            //dd($data);
+            //$transaction['output']['data'] = $data;
         } catch (\Exception $e) {
             $transaction['status'] = 'failed';
             $transaction['data'] = 'Customer transaction pass error';
@@ -168,7 +186,7 @@ class LatestTransactionApiController extends Controller
 
             $sql = "UPDATE `account_general_information`
                     SET `plam_top_balance` = (`plam_top_balance` + ".$amount.")
-                    WHERE `customer_id` = ".$branch_id." AND `account_number` = ".$account_id." AND `branch_id` =".$branch_id;
+                    WHERE `customer_id` = '".$customer_id."' AND `account_number` = '".$account_id."' AND `branch_id` =".$branch_id;
             DB::update($sql);
             $transaction['status'] = 'succeed';
             $transaction['data'] = 'Customer transaction pass correctly.('.$invoice_number.')';
@@ -180,14 +198,15 @@ class LatestTransactionApiController extends Controller
         return response()->json($transaction);
     }
 
-    public function getCustomerAccounts() {
+    public function getCustomerAccounts(Request $request) {
         try {
             $branch_id= isset($request->branch_id)?intval($request->branch_id):0;
             $user_id = isset($request->user_id)?intval($request->user_id):0;
             $customer_id = isset($request->customer_id)?intval($request->customer_id):0;
-            $sql = "SELECT agi.`account_number`, `account_balance`, `plam_top_balance`
+            $sql = "SELECT agi.`account_number`, agi.`account_balance`, agi.`plam_top_balance`
                     FROM `account_general_information` AS agi
-                    WHERE `branch_id` = ".$branch_id." AND `customer_id` = ".$customer_id;
+                    WHERE agi.`branch_id` = ".$branch_id." AND agi.`customer_id` = ".$customer_id;
+
             $account_data['status'] = 'succeed';
             $account_data['data'] = 'Customer account data pass correctly';
             $account_data['output'] = DB::select($sql);
