@@ -17,8 +17,8 @@
                 </a>
             </li> --}}
 
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+            <li class="nav-item active">
+                <a class="nav-link" data-toggle="collapse" href="#pagesExamples" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">account_circle</i>
                     <p> Users
                         <b class="caret"></b>
@@ -56,7 +56,7 @@
             </li>
 
             <li class="nav-item  ">
-                <a class="nav-link" data-toggle="collapse" href="#members">
+                <a class="nav-link" data-toggle="collapse" href="#members" >
                     <i class="material-icons">account_box</i>
                     <p> Customers
                         <b class="caret"></b> </p>

@@ -81,6 +81,9 @@
 <script src={{asset("mat_ui/js/material-dashboard.js?v=2.1.2")}} type="text/javascript"></script>
 <script src={{asset("mat_ui/demo/demo.js")}}></script>
 <script>
+    $('#accordion > .panel').on('show.bs.collapse', function (e) {
+    $(this).find('.panel-heading').addClass("active-panel");
+});
     $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

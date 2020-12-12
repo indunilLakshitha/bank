@@ -22,6 +22,7 @@ class BranchCashInOutController extends Controller
     }
 
     public function index1(){
+
         $branches = Branch::where('id',Auth::user()->branh_id)->get();
         $branch = Branch::where('id',Auth::user()->branh_id)->first();
         $branch_acc = CustomerBasicData::leftjoin('account_general_information','account_general_information.customer_id','customer_basic_data.customer_id')
@@ -31,9 +32,12 @@ class BranchCashInOutController extends Controller
 
         return view('deposit.branchCashInOut1',compact('branches','branch','branch_acc'));
     }
+
     public function index2(){
+
         $branches = Branch::where('id',Auth::user()->branh_id)->get();
         return view('deposit.branchCashInOut2',compact('branches'));
+        
     }
 
     public function cashiarOut(Request $request){
@@ -70,7 +74,6 @@ class BranchCashInOutController extends Controller
         $cashie_daily_trancastion['branch_id']=Auth::user()->branh_id;
         $cashie_daily_trancastion['balance_value']=
         CashierDailyTransaction::where('branch_id',$request->cashier_id)
-            // ->where('user_id',Auth::user()->id)
             ->where('transaction_date',Carbon::today()->toDateString())
             ->sum('transaction_amount')-$request->transaction_value;
         $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
@@ -86,7 +89,6 @@ class BranchCashInOutController extends Controller
         $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
         $cash_in_hand_ledger['balance_value']=$cashie_daily->balance_value;
         $cash_in_hand_ledger['is_enable']=1;
-        // $cash_in_hand_ledger['crated_by']=Auth::user()->id;
 
         cash_in_hand_ledger::create($cash_in_hand_ledger->all());
 
@@ -102,10 +104,8 @@ class BranchCashInOutController extends Controller
 
         $saving_deposit_base_ledger['balance_value']=
         saving_deposit_base_ledger::where('user_id',$request->cashier_id)
-            // ->where('user_id',Auth::user()->id)
             ->where('transaction_date',Carbon::today()->toDateString())
             ->sum('transaction_value')-$request->transaction_value;
-        // $saving_deposit_base_ledger['transaction_date']=Carbon::today()->toDateString();
         saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
 
 
@@ -145,7 +145,6 @@ class BranchCashInOutController extends Controller
         $cashie_daily_trancastion['branch_id']=Auth::user()->branh_id;
         $cashie_daily_trancastion['balance_value']=
         CashierDailyTransaction::where('branch_id',$request->cashier_id)
-            // ->where('user_id',Auth::user()->id)
             ->where('transaction_date',Carbon::today()->toDateString())
             ->sum('transaction_amount')+$request->transaction_value;
         $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
@@ -161,7 +160,6 @@ class BranchCashInOutController extends Controller
         $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
         $cash_in_hand_ledger['balance_value']=$cashie_daily->balance_value;
         $cash_in_hand_ledger['is_enable']=1;
-        // $cash_in_hand_ledger['crated_by']=Auth::user()->id;
 
         cash_in_hand_ledger::create($cash_in_hand_ledger->all());
 
@@ -177,10 +175,8 @@ class BranchCashInOutController extends Controller
 
         $saving_deposit_base_ledger['balance_value']=
         saving_deposit_base_ledger::where('user_id',$request->cashier_id)
-            // ->where('user_id',Auth::user()->id)
             ->where('transaction_date',Carbon::today()->toDateString())
             ->sum('transaction_value')+$request->transaction_value;
-        // $saving_deposit_base_ledger['transaction_date']=Carbon::today()->toDateString();
         saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
 
 
@@ -191,5 +187,6 @@ class BranchCashInOutController extends Controller
 
         $cashiars = User::where('branh_id',$request->branchId)->get();
         return response()->json($cashiars);
+
     }
 }

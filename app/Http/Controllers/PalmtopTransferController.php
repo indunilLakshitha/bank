@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class PalmtopTransferController extends Controller
 {
+    //getting selected palmtop transactions to in
     public function submit_palmtop_data(Request $request){
         // return $request;
 
@@ -14,7 +15,10 @@ class PalmtopTransferController extends Controller
             array_push($ids_arr, ['palmtop_transaction_id' => $palmtop_transaction_id]) ;
         }
 
+        //transferting selected records one by one
         foreach($ids_arr as $ids_ar){
+
+
 
             return response()->json($ids_ar);
 
