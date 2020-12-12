@@ -151,7 +151,7 @@ background:#eee;
                             <div class="pull-right col-2" value="">
                                 <input type="date" class="form-control datepicke" id="dateTo">
                             </div>
-                            @can('delete_roles')
+                            @hasanyrole('Super Admin|Manager')
                             <label for="">USER:</label>
                             <div class="pull-right col-2">
                                 <select name="select_branch1" class="form-control" id="user">
@@ -173,8 +173,8 @@ background:#eee;
                                 <span class="check"></span>
                             </span>
                             </div>
-                            @endcan
-                            @can('member_add')
+                            @else
+
                                 <select name="select_branch1" hidden class="form-control" id="user">
                                     <option value="" >--Select--</option>
                                 </select>
@@ -184,7 +184,7 @@ background:#eee;
 
                             </span>
                             </div>
-                            @endcan
+                            @endhasanyrole
                         <div class=" col-1 ">
                             <button type="button"  onclick="search(this)" class="btn btn-info" id="search">Search</button>
                         </div>

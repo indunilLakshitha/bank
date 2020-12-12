@@ -408,7 +408,12 @@
                                     <input type="file" name="sign_img" id="sign_img" />
                                     <div id="img_view"></div>
 
+                                    <span class="user-online-status">
+                                    </span>
+
                                 </span>
+
+
                             </div>
 
                         </div>

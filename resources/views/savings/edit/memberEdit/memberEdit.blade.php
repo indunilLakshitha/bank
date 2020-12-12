@@ -256,7 +256,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-12">
                                         @isset($con_types)
-                                        <input type="text" name="telephone_no_type" readonly class="form-control" value="{{ $con_types->contact_type }}">
+                                        <input type="text" name="telephone_no_type" readonly class="form-control" value="{{$con_types->contact_type }}">
                                         </div>
                                         @endisset
                                     </div>

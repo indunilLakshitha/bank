@@ -302,23 +302,16 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-sm-4 col-form-label">Account Maintenance Via</label>
-                                    <div class="col-sm-6">
-                                        <div class="col-10">
+                                    <label class="col-sm-2 col-form-label">Account Maintenance Via</label>
+                                    <div class="col-sm-2">
                                             <div class="form-group">
                                                 <!-- <input type="text" name="identification_number"  id="identification_number" class="form-control"> -->
                                                 @if(!empty(@isset($view_1->has_passbook)))
-                                                <div class="col">
-                                                    <div class="col">
-                                                        <div class="form-group">
+
                                                             <span style="font-size: 100%;"
                                                                 class="badge badge badge-rose">Passbook</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 @endif
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
 

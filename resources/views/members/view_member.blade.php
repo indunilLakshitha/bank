@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Member/Non-Member</label>
+                                <label class="col-sm-2 col-form-label">Customer Status</label>
                                 <div class="col-sm-2">
                                     <label class="form-check-label-bold" style="background-color: #ffff00;">
                                         @if(intval($view_1->member) == 0)
@@ -66,7 +66,7 @@
                                         @else
                                         <input name="customer_status_id" id="c" class="form-control" value="MEMBER">
                                         @endif
-                                    </label> -
+                                    </label>
                                 </div>
                             </div>
                             <div class="row">
@@ -652,10 +652,20 @@
                 <div class="col-md-12 col-12 mr-auto ml-auto pull-right">
 
                     @csrf
+                     <div class="row">
+                                <label class="col-sm-2 col-form-label">Special Information</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="special_information"
+                                            value="{{ isset($view_6_1->special_information)?$view_6_1->special_information:''}}">
+                                    </div>
+                                </div>
+                            </div>
 
                     <table class="table table-striped table-bordered" id="bene_table">
                         <thead>
                             <tr>
+                                {{-- <th>Special Information</th> --}}
                                 <th>Asset Description</th>
                                 <th>Asset Quantity</th>
                             </tr>
@@ -664,6 +674,7 @@
                             @isset($view_6)
                             @foreach($view_6 as $view_6_1)
                             <tr>
+                                {{-- <td>{{$view_6_1->special_information}}</td> --}}
                                 <td>{{$view_6_1->asset_description}} </td>
                                 <td> Rs.<?php echo number_format( $view_6_1->asset_qty , 2 , '.' , ',' ) ?></th>
                             </tr>

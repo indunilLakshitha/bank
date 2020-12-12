@@ -59,17 +59,18 @@
             <label class="col-sm-2 col-form-label">Customer Name</label>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="full_name">
-                    <input type="text" hidden class="form-control" name="customer_id" id="customer_id">
+                    <input type="text" readonly class="form-control"  id="full_name">
+                    <input type="text" hidden class="form-control"  name="customer_id"  id="customer_id">
+                    <input type="text" hidden class="form-control" readonly name="account_id" id="account_id">
                 </div>
             </div>
-            <button class="btn fa fa-search btn-info btn-sm" onclick="getCustomersByAcoountId()"></button>
+            {{-- <button class="btn fa fa-search btn-info btn-sm" onclick="getCustomersByAcoountId()"></button> --}}
         </div>
         <div class="row">
-            <label class="col-sm-2 col-form-label">Account Name</label>
+            <label class="col-sm-2 col-form-label">Account Number</label>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="account_id" id="account_id">
+                    <input type="text" class="form-control" readonly name="account_id" id="account_id">
                 </div>
             </div>
         </div>
@@ -89,7 +90,7 @@
                     <input type="date" class="form-control" id="to">
                 </div>
             </div>
-            <button class="btn fa fa-search btn-info btn-sm" onclick="findBetw()"></button>
+            <button class="btn fa fa-search btn-info btn-sm" onclick="findBetw()"> Load Details </button>
         </div>
     </div>
 </div>
@@ -272,6 +273,8 @@
         const a_id = document.querySelector('#account_id')
         const from = document.querySelector('#from')
         const to = document.querySelector('#to')
+        const c_id = document.querySelector('#customer_id');
+        console.log(c_id.value)
         console.log(from.value)
         console.log(to.value)
         console.log(a_id.value)
@@ -281,7 +284,8 @@
             data: {
                 'acId': a_id.value,
                 'from': from.value,
-                'to': to.value
+                'to': to.value,
+                'c_id': c_id.value
             },
             success: function(data) {
                 console.log(data)

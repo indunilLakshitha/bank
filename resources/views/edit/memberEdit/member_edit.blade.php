@@ -27,7 +27,7 @@
                 <br>
                 <div class="col-md-10 col-10 mr-auto ml-auto pull-left">
 
-                            <form id="private_1" action="/member/edit/1add" method="POST">
+                            <form id="private_1" action="/member/edit/1add" enctype="multipart/form-data" method="POST">
                         @csrf
                         @isset($view_1)
                         <div class="tab-pane active" id="private_1">
@@ -37,9 +37,9 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <div class="row">
-
+                                        <label for="c">CODE</label>
                                             <div class="form-group">
-                                            <label for="c">CODE</label>
+
                                             <input class="form-control" name="customer_id" readonly type="text"  value="{{ isset($view_1->customer_id)?$view_1->customer_id:0}}">
 
                                             </div>
@@ -50,16 +50,15 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="row">
-                                            <div class="col">
                                                 <label for="c">STATUS</label>
-                                            </div>
-                                            <div class="form"">
-
-                                                <select name="customer_status_id" id="c" value="{{$view_1->customer_status_id}}" class="selectpicker col" data-style="select-with-transition">
-                                                    <option value="1">ACTIVE</option>
-                                                    <option value="0">INACTIVE</option>
-                                                </select>
-                                            </div>
+                                            <div class="col-sm-5">
+                                        @if(intval($view_1->member) == 0)
+                                        <input name="" id="c" readonly class="form-control" value="NON MEMBER">
+                                        @else
+                                        <input name="" id="c" readonly class="form-control" value="MEMBER">
+                                        @endif
+                                    </label> -
+                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -110,20 +109,30 @@
                                     </div>
                                 </div>
                             </div>
-                             <?php $branchesAll=\App\Models\Branch::all() ?>
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label">Address </label>
+                                <div class="col-sm-7">
+                                    <?php $add=\App\Models\AddressData::where('customer_id',$view_1->customer_id)->first()?>
+                                    @isset($add)
+                                    <div class="form-group">
+                                        <input type="text" name="address_line_1"  class="form-control" value="{{ $add->address_line_1}}">
+                                        <input type="text" name="address_line_2"  class="form-control" value="{{ $add->address_line_2}}">
+                                        <input type="text" name="address_line_3"  class="form-control" value="{{ $add->address_line_3}}">
+                                        <input type="text" name="address_line_4"  class="form-control" value="{{ $add->address_line_4}}">
+                                    </div>
+                                    @endisset
+                                </div>
+                            </div>
+                            <?php $branches=\App\Models\Branch::where('id',$view_1->branch_id)->first()?>
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Branch</label>
-                                <div class="col-sm-4">
-                                    <select name="branch_id" class="selectpicker" data-style="select-with-transition">
-                                            @isset($branchesAll,$view_1)
-                                                @foreach ($branchesAll as $branch)
-                                                    <option value="{{$branch->id}}"
-                                                        <?php echo($branch->branch_id == $view_1->branch_id ? 'selected' : '' ) ?> >
-                                                        {{$branch->branch_name}}
-                                                    </option>
-                                                @endforeach
-                                            @endisset
-                                    </select>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        @isset($branches)
+                                        <input type="text" name="" readonly class="form-control"
+                                            value="{{ $branches->branch_name}}">
+                                        @endisset
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -199,7 +208,7 @@
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Account Category</label>
                                 <?php $acc_catsAll=\App\Models\AccountCategory::all()?>
-                                <div class="col-sm-8">
+                                <div class="col-sm-3">
                                     <select name="account_category_id"   class="selectpicker" data-style="select-with-transition">
                                             @isset($acc_catsAll,$view_1)
                                                 @foreach ($acc_catsAll as $acc_cat)
@@ -216,7 +225,7 @@
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Small Gr./ Acc.Off</label>
                                 <?php $smallgroups=\App\Models\SmallGroup::all()?>
-                                <div class="col-sm-8">
+                                <div class="col-sm-3">
                                      <select name="small_group_id" id=""  class="selectpicker" data-style="select-with-transition">
                                             @isset($smallgroups,$view_1->small_group_id)
                                                 @foreach ($smallgroups as $small_group)
@@ -235,7 +244,7 @@
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Acc. Office Sub No.</label>
                                 <?php $subaccountoffices=\App\Models\SubAccountOffice::all()?>
-                                <div class="col-sm-8">
+                                <div class="col-sm-3">
                                     <select name="sub_account_office_id" id="" class="selectpicker" data-style="select-with-transition">
                                             @isset($subaccountoffices,$view_1->sub_account_office_id)
                                                 @foreach ($subaccountoffices as $sub_account_office)
@@ -254,19 +263,17 @@
 
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Sub Account Office</label>
-                                <div class="col-sm-8">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         @isset($view_1->office_sub_id)
                                         <input type="text" class="form-control" name="office_sub_id"   value="{{ $view_1->office_sub_id}}">
                                         @endisset
                                     </div>
                                 </div>
-
                             </div>
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">ID Type</label>
-                                <div class="col-sm-9">
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <?php $idtypes=\App\Models\IedentificationType::all()?>
                                         <select name="identification_type_id" id="id_type" class="selectpicker" data-style="select-with-transition">
                                                     @isset($idtypes,$view_1->identification_type_id)
@@ -278,30 +285,31 @@
                                                             @endif
                                                         @endforeach
                                                     @endisset
-                                                </select>
+                                        </select>
                                     </div>
+
                                         @isset($view_1->identification_number)
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2">
                                             <div class="form-group">
                                                 <input type="text" name="identification_number"  class="form-control" value="{{$view_1->identification_number}}">
                                             </div>
                                         </div>
                                         @endisset
-                                    </div>
+
                             </div>
+
                             <div class="row">
-                                <label class="col-sm-3 col-form-label">Address </label>
-                                <div class="col-sm-7">
-                                    <?php $add=\App\Models\AddressData::where('customer_id',$view_1->customer_id)->first()?>
-                                    @isset($add)
+                                <label class="col-sm-3 col-form-label">EPF No</label>
+                                <div class="col-sm-3">
+                                    @isset($view_1->epf_no)
                                     <div class="form-group">
-                                        <input type="text" name="address_line_1"  class="form-control" value="{{ $add->address_line_1}}">
-                                        <input type="text" name="address_line_2"  class="form-control" value="{{ $add->address_line_2}}">
-                                        <input type="text" name="address_line_3"  class="form-control" value="{{ $add->address_line_3}}">
-                                        <input type="text" name="address_line_4"  class="form-control" value="{{ $add->address_line_4}}">
+                                        <div class="col-sm-10">
+                                            <input type="text" name="epf_no"  class="form-control" value="{{ $view_1->epf_no}}">
+                                        </div>
                                     </div>
                                     @endisset
                                 </div>
+
                             </div>
 
                             <div class="row">
@@ -321,12 +329,11 @@
                                                 @endisset
                                             </select>
                                 </div> -->
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                      <?php $cnt=\App\Models\ContactData::where('customer_id',$view_1->customer_id)->first()?>
                                     @isset($cnt)
                                     <div class="form-group">
-                                            <input type="text" name="contact_data"  class="form-control" value="{{$cnt->telephone_number}}">
-
+                                         <input type="text" name="contact_data"  class="form-control" value="{{$cnt->telephone_number}}">
                                     </div>
                                     @endisset
                                 </div>
@@ -334,7 +341,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Fax</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     @isset($view_1->fax_number)
                                     <div class="form-group">
                                         <div class="col-sm-10">
@@ -347,7 +354,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     @isset($view_1->email_address)
                                     <div class="form-group">
                                         <div class="col-sm-10">
@@ -356,8 +363,33 @@
                                     </div>
                                     @endisset
                                 </div>
+                            </div>
+                             <div class="row">
+                            <label class="col-sm-3 col-form-label">Signature</label>
+                            <div class="col-sm-8">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        @if(!empty(@isset($view_1->sign_img)))
+                                        <img src="{{env('IMAGE_LOCATION').$view_1->sign_img}}" height="200px" width="300px"
+                                            alt="">
+                                        @else
+                                        <img src="/bank/public/images/default.png" height="100px" width="100px" alt="">
+                                        @endif
+                                    <span class="btn btn-round btn-rose btn-file ">
+                                    <span class="fileinput-new">Choose File</span>
+                                    <input type="file" name="sign_img_edit" id="sign_img_edit" />
+                                    <div id="img_view"></div>
+
+                                    <span class="user-online-status">
+                                    </span>
 
 
+                                </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
 
                         @endisset
                         <br>
@@ -562,6 +594,7 @@
 </div>
     </div>
 </div> -->
+
 @if(!empty($view_4))
    <div class="card col-10 " style="border: solid">
 <div class="card">
@@ -667,7 +700,7 @@
                                 <label class="col-sm-3 col-form-label">Special Information</label>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <textarea name="asset_description"  id="" cols="30" rows="12" placeholder="{{ isset($view_6->asset_description)?$view_6->asset_description:''}}"></textarea>
+                                        <textarea name="asset_description"  id="" cols="30" rows="12" placeholder="{{ isset($view_6->special_information)?$view_6->asset_description:''}}"></textarea>
                                     </div>
                                 </div>
                             </div>

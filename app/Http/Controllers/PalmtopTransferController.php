@@ -13,7 +13,12 @@ class PalmtopTransferController extends Controller
         foreach($request->is_checked as $palmtop_transaction_id){
             array_push($ids_arr, ['palmtop_transaction_id' => $palmtop_transaction_id]) ;
         }
-        return $ids_arr;
+
+        foreach($ids_arr as $ids_ar){
+
+            return response()->json($ids_ar);
+
+        }
 
     }
 }
