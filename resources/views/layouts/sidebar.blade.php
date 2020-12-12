@@ -17,7 +17,7 @@
                 </a>
             </li> --}}
 
-            <li class="nav-item ">
+            <li class="nav-item  ">
                 <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
                     <i class="material-icons">account_circle</i>
                     <p> Users
@@ -570,3 +570,34 @@
         @endcan
     </div>
 </div>
+
+<script>
+    let shit = document.querySelectorAll('.nav-item')
+
+    let collapseDivs = document.querySelectorAll('.collapse')
+
+    let carets = document.querySelectorAll('.caret')
+
+    shit.forEach(item => {
+
+        item.addEventListener('click', e => {
+            shit.forEach(item => {
+                item.classList.remove('active')
+            })
+            carets.forEach(caret => {
+                caret.style.transform = 'rotate(0deg)';
+            })
+            collapseDivs.forEach(div => {
+                div.classList.remove('show')
+            })
+            item.classList.add('active')
+            e.target.children[0].style.transform = 'rotate(180deg)'
+        })
+
+
+    })
+
+    // window.onload = shit.forEach(item => {
+    //     console.log(item.classList);
+    // })
+</script>
