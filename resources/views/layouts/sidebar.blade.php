@@ -604,7 +604,15 @@
 
     })
 
-    // window.onload = shit.forEach(item => {
-    //     console.log(item.classList);
-    // })
+
+    let links = Array.from(document.getElementsByTagName('A'))
+    window.onload = links.forEach(link => {
+        // console.log(link.getAttribute('href'));
+        if(link.getAttribute('href') == location.pathname){
+            console.log(link);
+            link.parentElement.classList.add('active')
+            return link.parentElement.parentElement.parentElement.classList.add('show')
+        }
+    })
+    window.onload = console.log(location.pathname);
 </script>
