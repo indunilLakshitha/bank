@@ -100,7 +100,7 @@
                 </div>
                 <div class="modal-footer">
                 <a onclick="addExternal()" class="btn btn-rose">Add</a>
-                <a href="/member" type="button" class="btn btn-rose" data-dismiss="modal">Done</a>
+                <button type="button" class="btn btn-rose" data-dismiss="modal">Done</button>
             </div>
                 <div class="row">
                     <table class="table">

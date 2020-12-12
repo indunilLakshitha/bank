@@ -26,7 +26,7 @@ class BranchCashInOutController extends Controller
         $branches = Branch::where('id',Auth::user()->branh_id)->get();
         $branch = Branch::where('id',Auth::user()->branh_id)->first();
         $branch_acc = CustomerBasicData::leftjoin('account_general_information','account_general_information.customer_id','customer_basic_data.customer_id')
-                    ->where('customer_status_id',1)
+                    ->where('account_general_information.status',1)
                     ->where('customer_basic_data.branch_id',Auth::user()->branh_id)->get();
 
 
@@ -86,6 +86,7 @@ class BranchCashInOutController extends Controller
         $cash_in_hand_ledger['acccount_id']=$request->branch_account_id;
         $cash_in_hand_ledger['user_id']=$request->cashier_id;
         $cash_in_hand_ledger['transaction_type']="WITHDRAW";
+        $cash_in_hand_ledger['is_intern_transaction']=1;
         $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
         $cash_in_hand_ledger['balance_value']=$cashie_daily->balance_value;
         $cash_in_hand_ledger['is_enable']=1;
@@ -157,6 +158,7 @@ class BranchCashInOutController extends Controller
         $cash_in_hand_ledger['acccount_id']=$request->branch_account_id;
         $cash_in_hand_ledger['user_id']=$request->cashier_id;
         $cash_in_hand_ledger['transaction_type']="DEPOSITE";
+        $cash_in_hand_ledger['is_intern_transaction']=1;
         $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
         $cash_in_hand_ledger['balance_value']=$cashie_daily->balance_value;
         $cash_in_hand_ledger['is_enable']=1;

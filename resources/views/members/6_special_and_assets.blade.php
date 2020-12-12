@@ -25,7 +25,9 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form id="private_1" action="/member/add/special-and-assets" method="POST">
+                    {{-- <form id="private_1" action="/member/add/special-and-assets" method="POST"> --}}
+                                            <form id="assets_form">
+
                         @csrf
                         <input type="hidden" name="customer_id" value={{$cus_id}}>
                         <div class="tab-pane" id="special">
@@ -49,10 +51,8 @@
                                 </div>
                             </div> -->
                             <br>
-                    </form>
+                    {{-- </form> --}}
 
-                    <form id="assets_form">
-                        @csrf
                         <input type="hidden" name="customer_id" value={{$cus_id}}>
                         <h5 class="text-center">Assets</h5>
                         <div class="row">
