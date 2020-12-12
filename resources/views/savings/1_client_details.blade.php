@@ -83,7 +83,7 @@
                     <label class="col-sm-2 col-form-label">DOB</label>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="date" id="dob" name="dob" class="form-control">
+                            <input type="date" readonly id="dob" name="dob" class="form-control">
                         </div>
                     </div>
                 </div>

@@ -114,14 +114,14 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            {{-- <div class="row">
                                 <label class="col-sm-2 col-form-label">Date Became Member</label>
                                 <div class="col-sm-10">
                                     <div class="form-group">
                                         <input type="date" name="member_date" class="form-control col-3">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <button type="submit" class="btn btn-primary">NEXT</button>
                     </form>
@@ -132,7 +132,7 @@
     </div>
 </div>
 <script>
-     $('.date').datepicker({
+     $('#date').datepicker({
                 format: 'dd-mm-yyyy'
             });
 </script>

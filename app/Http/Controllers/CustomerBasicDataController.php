@@ -282,6 +282,14 @@ class CustomerBasicDataController extends Controller
 
         $customer = CustomerBasicData::where('customer_id', $request->customer_id)->first();
         $customer['status']=2;
+
+        $customer->update($request->all());
+        if ($request->file('sign_img_edit')) {
+            $image = $request->file('sign_img_edit');
+            $path = '/images/';
+            $customer->sign_img = time() . rand() . '.' . $image->extension();
+            $image->move(public_path($path), $customer->sign_img);
+        }
         $customer->update($request->all());
 
         return Redirect::to('/members/edit/' . $request->customer_id);
