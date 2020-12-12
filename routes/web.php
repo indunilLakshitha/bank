@@ -539,4 +539,5 @@ Route::get('/passbook-back', 'PrintController@passbookBack');
 Route::get('/bankvsheadoffice','BranchvsHqTransferController@index');
 Route::post('/bankvsheadoffice/transfer','BranchvsHqTransferController@transfer');
 Route::get('/frompalmtop','BranchvsHqTransferController@palmtop');
+Route::post('/submit_palmtop_data','PalmtopTransferController@submit_palmtop_data');
 Auth::routes();

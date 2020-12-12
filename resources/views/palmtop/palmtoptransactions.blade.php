@@ -24,6 +24,8 @@
             <div class="row">
                 <div class="col-sm-8 " style="margin-left: 260px">
                     <div class="form-group">
+                        <form action="" id="form">
+                            @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table">
@@ -38,13 +40,28 @@
                                             <th>Amount</th>
                                             <th>Select</th>
                                             <th>Actions</th>
+
                                         </thead>
                                         <tbody id="results_tbody">
-
-
+                                            @foreach ($data as $item)
+                                                <tr>
+                                                    <td>{{$item->id}}</td>
+                                                    <td>{{$item->created_at}}</td>
+                                                    <td>{{$item->full_name}}</td>
+                                                    <td>{{$item->customer_id}}</td>
+                                                    <td>{{$item->account_number}}</td>
+                                                    <td>{{$item->transaction_value}}</td>
+                                                    <td>
+                                                        <input type="checkbox" name="is_checked[]" id="is_checked" value="{{$item->id}}">
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
+                            </form>
+                                <button type="button" class="btn btn-primary" onclick="submit_data()">Next</button>
                             </div>
                         </div>
                     </div>
@@ -58,7 +75,19 @@
 
 <script>
 
-
+function submit_data(){
+    $.ajax({
+            type: 'POST',
+            url: '{{('/submit_palmtop_data')}}',
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                console.log(data)
+                // return showCustomers(data)
+            }
+        })
+}
 </script>
 
 
