@@ -39,4 +39,5 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::post('collection/summary','LatestTransactionApiController@getCollectionSummary');
     Route::post('add/transaction','LatestTransactionApiController@addTransaction');
+    Route::post('get/accounts','LatestTransactionApiController@getCustomerAccounts');
 });
