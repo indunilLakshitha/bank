@@ -38,9 +38,9 @@
                                             <th>Amount</th>
                                             <th>Select</th>
                                             <th>Actions</th>
-                                           
                                         </thead>
                                         <tbody id="results_tbody">
+
 
                                         </tbody>
                                     </table>
@@ -54,9 +54,6 @@
         </div>
     </div>
     </form>
-
-</div>
-</div>
 </div>
 
 <script>

@@ -10,7 +10,7 @@
                     <div class="col-10">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
-                                <h4 class="card-title">Paalmtop Transfer</h4>
+                                <h4 class="card-title">Branch vs Bank Transfer</h4>
                             </div>
                         </div>
                     </div>
@@ -21,8 +21,7 @@
                     </div>
                 </div>
             </div>
-            <form method="post" action="/product_details" class="form-horizontal">
-                <input type="hidden" name="account_id" value="">
+            <form id="form" class="form-horizontal">
                 @csrf
                 <div class="card ">
                     <div class="card-body ">
@@ -40,13 +39,13 @@
                                             @php
                                             $prod_types = Illuminate\Support\Facades\DB::table('sub_accounts')->get();
                                             @endphp
-                                            <select oninput="getData(this.value)" required name="product_type_id"
+                                            <select  name="hq_account_number"
                                                 class="form-control" data-style="select-with-transition">
                                                 <option value="">Select </option>
-                                                @isset($prod_types)
-                                                @foreach ($prod_types as $item)
-                                                <option value="{{$item->id}}">
-                                                    {{$item->sub_account_description}}
+                                                @isset($headofices)
+                                                @foreach ($headofices as $headofice)
+                                                <option value="{{$headofice->account_number}}">
+                                                    {{$headofice->account_number}}
                                                     @endforeach
                                                     @endisset
                                             </select>
@@ -56,21 +55,18 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 col-form-label">Branch Office  Number</label>
+                            <label class="col-sm-2 col-form-label">Branch Office Number</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            @php
-                                            $prod_types = Illuminate\Support\Facades\DB::table('sub_accounts')->get();
-                                            @endphp
-                                            <select oninput="getData(this.value)" required name="product_type_id"
+                                            <select   name="branch_account_number"
                                                 class="form-control" data-style="select-with-transition">
                                                 <option value="">Select </option>
-                                                @isset($prod_types)
-                                                @foreach ($prod_types as $item)
-                                                <option value="{{$item->id}}">
-                                                    {{$item->sub_account_description}}
+                                                @isset($branchoffices)
+                                                @foreach ($branchoffices as $branchoffice)
+                                                <option value="{{$branchoffice->account_number}}">
+                                                    {{$branchoffice->account_number}}
                                                     @endforeach
                                                     @endisset
                                             </select>
@@ -85,59 +81,78 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            @php
-                                            $prod_types = Illuminate\Support\Facades\DB::table('sub_accounts')->get();
-                                            @endphp
-                                            <select oninput="getData(this.value)" required name="product_type_id"
-                                                class="form-control" data-style="select-with-transition">
-                                                <option value="">Select </option>
-                                                @isset($prod_types)
-                                                @foreach ($prod_types as $item)
-                                                <option value="{{$item->id}}">
-                                                    {{$item->sub_account_description}}
-                                                    @endforeach
-                                                    @endisset
+                                            <select oninput="" required name="transaction_type" class="form-control"
+                                                data-style="select-with-transition">
+                                                <option value="WITHDRAWAL">WITHDRAWAL </option>
+                                                <option value="DEPOSIT">DEPOSIT </option>
+
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Transaction Amount</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-
-                                            <input type="hidden" name="currency_id" id="currency_id" readonly
-                                                class="form-control">
-                                            <input type="text" id="currency" readonly class="form-control">
+                                            <input type="number" id="transaction_amount"  class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                         <br>
                         <div class="col-6 text-right">
-                            <button type="submit" class="btn btn-primary">NEXT</button>
+                            <a onclick="transfer()" class="btn btn-primary">Transfer</a>
                         </div>
                     </div>
                 </div>
         </div>
     </div>
     </form>
+</div>
 
-</div>
-</div>
-</div>
 
 <script>
+ $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+function transfer(){
+    $.ajax({
+          type: 'POST',
+          url: '{{('/bankvsheadoffice/transfer')}}',
+          data:new FormData(form),
+
+        contentType: false,
+        processData: false,
+          success: function(data){
+              console.log(data)
+            //   Swal.fire({
+            //         title: 'External Invester Added',
+            //         text: data.success,
+            //         icon: 'success',
+            //         timer: 20000
+            //     })
+            //     custname.value=''
+            //     address.value=''
+            //     nic.value=''
+            //     contact_no.value=''
+            //         return show_ext_inv(data)
+
+
+          },
+          error: function(data){
+            //   console.log(data)
+          }
+
+      })
+}
 </script>
 
 

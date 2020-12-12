@@ -31,8 +31,18 @@
                         @csrf
                         <div class="tab-pane active" id="private_1">
                             {{-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> --}}
-
-
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Is HQ<font color="red">*</font></label>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <select name="is_hq" id="" class="form-control"
+                                            data-style="select-with-transition" required>
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Branch Name  <font color="red">*</font></label>
@@ -43,14 +53,6 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="row">
-                                <label class="col-sm-2 col-form-label">Full Name<font color="red">*</font></label>
-                                <div class="col-lg-6 col-md-4 col-sm-4">
-                                    <div class="form-group">
-                                        <input type="text" name="full_name" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div> --}}
 
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Address<font color="red">*</font></label>
