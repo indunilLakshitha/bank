@@ -34,7 +34,6 @@ class ShareController extends Controller
 
     public function buy_shares(Request $request){
 
-
         if(Member::where('customer_id',$request->customer_id)->first()){
             $mem=Member::where('customer_id',$request->customer_id)->first();
             $mem->share_amount+=$request->n_of_shares;

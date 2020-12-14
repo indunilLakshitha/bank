@@ -106,7 +106,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="transaction_value"
-                                {{-- oninput="caltotal(this.value)" --}}>
+                                oninput="validateaount()" >
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="hidden" class="form-control" id="tot">
-                            <input type="text" class="form-control" id="re_c" oninput="validateaount(this.value)">
+                            <input type="text" class="form-control" id="re_c" oninput="validateaount()">
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" class="form-control" id="account_balance" name="account_balance"
-                                readonly>
+                                >
                         </div>
                     </div>
                 </div>
@@ -243,12 +243,22 @@
     }
 
     function validateaount(amount){
-    let dep_amount= transaction_value.value
-    if(amount != dep_amount){
+    let account_balanc= parseInt(account_balance.value)
+    let dep_amountt= parseInt(transaction_value.value)
+    let re_cc= parseInt(re_c.value)
+    console.log(account_balanc)
+    console.log(dep_amountt)
+    console.log(re_cc)
+    if(account_balanc == dep_amountt){
+        if(dep_amountt !=re_cc){
+        console.log('d=none')
         dep_btn.classList.add('d-none')
     }else{
+        console.log('d')
+
         dep_btn.classList.remove('d-none')
 
+    }
     }
 }
 

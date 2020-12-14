@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-sm-12 ">
                     <div class="form-group">
-                        <form action="" id="form">
+                        <form id="form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
@@ -39,8 +39,18 @@
                                                 <th>Customer ID</th>
                                                 <th>Account ID</th>
                                                 <th>Amount</th>
-                                                <th>Select</th>
+                                                <th>Select </th>
                                                 <th>Actions</th>
+                                            </thead>
+                                            <thead>
+                                                <th ></th>
+                                                <th></th>
+                                                <th> </th>
+                                                <th> </th>
+                                                <th> </th>
+                                                <th></th>
+                                                <th>Select All<input type="checkbox" name="select-all" id="select-all" /></th>
+                                                <th></th>
                                             </thead>
                                             <tbody id="results_tbody">
                                                 @foreach ($data as $item)
@@ -57,11 +67,15 @@
                                                         <input type="checkbox" name="is_checked[]" id="is_checked"
                                                             value="{{$item->id}}">
                                                     </td>
-                                                    <td class="text-center"> <a href="" rel="tooltip"
+                                                    <td class="text-center"> <button type="button" onclick="submit_data_single({{$item->id}})" rel="tooltip"
                                                             class="btn btn-info btn-round">
                                                             <i class="material-icons">edit</i> <span
                                                                 class="mx-1">Transfer This</span>
-                                                        </a></td>
+                                                        </button></td>
+                                                    <td class="text-center"> <button type="button" onclick="reject({{$item->id}})" rel="tooltip"
+                                                            class="btn btn-trash btn-round">
+                                                            <i class="material-icons">delete</i>
+                                                        </button></td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -78,12 +92,32 @@
     </div>
 
 </div>
-</div>
-</form>
-</div>
+
 
 <script>
+    $('#select-all').click(function(event) {
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;
+        });
+    } else {
+        $(':checkbox').each(function() {
+            this.checked = false;
+        });
+    }
+});
     function submit_data(){
+        console.log('sadsa')
+
+        Swal.fire({
+  position: 'top-end',
+  icon: 'loading',
+  title: 'Transfering.....',
+  showConfirmButton: false,
+//   timer: 1500
+})
+
     $.ajax({
             type: 'POST',
             url: '{{('/submit_palmtop_data')}}',
@@ -91,11 +125,86 @@
             contentType: false,
             processData: false,
             success: function(data) {
-                console.log(data)
+                // console.log(data)
+                if(data=="completed"){
+                    Swal.close()
+                    Swal.fire({
+                title: 'Done',
+                icon: 'success',
+                text: 'All Selected Transactions are Transfered',
+                confirmButtonText: 'Okay'
+                }).then((value)=>{
+                    location.reload();
+
+                })
+                console.log(123)
+
+                }
                 // return showCustomers(data)
             }
         })
 }
+    function submit_data_single(x){
+        console.log(x)
+
+        Swal.fire({
+  position: 'top-end',
+  icon: 'loading',
+  title: 'Transfering.....',
+  showConfirmButton: false,
+//   timer: 1500
+})
+
+    $.ajax({
+            type: 'GET',
+            url: '{{('/submit_palmtop_data_single')}}',
+            data: {text:x},
+            success: function(data) {
+                console.log(data)
+                if(data=="completed"){
+                    Swal.close()
+                    Swal.fire({
+                title: 'Done',
+                icon: 'success',
+                text: 'All Selected Transactions are Transfered',
+                confirmButtonText: 'Okay'
+                }).then((value)=>{
+                    location.reload();
+
+                })
+                console.log(123)
+
+                }
+                // return showCustomers(data)
+            }
+        })
+}
+function reject(value){
+    console.log(value)
+    $.ajax({
+                type: 'GET',
+                url: '{{('/submit_palmtop_data_reject')}}',
+                data: {text:value} ,
+                success: function(data){
+                    console.log(data);
+                    if(data=="completed"){
+                    Swal.close()
+                    Swal.fire({
+                title: 'Rejected',
+                icon: 'success',
+                text: ' Selected Transaction rejected',
+                confirmButtonText: 'Okay'
+                }).then((value)=>{
+                    location.reload();
+
+                })
+                console.log(123)
+
+                }
+                }
+            })
+}
+
 </script>
 
 

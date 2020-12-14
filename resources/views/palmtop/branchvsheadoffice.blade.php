@@ -41,7 +41,7 @@
                                             @endphp
                                             <select  name="hq_account_number"
                                                 class="form-control" data-style="select-with-transition">
-                                                <option value="">Select </option>
+                                                <option value="">Select Head Office Account </option>
                                                 @isset($headofices)
                                                 @foreach ($headofices as $headofice)
                                                 <option value="{{$headofice->account_number}}">
@@ -62,7 +62,7 @@
                                         <div class="form-group">
                                             <select   name="branch_account_number"
                                                 class="form-control" data-style="select-with-transition">
-                                                <option value="">Select </option>
+                                                <option value="">Select Branch Office Account </option>
                                                 @isset($branchoffices)
                                                 @foreach ($branchoffices as $branchoffice)
                                                 <option value="{{$branchoffice->account_number}}">
@@ -76,17 +76,41 @@
                             </div>
                         </div>
                         <div class="row">
+                            <label class="col-sm-2 col-form-label">Branch Office Cashier</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="form-group">
+
+                                            <select   name="user"
+                                            class="form-control" data-style="select-with-transition">
+                                            <option value="">Select Branch Office Account </option>
+                                            @isset($cashiers)
+                                            @foreach ($cashiers as $cashier)
+                                            <option value="{{$cashier->id}}">
+                                                {{$cashier->name}}
+                                                @endforeach
+                                                @endisset
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <label class="col-sm-2 col-form-label">Transaction Type</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <select oninput="" required name="transaction_type" class="form-control"
+                                            {{-- <select oninput="" required name="transaction_type" class="form-control"
                                                 data-style="select-with-transition">
-                                                <option value="WITHDRAWAL">WITHDRAWAL </option>
-                                                <option value="DEPOSIT">DEPOSIT </option>
+                                                <option value="WITHDRAW">WITHDRAW </option>
+                                                <option value="DEPOSITE">DEPOSITE </option>
 
-                                            </select>
+                                            </select> --}}
+                                            <input type="text" value="To Head Office" readonly  class="form-control">
+
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +122,7 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <input type="number" id="transaction_amount"  class="form-control">
+                                            <input type="number" id="transaction_value"  name="transaction_value"  class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -133,12 +157,13 @@ function transfer(){
         processData: false,
           success: function(data){
               console.log(data)
-            //   Swal.fire({
-            //         title: 'External Invester Added',
-            //         text: data.success,
-            //         icon: 'success',
-            //         timer: 20000
-            //     })
+              Swal.fire({
+                    title: 'Successfully Transfered To Had Office',
+                    text: data.success,
+                    icon: 'success',
+                    timer: 20000
+                })
+                document.getElementById("form").reset();
             //     custname.value=''
             //     address.value=''
             //     nic.value=''

@@ -234,7 +234,8 @@ class MemberController extends Controller
             //  $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
              $saving_deposit_base_ledger['is_enable']=1;
              saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
-            return response()->json('Member created');
+             $msg='Member created'.$mem->member_number;
+            return response()->json($msg);
 
     }
 

@@ -367,11 +367,12 @@ class OpenSavingsAccountController extends Controller
 
     public function client_details(Request $request)
     {
-        $details = $request;
+         $details = $request;
         $details['created_by'] = Auth::user()->id;
         $details['is_enable'] = 1;
+        $cus=CustomerBasicData::where('customer_id',$request->customer)->first();
         $acc = AccountGeneralInformation::create($request->all());
-
+        $acc->branch_id=$cus->branch_id;
         // if ($request->file('cus_sign_img')) {
         //     $image = $request->file('cus_sign_img');
         //     $path = '/images/';
