@@ -179,6 +179,10 @@ function set_modal_serach_by_name_results(data){
 function set_cus_details_from_modal(id){
     console.log(id);
 
+    if(location.pathname === '/deposits/fd-with') {
+        return get_data_inside_fd_withdrawal_blade(id)
+    }
+
     customer_data.filter(cus => {
         if(cus.id === parseInt(id)){
             console.log(cus);
@@ -242,5 +246,63 @@ function data_clear() {
     $("#id_number_modal").val('');
     modal_serach_by_name_results_tbody.innerHTML = null;
 
+}
+
+function get_data_inside_fd_withdrawal_blade(id){
+    // return console.log(id);
+    customer_data.filter(cus => {
+        if(cus.id === parseInt(id)){
+            // console.log(cus);
+            return get_data_for_fd_withdrawal(cus)
+        }
+    })
+}
+
+function get_data_for_fd_withdrawal(cus){
+    // console.log(cus);
+    $.ajax({
+        type: 'GET',
+        url: '{{('/get_data_for_fd_withdrawal')}}',
+        data: cus ,
+        success: function(data){
+            console.log(data);
+            // return set_modal_serach_by_name_results(data)
+            fd_acc_fdw.value = data.account_id
+            amount_fdw.value = data.deposite_amount
+            period_fdw.value = `${data.duration} months`
+            start_date_fdw.value = data.start_date
+            closing_date_fdw.value = data.close_date
+            start_date_index_fdw.value = get_date_index(data.start_date)
+            today_date_index_fdw.value = get_date_index(new Date())
+            today_fdw.value = get_today_lassanata()
+            status_fdw.value = data.duration*10 <= (get_date_index(data.start_date)-get_date_index(new Date())) ? 'Completed' : 'Not Completed'
+            interest_fdw.value = `${data.interest} %`
+            normal_interest_fdw.value = `${data.normal_rate} %`
+            interest_amount_fdw.value = (data.deposite_amount/100)*data.normal_rate
+            paid_amount_fdw.value = parseFloat(data.deposite_amount)+parseFloat(interest_amount_fdw.value)
+
+
+        }
+    })
+}
+
+function get_date_index(value){
+    let date = new Date(value)
+    var start = new Date(date.getFullYear(), 0, 0)
+    var diff = (date - start) + ((start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000)
+    var oneDay = 1000 * 60 * 60 * 24;
+    var day = Math.floor(diff / oneDay);
+    // return console.log('Day of year: ' + day);
+    return day
+}
+
+function get_today_lassanata(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy
+    return today
 }
 </script>

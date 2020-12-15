@@ -524,6 +524,7 @@ Route::get('/members_for_share_buy','FdAccountController@membersForShareBuy');
 Route::get('/member_for_fd','FdAccountController@memberForfd');
 Route::get('/fd_member_for_wnd','FdAccountController@fdMembersForWnD');
 Route::get('/normaldepositefd','FdAccountController@fdDeposite');
+Route::post('/ponga','FdAccountController@ponga');
 Route::get('/enablefdprint/{id}','FdAccountController@enableFdPrint');
 Route::get('/customerledger','TransactionReportController@customerLedger');
 Route::post('/getledger','TransactionReportController@ledgerDetails');
@@ -566,4 +567,11 @@ Route::post('/withdrawalreqq','FdAccountController@withdrawalRequest');
 Route::get('/withdrawalreqqpending',function(){
     return view('fd.withdrawalrequestspending');
 });
+
+//------------------------ FD WITHDRAWAL---------------------------
+Route::get('/get_data_for_fd_withdrawal','SearchModalController@get_data_for_fd_withdrawal');
+
+
+
+//----------------------------------------------------------------
 Auth::routes();
