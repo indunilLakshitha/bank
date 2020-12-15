@@ -539,7 +539,9 @@ Route::get('/search_by_nic_for_dnw','SearchController@byNicForWnD');
 //====================printing================================
 Route::get('/receipt/{id}', 'PrintController@receipt');
 Route::get('/passbook-front/{id}', 'PrintController@passbookFront');
+Route::get('/direct-passbook-front', 'PrintController@directPassbookFront');
 Route::get('/FDreceipt/{id}', 'PrintController@FDreceipt');
+Route::get('/directFDreceipt', 'PrintController@directFDreceipt');
 
 Route::get('/passbook-back', 'PrintController@passbookBack');
 
