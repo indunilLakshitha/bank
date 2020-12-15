@@ -577,6 +577,11 @@ public function newFdProducts(Request $request){
 
 
 public function withdrawalRequestPending(){
-    
+
 }
+
+public function ponga(Request $request){
+    return $request;
+}
+
 }

@@ -2,7 +2,9 @@
 
 
 @section('content')
-<form method="get" action="/" class="form-horizontal">
+@include('deposit.models.search_model_for_fd')
+
+<form class="form-horizontal" id="form_fdw">
     <div class="card ">
         <div class="card-body ">
             <div class="card-header card-header-rose card-header-text">
@@ -12,123 +14,94 @@
             </div>
 
             <div class="row">
-                <label class="col-sm-2 col-form-label">Member</label>
+                <label class="col-sm-2 col-form-label">FD Account</label>
+                <div class="col-sm-6">
+                    <input type="text" id="fd_acc_fdw" name="fd_acc_fdw" readonly class="form-control">
+                </div>
+                <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#depositeModel"></a>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Amount</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="member" oninput="getCustomers(this.value)">
-                    </div>
-                </div>
-                <button class="btn fa fa-search btn-info btn"> &nbspFind</button>
+                        <input type="text" id="amount_fdw" name="amount_fdw" readonly class="form-control">                    </div>
+            </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 " style="margin-left: 260px" >
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table">
-                                    <table id="table" class="table table-striped table-no-bordered table-hover"
-                                        cellspacing="0" width="100%" style="width:100%">
-                                        <thead>
-                                            <th>ID </th>
-                                            <th>NAME</th>
-                                            <th>NIC</th>
-                                            <th>STATUS</th>
-                                            <th>ACTION</th>
-                                        </thead>
-                                        <tbody id="results_tbody">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <label class="col-sm-2 col-form-label">Account</label>
+                <label class="col-sm-2 col-form-label">Period</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" oninput="getCustomersByAcoountId(this.value)">
-                    </div>
+                        <input type="text" id="period_fdw" name="period_fdw" readonly class="form-control">                    </div>
                 </div>
-                <button class="btn fa fa-search btn-info btn-sm"></button>
             </div>
             <div class="row">
-                <label class="col-sm-2 col-form-label">Account Name</label>
+                <label class="col-sm-2 col-form-label">Start Date</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="text" class="form-control">
-                        <input type="text" class="form-control" id="customer_id" >
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <label class="col-sm-2 col-form-label">Payment Method</label>
-                <div class="col-sm-8">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="form-group">
-                                <select name="identification_type_id" id="" class="form-control">
-                                    <option value="">Select </option>
-                                    @php
-                                        $payment_methods = Illuminate\Support\Facades\DB::table('payment_methods')->get();
-                                    @endphp
-                                    @isset($payment_methods)
-                                    @foreach ($payment_methods as $payment_method)
-                                    <option value="{{$payment_method->id}}">
-                                        {{$payment_method->payment_method}}
-                                        @endforeach
-                                        @endisset
-                                </select>
-                            </div>
-                        </div>
+                        <input type="text" id="start_date_fdw" name="start_date_fdw" readonly class="form-control">
+                        <input type="hidden" id="start_date_index_fdw" name="start_date_index_fdw" readonly class="form-control">
+                        <input type="hidden" id="today_date_index_fdw" name="today_date_index_fdw" readonly class="form-control">
                     </div>
                 </div>
             </div>
             <div class="row">
-                <label class="col-sm-2 col-form-label">Value</label>
+                <label class="col-sm-2 col-form-label">Closing Date</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="text" class="form-control">
-                    </div>
+                        <input type="text" id="closing_date_fdw" name="closing_date_fdw" readonly class="form-control">                    </div>
                 </div>
             </div>
             <div class="row">
-                <label class="col-sm-2 col-form-label"> Total Amount </label>
+                <label class="col-sm-2 col-form-label">Today</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <label class="col-sm-2 col-form-label">Balence</label>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" readonly>
-                    </div>
+                        <input type="text" id="today_fdw" name="today_fdw" readonly class="form-control">                    </div>
                 </div>
             </div>
             <div class="row">
-                <label class="col-sm-2 col-form-label">Naration</label>
+                <label class="col-sm-2 col-form-label">Status</label>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <input type="text" class="form-control">
-                    </div>
+                        <input type="text" id="status_fdw" name="status_fdw" readonly class="form-control">                    </div>
                 </div>
             </div>
-
-
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Interest</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input type="text" id="interest_fdw" name="interest_fdw" readonly class="form-control">                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Normal Interest</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input type="text" id="normal_interest_fdw" name="normal_interest_fdw" readonly class="form-control">                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label"> Interest Amount</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input type="text" id="interest_amount_fdw" name="interest_amount_fdw" readonly class="form-control">                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label"> Paid Amount</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input type="text" id="paid_amount_fdw" name="paid_amount_fdw" readonly class="form-control">                    </div>
+                </div>
+            </div>
+        </form>
 
             <div class="row">
 
                 <div class="col-6 text-right">
-                    <button type="submit" class="btn btn-rose col-4">WITHDRAW</button>
+                    <button type="button" onclick="ponga()" class="btn btn-rose col-4">WITHDRAW</button>
                 </div>
                 <div class="col-1 text-right">
-                    <button type="submit" class="btn ">Clear</button>
+                    <button type="button" class="btn ">Clear</button>
                 </div>
             </div>
 
@@ -137,7 +110,7 @@
     </div>
     </div>
     </div>
-</form>
+
 
 <script type="text/javascript">
     $.ajaxSetup({
@@ -193,6 +166,19 @@
 
            function viewCustomer(name,account){
 
+           }
+
+           function ponga(){
+            $.ajax({
+                   type: 'POST',
+                   url : '{{('/ponga')}}',
+                   data: new FormData(form_fdw),
+                   contentType: false,
+                   processData: false,
+                    success: function(data){
+                        console.log(data)
+                    }
+               })
            }
 
 
