@@ -125,15 +125,11 @@ class MemberController extends Controller
 
     public function member_creation(Request $request){
 
-        //-------------------------------------request parameters
-        // return $request->customer_id;
-        // return $request->share_amount/share count;
-         $shareva=DB::table('setting_data')->where('id',2)->get();
-        // return $request->share_value;
+        //    return response()->json('Member created');
 
+        $shareva=DB::table('setting_data')->where('id',2)->get();
 
         $already_in = Member::where('customer_id', $request->customer_id)->first();
-
         if($already_in){
                 return response()->json('Member already exists');
             }
@@ -144,10 +140,15 @@ class MemberController extends Controller
             $branch_id = CustomerBasicData::where('customer_id', $request->customer_id)->first();
             $branch_id->non_member=0;
             $branch_id->member=1;
+
+            $mem_date = CustomerStatusDates::where('customer_id', $request->customer_id)->first();
+            $mem_date->member_date =Carbon::today()->toDateString();
+            $mem_date->save();
+
             $branch_id->save();
             $mem->member_number= 'W-'.$request->customer_id;
-
             $mem->save();
+
 
 
             $payment_log=$request;
@@ -157,7 +158,11 @@ class MemberController extends Controller
             $payment_log['transaction_value']=$request->share_value;
             $payment_log['transaction_code']="ST";
             $payment_log['payment_method_id']=1;
-            // $deposits_today=TransactionData::where()
+
+            $last_payment_log = TransactionData::select('balance_value')->where('created_by',Auth::user()->id)->orderBy('id','desc')->first();
+            $balance_payment_log = isset($last_payment_log)?$last_payment_log->balance_value:0.00;
+            $payment_log['balance_value']=$balance_payment_log + ($request->share_amount *$shareva[0]->setting_data);
+
             $transaction_data=TransactionData::create($payment_log->all());
 
             $transaction_shares=$request;
@@ -168,27 +173,34 @@ class MemberController extends Controller
             $transaction_shares['customer_id']=$branch_id->customer_id;
             $transaction_shares['is_enable']=1;
             $transaction_shares['created_by']=Auth::user()->id;
-            $transaction_shares['transaction_value']= $request->share_amount;
-            $transaction_shares['balance_value']=$request->share_amount;
+            $transaction_shares['transaction_value']= $request->share_amount*$shareva[0]->setting_data;
+
+            $last_balance_of_cashie = TransactionShare::select('balance_value')->where('created_by',Auth::user()->id)->orderBy('id','desc')->first();
+            $balance_of_cashie = isset($last_balance_of_cashie)?$last_balance_of_cashie->balance_value:0.00;
+            $transaction_shares['balance_value']=$balance_of_cashie + ($request->share_amount *$shareva[0]->setting_data);
+
             TransactionShare::create($transaction_shares->all());
 
 
-        $cash_in_hand_ledger=$request;
-        $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
-        $cash_in_hand_ledger['customer_id']=$request->customer_id;
-        $cash_in_hand_ledger['user_id']=Auth::user()->id;
-        $cash_in_hand_ledger['transaction_type']="DEPOSITE";
-        $cash_in_hand_ledger['transaction_value']=$request->transaction_value;
-        $deposite_total=cash_in_hand_ledger::where('transaction_type','DEPOSITE')
-                                        ->where('user_id',Auth::user()->id)
-                                        ->sum('transaction_value');
-        $withdraw_total=cash_in_hand_ledger::where('transaction_type','WITHDRAW')
-                                        ->where('user_id',Auth::user()->id)
-                                        ->sum('transaction_value');
-        $cash_in_hand_ledger['balance_amount']=$deposite_total-$withdraw_total+$request->transaction_value;
-        $cash_in_hand_ledger['is_enable']=1;
+            $cash_in_hand_ledger=$request;
+            $cash_in_hand_ledger['transaction_data_id']=$transaction_data->id;
+            $cash_in_hand_ledger['customer_id']=$request->customer_id;
+            $cash_in_hand_ledger['user_id']=Auth::user()->id;
+            $cash_in_hand_ledger['transaction_type']="DEPOSITE";
+            $cash_in_hand_ledger['transaction_value']=$request->transaction_value*$shareva[0]->setting_data;
 
-        cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+            $last_cash_in_hand_branch_balance = cash_in_hand_ledger::select('branch_balance')->where('user_id',Auth::user()->id)->orderBy('id','desc')->first();
+            $branch_balance_cash_in_hand_ledger = isset($last_cash_in_hand_branch_balance)?$last_cash_in_hand_branch_balance->branch_balance:0.00;
+            $cash_in_hand_ledger['branch_balance']=$branch_balance_cash_in_hand_ledger;
+
+
+            $last_cash_in_hand_ledger = cash_in_hand_ledger::select('balance_amount')->where('user_id',Auth::user()->id)->orderBy('id','desc')->first();
+            $balance_cash_in_hand_ledger = isset($last_cash_in_hand_ledger)?$last_cash_in_hand_ledger->balance_amount:0.00;
+            $cash_in_hand_ledger['balance_amount']=$balance_cash_in_hand_ledger + ($request->share_amount *$shareva[0]->setting_data);
+
+            $cash_in_hand_ledger['is_enable']=1;
+            cash_in_hand_ledger::create($cash_in_hand_ledger->all());
+
 
             $payment_log['transaction_data_id']=$transaction_data->id;
             // $payment_log['balance_amount']=$transaction_data->account_balance;
@@ -198,44 +210,44 @@ class MemberController extends Controller
             $cashie_daily_trancastion['user_id']=Auth::user()->id;
             $cashie_daily_trancastion['transaction_type']="DEPOSITE";
             $cashie_daily_trancastion['transaction_id']=$transaction_data->id;
-            // $cashie_daily_trancastion['account_number']=$request->account_id;
+
             $cashie_daily_trancastion['transaction_amount']=$request->share_amount*$shareva[0]->setting_data;
 
-            $b_val = CashierDailyTransaction::select('balance_value')->where('branch_id',Auth::user()->branh_id)->first();
-            if(!empty($b_val)){
-            $add1 = CashierDailyTransaction::select('balance_value')
-                                    ->where('user_id',Auth::user()->id)
-                                    ->where('branch_id',Auth::user()->branh_id)
-                                    ->orderBy('id','desc')
-                                    ->limit(1);
-            $add3 = $add1->balance_value +($request->share_amount*$shareva[0]->setting_data);
-            $cashie_daily_trancastion['balance_value']=$add3;}
+            $last_cashie_daily_trancastion = CashierDailyTransaction::select('balance_value')->where('user_id',Auth::user()->id)->orderBy('id','desc')->first();
+            $branch_balance_cashie_daily_trancastion = isset($last_cashie_daily_trancastion)?$last_cashie_daily_trancastion->balance_value:0.00;
+            $cashie_daily_trancastion['balance_value']=$branch_balance_cashie_daily_trancastion + ($request->share_amount *$shareva[0]->setting_data);
+
             $cashie_daily_trancastion['is_enable']=1;
             $cashie_daily_trancastion['transaction_date']=Carbon::today()->toDateString();
             $cashie_daily_trancastion['branch_id']=Auth::user()->branh_id;
 
 
-            $add2 = CashierDailyTransaction::select('branch_balance')
-                                    ->latest()
-                                    ->limit(1);
-            $add4=$add2->branch_balance + ($request->share_amount*$shareva[0]->setting_data);
-            $cashie_daily_trancastion['branch_balance']=$add4;
+            $branch_last_cashie_daily_trancastion = CashierDailyTransaction::select('branch_balance')->where('branch_id',Auth::user()->branh_id)->orderBy('id','desc')->first();
+            $branch_balance_cashie_daily_trancastion = isset($branch_last_cashie_daily_trancastion)?$branch_last_cashie_daily_trancastion->branch_balance:0.00;
+            $cashie_daily_trancastion['branch_balance']=$branch_balance_cashie_daily_trancastion;
 
             CashierDailyTransaction::create($cashie_daily_trancastion->all());
 
 
+            $saving_deposit_base_ledger=$request;
+            $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
+            $saving_deposit_base_ledger['acccount_id']=$request->account_id;
+            $saving_deposit_base_ledger['transaction_type']="DEPOSITE";
+            $saving_deposit_base_ledger['transaction_value']=$request->share_amount * $shareva[0]->setting_data;
 
+            $last_saving_deposit_base_ledger = saving_deposit_base_ledger::select('balance_amount')->where('user_id',Auth::user()->id)->orderBy('id','desc')->first();
+            $branch_balance_saving_deposit_base_ledger = isset($last_saving_deposit_base_ledger)?$last_saving_deposit_base_ledger->balance_amount:0.00;
+            $saving_deposit_base_ledger['balance_amount']= $branch_balance_saving_deposit_base_ledger +($request->share_amount *$shareva[0]->setting_data);
 
-             $saving_deposit_base_ledger=$request;
-             $saving_deposit_base_ledger['transaction_data_id']=$transaction_data->id;
-             $saving_deposit_base_ledger['acccount_id']=$request->account_id;
-             $saving_deposit_base_ledger['transaction_type']="DEPOSITE";
-             $saving_deposit_base_ledger['transaction_value']=$request->share_amount;
-            //  $saving_deposit_base_ledger['balance_value']=$general_account->account_balance;
-             $saving_deposit_base_ledger['is_enable']=1;
-             saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
-             $msg='Member created'.$mem->member_number;
+            $branch_last_saving_deposit_base_ledger = saving_deposit_base_ledger::select('branch_balance')->where('user_id',Auth::user()->id)->orderBy('id','desc')->first();
+            $branch_balance_saving_deposit_base_ledger = isset($branch_last_saving_deposit_base_ledger)?$branch_last_saving_deposit_base_ledger->branch_balance:0.00;
+            $saving_deposit_base_ledger['branch_balance'] = $branch_balance_saving_deposit_base_ledger;
+
+            $saving_deposit_base_ledger['is_enable']=1;
+            saving_deposit_base_ledger::create($saving_deposit_base_ledger->all());
+$msg='Member created'.$mem->member_number;
             return response()->json($msg);
+           // return response()->json('Member created');
 
     }
 

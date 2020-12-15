@@ -25,7 +25,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <input type="text" class="form-control" id="full_name" readonly>
-                        <input type="hidden" class="form-control" id="customer_id" name="customer_id" readonly>
+                        <input type="text" class="form-control" id="customer_id" name="customer_id" readonly>
                     </div>
                 </div>
                 <a class="btn fa fa-search btn-info btn-sm" data-toggle="modal" href="#memberModal"></a>
@@ -110,6 +110,8 @@ function add_name(name,id){
      console.log(id);
      full_name.value = name
      customer_id.value = id
+     cid.value = id
+     console.log(cid)
 
 }
 
@@ -123,7 +125,6 @@ function submit_form(){
         success: function(data){
             console.log(data);
             if(data === 'Member already exists'){
-
                 return Swal.fire(data)
             } else{
 

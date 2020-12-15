@@ -19,16 +19,16 @@
                                         <div class="form-group">
                                             <input
                                                 oninput="toCap(this.value, this.id), get_modal_search_by_full_name(this.value)"
-                                                type="text" class="form-control js-example-data-ajax" name="client_full_name_search_modal"
-                                                id="client_full_name_search_modal" placeholder="Enter Full Name">
+                                                type="text" class="form-control js-example-data-ajax"
+                                                name="client_full_name_search_modal" id="client_full_name_search_modal"
+                                                placeholder="Enter Full Name">
                                         </div>
                                     </div>
                                     <div class="col">
                                         {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                        <button class="btn  btn-info btn"
-                                            onclick="data_clear()">
+                                        <button class="btn  btn-info btn" onclick="data_clear()">
                                             Clear Results </button>
 
                                     </div>
@@ -44,8 +44,8 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_modal_search_by_customer_id(this.value)" type="text"
-                                                class="form-control js-example-data-ajax" id="customer_code_modal" name="customer_code_modal"
-                                                placeholder="Enter Customer ID">
+                                                class="form-control js-example-data-ajax" id="customer_code_modal"
+                                                name="customer_code_modal" placeholder="Enter Customer ID">
                                         </div>
                                     </div>
                                 </div>
@@ -60,8 +60,8 @@
                                             <input oninput="
                                             // toCap(this.value, this.id),
                                             get_modal_search_by_nic_id(this.value)" type="text"
-                                                class="form-control js-example-data-ajax" id="id_number_modal" name="id_number_modal"
-                                                placeholder="Enter Identification Number">
+                                                class="form-control js-example-data-ajax" id="id_number_modal"
+                                                name="id_number_modal" placeholder="Enter Identification Number">
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +82,6 @@
 
 <script>
     let customer_data;
-
     let is_customer_id_2 = false;
 
 
@@ -209,13 +208,10 @@
                 if(document.querySelector('#share_amount')){
                     share_amount.value = cus.share_amount
                 }
-                // ---------------------------for deposites and withdrwals
-                // if(document.querySelector('#full_name')){
-                //     share_amount.value = cus.share_amount
-                // }
-                // if(document.querySelector('#customer_id')){
-                //     share_amount.value = cus.share_amount
-                // }
+                if(document.querySelector('#cid')){
+                    cid.value = cus.customer_id
+                }
+
                 if(document.querySelector('#account_id')){
                     account_balance.value = cus.account_balance
                 }
@@ -224,7 +220,6 @@
                 }
                 $('#memberModal').modal('hide');
                  return console.log(cus);
-                //  console.log(full_name);
             }
         })
     }

@@ -528,6 +528,7 @@ Route::get('/enablefdprint/{id}','FdAccountController@enableFdPrint');
 Route::get('/customerledger','TransactionReportController@customerLedger');
 Route::post('/getledger','TransactionReportController@ledgerDetails');
 
+Route::get('/newfdproductsbyname','FdAccountController@newFdProducts');
 
 
 //------------------------------------------------------search model routes-----------
@@ -546,8 +547,21 @@ Route::get('/passbook-back', 'PrintController@passbookBack');
 //----------------------------------------------------------palmtop and branch transactions-----------------
 Route::get('/bankvsheadoffice','BranchvsHqTransferController@index');
 Route::post('/bankvsheadoffice/transfer','BranchvsHqTransferController@transfer');
+Route::get('/fromhq','BranchvsHqTransferController@fromhq');
+Route::post('/fromhq/transfer','BranchvsHqTransferController@fromhqtransfer');
 Route::get('/frompalmtop','BranchvsHqTransferController@palmtop');
+Route::get('/getpalmtopdata','BranchvsHqTransferController@queryFromPalmtop');
 Route::post('/submit_palmtop_data','PalmtopTransferController@submit_palmtop_data');
 Route::get('/submit_palmtop_data_single','PalmtopTransferController@submit_palmtop_data_single');
 Route::get('/submit_palmtop_data_reject','PalmtopTransferController@reject');
+
+//-----------------------------------------------------------------------------
+Route::get('/fdwithreq',function(){
+    return view('deposit.fd_withdrawReq');
+});
+
+Route::post('/withdrawalreqq','FdAccountController@withdrawalRequest');
+Route::get('/withdrawalreqqpending',function(){
+    return view('fd.withdrawalrequestspending');
+});
 Auth::routes();

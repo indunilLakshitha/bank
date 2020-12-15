@@ -105,8 +105,9 @@
                     <label class="col-sm-2 col-form-label">Deposit Amount</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="transaction_value"
-                                {{-- oninput="caltotal(this.value)" --}}>
+                            <input type="text" class="form-control" id="transaction_value" oninput="difCal()">
+                            {{-- oninput="caltotal(this.value)" --}}
+
                         </div>
                     </div>
                 </div>
@@ -115,7 +116,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="hidden" class="form-control" id="tot">
-                            <input type="text" class="form-control" id="re_c" oninput="validateaount(this.value)">
+                            <input type="text" class="form-control" id="re_c"
+                                oninput="validateaount(this.value),difCal()">
                         </div>
                     </div>
                 </div>
@@ -124,8 +126,9 @@
                     <label class="col-sm-2 col-form-label">Balance</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="account_balance" name="account_balance"
+                            <input type="hidden" class="form-control" id="account_balance" name="account_balance"
                                 readonly>
+                            <input type="text" class="form-control" id="dif" name="dif" readonly>
                         </div>
                     </div>
                 </div>
@@ -231,6 +234,14 @@
 </div> --}}
 
 <script type="text/javascript">
+    function difCal(){
+    var first=parseInt(re_c.value)
+    var sec=parseInt(transaction_value.value)
+    var difff=first-sec
+    console.log(difff)
+    dif.value=difff
+
+}
     function show_image() {
         document.getElementById("btn_img").disabled = true;
         let elem = document.createElement("img");
@@ -309,10 +320,10 @@
                         account_balance.value=data.balance_amount
                         transaction_value.value=""
                         re_c.value=""
-                        return Swal.fire('Deposit Successful')
+                        return Swal.fire('Deposit Successful Slip No',data.transaction_data_id.toString())
                     }
                })
-                }
+            }
            }
 
            function showCustomers(data){
@@ -364,7 +375,7 @@
                     <tr>
                         <th>${i}</th>
                         <th>${acc.account_number}</th>
-                        <th></th>
+                        <th>Normal Savings</th>
                         <th></th>
                         <th>${acc.account_balance}</th>
                     </tr>

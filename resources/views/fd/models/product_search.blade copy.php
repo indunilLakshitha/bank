@@ -45,9 +45,11 @@
                                                     <table id="datatables" class="table   table-bordered table-hover"
                                                         cellspacing="0" width="100%" style="width:100%">
                                                         <thead>
-                                                            <th>name</th>
-                                                            <th>Interest</th>
-                                                            <th>Duration(Months)/th>
+                                                            <th>Code</th>
+                                                            <th>Name</th>
+                                                            <th>Int Min</th>
+                                                            <th>Int Max</th>
+                                                            <th>Action</th>
                                                         </thead>
                                                         <tbody id="product_body">
 
@@ -81,7 +83,7 @@
         }
         $.ajax({
         type: 'GET',
-        url: '{{('/newfdproductsbyname')}}',
+        url: '{{('/findproduct')}}',
         data: {code:value} ,
         success: function(data){
             console.log(data);
@@ -119,9 +121,10 @@ function all_products_set(data){
 console.log(i)
         let html = `
         <tr>
-            <td>${i.account_name}</td>
-            <td>${i.duration}</td>
-            <td>${i.interest}</td>
+            <td>${i.schema_code}</td>
+            <td>${i.sub_account_description}</td>
+            <td>${i.from_value}</td>
+            <td>${i.to_value}</td>
             <td>
                 <button type="button"
                 onclick=
@@ -147,22 +150,22 @@ function set_product_details(id){
         if(cus.id === parseInt(id)){
             console.log(cus);
             if(document.querySelector('#max_interest')){
-                max_interest.value = cus.max
+                max_interest.value = cus.to_value
             }
             if(document.querySelector('#min_interest')){
-                min_interest.value = cus.min
+                min_interest.value = cus.from_value
             }
             if(document.querySelector('#set_interest')){
-                set_interest.value = cus.interest
+                set_interest.value = cus.amount
             }
             if(document.querySelector('#sub_product')){
-                sub_product.value = cus.account_name
+                sub_product.value = cus.sub_account_description
             }
             if(document.querySelector('#sub_product_id')){
                 sub_product_id.value = cus.id
             }
-            if(document.querySelector('#deposite_period_id')){
-                deposite_period_id.value = cus.duration
+            if(document.querySelector('#deposite_type_id')){
+                deposite_type_id.value = cus.deposite_type_id
             }
             if(document.querySelector('#deposite_type')){
                 deposite_type.value = cus.deposite_type

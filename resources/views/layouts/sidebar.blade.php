@@ -190,6 +190,16 @@
                         </li>
                     </ul>
                     @endcan
+                    @can('fd_verification')
+                    <ul class="nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/withdrawalreqqpending">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal"> Withdrawal  Verification</span>
+                            </a>
+                        </li>
+                    </ul>
+                    @endcan
                     @can('fd_index')
 
                     <ul class="nav">
@@ -256,6 +266,14 @@
                             <a class="nav-link" href="/deposits/fd-with">
                                 <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
                                 <span class="sidebar-normal">FD Withdrawal</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('fd_withdrawal')
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fdwithreq">
+                                <span class="sidebar-mini"> <i class="material-icons">add</i> </span>
+                                <span class="sidebar-normal">FD Withdrawal Request</span>
                             </a>
                         </li>
                         @endcan
@@ -338,7 +356,7 @@
                     </ul>
                 </div>
             </li>
-            
+
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#schema">
                     <i class="material-icons">book_online</i>
@@ -351,7 +369,13 @@
                         <li class="nav-item ">
                             <a class="nav-link" href="/bankvsheadoffice">
                                 <span class="sidebar-mini"> <i class="material-icons">api</i> </span>
-                                <span class="sidebar-normal">Branch vs HQ</span>
+                                <span class="sidebar-normal">To HQ</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/fromhq">
+                                <span class="sidebar-mini"> <i class="material-icons">api</i> </span>
+                                <span class="sidebar-normal">From HQ</span>
                             </a>
                         </li>
 

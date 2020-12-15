@@ -156,7 +156,7 @@
                             </div>
  <div class="col-4">
                                 <button class="btn btn-primary btn"
-                                    onclick="add_nominee(nominee_id.value, customer_id.value,relation_type.value)">
+                                    onclick="add_nominee()">
                                     Add Nominee</button>
 
                             </div>
@@ -255,14 +255,14 @@ function nominees_set_cus_details_from_modal(id){
 }
 
 function add_nominee(nominee_id, member_id,relation_type){
-     console.log(relation_type);
+     console.log(relation_type,nominee_id,member_id);
         $.ajax({
             type: 'GET',
             url: '{{('/add_nominee_member_creation')}}',
             data: {
-                nominee_id,
-                member_id,
-                relation_type
+                nominee_id.value,
+                member_id.value,
+                relation_type.value
             },
             success: function(data){
                 console.log(data)

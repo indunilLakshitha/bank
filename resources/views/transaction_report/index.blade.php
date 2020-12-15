@@ -115,14 +115,14 @@
             <div class="col-sm-6">
 
             </div>
-
+<button type="button" onclick="printData()">sadsadas</button>
         </div>
         <div class="row">
             <div class="col-sm-8 " style="margin-left: 260px">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="table">
+                            <div class="table d-none">
                                 <table id="table" class="table table-striped table-no-bordered table-hover"
                                     cellspacing="0" width="100%" style="width:100%">
                                     <thead>

@@ -21,6 +21,8 @@
           href="#noticeModal"> SEARCH Nominees</button>
               </div>
           </div> --}}
+          <form id="form_external">
+              @csrf
                 <div class="row mt-5">
                     <label class="col-sm-2 col-form-label"> Client Full Name</label>
                     <div class="col-sm-10">
@@ -30,6 +32,7 @@
                                     <input oninput="toCap(this.value, this.id)" type="text"
                                         class="form-control js-example-data-ajax" id="cus_name" name="cus_name"
                                         placeholder="Enter Full Name">
+                                        <input type="text" id="cid" name="cid">
                                 </div>
                             </div>
 
@@ -98,9 +101,10 @@
                         </div>
                     </div>
                 </div>
+            </form>
                 <div class="modal-footer">
                 <a onclick="addExternal()" class="btn btn-rose">Add</a>
-                <button type="button" class="btn btn-rose" data-dismiss="modal">Done</button>
+                <a href="/member" type="button" class="btn btn-rose" data-dismiss="modal">Done</a>
             </div>
                 <div class="row">
                     <table class="table">
@@ -114,31 +118,25 @@
         </div>
     </div>
 </div>
+
 {{-- @include('layouts.search_nominees_modal') --}}
 
 <script>
     function addExternal(){
+        console.log('sdvsdv')
     customer=customer_id.value
     na=cus_name.value
-    console.log(cus_name.value);
     addr=address.value
     nicc=nic.value
     $( "#relation_type option:selected" ).text();
-    var relation_type = document.querySelector('#relation_type');
+    var relation_type = document.querySelector('#relation_type').value;
    con=contact_no.value
       $.ajax({
           type: 'POST',
           url: '{{('/add_external_nominies')}}',
-          data: {
-            'customer_id':customer,
-            'name':na,
-            'address':addr,
-            'contact_no':con,
-            'nic':nicc,
-            'relation_type':relation_type.value
-
-
-          },
+          data: new FormData(form_external),
+          contentType: false,
+          processData: false,
           success: function(data){
               console.log(data)
               Swal.fire({

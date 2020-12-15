@@ -12,13 +12,15 @@ class ExternalNomimiesController extends Controller
 // return response()->json($request);
         $nominie=$request;
 
-        $mem=Member::where('customer_id',$request->customer_id)->first();
+        $mem=Member::where('customer_id',$request->cid)->first();
         $nominie['member_id']=$mem->member_number;
         $nominie['relation_type']=$request->relation_type;
         $nominie['contact_no']=$request->contact_no;
         $nominie['nic']=$request->nic;
-        $nominie['address']=$request->address;
 
+        $nominie['address']=$request->address;
+        $nominie['name']=$request->cus_name;
+        // return $nominie['name'];
         ExternalNomimies::create($nominie->all());
         $nominies=ExternalNomimies::where('member_id',$nominie['member_id'])->get();
         return response()->json($nominies);

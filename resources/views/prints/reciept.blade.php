@@ -19,7 +19,8 @@
     {{ $amountSpell}} <br>
     {{ $trans->transaction_type }}<br>
     cashier:
-    {{ Auth::user()->name }}
+    {{ Auth::user()->name }}<br>recp:
+    {{ $trans->id}}
 </body>
 
 </html>

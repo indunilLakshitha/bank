@@ -89,6 +89,7 @@
                                     <thead>
                                         <th id="account_id_inside_table"></th>
                                         <th></th>
+                                        <th></th>
                                         <th>CAPITAL</th>
                                         <th>INTEREST</th>
                                         <th>OTHER</th>
@@ -203,6 +204,7 @@
             i.transaction_value = i.transaction_type== "WITHDRAW" ? `(${i.transaction_value})` : i.transaction_value
             html = `
                     <tr>
+                        <th>${i.id}</th>
                         <th>${i.transaction_details}</th>
                         <th>${i.created_at}</th>
                         <th>${i.transaction_value} </th>

@@ -10,7 +10,7 @@
                     <div class="col-10">
                         <div class="card-header card-header-rose card-header-text">
                             <div class="card-text">
-                                <h4 class="card-title">Branch vs Bank Transfer</h4>
+                                <h4 class="card-title">From Head office To Branch</h4>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                                 <option value="DEPOSITE">DEPOSITE </option>
 
                                             </select> --}}
-                                            <input type="text" value="To Head Office" readonly  class="form-control">
+                                            <input type="text" value="From Head Office" readonly  class="form-control">
 
                                         </div>
                                     </div>
@@ -145,7 +145,7 @@
 function transfer(){
     $.ajax({
           type: 'POST',
-          url: '{{('/bankvsheadoffice/transfer')}}',
+          url: '{{('/fromhq/transfer')}}',
           data:new FormData(form),
 
         contentType: false,
@@ -153,7 +153,7 @@ function transfer(){
           success: function(data){
               console.log(data)
               Swal.fire({
-                    title: 'Successfully Transfered To Had Office',
+                    title: 'Successfully Transfered To Branch Office',
                     text: data.success,
                     icon: 'success',
                     timer: 20000

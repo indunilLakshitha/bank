@@ -71,6 +71,8 @@
                     <div class="form-group">
                         <input type="text" placeholder="Interest (%)" class="form-control" id="set_interest"
                             value="{{$fD->set_interest}}%" name="set_interest">
+                            <a class="btn fa fa-plus btn-sm btn-info btn" data-toggle="modal" href="#ext_inv"></a>
+
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -455,7 +457,7 @@
     </div>
 </div>
 @endisset
-@foreach($ex_ns as $ex_n)
+@foreach($ex_ns ?? '' as $ex_n)
     @if(!empty($ex_n))
     <div class="card col-10 ">
         <div class="card-body ">

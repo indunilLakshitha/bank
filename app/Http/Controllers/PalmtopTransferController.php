@@ -125,9 +125,7 @@ class PalmtopTransferController extends Controller
 
         $payment_log=$request;
 
-        $general_account=AccountGeneralInformation::where('account_number',$palm->account_id)->first();
-        $general_account->account_balance += $palm->transaction_value;
-        $general_account->save();
+        
         $general_account_branch=AccountGeneralInformation::where('branch_id',Auth::user()->branh_id)->first();
         $payment_log['created_by']=Auth::user()->id;
         $payment_log['transaction_type']="DEPOSITE";

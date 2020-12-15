@@ -120,7 +120,7 @@
                     <label class="col-sm-2 col-form-label">Withdrawal Amount</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="transaction_value">
+                            <input type="text" class="form-control" id="transaction_value" oninput="difCal()">
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                     <label class="col-sm-2 col-form-label"> Re-enter Amount Amount </label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="re_c" oninput="validateaount(this.value)">
+                            <input type="text" class="form-control" id="re_c" oninput="validateaount(this.value),difCal()">
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,9 @@
                     <label class="col-sm-2 col-form-label">Balance</label>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="account_balance" name="account_balance"
+                            <input type="hidden" class="form-control" id="account_balance" name="account_balance"
+                                readonly>
+                                <input type="text" class="form-control" id="dif" name="dif"
                                 readonly>
                         </div>
                     </div>
@@ -249,6 +251,15 @@
 </div> --}}
 
 <script type="text/javascript">
+
+function difCal(){
+    var first=parseInt(re_c.value)
+    var sec=parseInt(transaction_value.value)
+    var difff=first-sec
+    console.log(difff)
+    dif.value=difff
+
+}
     function show_image() {
     var elem = document.createElement("img");
     var im=img_loc.value
@@ -307,9 +318,8 @@ document.getElementById("imgg").appendChild(elem);
             function normalWithdraw(amount,customer_id,account_id,payment_method_id){
 
                 console.log(amount)
-                // console.log(customer_id)
-                // console.log(account_id)
-                if(amount < account_balance.value){
+
+                if(parseInt(amount) < parseInt(account_balance.value)){
                $.ajax({
                    type: 'GET',
                    url : '{{('/normalwithdraw')}}',
@@ -321,15 +331,21 @@ document.getElementById("imgg").appendChild(elem);
                        'transaction_type': 'on_test',
                     },
                     success: function(data){
-                     console.log(data)
+
+                        console.log(data)
                         account_balance.value=data.balance_amount
                         transaction_value.value=""
                         re_c.value=""
-                        return Swal.fire('Withdrawal Successful')
+                        return Swal.fire('Withdrawal Successful slip NO',data.transaction_data_id.toString())
+
                     }
+
                })
+
             }else{
+
                 Swal.fire("Insufficient Balance")
+
             }
            }
 

@@ -16,7 +16,9 @@ use App\Models\FdInterestType;
 use App\Models\FdInvestor;
 use App\Models\FdNominee;
 use App\Models\SubAccount;
+use App\WithdrawalRequests;
 use Carbon\Carbon;
+use Carbon\Traits\Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -202,7 +204,7 @@ class FdAccountController extends Controller
 
     }
     public function view(Request $request){
-
+        return view('fd.verification.view');
         // $branch=Branch::where('id',Auth::user()->branh_id)->first();
         //  $deposite_types=DepositeType::where('is_enable',1)->get();
         //  $interest_types=FdInterestType::where('is_enable',1)->get();
@@ -384,7 +386,9 @@ public function fdMembersForWnD(Request $request){
             fd_account_general_information.deposited,
 
             fd_account_general_information.account_id,
-            fd_account_general_information.deposite_amount
+            fd_account_general_information.deposite_amount,
+            fd_account_general_information.start_date,
+            fd_account_general_information.close_date
 
         FROM customer_basic_data
 
@@ -422,8 +426,9 @@ public function fdMembersForWnD(Request $request){
             fd_account_general_information.deposited,
 
             fd_account_general_information.account_id,
-            fd_account_general_information.deposite_amount
-
+            fd_account_general_information.deposite_amount,
+            fd_account_general_information.start_date,
+            fd_account_general_information.close_date
         FROM customer_basic_data
 
 
@@ -459,8 +464,9 @@ public function fdMembersForWnD(Request $request){
             fd_account_general_information.deposited,
 
             fd_account_general_information.account_id,
-            fd_account_general_information.deposite_amount
-
+            fd_account_general_information.deposite_amount,
+            fd_account_general_information.start_date,
+            fd_account_general_information.close_date
         FROM customer_basic_data
 
 
@@ -494,6 +500,7 @@ public function fdDeposite(Request $request){
 
     $general_account=FdAccountGeneralInformation::where('account_id',$request->account_id)->first();
     $general_account->deposited =1;
+    $general_account->is_print_enabled =1;
     $general_account->save();
 
         $cash_in_hand_ledger=$request;
@@ -534,5 +541,42 @@ public function fdDeposite(Request $request){
 public function enableFdPrint($id){
     FdAccountGeneralInformation::where('fd_account_general_information.account_id', $id)->update(['is_print_enabled'=>1]);
     return redirect()->back();
+}
+public function withdrawalRequest(Request $request){
+
+
+    // $with=WithdrawalRequests::create($with_req->all());
+    $with = new WithdrawalRequests;
+    $with['fd_account_id']=$request->account_id;
+    $with['requested_date']=Carbon::now();
+    $with['status']='1';
+    $with->save();
+    return response()->json($with);
+
+}
+
+public function newFdProducts(Request $request){
+    $product_details=$data = DB::select("
+        SELECT DISTINCT
+
+        new_fd_sub_accounts.*,
+        new_fd_account_rates.duration,
+        new_fd_account_rates.interest,
+        new_fd_account_rates.min,
+        new_fd_account_rates.max
+
+        FROM new_fd_sub_accounts
+
+         JOIN new_fd_account_rates
+        ON new_fd_account_rates.fd_id = new_fd_sub_accounts.id
+
+        WHERE new_fd_sub_accounts.account_name LIKE '%$request->code%'
+        ");
+        return response()->json($product_details);
+}
+
+
+public function withdrawalRequestPending(){
+    
 }
 }

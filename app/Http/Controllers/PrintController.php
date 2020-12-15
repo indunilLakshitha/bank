@@ -76,7 +76,7 @@ class PrintController extends Controller
                 $fileName = $accounts[0]->account_number;
                 FdAccountGeneralInformation::where('fd_account_general_information.account_id', $id)->update(['is_print_enabled'=>0]);
                return  $pdf->stream($fileName . '.pdf');
-    
+
             }
 // return redirect()->back();
     }

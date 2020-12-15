@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                {{-- <div class="row">
                     <label class="col-sm-2 col-form-label">Deposite Method</label>
                     <div class="col-sm-8">
                         <div class="row">
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     <label class="col-sm-2 col-form-label">Deposit Amount</label>
                     <div class="col-sm-6">
@@ -224,7 +224,7 @@
     </div>
 </div>
 </div>
-@include('deposit.models.search_model_for_fd')
+@include('deposit.models.fd')
 
 {{-- </div>
 </div>

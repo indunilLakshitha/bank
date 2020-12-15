@@ -128,8 +128,8 @@
             <label class="col-sm-2 col-form-label">Deposit Type</label>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="hidden" class="form-control" name="deposite_type_id" id="deposite_type_id">
-                    <input type="text" readonly class="form-control" name="deposite_type" id="deposite_type">
+                    <input type="hidden" class="form-control" name="deposite_type_id" id="deposite_type_id" value="1">
+                    <input type="hidden" readonly class="form-control" name="deposite_type" id="deposite_type">
                 </div>
             </div>
         </div>
@@ -137,8 +137,8 @@
             <label class="col-sm-2 col-form-label">Int Type</label>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="hidden" class="form-control" name="fd_interest_type_id" id="fd_interest_type_id">
-                    <input type="text" readonly class="form-control" name="fd_interest_type" id="fd_interest_type">
+                    <input type="hidden" class="form-control" name="fd_interest_type_id" id="fd_interest_type_id" value="1">
+                    <input type="hidden" readonly class="form-control" name="fd_interest_type" id="fd_interest_type">
                 </div>
             </div>
         </div>
@@ -146,7 +146,8 @@
             <label class="col-sm-2 col-form-label">No of Period</label>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <select name="deposite_period_id" id="deposite_period_id" class="form-control"
+                    <input type="text" readonly class="form-control" name="deposite_period_id" id="deposite_period_id">
+                    {{-- <select name="deposite_period_id" id="deposite_period_id" class="form-control"
                         oninput="calDuration(this.value)">
                         <option value="0" selected>Select </option>
                         @isset($deposite_periods)
@@ -159,7 +160,7 @@
                         @endisset
 
 
-                    </select>
+                    </select> --}}
                 </div>
             </div>
 

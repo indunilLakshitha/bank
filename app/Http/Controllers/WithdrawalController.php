@@ -11,7 +11,11 @@ class WithdrawalController extends Controller
 {
     public function load_saving_details(Request $request){
 
-        $accs = AccountGeneralInformation::where('customer_id', $request->id)->get();
+         $accs = AccountGeneralInformation::leftjoin('product_data','product_data.account_id','account_general_information.id')
+        ->leftjoin('sub_accounts','sub_accounts.id','product_data.product_type_id')
+                ->where('customer_id', $request->id)
+                ->select('account_general_information.*','sub_accounts.sub_account_description')
+                ->get();
         $shares = Member::where('customer_id',  $request->id)->first();
         $settings=DB::table('setting_data')->where('id',2)->get();
         $share_val = 0;
