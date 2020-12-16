@@ -39,6 +39,25 @@ class PrintController extends Controller
         return $pdf->stream($fileName . '.pdf');
 
     }
+    public function directReceipt(Request $id)
+    {
+          $data = DB::table('account_general_information')
+            ->leftjoin('customer_basic_data', 'customer_basic_data.customer_id', 'account_general_information.customer_id')
+            ->leftjoin('transaction_data', 'transaction_data.account_id', 'account_general_information.account_number')
+            ->leftjoin('users', 'users.id', 'transaction_data.created_by')
+            ->where('account_general_information.account_number', $id->text)
+            // ->where('transaction_data.created_by',Auth::user()->id)
+            ->select('customer_basic_data.created_at', 'customer_basic_data.customer_id',
+                    'customer_basic_data.short_name', 'account_general_information.account_number',
+                    'customer_basic_data.full_name','transaction_data.id as tid','users.name as logger',
+                    'transaction_data.transaction_value'
+            )
+            ->get();
+ $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+  $amountSpell = ucwords($digit->format($data[0]->transaction_value));
+            return response()->json([$data,'spell'=>$amountSpell]);
+
+    }
 
     public function passbookFront($id)
     {
@@ -64,13 +83,14 @@ class PrintController extends Controller
     }
     public function directPassbookFront(Request $id)
     {
+
         $data = DB::table('account_general_information')
             ->leftjoin('product_data', 'product_data.account_id', 'account_general_information.id')
             ->leftJoin('customer_basic_data', 'customer_basic_data.customer_id', 'account_general_information.customer_id')
             ->leftJoin('address_data', 'customer_basic_data.customer_id', 'account_general_information.customer_id')
             ->leftJoin('branches', 'customer_basic_data.branch_id', 'product_data.id')
             ->leftJoin('sub_accounts', 'sub_accounts.id', 'product_data.product_type_id')
-            ->where('account_general_information.account_number', $id)
+            ->where('account_general_information.account_number', $id->text)
             ->select('customer_basic_data.full_name', 'customer_basic_data.identification_number',
                 'branches.branch_name',
                 'address_data.address_line_1', 'address_data.address_line_2',

@@ -74,8 +74,9 @@
                                                         id="select-all" /></th>
                                                 <th></th>
                                             </tr>
-                                                @foreach ($data as $item)
-                                            <tr id="results_tbody">
+                                            <tbody id="ext_inv_results_tbody">
+                                            @foreach ($data as $item)
+                                                <tr i>
                                                 <td class="text-center">{{$item->id}}</td>
                                                 <td class="text-center">{{$item->created_at}}</td>
                                                 <td class="text-center">{{$item->logger}}</td>
@@ -128,7 +129,7 @@ $.ajax({
 
 
           success: function(data){
-              console.log(data)
+              console.log('1', data)
 
                     return show_ext_inv(data)
 
@@ -142,40 +143,42 @@ $.ajax({
   }
 
   function show_ext_inv(data){
-    results_tbody.innerHTML = ''
+    console.log('inside show ext inv')
+    ext_inv_results_tbody.innerHTML = ''
+    console.log(ext_inv_results_tbody)
 
-      data.forEach(i => {
-      let html = `
-         <tr>
-             <td class="text-center">${i.id}</td>
-             <td class="text-center">${i.created_at}</td>
-             <td class="text-center">${i.logger}</td>
-             <td class="text-center">${i.full_name}</td>
-             <td class="text-center">${i.customer_id}</td>
-             <td class="text-center">${i.account_number}</td>
-             <td class="text-center"
-                 <?php echo number_format(${i.transaction_value} , 2 , '.' , ',' ) ?>
-             </td>
-             <td class="text-center">
-                 <input type="checkbox" name="is_checked[]" id="is_checked"
-                     value="${i.id}">
-             </td>
-             <td class="text-center"> <button type="button"
-                     onclick="submit_data_single('${i.id}'')" rel="tooltip"
-                     class="btn btn-info btn-round">
-                     <i class="material-icons">edit</i> <span
-                         class="mx-1">Transfer This</span>
-                 </button></td>
-             <td class="text-center"> <button type="button"
-                     onclick="reject('${i.id}'')" rel="tooltip"
-                     class="btn btn-trash btn-round">
-                     <i class="material-icons">delete</i>
-                 </button></td>
-        </tr>
-      `
-      results_tbody.innerHTML += html
+//       data.forEach(i => {
+//       let html = `
+//          <tr>
+//              <td class="text-center">${i.id}</td>
+//              <td class="text-center">${i.created_at}</td>
+//              <td class="text-center">${i.logger}</td>
+//              <td class="text-center">${i.full_name}</td>
+//              <td class="text-center">${i.customer_id}</td>
+//              <td class="text-center">${i.account_number}</td>
+//              <td class="text-center">
+//                  ${i.transaction_value}
+//              </td>
+//              <td class="text-center">
+//                  <input type="checkbox" name="is_checked[]" id="is_checked"
+//                      value="${i.id}">
+//              </td>
+//              <td class="text-center"> <button type="button"
+//                      onclick="submit_data_single('${i.id}'')" rel="tooltip"
+//                      class="btn btn-info btn-round">
+//                      <i class="material-icons">edit</i> <span
+//                          class="mx-1">Transfer This</span>
+//                  </button></td>
+//              <td class="text-center"> <button type="button"
+//                      onclick="reject('${i.id}'')" rel="tooltip"
+//                      class="btn btn-trash btn-round">
+//                      <i class="material-icons">delete</i>
+//                  </button></td>
+//         </tr>
+//       `
+//       results_tbody.innerHTML += html
 
-  });
+//   });
 }
 
 

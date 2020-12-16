@@ -27,8 +27,7 @@
                                         {{-- <button class="btn fa fa-search btn-info btn"
                                             onclick="get_cus_details(client_full_name.value)">
                                             &nbspType in to search By Full Name</button> --}}
-                                        <button class="btn  btn-info btn"
-                                            onclick="data_clear()">
+                                        <button class="btn  btn-info btn" onclick="data_clear()">
                                             Clear Results </button>
 
                                     </div>
@@ -275,11 +274,12 @@ function get_data_for_fd_withdrawal(cus){
             start_date_index_fdw.value = get_date_index(data.start_date)
             today_date_index_fdw.value = get_date_index(new Date())
             today_fdw.value = get_today_lassanata()
-            status_fdw.value = data.duration*10 <= (get_date_index(data.start_date)-get_date_index(new Date())) ? 'Completed' : 'Not Completed'
+            status_fdw.value = data.duration*30 <= (get_date_index(data.start_date)-get_date_index(new Date())) ? 'Completed' : 'Not Completed'
             interest_fdw.value = `${data.interest} %`
             normal_interest_fdw.value = `${data.normal_rate} %`
-            interest_amount_fdw.value = (data.deposite_amount/100)*data.normal_rate
+            interest_amount_fdw.value =  data.duration*30 <= (get_date_index(new Date())-get_date_index(data.start_date)) ?  (data.deposite_amount/100)*data.interest : (data.deposite_amount/100)*data.normal_rate
             paid_amount_fdw.value = parseFloat(data.deposite_amount)+parseFloat(interest_amount_fdw.value)
+
 
 
         }

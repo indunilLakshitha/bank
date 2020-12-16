@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <label class="col-sm-2 col-form-label">Deposit Amount</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -122,10 +122,46 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> --}}
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Cheque No</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <input type="number" id="cheque_no"  name="cheque_no"  class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Deposit Amount</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <input type="number" id="transaction_value"  name="transaction_value"oninput="check()"   class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Re Enter Amount</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="form-group">
+                                            <input type="number" id="re_enter" name="re_enter" oninput="check()"  class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <br>
                         <div class="col-6 text-right">
-                            <a onclick="transfer()" class="btn btn-primary">Transfer</a>
+                            <a onclick="transfer()" id="trf_btn" class="btn btn-primary d-none">Transfer</a>
                         </div>
                     </div>
                 </div>
@@ -141,6 +177,17 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+
+
+function check(){
+    if(parseInt(re_enter.value)==parseInt(transaction_value.value)){
+          trf_btn.classList.remove('d-none')
+    }else{
+         trf_btn.classList.add('d-none')
+     }
+}
+
 
 function transfer(){
     $.ajax({

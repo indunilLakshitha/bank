@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\cash_in_hand_ledger;
+use App\hqCheque;
 use App\Models\AccountGeneralInformation;
 use App\Models\CashierDailyTransaction;
 use App\Models\CustomerBasicData;
@@ -157,7 +158,11 @@ class BranchvsHqTransferController extends Controller
         $general_account_2->save();
 
 
-
+        $cheque=$request;
+        $cheque['cheque_no']=$request->cheque_no;
+        $cheque['transaction_id']='1';
+        // return response()->json($cheque);
+        hqCheque::create($cheque->all());
         return response()->json("success");
     }
 
@@ -282,6 +287,12 @@ return view('palmtop.fromhq',compact('branchoffices','headofices','cashiers'));
         $general_account_2=AccountGeneralInformation::where('account_number',$request->hq_account_number)->first();
         $general_account_2->account_balance -= $request->transaction_value;
         $general_account_2->save();
+
+        $cheque=$request;
+        $cheque['cheque_no']=$request->cheque_no;
+        $cheque['transaction_id']=$transaction_data->id;
+        // return response()->json($cheque);
+        hqCheque::create($cheque->all());
         return response()->json("success");
 
     }

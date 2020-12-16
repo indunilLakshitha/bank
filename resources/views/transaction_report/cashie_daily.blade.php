@@ -2,36 +2,47 @@
 
 @section('content')
 
-
-<div class="row">
+<div class="row" id="">
     <div class="col-md-12">
         <div class="card ">
-            <div class="card-header card-header-success card-header-icon">
-                {{-- <div class="card-icon">
-            <i class="material-icons"></i>
-          </div> --}}
-                <h4 class="card-title">
-                    <div class="row">
-                        <div class="col">
-                            <a  rel="tooltip" class="btn btn-sm btn-primary btn-round pull-left">
-                                <i class="material-icons">add</i> <span class="mx-1">ලැබීම්</span>
-                            </a>
+            <div class="card-body ">
+                <div class="card-header card-header-success card-header-icon">
+                    {{-- <div class="card-icon">
+<i class="material-icons"></i>
+</div> --}}
+                    <h4 class="card-title">
+                        <div class="row">
+                            <div class="col">
+                                <a rel="tooltip" class="btn btn-sm btn-primary btn-round pull-left">
+                                    <i class="material-icons">add</i> <span class="mx-1">ලැබීම්</span>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a rel="tooltip" onclick="printData()"
+                                    class="btn btn-sm btn-primary btn-round pull-right">
+                                    <i class="material-icons">print</i> <span class="mx-1"></span>
+                                </a>
+                                <a rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
+                                    <i class="material-icons">add</i> <span class="mx-1">ගෙවීම්</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col">
-                            <a  rel="tooltip" class="btn btn-sm btn-primary btn-round pull-right">
-                                <i class="material-icons">add</i> <span class="mx-1">ගෙවීම්</span>
-                            </a>
-                        </div>
-                    </div>
 
-                </h4>
+                    </h4>
+                </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="tabb">
+    <div class="col-md-12">
+        <div class="card ">
             <div class="card-body ">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
+                        <div class="row" id="">
                             <div class="col-6">
-                                <div class="">
+                                <div class="" id="">
                                     <table id="" class="table table-striped table-no-bordered table-hover"
                                         cellspacing="0" width="100%" style="width:100%">
                                         <thead>
@@ -125,7 +136,7 @@
                                                 <td></td>
                                                 <td>එකතුව</td>
                                                 <td></td>
-                                            <th><?php echo number_format( $total_d , 2 , '.' , ',' ) ?></th>
+                                                <th><?php echo number_format( $total_d , 2 , '.' , ',' ) ?></th>
                                             </tr>
                                         </thead>
 
@@ -142,14 +153,15 @@
                                                 <td></td>
                                                 <td>එකතුව</td>
                                                 <td></td>
-                                            <th><?php echo number_format( $total_w , 2 , '.' , ',' ) ?></th>
+                                                <th><?php echo number_format( $total_w , 2 , '.' , ',' ) ?></th>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td></td>
                                                 <td>අවසන් එකතුව</td>
                                                 <td></td>
-                                            <th><?php echo number_format( $total_d-$total_w , 2 , '.' , ',' ) ?></th>
+                                                <th><?php echo number_format( $total_d-$total_w , 2 , '.' , ',' ) ?>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody id="results_tbody">
@@ -167,8 +179,13 @@
 </div>
 
 <script>
-
-
+    function printData() {
+        var divToPrint = document.getElementById("tabb");
+        var win = window.open('', '', 'height=720,width=1280');
+        win.document.write(tabb.outerHTML);
+        win.document.close();
+        win.print();
+    }
 </script>
 
 @endsection

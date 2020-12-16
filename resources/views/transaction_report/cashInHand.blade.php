@@ -188,6 +188,9 @@ background:#eee;
                         <div class=" col-1 ">
                             <button type="button"  onclick="search(this)" class="btn btn-info" id="search">Search</button>
                         </div>
+                        <div class=" col-1 ml-5">
+                            <a type="button"  onclick="printData()" class="btn btn-info" id="search"></a>
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -368,7 +371,13 @@ function search(){
         })
     }
 
-
+    function printData() {
+        var divToPrint = document.getElementById("cashInHand");
+        var win = window.open('', '', 'height=720,width=1280');
+        win.document.write(cashInHand.outerHTML);
+        win.document.close();
+        win.print();
+    }
 
 </script>
 
